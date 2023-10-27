@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="01/10/2014 16:38:43" ReportInfo.Modified="01/15/2014 16:01:06" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+      Text27.Text = &quot;Ditetapkan di : &quot; + CType(Report.GetColumnValue(&quot;DS.City&quot;), String)
+      Text28.Text = &quot;Pada Tanggal : &quot; + Format(&quot;{0:d MMMM yyyy}&quot;, CType(Report.GetColumnValue(&quot;DS.TransDate&quot;), DateTime))
+      Text29.Text = CType(Report.GetColumnValue(&quot;DS.CompanyName&quot;), String)
+      Text30.Text = CType(Report.GetColumnValue(&quot;DS.EmpApprName&quot;), String)
+      Text31.Text = CType(Report.GetColumnValue(&quot;DS.JobTitleApprName&quot;), String)
+      Text32.Text = CType(Report.GetColumnValue(&quot;DS.DirName&quot;), String)
+      Text33.Text = CType(Report.GetColumnValue(&quot;DS.DirJobTitle&quot;), String)
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43har/HL0kkWh+JagHe85dZ0zL">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PEFormEmpTerm '0005/JRE-PGA/01/', ''">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="EffectiveDate" DataType="System.DateTime"/>
+        <Column Name="DayName" DataType="System.String"/>
+        <Column Name="SKType" DataType="System.String"/>
+        <Column Name="EmpNumb" DataType="System.String"/>
+        <Column Name="EmpName" DataType="System.String"/>
+        <Column Name="BirthDate" DataType="System.DateTime"/>
+        <Column Name="HireDate" DataType="System.DateTime"/>
+        <Column Name="BirthPlace" DataType="System.String"/>
+        <Column Name="ResAddr1" DataType="System.String"/>
+        <Column Name="ResAddr2" DataType="System.String"/>
+        <Column Name="ResCityCode" DataType="System.String"/>
+        <Column Name="ResCityName" DataType="System.String"/>
+        <Column Name="ResPostCode" DataType="System.String"/>
+        <Column Name="EmpAppr" DataType="System.String"/>
+        <Column Name="EmpApprName" DataType="System.String"/>
+        <Column Name="JobTitleAppr" DataType="System.String"/>
+        <Column Name="JobTitleApprName" DataType="System.String"/>
+        <Column Name="SKCompanyNo" DataType="System.String"/>
+        <Column Name="Attention" DataType="System.String"/>
+        <Column Name="Consider" DataType="System.String"/>
+        <Column Name="OldEndDate" DataType="System.DateTime"/>
+        <Column Name="NewEndDate" DataType="System.DateTime"/>
+        <Column Name="ChangeReason" DataType="System.String"/>
+        <Column Name="RemarkHd" DataType="System.String"/>
+        <Column Name="RemarkDt" DataType="System.String"/>
+        <Column Name="OldSubSectionCode" DataType="System.String"/>
+        <Column Name="OldSubSectionName" DataType="System.String"/>
+        <Column Name="NewSubSectionCode" DataType="System.String"/>
+        <Column Name="NewSubSectionName" DataType="System.String"/>
+        <Column Name="OldSectionCode" DataType="System.String"/>
+        <Column Name="OldSectionName" DataType="System.String"/>
+        <Column Name="NewSectionCode" DataType="System.String"/>
+        <Column Name="NewSectionName" DataType="System.String"/>
+        <Column Name="OldDeptCode" DataType="System.String"/>
+        <Column Name="OldDeptName" DataType="System.String"/>
+        <Column Name="NewDeptCode" DataType="System.String"/>
+        <Column Name="NewDeptName" DataType="System.String"/>
+        <Column Name="OldJobTtlCode" DataType="System.String"/>
+        <Column Name="OldJobTtlName" DataType="System.String"/>
+        <Column Name="OldJobLvlCode" DataType="System.String"/>
+        <Column Name="OldJobLvlName" DataType="System.String"/>
+        <Column Name="NewJobTtlCode" DataType="System.String"/>
+        <Column Name="NewJobTtlName" DataType="System.String"/>
+        <Column Name="LamaJabatan" DataType="System.Decimal"/>
+        <Column Name="YearRange" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="Address1" DataType="System.String"/>
+        <Column Name="Address2" DataType="System.String"/>
+        <Column Name="City" DataType="System.String"/>
+        <Column Name="Country" DataType="System.String"/>
+        <Column Name="PostCode" DataType="System.String"/>
+        <Column Name="Phone" DataType="System.String"/>
+        <Column Name="Fax" DataType="System.String"/>
+        <Column Name="Email" DataType="System.String"/>
+        <Column Name="Web" DataType="System.String"/>
+        <Column Name="NPWP" DataType="System.String"/>
+        <Column Name="NPPKP" DataType="System.String"/>
+        <Column Name="Coy" DataType="System.String"/>
+        <Column Name="OfficialDate" DataType="System.DateTime"/>
+        <Column Name="NewJobLvlCode" DataType="System.String"/>
+        <Column Name="NewJobLvlName" DataType="System.String"/>
+        <Column Name="OldEmpStatusCode" DataType="System.String"/>
+        <Column Name="OldEmpStatusName" DataType="System.String"/>
+        <Column Name="NewEmpStatusCode" DataType="System.String"/>
+        <Column Name="NewEmpStatusName" DataType="System.String"/>
+        <Column Name="DirName" DataType="System.String"/>
+        <Column Name="DirJobTitle" DataType="System.String"/>
+        <Column Name="TembDirDept" DataType="System.String"/>
+        <Column Name="TembMngDept" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1">
+    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="37.8">
+      <TextObject Name="Text1" Left="255.15" Width="207.9" Height="18.9" Text="SURAT KEPUTUSAN" HorzAlign="Center" Font="Arial, 11pt, style=Bold"/>
+      <TextObject Name="Text39" Left="255.15" Top="18.9" Width="207.9" Height="18.9" Text="No. [DS.TransNmbr]" HorzAlign="Center" Font="Arial, 9pt"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="41.8" Width="718.2" Condition="[DS.EmpNumb]">
+      <DataBand Name="Data1" Top="45.8" Width="718.2" Height="445.82" AfterDataEvent="Data1_AfterData" DataSource="Table">
+        <TextObject Name="Text16" Left="255.15" Top="245.7" Width="207.9" Height="18.9" Text="MEMUTUSKAN" HorzAlign="Center" Font="Arial, 11pt, style=Underline"/>
+        <TextObject Name="Text2" Left="9.45" Top="170.1" Width="103.95" Height="18.9" Text="MENGINGAT"/>
+        <TextObject Name="Text3" Left="9.45" Top="122.85" Width="103.95" Height="18.9" Text="MENIMBANG"/>
+        <TextObject Name="Text7" Left="113.4" Top="122.85" Width="18.9" Height="18.9" Text=" : " HorzAlign="Center"/>
+        <TextObject Name="Text8" Left="113.4" Top="170.1" Width="18.9" Height="18.9" Text=" : " HorzAlign="Center"/>
+        <TextObject Name="Text12" Left="134.75" Top="122.85" Width="567" Height="24.57" Text="1. Berdasarkan penilaian Direksi [DS.CompanyName] atas konduite Sdr.i / Sdr [DS.EmpName] sebagai [DS.OldJobTtlName] ([DS.OldDeptName])" Font="Arial, 8pt"/>
+        <TextObject Name="Text13" Left="134.75" Top="150.2" Width="567" Height="15.12" Text="2. Peningakatan Kesejahteraan Karyawan" Font="Arial, 8pt"/>
+        <TextObject Name="Text14" Left="134.75" Top="204.9" Width="567" Height="24.57" Text="3. bahwa yang bersangkutan telah bekerja di [DS.CompanyName] sejak tanggal [DS.HireDate] dengan jabatan terakhir sebagai [DS.OldJobTtlName] ([DS.OldDeptName])" Font="Arial, 8pt">
+          <Formats>
+            <GeneralFormat/>
+            <CustomFormat Format="dd MMMM yyyy"/>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text15" Left="134.75" Top="188" Width="567" Height="15.12" Text="2. Kebutuhan tenaga [DS.NewJobTtlName] ([DS.NewDeptName])" Font="Arial, 8pt"/>
+        <TextObject Name="Text4" Left="9.45" Top="274.05" Width="103.95" Height="18.9" Text="MENETAPKAN"/>
+        <TextObject Name="Text40" Left="113.4" Top="274.05" Width="18.9" Height="18.9" Text=" : " HorzAlign="Center"/>
+        <TextObject Name="Text41" Left="134.75" Top="170.1" Width="567" Height="15.12" Text="1. Peraturan Perusahaan [DS.CompanyName]" Font="Arial, 8pt"/>
+        <TextObject Name="Text18" Left="156.65" Top="274.05" Width="94.5" Height="15.12" Text="Nama" Font="Arial, 8pt"/>
+        <TextObject Name="Text20" Left="156.65" Top="289.95" Width="94.5" Height="15.12" Text="Jabatan" Font="Arial, 8pt"/>
+        <TextObject Name="Text22" Left="156.65" Top="305.85" Width="94.5" Height="15.12" Text="Grade" Font="Arial, 8pt"/>
+        <TextObject Name="Text42" Left="156.65" Top="322.3" Width="94.5" Height="15.12" Text="Mulai Tanggal" Font="Arial, 8pt"/>
+        <TextObject Name="Text43" Left="156.65" Top="345.65" Width="548.1" Height="24.57" Text="Kepada yang bersangkutan agar segera menyerahterimakan seluruh pekerjaannya kepada Departement terdahulu" Font="Arial, 8pt"/>
+        <TextObject Name="Text44" Left="156.65" Top="374" Width="548.1" Height="24.57" Text="Apabila dikemudian hari ternyata terdapat kekeliruan dalam Surat Keputusan ini, makan akan diadakan perbaikan sebagaimana mestinya." Font="Arial, 8pt"/>
+        <TextObject Name="Text45" Left="9.45" Top="415.8" Width="661.5" Height="15.12" Text="Demikianlah agar Saudari / Saudara dapat menerima dan melaksanakan tugas dengan sebaik-baiknya demi kemajuan kita bersama." Font="Arial, 8pt"/>
+        <TextObject Name="Text46" Left="134.75" Top="274.05" Width="18.9" Height="15.12" Text="1. " Font="Arial, 8pt"/>
+        <TextObject Name="Text47" Left="134.75" Top="345.65" Width="18.9" Height="15.12" Text="2. " Font="Arial, 8pt"/>
+        <TextObject Name="Text48" Left="134.75" Top="374" Width="18.9" Height="15.12" Text="3. " Font="Arial, 8pt"/>
+        <TextObject Name="Text49" Left="255.15" Top="274.05" Width="444.15" Height="15.12" Text=": [DS.EmpName]" Font="Arial, 8pt"/>
+        <TextObject Name="Text50" Left="255.15" Top="289.95" Width="444.15" Height="15.12" Text=": [DS.NewJobTtlName]" Font="Arial, 8pt"/>
+        <TextObject Name="Text51" Left="255.15" Top="305.85" Width="444.15" Height="15.12" Text=": [DS.NewJobLvlName]" Font="Arial, 8pt"/>
+        <TextObject Name="Text52" Left="255.15" Top="322.3" Width="444.15" Height="15.12" Text=": [DS.EffectiveDate]" Format="Custom" Format.Format="dd MMMM yyyy" Font="Arial, 8pt"/>
+        <TextObject Name="Text53" Left="255.15" Top="75.6" Width="207.9" Height="18.9" Text="[DS.SKType] KERJA" HorzAlign="Center" Font="Arial, 11pt, style=Bold"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="495.62" Width="718.2" Height="28.35"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="527.97" Width="718.2" Height="189">
+      <TextObject Name="Text38" Top="126.3" Width="94.5" Height="15.12" Visible="false" Text="4. Arsip" Font="Arial, 8pt, style=Italic"/>
+      <TextObject Name="Text37" Top="110.4" Width="226.8" Height="15.12" Visible="false" Text="3. Yang Bersangkutan" Font="Arial, 8pt, style=Italic"/>
+      <TextObject Name="Text35" Top="78.6" Width="226.8" Height="15.12" Visible="false" Text="1. Yth. Direktur [DS.TembDirDept]" Font="Arial, 8pt, style=Italic"/>
+      <TextObject Name="Text36" Top="94.5" Width="226.8" Height="15.12" Visible="false" Text="2. Yth. Manager [DS.TembMngDept]" Font="Arial, 8pt, style=Italic"/>
+      <TextObject Name="Text34" Top="61.7" Width="94.5" Height="15.12" Visible="false" Text="Tembusan :" Font="Arial, 8pt, style=Italic"/>
+      <TextObject Name="Text30" Left="538.65" Top="156.2" Width="170.1" Height="15.12" Text="[DS.EmpApprName]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text32" Left="255.15" Top="156.2" Width="170.1" Height="15.12" Text="[DS.DirName]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text31" Left="538.65" Top="173.1" Width="170.1" Height="15.12" Text="[DS.JobTitleApprName]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text33" Left="255.15" Top="173.1" Width="170.1" Height="15.12" Text="[DS.DirJobTitle]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text29" Left="349.65" Top="33.8" Width="236.25" Height="15.12" Text="[DS.CompanyName]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text28" Left="349.65" Top="16.9" Width="236.25" Height="15.12" Text="Pada Tanggal : [DS.TransDate]" Format="Custom" Format.Format="dd MMMM yyyy" Font="Arial, 8pt"/>
+      <TextObject Name="Text27" Left="349.65" Width="236.25" Height="15.12" Text="Ditetapkan di : [DS.City]" Font="Arial, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

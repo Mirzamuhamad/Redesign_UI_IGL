@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="05/12/2011 13:44:05" ReportInfo.Modified="02/27/2023 16:59:11" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLGyiz5qWMjsA99V/W+nNq1W3g2zii+WzFvwn5S/yO9ty4j5cNSou1n2RnV42VCogqhWDGBfTi9Ny1OneZGYjfinOHGpdCxzvpie7qu5vUxEx4MCFZZfHfGnHRCgUFUBKbmMlG5NqLQAbah7tE2SUt7S6KRL8ACqqn9ZfAuyxTu/T">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_GLRptFA 2013,7,2013,8,'','','','',1,0,'','','Admin'">
+        <Column Name="Qty" DataType="System.Double"/>
+        <Column Name="FAGroup" DataType="System.String"/>
+        <Column Name="FAGroupName" DataType="System.String"/>
+        <Column Name="FASubGroup" DataType="System.String"/>
+        <Column Name="FASubGroupName" DataType="System.String"/>
+        <Column Name="AccFA" DataType="System.String"/>
+        <Column Name="AccAccu" DataType="System.String"/>
+        <Column Name="AccDepr" DataType="System.String"/>
+        <Column Name="AmountHome" DataType="System.Double"/>
+        <Column Name="AmountAccu" DataType="System.Double"/>
+        <Column Name="AmountLastMonth" DataType="System.Double"/>
+        <Column Name="AmountAdd" DataType="System.Double"/>
+        <Column Name="AmountDed" DataType="System.Double"/>
+        <Column Name="AmountDepr" DataType="System.Double"/>
+        <Column Name="AmountTotalDepr" DataType="System.Double"/>
+        <Column Name="AmountBalance" DataType="System.Double"/>
+        <Column Name="PeriodName" DataType="System.String"/>
+        <Column Name="PeriodNow" DataType="System.String"/>
+        <Column Name="EndMonth" DataType="System.String"/>
+        <Column Name="LastPeriod" DataType="System.Int32"/>
+        <Column Name="LastYear" DataType="System.Int32"/>
+        <Column Name="YearNow" DataType="System.Int32"/>
+        <Column Name="EndYear" DataType="System.Int32"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompanyAddr" DataType="System.String"/>
+        <Column Name="Periode" DataType="System.String"/>
+        <Column Name="FACode" DataType="System.String"/>
+        <Column Name="FAName" DataType="System.String"/>
+        <Column Name="FADate" DataType="System.DateTime"/>
+        <Column Name="Status" DataType="System.String"/>
+        <Column Name="CostCtr" DataType="System.String"/>
+        <Column Name="LifeTotal" DataType="System.Int32"/>
+        <Column Name="LifeAccu" DataType="System.Int32"/>
+        <Column Name="LifeDepr" DataType="System.Int32"/>
+        <Column Name="LifeTotalDepr" DataType="System.Int32"/>
+        <Column Name="LifeBalance" DataType="System.Int32"/>
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="Rate" DataType="System.Double"/>
+        <Column Name="AmountForex" DataType="System.Double"/>
+        <Column Name="FgActive" DataType="System.String"/>
+        <Column Name="HomeCurrency" DataType="System.String"/>
+        <Column Name="Specification" DataType="System.String"/>
+        <Column Name="Unit" DataType="System.String"/>
+        <Column Name="RRNo" DataType="System.String"/>
+        <Column Name="SuppInvNo" DataType="System.String"/>
+        <Column Name="StartDepr" DataType="System.String"/>
+        <Column Name="LifeLastMonth" DataType="System.Int32"/>
+        <Column Name="LifeAdd" DataType="System.Int32"/>
+        <Column Name="RRDate" DataType="System.DateTime"/>
+        <Column Name="Supplier" DataType="System.String"/>
+        <Column Name="PONo" DataType="System.String"/>
+        <Column Name="TTNo" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="ttlSubAmount" Expression="[DS.AmountForex]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="ttlSubAmountHome" Expression="[DS.AmountHome]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="ttlSubAmountAccu" Expression="[DS.AmountAccu]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="ttlSubAmountLast" Expression="[DS.AmountLastMonth]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="ttlSubAmountAdd" Expression="[DS.AmountAdd]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="ttlSubAmountDed" Expression="[DS.AmountDed]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="ttlSubAmountDepr" Expression="[DS.AmountDepr]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="ttSubAmountTotalDepr" Expression="[DS.AmountTotalDepr]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="ttlSubAmountBalance" Expression="[DS.AmountBalance]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="ttlGrpAmount" Expression="[DS.AmountForex]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="ttlGrpAmountHome" Expression="[DS.AmountHome]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="ttlGrpAmountAccu" Expression="[DS.AmountAccu]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="ttlGrpAmountLast" Expression="[DS.AmountLastMonth]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="ttlGrpAmountAdd" Expression="[DS.AmountAdd]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="ttlGrpAmountDed" Expression="[DS.AmountDed]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="ttlGrpAmountDepr" Expression="[DS.AmountDepr]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="ttlGrpAmountTotalDepr" Expression="[DS.AmountTotalDepr]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="ttlGrpAmountBalance" Expression="[DS.AmountBalance]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="gtAmount" Expression="[DS.AmountForex]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="gtAmountHome" Expression="[DS.AmountHome]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="gtAmountAccu" Expression="[DS.AmountAccu]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="gtAmountLast" Expression="[DS.AmountLastMonth]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="gtAmountAdd" Expression="[DS.AmountAdd]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="gtAmountDed" Expression="[DS.AmountDed]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="gtAmountDepr" Expression="[DS.AmountDepr]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="gtAmountTotalDepr" Expression="[DS.AmountTotalDepr]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="gtAmountBalance" Expression="[DS.AmountBalance]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="420" LeftMargin="3" RightMargin="3" FirstPageSource="15" OtherPagesSource="15" Guides="1347.9,1508.55,0,349.65,444.15,1544.97,1512.4,81.6,82.05,214.35,213.8,279.95,411.35,443.7,503.12,503,602.22,601.5,633.02,633.85,703.02,703.45,772.62,772.6,879.12,813.42,812.85,878.67,878.55,947.72,949.15,1100.92,1020.92,1019.75,1100.02,1101.8,1253.76,1142.62,1144.05,1253.67,1252.55,1359.07,1293.37,1293.35,1359.17,1359.5,1466.02,1400.32,1400.75,1466.57,1468.2,1509.47,1466.75,1466.2,949.45,949,1101.65,1252.85,1359.8,878.85,772.9,702.3,633.15,601.8,561.55,501.85,284.5,280.5,213.9,877.8,773.85,1400.6,1292.65,1143.45,1020.6,812.7,86.95,511.2,80.05,79.61,85.61,79.5,85.5,321.91,411.41,410.8,443.31,503.01,561.86,561.68,602.13,601.37,632.74,633.87,703.04,703.43,812.67,878.44,947.61,949.13,1020.95,1019.81,1099.95,1101.91,1142.73,1143.87,1253.49,1252.66,1293.48,1359.25,1400.7,1466.47,1468.09,1508.91,-59,632.85,774.87,1106.07,1255.68,1362.9,1510.55">
+    <PageHeaderBand Name="PageHeader1" Width="1564.92" Height="168.1" CanGrow="true" Guides="9.45,20.79,0,13.23,18.9,60.48,47.25,58.59,59.15,87.5,106.4,109.4,168.1,113.4,165.2,165.65,139.75,150.75,166.1,154.65,110.4,167.1,149.75,109.95,166.65,150.2">
+      <ShapeObject Name="Shape1" Top="109.4" Width="1559.65" Height="58.7"/>
+      <TextObject Name="Text37" Left="1347.9" Top="9.45" Width="160.65" Height="11.34" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text48" Width="349.65" Height="13.23" Text="[DS.CompanyName]" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text49" Top="18.9" Width="444.15" Height="41.58" Text="[DS.CompanyAddr]" Font="Arial, 8pt"/>
+      <TextObject Name="Text35" Left="1347.9" Top="47.25" Width="160.65" Height="11.34" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text34" Top="59.15" Width="1544.97" Height="28.35" Text="FIXED ASSET REPORT (Detail)" HorzAlign="Center" VertAlign="Center" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text54" Top="87.5" Width="1544.97" Height="18.9" Text="[DS.Periode]" HorzAlign="Center" VertAlign="Center" Font="Arial, 11pt, style=Bold"/>
+      <TextObject Name="Text1" Top="113.4" Width="81.6" Height="51.8" Text="Kode Asset" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text55" Left="82.05" Top="113.4" Width="132.3" Height="51.8" Text="Nama Fixed Asset" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text56" Left="290.4" Top="113.4" Width="66.15" Height="51.8" Text="Tgl Beli" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text59" Left="359.65" Top="113.4" Width="32.35" Height="51.8" Text="Qty" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text69" Left="453.3" Top="113.4" Width="40.52" Height="52.25" Text="Umur Peny Bulan" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text70" Left="493.1" Top="113.4" Width="31.52" Height="52.25" Text="Curr" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text71" Left="525.45" Top="113.4" Width="69.17" Height="52.25" Text="Harga Perolehan" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text72" Left="595.05" Top="113.4" Width="69.17" Height="52.25" CanGrow="true" Text="Harga Perolehan&#13;&#10;[DS.HomeCurrency]" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text73" Left="668.65" Top="113.4" Width="106.52" Height="26.35" CanGrow="true" Text="Akum. Peny s/d&#13;&#10;[DS.PeriodName] [DS.LastYear]" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text74" Left="668.65" Top="150.75" Width="40.82" Height="14.9" CanGrow="true" Text="Bln" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text75" Left="708.9" Top="150.75" Width="65.82" Height="14.9" Text="Nilai" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text76" Left="774.6" Top="113.4" Width="69.17" Height="52.7" CanGrow="true" Text="Nilai Buku&#13;&#10;[DS.PeriodName] [DS.LastYear]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text77" Left="845.2" Top="113.4" Width="151.77" Height="26.35" CanGrow="true" Text="Mutasi&#13;&#10;[DS.PeriodNow] [DS.YearNow] - [DS.EndMonth] [DS.EndYear]" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text78" Left="845.2" Top="150.75" Width="71.77" Height="14.9" CanGrow="true" Text="+/+" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text79" Left="915.8" Top="150.75" Width="80.27" Height="14.9" CanGrow="true" Text="-/-" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text80" Left="997.85" Top="113.4" Width="151.96" Height="26.35" CanGrow="true" Text="Total Peny.&#13;&#10;[DS.PeriodNow] [DS.YearNow] - [DS.EndMonth] [DS.EndYear]" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text81" Left="996.85" Top="150.75" Width="40.82" Height="14.9" CanGrow="true" Text="Bln" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text82" Left="1040.1" Top="150.75" Width="109.62" Height="14.9" Text="Total" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text83" Left="1148.6" Top="113.4" Width="106.52" Height="26.35" CanGrow="true" Text="Penyusutan&#13;&#10;[DS.EndMonth] [DS.EndYear]" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text84" Left="1148.6" Top="150.75" Width="40.82" Height="14.9" CanGrow="true" Text="Bln" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text85" Left="1189.4" Top="150.75" Width="65.82" Height="14.9" CanGrow="true" Text="Total" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text86" Left="1255.55" Top="113.4" Width="106.52" Height="26.35" CanGrow="true" Text="Nilai Buku Per&#13;&#10;[DS.EndMonth] [DS.EndYear]" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text87" Left="1255.55" Top="150.75" Width="40.82" Height="14.9" CanGrow="true" Text="Bln" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text88" Left="1296.8" Top="150.75" Width="65.82" Height="14.9" CanGrow="true" Text="Total" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text89" Left="1364.25" Top="113.4" Width="41.27" Height="41.25" CanGrow="true" Text="Active" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line1" Left="1362.8" Top="110.4" Height="56.7" Diagonal="true"/>
+      <LineObject Name="Line2" Left="1362.25" Top="149.75" Width="-516.75" Diagonal="true"/>
+      <LineObject Name="Line9" Left="845.05" Top="110.4" Height="56.7" Diagonal="true"/>
+      <LineObject Name="Line10" Left="997.7" Top="109.95" Height="56.7" Diagonal="true"/>
+      <LineObject Name="Line11" Left="1148.9" Top="109.95" Height="56.7" Diagonal="true"/>
+      <LineObject Name="Line12" Left="1255.85" Top="110.4" Height="56.7" Diagonal="true"/>
+      <LineObject Name="Line13" Left="774.9" Top="109.95" Height="56.7" Diagonal="true"/>
+      <LineObject Name="Line14" Left="667.95" Top="109.95" Height="56.7" Diagonal="true"/>
+      <LineObject Name="Line15" Left="593.9" Top="109.95" Height="56.7" Diagonal="true"/>
+      <LineObject Name="Line16" Left="524.75" Top="109.95" Height="56.7" Diagonal="true"/>
+      <LineObject Name="Line17" Left="493.4" Top="109.95" Height="56.7" Diagonal="true"/>
+      <LineObject Name="Line18" Left="453.15" Top="110.4" Height="56.7" Diagonal="true"/>
+      <LineObject Name="Line20" Left="392.45" Top="109.95" Height="56.7" Diagonal="true"/>
+      <LineObject Name="Line21" Left="359.65" Top="109.95" Height="56.7" Diagonal="true"/>
+      <LineObject Name="Line23" Left="287.5" Top="109.95" Height="56.7" Diagonal="true"/>
+      <LineObject Name="Line24" Left="213.9" Top="109.95" Height="56.7" Diagonal="true"/>
+      <LineObject Name="Line25" Left="82.05" Top="110.4" Height="56.7" Diagonal="true"/>
+      <LineObject Name="Line26" Left="772.85" Top="150.2" Width="-103.95" Diagonal="true"/>
+      <LineObject Name="Line27" Left="1296.65" Top="150.2" Height="15.9" Diagonal="true"/>
+      <LineObject Name="Line28" Left="1188.7" Top="150.2" Height="15.9" Diagonal="true"/>
+      <LineObject Name="Line29" Left="1039.5" Top="150.2" Height="15.9" Diagonal="true"/>
+      <LineObject Name="Line30" Left="916.65" Top="150.2" Height="15.9" Diagonal="true"/>
+      <LineObject Name="Line31" Left="708.75" Top="150.2" Height="15.9" Diagonal="true"/>
+      <TextObject Name="Text119" Left="217.35" Top="113.4" Width="67.15" Height="51.8" Text="Spesifikasi" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text121" Left="392.45" Top="113.4" Width="57.7" Height="51.8" Text="Satuan" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text122" Left="1408.5" Top="113.4" Width="79.07" Height="41.25" CanGrow="true" Text="Supplier Inv No" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text123" Left="1492.1" Top="113.4" Width="69.62" Height="41.25" CanGrow="true" Text="RR No" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line32" Left="1408.05" Top="110.38" Height="56.7" Diagonal="true"/>
+      <LineObject Name="Line33" Left="1493.1" Top="110.38" Height="56.7" Diagonal="true"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="171.43" Width="1564.92" Height="18.9" Guides="0,18.9" Condition="[DS.FAGroup]">
+      <TextObject Name="Text2" Left="86.95" Width="424.25" Height="18.9" Text="[DS.FAGroupName]" VertAlign="Center" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text65" Width="80.05" Height="18.9" CanGrow="true" Text="FA Group" VertAlign="Center" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text66" Left="79.61" Width="6" Height="18.9" CanGrow="true" Text=":" HorzAlign="Center" VertAlign="Center" Font="Arial, 6pt, style=Bold"/>
+      <GroupHeaderBand Name="GroupHeader2" Top="193.67" Width="1564.92" Height="18.9" Guides="0,18.9" Condition="[DS.FASubGroup]">
+        <TextObject Name="Text3" Left="86.95" Width="424.25" Height="18.9" Text="[DS.FASubGroupName]" VertAlign="Center" Font="Arial, 6pt, style=Bold"/>
+        <TextObject Name="Text67" Width="80.05" Height="18.9" CanGrow="true" Text="FA Sub Group" VertAlign="Center" Font="Arial, 6pt, style=Bold"/>
+        <TextObject Name="Text68" Left="79.5" Width="6" Height="18.9" CanGrow="true" Text=":" HorzAlign="Center" VertAlign="Center" Font="Arial, 6pt, style=Bold"/>
+        <DataBand Name="Data1" Top="215.9" Width="1564.92" Height="20.15" CanGrow="true" Guides="0,18.9" DataSource="Table">
+          <TextObject Name="Text4" Width="81.6" Height="18.9" CanGrow="true" Text="[DS.FACode]" VertAlign="Center" Font="Arial, 5pt"/>
+          <TextObject Name="Text5" Left="82.05" Width="132.3" Height="18.9" CanGrow="true" Text="[DS.FAName]" VertAlign="Center" Font="Arial, 5pt"/>
+          <TextObject Name="Text6" Left="287.4" Width="66.15" Height="18.9" CanGrow="true" Text="[DS.FADate]" Format="Custom" Format.Format="dd MMM yyyy" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt"/>
+          <TextObject Name="Text9" Left="359.1" Width="32.51" Height="18.9" CanGrow="true" Text="[DS.Qty]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial, 5pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text11" Left="392.45" Width="58.86" Height="18.9" CanGrow="true" Text="[DS.Unit]" VertAlign="Center" Font="Arial, 5pt"/>
+          <TextObject Name="Text10" Left="453.28" Width="40.45" Height="18.9" CanGrow="true" Text="[DS.LifeTotal]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt"/>
+          <TextObject Name="Text13" Left="492.97" Width="31.37" Height="18.9" CanGrow="true" Text="[DS.Currency]" VertAlign="Center" Font="Arial, 5pt"/>
+          <TextObject Name="Text12" Left="525.47" Width="69.17" Height="18.9" CanGrow="true" Text="[DS.AmountForex]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text14" Left="595.03" Width="69.17" Height="18.9" CanGrow="true" Text="[DS.AmountHome]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text15" Left="668.65" Width="40.82" Height="18.9" Text="[DS.LifeAccu]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt"/>
+          <TextObject Name="Text16" Left="708.72" Width="65.77" Height="18.9" CanGrow="true" Text="[DS.AmountAccu]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text17" Left="774.49" Width="69.17" Height="18.9" CanGrow="true" Text="[DS.AmountLastMonth]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text18" Left="845.18" Width="71.82" Height="18.9" Text="[DS.AmountAdd]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text20" Left="915.86" Width="80.14" Height="18.9" CanGrow="true" Text="[DS.AmountDed]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text21" Left="997.96" Width="40.82" Height="18.9" CanGrow="true" Text="[DS.LifeTotalDepr]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt"/>
+          <TextObject Name="Text22" Left="1039.92" Width="109.62" Height="18.9" CanGrow="true" Text="[DS.AmountTotalDepr]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial, 5pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text23" Left="1148.71" Width="40.82" Height="18.9" CanGrow="true" Text="[DS.LifeDepr]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt"/>
+          <TextObject Name="Text25" Left="1189.53" Width="65.77" Height="18.9" CanGrow="true" Text="[DS.AmountDepr]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text19" Left="1255.55" Width="40.82" Height="18.9" CanGrow="true" Text="[DS.LifeBalance]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt"/>
+          <TextObject Name="Text24" Left="1296.75" Width="65.77" Height="18.9" CanGrow="true" Text="[DS.AmountBalance]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text26" Left="1364.14" Width="40.82" Height="18.9" CanGrow="true" Text="[DS.FgActive]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Center" VertAlign="Center" Font="Arial, 5pt"/>
+          <TextObject Name="Text120" Left="217.35" Width="66.15" Height="18.9" CanGrow="true" Text="[DS.Specification]" VertAlign="Center" Font="Arial, 5pt"/>
+          <TextObject Name="Text124" Left="1409.5" Width="78.62" Height="18.9" CanGrow="true" Text="[DS.SuppInvNo]" Format="Custom" Format.Format="###,##0.00" VertAlign="Center" Font="Arial, 5pt"/>
+          <TextObject Name="Text125" Left="1491.1" Width="106.97" Height="18.9" CanGrow="true" Text="[DS.RRNo]" Format="Custom" Format.Format="###,##0.00" VertAlign="Center" Font="Arial, 5pt"/>
+          <Sort>
+            <Sort Expression="[DS.FACode]"/>
+          </Sort>
+        </DataBand>
+        <GroupFooterBand Name="GroupFooter2" Top="239.38" Width="1564.92" Height="18.9" CanGrow="true" Guides="0,18.9">
+          <TextObject Name="Text90" Left="-167.4" Width="691.85" Height="18.9" CanGrow="true" Text="Total Per FA Sub Group [DS.FASubGroupName] :" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+          <TextObject Name="Text27" Left="525.45" Width="69.17" Height="18.9" CanGrow="true" Text="[ttlSubAmount]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+          <TextObject Name="Text91" Left="595.03" Width="69.17" Height="18.9" CanGrow="true" Text="[ttlSubAmountHome]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+          <TextObject Name="Text92" Left="708.72" Width="65.77" Height="18.9" CanGrow="true" Text="[ttlSubAmountAccu]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+          <TextObject Name="Text93" Left="774.49" Width="69.17" Height="18.9" CanGrow="true" Text="[ttlSubAmountLast]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+          <TextObject Name="Text94" Left="845.18" Width="71.82" Height="18.9" CanGrow="true" Text="[ttlSubAmountAdd]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+          <TextObject Name="Text95" Left="915.86" Width="80.14" Height="18.9" CanGrow="true" Text="[ttlSubAmountDed]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+          <TextObject Name="Text96" Left="1039.92" Width="109.62" Height="18.9" CanGrow="true" Text="[ttlSubAmountDepr]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+          <TextObject Name="Text97" Left="1189.53" Width="65.77" Height="18.9" CanGrow="true" Text="[ttSubAmountTotalDepr]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+          <TextObject Name="Text98" Left="1296.75" Width="65.77" Height="18.9" CanGrow="true" Text="[ttlSubAmountBalance]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+        </GroupFooterBand>
+      </GroupHeaderBand>
+      <GroupFooterBand Name="GroupFooter1" Top="261.62" Width="1564.92" Height="18.9" CanGrow="true" Guides="0,18.9">
+        <TextObject Name="Text99" Left="-167.4" Width="691.85" Height="18.9" CanGrow="true" Text="Total Per FA Group [DS.FAGroupName] :" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+        <TextObject Name="Text100" Left="525.45" Width="69.17" Height="18.9" CanGrow="true" Text="[ttlGrpAmount]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+        <TextObject Name="Text101" Left="595.03" Width="69.17" Height="18.9" CanGrow="true" Text="[ttlGrpAmountHome]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+        <TextObject Name="Text102" Left="708.72" Width="65.77" Height="18.9" CanGrow="true" Text="[ttlGrpAmountAccu]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+        <TextObject Name="Text103" Left="774.49" Width="69.17" Height="18.9" CanGrow="true" Text="[ttlGrpAmountLast]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+        <TextObject Name="Text104" Left="845.18" Width="71.82" Height="18.9" CanGrow="true" Text="[ttlGrpAmountAdd]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+        <TextObject Name="Text105" Left="915.86" Width="80.14" Height="18.9" CanGrow="true" Text="[ttlGrpAmountDed]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+        <TextObject Name="Text106" Left="1039.92" Width="109.62" Height="18.9" CanGrow="true" Text="[ttlGrpAmountDepr]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+        <TextObject Name="Text107" Left="1189.53" Width="65.77" Height="18.9" CanGrow="true" Text="[ttlGrpAmountTotalDepr]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+        <TextObject Name="Text108" Left="1296.75" Width="65.77" Height="18.9" CanGrow="true" Text="[ttlGrpAmountBalance]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="283.85" Width="1564.92" Height="24.8" Guides="0,18.9">
+      <TextObject Name="Text109" Left="-167.4" Width="691.85" Height="18.9" CanGrow="true" Text="Grand Total :" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+      <TextObject Name="Text110" Left="525.47" Width="69.17" Height="18.9" CanGrow="true" Text="[gtAmount]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+      <TextObject Name="Text111" Left="595.03" Width="69.17" Height="18.9" CanGrow="true" Text="[gtAmountHome]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+      <TextObject Name="Text112" Left="670.92" Width="103.57" Height="18.9" CanGrow="true" Text="[gtAmountAccu]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+      <TextObject Name="Text113" Left="774.49" Width="69.17" Height="18.9" CanGrow="true" Text="[gtAmountLast]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+      <TextObject Name="Text114" Left="845.18" Width="71.82" Height="18.9" CanGrow="true" Text="[gtAmountAdd]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+      <TextObject Name="Text115" Left="915.86" Width="80.14" Height="18.9" CanGrow="true" Text="[ttlGrpAmountDed]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+      <TextObject Name="Text116" Left="1002.12" Width="147.42" Height="18.9" CanGrow="true" Text="[gtAmountDepr]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+      <TextObject Name="Text117" Left="1151.73" Width="103.57" Height="18.9" CanGrow="true" Text="[gtAmountTotalDepr]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+      <TextObject Name="Text118" Left="1258.95" Width="103.57" Height="18.9" CanGrow="true" Text="[gtAmountBalance]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 5pt, style=Bold"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="311.98" Width="1564.92" Height="9.67" Guides="0">
+      <LineObject Name="Line8" Left="-51.7" Width="1605.05"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

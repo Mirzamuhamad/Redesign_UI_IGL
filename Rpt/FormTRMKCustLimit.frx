@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="03/27/2014 09:48:18" ReportInfo.Modified="04/23/2014 09:46:57" ReportInfo.CreatorVersion="2013.3.5.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    
+    dim Nomor As Integer 
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Nomor = Nomor + 1
+      Cell36.Text = Nomor
+    End Sub
+
+   
+
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Nomor = 0
+    End Sub
+    
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43hao4EBQY4UwQuaduC+hnXhFM">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_TrMKCustLimitForm '''IE/CL/13DEC/0002'''">
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="Customername" DataType="System.String"/>
+        <Column Name="ISODOCNO" DataType="System.String"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="Customer" DataType="System.String"/>
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="Oldlimit" DataType="System.Decimal"/>
+        <Column Name="Newlimit" DataType="System.Decimal"/>
+        <Column Name="Usedlimit" DataType="System.Decimal"/>
+        <Column Name="Balance" DataType="System.Decimal"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="279.4" PaperHeight="215.9" FirstPageSource="14" OtherPagesSource="14">
+    <ReportTitleBand Name="ReportTitle1" Width="980.53"/>
+    <PageHeaderBand Name="PageHeader1" Top="6.78" Width="980.53" Height="160.65">
+      <TextObject Name="Text1" Left="9.45" Width="378" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text2" Left="9.45" Top="18.9" Width="378" Height="37.8" Text="[DS.CompAddr]" Font="Arial, 8pt"/>
+      <TextObject Name="Text3" Left="4" Top="60.7" Width="973.35" Height="18.9" Text="ADJUST CUSTOMER LIMIT" HorzAlign="Center" VertAlign="Center" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text15" Left="812.7" Width="170.1" Height="18.9" Text="Date/Time :[Date]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text5" Left="850.5" Top="18.9" Width="132.3" Height="18.9" Text="[PageN] Of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text4" Left="5.45" Top="103.95" Width="94.5" Height="18.9" Text="No Trans" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text16" Left="5.45" Top="122.85" Width="94.5" Height="18.9" Text="Date" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text6" Left="99.95" Top="103.95" Width="18.9" Height="18.9" Text=":" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text19" Left="99.95" Top="122.85" Width="18.9" Height="18.9" Text=":" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text7" Left="118.85" Top="103.95" Width="236.25" Height="18.9" Text="[DS.TransNmbr]"/>
+      <TextObject Name="Text22" Left="118.85" Top="122.85" Width="236.25" Height="18.9" Text="[DS.TransDate]" Format="Custom" Format.Format="dd/MM/yyyy"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="174.21" Width="980.53" Height="30.24" BeforePrintEvent="GroupHeader1_BeforePrint" StartNewPage="true" RepeatOnEveryPage="true" Condition="[DS.TransNmbr]">
+      <TableObject Name="Table1" Left="9.45" Width="916.65" Height="30.24">
+        <TableColumn Name="Column8" Width="48.6"/>
+        <TableColumn Name="Column9" Width="114.75"/>
+        <TableColumn Name="Column10" Width="143.1"/>
+        <TableColumn Name="Column11" Width="95.85"/>
+        <TableColumn Name="Column12" Width="143.1"/>
+        <TableColumn Name="Column13" Width="133.65"/>
+        <TableColumn Name="Column14" Width="105.3"/>
+        <TableColumn Name="Column15" Width="132.3"/>
+        <TableRow Name="Row2" Height="30.24">
+          <TableCell Name="Cell28" Border.Lines="All" Text="No." HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell29" Border.Lines="All" Text="Code" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell30" Border.Lines="All" Text="Customer Name" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell31" Border.Lines="All" Text="Currency" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell32" Border.Lines="All" Text="Old Limit" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell33" Border.Lines="All" Text="Old Used" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell34" Border.Lines="All" Text="New Limit" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell35" Border.Lines="All" Text="Balance Limit" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+        </TableRow>
+      </TableObject>
+      <DataBand Name="Data1" Top="211.23" Width="980.53" Height="40.59" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" Guides="0" DataSource="Table">
+        <TableObject Name="Table1" Left="9.45" Width="916.65" Height="30.24">
+          <TableColumn Name="Column16" Width="48.6"/>
+          <TableColumn Name="Column17" Width="114.75"/>
+          <TableColumn Name="Column18" Width="143.1"/>
+          <TableColumn Name="Column19" Width="95.85"/>
+          <TableColumn Name="Column20" Width="143.1"/>
+          <TableColumn Name="Column21" Width="133.65"/>
+          <TableColumn Name="Column22" Width="105.3"/>
+          <TableColumn Name="Column23" Width="132.3"/>
+          <TableRow Name="Row3" Height="30.24" AutoSize="true">
+            <TableCell Name="Cell36" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt"/>
+            <TableCell Name="Cell37" Border.Lines="All" Text="[DS.Customer]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt"/>
+            <TableCell Name="Cell38" Border.Lines="All" Text="[DS.Customername]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt"/>
+            <TableCell Name="Cell39" Border.Lines="All" Text="[DS.Currency]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt"/>
+            <TableCell Name="Cell40" Border.Lines="All" Text="[DS.Oldlimit]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+            <TableCell Name="Cell41" Border.Lines="All" Text="[DS.Usedlimit]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+            <TableCell Name="Cell42" Border.Lines="All" Text="[DS.Newlimit]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+            <TableCell Name="Cell43" Border.Lines="All" Text="[DS.Balance]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+          </TableRow>
+        </TableObject>
+        <Sort>
+          <Sort Expression="[DS.Customer]"/>
+        </Sort>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="258.6" Width="980.53" Height="185.9">
+        <TextObject Name="Text28" Left="92.05" Top="3" Width="18.9" Height="18.9" Text=":" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Text9" Left="110.95" Top="3" Width="274.05" Height="56.7" Text="[DS.Remark]"/>
+        <TextObject Name="Text27" Left="7" Top="3" Width="85.05" Height="18.9" Text="Katerangan " Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Text32" Left="217.35" Top="85.05" Width="94.5" Height="18.9" Text="Approve By," HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Text33" Left="406.35" Top="85.05" Width="132.3" Height="18.9" Text="Acknowledged by," HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Text34" Left="614.25" Top="85.05" Width="151.2" Height="18.9" Text="Prepared by," HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Text10" Left="191" Top="162.55" Width="141.75" Height="18.9" Text="(                               )" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+        <LineObject Name="Line4" Left="206.35" Top="180.55" Width="113.4" Diagonal="true"/>
+        <TextObject Name="Text36" Left="401.35" Top="162.65" Width="141.75" Height="18.9" Text="(                               )" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+        <LineObject Name="Line5" Left="415.8" Top="179.55" Width="113.4" Diagonal="true"/>
+        <TextObject Name="Text37" Left="614.25" Top="162.65" Width="141.75" Height="18.9" Text="(                               )" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+        <LineObject Name="Line6" Left="628.7" Top="179.55" Width="113.4" Diagonal="true"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="451.28" Width="980.53"/>
+    <PageFooterBand Name="PageFooter1" Top="458.06" Width="980.53" Height="18.9">
+      <TextObject Name="Text8" Left="812.7" Width="170.1" Height="18.9" Text="ISODOC : [DS.ISODOCNO]" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

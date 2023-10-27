@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="07/04/2011 15:39:43" ReportInfo.Modified="10/29/2014 18:45:46" ReportInfo.CreatorVersion="1.2.47.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43happ2GZMWZrcRT5KvlLZXqr4">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_FNRptCustInvMonth 2013,1,2013,12,'','','','',1,1,1,1,1,'admin'">
+        <Column Name="Total" DataType="System.Double"/>
+        <Column Name="ItemName" DataType="System.String"/>
+        <Column Name="TabGroupName" DataType="System.String"/>
+        <Column Name="CustCode" DataType="System.String"/>
+        <Column Name="CustName" DataType="System.String"/>
+        <Column Name="StrPeriod" DataType="System.String"/>
+        <Column Name="CompName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="ProductCode" DataType="System.String"/>
+        <Column Name="ProductName" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" LeftMargin="5" RightMargin="5" FirstPageSource="1" OtherPagesSource="1" Guides="0,1092.42,2.45,304.85,870.65,1078.55,394.9,697.3,453.6,141.75,342.57,200.82,-9.45,1082.97">
+    <PageHeaderBand Name="PageHeader1" Top="20" Width="1084.86" Height="118.85" Guides="56.7,75.6,0,20.79,24.45,45.24,6.55,25.45,71.8,83.14,79.6,100.39">
+      <TextObject Name="Text1" Top="56.7" Width="1092.42" Height="18.9" Text="DETAIL MONTHLY SALES REPORT" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text16" Left="2.45" Width="302.4" Height="20.79" Text="[DS.CompName]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text17" Left="2.45" Top="24.45" Width="302.4" Height="20.79" Text="[DS.CompAddr]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text57" Left="870.65" Top="6.55" Width="207.9" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text35" Left="870.65" Top="71.8" Width="207.9" Height="11.34" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text58" Left="394.9" Top="79.6" Width="302.4" Height="20.79" Text="[DS.StrPeriod]" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="158.85" Width="1084.86" Height="74.45" Guides="0,70.3,35.15,16.25,18.9,51.4">
+      <MatrixObject Name="Matrix1" Width="453.6" Height="70.3" FixedRows="2" FixedColumns="2" AutoSize="false" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="[DS.ItemName]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.TabGroupName]" Sort="None" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.CustName]" Sort="None"/>
+          <Header Expression="[DS.ProductName]" Sort="None" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.Total]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="141.75"/>
+        <TableColumn Name="Column2" Width="200.82" AutoSize="true"/>
+        <TableColumn Name="Column3" Width="111.03"/>
+        <TableRow Name="Row1" Height="16.25">
+          <TableCell Name="Cell1" Border.Lines="All" Text="Customer" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell2" Border.Lines="All" Text="Product" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell7" Border.Lines="All" Text="[ItemName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row2">
+          <TableCell Name="Cell3"/>
+          <TableCell Name="Cell4"/>
+          <TableCell Name="Cell8" Border.Lines="All" Text="[TabGroupName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell9" Border.Lines="All" Text="[CustName]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell10" Border.Lines="All" Text="[ProductName]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell11" Border.Lines="All" Text="[Total]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+        </TableRow>
+        <TableRow Name="Row4">
+          <TableCell Name="Cell12" Border.Lines="All" Text="Total" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold" ColSpan="2"/>
+          <TableCell Name="Cell13"/>
+          <TableCell Name="Cell14" Border.Lines="All" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="253.3" Width="1084.86" Height="18.9" Guides="0">
+      <LineObject Name="Line3" Left="-9.45" Width="1092.42"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

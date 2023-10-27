@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="03/29/2011 16:25:53" ReportInfo.Modified="11/04/2013 18:51:52" ReportInfo.CreatorVersion="2013.3.5.0">
+  <ScriptText>
+Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+
+Namespace FastReport
+  Public Class ReportScript
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)       
+      Text14.Text = CType(Report.GetColumnValue(&quot;DS.UserID&quot;), String)
+   
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43hapGD60Zaa31QomY1GWRMcZg">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="Select A.*,B.VehicleTypeName,C.SuppName from MsVehicle A INNER JOIN MsVehicleType B ON A.VehicleType = B.VehicleTypeCode LEFT OUTER JOIN MsSupplier C ON A.Supplier = C.SuppCode ">
+        <Column Name="VehicleCode" DataType="System.String"/>
+        <Column Name="VehicleName" DataType="System.String"/>
+        <Column Name="VehicleType" DataType="System.String"/>
+        <Column Name="BelongsTo" DataType="System.String"/>
+        <Column Name="VehicleSize" DataType="System.String"/>
+        <Column Name="Supplier" DataType="System.String"/>
+        <Column Name="ExpireDate" DataType="System.DateTime"/>
+        <Column Name="FgActive" DataType="System.String"/>
+        <Column Name="UserId" DataType="System.String"/>
+        <Column Name="UserDate" DataType="System.DateTime"/>
+        <Column Name="VehicleTypeName" DataType="System.String"/>
+        <Column Name="SuppName" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" RawPaperSize="1" FirstPageSource="15" OtherPagesSource="15" Guides="292.95,604.8,0,709.75,3,208.9,217.35,311.85,321.3,519.75,529.2,576.45,585.9,642.6,652.05,708.75,207.9,707.75,93.5">
+    <PageHeaderBand Name="PageHeader1" Width="740.5" Height="123.04" Guides="1,29.45,4.45,23.35,4,22.9">
+      <ShapeObject Name="Shape1" Left="1.15" Top="97.59" Width="730.3" Height="25.45"/>
+      <TextObject Name="Text3" Left="3.02" Top="101.13" Width="79.38" Height="18.9" Text="Vehicle Code" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text7" Left="86" Top="101.13" Width="139.86" Height="18.9" Text="Vehicle Name" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text18" Left="229.89" Top="101.13" Width="111.51" Height="18.9" Text="Type" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text20" Left="344.68" Top="101.13" Width="68.04" Height="18.9" Text="Belongs To" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text22" Left="478.99" Top="101.13" Width="158.76" Height="18.9" Text="Supplier" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text24" Left="641.89" Top="101.13" Width="83.16" Height="18.9" Text="Expire Date" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text36" Left="416.85" Top="101.13" Width="58.59" Height="18.9" Text="Size" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text56" Top="2.75" Width="538.65" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text55" Top="28.1" Width="480.44" Height="18.9" Text="[DS.CompanyAddr]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text57" Left="548.2" Top="28.1" Width="179.55" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text15" Left="170.22" Top="51.45" Width="362.88" Height="28.35" Text="Vehicle File" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text35" Left="548.2" Top="74.45" Width="179.55" Height="11.34" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="127.04" Width="740.5" Height="23.9" CanGrow="true" CanShrink="true" AfterDataEvent="Data1_AfterData" CanBreak="true" Guides="0,18.9" DataSource="Table">
+      <TextObject Name="Text2" Left="3" Top="1.89" Width="79.38" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.VehicleCode]" Duplicates="Hide" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text6" Left="86" Top="1.89" Width="139.86" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.VehicleName]" Font="Arial, 8pt"/>
+      <TextObject Name="Text19" Left="229.89" Top="1.89" Width="111.51" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.VehicleTypeName]" Font="Arial, 8pt"/>
+      <TextObject Name="Text21" Left="344.71" Top="1.89" Width="68.04" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.BelongsTo]" Font="Arial, 8pt"/>
+      <TextObject Name="Text23" Left="479.99" Top="1.89" Width="158.76" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.SuppName]" Font="Arial, 8pt"/>
+      <TextObject Name="Text25" Left="642.89" Top="1.89" Width="83.16" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.ExpireDate]" Format="Date" Format.Format="d" Font="Arial, 8pt"/>
+      <TextObject Name="Text37" Left="416.85" Top="1.89" Width="58.59" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.VehicleSize]" Font="Arial, 8pt"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="154.94" Width="740.5" Height="28.35" Guides="9.45,13.45,27.35">
+      <LineObject Name="Line1" Width="730.3"/>
+      <TextObject Name="Text14" Left="585.9" Top="5.45" Width="139.85" Height="13.9" Text="[DS.UserId]" HorzAlign="Right" Font="Arial, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

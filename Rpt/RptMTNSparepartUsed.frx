@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="03/27/2014 09:48:18" ReportInfo.Modified="01/23/2015 10:30:56" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    
+     
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haoOriUU0fDGX8X0KnyxXegQ">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_RptMTNSparepartUSed '2010-03-10','2014-03-28','','','','',0,0,'N', 'N', 'admin'">
+        <Column Name="Department" DataType="System.String"/>
+        <Column Name="DepartmentName" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="IssueNo" DataType="System.String"/>
+        <Column Name="RequestNo" DataType="System.String"/>
+        <Column Name="RequestBy" DataType="System.String"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="Product" DataType="System.String"/>
+        <Column Name="ProductName" DataType="System.String"/>
+        <Column Name="Qty" DataType="System.Double"/>
+        <Column Name="Unit" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="Period" DataType="System.String"/>
+        <Column Name="userID" DataType="System.String"/>
+        <Column Name="OutsourceTo" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="279.4" PaperHeight="215.9" FirstPageSource="14" OtherPagesSource="14">
+    <ReportTitleBand Name="ReportTitle1" Width="980.53"/>
+    <PageHeaderBand Name="PageHeader1" Top="4" Width="980.53" Height="85.05">
+      <TextObject Name="Text1" Left="9.45" Width="264.6" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text2" Left="9.45" Top="18.9" Width="311.85" Height="37.8" Text="[DS.CompAddr]" Font="Arial, 8pt"/>
+      <TextObject Name="Text3" Left="283.5" Top="37.8" Width="349.65" Height="18.9" Text="LAPORAN PEMAKAIAN SPAREPART" HorzAlign="Center" VertAlign="Center" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text13" Left="321.3" Top="56.7" Width="292.95" Height="28.35" Text="Periode : [DS.Period]" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text15" Left="850.5" Width="132.3" Height="18.9" Text="[Date]" HorzAlign="Right" Font="Arial, 7pt"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="93.05" Width="980.53" Height="60.07" CanGrow="true" BeforePrintEvent="GroupHeader1_BeforePrint" StartNewPage="true" RepeatOnEveryPage="true" Condition="[DS.Department]">
+      <TableObject Name="Table1" Left="5.07" Top="25.3" Width="977.57" Height="34.77" Border.Lines="All">
+        <TableColumn Name="Column1" Width="78.67"/>
+        <TableColumn Name="Column2" Width="63.13"/>
+        <TableColumn Name="Column3" Width="72.58"/>
+        <TableColumn Name="Column4" Width="119.83"/>
+        <TableColumn Name="Column5" Width="148.16"/>
+        <TableColumn Name="Column6" Width="91.46"/>
+        <TableColumn Name="Column7" Width="86.76"/>
+        <TableColumn Name="Column8" Width="58.41"/>
+        <TableColumn Name="Column9" Width="67.86"/>
+        <TableColumn Name="Column10" Width="190.71"/>
+        <TableRow Name="Row1" Height="11.59">
+          <TableCell Name="Cell1" Border.Lines="All" Text="Tanggal&#13;&#10;" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell2" Border.Lines="All" Text="Issue No." HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell3" Border.Lines="All" Text="Request No." HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell4" Border.Lines="All" Text="Kode Sparepart" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell5" Border.Lines="All" Text="Nama Sparepart" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell26" Border.Lines="All" Text="Outsource To" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell62" Text="Request By" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell63" Border.Lines="All" Text="Qty" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell64" Border.Lines="All" Text="Unit" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell65" Border.Lines="All" Text="Keterangan" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold" RowSpan="3"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="11.59">
+          <TableCell Name="Cell6" Border.Lines="All" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell7" Border.Lines="All"/>
+          <TableCell Name="Cell8" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell9" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell10" Border.Lines="All"/>
+          <TableCell Name="Cell31" Border.Lines="All"/>
+          <TableCell Name="Cell67"/>
+          <TableCell Name="Cell68"/>
+          <TableCell Name="Cell69"/>
+          <TableCell Name="Cell70"/>
+        </TableRow>
+        <TableRow Name="Row5" Height="11.59">
+          <TableCell Name="Cell56" Border.Lines="All" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell57" Border.Lines="All"/>
+          <TableCell Name="Cell58" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell59" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell60" Border.Lines="All"/>
+          <TableCell Name="Cell61" Border.Lines="All"/>
+          <TableCell Name="Cell72"/>
+          <TableCell Name="Cell73"/>
+          <TableCell Name="Cell74"/>
+          <TableCell Name="Cell75"/>
+        </TableRow>
+      </TableObject>
+      <TextObject Name="Text4" Left="9.45" Width="330.75" Height="28.35" Text="Departemen : [DS.DepartmentName]" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <DataBand Name="Data1" Top="157.12" Width="980.53" Height="21.04" CanGrow="true" CanShrink="true" Guides="0" DataSource="Table">
+        <TableObject Name="Table1" Left="5.45" Width="977.57" Height="21.04" Border.Lines="All">
+          <TableColumn Name="Column11" Width="78.67"/>
+          <TableColumn Name="Column12" Width="63.13"/>
+          <TableColumn Name="Column13" Width="72.58"/>
+          <TableColumn Name="Column14" Width="119.83"/>
+          <TableColumn Name="Column15" Width="148.16"/>
+          <TableColumn Name="Column16" Width="91.46"/>
+          <TableColumn Name="Column17" Width="86.76"/>
+          <TableColumn Name="Column18" Width="58.41"/>
+          <TableColumn Name="Column19" Width="67.86"/>
+          <TableColumn Name="Column20" Width="190.71"/>
+          <TableRow Name="Row6" Height="21.04" AutoSize="true">
+            <TableCell Name="Cell76" Border.Lines="All" Text="[DS.TransDate]" Format="Custom" Format.Format="dd/MM/yyyy" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+            <TableCell Name="Cell77" Border.Lines="All" Text="[DS.IssueNo]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+            <TableCell Name="Cell78" Border.Lines="All" Text="[DS.RequestNo]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+            <TableCell Name="Cell79" Border.Lines="All" Text="[DS.Product]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+            <TableCell Name="Cell80" Border.Lines="All" Text="[DS.ProductName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+            <TableCell Name="Cell81" Border.Lines="All" Text="[DS.OutsourceTo]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+            <TableCell Name="Cell82" Text="[DS.RequestBy]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+            <TableCell Name="Cell83" Border.Lines="All" Text="[DS.Qty]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+            <TableCell Name="Cell84" Border.Lines="All" Text="[DS.Unit]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+            <TableCell Name="Cell85" Border.Lines="All" Text="[DS.Remark]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+          </TableRow>
+        </TableObject>
+      </DataBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="182.16" Width="980.53" Height="18.9">
+      <TextObject Name="Text5" Left="850.5" Width="122.85" Height="18.9" Text="[PageN] Of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

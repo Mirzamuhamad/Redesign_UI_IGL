@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="04/25/2011 08:42:34" ReportInfo.Modified="01/06/2023 17:23:03" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    
+  
+    End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqAFHGp6KQj27H4qUwAIR20hSnyrpNtgmeY+I5zyTmYE0HuZfX1hs9fAqnt4DRtzHmGhuLqQKgmKQ5zr9jopSpaKdPnABANIUMN9weEafbi0X9ZM4e/TzYpckeM7xEB6GRoK9zJTu7hjVX7MMg3MXsry0SmGvraFUkhI+E4hqHr8Yst1EBr6DbsGTYRhS737hK">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_MTFormServiceOut 'IGL/SVO/1222/0001', 'Admin'">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="Status" DataType="System.String"/>
+        <Column Name="WOServiceNo" DataType="System.String"/>
+        <Column Name="SuppCode" DataType="System.String"/>
+        <Column Name="DeptCode" DataType="System.String"/>
+        <Column Name="RequestBy" DataType="System.String"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="UserPrep" DataType="System.String"/>
+        <Column Name="DatePrep" DataType="System.DateTime"/>
+        <Column Name="UserAppr" DataType="System.String"/>
+        <Column Name="DateAppr" DataType="System.DateTime"/>
+        <Column Name="UserPost" DataType="System.String"/>
+        <Column Name="DatePost" DataType="System.DateTime"/>
+        <Column Name="UserDel" DataType="System.String"/>
+        <Column Name="DateDel" DataType="System.DateTime"/>
+        <Column Name="FgReport" DataType="System.String"/>
+        <Column Name="FgActive" DataType="System.String"/>
+        <Column Name="SuppName" DataType="System.String"/>
+        <Column Name="DeptName" DataType="System.String"/>
+        <Column Name="ItemName" DataType="System.String"/>
+        <Column Name="Qty" DataType="System.Decimal"/>
+        <Column Name="UnitName" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="Address" DataType="System.String"/>
+        <Column Name="UserId" DataType="System.String"/>
+        <Column Name="SuppAlamat" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperHeight="139.7" FirstPageSource="15" OtherPagesSource="15" Guides="0,368.55,2,739.1,115.4,126.3,127.85,137.3,474.5,551.55,553.1,562.55,137.75,402.35,138.75,471.5,403.35,138.3,402.9,563.45,738.55,563,733.1,741.1,25.35,24.35,135.75,136.3,189.45,191,284.95,418.7,419.25,456.05,457.05,487.85,487.4,595.8,596.35,629.15,737.55,484.95,740.1,1.89,25.33,24.46,135.95,136.25,189.49,191.11,285.15,284.9,418.74,419.12,456.01,456.14,487.76,513.59,595.73,486.95,513.57,596.48,629.37,656.5,739.64,655.77,73.05,75.6,85.05,505.85,516.3,621.7,620.25,629.7,628.15,654.77,657.05,740.19,656.32,516.75,620.15,619.7,506.85,618.7,619.25,627.7,656.05,628.7,655.32,497.4,113.5,236.35,302.5,425.35,500.95,623.8,455.6">
+    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="179.63" BeforePrintEvent="PageHeader1_BeforePrint" Guides="0,28.35,47.25,66.15,85.05,94.5,113.4,132.3,151.2,170.1,189,207.9,215.35,243.7,217.35,240.25,18.9,37.8">
+      <ShapeObject Name="Shape2" Top="156.95" Width="717.75" Height="22.68" Fill.Color="WhiteSmoke"/>
+      <TextObject Name="Text1" Left="47.25" Top="3" Width="368.55" Height="28.35" Text="[DS.CompanyName]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text2" Left="-10.45" Top="48.25" Width="734.65" Height="18.9" Text="SERVICE OUT" HorzAlign="Center" Font="Arial, 12pt, style=Bold, Underline"/>
+      <TextObject Name="Text5" Left="394" Top="84.05" Width="143.2" Height="14.9" Text="Tgl. Service Out" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text6" Left="481.3" Top="84.05" Width="9.45" Height="14.9" Text=":" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text7" Left="2" Top="100.95" Width="143.2" Height="14.9" Text="No. WO Service" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text8" Left="90.3" Top="100.95" Width="9.45" Height="14.9" Text=":" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text9" Left="2" Top="117.85" Width="143.2" Height="14.9" Text="Supplier" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text10" Left="90.3" Top="117.85" Width="9.45" Height="14.9" Text=":" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text13" Left="395.15" Top="101.05" Width="86.5" Height="14.9" Text="Request Oleh" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text14" Left="481.75" Top="101.05" Width="9.45" Height="14.9" Text=":" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text19" Left="492.2" Top="84.05" Width="262.15" Height="14.9" Text="[DS.TransDate]" Format="Custom" Format.Format="dd MMM yyyy" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text20" Left="100.04" Top="100.95" Width="266.6" Height="14.9" Text="[DS.WOServiceNo]" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text21" Left="100.04" Top="117.85" Width="264.6" Height="14.9" Text="[DS.SuppName]" Format="Custom" Format.Format="dd/MM/yy" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text23" Left="491.76" Top="101.05" Width="224.35" Height="14.9" Text="[DS.RequestBy]" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text76" Left="459.6" Width="255.15" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text77" Left="459.6" Top="18.9" Width="255.15" Height="18.9" Text="[Page#] of [TotalPages#]" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text119" Left="1.6" Top="82.8" Width="94.5" Height="14.9" Text="No. Service Out" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text44" Left="100.1" Top="84.25" Width="198.45" Height="14.9" Text="[DS.TransNmbr]" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text117" Left="89.9" Top="83.8" Width="9.45" Height="14.9" Text=":" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <PictureObject Name="Picture2" Width="47.25" Height="37.8" Image="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"/>
+      <TextObject Name="Text128" Left="46.7" Top="21.9" Width="576" Height="23.9" Text="[DS.Address]" Font="Arial, 8.5pt"/>
+      <TextObject Name="Text136" Left="395.15" Top="116.95" Width="143.2" Height="14.9" Text="Departemen" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text137" Left="481.75" Top="117.95" Width="9.45" Height="14.9" Text=":" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text138" Left="491.76" Top="117.95" Width="224.35" Height="14.9" Text="[DS.DeptName]" VertAlign="Center" Font="Arial, 8pt"/>
+      <LineObject Name="Line3" Left="-2" Top="47.25" Width="723.2"/>
+      <TextObject Name="Text67" Top="158.3" Width="26.8" Height="18.9" CanGrow="true" Text="No." VertAlign="Center" Font="Arial, 8.5pt, style=Bold"/>
+      <TextObject Name="Text60" Left="28.8" Top="158.4" Width="518.75" Height="18.9" CanGrow="true" Text="Keterangan" VertAlign="Center" Font="Arial, 8.5pt, style=Bold"/>
+      <TextObject Name="Text70" Left="553.4" Top="158.4" Width="36.07" Height="18.9" CanGrow="true" Text="Qty" HorzAlign="Center" VertAlign="Center" Font="Arial, 8.5pt, style=Bold"/>
+      <TextObject Name="Text62" Left="582.2" Top="158.4" Width="54.97" Height="18.9" CanGrow="true" Text="Satuan" HorzAlign="Center" VertAlign="Center" Font="Arial, 8.5pt, style=Bold"/>
+      <TextObject Name="Text142" Left="3" Top="135.75" Width="143.2" Height="14.9" Text="Alamat" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text143" Left="90.3" Top="135.75" Width="9.45" Height="14.9" Text=":" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text144" Left="101.04" Top="135.75" Width="491.4" Height="14.9" Text="[DS.SuppAlamat]" Format="Custom" Format.Format="dd/MM/yy" VertAlign="Center" Font="Arial, 8pt"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="183.75" Width="718.2" Condition="[DS.TransNmbr]">
+      <DataBand Name="Data1" Top="187.88" Width="718.2" Height="18.9" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" AfterDataEvent="Data1_AfterData" Guides="0,18.9" DataSource="Table">
+        <TextObject Name="Text36" Left="1.89" Width="23.44" Height="18.9" CanGrow="true" Text="[Row#]" VertAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text37" Left="29.91" Width="347.74" Height="18.9" CanGrow="true" GrowToBottom="true" Text="[DS.ItemName]" VertAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text39" Left="537.06" Width="46.79" Height="18.9" CanGrow="true" Text="[DS.Qty]" Format="Custom" Format.Format="###,###" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text40" Left="594.6" Width="46.79" Height="18.9" CanGrow="true" Text="[DS.UnitName]" VertAlign="Center" Font="Arial, 8pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="210.9" Width="718.2" Height="56.7">
+        <TextObject Name="Text50" Left="94.5" Top="9.45" Width="616.8" Height="45.25" CanGrow="true" Text="[DS.Remark]" Font="Arial, 8.5pt"/>
+        <TextObject Name="Text140" Left="85.05" Top="9.45" Width="9.45" Height="18.9" Text=":" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text139" Top="8.45" Width="77.05" Height="18.9" Text="Remark" Font="Arial, 8pt, style=Bold"/>
+        <LineObject Name="Line6" Left="1" Top="1.45" Width="714.75"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="271.72" Width="718.2" Height="103.95" CanGrow="true" PrintOnBottom="true" Guides="0,3,21.9,6,53.25,22.9,41.8,80.05,98.95,42.25,61.15,62.05,80.95,99.95,118.85,160.65,179.55,245.7,264.6">
+      <TextObject Name="Text82" Left="567.1" Top="5.65" Width="122.85" Height="18.9" Text="Dibuat Oleh," HorzAlign="Center" VertAlign="Center" Font="Arial, 8.5pt, style=Bold"/>
+      <TextObject Name="Text78" Left="47.35" Top="5.65" Width="122.85" Height="18.9" Text="Penerima" HorzAlign="Center" VertAlign="Center" Font="Arial, 8.5pt, style=Bold"/>
+      <TextObject Name="Text79" Left="19" Top="72.8" Width="189" Height="18.9" Text="(................................................)" HorzAlign="Center" VertAlign="Center" Font="Arial, 8.5pt"/>
+      <TextObject Name="Text3" Left="9.9" Top="64.35" Width="207.9" Height="18.9" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text130" Left="538.75" Top="72.8" Width="189" Height="18.9" Text="(................................................)" HorzAlign="Center" VertAlign="Center" Font="Arial, 8.5pt"/>
+      <TextObject Name="Text135" Left="529.65" Top="83.25" Width="207.9" Height="18.9" Text="[DS.UserPrep]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line1" Top="103.95" Width="716.2"/>
+      <LineObject Name="Line4" Width="715.75"/>
+      <LineObject Name="Line2" Height="103.95"/>
+      <LineObject Name="Line5" Left="715.75" Height="103.95"/>
+      <LineObject Name="Line7" Height="-153.2"/>
+      <LineObject Name="Line8" Left="715.75" Height="-152.2"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="379.8" Width="718.2" Height="21.9" Guides="0,2,20.9">
+      <TextObject Name="Text75" Left="455.6" Top="2" Width="283.5" Height="18.9" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text141" Width="548.1" Height="18.9" Text="1.Putih : Pembuat,   2.Merah : Supir/Pengantar,   3.Kuning : Penerima,  4. Hijau : Security/Arsip " VertAlign="Center" Font="Arial Narrow, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

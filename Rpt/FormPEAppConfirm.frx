@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="01/08/2014 16:32:11" ReportInfo.Modified="01/08/2014 16:44:26" ReportInfo.CreatorVersion="1.2.47.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haoZaCKyBw+Xe8vlHbGXAaS+">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PEAppConfirmForm 'IE/CC/14/01/0002', ''">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="RequestNo" DataType="System.String"/>
+        <Column Name="JobTtlCode" DataType="System.String"/>
+        <Column Name="JobTtlName" DataType="System.String"/>
+        <Column Name="EmpStatusCode" DataType="System.String"/>
+        <Column Name="EmpStatusName" DataType="System.String"/>
+        <Column Name="QtyMale" DataType="System.Int32"/>
+        <Column Name="QtyFemale" DataType="System.Int32"/>
+        <Column Name="QtyTotal" DataType="System.Int32"/>
+        <Column Name="CandidateNo" DataType="System.String"/>
+        <Column Name="CandidateName" DataType="System.String"/>
+        <Column Name="Gender" DataType="System.String"/>
+        <Column Name="FgRecruit" DataType="System.String"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="UserId" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1">
+    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="236.25">
+      <TextObject Name="Text37" Left="283.5" Top="18.9" Width="170.1" Height="18.9" Border.Lines="Bottom" Text="CANDIDATE  CONFIRM" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text1" Left="283.5" Top="37.8" Width="170.1" Height="18.9" Text="[DS.TransNmbr]" HorzAlign="Center"/>
+      <TextObject Name="Text2" Left="283.5" Top="56.7" Width="170.1" Height="18.9" Text="[DS.TransDate]" Format="Date" Format.Format="d" HorzAlign="Center"/>
+      <TextObject Name="Text3" Left="113.4" Top="103.95" Width="236.25" Height="18.9" Text=": [DS.RequestNo]"/>
+      <TextObject Name="Text4" Left="113.4" Top="122.85" Width="236.25" Height="18.9" Text=": [DS.JobTtlName]"/>
+      <TextObject Name="Text5" Left="113.4" Top="141.75" Width="236.25" Height="18.9" Text=": [DS.EmpStatusName]"/>
+      <TextObject Name="Text6" Left="113.4" Top="160.65" Width="567" Height="18.9" Text=": [DS.Remark]"/>
+      <TextObject Name="Text7" Left="557.55" Top="103.95" Width="66.15" Height="18.9" Text="[DS.QtyTotal]" HorzAlign="Right"/>
+      <TextObject Name="Text8" Left="557.55" Top="122.85" Width="66.15" Height="18.9" Text="[DS.QtyMale]" HorzAlign="Right"/>
+      <TextObject Name="Text9" Left="557.55" Top="141.75" Width="66.15" Height="18.9" Text="[DS.QtyFemale]" HorzAlign="Right"/>
+      <TextObject Name="Text11" Left="51.25" Top="217.35" Width="151.2" Height="18.9" Border.Lines="Left" Text="Candidate No" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text13" Left="205.9" Top="217.35" Width="311.85" Height="18.9" Border.Lines="Left" Text="Candidate Name" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text15" Left="523.75" Top="217.35" Width="85.05" Height="18.9" Border.Lines="Left" Text="Gender" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text17" Left="614.25" Top="217.35" Width="66.15" Height="18.9" Border.Lines="Left, Right" Text="Recruit" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text19" Top="217.35" Width="47.25" Height="18.9" Border.Lines="Left" Text="No." HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text20" Left="623.7" Top="103.95" Width="56.7" Height="18.9" Text="Orang" Font="Arial, 9pt"/>
+      <TextObject Name="Text38" Left="623.7" Top="122.85" Width="56.7" Height="18.9" Text="Orang" Font="Arial, 9pt"/>
+      <TextObject Name="Text39" Left="623.7" Top="141.75" Width="56.7" Height="18.9" Text="Orang" Font="Arial, 9pt"/>
+      <TextObject Name="Text21" Top="103.95" Width="113.4" Height="18.9" Text="Request No"/>
+      <TextObject Name="Text22" Top="122.85" Width="113.4" Height="18.9" Text="Job Title"/>
+      <TextObject Name="Text23" Top="141.75" Width="113.4" Height="18.9" Text="Employee Status"/>
+      <TextObject Name="Text24" Top="160.65" Width="113.4" Height="18.9" Text="Remark"/>
+      <TextObject Name="Text25" Left="444.15" Top="103.95" Width="94.5" Height="18.9" Text="Qty Confirm"/>
+      <TextObject Name="Text26" Left="444.15" Top="122.85" Width="94.5" Height="18.9" Text="Male"/>
+      <TextObject Name="Text40" Left="444.15" Top="141.75" Width="94.5" Height="18.9" Text="Female"/>
+      <TextObject Name="Text27" Left="538.65" Top="103.95" Width="18.9" Height="18.9" Text=" : " HorzAlign="Center"/>
+      <TextObject Name="Text41" Left="538.65" Top="122.85" Width="18.9" Height="18.9" Text=" : " HorzAlign="Center"/>
+      <TextObject Name="Text42" Left="538.65" Top="141.75" Width="18.9" Height="18.9" Text=" : " HorzAlign="Center"/>
+      <LineObject Name="Line1" Top="217.35" Width="680.4"/>
+      <LineObject Name="Line3" Top="236.25" Width="680.4"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="240.25" Width="718.2" Height="18.9" DataSource="Table">
+      <TextObject Name="Text10" Left="51.25" Width="151.2" Height="18.9" Border.Lines="Left" Text="[DS.CandidateNo]" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text12" Left="205.9" Width="311.85" Height="18.9" Border.Lines="Left" Text="[DS.CandidateName]" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text14" Left="523.75" Width="85.05" Height="18.9" Border.Lines="Left" Text="[DS.Gender]" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text16" Left="614.25" Width="66.15" Height="18.9" Border.Lines="Left, Right" Text="[DS.FgRecruit]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text18" Width="47.25" Height="18.9" Border.Lines="Left" Text="[AbsRow#]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt"/>
+      <LineObject Name="Line2" Top="18.9" Width="680.4"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="263.15" Width="718.2" Height="18.9"/>
+  </ReportPage>
+</Report>

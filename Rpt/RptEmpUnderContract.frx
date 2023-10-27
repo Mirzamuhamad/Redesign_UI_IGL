@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="04/29/2014 16:04:49" ReportInfo.Modified="10/29/2015 09:04:47" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    Dim No As Integer
+    Dim StrQreGroup As String
+
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+       No = 0
+    End Sub
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      If (No=0) Then   
+        StrQreGroup = CType(Report.GetColumnValue(&quot;DS.GroupName&quot;), String)  
+      End If
+      If (CType(Report.GetColumnValue(&quot;DS.GroupName&quot;), String) &lt;&gt; StrQreGroup) Then 
+          GroupHeader1.StartNewPage = True
+      End If
+      
+      StrQreGroup = CType(Report.GetColumnValue(&quot;DS.GroupName&quot;), String)
+      No = No+1
+      Text21.Text = No.ToString
+    End Sub
+
+    Private Sub PageHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      If (CType(Report.GetColumnValue(&quot;DS.FgReport&quot;), Int32) = 0) or (CType(Report.GetColumnValue(&quot;DS.FgReport&quot;), Int32) = 7) or (CType(Report.GetColumnValue(&quot;DS.FgReport&quot;), Int32) = 14) Then
+        qrlJudulReport2.Text = &quot;Employee Under Contract Report&quot;
+        qrlSortBy2.Text = &quot;Report Type : Under Contract Per Employee&quot;
+        ChildBand2.Visible = False
+      Else
+        qreGroup.Text = CType(Report.GetColumnValue(&quot;DS.GroupName&quot;), String)
+        ChildBand2.Visible = True
+        If (CType(Report.GetColumnValue(&quot;DS.FgReport&quot;), Int32) = 1) or (CType(Report.GetColumnValue(&quot;DS.FgReport&quot;), Int32) = 8) or (CType(Report.GetColumnValue(&quot;DS.FgReport&quot;), Int32) = 15) Then
+         qrlJudulReport2.Text = &quot;Employee Under Contract Report&quot;
+         qrlSortBy2.Text = &quot; Report Type : Under Contract Per Department&quot;
+         qrlJudulGroup2.Text = &quot;Department : &quot;
+        ElseIf (CType(Report.GetColumnValue(&quot;DS.FgReport&quot;), Int32) = 2) or (CType(Report.GetColumnValue(&quot;DS.FgReport&quot;), Int32) = 9) or (CType(Report.GetColumnValue(&quot;DS.FgReport&quot;), Int32) = 16) Then
+         qrlJudulReport2.Text = &quot;Employee Under Contract Report&quot;
+         qrlSortBy2.Text = &quot;Report Type : Under Contract Per Job Title&quot;
+         qrlJudulGroup2.Text = &quot;Job Title : &quot;
+        ElseIf (CType(Report.GetColumnValue(&quot;DS.FgReport&quot;), Int32) = 3) or (CType(Report.GetColumnValue(&quot;DS.FgReport&quot;), Int32) = 10) or (CType(Report.GetColumnValue(&quot;DS.FgReport&quot;), Int32) = 17) Then
+         qrlJudulReport2.Text = &quot;Employee Under Contract Report&quot;
+         qrlSortBy2.Text = &quot;Report Type : Under Contract Per Job Level&quot;
+         qrlJudulGroup2.Text = &quot;Job Level : &quot;
+        ElseIf (CType(Report.GetColumnValue(&quot;DS.FgReport&quot;), Int32) = 4) or (CType(Report.GetColumnValue(&quot;DS.FgReport&quot;), Int32) = 11) or (CType(Report.GetColumnValue(&quot;DS.FgReport&quot;), Int32) = 18) Then
+         qrlJudulReport2.Text = &quot;Employee Under Contract Report&quot;
+         qrlSortBy2.Text = &quot;Report Type : Under Contract Per Employee Type&quot;
+         qrlJudulGroup2.Text = &quot;Employee Type : &quot;
+        End If
+      End If
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VZBd+MhtHnjm5PdZx4zPIHAaCcFTYNSZawZ/yEG+k7tF">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PERptEmpUnderContract '','','',0">
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="GroupName" DataType="System.String"/>
+        <Column Name="Department" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="EmpNumb" DataType="System.String"/>
+        <Column Name="EmpName" DataType="System.String"/>
+        <Column Name="Gender" DataType="System.String"/>
+        <Column Name="BirthPlace" DataType="System.String"/>
+        <Column Name="BirthDate" DataType="System.DateTime"/>
+        <Column Name="Age" DataType="System.Int32"/>
+        <Column Name="HireDate" DataType="System.DateTime"/>
+        <Column Name="WorkPeriod" DataType="System.Decimal"/>
+        <Column Name="Religion" DataType="System.String"/>
+        <Column Name="Weight" DataType="System.Int32"/>
+        <Column Name="Height" DataType="System.Int32"/>
+        <Column Name="Email" DataType="System.String"/>
+        <Column Name="MaritalSt" DataType="System.String"/>
+        <Column Name="EndContract" DataType="System.DateTime"/>
+        <Column Name="FgActive" DataType="System.String"/>
+        <Column Name="JobTitle" DataType="System.String"/>
+        <Column Name="JobLevel" DataType="System.String"/>
+        <Column Name="FgReport" DataType="System.Int32"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" FirstPageSource="15" OtherPagesSource="15" Guides="0,519.75,245.7,699.3,756,1048.95,122.85,727.65,1048.5,3,28.35,30.8,32.35,116.85,119.3,121.3,288.75,290.5,292.5,344.2,345.65,347.65,423.7,424.25,426.25,492.4,495.4,495.85,539.1,541.1,542.65,606.25,606.8,609.25,656.4,657.5,659.5,721.55,723.65,725.65,782.25,783.8,785.8,832.4,834.05,836.05,885.65,886.3,887.75,975.15,979.8,1043.4,977.35,3.02,32.51,117.18,121.34,288.79,292.57,344.36,347.76,423.74,426.38,492.53,495.94,539.03,542.81,606.31,609.34,656.59,659.61,721.6,725.76,782.46,785.86,832.35,836.14,885.66,887.92,975.24,979.78,1043.28,718.2">
+    <PageHeaderBand Name="PageHeader1" Width="1047.06" Height="141.75" BeforePrintEvent="PageHeader1_BeforePrint" Guides="18.9,56.7,0,75.6,94.5,85.05,103.95">
+      <TextObject Name="Text1" Top="18.9" Width="519.75" Height="37.8" Text="[DS.CompAddr]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text2" Width="519.75" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="qrlJudulReport2" Left="245.7" Top="75.6" Width="453.6" Height="18.9" Text="EMPLOYEE UNDER CONTRACT REPORT" HorzAlign="Center" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text36" Left="756" Width="292.95" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text37" Left="756" Top="85.05" Width="292.95" Height="18.9" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <ChildBand Name="ChildBand2" Top="145.92" Width="1047.06" Height="18.9" Guides="0,18.9">
+        <TextObject Name="qrlJudulGroup2" Width="122.85" Height="18.9" Text="Job Title :" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="qreGroup" Left="122.85" Width="604.8" Height="18.9" Text="[DS.JobTitle]" Font="Arial, 9pt, style=Bold"/>
+        <ChildBand Name="Child2" Top="168.98" Width="1047.06" Height="36.8" Guides="-1,36.8,3.45,31.8,0,34.35,3,31.35">
+          <ShapeObject Name="Shape1" Top="-1" Width="1048.5" Height="37.8"/>
+          <TextObject Name="Text6" Left="3" Top="3.45" Width="25.35" Height="28.35" Text="No" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <LineObject Name="Line1" Left="30.8" Height="34.35"/>
+          <TextObject Name="Text7" Left="32.35" Top="3" Width="84.5" Height="28.35" Text="Employee No" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <LineObject Name="Line2" Left="119.3" Height="34.35"/>
+          <TextObject Name="Text8" Left="121.3" Top="3" Width="167.45" Height="28.35" Text="Employee Name" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <LineObject Name="Line3" Left="290.5" Height="34.35"/>
+          <TextObject Name="Text9" Left="292.5" Top="3" Width="51.7" Height="28.35" Text="Gender" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <LineObject Name="Line4" Left="345.65" Height="34.35"/>
+          <TextObject Name="Text10" Left="347.65" Top="3" Width="76.05" Height="28.35" Text="Birth Place" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <LineObject Name="Line5" Left="424.25" Height="34.35"/>
+          <TextObject Name="Text11" Left="426.25" Top="3" Width="66.15" Height="28.35" Text="Birth Date" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <LineObject Name="Line6" Left="495.4" Height="34.35"/>
+          <TextObject Name="Text12" Left="495.85" Top="3" Width="43.25" Height="28.35" Text="Age (Year)" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <LineObject Name="Line7" Left="541.1" Height="34.35"/>
+          <TextObject Name="Text13" Left="542.65" Top="3" Width="63.6" Height="28.35" Text="Hire Date" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <LineObject Name="Line8" Left="606.8" Height="34.35"/>
+          <TextObject Name="Text14" Left="609.25" Top="3" Width="47.15" Height="28.35" Text="Work Period" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <LineObject Name="Line9" Left="657.5" Height="34.35"/>
+          <TextObject Name="Text15" Left="659.5" Top="3" Width="62.05" Height="28.35" Text="Religion" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <LineObject Name="Line10" Left="723.65" Height="34.35"/>
+          <TextObject Name="Text16" Left="725.65" Top="3" Width="56.6" Height="28.35" Text="Marital Status" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <LineObject Name="Line11" Left="783.8" Height="34.35"/>
+          <TextObject Name="Text17" Left="785.8" Top="3" Width="46.6" Height="28.35" Text="Height (cm)" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <LineObject Name="Line12" Left="834.05" Height="34.35"/>
+          <TextObject Name="Text18" Left="836.05" Top="3" Width="49.6" Height="28.35" Text="Weight (kg)" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <LineObject Name="Line13" Left="886.3" Height="34.35"/>
+          <TextObject Name="Text19" Left="887.75" Top="3" Width="87.4" Height="28.35" Text="Email" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TextObject Name="Text20" Left="979.8" Top="3" Width="63.6" Height="28.35" Text="End Contract" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <LineObject Name="Line14" Left="977.35" Height="34.35"/>
+        </ChildBand>
+      </ChildBand>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="209.95" Width="1047.06" BeforePrintEvent="GroupHeader1_BeforePrint" StartNewPage="true" Condition="[DS.GroupName]">
+      <DataBand Name="Data1" Top="214.12" Width="1047.06" Height="18.9" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" Guides="0,18.9" DataSource="Table">
+        <TextObject Name="Text21" Left="3.02" Width="25.33" Height="18.9" CanGrow="true" Text="No" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text22" Left="32.51" Width="84.67" Height="18.9" CanGrow="true" Text="[DS.EmpNumb]" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text23" Left="121.34" Width="167.45" Height="18.9" CanGrow="true" Text="[DS.EmpName]" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text24" Left="292.57" Width="51.79" Height="18.9" CanGrow="true" Text="[DS.Gender]" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text25" Left="347.76" Width="75.98" Height="18.9" CanGrow="true" Text="[DS.BirthPlace]" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text26" Left="426.38" Width="66.15" Height="18.9" CanGrow="true" Text="[DS.BirthDate]" Format="Custom" Format.Format="dd MMM yy" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text27" Left="495.94" Width="43.09" Height="18.9" CanGrow="true" Text="[DS.Age]" Format="Custom" Format.Format="###,##0" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text28" Left="542.81" Width="63.5" Height="18.9" CanGrow="true" Text="[DS.HireDate]" Format="Custom" Format.Format="dd MMM yy" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text29" Left="609.34" Width="47.25" Height="18.9" CanGrow="true" Text="[DS.WorkPeriod]" Format="Custom" Format.Format="###,##0" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text30" Left="659.61" Width="61.99" Height="18.9" CanGrow="true" Text="[DS.Religion]" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text31" Left="725.76" Width="56.7" Height="18.9" CanGrow="true" Text="[DS.MaritalSt]" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text32" Left="785.86" Width="46.49" Height="18.9" CanGrow="true" Text="[DS.Height]" Format="Custom" Format.Format="###,##0" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text33" Left="836.14" Width="49.52" Height="18.9" CanGrow="true" Text="[DS.Weight]" Format="Custom" Format.Format="###,##0" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text34" Left="887.92" Width="87.32" Height="18.9" CanGrow="true" Text="[DS.Email]" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text35" Left="979.78" Width="63.5" Height="18.9" CanGrow="true" Text="[DS.EndContract]" Format="Custom" Format.Format="dd MMM yy" VertAlign="Center" Font="Arial, 7pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="237.18" Width="1047.06" Guides="0">
+        <LineObject Name="Line15" Width="1048.95"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="241.35" Width="1047.06" Height="18.9" Guides="0,18.9">
+      <TextObject Name="qrlSortBy2" Left="245.7" Width="472.5" Height="18.9" Text="Sort By : Employee" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line16" Width="1048.95"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

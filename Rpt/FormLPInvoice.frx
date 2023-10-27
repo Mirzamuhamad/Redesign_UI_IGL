@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="04/07/2011 11:14:44" ReportInfo.Modified="06/19/2023 09:38:51" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Text177.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.Dpp&quot;), Decimal),CType(Report.GetColumnValue(&quot;0&quot;), Decimal))
+      Text178.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.Ppn&quot;), Decimal),CType(Report.GetColumnValue(&quot;0&quot;), Decimal))
+      Text179.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.PpnAmount&quot;), Decimal),CType(Report.GetColumnValue(&quot;0&quot;), Decimal))
+      Text180.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.Pph&quot;), Decimal),CType(Report.GetColumnValue(&quot;0&quot;), Decimal))
+      Text181.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.PphAmount&quot;), Decimal),CType(Report.GetColumnValue(&quot;0&quot;), Decimal))
+      Text182.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.TotalAmount&quot;), Decimal),CType(Report.GetColumnValue(&quot;0&quot;), Decimal))
+       
+      
+     Text184.Text = CType(Report.GetColumnValue(&quot;DS.Terbilang&quot;), String)
+     Text193.Text = CType(Report.GetColumnValue(&quot;DS.Remark&quot;), String)
+    '  Text140.Text = CType(Report.GetColumnValue(&quot;DS.TransDate&quot;), String)
+                 
+    End Sub
+    
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+ 
+    End Sub
+
+    Private Sub ReportSummary1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+   
+    End Sub
+
+   
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLAsUhwqjjPF/vYCqvA1BDk6KVhWPhvjkH6++4kjz5gnUoLXQPUJJcPK+N7znO697D/2YYh7u7Lz1oPjvljWWoUlkvxQgNdhs3E+lkB1HPSBlNRUXkfgYaW+tuhcHPN0Gx1JKZJLWWRcjMQWyVlO3jSEe4f1TFM9I8IBdkmbf0rKw">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PLFormLPInvoice '''IGL/LPI/2206/0003'''">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.String"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="Status" DataType="System.String"/>
+        <Column Name="LpNo" DataType="System.String"/>
+        <Column Name="Attn" DataType="System.String"/>
+        <Column Name="Jenis" DataType="System.String"/>
+        <Column Name="InvoiceDate" DataType="System.DateTime"/>
+        <Column Name="Invoice_No" DataType="System.String"/>
+        <Column Name="NoFaktur" DataType="System.String"/>
+        <Column Name="PPHName" DataType="System.String"/>
+        <Column Name="Terbilang" DataType="System.String"/>
+        <Column Name="DPP" DataType="System.Double"/>
+        <Column Name="PPh" DataType="System.Double"/>
+        <Column Name="PPhAmount" DataType="System.Double"/>
+        <Column Name="PPn" DataType="System.Double"/>
+        <Column Name="PPnAmount" DataType="System.Double"/>
+        <Column Name="TotalAmount" DataType="System.Double"/>
+        <Column Name="FgStatus" DataType="System.String"/>
+        <Column Name="CompanyNPWP" DataType="System.String"/>
+        <Column Name="CompanyAddress" DataType="System.String"/>
+        <Column Name="Area" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperHeight="139.7" LeftMargin="5" TopMargin="5" RightMargin="0" BottomMargin="5" FirstPageSource="15" OtherPagesSource="15" Guides="639.27,722.4301,726.21,462.6,532.75,473.5,641.71,490.96,452.6,644.49,729.54,724.31,471.5,464.5,473.95,472.5,867.51,536.65,623.7,456.05,454.6,527.2,538.1,637.05,9.9,506.85,724.2,725.21,527.65,638.6,642.8,726.3,456.5,526.2,532.2,632.15,1,3.45,462.72,537.34,641.29,530.89,634.84,534.65,726.2,636.6,633.15,727.65,508.3,724.32,629.82,733.77,725.66,725.76,529.2,638.43,455.15,635.43,3,0,0">
+    <PageHeaderBand Name="PageHeader1" Width="774.9" Height="216.35" Guides="269.05,284.17,282.28,262.6,28.35,43.47,5.45,20.57,90.5,130.19,214.35,231.36,138.3,155.31,199.45,216.46,75.6,90.72,45.25,67.93,-13.23,0,128.75,250.82,92.5,126.52,94.5,109.62,95.61,166.55,183.56,180,197.01,137.97,114.4,129.52,129.3,148.2,60.7,77.71,151.2,168.21,246.7,263.71,233.25,250.26,5,18.23,25.15,38.38">
+      <TextObject Name="Text2" Left="272.65" Top="18.68" Width="259.15" Height="21.12" Text="LAND PURCHASE INVOICE" Font="Arial Narrow, 14pt, style=Bold"/>
+      <TextObject Name="Text145" Left="5.95" Top="73.38" Width="166.71" Height="18.9" Text="[DS.CompanyName]" Font="Cambria, 8pt, style=Bold"/>
+      <LineObject Name="Line16" Left="3.27" Top="4.38" Width="763.32"/>
+      <PictureObject Name="Picture1" Left="-9450" Top="-9450" Width="75.6" Height="75.6"/>
+      <PictureObject Name="Picture2" Left="29.45" Top="7.35" Width="56.7" Height="56.7" Image="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"/>
+      <TextObject Name="Text66" Left="3" Top="190.55" Width="38.7" Height="20.01" Text="No" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+      <TextObject Name="Text144" Left="197" Top="193.55" Width="137.92" Height="19.67" Text="Description" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+      <LineObject Name="LineG" Left="3.82" Top="190.45" Width="762.32" Diagonal="true"/>
+      <TextObject Name="Text13" Left="643.6" Top="191" Width="120.3" Height="22.68" Text="Sub Total (Rp)" Format="Custom" Format.Format="#,##0.##" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+      <LineObject Name="LineH" Left="3" Top="216.35" Width="763.32" Diagonal="true"/>
+      <LineObject Name="Line53" Left="3.45" Top="96.5" Width="762.56"/>
+      <TextObject Name="Text148" Left="8" Top="104.5" Width="100.12" Height="19.67" Text="Pay to" VertAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Text149" Left="102.5" Top="104.5" Width="15.07" Height="19.67" Text=":" VertAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Text150" Left="111.95" Top="104.5" Width="326.92" Height="19.67" Text="[DS.Attn]" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+      <TextObject Name="Text151" Left="8" Top="124.4" Width="100.12" Height="19.67" Text="Jenis Payment" VertAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Text152" Left="102.5" Top="124.4" Width="15.07" Height="19.67" Text=":" VertAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Text153" Left="111.95" Top="124.4" Width="326.92" Height="19.67" Text="[DS.Jenis]" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+      <TextObject Name="Text160" Left="518.3" Top="122.4" Width="71.77" Height="19.67" Text="No Faktur" VertAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Text161" Left="593.9" Top="122.4" Width="15.07" Height="19.67" Text=":" VertAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Text162" Left="603.35" Top="122.4" Width="137.92" Height="19.67" Text="[DS.NoFaktur]" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+      <TextObject Name="Text166" Left="8" Top="145.3" Width="100.12" Height="19.67" Text="Area" VertAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Text167" Left="102.5" Top="145.3" Width="15.07" Height="19.67" Text=":" VertAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Text168" Left="111.95" Top="145.3" Width="326.92" Height="19.67" Text="[DS.Area]" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+      <TextObject Name="Text169" Left="293.05" Top="40.35" Width="71.77" Height="19.67" Text="Reference" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text170" Left="368.65" Top="40.35" Width="15.07" Height="19.67" Text=":" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text171" Left="378.1" Top="40.35" Width="137.92" Height="19.67" Text="[DS.TransNmbr]" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text172" Left="293.05" Top="59.25" Width="81.22" Height="19.67" Text="Date" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text173" Left="368.65" Top="59.25" Width="15.07" Height="19.67" Text=":" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text174" Left="378.1" Top="59.25" Width="137.92" Height="19.67" Text="[DS.TransDate]" Format="Custom" Format.Format="dd MMM yyyy" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text175" Left="520.75" Top="193" Width="119.02" Height="19.67" Text="Jenis Payment" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+      <TextObject Name="Text187" Left="518.3" Top="101.05" Width="81.22" Height="19.67" Text="Invoice No" VertAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Text188" Left="593.9" Top="101.05" Width="15.07" Height="19.67" Text=":" VertAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Text189" Left="603.35" Top="101.05" Width="137.92" Height="19.67" Text="[DS.Invoice_No]" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+      <TextObject Name="Text190" Left="688.85" Top="4.9" Width="76.82" Height="20.23" Border.Lines="Left, Bottom" CanGrow="true" CanShrink="true" Text="[DS.FgStatus]" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="219.8" Width="774.9" StartNewPage="true" Condition="[DS.TransNmbr]" SortOrder="None" ResetPageNumber="true">
+      <DataBand Name="Data1" Top="223.25" Width="774.9" Height="23.7" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" AfterDataEvent="Data1_AfterData" Guides="-2,11.23,13.12,1,14.23,16.9,-1,12.23,18.9,18.9" DataSource="Table" KeepDetail="true">
+        <TextObject Name="Text3" Left="4" Top="0.45" Width="30.35" Height="20.57" Text="[Row#]" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Text69" Left="641.6" Top="6.29" Width="120.84" Height="13.23" Text="[DS.DPP]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Text176" Left="522.2" Top="6" Width="113.57" Height="14.22" Text="[DS.Jenis]" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Text191" Left="37.8" Top="1" Width="478.12" Height="19.67" Text="Pembayaran [DS.Jenis] Untuk Area [DS.Area]" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="250.39" Width="774.9" Guides="9.45,56.7"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="253.84" Width="774.9" Height="223.68" Guides="278.05,306.4,149.75,162.98,244.25,257.48,274.05,-566.4,273.84,-566.61,306.64,-566.16,176.1,270.6,286.5,305.4,149.2,168.1,309.85,328.75,306.85,142.8,0,141.75,170.1,125.85,139.08,122.85,106.95,120.18,85.05,81.05,56.48,23.35,36.58,18.9,17.68,-567.4,64.15,77.38,58.7,-565.4,94.5,0">
+      <LineObject Name="Line17" Left="3.45" Top="206.4" Width="763.32"/>
+      <TextObject Name="Text125" Left="68.15" Top="125.4" Width="57.92" Height="13.23" CanGrow="true" CanShrink="true" Text="Approval" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+      <LineObject Name="Line57" Left="3.55" Top="124.85" Width="762.8" Diagonal="true"/>
+      <TextObject Name="Text147" Left="9.45" Top="189" Width="187.11" Height="13.23" Text="(...........................................)" Format="Custom" Format.Format="#,##0.##" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="Arial Narrow, 9pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text154" Left="519.75" Top="5.45" Width="117.84" Height="13.23" Text="Total Amount (Rp)" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+      <TextObject Name="Text155" Left="519.75" Top="25.35" Width="80.04" Height="13.23" Text="Ppn (%)" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+      <TextObject Name="Text156" Left="519.75" Top="45.25" Width="117.84" Height="13.23" Text="Ppn Amount (Rp)" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+      <TextObject Name="Text157" Left="519.75" Top="64.15" Width="80.04" Height="13.23" Text="Pph (%)" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+      <TextObject Name="Text158" Left="519.75" Top="84.05" Width="117.84" Height="13.23" Text="Pph Amount (Rp)" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+      <TextObject Name="Text159" Left="520.75" Top="103.95" Width="117.39" Height="13.23" Text="Grand Total (Rp)" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+      <LineObject Name="Line1" Left="519.75" Top="20.35" Width="245.7"/>
+      <LineObject Name="Line58" Left="519.75" Top="40.25" Width="245.7"/>
+      <LineObject Name="Line59" Left="519.75" Top="60.15" Width="245.7"/>
+      <LineObject Name="Line60" Left="519.75" Top="82.05" Width="245.7"/>
+      <LineObject Name="Line61" Left="519.75" Top="98.95" Width="245.7"/>
+      <LineObject Name="Line62" Left="519.75" Top="118.85" Width="246.7"/>
+      <LineObject Name="Line2" Left="519.75" Top="118.95" Height="-199"/>
+      <LineObject Name="Line66" Left="639.05" Top="118.95" Height="-199"/>
+      <LineObject Name="Line67" Left="766.45" Top="205" Height="-468.95"/>
+      <TextObject Name="Text177" Left="642.6" Top="5.45" Width="120.84" Height="13.23" Text="[DS.DPP]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+      <TextObject Name="Text178" Left="642.6" Top="25.35" Width="120.84" Height="13.23" Text="[DS.PPn]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+      <TextObject Name="Text179" Left="642.6" Top="45.25" Width="120.84" Height="13.23" Text="[DS.PPnAmount]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+      <TextObject Name="Text180" Left="642.6" Top="65.15" Width="120.84" Height="13.23" Text="[DS.PPh]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+      <TextObject Name="Text181" Left="642.6" Top="84.05" Width="120.84" Height="13.23" Text="[DS.PPhAmount]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+      <TextObject Name="Text182" Left="642.6" Top="103.95" Width="120.84" Height="13.23" Text="[DS.TotalAmount]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+      <TextObject Name="Text183" Left="6.45" Top="2.55" Width="69.6" Height="13.23" Text="Terbilang :" Format="Custom" Format.Format="#,##0.##" VertAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Text184" Left="72.6" Top="2.55" Width="448.6" Height="14.23" Text="[DS.Terbilang]" Format="Custom" Format.Format="#,##0.##" VertAlign="Center" Font="Arial Narrow, 9pt"/>
+      <LineObject Name="Line65" Left="4" Width="762.32" Diagonal="true"/>
+      <LineObject Name="Line68" Left="37.8" Top="0.1" Height="-80.6"/>
+      <TextObject Name="Text192" Left="6.45" Top="30.9" Width="60.15" Height="13.23" Text="Remark :" Format="Custom" Format.Format="#,##0.##" VertAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Text193" Left="63.15" Top="30.9" Width="420.25" Height="33.13" Text="[DS.Remark]" Format="Custom" Format.Format="#,##0.##" Font="Arial Narrow, 9pt"/>
+      <LineObject Name="Line69" Left="4" Top="206" Height="-469.95"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

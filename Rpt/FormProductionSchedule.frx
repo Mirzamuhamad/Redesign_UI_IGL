@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="05/05/2015 18:25:12" ReportInfo.Modified="05/22/2015 19:45:45" ReportInfo.CreatorVersion="1.2.47.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqAFHGp6KQj27H4qUwAIR20hSnyrpNtgmeY+I5zyTmYE0HuZfX1hs9fAqnt4DRtzHmiCoOleOW5pWg3r3jaE65aRcq6ni8forZOjpe4IH1SYrSy7vxPAlpIOoknDzwUhGxSUjDK8dqhGkOQHM/Knw2HwC+/0nhPlyl369PqMn8a/aa//LCm8JQ+ksXVA9IblRE">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PDProdSchedulePrint '',''">
+        <Column Name="WorkCtr" DataType="System.String"/>
+        <Column Name="WorkCtrName" DataType="System.String"/>
+        <Column Name="Machine" DataType="System.String"/>
+        <Column Name="MachineName" DataType="System.String"/>
+        <Column Name="Production_Date" DataType="System.String"/>
+        <Column Name="Delivery_Date" DataType="System.String"/>
+        <Column Name="ReffType" DataType="System.String"/>
+        <Column Name="Reference" DataType="System.String"/>
+        <Column Name="Product" DataType="System.String"/>
+        <Column Name="ProductName" DataType="System.String"/>
+        <Column Name="QtyWrhs" DataType="System.Decimal"/>
+        <Column Name="Qty_M2" DataType="System.Decimal"/>
+        <Column Name="Qty_ROLL" DataType="System.Decimal"/>
+        <Column Name="Unit" DataType="System.String"/>
+        <Column Name="DeliveryDate_Rev" DataType="System.String"/>
+        <Column Name="QtyM2_" DataType="System.Decimal"/>
+        <Column Name="QtyROLL_" DataType="System.Decimal"/>
+        <Column Name="QtyWrhs_" DataType="System.Decimal"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="TotQtyWrhs" Expression="[DS.QtyWrhs_]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="TotQtyM2" Expression="[DS.QtyM2_]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="TotQtyRoll" Expression="[DS.QtyROLL_]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" FirstPageSource="1" OtherPagesSource="1">
+    <PageHeaderBand Name="PageHeader1" Width="1047.06"/>
+    <GroupHeaderBand Name="GroupHeader1" Top="4" Width="1047.06" Height="103.95" StartNewPage="true" RepeatOnEveryPage="true" Condition="[DS.WorkCtr]">
+      <TextObject Name="Text24" Top="85.05" Width="368.55" Height="18.9" Text="[DS.WorkCtrName]" Font="Arial, 9pt"/>
+      <TextObject Name="Text3" Top="48.25" Width="85.05" Height="28.35" Text="Production Date" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text5" Left="87.05" Top="48.25" Width="85.05" Height="28.35" Text="Delivery Date" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text7" Left="174.1" Top="48.25" Width="47.25" Height="28.35" Text="Reff Type" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text9" Left="223.8" Top="48.25" Width="132.3" Height="28.35" Text="Reference" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text11" Left="358.1" Top="48.25" Width="143.64" Height="28.35" Text="Product" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text13" Left="501.85" Top="48.25" Width="189" Height="28.35" Text="Product Name" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text15" Left="685.85" Top="48.25" Width="75.6" Height="28.35" Text="Qty Wrhs" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text17" Left="763.45" Top="48.25" Width="75.6" Height="28.35" Text="Qty (M2)" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text19" Left="841.05" Top="48.25" Width="75.6" Height="28.35" Text="Qty (ROLL)" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text21" Left="919.65" Top="48.25" Width="37.8" Height="28.35" Text="Unit" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text23" Left="961.9" Top="48.25" Width="85.05" Height="28.35" Text="Delivery Date Rev" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text1" Left="433.76" Width="179.55" Height="18.9" Text="Production Schedule" HorzAlign="Center" Font="Arial, 12pt, style=Bold"/>
+      <LineObject Name="Line1" Top="44.25" Width="1048.95"/>
+      <LineObject Name="Line2" Top="78.6" Width="1048.95"/>
+      <GroupHeaderBand Name="GroupHeader2" Top="111.95" Width="1047.06" Height="18.9" RepeatOnEveryPage="true" Condition="[DS.Machine]">
+        <TextObject Name="Text25" Width="368.55" Height="18.9" Text="[DS.MachineName]" Font="Arial, 9pt"/>
+        <DataBand Name="Data1" Top="134.85" Width="1047.06" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Table">
+          <TextObject Name="Text2" Width="85.05" Height="18.9" Text="[DS.Production_Date]" Font="Arial, 8pt"/>
+          <TextObject Name="Text4" Left="87.05" Width="85.05" Height="18.9" Text="[DS.Delivery_Date]" Font="Arial, 8pt"/>
+          <TextObject Name="Text6" Left="174.1" Width="47.25" Height="18.9" Text="[DS.ReffType]" Font="Arial, 8pt"/>
+          <TextObject Name="Text8" Left="223.8" Width="132.3" Height="18.9" Text="[DS.Reference]" Font="Arial, 8pt"/>
+          <TextObject Name="Text10" Left="358.1" Width="143.64" Height="18.9" Text="[DS.Product]" Font="Arial, 8pt"/>
+          <TextObject Name="Text12" Left="501.85" Width="189" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.ProductName]" Font="Arial, 8pt"/>
+          <TextObject Name="Text14" Left="685.85" Width="75.6" Height="18.9" Text="[DS.QtyWrhs]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text16" Left="763.45" Width="75.6" Height="18.9" Text="[DS.Qty_M2]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text18" Left="841.05" Width="75.6" Height="18.9" Text="[DS.Qty_ROLL]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text20" Left="919.65" Width="37.8" Height="18.9" Text="[DS.Unit]" Font="Arial, 8pt"/>
+          <TextObject Name="Text22" Left="961.9" Width="85.05" Height="18.9" Text="[DS.DeliveryDate_Rev]" Font="Arial, 8pt"/>
+        </DataBand>
+        <GroupFooterBand Name="GroupFooter2" Top="157.75" Width="1047.06" Height="18.9">
+          <TextObject Name="Text26" Left="685.85" Width="75.6" Height="18.9" Text="[TotQtyWrhs]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+          <TextObject Name="Text27" Left="763.45" Width="75.6" Height="18.9" Text="[TotQtyM2]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+          <TextObject Name="Text28" Left="841.05" Width="75.6" Height="18.9" Text="[TotQtyRoll]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+          <TextObject Name="Text29" Width="472.5" Height="18.9" Text="Sub Total Per [DS.MachineName]" Font="Arial, 9pt, style=Bold"/>
+          <TextObject Name="Text30" Left="919.65" Width="37.8" Height="18.9" Text="[DS.Unit]" Font="Arial, 9pt, style=Bold"/>
+        </GroupFooterBand>
+      </GroupHeaderBand>
+      <GroupFooterBand Name="GroupFooter1" Top="180.65" Width="1047.06"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="184.65" Width="1047.06"/>
+  </ReportPage>
+</Report>

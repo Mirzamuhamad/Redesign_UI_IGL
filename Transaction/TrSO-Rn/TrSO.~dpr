@@ -1,0 +1,32 @@
+library TrSO;
+
+uses
+  SysUtils,
+  Windows,
+  Classes,
+  ClientShare in '..\..\Share\ClientShare.pas',
+  Utilities in '..\..\Share\Utilities.pas',
+  PreviewRpt in '..\..\Share\PreviewRpt.pas' {fmPreviewRpt},
+  HeaderFrame in '..\..\Share\HeaderFrame.pas' {FrameHeader: TFrame},
+  General in '..\..\Share\General.pas',
+  ErrorReconcile in '..\..\Share\ErrorReconcile.pas' {FmReconcileError},
+  UTransEtr in '..\..\Share\UTransEtr.pas' {fmTransEtr},
+  USO in 'USO.pas' {fmSO},
+  UTransEtrMs in '..\..\Share\UTransEtrMs.pas' {fmTransEtrMs},
+  FormSO in 'FormSO.pas' {FmFormSO},
+  Converter in '..\..\Share\Converter.pas',
+  SysData in '..\..\Share\Sysdata.pas',
+  PwdSuper in '..\..\Share\PwdSuper.pas' {FmPwdSuper},
+  AccountingPeriod in '..\..\Share\AccountingPeriod.pas' {fmAccountPeriod};
+
+//,
+//  FormRRPO in '..\TrRRPO\FormRRPO.pas' {fmFormRRPO};
+
+exports
+  show_menu name 'show_menu';
+
+{$R *.RES}
+
+begin
+end.
+ 

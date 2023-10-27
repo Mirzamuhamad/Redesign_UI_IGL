@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="03/29/2011 16:25:53" ReportInfo.Modified="12/30/2013 11:32:41" ReportInfo.CreatorVersion="2013.3.5.0">
+  <ScriptText>
+Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+
+Namespace FastReport
+  Public Class ReportScript
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+      Text1.Text = CType(Report.GetColumnValue(&quot;DS.UserID&quot;), String)  
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haqenKnTKnwjRYGe2lPR6yUs">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PEFormRecruitment '''0001/RPR-PGA/12/'',''0003/RPR-PGA/12/''','admin'">
+        <Column Name="UserId" DataType="System.String"/>
+        <Column Name="Company" DataType="System.String"/>
+        <Column Name="Address" DataType="System.String"/>
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="JobTtlCode" DataType="System.String"/>
+        <Column Name="JobTtlName" DataType="System.String"/>
+        <Column Name="EmpStatusCode" DataType="System.String"/>
+        <Column Name="EmpStatusName" DataType="System.String"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="CandidateNo" DataType="System.String"/>
+        <Column Name="CandidateName" DataType="System.String"/>
+        <Column Name="Lulus" DataType="System.String"/>
+        <Column Name="ReferenceBy" DataType="System.String"/>
+        <Column Name="RemarkDt" DataType="System.String"/>
+        <Column Name="RecruitmentTest" DataType="System.String"/>
+        <Column Name="RecruitmentName" DataType="System.String"/>
+        <Column Name="Grade" DataType="System.String"/>
+        <Column Name="RangeValue" DataType="System.String"/>
+        <Column Name="FgLulusDt2" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" FirstPageSource="14" OtherPagesSource="14" Guides="292.95,604.8,0,738.1,3,208.9,217.35,311.85,321.3,519.75,529.2,576.45,585.9,642.6,652.05,737.1,207.9,736.1,93.5">
+    <PageHeaderBand Name="PageHeader1" Width="740.5" Height="207.9" Guides="1,29.45,4.45,23.35,4,22.9">
+      <TextObject Name="Text15" Left="185.22" Top="51.25" Width="362.88" Height="28.35" Text="RECRUITMENT PROCESS RESULT" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text16" Left="1" Top="4" Width="302.4" Height="20.79" Text="[DS.Company]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text17" Top="28.45" Width="302.4" Height="20.79" Text="[DS.Address]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text57" Left="529.2" Top="10.55" Width="207.9" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text35" Left="529.2" Top="164.4" Width="207.9" Height="11.34" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text58" Left="185" Top="82.05" Width="362.88" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.TransDate]" Format="Custom" Format.Format="dd MMMM yyyy" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text59" Top="122.85" Width="102.06" Height="18.9" Text="Job Title " Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text60" Top="141.75" Width="102.06" Height="18.9" Text="Employee Status" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text61" Top="160.65" Width="102.06" Height="18.9" Text="Remark" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text62" Left="109.4" Top="122.85" Width="7.56" Height="18.9" Text=":" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text63" Left="109.4" Top="141.75" Width="7.56" Height="18.9" Text=":" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text64" Left="108.95" Top="161.65" Width="7.56" Height="18.9" Text=":" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text65" Left="122.85" Top="122.85" Width="328.86" Height="18.9" Text="[DS.JobTtlName]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text66" Left="122.85" Top="141.75" Width="328.86" Height="18.9" Text="[DS.EmpStatusName]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text67" Left="122.85" Top="160.65" Width="328.86" Height="18.9" CanGrow="true" Text="[DS.Remark]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text68" Top="189" Width="102.06" Height="18.9" Text="Candidate No." Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text69" Left="108.4" Top="189" Width="149.31" Height="18.9" Text="Candidate Name" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text70" Left="264.6" Top="189" Width="111.51" Height="18.9" Text="Keterangan" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text71" Left="383.45" Top="189" Width="139.86" Height="18.9" Text="Reference By" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line2" Top="187.55" Width="576.45"/>
+      <LineObject Name="Line3" Left="575.9" Top="187" Height="18.9"/>
+      <LineObject Name="Line4" Left="379" Top="188" Height="18.9"/>
+      <LineObject Name="Line5" Left="261.6" Top="188" Height="18.9"/>
+      <LineObject Name="Line6" Left="104.95" Top="188" Height="18.9"/>
+      <LineObject Name="Line7" Top="206.9" Width="576.45"/>
+      <LineObject Name="Line8" Left="0.45" Top="188" Height="18.9"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="211.9" Width="740.5" Condition="[DS.TransNmbr]" SortOrder="None">
+      <GroupHeaderBand Name="GroupHeader2" Top="215.9" Width="740.5" Height="41.58" StartNewPage="true" Condition="[DS.CandidateNo]" SortOrder="None">
+        <TextObject Name="Text72" Width="102.06" Height="17.01" Text="[DS.CandidateNo]" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text73" Left="108.4" Width="149.31" Height="17.01" Text="[DS.CandidateName]" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text74" Left="264.6" Width="111.51" Height="17.01" Text="[DS.Lulus]" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text75" Left="383.45" Width="111.51" Height="17.01" Text="[DS.ReferenceBy]" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text76" Top="23.44" Width="130.41" Height="17.01" Text="Recruitment Name" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text77" Left="138.75" Top="23.35" Width="130.41" Height="17.01" Text="Grade" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <DataBand Name="Data1" Top="261.48" Width="740.5" Height="19.35" DataSource="Table">
+          <TextObject Name="Text78" Width="130.41" Height="17.01" Text="[DS.RecruitmentName]" Font="Arial, 8pt"/>
+          <TextObject Name="Text79" Left="138.75" Top="0.45" Width="130.41" Height="17.01" Text="[DS.Grade]" HorzAlign="Center" Font="Arial, 8pt"/>
+        </DataBand>
+        <GroupFooterBand Name="GroupFooter2" Top="284.83" Width="740.5"/>
+      </GroupHeaderBand>
+      <GroupFooterBand Name="GroupFooter1" Top="288.83" Width="740.5"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="292.83" Width="740.5" Height="27.35" Guides="9.45,13.45,27.35">
+      <TextObject Name="Text1" Left="430.25" Top="6.45" Width="305.85" Height="18.9" Text="[DS.UserId]" HorzAlign="Right" Font="Arial, 8pt"/>
+      <LineObject Name="Line1" Left="-28.35" Width="736.1"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

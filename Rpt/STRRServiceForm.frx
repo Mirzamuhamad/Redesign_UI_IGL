@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="04/13/2011 08:29:02" ReportInfo.Modified="03/26/2014 17:03:49" ReportInfo.CreatorVersion="2013.3.5.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+Namespace FastReport
+  
+  Public Class ReportScript
+  dim Nomor As Integer 
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Nomor = Nomor + 1
+      lblNo.Text = Nomor
+    End Sub
+
+    Private Sub ReportTitle1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Nomor = 0
+    End Sub
+
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Nomor = 0
+    End Sub
+  End Class
+ 
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haoUUuF50hNL3x2NU7YD38+M">
+      <TableDataSource Name="Table1" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_STRRServiceForm '''IE/RRSV/13/12/0005'''">
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="Product" DataType="System.String"/>
+        <Column Name="Qty" DataType="System.String"/>
+        <Column Name="Unit" DataType="System.String"/>
+        <Column Name="Specification" DataType="System.String"/>
+        <Column Name="RemarkDt" DataType="System.String"/>
+        <Column Name="Company" DataType="System.String"/>
+        <Column Name="TransNumb" DataType="System.String"/>
+        <Column Name="PONo" DataType="System.String"/>
+        <Column Name="Supplier" DataType="System.String"/>
+        <Column Name="Supplier_NAme" DataType="System.String"/>
+        <Column Name="SJSuppNo" DataType="System.String"/>
+        <Column Name="SJSuppDate" DataType="System.String"/>
+        <Column Name="ProductName" DataType="System.String"/>
+        <Column Name="RemarkHD" DataType="System.String"/>
+        <Column Name="Address" DataType="System.String"/>
+        <Column Name="ISODOCNO" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" RawPaperSize="1" FirstPageSource="14" OtherPagesSource="14" Guides="37.8,28.35,548.1,548.1,548.1,548.1,548.1">
+    <PageHeaderBand Name="PageHeader1" Width="740.5" Height="207.9">
+      <TableObject Name="Table3" Left="-0.45" Top="189" Width="701.19" Height="18.9">
+        <TableColumn Name="Column6" Width="30.24"/>
+        <TableColumn Name="Column7" Width="151.2"/>
+        <TableColumn Name="Column8" Width="236.25"/>
+        <TableColumn Name="Column9" Width="141.75"/>
+        <TableColumn Name="Column10" Width="141.75"/>
+        <TableRow Name="Row2">
+          <TableCell Name="Cell6" Border.Lines="All" Text="No" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell7" Border.Lines="All" Text="Product Code" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell8" Border.Lines="All" Text="Product Name" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell9" Border.Lines="All" Text="Qty" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell10" Border.Lines="All" Text="Unit" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+        </TableRow>
+      </TableObject>
+      <TextObject Name="Text6" Left="4.78" Top="104.51" Width="113.4" Height="18.9" Text="No PO" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text36" Left="129.73" Top="104.51" Width="10.45" Height="18.9" Text=":" Font="Arial, 9.75pt, style=Bold"/>
+      <TextObject Name="Text47" Left="7.56" Width="453.6" Height="18.9" Text="[DS.Company]" AutoWidth="true" Font="Arial Narrow, 12pt, style=Bold"/>
+      <TextObject Name="Text3" Left="549.33" Top="126.86" Width="141.75" Height="18.9" Text="[DS.TransDate]" Format="Custom" Format.Format="dd MMM yyyy" Font="Arial Narrow, 9.75pt"/>
+      <TextObject Name="Text4" Left="474.39" Top="108.51" Width="66.15" Height="18.9" Text="Trans No." Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text5" Left="474.39" Top="127.41" Width="66.15" Height="18.9" Text="Date" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text58" Left="4.45" Top="125.3" Width="113.4" Height="18.9" Text="Supplier" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text59" Left="130.05" Top="123.4" Width="10.45" Height="18.9" Text=":" Font="Arial, 9.75pt, style=Bold"/>
+      <TextObject Name="Text60" Left="4.45" Top="144.2" Width="113.4" Height="18.9" Text="DN Siupplier No" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text61" Left="130.3" Top="144.2" Width="10.45" Height="18.9" Text=":" Font="Arial, 9.75pt, style=Bold"/>
+      <TextObject Name="Text7" Left="141.75" Top="104.4" Width="141.75" Height="18.9" Text="[DS.PONo]" Font="Arial Narrow, 9.75pt"/>
+      <TextObject Name="Text62" Left="4.45" Top="164.2" Width="113.4" Height="18.9" Text="DN Siupplier Date" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text63" Left="129.75" Top="165.1" Width="10.45" Height="18.9" Text=":" Font="Arial, 9.75pt, style=Bold"/>
+      <TextObject Name="Text65" Left="538.65" Top="108.4" Width="10.45" Height="18.9" Text=":" Font="Arial, 9.75pt, style=Bold"/>
+      <TextObject Name="Text66" Left="538.65" Top="127.3" Width="10.45" Height="18.9" Text=":" Font="Arial, 9.75pt, style=Bold"/>
+      <TextObject Name="Text68" Left="141.75" Top="143.75" Width="141.75" Height="18.9" Text="[DS.SJSuppNo]" Font="Arial Narrow, 9.75pt"/>
+      <TextObject Name="Text69" Left="141.75" Top="164.65" Width="141.75" Height="18.9" Text="[DS.SJSuppDate]" Format="Custom" Format.Format="dd/MM/yyyy" Font="Arial Narrow, 9.75pt"/>
+      <TextObject Name="Text8" Left="548.1" Top="108.95" Width="141.75" Height="18.9" Text="[DS.TransNumb]" Font="Arial Narrow, 9.75pt"/>
+      <TextObject Name="Text9" Left="141.75" Top="122.85" Width="141.75" Height="18.9" Text="[DS.Supplier_NAme]" Font="Arial Narrow, 9.75pt"/>
+      <TextObject Name="Text1" Left="207.9" Top="14.9" Width="321.3" Height="28.35" Text="Receiving Report Service" HorzAlign="Center" Font="Arial Narrow, 14pt, style=Bold, Underline"/>
+      <TextObject Name="Text10" Left="207.9" Top="36.8" Width="321.3" Height="18.9" Text="Berita Acara Penerimaan Jasa" HorzAlign="Center" Font="Arial Narrow, 10pt, style=Bold"/>
+      <TextObject Name="Text70" Left="4" Top="85.05" Width="113.4" Height="18.9" Text="BASED ON" Font="Arial Narrow, 11pt, style=Bold"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="212.84" Width="740.5" BeforePrintEvent="GroupHeader1_BeforePrint" StartNewPage="true" Condition="[DS.TransNumb]">
+      <DataBand Name="Data1" Top="217.78" Width="740.5" Height="75.6" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" Guides="0,0" DataSource="Table1">
+        <TableObject Name="Table2" Width="701.19" Height="75.6">
+          <TableColumn Name="Column1" Width="30.24"/>
+          <TableColumn Name="Column2" Width="151.2"/>
+          <TableColumn Name="Column3" Width="236.25"/>
+          <TableColumn Name="Column4" Width="141.75"/>
+          <TableColumn Name="Column5" Width="141.75"/>
+          <TableRow Name="Row1" Height="75.6">
+            <TableCell Name="Cell1" Border.Lines="All">
+              <TextObject Name="lblNo" Left="3" Width="28.35" Height="18.9" Text="No" Font="Arial Narrow, 9pt"/>
+            </TableCell>
+            <TableCell Name="Cell2" Border.Lines="All" Text="[DS.Product]" Font="Arial, 9pt"/>
+            <TableCell Name="Cell3" Border.Lines="All" Text="[DS.ProductName]&#13;&#10;&#13;&#10;[DS.Specification]&#13;&#10;&#13;&#10;[DS.RemarkDt]" Font="Arial, 9pt"/>
+            <TableCell Name="Cell4" Border.Lines="All" Text="[DS.Qty]" HorzAlign="Center" Font="Arial, 9pt"/>
+            <TableCell Name="Cell5" Border.Lines="All" Text="[DS.Unit]" HorzAlign="Center" Font="Arial, 9pt"/>
+          </TableRow>
+        </TableObject>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="298.31" Width="740.5" Height="141.75">
+        <TextObject Name="Text25" Left="9.45" Width="47.25" Height="18.9" Text="NOTE :" Font="Arial Narrow, 9.75pt, style=Bold"/>
+        <TextObject Name="Text2" Left="56.7" Width="94.5" Height="18.9" Text="[DS.RemarkHD]" Font="Arial Narrow, 9.75pt"/>
+        <TextObject Name="Text31" Left="280.5" Top="43.25" Width="122.85" Height="18.9" Text="Checked By," HorzAlign="Center" Font="Arial Narrow, 9.75pt, style=Bold"/>
+        <TextObject Name="Text30" Left="141.75" Top="43.25" Width="122.85" Height="18.9" Text="Purchasing ," HorzAlign="Center" Font="Arial Narrow, 9.75pt, style=Bold"/>
+        <TextObject Name="Text53" Left="415.8" Top="43.25" Width="122.85" Height="18.9" Text="Received By," HorzAlign="Center" Font="Arial Narrow, 9.75pt, style=Bold"/>
+        <TextObject Name="Text51" Left="280.5" Top="113.4" Width="122.85" Height="18.9" Text="( ................................ )" Font="Arial Narrow, 9.75pt"/>
+        <TextObject Name="Text52" Left="140.75" Top="112.85" Width="122.85" Height="18.9" Text="( ................................ )" Font="Arial Narrow, 9.75pt"/>
+        <TextObject Name="Text54" Left="415.8" Top="113.4" Width="122.85" Height="18.9" Text="( ................................ )" Font="Arial Narrow, 9.75pt"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="445" Width="740.5"/>
+    <PageFooterBand Name="PageFooter1" Top="449.94" Width="740.5" Height="18.9" Guides="0">
+      <TextObject Name="Text55" Left="500.85" Width="226.8" Height="18.9" Text="ISO DOC : [DS.ISODOCNO]" HorzAlign="Right" Font="Arial Narrow, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

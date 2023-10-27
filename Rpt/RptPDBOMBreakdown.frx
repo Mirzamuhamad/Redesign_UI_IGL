@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="07/04/2011 15:39:43" ReportInfo.Modified="12/28/2015 15:42:13" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+       
+    End Sub       
+
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haqgJAM34yAHDUFMshECC50N">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PDRptBOMBreakdown '', '', '', '', '', 0, 0, '', '', ''">
+        <Column Name="Period" DataType="System.String"/>
+        <Column Name="Material" DataType="System.String"/>
+        <Column Name="MaterialName" DataType="System.String"/>
+        <Column Name="QtyMaterial" DataType="System.Decimal"/>
+        <Column Name="UnitMaterial" DataType="System.String"/>
+        <Column Name="Company" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="ProductFG" DataType="System.String"/>
+        <Column Name="ProductFGName" DataType="System.String"/>
+        <Column Name="CostType" DataType="System.String"/>
+        <Column Name="QtyFG" DataType="System.Decimal"/>
+        <Column Name="UnitFG" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" FirstPageSource="14" OtherPagesSource="14" Guides="-18.9">
+    <PageHeaderBand Name="PageHeader1" Width="1047.06" Height="87.81">
+      <TextObject Name="Text42" Left="822.15" Top="69.13" Width="217.35" Height="13.23" Text="Page : [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text26" Left="6.78" Top="21.01" Width="538.65" Height="16.8" Text="[DS.CompAddr]" Font="Arial, 9pt"/>
+      <TextObject Name="Text25" Left="6.78" Top="3.78" Width="538.65" Height="18.9" Text="[DS.Company]" Font="Arial, 13pt, style=Bold"/>
+      <TextObject Name="Text40" Left="822.15" Top="9.45" Width="217.35" Height="13.23" Text="Date/Time : [Date]" Format="Custom" Format.Format="dd/MM/yyyy hh:mm:ss" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text11" Left="6.78" Top="41.35" Width="1031.94" Height="19.2" Text="BOM BREAKDOWN" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text12" Left="6.78" Top="62.2" Width="1032.83" Height="19.2" Text="Periode : [DS.Period]" HorzAlign="Center" Font="Arial, 9pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="91.81" Width="1047.06" Height="82.08" CanGrow="true" BeforePrintEvent="Data1_BeforePrint">
+      <MatrixObject Name="Matrix1" Width="390.74" Height="82.08" FixedRows="2" FixedColumns="4" AutoSize="false" DataSource="Table" ShowTitle="true">
+        <MatrixColumns>
+          <Header Expression="[DS.MaterialName]" Sort="None" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.ProductFG]" Sort="None"/>
+          <Header Expression="[DS.ProductFGName]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.QtyFG]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.UnitFG]" Sort="None" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.QtyMaterial]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="52.24"/>
+        <TableColumn Name="Column2" Width="143.12"/>
+        <TableColumn Name="Column3" Width="69.93"/>
+        <TableColumn Name="Column4" Width="42.29"/>
+        <TableColumn Name="Column5" Width="83.16"/>
+        <TableRow Name="Row1">
+          <TableCell Name="Cell1" Border.Lines="All" Text="Opname Results" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" ColSpan="4"/>
+          <TableCell Name="Cell2"/>
+          <TableCell Name="Cell7"/>
+          <TableCell Name="Cell13"/>
+          <TableCell Name="Cell21" Border.Lines="All" Text="Breakdown" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="27.36" AutoSize="true">
+          <TableCell Name="Cell3" Border.Lines="All" Text="Product Code" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell4" Border.Lines="All" Text="Product Name" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell8" Border.Lines="All" Text="Qty" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell14" Border.Lines="All" Text="Unit" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell22" Border.Lines="All" Text="[MaterialName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="17.91" AutoSize="true">
+          <TableCell Name="Cell5" Border.Lines="All" Text="[ProductFG]" VertAlign="Center" Font="Arial, 6.5pt"/>
+          <TableCell Name="Cell6" Border.Lines="All" Text="[ProductFGName]" VertAlign="Center" Font="Arial, 6.5pt"/>
+          <TableCell Name="Cell9" Border.Lines="All" Text="[QtyFG]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 6.5pt"/>
+          <TableCell Name="Cell15" Border.Lines="All" Text="[UnitFG]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Center" VertAlign="Center" Font="Arial, 6.5pt"/>
+          <TableCell Name="Cell23" Border.Lines="All" Text="[QtyMaterial]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 6.5pt"/>
+        </TableRow>
+        <TableRow Name="Row4" Height="17.91" AutoSize="true">
+          <TableCell Name="Cell24" Border.Lines="All" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Arial, 6.5pt, style=Bold" ColSpan="4"/>
+          <TableCell Name="Cell25"/>
+          <TableCell Name="Cell26"/>
+          <TableCell Name="Cell27"/>
+          <TableCell Name="Cell28" Border.Lines="All" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 6.5pt, style=Bold"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="177.89" Width="1047.06" Height="18.9">
+      <TextObject Name="Text21" Left="3.78" Width="94.5" Height="18.9" Text="Production" Font="Arial, 8pt"/>
+      <LineObject Name="Line1" Left="9.45" Width="9.45"/>
+      <LineObject Name="Line2" Left="1.35" Width="1044.5"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

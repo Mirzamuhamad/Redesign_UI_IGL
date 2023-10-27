@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="02/20/2012 14:46:34" ReportInfo.Modified="04/16/2012 15:40:47" ReportInfo.CreatorVersion="1.2.47.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLHQK6w5YGJg+swMfQNjCeNvUMyZ5qM6ctjDXJ734r0rMFCgknpgwiPBateL4K9RldP0z5GMQqDbzhnR7Az/FL343sn6mmr1xgKuC31hx791nsEj111iO9Vs7Q3ICMHZfUwPCohieD8WNItaKtkGDzfNJ+2qKf0EvwTiEEwxFw/rv81nfXOaJeGtZH9adbFeg0Q==">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_FNRptAPMonthly 2011, 10, 2012, 4, '', '', '', 0, 0, ''    ">
+        <Column Name="Year" DataType="System.Int32"/>
+        <Column Name="Period" DataType="System.Int32"/>
+        <Column Name="YearPeriod" DataType="System.String"/>
+        <Column Name="SuppCode" DataType="System.String"/>
+        <Column Name="SuppName" DataType="System.String"/>
+        <Column Name="CurrCode" DataType="System.String"/>
+        <Column Name="Amount" DataType="System.Decimal"/>
+        <Column Name="CompName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="PeriodType" DataType="System.String"/>
+        <Column Name="SortBy" DataType="System.Int32"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1">
+    <PageHeaderBand Name="PageHeader1" Top="20" Width="718.2" Height="66.15">
+      <TextObject Name="Text1" Left="9.45" Width="340.2" Height="28.35" Text="[DS.CompName]" Font="Arial Narrow, 14.25pt, style=Bold"/>
+      <TextObject Name="Text2" Left="9.45" Top="18.9" Width="359.1" Height="18.9" Text="[DS.CompAddr]" Font="Arial Narrow, 9pt"/>
+      <TextObject Name="Text3" Left="9.45" Top="37.8" Width="699.3" Height="28.35" Text="A/P Monthly" HorzAlign="Center" Font="Arial Narrow, 14.25pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="106.15" Width="718.2" Height="240.01">
+      <MatrixObject Name="Matrix1" Left="9.45" Width="205.77" Height="81.25" FixedRows="2" FixedColumns="2" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="[DS.YearPeriod]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.PeriodType]" Sort="None" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.CurrCode]"/>
+          <Header Expression="[DS.SuppName]"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.Amount]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="62.27" AutoSize="true"/>
+        <TableColumn Name="Column2" Width="69.62" AutoSize="true"/>
+        <TableColumn Name="Column3" Width="73.88" AutoSize="true"/>
+        <TableRow Name="Row1" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell1" Border.Lines="All" Text="Currency" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell2" Border.Lines="All" Text="Supplier" VertAlign="Center" Font="Arial, 8pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell7" Border.Lines="All" Text="[YearPeriod]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell3"/>
+          <TableCell Name="Cell4"/>
+          <TableCell Name="Cell8" Border.Lines="All" Text="[PeriodType]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell5" Border.Lines="All" Text="[CurrCode]" VertAlign="Center" Font="Arial, 8pt" RowSpan="2"/>
+          <TableCell Name="Cell6" Border.Lines="All" Text="[SuppName]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell9" Border.Lines="All" Text="[Amount]" Format="Custom" Format.Format="###,#0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+        </TableRow>
+        <TableRow Name="Row4" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell13"/>
+          <TableCell Name="Cell14" Border.Lines="All" Text="Sub Total" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell15" Border.Lines="All" Format="Custom" Format.Format="###,#0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+        </TableRow>
+        <TableRow Name="Row5" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell20" Border.Lines="All" Text="Grand Total" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" ColSpan="2"/>
+          <TableCell Name="Cell21"/>
+          <TableCell Name="Cell22" Border.Lines="All" Format="Custom" Format.Format="###,#0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+        </TableRow>
+      </MatrixObject>
+      <Sort>
+        <Sort Expression="[DS.Year]"/>
+        <Sort Expression="[DS.Period]"/>
+        <Sort Expression="[DS.CurrCode]"/>
+      </Sort>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="366.16" Width="718.2" Height="18.9"/>
+  </ReportPage>
+</Report>

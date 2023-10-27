@@ -1,0 +1,234 @@
+<?xml version="1.0" standalone="yes"?>
+<DS>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0004</TransNmbr>
+    <Product>NEC-01</Product>
+    <Product_Name>Cylinder Ciluk Ba</Product_Name>
+    <specification>Uk. 645 mm x 190 mm width x 1300 mm</specification>
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0.00</QtySystem>
+    <QtyActual>1,000.00</QtyActual>
+    <QtyOpname>1,000.00</QtyOpname>
+    <QtyRollSystem>0.00</QtyRollSystem>
+    <QtyRollActual>0.00</QtyRollActual>
+    <QtyRollOpname>0.00</QtyRollOpname>
+    <QtyM2System>0.00</QtyM2System>
+    <QtyM2Actual>0.00</QtyM2Actual>
+    <QtyM2Opname>0.00</QtyM2Opname>
+    <Unit>PCS</Unit>
+    <UnitPack />
+    <UnitM2 />
+    <Remark>N</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0004</TransNmbr>
+    <Product>R1 A</Product>
+    <Product_Name>LLDPE C8 Dowlex 2036P</Product_Name>
+    <specification />
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0.00</QtySystem>
+    <QtyActual>2,000.00</QtyActual>
+    <QtyOpname>2,000.00</QtyOpname>
+    <QtyRollSystem>0.00</QtyRollSystem>
+    <QtyRollActual>0.00</QtyRollActual>
+    <QtyRollOpname>0.00</QtyRollOpname>
+    <QtyM2System>0.00</QtyM2System>
+    <QtyM2Actual>0.00</QtyM2Actual>
+    <QtyM2Opname>0.00</QtyM2Opname>
+    <Unit>KG</Unit>
+    <UnitPack>0</UnitPack>
+    <UnitM2>0</UnitM2>
+    <Remark>test</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0004</TransNmbr>
+    <Product>R2 B</Product>
+    <Product_Name>LLDPE C4  Resin Titanvene  [LL0220AA] Blue</Product_Name>
+    <specification />
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0.00</QtySystem>
+    <QtyActual>3,000.00</QtyActual>
+    <QtyOpname>3,000.00</QtyOpname>
+    <QtyRollSystem>0.00</QtyRollSystem>
+    <QtyRollActual>0.00</QtyRollActual>
+    <QtyRollOpname>0.00</QtyRollOpname>
+    <QtyM2System>0.00</QtyM2System>
+    <QtyM2Actual>0.00</QtyM2Actual>
+    <QtyM2Opname>0.00</QtyM2Opname>
+    <Unit>KG</Unit>
+    <UnitPack />
+    <UnitM2 />
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0004</TransNmbr>
+    <Product>R2 C</Product>
+    <Product_Name>LLDPE C4 LL1002YB</Product_Name>
+    <specification />
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0.00</QtySystem>
+    <QtyActual>4,000.00</QtyActual>
+    <QtyOpname>4,000.00</QtyOpname>
+    <QtyRollSystem>0.00</QtyRollSystem>
+    <QtyRollActual>0.00</QtyRollActual>
+    <QtyRollOpname>0.00</QtyRollOpname>
+    <QtyM2System>0.00</QtyM2System>
+    <QtyM2Actual>0.00</QtyM2Actual>
+    <QtyM2Opname>0.00</QtyM2Opname>
+    <Unit>KG</Unit>
+    <UnitPack />
+    <UnitM2 />
+    <Remark>N</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0004</TransNmbr>
+    <Product>R3 A</Product>
+    <Product_Name>LDPE Resin Titanlene LDF260YZ  ( LD )</Product_Name>
+    <specification />
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0.00</QtySystem>
+    <QtyActual>5,000.00</QtyActual>
+    <QtyOpname>5,000.00</QtyOpname>
+    <QtyRollSystem>0.00</QtyRollSystem>
+    <QtyRollActual>200.00</QtyRollActual>
+    <QtyRollOpname>200.00</QtyRollOpname>
+    <QtyM2System>0.00</QtyM2System>
+    <QtyM2Actual>0.00</QtyM2Actual>
+    <QtyM2Opname>0.00</QtyM2Opname>
+    <Unit>KG</Unit>
+    <UnitPack>SAK</UnitPack>
+    <UnitM2>0</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0004</TransNmbr>
+    <Product>R3 C</Product>
+    <Product_Name>LDPE Quattro</Product_Name>
+    <specification />
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0.00</QtySystem>
+    <QtyActual>6,000.00</QtyActual>
+    <QtyOpname>6,000.00</QtyOpname>
+    <QtyRollSystem>0.00</QtyRollSystem>
+    <QtyRollActual>0.00</QtyRollActual>
+    <QtyRollOpname>0.00</QtyRollOpname>
+    <QtyM2System>0.00</QtyM2System>
+    <QtyM2Actual>0.00</QtyM2Actual>
+    <QtyM2Opname>0.00</QtyM2Opname>
+    <Unit>KG</Unit>
+    <UnitPack />
+    <UnitM2 />
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0004</TransNmbr>
+    <Product>R4 A</Product>
+    <Product_Name>HDPE Resin Titanvene HD6070EA Red ( HD )</Product_Name>
+    <specification />
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0.00</QtySystem>
+    <QtyActual>7,000.00</QtyActual>
+    <QtyOpname>7,000.00</QtyOpname>
+    <QtyRollSystem>0.00</QtyRollSystem>
+    <QtyRollActual>0.00</QtyRollActual>
+    <QtyRollOpname>0.00</QtyRollOpname>
+    <QtyM2System>0.00</QtyM2System>
+    <QtyM2Actual>0.00</QtyM2Actual>
+    <QtyM2Opname>0.00</QtyM2Opname>
+    <Unit>KG</Unit>
+    <UnitPack />
+    <UnitM2 />
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0004</TransNmbr>
+    <Product>R5 C</Product>
+    <Product_Name>Peony Pink JF 3056 M Masterbatch Colour</Product_Name>
+    <specification />
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0.00</QtySystem>
+    <QtyActual>8,000.00</QtyActual>
+    <QtyOpname>8,000.00</QtyOpname>
+    <QtyRollSystem>0.00</QtyRollSystem>
+    <QtyRollActual>0.00</QtyRollActual>
+    <QtyRollOpname>0.00</QtyRollOpname>
+    <QtyM2System>0.00</QtyM2System>
+    <QtyM2Actual>0.00</QtyM2Actual>
+    <QtyM2Opname>0.00</QtyM2Opname>
+    <Unit>KG</Unit>
+    <UnitPack />
+    <UnitM2 />
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0004</TransNmbr>
+    <Product>R5 D</Product>
+    <Product_Name>Peony Pink JF 3185 M Masterbatch Colour</Product_Name>
+    <specification />
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0.00</QtySystem>
+    <QtyActual>9,000.00</QtyActual>
+    <QtyOpname>9,000.00</QtyOpname>
+    <QtyRollSystem>0.00</QtyRollSystem>
+    <QtyRollActual>0.00</QtyRollActual>
+    <QtyRollOpname>0.00</QtyRollOpname>
+    <QtyM2System>0.00</QtyM2System>
+    <QtyM2Actual>0.00</QtyM2Actual>
+    <QtyM2Opname>0.00</QtyM2Opname>
+    <Unit>KG</Unit>
+    <UnitPack>0</UnitPack>
+    <UnitM2>0</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0004</TransNmbr>
+    <Product>R5 F</Product>
+    <Product_Name>Peony L Blue JF 3055 M Masterbatch Colour</Product_Name>
+    <specification />
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0.00</QtySystem>
+    <QtyActual>10,000.00</QtyActual>
+    <QtyOpname>10,000.00</QtyOpname>
+    <QtyRollSystem>0.00</QtyRollSystem>
+    <QtyRollActual>0.00</QtyRollActual>
+    <QtyRollOpname>0.00</QtyRollOpname>
+    <QtyM2System>0.00</QtyM2System>
+    <QtyM2Actual>0.00</QtyM2Actual>
+    <QtyM2Opname>0.00</QtyM2Opname>
+    <Unit>KG</Unit>
+    <UnitPack />
+    <UnitM2 />
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0004</TransNmbr>
+    <Product>R5 H</Product>
+    <Product_Name>Peony L Green JF 3061 M Masterbatch Colour</Product_Name>
+    <specification />
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0.00</QtySystem>
+    <QtyActual>11,000.00</QtyActual>
+    <QtyOpname>11,000.00</QtyOpname>
+    <QtyRollSystem>0.00</QtyRollSystem>
+    <QtyRollActual>0.00</QtyRollActual>
+    <QtyRollOpname>0.00</QtyRollOpname>
+    <QtyM2System>0.00</QtyM2System>
+    <QtyM2Actual>0.00</QtyM2Actual>
+    <QtyM2Opname>0.00</QtyM2Opname>
+    <Unit>KG</Unit>
+    <UnitPack />
+    <UnitM2 />
+    <Remark />
+  </Opname>
+</DS>

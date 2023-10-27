@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="yes"?>
+<DS>
+  <Opname>
+    <TransNmbr>IAL/SO/1905/0002</TransNmbr>
+    <Product>00000040000001</Product>
+    <Product_Name>TRANSAKSI NON STOK Non Size FIXED ASSET Non Seri</Product_Name>
+    <specification />
+    <QtySystem>0</QtySystem>
+    <QtyActual>10</QtyActual>
+    <QtyOpname>10</QtyOpname>
+    <Unit>Unit</Unit>
+    <Remark>test</Remark>
+  </Opname>
+</DS>

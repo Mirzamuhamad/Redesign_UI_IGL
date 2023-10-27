@@ -1,0 +1,505 @@
+.H1
+{
+	font-size: larger;	
+	font-weight:bold;
+	font-family: Calibri;
+		
+}
+
+.DropDownList, .TextBox
+{
+	font-family: Calibri;	
+	font-size: 11.5px;
+}
+
+.TextBoxSP
+{
+	font-family: Calibri;	
+	font-size: 11.5px;
+	text-align:right;
+}
+
+.TextBoxR
+{
+	font-family: Calibri;	
+	font-size: 11.5px;
+	background-color: #ebebe4;	
+}
+
+.TextBoxMulti
+{
+	font-family: Calibri;	
+	font-size: 11.5px;	
+	height: 40px; 
+}
+
+.TextBoxMultiR
+{
+	font-family: Calibri;	
+	font-size: 11.5px;
+	background-color: #ebebe4;
+	height: 40px; 
+}
+
+.Button
+{
+	font-family: Calibri;	
+	font-size: 11.5px;
+}
+
+.ButtonR
+{	background-color : Transparent;		
+ 	border-style: none;
+	display: none;
+}
+
+.Content
+{
+	font-family: Calibri;	
+	font-size: 11.5px;
+}
+
+.Watermarked
+{
+	font-family:Calibri;
+	color :Silver;
+	font-size:11.5px;
+}
+
+.Grid
+{
+	border: solid 1px Tan;
+}
+
+.Grid td
+{
+	border: solid 2px #FFFFFF;
+	margin: 2px 2px 2px 2px;
+	font-family: Calibri;
+	padding: 3px 3px 3px 3px;	
+	
+}
+
+.GridHeader
+{	
+	color:White;
+	font-weight:bold;
+	background-color: #0092c8; /*#cc9900;	*/
+	text-align:center;
+}
+
+.GridHeader a
+{
+	text-decoration: none;			
+	color: white;	
+	padding: 0px 15px 0px 15px;
+	text-align:center;
+}
+.GridFooter
+{	
+	color: Black;
+}
+
+.GridItem, .GridAltItem
+{
+	font-size: 11.5px;
+}
+
+.GridItem
+{
+	background-color: #FFF7E7;
+	color: black;
+}
+
+.GridAltItem
+{
+	background-color: White;
+}
+
+.GridFilter
+{
+	background-color: Gray;
+	color: black;
+	font-size: 11.5px;
+}
+
+.GridPager
+{
+	font-size: x-small;
+	background-color: #F7F7DE;
+	color : Black;		
+}
+
+.ob_gEC
+{
+	padding: 0px;
+	font-family: Verdana;
+	font-size: 11.5px;
+	color: #202426;			
+	background-color: #FFFFFF;	
+	border: 1px solid #196585;
+}
+
+.TextDate
+{
+	font-family: Calibri; 
+	font-size: 11.5px;
+	background-color: Silver;
+	width: 80px; 
+}
+
+.Menu
+{
+	font-family: Calibri;	
+	font-size: 11.5px;
+	font-weight:bold;	
+}
+
+.MenuItem
+{
+	background-color: #FEE0C6;
+	color: Black;
+	border-color: Black;
+    border-width: 1px;	
+    border-style: groove;
+    padding: 0px 11.5px 0px 11.5px;
+}
+
+.MenuSelect
+{
+	background-color: #d2691e;
+	color: White;
+	border-color:White;	
+	border-width: 1px;	
+}
+
+.bitbtn
+	{
+	    background-repeat: no-repeat;        
+        background-position:left;
+        background-color:Transparent;        
+	    border:1px solid #a1a1a1;
+	    /*padding:0px 20px; */
+	    text-align:left;
+	    padding:0 0 0 20px; 
+	    font: bold 0.9em/1.8em Arial, Helvetica;	
+        white-space: nowrap;
+        background-color: #ddd;    
+        margin: 0 0 0 0px;       
+	    width:70px;
+	    -moz-box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+        -webkit-box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+	    text-shadow: 0 1px 0 rgba(255,255,255,.8);
+        -webkit-border-radius: 5px;        
+        -moz-border-radius:5px; /* Firefox 3.6 and earlier */
+        border-radius:5px;
+	}
+	        
+    .bitbtn:hover
+    {
+        background-color: #eee;       
+        background-color:transparent;
+        background-position:left; 
+        background-repeat: no-repeat;        
+        /*background-image: url(../Image/key.bmp);*/
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#ddd));
+        background-image: -webkit-linear-gradient(top, #fafafa, #ddd);
+        background-image: -moz-linear-gradient(top, #fafafa, #ddd);
+        background-image: -ms-linear-gradient(top, #fafafa, #ddd);
+        background-image: -o-linear-gradient(top, #fafafa, #ddd);
+        background-image: linear-gradient(top, #fafafa, #ddd); 
+    }
+    
+    .bitbtn:active
+    {
+        background-repeat: no-repeat;
+        -moz-box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;
+        -webkit-box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;
+        /*box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;*/
+        position: relative;
+        top: 1px;
+    }
+    
+    .bitbtn:focus
+    {	background-repeat: no-repeat;
+        outline: 0;
+        background: #fafafa;
+    }    
+    
+    .bitbtn:before
+    {
+        background-repeat: no-repeat;
+        background: #ccc;
+        background: rgba(0,0,0,.1);                
+        float: left;        
+        width: 1em;
+        text-shadow: 0 1px 0 rgba(0,0,0,.4);
+        text-align: center;
+        font-size: 1.5em;
+        margin: 0 1em 0 -1em;
+        padding: 0 .2em;        
+		
+        -moz-box-shadow: 1px 0 0 rgba(0,0,0,.5), 2px 0 0 rgba(255,255,255,.5);
+        -webkit-box-shadow: 1px 0 0 rgba(0,0,0,.5), 2px 0 0 rgba(255,255,255,.5);
+        /*box-shadow: 1px 0 0 rgba(0,0,0,.5), 2px 0 0 rgba(255,255,255,.5);*/
+        -moz-border-radius: .15em 0 0 .15em;
+        -webkit-border-radius: .15em 0 0 .15em;
+        /*border-radius: .15em 0 0 .15em;     
+        pointer-events: none;		*/
+    }
+
+.bitbtndt
+	{
+	    background-repeat: no-repeat;        
+        background-position:left;
+        background-color:Transparent;        
+	    border:1px solid #a1a1a1;
+	    /*padding:0px 20px; */
+	    text-align:left;
+	    padding:0 0 0 20px; 
+	    font: bold 0.9em/1.8em Arial, Helvetica;	
+        white-space: nowrap;
+        background-color: #ddd;
+        margin: 0 0 0 0px;       
+	    text-shadow: 0 1px 0 rgba(255,255,255,.8);
+        -moz-border-radius: .2em;
+        -webkit-border-radius: .2em;        
+        -moz-box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+        -webkit-box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+	    border-radius:5px;
+	    -moz-border-radius:5px; /* Firefox 3.6 and earlier */
+	}
+	        
+    .bitbtndt:hover
+    {
+        background-color: #eee;       
+        background-color:transparent;
+        background-position:left; 
+        background-repeat: no-repeat;        
+        /*background-image: url(../Image/key.bmp);*/
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#ddd));
+        background-image: -webkit-linear-gradient(top, #fafafa, #ddd);
+        background-image: -moz-linear-gradient(top, #fafafa, #ddd);
+        background-image: -ms-linear-gradient(top, #fafafa, #ddd);
+        background-image: -o-linear-gradient(top, #fafafa, #ddd);
+        background-image: linear-gradient(top, #fafafa, #ddd); 
+    }
+    
+    .bitbtndt:active
+    {
+        -moz-box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;
+        -webkit-box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;
+        /*box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;*/
+        position: relative;
+        top: 1px;
+    }
+    
+    .bitbtndt:focus
+    {
+        outline: 0;
+        background: #fafafa;
+    }    
+    
+	.btnadd
+	{   background-image: url(../Image/iadd.bmp);
+	}	
+	.btnadd:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/iadd2.bmp);
+	}
+	
+	.btnedit
+	{   background-image: url(../Image/iedit.bmp);	}
+	.btnedit:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/iedit2.bmp);	}
+	
+	.btndelete
+	{   background-image: url(../Image/idelete.bmp); }
+	.btndelete:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/idelete2.bmp); }
+	
+	.btnsave
+	{   background-image: url(../Image/isave.bmp); }	
+	.btnsave:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/isave2.bmp); }
+	
+	.btncancel
+	{   background-image: url(../Image/icancel.bmp); }
+	.btncancel:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/icancel2.bmp); }
+	
+	.btnprint
+	{   background-image: url(../Image/iprint.bmp); }
+	.btnprint:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/iprint2.bmp); }
+	
+	.btnclose
+	{   background-image: url(../Image/iclose.bmp); }
+	.btnclose:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/iclose2.bmp); }
+	
+	.btnunclose
+	{   background-image: url(../Image/iunclose.bmp); }
+	.btnunclose:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/iunclose2.bmp); }
+	
+	.btnok
+	{   background-image: url(../Image/iok.bmp); }	
+	.btnok:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/iok2.bmp); }
+	
+	.btnupload
+	{   background-image: url(../Image/iupload.bmp); }
+	.btnupload:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/iupload2.bmp); }
+			
+	.btnemail
+	{   background-image: url(../Image/iemail.bmp); }
+	.btnemail:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/iemail2.bmp); }
+			
+	.btnpreview
+	{   background-image: url(../Image/iview.bmp); }
+	.btnpreview:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/iview2.bmp); }
+	
+	.btnexcel
+	{   background-image: url(../Image/iexcel.bmp); }
+	.btnexcel:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/iexcel2.bmp); }
+	
+	.btnsearch
+	{   background-image: url(../Image/isearch.bmp); }
+	
+	.btnsearch:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/isearch2.bmp); }
+	
+	.btndetail
+	{   background-image: url(../Image/idetail.bmp); }
+	.btndetail:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/idetail2.bmp); }
+	
+	.btncopyto
+	{   background-image: url(../Image/icopyto.bmp); }
+	.btncopyto:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/icopyto2.bmp); }
+	
+	.btnsavenew
+	{   background-image: url(../Image/isavenew.bmp); }
+	.btnsavenew:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/isavenew2.bmp); }
+	
+	.btnback
+	{   background-image: url(../Image/iback.bmp); }
+	.btnback:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/iback2.bmp); }
+		
+	.btncopy
+	{   background-image: url(../Image/icopy.bmp); }
+	.btncopy:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/icopy2.bmp); }
+		
+	.btnclear
+	{   background-image: url(../Image/iclear.bmp); }
+	.btnclear:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/iclear2.bmp); }
+		
+	.btngetitem
+	{   background-image: url('../Image/igetitem.bmp');
+	height: 18px;
+}
+	.btngetitem:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/igetitem2.bmp); }
+		
+	.btnapply
+	{   background-image: url(../Image/iapply.bmp); }
+	.btnapply:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/iapply2.bmp); }
+		
+	.btngo
+	{
+	    /*background-repeat: no-repeat;                
+        background-color:Transparent;        
+        background-position:center; */
+        border:1px solid #a1a1a1;	  	      
+	    width:26px;
+	    height:20px;	    	    
+	    margin:5 0 0 0px;
+	    padding:0px 0px; 
+	    text-align:center;
+	    padding:0 0 0 0px; 
+	    font: bold 0.9em/1.8em Arial, Helvetica;	
+        white-space: nowrap;
+        background-color: #ddd;
+        margin: 0 0 0 0px;       
+	    /*width:100px;*/
+	    text-shadow: #007dab 0 1px 0;
+        /*text-shadow: 0 1px 0 rgba(255,255,255,.8);*/
+        -moz-box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+        -webkit-box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+	    -webkit-border-radius: 5px;        
+        -moz-border-radius:5px; /* Firefox 3.6 and earlier */
+        border-radius:5px;
+	}
+	
+	.btngo:hover
+    {
+        /*background-color: #eee;       */
+        background-color:transparent;        
+        background-position:center; 
+        background-repeat: no-repeat;  
+    }
+    
+    .btnassign
+	{
+	    /*background-repeat: no-repeat;                
+        background-color:Transparent;        
+        background-position:center; */
+        border:1px solid #a1a1a1;	  	      
+	    width:38px;
+	    height:38px;	    	    
+	    padding:0px 0px; 
+	    text-align:center;
+	    padding:0 0 0 0px; 
+	    font: bold 1.5em/2.2em Arial, Helvetica;	
+        white-space: nowrap;
+        background-color: #ddd;
+        margin: 15 0 15 0px;       
+	    /*width:100px;*/
+	    text-shadow: 0 1px 0 rgba(255,255,255,.8);
+        -moz-border-radius: .2em;
+        -webkit-border-radius: .2em;        
+        -moz-box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+        -webkit-box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+	    border-radius:5px;
+	    -moz-border-radius:5px; /* Firefox 3.6 and earlier */
+	}
+	
+	.btnassign:hover
+    {
+        /*background-color: #eee;       */
+        background-color:transparent;        
+        background-position:center; 
+        background-repeat: no-repeat;  
+    }

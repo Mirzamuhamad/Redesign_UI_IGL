@@ -1,0 +1,506 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="05/23/2011 14:29:19" ReportInfo.Modified="09/02/2015 11:31:15" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+
+
+    Private Sub PageHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+
+    Private Sub Page1_StartPage(ByVal sender As object, ByVal e As EventArgs)
+      Dim SO1, SO2, SO3, SO4, SO5, SO6 AS Integer
+      SO1 = CType(Report.GetColumnValue(&quot;DS.Day1&quot;), Int32)+1 
+      SO2 = CType(Report.GetColumnValue(&quot;DS.Day2&quot;), Int32)+1 
+      SO3 = CType(Report.GetColumnValue(&quot;DS.Day3&quot;), Int32)+1
+      
+      SO4 = CType(Report.GetColumnValue(&quot;DS.Day4&quot;), Int32)+1
+      SO5 = CType(Report.GetColumnValue(&quot;DS.Day5&quot;), Int32)+1
+      SO6 = CType(Report.GetColumnValue(&quot;DS.Day6&quot;), Int32)+1
+      
+      Text13.Text = SO1.ToString +&quot; - &quot;+CType(Report.GetColumnValue(&quot;DS.Day2&quot;), Int32).ToString       
+      'Text27.Text = SO1.ToString +&quot; - &quot;+CType(Report.GetColumnValue(&quot;DS.Day2&quot;), Int32).ToString
+      
+      Text15.Text = SO2.ToString +&quot; - &quot;+CType(Report.GetColumnValue(&quot;DS.Day3&quot;), Int32).ToString
+      'Text28.Text = SO2.ToString +&quot; - &quot;+CType(Report.GetColumnValue(&quot;DS.Day3&quot;), Int32).ToString
+      
+      Text17.Text = SO3.ToString +&quot; - &quot;+CType(Report.GetColumnValue(&quot;DS.Day4&quot;), Int32).ToString
+      'Text29.Text = SO3.ToString +&quot; - &quot;+CType(Report.GetColumnValue(&quot;DS.Day4&quot;), Int32).ToString
+      
+      Text40.Text = SO4.ToString +&quot; - &quot;+CType(Report.GetColumnValue(&quot;DS.Day5&quot;), Int32).ToString
+      'Text46.Text = SO4.ToString +&quot; - &quot;+CType(Report.GetColumnValue(&quot;DS.Day5&quot;), Int32).ToString
+      
+      Text41.Text = SO5.ToString +&quot; - &quot;+CType(Report.GetColumnValue(&quot;DS.Day6&quot;), Int32).ToString
+      'Text47.Text = SO5.ToString +&quot; - &quot;+CType(Report.GetColumnValue(&quot;DS.Day6&quot;), Int32).ToString
+      
+      'Text17.Text = &quot; &gt; = &quot;+SO3.ToString
+      'Text29.Text = &quot; &gt; = &quot;+SO3.ToString
+      Text42.Text = &quot; &gt; = &quot;+SO6.ToString
+      'Text48.Text = &quot; &gt; = &quot;+SO6.ToString
+      
+    End Sub
+
+    'Private Sub Text8_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      'if Report.GetColumnValue(&quot;DS.QtyOH&quot;)= 0 then
+        'Text8.Text=&quot;-&quot;
+      'else
+        'Text8.Text=Report.GetColumnValue(&quot;DS.QtyOH&quot;).ToString 
+      'end if
+    'End Sub
+
+    'Private Sub Text10_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      'if Report.GetColumnValue(&quot;DS.QtySO0&quot;)= 0 then
+        'Text10.Text=&quot;-&quot;
+      'else
+        'Text10.Text=Report.GetColumnValue(&quot;DS.QtySO0&quot;).ToString 
+      'end if
+    'End Sub
+
+    'Private Sub Text12_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      'if Report.GetColumnValue(&quot;DS.QtySO1&quot;)= 0 then
+        'Text12.Text=&quot;-&quot;
+      'else
+        'Text12.Text=Report.GetColumnValue(&quot;DS.QtySO1&quot;).ToString 
+      'end if
+    'End Sub
+
+    'Private Sub Text14_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      'if Report.GetColumnValue(&quot;DS.QtySO2&quot;)= 0 then
+        'Text14.Text=&quot;-&quot;
+      'else
+        'Text14.Text=Report.GetColumnValue(&quot;DS.QtySO2&quot;).ToString 
+      'end if
+    'End Sub
+
+    'Private Sub Text16_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      'if Report.GetColumnValue(&quot;DS.QtySO3&quot;)= 0 then
+        'Text16.Text=&quot;-&quot;
+      'else
+        'Text16.Text=Report.GetColumnValue(&quot;DS.QtySO3&quot;).ToString 
+      'end if
+    'End Sub
+
+    'Private Sub Text37_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      'if Report.GetColumnValue(&quot;DS.QtySO4&quot;)= 0 then
+        'Text37.Text=&quot;-&quot;
+      'else
+        'Text37.Text=Report.GetColumnValue(&quot;DS.QtySO4&quot;).ToString 
+      'end if
+    'End Sub
+
+    'Private Sub Text38_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      'if Report.GetColumnValue(&quot;DS.QtySO5&quot;)= 0 then
+        'Text38.Text=&quot;-&quot;
+      'else
+        'Text38.Text=Report.GetColumnValue(&quot;DS.QtySO5&quot;).ToString 
+      'end if
+    'End Sub
+
+    'Private Sub Text39_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      'if Report.GetColumnValue(&quot;DS.QtySO6&quot;)= 0 then
+        'Text39.Text=&quot;-&quot;
+      'else
+        'Text39.Text=Report.GetColumnValue(&quot;DS.QtySO6&quot;).ToString 
+      'end if
+    'End Sub
+
+    'Private Sub Text18_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      'if Report.GetColumnValue(&quot;DS.QtyPO0&quot;)= 0 then
+        'Text18.Text=&quot;-&quot;
+      'else
+        'Text18.Text=Report.GetColumnValue(&quot;DS.QtyPO0&quot;).ToString 
+      'end if
+    'End Sub
+
+    'Private Sub Text20_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      'if Report.GetColumnValue(&quot;DS.QtyPO1&quot;)= 0 then
+        'Text20.Text=&quot;-&quot;
+      'else
+        'Text20.Text=Report.GetColumnValue(&quot;DS.QtyPO1&quot;).ToString 
+      'end if
+    'End Sub
+
+    'Private Sub Text22_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      'if Report.GetColumnValue(&quot;DS.QtyPO2&quot;)= 0 then
+        'Text22.Text=&quot;-&quot;
+      'else
+        'Text22.Text=Report.GetColumnValue(&quot;DS.QtyPO2&quot;).ToString 
+      'end if
+    'End Sub
+
+    'Private Sub Text24_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      'if Report.GetColumnValue(&quot;DS.QtyPO3&quot;)= 0 then
+        'Text24.Text=&quot;-&quot;
+      'else
+        'Text24.Text=Report.GetColumnValue(&quot;DS.QtyPO3&quot;).ToString 
+      'end if
+    'End Sub
+
+    'Private Sub Text43_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      'if Report.GetColumnValue(&quot;DS.QtyPO4&quot;)= 0 then
+        'Text43.Text=&quot;-&quot;
+      'else
+        'Text43.Text=Report.GetColumnValue(&quot;DS.QtyPO4&quot;).ToString 
+      'end if
+    'End Sub
+
+    'Private Sub Text44_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      'if Report.GetColumnValue(&quot;DS.QtyPO5&quot;)= 0 then
+        'Text44.Text=&quot;-&quot;
+      'else
+        'Text44.Text=Report.GetColumnValue(&quot;DS.QtyPO5&quot;).ToString 
+      'end if
+    'End Sub
+
+    'Private Sub Text45_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      'if Report.GetColumnValue(&quot;DS.QtyPO6&quot;)= 0 then
+        'Text45.Text=&quot;-&quot;
+      'else
+        'Text45.Text=Report.GetColumnValue(&quot;DS.QtyPO6&quot;).ToString 
+      'end if
+    'End Sub
+
+    'Private Sub Text25_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      'if Report.GetColumnValue(&quot;DS.QtyBalance&quot;)= 0 then
+        'Text25.Text=&quot;-&quot;
+      'else
+        'Text25.Text=Report.GetColumnValue(&quot;DS.QtyBalance&quot;).ToString
+        'Text25.Format=&quot;#,##0&quot;
+        
+        'Text25.Text= cint(&quot;10000&quot;)
+        'Text25.Text= FormatMask(Text25.Text,&quot;#,##0&quot;)
+        'Text25.Text= FormatMask(Ctype(Report.GetColumnValue(&quot;DS.QtyBalance&quot;),Int32),&quot;#,##0&quot;)
+        'Text25.Text= FormatMask(Report.GetColumnValue(&quot;DS.QtyBalance&quot;).ToString,&quot;###,###&quot;)
+      'end if
+    'End Sub
+    
+    'Private function FormatMask(value as int32, mask as string) as string
+      'dim pro as MaskedTextProvider
+      'MaskedTextProvider pro = New MaskedTextProvider(mask)
+      'pro = New MaskedTextProvider(mask)
+      'pro.Add(value)
+      'Return pro.ToString()
+    'end function
+
+    'Private Sub Cell1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      'if Cell1.Text=0 Then
+        'Cell1.Text=&quot;-&quot;
+      'end if
+      
+      'dim val as Int32
+      'val =Report.GetColumnValue(&quot;DS.QtyBalance&quot;)
+      
+      'If val=0 Then
+        'cell1.Text=&quot;-&quot;
+      'end if
+        
+      'if cell1.Value=0 then
+        'Cell1.Text=&quot;-&quot;
+      'end if
+    'End Sub
+
+    Private Sub Cell16_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      dim val as Int32
+      val =Report.GetColumnValue(&quot;DS.QtyOH&quot;)
+      
+      If val=0 Then
+        Cell16.Text=&quot;-&quot;
+      end if
+    End Sub
+
+    Private Sub Cell15_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      dim val as Int32
+      val =Report.GetColumnValue(&quot;DS.QtySO0&quot;)
+      
+      If val=0 Then
+        Cell15.Text=&quot;-&quot;
+      end if
+    End Sub
+
+    Private Sub Cell14_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      dim val as Int32
+      val =Report.GetColumnValue(&quot;DS.QtySO1&quot;)
+      
+      If val=0 Then
+        Cell14.Text=&quot;-&quot;
+      end if
+    End Sub
+
+    Private Sub Cell13_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      dim val as Int32
+      val =Report.GetColumnValue(&quot;DS.QtySO2&quot;)
+      
+      If val=0 Then
+        Cell13.Text=&quot;-&quot;
+      end if
+    End Sub
+
+    Private Sub Cell12_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      dim val as Int32
+      val =Report.GetColumnValue(&quot;DS.QtySO3&quot;)
+      
+      If val=0 Then
+        Cell12.Text=&quot;-&quot;
+      end if
+    End Sub
+
+    Private Sub Cell11_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      dim val as Int32
+      val =Report.GetColumnValue(&quot;DS.QtySO4&quot;)
+      
+      If val=0 Then
+        Cell11.Text=&quot;-&quot;
+      end if
+    End Sub
+
+    Private Sub Cell10_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      dim val as Int32
+      val =Report.GetColumnValue(&quot;DS.QtySO5&quot;)
+      
+      If val=0 Then
+        Cell10.Text=&quot;-&quot;
+      end if
+    End Sub
+
+    Private Sub Cell9_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      dim val as Int32
+      val =Report.GetColumnValue(&quot;DS.QtySO6&quot;)
+      
+      If val=0 Then
+        Cell9.Text=&quot;-&quot;
+      end if
+    End Sub
+
+    'Private Sub Cell8_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      'dim val as Int32
+      'val =Report.GetColumnValue(&quot;DS.QtyPO0&quot;)
+      
+      'If val=0 Then
+        'Cell8.Text=&quot;-&quot;
+      'end if
+    'End Sub
+
+    'Private Sub Cell7_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      'dim val as Int32
+      'val =Report.GetColumnValue(&quot;DS.QtyPO1&quot;)
+      
+      'If val=0 Then
+        'Cell7.Text=&quot;-&quot;
+      'end if
+    'End Sub
+
+    'Private Sub Cell6_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      'dim val as Int32
+      'val =Report.GetColumnValue(&quot;DS.QtyPO2&quot;)
+      
+      'If val=0 Then
+        'Cell6.Text=&quot;-&quot;
+      'end if
+    'End Sub
+
+    'Private Sub Cell5_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      'dim val as Int32
+      'val =Report.GetColumnValue(&quot;DS.QtyPO3&quot;)
+      
+      'If val=0 Then
+        'Cell5.Text=&quot;-&quot;
+      'end if
+    'End Sub
+
+    'Private Sub Cell4_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      'dim val as Int32
+      'val =Report.GetColumnValue(&quot;DS.QtyPO4&quot;)
+      
+      'If val=0 Then
+        'Cell4.Text=&quot;-&quot;
+      'end if
+    'End Sub
+
+    'Private Sub Cell3_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      'dim val as Int32
+      'val =Report.GetColumnValue(&quot;DS.QtyPO5&quot;)
+      
+      'If val=0 Then
+        'Cell3.Text=&quot;-&quot;
+      'end if
+    'End Sub
+
+    'Private Sub Cell2_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      'dim val as Int32
+      'val =Report.GetColumnValue(&quot;DS.QtyPO6&quot;)
+      
+      'If val=0 Then
+        'Cell2.Text=&quot;-&quot;
+      'end if
+    'End Sub
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+        Text21.Text=CType(Report.GetColumnValue(&quot;DS.UserId&quot;), String)
+    End Sub
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)      
+      Text56.Visible = True
+      if FormatDateTime(CType(Report.GetColumnValue(&quot;DS.LastDate&quot;), DateTime),&quot;dd/MM/yyyy&quot;)=&quot;1/1/1950 12:00:00 AM&quot; Then  Text56.Visible = False         
+      
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VZBd+MhtHnjm5PdZx4zPIHD3/Cn/fRMzFNALBrKB1eS8">
+      <TableDataSource Name="Table2" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_STRptStockMoving '2014-10-29', 30,60,90,120,150,180,'','','', 0, 'admin'">
+        <Column Name="ProductType" DataType="System.String"/>
+        <Column Name="ProductCategory" DataType="System.String"/>
+        <Column Name="GroupCode" DataType="System.String"/>
+        <Column Name="GroupName" DataType="System.String"/>
+        <Column Name="ProductCode" DataType="System.String"/>
+        <Column Name="ProductName" DataType="System.String"/>
+        <Column Name="Specification" DataType="System.String"/>
+        <Column Name="Unit" DataType="System.String"/>
+        <Column Name="LastDate" DataType="System.DateTime"/>
+        <Column Name="Days" DataType="System.Int32"/>
+        <Column Name="QtyOH" DataType="System.Decimal"/>
+        <Column Name="QtySO0" DataType="System.Decimal"/>
+        <Column Name="QtySO1" DataType="System.Decimal"/>
+        <Column Name="QtySO2" DataType="System.Decimal"/>
+        <Column Name="QtySO3" DataType="System.Decimal"/>
+        <Column Name="QtySO4" DataType="System.Decimal"/>
+        <Column Name="QtySO5" DataType="System.Decimal"/>
+        <Column Name="QtySO6" DataType="System.Decimal"/>
+        <Column Name="CompName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="RptDate" DataType="System.DateTime"/>
+        <Column Name="Day1" DataType="System.Int32"/>
+        <Column Name="Day2" DataType="System.Int32"/>
+        <Column Name="Day3" DataType="System.Int32"/>
+        <Column Name="Day4" DataType="System.Int32"/>
+        <Column Name="Day5" DataType="System.Int32"/>
+        <Column Name="Day6" DataType="System.Int32"/>
+        <Column Name="UserId" DataType="System.String"/>
+        <Column Name="StrWrhs" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210.01" LeftMargin="10.01" TopMargin="10.01" RightMargin="10.01" BottomMargin="10.01" FirstPageSource="14" OtherPagesSource="14" StartPageEvent="Page1_StartPage">
+    <PageHeaderBand Name="PageHeader1" Width="1046.98" Height="143.4" BeforePrintEvent="PageHeader1_BeforePrint">
+      <TextObject Name="Text5" Left="470" Top="119.4" Width="30.24" Height="13.23" Text="Unit" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text9" Left="581.01" Top="119.4" Width="58.59" Height="13.23" Text="Qty OH" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text7" Left="94.5" Top="119.4" Width="146.82" Height="13.23" Text="Product Name" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text1" Left="-5.67" Top="16.9" Width="1051.2" Height="22.68" Text="Stock Non Moving Report" HorzAlign="Center" Font="Arial, 14pt"/>
+      <TextObject Name="Text3" Left="3.78" Top="42.25" Width="1041.75" Height="15.12" Text="[DS.ProductCategory]" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text13" Left="706.86" Top="126.85" Width="49.14" Height="13.23" Text="[DS.Day2]" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text15" Left="765.45" Top="126.85" Width="49.14" Height="13.23" Text="[DS.Day3]" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text17" Left="820.26" Top="126.85" Width="49.14" Height="13.23" Text="[DS.Day4]" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text11" Left="648.27" Top="126.85" Width="49.14" Height="13.23" Text="&lt; = [DS.Day1]" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text19" Left="3.78" Top="60.15" Width="1041.75" Height="15.12" Text="Date : [DS.RptDate]" Format="Custom" Format.Format="dd MMMM yyyy" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line1" Left="-0.45" Top="142.75" Width="1033.92"/>
+      <LineObject Name="Line2" Left="645.27" Top="124.85" Width="387.84"/>
+      <LineObject Name="Line3" Left="645.27" Top="104.95" Height="37.8"/>
+      <TextObject Name="Text31" Left="648.27" Top="106.95" Width="381.78" Height="15.12" Text="LAST MOVING" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line4" Top="104.95" Width="1033.92"/>
+      <LineObject Name="Line5" Left="575.01" Top="104.95" Height="37.8"/>
+      <LineObject Name="Line6" Left="505.42" Top="104.95" Height="37.8"/>
+      <LineObject Name="Line7" Top="104.95" Height="37.8"/>
+      <LineObject Name="Line9" Left="1033.05" Top="104.95" Height="37.8"/>
+      <LineObject Name="Line10" Left="701.86" Top="125.74" Height="17.01"/>
+      <LineObject Name="Line11" Left="760.45" Top="125.74" Height="17.01"/>
+      <LineObject Name="Line12" Left="819.59" Top="125.74" Height="17.01"/>
+      <TextObject Name="Text33" Left="852.75" Width="189" Height="18.9" Text="Date/Time : [Date]" Format="Custom" Format.Format="dd/MM/yyyy hh:mm:ss" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text35" Left="852.75" Top="83.05" Width="189" Height="18.9" Text="Page : [Page#] of [TotalPages#]" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text34" Width="349.65" Height="18.9" Text="[DS.CompName]" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text36" Top="18.9" Width="349.65" Height="37.8" Text="[DS.CompAddr]" Font="Arial, 8pt"/>
+      <LineObject Name="Line19" Left="872.3" Top="124.85" Height="17.01"/>
+      <LineObject Name="Line20" Left="924.65" Top="124.85" Height="17.01"/>
+      <LineObject Name="Line21" Left="978.9" Top="124.85" Height="17.01"/>
+      <TextObject Name="Text40" Left="873.85" Top="126.85" Width="49.14" Height="13.23" Text="[DS.Day5]" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text41" Left="927.1" Top="126.85" Width="49.14" Height="13.23" Text="[DS.Day6]" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text42" Left="981.8" Top="126.85" Width="49.14" Height="13.23" Text="[DS.Day6]" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text52" Top="118.85" Width="81.27" Height="13.23" Text="Product Type" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text53" Left="245.1" Top="119.4" Width="90.72" Height="13.23" Text="Product Code" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text54" Left="336" Top="119.4" Width="124.8" Height="13.23" Text="Specification" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text55" Left="508.8" Top="119.2" Width="62.92" Height="13.23" Text="Last Move" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line22" Left="465.2" Top="105.6" Height="37.8"/>
+      <TextObject Name="Text8" Top="85.05" Width="564.75" Height="18.9" Text="[DS.StrWrhs]" Font="Arial, 8pt, style=Bold"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="147.4" Width="1046.98" Height="19.28" Condition="[DS.GroupCode]">
+      <TextObject Name="Text2" Top="0.38" Width="378" Height="18.9" Text="[DS.GroupName]" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <DataBand Name="Data1" Top="170.68" Width="1046.98" Height="14.66" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" AfterDataEvent="Data1_AfterData" DataSource="Table2">
+        <TextObject Name="Text6" Left="94.5" Width="146.82" Height="13.23" CanGrow="true" CanShrink="true" Text="[DS.ProductName]" Font="Arial, 8pt"/>
+        <TextObject Name="Text4" Left="471.8" Width="30.24" Height="13.23" Text="[DS.Unit]" Font="Arial, 8pt"/>
+        <TextObject Name="Text49" Left="245.1" Width="90.9" Height="13.23" Text="[DS.ProductCode]" Font="Arial, 8pt"/>
+        <TextObject Name="Text50" Left="336" Width="124.8" Height="13.23" Text="[DS.Specification]" Font="Arial, 8pt"/>
+        <TextObject Name="Text51" Width="85.05" Height="13.23" Text="[DS.ProductType]" Font="Arial, 8pt"/>
+        <TableObject Name="Table1" Left="981.8" Top="-0.4" Width="52.8" Height="15.06">
+          <TableColumn Name="Column9" Width="52.8"/>
+          <TableRow Name="Row9" Height="15.06">
+            <TableCell Name="Cell9" BeforePrintEvent="Cell9_BeforePrint" Text="[DS.QtySO6]" NullValue="-" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 7pt"/>
+          </TableRow>
+        </TableObject>
+        <TableObject Name="Table1" Left="927.2" Top="-0.8" Width="52.8" Height="15.06">
+          <TableColumn Name="Column10" Width="52.8"/>
+          <TableRow Name="Row10" Height="15.06">
+            <TableCell Name="Cell10" BeforePrintEvent="Cell10_BeforePrint" Text="[DS.QtySO5]" NullValue="-" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 7pt"/>
+          </TableRow>
+        </TableObject>
+        <TableObject Name="Table1" Left="872.6" Top="-0.8" Width="52.8" Height="15.06">
+          <TableColumn Name="Column11" Width="52.8"/>
+          <TableRow Name="Row11" Height="15.06">
+            <TableCell Name="Cell11" BeforePrintEvent="Cell11_BeforePrint" Text="[DS.QtySO4]" NullValue="-" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 7pt"/>
+          </TableRow>
+        </TableObject>
+        <TableObject Name="Table1" Left="818.6" Top="-0.8" Width="52.8" Height="15.06">
+          <TableColumn Name="Column12" Width="52.8"/>
+          <TableRow Name="Row12" Height="15.06">
+            <TableCell Name="Cell12" BeforePrintEvent="Cell12_BeforePrint" Text="[DS.QtySO3]" NullValue="-" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 7pt"/>
+          </TableRow>
+        </TableObject>
+        <TableObject Name="Table1" Left="763" Top="-0.8" Width="52.8" Height="15.06">
+          <TableColumn Name="Column13" Width="52.8"/>
+          <TableRow Name="Row13" Height="15.06">
+            <TableCell Name="Cell13" BeforePrintEvent="Cell13_BeforePrint" Text="[DS.QtySO2]" NullValue="-" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 7pt"/>
+          </TableRow>
+        </TableObject>
+        <TableObject Name="Table1" Left="703.8" Top="-0.8" Width="52.8" Height="15.06">
+          <TableColumn Name="Column14" Width="52.8"/>
+          <TableRow Name="Row14" Height="15.06">
+            <TableCell Name="Cell14" BeforePrintEvent="Cell14_BeforePrint" Text="[DS.QtySO1]" NullValue="-" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 7pt"/>
+          </TableRow>
+        </TableObject>
+        <TableObject Name="Table1" Left="646.8" Top="-0.8" Width="52.8" Height="15.06">
+          <TableColumn Name="Column15" Width="52.8"/>
+          <TableRow Name="Row15" Height="15.06">
+            <TableCell Name="Cell15" BeforePrintEvent="Cell15_BeforePrint" Text="[DS.QtySO0]" NullValue="-" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 7pt"/>
+          </TableRow>
+        </TableObject>
+        <TableObject Name="Table1" Left="578.6" Top="-0.8" Width="64.32" Height="15.06">
+          <TableColumn Name="Column16" Width="64.32"/>
+          <TableRow Name="Row16" Height="15.06">
+            <TableCell Name="Cell16" BeforePrintEvent="Cell16_BeforePrint" Text="[DS.QtyOH]" NullValue="-" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 7pt"/>
+          </TableRow>
+        </TableObject>
+        <TextObject Name="Text56" Left="508.8" Width="62.92" Height="13.23" Text="[DS.LastDate]" Format="Custom" Format.Format="dd/MM/yyyy" Font="Arial, 8pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="189.34" Width="1046.98" Height="19.2">
+        <LineObject Name="Line18" Width="1033.92"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="212.54" Width="1046.98" Height="19.2">
+      <TextObject Name="Text23" Top="1" Width="94.5" Height="15.12" Text="Stock Control" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line17" Width="1033.92"/>
+      <TextObject Name="Text21" Left="931.5" Top="1" Width="94.5" Height="15.12" Text="[DS.UserId]" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

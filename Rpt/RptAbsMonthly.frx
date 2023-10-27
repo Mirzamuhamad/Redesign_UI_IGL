@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="08/06/2014 13:30:46" ReportInfo.Modified="01/09/2015 15:04:36" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+
+    Private Sub Cell1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+           cell1.Text=CType(Report.GetColumnValue(&quot;DS.ColumnName&quot;), String)
+    End Sub
+
+    Private Sub Page1_StartPage(ByVal sender As object, ByVal e As EventArgs)
+           cell1.Text=CType(Report.GetColumnValue(&quot;DS.ColumnName&quot;), String)
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haq0x/5kL6tecssG8FX+6Bzo">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="exec S_PYRptAbsMonth '20140501', '20140720', '', '', '', '', 0, 0, 'N', 'N', ''">
+        <Column Name="ColumnName" DataType="System.String"/>
+        <Column Name="GroupCode" DataType="System.String"/>
+        <Column Name="GroupName" DataType="System.String"/>
+        <Column Name="EmpNumb" DataType="System.String"/>
+        <Column Name="EmpName" DataType="System.String"/>
+        <Column Name="MonthNames" DataType="System.String"/>
+        <Column Name="DayNo" DataType="System.Int32"/>
+        <Column Name="Shift" DataType="System.String"/>
+        <Column Name="CompName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="Periode" DataType="System.String"/>
+        <Column Name="Status" DataType="System.String"/>
+        <Column Name="DayName" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="470" PaperHeight="300" LeftMargin="5" RightMargin="5" StartPageEvent="Page1_StartPage">
+    <ReportTitleBand Name="ReportTitle1" Top="20" Width="1738.8" Height="0.3"/>
+    <PageHeaderBand Name="PageHeader1" Top="40.3" Width="1738.8" Height="78.25">
+      <TextObject Name="Text1" Left="-5.4" Top="59.05" Width="1657.05" Height="19.2" Text="[DS.Periode]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text2" Left="0.15" Width="372.6" Height="19.2" Text="[DS.CompName]" Font="Arial, 13pt, style=Bold"/>
+      <TextObject Name="Text3" Left="0.15" Top="28.8" Width="372.6" Height="47.55" Text="[DS.CompAddr]" Font="Arial, 9pt"/>
+      <TextObject Name="Text4" Left="-5.4" Top="38.7" Width="1657.05" Height="19.2" Text="ABSENCE MONTHLY" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text5" Left="1501.8" Width="153.6" Height="19.2" Text="Date : [Date]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text6" Left="1501.8" Top="57" Width="153.6" Height="19.35" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="138.55" Width="1738.8" Height="68.28">
+      <MatrixObject Name="Matrix1" Left="0.15" Top="0.15" Width="312.82" Height="68.13" FixedRows="2" FixedColumns="3" AutoSize="false" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="[DS.MonthNames]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.DayName]" Sort="None" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.GroupName]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.EmpNumb]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.EmpName]" Sort="None" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.Status]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="101.02"/>
+        <TableColumn Name="Column2" Width="68.1"/>
+        <TableColumn Name="Column3" Width="106.09"/>
+        <TableColumn Name="Column4" Width="37.61"/>
+        <TableRow Name="Row1" Height="19.56">
+          <TableCell Name="Cell1" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell2" Border.Lines="All" Text="Employee No" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell7" Border.Lines="All" Text="Employee Name" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell13" Border.Lines="All" Text="[MonthNames]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="29.01">
+          <TableCell Name="Cell3"/>
+          <TableCell Name="Cell4"/>
+          <TableCell Name="Cell8"/>
+          <TableCell Name="Cell14" Border.Lines="All" Text="[DayName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="19.56" AutoSize="true">
+          <TableCell Name="Cell5" Border.Lines="All" Text="[GroupName]" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell6" Border.Lines="All" Text="[EmpNumb]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell9" Border.Lines="All" Text="[EmpName]" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell15" Border.Lines="All" Text="[Status]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="226.83" Width="1738.8" Height="19.2"/>
+  </ReportPage>
+</Report>

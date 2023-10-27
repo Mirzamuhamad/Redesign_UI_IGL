@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="11/04/2013 10:48:56" ReportInfo.Modified="05/24/2019 13:59:07" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+      Text1.Text = CType(Report.GetColumnValue(&quot;DS.UserID&quot;), String)      
+     
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLGyiz5qWMjsA99V/W+nNq1W3g2zii+WzFvwn5S/yO9ty4j5cNSou1n2RnV42VCogqhWDGBfTi9Ny1OneZGYjfinOHGpdCxzvpie7qu5vUxEx4MCFZZfHfGnHRCgUFUBKbmMlG5NqLQAbah7tE2SUt7TcrJHH3BSg3zXKo82Icf6x">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_FormPrintMaster3 'VMsHoliday','Holiday_Date','HolidayName','FgForceLeave','Holiday File','Holiday Date','Holiday Name','Force Leave','', 'admin'">
+        <Column Name="UserID" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompanyAddr" DataType="System.String"/>
+        <Column Name="Code" DataType="System.String"/>
+        <Column Name="Name" DataType="System.String"/>
+        <Column Name="Name2" DataType="System.String"/>
+        <Column Name="Title" DataType="System.String"/>
+        <Column Name="Column1" DataType="System.String"/>
+        <Column Name="Column2" DataType="System.String"/>
+        <Column Name="Column3" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" FirstPageSource="15" OtherPagesSource="15">
+    <PageHeaderBand Name="PageHeader1" Width="740.5" Height="121.89">
+      <TextObject Name="Text56" Left="2" Top="2" Width="538.65" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text55" Left="2" Top="20.9" Width="286.44" Height="37.8" Text="[DS.CompanyAddr]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text57" Left="552.2" Top="27.35" Width="179.55" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text15" Left="187.22" Top="66.6" Width="362.88" Height="18.9" Text="[DS.Title]" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text35" Left="552.2" Top="73.7" Width="179.55" Height="11.34" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <ShapeObject Name="Shape1" Top="96.44" Width="738.1" Height="25.45"/>
+      <TextObject Name="Text3" Left="4.45" Top="98.66" Width="189" Height="18.9" Text="[DS.Column1]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text7" Left="196.45" Top="98.66" Width="264.6" Height="18.9" Text="[DS.Column2]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text18" Left="465.5" Top="98.66" Width="267.62" Height="18.9" Text="[DS.Column3]" Font="Arial, 8pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="126.1" Width="740.5" Height="25.33" AfterPrintEvent="Data1_AfterPrint" AfterDataEvent="Data1_AfterData" DataSource="Table">
+      <TextObject Name="Text2" Left="4.45" Top="2" Width="189" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.CODE]" Font="Arial, 8pt" Duplicates="Hide"/>
+      <TextObject Name="Text6" Left="198.45" Top="2" Width="264.6" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.NAME]" Font="Arial, 8pt"/>
+      <TextObject Name="Text19" Left="467.34" Top="2.16" Width="267.76" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.NAME2]" Font="Arial, 8pt"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="155.64" Width="740.5" Height="37.8" BeforePrintEvent="PageFooter1_BeforePrint">
+      <LineObject Name="Line1" Width="738.23"/>
+      <TextObject Name="Text1" Left="573.1" Top="5.45" Width="163.65" Height="18.9" Text="[DS.UserID]" HorzAlign="Right" Font="Arial, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

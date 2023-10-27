@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="03/29/2011 16:25:53" ReportInfo.Modified="06/26/2020 10:33:05" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>
+Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+
+Namespace FastReport
+  Public Class ReportScript
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs) 
+
+      'Total.Text=FormatNumber(CType(Report.GetColumnValue(&quot;DS.QtyTarget&quot;), Decimal) + CType(Report.GetColumnValue(&quot;DS.HKTarget&quot;), Decimal))
+        'Text192.Text = CType(Report.GetColumnValue(&quot;DS.Hari&quot;), String)
+     '  Text196.Text = CType(Report.GetColumnValue(&quot;DS.RMTarget1&quot;), String)
+     '  Text198.Text = CType(Report.GetColumnValue(&quot;DS.RMUnit1&quot;), String)
+     '  Text200.Text = CType(Report.GetColumnValue(&quot;DS.RMTarget2&quot;), String)
+     '  Text202.Text = CType(Report.GetColumnValue(&quot;DS.RMUnit2&quot;), String)
+     '  Text203.Text = CType(Report.GetColumnValue(&quot;DS.Capacity&quot;), String)
+     '  Text190.Text = CType(Report.GetColumnValue(&quot;DS.HKRealisasi&quot;), String)
+     ' Text191.Text = CType(Report.GetColumnValue(&quot;DS.HariRealisasi&quot;), String)
+     '  Text201.Text = CType(Report.GetColumnValue(&quot;DS.RMRealisasi1&quot;), String)
+     ' Text197.Text = CType(Report.GetColumnValue(&quot;DS.RMRealisasi1&quot;), String)
+     ' Text201.Text = CType(Report.GetColumnValue(&quot;DS.RMRealisasi2&quot;), String)      
+     ' Text205.Text =  CType(Report.GetColumnValue(&quot;DS.HKTarget&quot;), String) - CType(Report.GetColumnValue(&quot;DS.HKRealisasi&quot;), String)
+     ' Text206.Text =  CType(Report.GetColumnValue(&quot;DS.Hari&quot;), String) - CType(Report.GetColumnValue(&quot;DS.HariRealisasi&quot;), String)
+     ' Text207.Text =  CType(Report.GetColumnValue(&quot;DS.RMTarget1&quot;), String) - CType(Report.GetColumnValue(&quot;DS.RMRealisasi1&quot;), String)
+     ' Text208.Text =  CType(Report.GetColumnValue(&quot;DS.RMTarget2&quot;), String) - CType(Report.GetColumnValue(&quot;DS.RMRealisasi2&quot;), String)
+      
+       
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLB436ue6bLIP/r8LY3gHCTTxU3CAw1ie2hKGZE5oOuKgFfPLJcfzzJHOS1VldsvvGkDMhLg/YtBBYc4SYhDLimxsooQ9QfzIf5l9GA2JDWjPHaNJdVzAHm5L8Crz+gXFRWZ192tx3x+e1SVPJ0Mi88dBJIZyx6cihMx7PiqTSLex">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PLRptMonitoringCPWO '20170101','20181212','','','','',0,0,'','','Admin'  ">
+        <Column Name="Unit" DataType="System.String"/>
+        <Column Name="Company" DataType="System.String"/>
+        <Column Name="WONo" DataType="System.String"/>
+        <Column Name="Job" DataType="System.String"/>
+        <Column Name="FgBorongan" DataType="System.String"/>
+        <Column Name="Team" DataType="System.String"/>
+        <Column Name="UserID" DataType="System.String"/>
+        <Column Name="DivisiBlok" DataType="System.String"/>
+        <Column Name="Capacity" DataType="System.Double"/>
+        <Column Name="Pkk" DataType="System.Int32"/>
+        <Column Name="Luas" DataType="System.Double"/>
+        <Column Name="UnitDosis" DataType="System.String"/>
+        <Column Name="WorkBy" DataType="System.String"/>
+        <Column Name="Mandor" DataType="System.String"/>
+        <Column Name="Asisten" DataType="System.String"/>
+        <Column Name="Kontraktor" DataType="System.String"/>
+        <Column Name="Person" DataType="System.Int32"/>
+        <Column Name="QtyTarget" DataType="System.Double"/>
+        <Column Name="HKTarget" DataType="System.Double"/>
+        <Column Name="Hari" DataType="System.Double"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="Alamat1" DataType="System.String"/>
+        <Column Name="alamat2" DataType="System.String"/>
+        <Column Name="StartDate" DataType="System.String"/>
+        <Column Name="Divisi" DataType="System.String"/>
+        <Column Name="DivisiName" DataType="System.String"/>
+        <Column Name="StartPeriode" DataType="System.String"/>
+        <Column Name="EndPeriode" DataType="System.String"/>
+        <Column Name="MingguKe" DataType="System.String"/>
+        <Column Name="Bulan" DataType="System.String"/>
+        <Column Name="Tahun" DataType="System.String"/>
+        <Column Name="MingguTerbilang" DataType="System.String"/>
+        <Column Name="Material1" DataType="System.String"/>
+        <Column Name="RMTarget1" DataType="System.Double"/>
+        <Column Name="QtyDosis1" DataType="System.Double"/>
+        <Column Name="RMUnit1" DataType="System.String"/>
+        <Column Name="Material2" DataType="System.String"/>
+        <Column Name="RMTarget2" DataType="System.Double"/>
+        <Column Name="QtyDosis2" DataType="System.Double"/>
+        <Column Name="RMUnit2" DataType="System.String"/>
+        <Column Name="QtyHi" DataType="System.Double"/>
+        <Column Name="HKHi" DataType="System.Double"/>
+        <Column Name="Taken1" DataType="System.Double"/>
+        <Column Name="Aplikasi1" DataType="System.Double"/>
+        <Column Name="Taken2" DataType="System.Double"/>
+        <Column Name="Aplikasi2" DataType="System.Double"/>
+        <Column Name="Type" DataType="System.String"/>
+        <Column Name="Keterangan" DataType="System.String"/>
+        <Column Name="RMRealisasi1" DataType="System.Double"/>
+        <Column Name="RMRealisasi2" DataType="System.Double"/>
+        <Column Name="HKRealisasi" DataType="System.Double"/>
+        <Column Name="HariRealisasi" DataType="System.Double"/>
+        <Column Name="EndDate" DataType="System.DateTime"/>
+        <Column Name="Hari01" DataType="System.DateTime"/>
+        <Column Name="Hari02" DataType="System.DateTime"/>
+        <Column Name="Hari03" DataType="System.DateTime"/>
+        <Column Name="Hari04" DataType="System.DateTime"/>
+        <Column Name="Hari05" DataType="System.DateTime"/>
+        <Column Name="Hari06" DataType="System.DateTime"/>
+        <Column Name="Hari07" DataType="System.DateTime"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="330" PaperHeight="216" LeftMargin="2.5" TopMargin="2.5" RightMargin="2.5" BottomMargin="2.5" FirstPageSource="261" OtherPagesSource="261" Guides="211.68,555.66,646.38,657.72,752.22,767.34,948.78,0,11.34,120.96,124.74,359.1,362.88,366.66,491.4,495.18,642.6,1046.27,1046.28,1047.06,457.38,1035.72,41.58,162.54,170.1,395.01,707.86,745.66,831.6,400.68,703.08,7.56,34.02,835.38,1043.28,39.69,160.65,752.11,831.49,748.44,90.72,154.98,30.24,94.5,219.24,249.48,122.96,521.64,895.86,343.98,427.14,672.84,756,929.88,1013.04,381.78,721.98,37.02,166.32,397.9,705.08,749.44,832.6,1045.27">
+    <PageHeaderBand Name="PageHeader1" Width="1228.5" Height="190.55" Guides="3.78,22.68,2,24.68,75.6,94.5,94.5,94.5,94.5">
+      <TextObject Name="Text42" Left="981.14" Top="24.35" Width="245.7" Height="13.23" Text="Page : [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text40" Left="981.14" Top="1" Width="245.7" Height="13.23" Text="Date/Time : [Date]" Format="Custom" Format.Format="dd/MM/yyyy hh:mm:ss" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text11" Left="455.49" Top="66.15" Width="448.04" Height="19.2" Text="FORM MONITORING DAFTAR  CPWO PER-DIVISI" HorzAlign="Center" VertAlign="Center" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text23" Left="618.14" Top="85.05" Width="272.16" Height="18.9" Text="[DS.StartPeriode] s/d [DS.EndPeriode]" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text21" Left="558.99" Top="85.05" Width="57.38" Height="18.9" Text="Periode :" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line4" Left="0.69" Top="136.75" Width="1224.6"/>
+      <TextObject Name="Text2" Left="0.79" Top="152.65" Width="22.24" Height="18.9" Text="No" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text70" Left="68.94" Top="145.65" Width="66.17" Height="33.35" Text="Jenis Kegiatan" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line8" Left="626.94" Top="153.2" Width="448.7"/>
+      <LineObject Name="Line1" Left="25.24" Top="137.3" Height="52.25"/>
+      <LineObject Name="Line2" Left="135.64" Top="136.75" Height="52.7"/>
+      <TextObject Name="Text73" Left="136.64" Top="155.2" Width="34.47" Height="14.45" Text="Blok" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line6" Left="358.34" Top="171.1" Width="114.4"/>
+      <TextObject Name="Text87" Top="3.7" Width="323.19" Height="19.2" Text="[DS.Company]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text88" Left="4.34" Top="29.35" Width="317.52" Height="14.45" Text="[DS.Alamat1]"/>
+      <TextObject Name="Text89" Left="4.34" Top="48.25" Width="317.52" Height="14.45" Text="[DS.alamat2]"/>
+      <TextObject Name="Text154" Left="382.79" Top="148.2" Width="64.27" Height="14.45" Text="Target" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line45" Left="893.64" Top="172.1" Height="18.45"/>
+      <TextObject Name="Text163" Left="792.69" Top="138.75" Width="72.27" Height="14.45" Text="Hasil Kerja" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text164" Left="528.21" Top="150.07" Width="33.92" Height="23.9" Text="Start Date" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text175" Left="473.84" Top="145.2" Width="54.27" Height="14.45" Text="Pelaksana" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line47" Left="0.34" Top="136.3" Height="53.8"/>
+      <TextObject Name="Text177" Left="25.69" Top="155.1" Width="42.62" Height="14.45" Text="No.Wo" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line48" Left="68.49" Top="136.75" Height="52.7"/>
+      <LineObject Name="Line49" Left="170.99" Top="136.75" Height="52.7"/>
+      <TextObject Name="Text178" Left="171.44" Top="147.2" Width="32.92" Height="33.35" Text="Qty Pkk" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line50" Left="205.34" Top="136.75" Height="52.7"/>
+      <TextObject Name="Text179" Left="206.79" Top="147.2" Width="33.92" Height="33.35" Text="Luas Ha" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line51" Left="241.14" Top="136.75" Height="52.7"/>
+      <TextObject Name="Text180" Left="240.59" Top="147.2" Width="28.92" Height="33.35" Text="Unit/Hk" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line52" Left="273.49" Top="136.75" Height="52.7"/>
+      <TextObject Name="Text181" Left="274.39" Top="147.2" Width="28.92" Height="33.35" Text="Qty TK" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text182" Left="306.29" Top="151.2" Width="50.27" Height="23.9" Text="Bahan Dosis" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line53" Left="305.96" Top="136.94" Height="52.7"/>
+      <LineObject Name="Line54" Left="358.99" Top="136.75" Height="52.7"/>
+      <TextObject Name="Text183" Left="358.99" Top="173.55" Width="35.92" Height="14.45" Text="Hk" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text184" Left="396.79" Top="173.55" Width="35.92" Height="14.45" Text="Hari" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text185" Left="434.59" Top="173.55" Width="37.37" Height="14.45" Text="Bahan" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line55" Left="395.79" Top="171.1" Height="17.9"/>
+      <LineObject Name="Line56" Left="433.59" Top="171.1" Height="17.9"/>
+      <LineObject Name="Line57" Left="473.39" Top="136.75" Height="52.7"/>
+      <TextObject Name="Text186" Left="483.29" Top="173.55" Width="37.37" Height="14.45" Text="UK/TA" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line58" Left="527.64" Top="136.75" Height="52.7"/>
+      <LineObject Name="Line59" Left="562.44" Top="136.75" Height="52.7"/>
+      <TextObject Name="Text188" Left="563.34" Top="145.2" Width="63.82" Height="42.8" Text="Akumulasi Periode Sebelumnya" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line60" Left="626.59" Top="136.75" Height="52.7"/>
+      <TextObject Name="Text189" Left="629.71" Top="173.97" Width="33.47" Height="14.45" Text="Mg" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text190" Left="686.41" Top="173.97" Width="33.47" Height="14.45" Text="Sn" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text191" Left="743.11" Top="173.97" Width="33.47" Height="14.45" Text="SI" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text192" Left="799.81" Top="173.97" Width="33.47" Height="14.45" Text="Rb" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line61" Left="626.94" Top="172.1" Width="398.45"/>
+      <LineObject Name="Line62" Left="666.84" Top="172.1" Height="18.45"/>
+      <LineObject Name="Line63" Left="685.74" Top="172.1" Height="18.45"/>
+      <LineObject Name="Line64" Left="723.54" Top="172.1" Height="18.45"/>
+      <LineObject Name="Line65" Left="742.44" Top="172.1" Height="18.45"/>
+      <LineObject Name="Line66" Left="780.24" Top="172.1" Height="18.45"/>
+      <LineObject Name="Line67" Left="799.14" Top="172.1" Height="18.45"/>
+      <LineObject Name="Line68" Left="855.84" Top="172.1" Height="18.45"/>
+      <LineObject Name="Line69" Left="836.94" Top="172.1" Height="17.45"/>
+      <TextObject Name="Text193" Left="856.51" Top="173.97" Width="33.47" Height="14.45" Text="Km" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line70" Left="912.54" Top="172.1" Height="17.45"/>
+      <TextObject Name="Text194" Left="913.21" Top="173.97" Width="33.47" Height="14.45" Text="Jm" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line71" Left="950.34" Top="172.1" Height="18.45"/>
+      <LineObject Name="Line72" Left="1025.94" Top="137.3" Height="52.25"/>
+      <TextObject Name="Text195" Left="698.19" Top="157.65" Width="261.27" Height="14.45" Text="Tgl [DS.StartPeriode] s/d [DS.EndPeriode]" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text196" Left="1.44" Top="94.5" Width="47.93" Height="18.9" Text="Divisi" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text197" Left="1.44" Top="113.4" Width="47.93" Height="18.9" Text="Asisten" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text198" Left="46.69" Top="94.5" Width="7.58" Height="18.9" Text=":" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text199" Left="46.69" Top="113.4" Width="7.58" Height="18.9" Text=":" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text200" Left="1029.94" Top="167.1" Width="38.92" Height="14.45" Text="Total" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text201" Left="969.91" Top="173.97" Width="33.47" Height="14.45" Text="Sb" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line73" Left="969.24" Top="172.1" Height="18.45"/>
+      <LineObject Name="Line74" Left="1007.04" Top="172.1" Height="18.45"/>
+      <LineObject Name="Line75" Left="1076.19" Top="137.3" Height="52.25"/>
+      <TextObject Name="Text202" Left="1075.19" Top="143.75" Width="55.82" Height="40.7" Text="Akumulasi &#13;&#10;s/d&#13;&#10;Mg Ini" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line76" Left="1129.89" Top="137.3" Height="52.25"/>
+      <LineObject Name="Line77" Left="1178.14" Top="137.3" Height="52.25"/>
+      <TextObject Name="Text203" Left="1130.89" Top="148.2" Width="43.92" Height="31.25" Text="Norma&#13;&#10;Real" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line78" Left="1290.54" Top="137.3" Height="52.25"/>
+      <LineObject Name="Line46" Left="0.45" Top="190" Width="1225.05"/>
+      <TextObject Name="Text204" Left="1177.35" Top="148.2" Width="43.92" Height="33.25" Text="End Date" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line93" Left="1225.39" Top="136.3" Height="53.25"/>
+      <TextObject Name="Text224" Left="55.14" Top="95.5" Width="218.03" Height="18.9" Text="[DS.Divisi] - [DS.DivisiName]" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text225" Left="55.14" Top="112.4" Width="218.03" Height="18.9" Text="[DS.Asisten]" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text229" Left="1036.94" Top="94.5" Width="47.93" Height="18.9" Text="Minggu" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text230" Left="1036.94" Top="113.4" Width="57.38" Height="18.9" Text="Bln/Tahun" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text231" Left="1091.64" Top="94.5" Width="7.58" Height="18.9" Text=":" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text232" Left="1091.64" Top="113.4" Width="7.58" Height="18.9" Text=":" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text233" Left="1100.09" Top="97.5" Width="142.43" Height="18.9" Text="___ ( ___________________ )" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text234" Left="1100.09" Top="118.4" Width="123.53" Height="18.9" Text="___ / ______" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text239" Left="1101.09" Top="95.05" Width="19.58" Height="18.9" Text="[DS.MingguKe]" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text240" Left="1125.44" Top="95.05" Width="95.18" Height="18.9" Text="[DS.MingguTerbilang]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text241" Left="1099.09" Top="117.95" Width="19.58" Height="13.9" Text="[DS.Bulan]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text242" Left="1127.44" Top="117.95" Width="29.03" Height="13.9" Text="[DS.Tahun]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="192.99" Width="1228.5" StartNewPage="true" Condition="[DS.Divisi]" SortOrder="None">
+      <DataBand Name="Data1" Top="195.43" Width="1228.5" Height="66.15" CanGrow="true" AfterDataEvent="Data1_AfterData" CanBreak="true" Guides="0,18.9" DataSource="Table">
+        <TextObject Name="Text165" Top="4" Width="23.79" Height="56.7" Text="[Row#]" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text166" Left="24.9" Top="2" Width="42.69" Height="62.15" Text="[DS.WONo]" Format="Custom" Format.Format="dd MMM yy" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text168" Left="136.3" Top="2" Width="34.24" Height="62.7" Text="[DS.DivisiBlok]" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text169" Left="171.55" Top="2" Width="32.24" Height="62.7" Text="[DS.Pkk]" Format="Custom" Format.Format="##,#0.##" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text171" Left="240.7" Top="2" Width="31.14" Height="62.7" Text="[DS.HKTarget]" Format="Custom" Format.Format="##,#0.##" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text174" Left="206.9" Top="2" Width="32.69" Height="62.7" Text="[DS.Luas]" Format="Custom" Format.Format="##,#0.##" VertAlign="Center" Font="Arial, 7pt"/>
+        <LineObject Name="Line79" Top="-0.1" Height="66.15"/>
+        <LineObject Name="Line3" Left="305.85" Top="15.45" Width="52.7"/>
+        <LineObject Name="Line80" Left="305.85" Top="32.35" Width="53.7"/>
+        <LineObject Name="Line81" Left="305.85" Top="49.25" Width="53.7"/>
+        <LineObject Name="Line85" Left="24.9" Height="66.15"/>
+        <LineObject Name="Line86" Left="68.15" Height="66.15"/>
+        <TextObject Name="Text205" Left="68.15" Top="2" Width="65.59" Height="62.15" Text="[DS.Job]" Format="Custom" Format.Format="dd MMM yy" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt"/>
+        <LineObject Name="Line87" Left="135.75" Height="66.15"/>
+        <LineObject Name="Line88" Left="170.55" Height="66.15"/>
+        <LineObject Name="Line89" Left="204.9" Height="66.15"/>
+        <LineObject Name="Line90" Left="240.7" Height="66.15"/>
+        <LineObject Name="Line91" Left="305.85" Height="66.15"/>
+        <LineObject Name="Line92" Left="273.5" Height="66.15"/>
+        <TextObject Name="Text206" Left="274.5" Top="2" Width="31.14" Height="62.7" Text="[DS.Person]" Format="Custom" Format.Format="##,#0.##" VertAlign="Center" Font="Arial, 7pt"/>
+        <LineObject Name="Line84" Left="359.1" Height="66.15"/>
+        <LineObject Name="Line94" Left="395.9" Height="66.15"/>
+        <LineObject Name="Line95" Left="433.7" Height="66.15"/>
+        <LineObject Name="Line96" Left="473.5" Height="66.15"/>
+        <LineObject Name="Line97" Left="434.15" Top="32.35" Width="39.25"/>
+        <LineObject Name="Line98" Left="1130" Height="66.15"/>
+        <LineObject Name="Line99" Left="1225.05" Height="66.15"/>
+        <LineObject Name="Line100" Left="1178.25" Height="66.15"/>
+        <LineObject Name="Line101" Left="528.2" Height="66.15"/>
+        <LineObject Name="Line102" Left="562" Height="66.15"/>
+        <LineObject Name="Line103" Left="562" Top="15.45" Width="64.15"/>
+        <LineObject Name="Line104" Left="562" Top="32.35" Width="64.15"/>
+        <LineObject Name="Line105" Left="562" Top="49.25" Width="64.15"/>
+        <LineObject Name="Line106" Left="626.7" Height="66.15"/>
+        <LineObject Name="Line107" Left="626.7" Top="15.45" Width="60.15"/>
+        <LineObject Name="Line108" Left="626.7" Top="32.35" Width="60.15"/>
+        <LineObject Name="Line109" Left="626.7" Top="49.25" Width="60.15"/>
+        <LineObject Name="Line110" Left="686.4" Height="66.15"/>
+        <LineObject Name="Line111" Left="683.4" Top="15.45" Width="60.15"/>
+        <LineObject Name="Line112" Left="683.4" Top="32.35" Width="60.15"/>
+        <LineObject Name="Line113" Left="683.4" Top="49.25" Width="60.15"/>
+        <LineObject Name="Line114" Left="742.1" Height="66.15"/>
+        <LineObject Name="Line115" Left="740.1" Top="15.45" Width="60.15"/>
+        <LineObject Name="Line116" Left="740.1" Top="32.35" Width="60.15"/>
+        <LineObject Name="Line117" Left="740.1" Top="49.25" Width="60.15"/>
+        <LineObject Name="Line118" Left="798.8" Height="66.15"/>
+        <LineObject Name="Line119" Left="796.8" Top="15.45" Width="60.15"/>
+        <LineObject Name="Line120" Left="796.8" Top="32.35" Width="60.15"/>
+        <LineObject Name="Line121" Left="796.8" Top="49.25" Width="60.15"/>
+        <LineObject Name="Line122" Left="856.5" Height="66.15"/>
+        <LineObject Name="Line123" Left="853.5" Top="15.45" Width="60.15"/>
+        <LineObject Name="Line124" Left="853.5" Top="32.35" Width="60.15"/>
+        <LineObject Name="Line125" Left="853.5" Top="49.25" Width="60.15"/>
+        <LineObject Name="Line126" Left="913.2" Height="66.15"/>
+        <LineObject Name="Line127" Left="909.2" Top="15.45" Width="60.15"/>
+        <LineObject Name="Line128" Left="909.2" Top="32.35" Width="60.15"/>
+        <LineObject Name="Line129" Left="909.2" Top="49.25" Width="60.15"/>
+        <LineObject Name="Line130" Left="968.9" Height="66.15"/>
+        <LineObject Name="Line131" Left="965.9" Top="15.45" Width="60.15"/>
+        <LineObject Name="Line132" Left="965.9" Top="32.35" Width="60.15"/>
+        <LineObject Name="Line133" Left="965.9" Top="49.25" Width="60.15"/>
+        <LineObject Name="Line134" Left="1025.6" Height="66.15"/>
+        <LineObject Name="Line135" Left="1025.6" Top="15.45" Width="50.7"/>
+        <LineObject Name="Line136" Left="1025.6" Top="32.35" Width="50.7"/>
+        <LineObject Name="Line137" Left="1025.6" Top="49.25" Width="50.7"/>
+        <LineObject Name="Line138" Left="1075.85" Height="66.15"/>
+        <LineObject Name="Line139" Left="1075.85" Top="15.45" Width="53.7"/>
+        <LineObject Name="Line140" Left="1075.85" Top="32.35" Width="54.7"/>
+        <LineObject Name="Line141" Left="1075.85" Top="49.25" Width="54.7"/>
+        <TextObject Name="Text207" Left="670.4" Width="17.57" Height="14.45" Text="Hk" HorzAlign="Right" VertAlign="Center" Font="Arial, 6pt"/>
+        <TextObject Name="Text208" Left="670.4" Top="16.9" Width="17.57" Height="14.45" Text="Ha" HorzAlign="Right" VertAlign="Center" Font="Arial, 6pt"/>
+        <TextObject Name="Text209" Left="727.1" Width="17.57" Height="14.45" Text="Hk" HorzAlign="Right" VertAlign="Center" Font="Arial, 6pt"/>
+        <TextObject Name="Text210" Left="727.1" Top="16.9" Width="17.57" Height="14.45" Text="Ha" HorzAlign="Right" VertAlign="Center" Font="Arial, 6pt"/>
+        <TextObject Name="Text211" Left="783.8" Width="17.57" Height="14.45" Text="Hk" HorzAlign="Right" VertAlign="Center" Font="Arial, 6pt"/>
+        <TextObject Name="Text212" Left="783.8" Top="16.9" Width="17.57" Height="14.45" Text="Ha" HorzAlign="Right" VertAlign="Center" Font="Arial, 6pt"/>
+        <TextObject Name="Text213" Left="840.5" Width="17.57" Height="14.45" Text="Hk" HorzAlign="Right" VertAlign="Center" Font="Arial, 6pt"/>
+        <TextObject Name="Text214" Left="840.5" Top="16.9" Width="17.57" Height="14.45" Text="Ha" HorzAlign="Right" VertAlign="Center" Font="Arial, 6pt"/>
+        <TextObject Name="Text215" Left="897.2" Width="17.57" Height="14.45" Text="Hk" HorzAlign="Right" VertAlign="Center" Font="Arial, 6pt"/>
+        <TextObject Name="Text216" Left="897.2" Top="16.9" Width="17.57" Height="14.45" Text="Ha" HorzAlign="Right" VertAlign="Center" Font="Arial, 6pt"/>
+        <TextObject Name="Text217" Left="953.9" Width="17.57" Height="14.45" Text="Hk" HorzAlign="Right" VertAlign="Center" Font="Arial, 6pt"/>
+        <TextObject Name="Text218" Left="953.9" Top="16.9" Width="17.57" Height="14.45" Text="Ha" HorzAlign="Right" VertAlign="Center" Font="Arial, 6pt"/>
+        <TextObject Name="Text219" Left="1010.6" Width="17.57" Height="14.45" Text="Hk" HorzAlign="Right" VertAlign="Center" Font="Arial, 6pt"/>
+        <TextObject Name="Text220" Left="1011.6" Top="16.9" Width="17.57" Height="14.45" Text="Ha" HorzAlign="Right" VertAlign="Center" Font="Arial, 6pt"/>
+        <TextObject Name="Text221" Left="1059.85" Width="17.57" Height="14.45" Text="Hk" HorzAlign="Right" VertAlign="Center" Font="Arial, 6pt"/>
+        <TextObject Name="Text222" Left="1059.85" Top="16.9" Width="17.57" Height="14.45" Text="Ha" HorzAlign="Right" VertAlign="Center" Font="Arial, 6pt"/>
+        <TextObject Name="Text226" Left="359.55" Top="2" Width="35.14" Height="62.7" Text="[DS.HKTarget]" Format="Custom" Format.Format="##,#0.##" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text227" Left="397.35" Top="2" Width="35.14" Height="62.7" Text="[DS.Hari]" Format="Custom" Format.Format="##,#0.##" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text228" Left="472.95" Top="2" Width="55.04" Height="62.7" Text="[DS.Team]" Format="Custom" Format.Format="##,#0.##" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Total" Left="1026.05" Width="33.47" Height="14.45" Format="Custom" Format.Format="##,#0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 6pt"/>
+        <TextObject Name="Mg" Left="627.15" Top="2" Width="46.59" Height="13.45" Text="[DS.Person]" Format="Custom" Format.Format="##,#0.##" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text235" Left="528.65" Top="2" Width="32.14" Height="62.7" Text="[DS.StartDate]" Format="Custom" Format.Format="dd MMM yyyy" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text236" Left="1178.7" Top="2" Width="45.59" Height="62.7" Text="[DS.EndDate]" Format="Custom" Format.Format="dd MMM yyyy" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text237" Left="626.15" Top="16.9" Width="46.59" Height="13.45" Text="[DS.Luas]" Format="Custom" Format.Format="##,#0.##" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text238" Left="626.15" Top="34.8" Width="59.04" Height="13.45" Text="[DS.Pkk]" Format="Custom" Format.Format="##,#0.##" VertAlign="Center" Font="Arial, 7pt"/>
+        <LineObject Name="Line82" Top="66.15" Width="1225.5"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="264.02" Width="1228.5"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="266.46" Width="1228.5" Height="18.45" Guides="0,117.96,136.86,11.34,52.92,113.4,30.24,33.24,52.14,32.02,112.62,22.68,41.58,-423.36,37.8">
+      <TextObject Name="Text223" Width="481.39" Height="14.9" Text="Keterangan : Putih = Kantor Pusat    Hijau = Divisi   Kuning = PPIC" Format="Custom" Format.Format="dd MMM yy" VertAlign="Center" Font="Arial, 8pt, style=Italic"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

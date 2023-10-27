@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="04/29/2014 16:04:49" ReportInfo.Modified="06/26/2014 17:51:01" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+
+    Private Sub PageHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+       
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VZBd+MhtHnjm5PdZx4zPIHA65IuyIeh1e5MFP9GfepYt">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PERptEmpSummaryFR 2013, 1, 2014, 12, '', '', '', '', ''">
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="Year" DataType="System.Int32"/>
+        <Column Name="Period" DataType="System.Int32"/>
+        <Column Name="YearPeriod" DataType="System.String"/>
+        <Column Name="TabNo" DataType="System.Int32"/>
+        <Column Name="TabGroup" DataType="System.String"/>
+        <Column Name="TabName" DataType="System.String"/>
+        <Column Name="Org" DataType="System.Int32"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" FirstPageSource="15" OtherPagesSource="15" Guides="0,519.75,274.05,774.9,756,1048.95,145.91,88.52">
+    <PageHeaderBand Name="PageHeader1" Top="20" Width="1047.06" Height="113.4" BeforePrintEvent="PageHeader1_BeforePrint" Guides="18.9,56.7,0,75.6,94.5,85.05,103.95">
+      <TextObject Name="Text1" Top="18.9" Width="519.75" Height="37.8" Text="[DS.CompAddr]" Font="Arial, 8pt"/>
+      <TextObject Name="Text2" Width="519.75" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="qrlJudulReport2" Left="274.05" Top="75.6" Width="500.85" Height="18.9" Text="EMPLOYEE SUMMARY REPORT" HorzAlign="Center" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text36" Left="756" Width="292.95" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text37" Left="756" Top="85.05" Width="292.95" Height="18.9" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="153.4" Width="1047.06" Height="52.07" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" Guides="0,52.07,35.82,17.91">
+      <MatrixObject Name="Matrix1" Width="145.91" Height="52.07" FixedRows="2" FixedColumns="1" AutoSize="false" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="[DS.TabGroup]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.TabName]" Sort="None" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.YearPeriod]" Sort="None" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.Org]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="88.52"/>
+        <TableColumn Name="Column2" Width="57.39"/>
+        <TableRow Name="Row1" Height="17.91" AutoSize="true">
+          <TableCell Name="Cell1" Border.Lines="All" Text="Periode" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell2" Border.Lines="All" Text="[TabGroup]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="17.91" AutoSize="true">
+          <TableCell Name="Cell3"/>
+          <TableCell Name="Cell4" Border.Lines="All" Text="[TabName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell5" Border.Lines="All" Text="[YearPeriod]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell6" Border.Lines="All" Text="[Org]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="225.47" Width="1047.06" Height="18.9" Guides="0">
+      <LineObject Name="Line16" Width="1048.95"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

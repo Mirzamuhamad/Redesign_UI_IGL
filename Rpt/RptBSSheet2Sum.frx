@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="10/25/2011 08:42:14" ReportInfo.Modified="07/01/2015 10:41:59" ReportInfo.CreatorVersion="1.2.47.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haoDr8rH4ydZ7FGRyxkDV8EW">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_GLRptBSheet 2012,1,2012,1,0,1,0, 0">
+        <Column Name="TypeCode" DataType="System.String"/>
+        <Column Name="TypeName" DataType="System.String"/>
+        <Column Name="GroupCode" DataType="System.String"/>
+        <Column Name="GroupName" DataType="System.String"/>
+        <Column Name="SubGroupCode" DataType="System.String"/>
+        <Column Name="SubGroupName" DataType="System.String"/>
+        <Column Name="AmountCur" DataType="System.Decimal"/>
+        <Column Name="AmountLast" DataType="System.Decimal"/>
+        <Column Name="ColumnName" DataType="System.String"/>
+        <Column Name="ColumnName2" DataType="System.String"/>
+        <Column Name="AmountMove" DataType="System.Decimal"/>
+        <Column Name="PercentMove" DataType="System.Decimal"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompanyAddr" DataType="System.String"/>
+        <Column Name="PercentCur" DataType="System.Decimal"/>
+        <Column Name="PercentLast" DataType="System.Decimal"/>
+      </TableDataSource>
+      <TableDataSource Name="Table1" Alias="DS2" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_GLRptBSheet 2012,1,2012,1,0,2,0, 0">
+        <Column Name="TypeCode" DataType="System.String"/>
+        <Column Name="TypeName" DataType="System.String"/>
+        <Column Name="GroupCode" DataType="System.String"/>
+        <Column Name="GroupName" DataType="System.String"/>
+        <Column Name="SubGroupCode" DataType="System.String"/>
+        <Column Name="SubGroupName" DataType="System.String"/>
+        <Column Name="ClassCode" Enabled="false" DataType="System.String"/>
+        <Column Name="ClassName" Enabled="false" DataType="System.String"/>
+        <Column Name="AmountCur" DataType="System.Decimal"/>
+        <Column Name="AmountLast" DataType="System.Decimal"/>
+        <Column Name="ColumnName" DataType="System.String"/>
+        <Column Name="ColumnName2" DataType="System.String"/>
+        <Column Name="AmountMove" DataType="System.Decimal"/>
+        <Column Name="PercentMove" DataType="System.Decimal"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompanyAddr" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="TotAmCurPerType" Expression="[DS.AmountCur]" Evaluator="Data2" PrintOn="GroupFooter1"/>
+    <Total Name="TotAmCurPerGrp" Expression="[DS.AmountCur]" Evaluator="Data2" PrintOn="GroupFooter2"/>
+    <Total Name="TotAmLastPerType" Expression="[DS.AmountLast]" Evaluator="Data2" PrintOn="GroupFooter1"/>
+    <Total Name="TotAmLastPerGrp" Expression="[DS.AmountLast]" Evaluator="Data2" PrintOn="GroupFooter2"/>
+    <Total Name="TotAmCurPerType2" Expression="[DS2.AmountCur]" Evaluator="Data3" PrintOn="GroupFooter4"/>
+    <Total Name="TotAmCurPerGrp2" Expression="[DS2.AmountCur]" Evaluator="Data3" PrintOn="GroupFooter5"/>
+    <Total Name="TotAmLastPerType2" Expression="[DS2.AmountLast]" Evaluator="Data3" PrintOn="GroupFooter4"/>
+    <Total Name="TotAmLastPerGrp2" Expression="[DS2.AmountLast]" Evaluator="Data3" PrintOn="GroupFooter5"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" FirstPageSource="14" OtherPagesSource="14" Guides="361.93,658.66,849.05,1046.5,848.05,0,210.35,214.9,362.32,522.45,744.35,747.35,894.77,898.9,1046.32,368.55,517.86,514.08,521.75,1045.28">
+    <PageHeaderBand Name="PageHeader1" Width="1047.06" Height="128.63" Guides="28.35,56.7,0,18.9,66.15,77.49001,105.95,128.63">
+      <TextObject Name="Text1" Left="361.93" Top="28.35" Width="296.73" Height="28.35" Anchor="Top, Bottom, Left, Right" Text="BALANCE SHEET REPORT" HorzAlign="Center" Font="Arial, 16pt, style=Bold"/>
+      <TextObject Name="Text2" Left="849.05" Width="197.45" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text18" Left="848.05" Top="66.15" Width="198.45" Height="11.34" Text="Page : [Page#] of [TotalPages#]" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text3" Top="105.95" Width="210.35" Height="22.68" Border.Lines="Top, Bottom" CanGrow="true" CanShrink="true" Text="[DS.TypeName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text8" Left="214.9" Top="105.95" Width="147.42" Height="22.68" Border.Lines="Top, Bottom" CanGrow="true" CanShrink="true" Text="[DS.ColumnName] (Rp)" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text7" Left="522.45" Top="105.95" Width="221.9" Height="22.68" Border.Lines="Top, Bottom" CanGrow="true" CanShrink="true" Text="[DS2.TypeName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text22" Left="747.35" Top="105.95" Width="147.42" Height="22.68" Border.Lines="Top, Bottom" CanGrow="true" CanShrink="true" Text="[DS2.ColumnName] (Rp)" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text23" Left="898.9" Top="105.95" Width="147.42" Height="22.68" Border.Lines="Top, Bottom" CanGrow="true" CanShrink="true" Text="[DS2.ColumnName2] (Rp)" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text9" Left="368.55" Top="105.95" Width="149.31" Height="22.68" Border.Lines="Top, Bottom" CanGrow="true" CanShrink="true" Text="[DS.ColumnName2] (Rp)" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text56" Width="538.65" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text55" Top="21.8" Width="514.08" Height="18.9" Text="[DS.CompanyAddr]" Font="Arial, 8pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="132.63" Width="1047.06" Height="18.9" Guides="0,18.9">
+      <SubreportObject Name="Subreport1" Width="514.08" Height="18.9" ReportPage="Page2"/>
+      <SubreportObject Name="Subreport2" Left="521.75" Width="523.53" Height="18.9" ReportPage="Page3"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="155.53" Width="1047.06" Height="18.9"/>
+  </ReportPage>
+  <ReportPage Name="Page2" PaperWidth="215.9" PaperHeight="355.6" LeftMargin="3" RightMargin="3" FirstPageSource="14" OtherPagesSource="14" Guides="0,274.05,210.9,214.3,362.83,366.95,521.48,159.21,363.66,215.75,362.05,367.95,518.7,160.01,362.46,217.2,359.6,216.2,360.5">
+    <GroupHeaderBand Name="GroupHeader1" Width="793.42" Height="18.9" CanGrow="true" CanShrink="true" Condition="[DS.TypeCode]" SortOrder="None">
+      <GroupHeaderBand Name="GroupHeader2" Top="22.9" Width="793.42" Height="17.01" CanGrow="true" CanShrink="true" Guides="0,17.01" Condition="[DS.GroupCode]" SortOrder="None">
+        <TextObject Name="Text4" Width="274.05" Height="17.01" CanGrow="true" CanShrink="true" Text="[DS.GroupName]" Font="Arial, 8pt, style=Bold"/>
+        <DataBand Name="Data2" Top="43.91" Width="793.42" Height="17.01" CanGrow="true" CanShrink="true" Guides="0,17.01" DataSource="Table">
+          <TextObject Name="Text6" Left="9.45" Width="210.9" Height="17.01" CanGrow="true" CanShrink="true" Text="[DS.SubGroupName]" Font="Arial, 8pt"/>
+          <TextObject Name="Text10" Left="214.3" Width="148.53" Height="17.01" Text="[DS.AmountCur]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text11" Left="366.95" Width="154.53" Height="17.01" Text="[DS.AmountLast]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+        </DataBand>
+        <GroupFooterBand Name="GroupFooter2" Top="64.92" Width="793.42" Height="17.01" Guides="0,17.01">
+          <TextObject Name="Text13" Left="160.01" Width="202.45" Height="17.01" Text="[TotAmCurPerGrp]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+          <TextObject Name="Text16" Left="366.95" Width="154.53" Height="17.01" Text="[TotAmLastPerGrp]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+          <LineObject Name="Line4" Left="217.2" Width="142.4"/>
+          <LineObject Name="Line6" Left="367.95" Width="150.75"/>
+          <TextObject Name="Text57" Width="274.05" Height="17.01" CanGrow="true" CanShrink="true" Text="Total [DS.GroupName]" Font="Arial, 8pt, style=Bold"/>
+        </GroupFooterBand>
+      </GroupHeaderBand>
+      <GroupFooterBand Name="GroupFooter1" Top="85.93" Width="793.42" Height="18.9" Guides="0,17.01">
+        <TextObject Name="Text12" Left="159.21" Width="204.45" Height="17.01" Text="[TotAmCurPerType]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text17" Left="366.95" Width="154.53" Height="17.01" Text="[TotAmLastPerType]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+        <LineObject Name="Line5" Left="216.2" Width="144.3"/>
+        <LineObject Name="Line7" Left="367.95" Width="150.75"/>
+        <TextObject Name="Text58" Width="274.05" Height="17.01" CanGrow="true" CanShrink="true" Text="Total [DS.TypeName]" Font="Arial, 8pt, style=Bold"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+  </ReportPage>
+  <ReportPage Name="Page3" Guides="0,255.15,216.45,219.57,370.99,374.04,527.54,168.25,372.59,374.86,528.36,225.65,371.51,378.75,525.47">
+    <GroupHeaderBand Name="GroupHeader4" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" Condition="[DS2.TypeCode]" SortOrder="None">
+      <GroupHeaderBand Name="GroupHeader5" Top="22.9" Width="718.2" Height="17.01" CanGrow="true" CanShrink="true" Guides="0,17.01" Condition="[DS2.GroupCode]" SortOrder="None">
+        <TextObject Name="Text19" Width="255.15" Height="17.01" CanGrow="true" CanBreak="false" Text="[DS2.GroupName]" Font="Arial, 8pt, style=Bold"/>
+        <DataBand Name="Data3" Top="43.91" Width="718.2" Height="17.01" CanGrow="true" CanShrink="true" Guides="0,17.01" DataSource="Table1">
+          <TextObject Name="Text21" Left="9.45" Width="216.45" Height="17.01" CanGrow="true" CanBreak="false" Text="[DS2.SubGroupName]" Font="Arial, 8pt"/>
+          <TextObject Name="Text24" Left="219.57" Width="151.42" Height="17.01" Text="[DS2.AmountCur]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text25" Left="374.04" Width="153.5" Height="17.01" Text="[DS2.AmountLast]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+        </DataBand>
+        <GroupFooterBand Name="GroupFooter5" Top="64.92" Width="718.2" Height="17.01" CanGrow="true" CanShrink="true" Guides="0,17.01">
+          <TextObject Name="Text28" Left="168.25" Width="204.34" Height="17.01" Text="[TotAmCurPerGrp2]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+          <TextObject Name="Text29" Left="374.86" Width="153.5" Height="17.01" Text="[TotAmLastPerGrp2]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+          <LineObject Name="Line9" Left="225.65" Width="145.86"/>
+          <LineObject Name="Line12" Left="378.75" Width="146.72"/>
+          <TextObject Name="Text59" Width="255.15" Height="17.01" CanGrow="true" CanBreak="false" Text="Total [DS2.GroupName]" Font="Arial, 8pt, style=Bold"/>
+        </GroupFooterBand>
+      </GroupHeaderBand>
+      <GroupFooterBand Name="GroupFooter4" Top="85.93" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" Guides="0,17.01">
+        <TextObject Name="Text26" Left="168.25" Width="204.34" Height="17.01" Text="[TotAmCurPerType2]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text27" Left="374.86" Width="153.5" Height="17.01" Text="[TotAmLastPerType2]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+        <LineObject Name="Line10" Left="225.65" Width="145.86"/>
+        <LineObject Name="Line13" Left="378.75" Width="146.72"/>
+        <TextObject Name="Text60" Width="255.15" Height="17.01" CanGrow="true" CanBreak="false" Text="Total [DS2.TypeName]" Font="Arial, 8pt, style=Bold"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+  </ReportPage>
+</Report>

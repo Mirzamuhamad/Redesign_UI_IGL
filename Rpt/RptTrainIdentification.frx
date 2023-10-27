@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="07/03/2014 19:07:15" ReportInfo.Modified="07/04/2014 13:04:26" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+  }
+}
+/*                                                                               
+procedure MasterData2OnAfterPrint(Sender: TfrxComponent);
+begin
+                             
+end;
+
+procedure MasterData2OnBeforePrint(Sender: TfrxComponent);
+begin
+    
+end;
+
+procedure GroupFooter1OnBeforePrint(Sender: TfrxComponent);
+begin;                
+end;
+
+Begin
+end.
+*/</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VZBd+MhtHnjm5PdZx4zPIHAY5/iQwJ9SCnnKGu7aazie">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PERptTrainIdentificationPerNmbr '20140101','20140704','','','','',0">
+        <Column Name="TransNo" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="Year" DataType="System.Int32"/>
+        <Column Name="SectionCode" DataType="System.String"/>
+        <Column Name="SectionName" DataType="System.String"/>
+        <Column Name="RemarkHd" DataType="System.String"/>
+        <Column Name="CourseTitle" DataType="System.String"/>
+        <Column Name="TrainingType" DataType="System.String"/>
+        <Column Name="TrainingPlace" DataType="System.String"/>
+        <Column Name="InstituteName" DataType="System.String"/>
+        <Column Name="Instructor" DataType="System.String"/>
+        <Column Name="EstCost" DataType="System.Decimal"/>
+        <Column Name="Participant" DataType="System.String"/>
+        <Column Name="EstMonth" DataType="System.String"/>
+        <Column Name="Sasaran" DataType="System.String"/>
+        <Column Name="Materi" DataType="System.String"/>
+        <Column Name="RemarkDt" DataType="System.String"/>
+        <Column Name="EstCostHd" DataType="System.Decimal"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="Period" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="Company" DataType="System.String"/>
+    <Parameter Name="Logo" DataType="System.String"/>
+    <Parameter Name="UserId" DataType="System.String"/>
+    <Total Name="Total" Expression="[DS.EstCost]" Evaluator="MasterData2" PrintOn="ReportSummary1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="355.6" PaperHeight="215.9" LeftMargin="5" RightMargin="5" Guides="264,1042.21,0.78,378.73,0.67,378.62,458.46,847.75,1020.6,1304.1,132.3,223.01,0,1307.72,128.5,670.95,1183.08,340.2,668.15,1181.25,1305.97,227.8,336.74,188,335.4,18.9,185.2,434.69,434.7,563.2,565.55,669.49,765.44,767.45,942.88,945,1092.4,1096.2,1304.07,219.23,227.93,336.79,668.3,1183.14,1305.99,185.22,565.49,669.44,765.45,767.24,942.63,1092.42,1088.5,1171.65,1182.99">
+    <PageHeaderBand Name="PageHeader1" Top="20" Width="1306.37" Height="170.1" Guides="72.59,97.57999,26.46,64.25999,0.1,26.56,95.27,114.17,0,18.9,47.25,66.15,132.3,151.2,149.75,168.65,149.69,168.59,170.1">
+      <TextObject Name="Memo1" Left="264" Top="72.59" Width="778.21" Height="24.99" Text="TRAINING IDENTIFICATION REPORT" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="QrlCompLineA" Left="0.78" Top="26.46" Width="377.95" Height="37.8" Text="[DS.CompAddr]" Padding="2, 1, 2, 1" AutoWidth="true" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Company" Left="0.67" Top="0.1" Width="377.95" Height="26.46" Text="[DS.CompanyName]" Padding="2, 1, 2, 1" AutoWidth="true" VertAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Tgl" Left="458.46" Top="95.27" Width="389.29" Height="18.9" Text="[DS.Period]" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text1" Left="1020.6" Width="283.5" Height="18.9" Text="Date : [Date]" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text2" Left="1020.6" Top="47.25" Width="283.5" Height="18.9" Text="Page [Page#] Of [TotalPages#]" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Memo34" Left="132.3" Top="132.3" Width="90.71" Height="18.9" Text="Date" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+      <LineObject Name="Line1" Top="132.3" Width="1307.72" Diagonal="true"/>
+      <TextObject Name="Memo32" Top="132.3" Width="128.5" Height="18.9" Text="Training No" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo5" Left="670.95" Top="132.3" Width="512.13" Height="18.9" Text="Remark" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo6" Left="340.2" Top="132.3" Width="327.95" Height="18.9" Text="Section" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo2" Left="1181.25" Top="132.3" Width="124.72" Height="18.9" Text="Total Est. Cost" Padding="2, 1, 2, 1" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo8" Left="227.8" Top="132.3" Width="108.94" Height="18.9" Text="Year" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo33" Left="188" Top="149.75" Width="147.4" Height="18.9" Text="Training Type" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo17" Left="18.9" Top="149.75" Width="166.3" Height="18.9" Text="Course Title" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo10" Left="340.2" Top="149.69" Width="94.49" Height="18.9" Text="Training Place" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo12" Left="434.7" Top="149.69" Width="128.5" Height="18.9" Text="Institute" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo13" Left="565.55" Top="149.69" Width="103.94" Height="18.9" Text="Instructor" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo15" Left="670.95" Top="149.69" Width="94.49" Height="18.9" Text="Est Cost" Padding="2, 1, 2, 1" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo16" Left="767.45" Top="149.69" Width="175.43" Height="18.9" Text="Participant" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo18" Left="945" Top="149.69" Width="147.4" Height="18.9" Text="Sasaran" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo19" Left="1096.2" Top="149.69" Width="207.87" Height="18.9" Text="Materi" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+      <LineObject Name="Line2" Top="170.1" Width="1307.72" Diagonal="true"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="210.1" Width="1306.37" Height="19.9" CanGrow="true" CanShrink="true" Guides="0,18.9" Condition="[DS.TransNo]">
+      <TextObject Name="frxDBDataset1TransNo" Width="128.5" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.TransNo]" Padding="2, 1, 2, 1" Font="Arial, 8pt"/>
+      <TextObject Name="frxDBDataset1TransDate" Left="132.3" Width="86.93" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.TransDate]" Padding="2, 1, 2, 1" Format="Date" Format.Format="d" Font="Arial, 8pt"/>
+      <TextObject Name="frxDBDataset1Year" Left="227.93" Width="108.86" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.Year]" Padding="2, 1, 2, 1" Font="Arial, 8pt"/>
+      <TextObject Name="frxDBDataset1WorkPlaceName" Left="340.2" Width="328.1" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.SectionName]" Padding="2, 1, 2, 1" Font="Arial, 8pt"/>
+      <TextObject Name="frxDBDataset1RemarkHd" Left="670.95" Width="512.19" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.RemarkHd]" Padding="2, 1, 2, 1" Font="Arial, 8pt"/>
+      <TextObject Name="frxDBDataset1EstCostHd" Left="1181.25" Width="124.74" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.EstCostHd]" Padding="2, 1, 2, 1" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 8pt"/>
+      <DataBand Name="MasterData2" Top="250" Width="1306.37" Height="19.9" CanGrow="true" CanShrink="true" Guides="1,19.9,0,18.9" DataSource="Table">
+        <TextObject Name="MInvNo" Left="340.2" Top="1" Width="94.49" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.TrainingPlace]" Padding="2, 1, 2, 1" Font="Arial, 8pt"/>
+        <TextObject Name="MDueDate" Left="188" Top="1" Width="147.4" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.TrainingType]" Padding="2, 1, 2, 1" Font="Arial, 8pt"/>
+        <TextObject Name="MQtySO" Left="18.9" Top="1" Width="166.32" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.CourseTitle]" Padding="2, 1, 2, 1" Font="Arial, 8pt"/>
+        <TextObject Name="MTSO" Left="434.7" Top="1" Width="128.5" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.InstituteName]" Padding="2, 1, 2, 1" Font="Arial, 8pt"/>
+        <TextObject Name="Memo9" Left="565.49" Top="1" Width="103.95" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.Instructor]" Padding="2, 1, 2, 1" Font="Arial, 8pt"/>
+        <TextObject Name="Memo20" Left="670.95" Width="94.5" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.EstCost]" Padding="2, 1, 2, 1" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 8pt"/>
+        <TextObject Name="Memo21" Left="767.24" Width="175.39" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.Participant]" Padding="2, 1, 2, 1" Font="Arial, 8pt"/>
+        <TextObject Name="Memo23" Left="945" Width="147.42" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.Sasaran]" Padding="2, 1, 2, 1" Font="Arial, 8pt"/>
+        <TextObject Name="Memo24" Left="1096.2" Width="207.9" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.Materi]" Padding="2, 1, 2, 1" Font="Arial, 8pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="289.9" Width="1306.37" Guides="0">
+        <LineObject Name="Line12" Width="1307.72" Diagonal="true"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="309.9" Width="1306.37" Height="22.68" Guides="1,19.9">
+      <TextObject Name="Memo3" Left="1088.5" Top="1" Width="83.15" Height="18.9" CanGrow="true" CanShrink="true" Text="Grand Total" Padding="2, 1, 2, 1" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo4" Left="1171.65" Top="1" Width="11.34" Height="18.9" CanGrow="true" CanShrink="true" Text=":" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo7" Left="1181.25" Top="1" Width="124.74" Height="18.9" CanGrow="true" CanShrink="true" Text="[Total]" Padding="2, 1, 2, 1" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="352.58" Width="1306.37" Height="22.68" Guides="1.78">
+      <LineObject Name="Line17" Top="1.78" Width="1307.72" Diagonal="true"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

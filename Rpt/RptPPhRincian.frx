@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="05/27/2011 13:38:58" ReportInfo.Modified="12/31/2014 15:05:50" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    Dim Nomor As Integer = 0
+    Dim Count As Integer = 0
+    Dim TransNmbr As String = &quot;&quot;
+    Dim QtyOut, QtyOutOrder As Double
+    
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Nomor = 0
+    End Sub
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      
+      Count = Count + 1
+     
+    End Sub
+
+    Private Sub GroupHeader2_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Count = 0
+      TransNmbr = &quot;&quot;
+    End Sub
+
+    Private Sub GroupFooter2_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+     
+    End Sub
+
+    Private Sub PageHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      If CType(Report.GetColumnValue(&quot;DS.FgForceNewPage&quot;), String) = &quot;N&quot; Then
+         GroupHeader1.StartNewPage = False
+      Else : GroupHeader1.StartNewPage = True
+      End If 
+    End Sub
+
+    Private Sub Data1_AfterPrint(ByVal sender As object, ByVal e As EventArgs)
+      
+    End Sub
+
+    Private Sub GroupHeader2_AfterData(ByVal sender As object, ByVal e As EventArgs)
+    
+    End Sub
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VZBd+MhtHnjm5PdZx4zPIHD+UVE8fLQMPPcnhNPn8ANy">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PYRptPPhRincian 'PYP/14-06/0001','','','','N',0,'Rina'">
+        <Column Name="EmpNumb" DataType="System.String"/>
+        <Column Name="EmpName" DataType="System.String"/>
+        <Column Name="JobTitle" DataType="System.String"/>
+        <Column Name="MaritalTax" DataType="System.String"/>
+        <Column Name="NPWP" DataType="System.String"/>
+        <Column Name="GroupCode" DataType="System.String"/>
+        <Column Name="GroupName" DataType="System.String"/>
+        <Column Name="ItemCode" DataType="System.String"/>
+        <Column Name="ItemName" DataType="System.String"/>
+        <Column Name="Formula" DataType="System.String"/>
+        <Column Name="Total" DataType="System.Double"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="ProcessCode" DataType="System.String"/>
+        <Column Name="FgForceNewPage" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" TopMargin="5" BottomMargin="5" FirstPageSource="1" OtherPagesSource="1" StartPageEvent="Page1_StartPage">
+    <PageHeaderBand Name="PageHeader1" Top="20" Width="718.2" Height="97.5" BeforePrintEvent="PageHeader1_BeforePrint">
+      <TextObject Name="Text8" Left="154.1" Top="74.26" Width="189" Height="15.12" Text="No. Description" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line1" Top="66.15" Width="716.31"/>
+      <LineObject Name="Line2" Top="95.5" Width="716.31"/>
+      <TextObject Name="Text14" Left="198.45" Top="37.8" Width="292.95" Height="18.9" Text="Process Salary : [DS.ProcessCode]" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text31" Width="292.95" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text13" Left="198.45" Top="18.9" Width="292.95" Height="18.9" Text="Laporan Rincian PPH" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text40" Left="567" Width="151.2" Height="13.23" Text="Date/Time : [Date]" Format="Custom" Format.Format="dd/MM/yyyy hh:mm:ss" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text42" Left="567" Top="49.25" Width="151.2" Height="13.23" Text="Page : [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text47" Left="-0.11" Top="74.26" Width="160.65" Height="15.12" Text="Group" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text54" Left="345.65" Top="74.26" Width="292.95" Height="15.12" Text="Formula" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text70" Left="642.6" Top="74.26" Width="70.15" Height="15.12" Text="Total" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="137.5" Width="718.2" Height="45.36" BeforePrintEvent="GroupHeader1_BeforePrint" Condition="[DS.EmpNumb]" SortOrder="None" ResetPageNumber="true">
+      <TextObject Name="Text22" Left="70.7" Top="8.45" Width="368.55" Height="17.01" Text="[DS.EmpNumb] - [DS.EmpName]" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text6" Top="8.45" Width="75.6" Height="17.01" Text="Employee :" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text48" Left="526.75" Top="8.45" Width="179.55" Height="17.01" Text="[DS.MaritalTax]" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text49" Left="453.6" Top="8.45" Width="85.05" Height="17.01" Text="Marital Tax   :" Format="Custom" Format.Format="dd MMM yy" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text50" Left="526.75" Top="27.35" Width="179.55" Height="17.01" Text="[DS.NPWP]" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text51" Left="453.6" Top="27.35" Width="85.05" Height="17.01" Text="Have NPWP  :" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text73" Left="70.7" Top="27.35" Width="368.55" Height="17.01" Text="[DS.JobTitle]" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text74" Top="27.35" Width="66.15" Height="17.01" Text="Job Title   :" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <DataBand Name="Data1" Top="202.86" Width="718.2" Height="15.12" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" AfterPrintEvent="Data1_AfterPrint" AfterDataEvent="Data1_AfterData" DataSource="Table">
+        <TextObject Name="Text15" Left="154.1" Width="189" Height="15.12" CanGrow="true" Text="[DS.ItemCode] - [DS.ItemName]" VertAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text9" Left="-0.11" Width="153.2" Height="15.12" Text="[DS.GroupCode]. [DS.GroupName]" VertAlign="Center" Font="Arial, 8pt" Duplicates="Hide"/>
+        <TextObject Name="Text59" Left="345.65" Width="292.95" Height="15.12" CanGrow="true" Text="[DS.Formula]" VertAlign="Center" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text62" Left="642.6" Width="70.15" Height="15.12" Text="[DS.Total]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="237.98" Width="718.2" Height="0.89">
+        <LineObject Name="Line3" Top="0.89" Width="716.31"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="258.87" Width="718.2" Height="18.9">
+      <LineObject Name="Line4" Width="716.31"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

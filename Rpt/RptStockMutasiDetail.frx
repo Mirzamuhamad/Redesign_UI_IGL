@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="05/13/2011 14:26:03" ReportInfo.Modified="08/13/2015 10:24:07" ReportInfo.CreatorVersion="1.2.47.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VZBd+MhtHnjm5PdZx4zPIHAsqNTv5G5krXuNGHn5evk2">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_STRptStockMutasi '20110501', '20110601','','','',1,'',0">
+        <Column Name="ProductCode" DataType="System.String"/>
+        <Column Name="ProductName" DataType="System.String"/>
+        <Column Name="Unit" DataType="System.String"/>
+        <Column Name="Qty" DataType="System.Decimal"/>
+        <Column Name="ProductCategory" DataType="System.String"/>
+        <Column Name="GroupCode" DataType="System.String"/>
+        <Column Name="GroupName" DataType="System.String"/>
+        <Column Name="Grp" DataType="System.String"/>
+        <Column Name="GroupBy" DataType="System.String"/>
+        <Column Name="Type" DataType="System.String"/>
+        <Column Name="RptDate" DataType="System.String"/>
+        <Column Name="FgReport" DataType="System.Int32"/>
+        <Column Name="UserId" DataType="System.String"/>
+        <Column Name="FgForce" DataType="System.Int32"/>
+        <Column Name="WLocation" DataType="System.String"/>
+        <Column Name="CompName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="279.4" PaperHeight="215.9">
+    <PageHeaderBand Name="PageHeader1" Top="20" Width="980.53" Height="86.94">
+      <TextObject Name="Text5" Left="878.85" Top="75.6" Width="170.1" Height="11.34" Text="Page : [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text2" Left="372.33" Top="57.98" Width="302.4" Height="13.23" Text="[DS.RptDate]" Format="Custom" Format.Format="dd MMMM yyyy" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text1" Left="372.33" Top="40.08" Width="302.4" Height="15.12" Text="[DS.ProductCategory]" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text6" Left="372.33" Top="15.73" Width="302.4" Height="22.68" Text="Stock Mutasi Report" HorzAlign="Center" Font="Arial, 14pt"/>
+      <TextObject Name="Text4" Left="878.85" Width="170.1" Height="11.34" Text="Date/Time : [Date]" Format="Custom" Format.Format="dd-MM-yyyy hh:mm:ss" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text8" Width="330.75" Height="18.9" Text="[DS.CompName]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text10" Top="18.9" Width="330.75" Height="47.25" Text="[DS.CompAddr]" Font="Arial, 7pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="126.94" Width="980.53" Height="105.93" Border.Lines="All" CanGrow="true" CanShrink="true">
+      <MatrixObject Name="Matrix1" Width="420.01" Height="48" FixedRows="2" FixedColumns="6" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="[DS.GroupBy]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.Type]" Sort="None" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.GroupCode]" Totals="false"/>
+          <Header Expression="[DS.GroupName]" Totals="false"/>
+          <Header Expression="[DS.ProductCode]" Totals="false"/>
+          <Header Expression="[DS.ProductName]" Totals="false"/>
+          <Header Expression="[DS.Unit]" Totals="false"/>
+          <Header Expression="[DS.WLocation]" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.Qty]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="63.66" AutoSize="true"/>
+        <TableColumn Name="Column2" Width="65.81" AutoSize="true"/>
+        <TableColumn Name="Column3" Width="71.14" AutoSize="true"/>
+        <TableColumn Name="Column4" Width="73.28" AutoSize="true"/>
+        <TableColumn Name="Column5" Width="30.55" AutoSize="true"/>
+        <TableColumn Name="Column6" Width="59.93" AutoSize="true"/>
+        <TableColumn Name="Column7" Width="55.64" AutoSize="true"/>
+        <TableRow Name="Row1" Height="16" AutoSize="true">
+          <TableCell Name="Cell1" Border.Lines="All" Text="Group Code" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell2" Border.Lines="All" Text="Group Name" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell7" Border.Lines="All" Text="Product Code" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell13" Border.Lines="All" Text="Product Name" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell15" Border.Lines="All" Text="Unit" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell17" Border.Lines="All" Text="Warehouse" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell27" Border.Lines="All" Text="[GroupBy]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="16" AutoSize="true">
+          <TableCell Name="Cell3"/>
+          <TableCell Name="Cell4"/>
+          <TableCell Name="Cell8"/>
+          <TableCell Name="Cell14"/>
+          <TableCell Name="Cell16"/>
+          <TableCell Name="Cell18"/>
+          <TableCell Name="Cell28" Border.Lines="All" Text="[Type]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="16" AutoSize="true">
+          <TableCell Name="Cell21" Border.Lines="Left, Right, Bottom" Text="[GroupCode]" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell22" Border.Lines="All" Text="[GroupName]" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell23" Border.Lines="Left, Right, Bottom" Text="[ProductCode]" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell24" Border.Lines="All" Text="[ProductName]" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell25" Border.Lines="Left, Right, Bottom" Text="[Unit]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell26" Border.Lines="All" Text="[WLocation]" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell29" Border.Lines="All" Text="[Qty]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="252.87" Width="980.53" Height="15.12">
+      <TextObject Name="Text7" Width="94.5" Height="15.12" Text="Stock Control" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line1" Width="1047.06"/>
+      <TextObject Name="Text3" Left="954.45" Width="94.5" Height="15.12" Text="[DS.UserId]" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

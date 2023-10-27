@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="04/13/2011 08:29:02" ReportInfo.Modified="04/02/2019 10:41:17" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    Dim No As Integer    
+  
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+
+    Private Sub Data1_AfterPrint(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+    
+    Private Sub PageFooter1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)      
+    End Sub
+
+    Private Sub Matrix2_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLGyiz5qWMjsA99V/W+nNq1W3g2zii+WzFvwn5S/yO9ty4j5cNSou1n2RnV42VCogqhWDGBfTi9Ny1OneZGYjfinOHGpdCxzvpie7qu5vUxEx4MCFZZfHfGnHRCgUFUBKbmMlG5NqLQAbah7tE2SUt7RKllye5+J7CnNviRFnBuv8">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_GLRptPLCostCtr 2014, 12, 2014, 12, '', '', '', '', 0, 0, 'N', 'N', ''">
+        <Column Name="Column" Enabled="false" DataType="System.Int32" Calculated="true" Expression=""/>
+        <Column Name="ItemNo" DataType="System.Int32"/>
+        <Column Name="ItemCode" DataType="System.String"/>
+        <Column Name="ItemName" DataType="System.String"/>
+        <Column Name="CostCtr" DataType="System.String"/>
+        <Column Name="CostCtrName" DataType="System.String"/>
+        <Column Name="FgDetail" DataType="System.String"/>
+        <Column Name="Total" DataType="System.Decimal"/>
+        <Column Name="Percentage" DataType="System.Decimal"/>
+        <Column Name="Kolom" DataType="System.String"/>
+        <Column Name="Kolom2" DataType="System.String"/>
+        <Column Name="Strperiod" DataType="System.String"/>
+        <Column Name="CompName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="400" PaperHeight="210" MirrorMargins="true" FirstPageSource="14" OtherPagesSource="14" Guides="-0.55,24.8,31.8,249.15,-0.1,741.54,127.39,503.5,11.45,115.4,116.05,125.5,0,741.64,115.95,125.4,0.45,740.55,1.45,417.25,0.8,435.5,-2.25,737.85,127.3,306.85,12.45,116.4,20.45,116.46,229.45,21.45,117.46,21.9,117.85,12.47,125.87,306.94,266.6,417.8,410.8,505.3,507.3,592.35,622.7,767.45,558.55,738.1,559.1,738.65,26.46,281.61,25.33,613.25,758.02,412.96,460.21,26.35,272.05,542.08,627.13,498.85,546.1,466.05,522.75,192.8,300.75,504.35,741.43,494.4,738.21,177,313.46,466.4,602.86,612.25,483.4,591.35,41.8,43.25,85.05,264.6,28.35">
+    <ColumnHeaderBand Name="ColumnHeader1" Width="1436.4" Height="114.85" BeforePrintEvent="ColumnHeader1_BeforePrint" Guides="354.27,373.17,353.2,140.85,159.75,375.85,121.05,139.95,68.15,87.05,2,20.9,24.9,62.7,378,161.2,180.1,239.8,160.2,179.1,90.5,109.4,120.85,139.75,247.7,266.6,246.7,265.6,285.5,284.5,304.4,303.4,305.4,324.3,323.3,325.5,344.4,325.3,344.2,353.65,372.55,354.1,373,9.45,18.9,37.8,47.25">
+      <TextObject Name="Text5" Left="0.45" Top="68.15" Width="1423.5" Height="18.9" Text="PROFIT LOSS COST CENTER" HorzAlign="Center" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text1" Left="1.45" Top="2" Width="415.8" Height="18.9" Text="[DS.CompName]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text72" Left="0.8" Top="24.9" Width="434.7" Height="37.8" Text="[DS.CompAddr]" Font="Arial, 9pt"/>
+      <TextObject Name="Text91" Left="1248.4" Top="9.45" Width="179.55" Height="9.45" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text35" Left="1248.95" Top="37.8" Width="179.55" Height="9.45" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text92" Top="87.05" Width="1423.5" Height="18.9" Text="[DS.Strperiod]" HorzAlign="Center" Font="Arial, 11pt, style=Bold"/>
+    </ColumnHeaderBand>
+    <DataBand Name="Data1" Top="118.7" Width="1436.4" Height="58.68" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" AfterPrintEvent="Data1_AfterPrint" AfterDataEvent="Data1_AfterData" Guides="2,20.9,1.2,20.1,17.9">
+      <MatrixObject Name="Matrix2" Width="298.68" Height="58.68" BeforePrintEvent="Matrix2_BeforePrint" FixedRows="2" FixedColumns="1" AutoSize="false" CellsSideBySide="true" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="[DS.CostCtrName]" Sort="None" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.ItemName]" Sort="None" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.Total]"/>
+          <Cell Expression="[DS.Percentage]"/>
+        </MatrixCells>
+        <TableColumn Name="Column4" Width="160.34"/>
+        <TableColumn Name="Column5" Width="88.83"/>
+        <TableColumn Name="Column6" Width="49.51"/>
+        <TableRow Name="Row4" Height="19.56" AutoSize="true">
+          <TableCell Name="Cell10" Border.Lines="All" Text="D E S C R I P T I O N" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell11" Border.Lines="All" Text="[CostCtrName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold" ColSpan="2"/>
+          <TableCell Name="Cell16"/>
+        </TableRow>
+        <TableRow Name="Row5" Height="19.56">
+          <TableCell Name="Cell12"/>
+          <TableCell Name="Cell13" Border.Lines="All" Text="Amount" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+          <TableCell Name="Cell17" Border.Lines="All" Text="%" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row6" Height="19.56" AutoSize="true">
+          <TableCell Name="Cell14" Border.Lines="All" Text="[ItemName]" VertAlign="Center" Font="Arial, 7pt">
+            <Highlight>
+              <Condition Expression="Substring([DS.ItemName],0,13)= &quot;LABA ( RUGI )&quot;" TextFill.Color="Black" Font="Arial, 9.75pt, style=Bold" ApplyTextFill="false" ApplyFont="true"/>
+              <Condition Expression="Substring([DS.ItemName],0,3)= &quot;   &quot;" TextFill.Color="Black" Font="Arial, 9.75pt, style=Bold, Italic" ApplyTextFill="false" ApplyFont="true"/>
+            </Highlight>
+          </TableCell>
+          <TableCell Name="Cell15" Border.Lines="All" Text="[Total]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell18" Border.Lines="All" Text="[Percentage]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="181.22" Width="1436.4" Height="12.45" CanGrow="true" BeforePrintEvent="PageFooter1_BeforePrint" Guides="48.9,62.35,7,-452.16,6.45,-452.71,150.75,157.2,166.65,128.52,-453.26,-453.61,48.76,62.21,89.5,102.95,116.4,117.85,131.3,132.75,146.2,89.05,102.5,103.95,117.4,118.4,131.85,132.3,145.75,9.45,-449.71">
+      <LineObject Name="Line17" Width="1424.04"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

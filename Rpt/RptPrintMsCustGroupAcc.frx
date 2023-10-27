@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="11/04/2013 10:48:56" ReportInfo.Modified="04/06/2016 16:21:41" ReportInfo.CreatorVersion="2015.3.12.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+      Text1.Text = CType(Report.GetColumnValue(&quot;DS.UserID&quot;), String)
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haoU2tgcNyfVUB5szc9SQ+Jd">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="exec S_MsCustGroupAccRpt 'admin'">
+        <Column Name="UserID" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompanyAddr" DataType="System.String"/>
+        <Column Name="AccDisc" DataType="System.String"/>
+        <Column Name="AccDiscName" DataType="System.String"/>
+        <Column Name="CustGroupCode" DataType="System.String"/>
+        <Column Name="CustGroupName" DataType="System.String"/>
+        <Column Name="CustGroupType" DataType="System.String"/>
+        <Column Name="CurrCode" DataType="System.String"/>
+        <Column Name="AccAR" DataType="System.String"/>
+        <Column Name="AccARName" DataType="System.String"/>
+        <Column Name="AccSJUnInvoice" DataType="System.String"/>
+        <Column Name="AccSJUnInvoiceName" DataType="System.String"/>
+        <Column Name="AccOther" DataType="System.String"/>
+        <Column Name="AccOtherName" DataType="System.String"/>
+        <Column Name="AccCreditAR" DataType="System.String"/>
+        <Column Name="AccCreditARName" DataType="System.String"/>
+        <Column Name="AccDP" DataType="System.String"/>
+        <Column Name="AccDPName" DataType="System.String"/>
+        <Column Name="AccDeposit" DataType="System.String"/>
+        <Column Name="AccDepositName" DataType="System.String"/>
+        <Column Name="AccPPN" DataType="System.String"/>
+        <Column Name="AccPPNName" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="420.12" PaperHeight="296.93" RawPaperSize="8" LeftMargin="3" RightMargin="3" FirstPageSource="15" OtherPagesSource="15" Guides="0,151.2,217.35,274.05,756,1077.3,37.8,434.7,595.35,916.65,1559.25,1398.6,1237.95">
+    <PageHeaderBand Name="PageHeader1" Width="1565.37" Height="132.3" Guides="132.3,103.95">
+      <TextObject Name="Text56" Left="2" Top="2" Width="538.65" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text55" Left="2" Top="27.35" Width="480.44" Height="18.9" Text="[DS.CompanyAddr]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text57" Left="1379.7" Top="27.35" Width="179.55" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text15" Top="50.7" Width="1559.25" Height="28.35" Text="Customer Group Account" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text35" Left="1379.7" Top="73.7" Width="179.55" Height="11.34" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text3" Top="103.95" Width="37.8" Height="28.35" Border.Lines="All" Text="Cust. Group" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text7" Left="37.8" Top="103.95" Width="113.4" Height="28.35" Border.Lines="All" Text="Cust. Group Name" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text18" Left="151.2" Top="103.95" Width="66.15" Height="28.35" Border.Lines="All" Text="Cust. Group Type" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text58" Left="217.35" Top="103.95" Width="56.7" Height="28.35" Border.Lines="All" Text="Currency" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text60" Left="274.05" Top="103.95" Width="160.65" Height="28.35" Border.Lines="All" Text="Acc AR" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text62" Left="434.7" Top="103.95" Width="160.65" Height="28.35" Border.Lines="All" Text="Acc SJ UnInvoice" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text64" Left="595.35" Top="103.95" Width="160.65" Height="28.35" Border.Lines="All" Text="Acc Disc" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text66" Left="756" Top="103.95" Width="160.65" Height="28.35" Border.Lines="All" Text="Acc Other" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text68" Left="916.65" Top="103.95" Width="160.65" Height="28.35" Border.Lines="All" Text="Acc Credit AR" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text70" Left="1077.3" Top="103.95" Width="160.65" Height="28.35" Border.Lines="All" Text="Acc DP" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text72" Left="1237.95" Top="103.95" Width="160.65" Height="28.35" Border.Lines="All" Text="Acc Deposit" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text73" Left="1398.6" Top="103.95" Width="160.65" Height="28.35" Border.Lines="All" Text="Acc PPN" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="136.3" Width="1565.37" Height="18.9" CanGrow="true" AfterPrintEvent="Data1_AfterPrint" AfterDataEvent="Data1_AfterData" DataSource="Table">
+      <TextObject Name="Text2" Width="37.8" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.CustGroupCode]" Duplicates="Hide" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text6" Left="37.8" Width="113.4" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.CustGroupName]" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text19" Left="151.2" Width="66.15" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.CustGroupType]" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text59" Left="217.35" Width="56.7" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.CurrCode]" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text61" Left="274.05" Width="160.65" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.AccAR] [DS.AccARName]" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text63" Left="434.7" Width="160.65" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.AccSJUnInvoice] [DS.AccSJUnInvoiceName]" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text65" Left="595.35" Width="160.65" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.AccDisc] [DS.AccDiscName]" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text67" Left="756" Width="160.65" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.AccOther] [DS.AccOtherName]" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text69" Left="916.65" Width="160.65" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.AccCreditAR] [DS.AccCreditARName]" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text71" Left="1077.3" Width="160.65" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.AccDP] [DS.AccDPName]" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text74" Left="1237.95" Width="160.65" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.AccDeposit] [DS.AccDepositName]" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text75" Left="1398.6" Width="160.65" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.AccPPN] [DS.AccPPNName]" VertAlign="Center" Font="Arial, 7pt"/>
+      <LineObject Name="Line21" Left="37.8" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+      <LineObject Name="Line22" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+      <LineObject Name="Line23" Left="151.2" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+      <LineObject Name="Line24" Left="217.35" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+      <LineObject Name="Line25" Left="274.05" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+      <LineObject Name="Line26" Left="434.7" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+      <LineObject Name="Line27" Left="595.35" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+      <LineObject Name="Line28" Left="756" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+      <LineObject Name="Line29" Left="916.65" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+      <LineObject Name="Line30" Left="1077.3" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+      <LineObject Name="Line31" Left="1237.95" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+      <LineObject Name="Line32" Left="1398.6" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+      <LineObject Name="Line33" Left="1559.25" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+      <ChildBand Name="Child1" Top="159.2" Width="1565.37">
+        <LineObject Name="Line2" Width="1559.25"/>
+      </ChildBand>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="163.2" Width="1565.37" Height="19.35" BeforePrintEvent="PageFooter1_BeforePrint">
+      <LineObject Name="Line1" Width="1559.25"/>
+      <TextObject Name="Text1" Left="1237.95" Top="0.45" Width="321.3" Height="18.9" Text="[DS.UserID]" HorzAlign="Right" Font="Arial, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

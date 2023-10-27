@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="03/27/2014 09:48:18" ReportInfo.Modified="03/28/2015 17:27:47" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    
+     
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLPTSdeCJrg6KWDYKTlGfzr1qR/xMSYaWY9pQYBmYu3vvFGXWApqvLl4HPbv5NyJpzQUWe/s1jdn3q9o9mjUXJsyRBnCR9uBnTKmtivjsYq3KGGvVt9WWqV+NpHbsbV83UwWpzDGu4ihgjbSlEoXKRoJza6ZnmxndW6HZA4uyzZvG">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_TrRDFormulaUjiForm '''FUJ/15-03/0002'''&#13;&#10;&#13;&#10;">
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="TabName" DataType="System.String"/>
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="ItemNo" DataType="System.String"/>
+        <Column Name="Waktu" DataType="System.String"/>
+        <Column Name="Criteria" DataType="System.String"/>
+        <Column Name="CriteriaName" DataType="System.String"/>
+        <Column Name="Standart" DataType="System.String"/>
+        <Column Name="Samplename" DataType="System.String"/>
+        <Column Name="Customername" DataType="System.String"/>
+        <Column Name="Startdate" DataType="System.DateTime"/>
+        <Column Name="Enddate" DataType="System.DateTime"/>
+        <Column Name="ISODOCNO" DataType="System.String"/>
+        <Column Name="Sample" DataType="System.String"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="UserType" DataType="System.String"/>
+        <Column Name="ParamTrial" DataType="System.String"/>
+        <Column Name="ParamTrialName" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="279.4" PaperHeight="215.9" FirstPageSource="14" OtherPagesSource="14" Guides="9.6">
+    <ReportTitleBand Name="ReportTitle1" Width="980.53"/>
+    <PageHeaderBand Name="PageHeader1" Top="4" Width="980.53" Height="193.08">
+      <TextObject Name="Text1" Left="9.45" Width="264.6" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text2" Left="9.45" Top="18.9" Width="264.6" Height="37.8" Text="[DS.CompAddr]" Font="Arial, 8pt"/>
+      <TextObject Name="Text3" Left="4" Top="60.7" Width="973.35" Height="18.9" Text="FORMULIR UJI STABILITAS DAN KOMPABILITAS" HorzAlign="Center" VertAlign="Center" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text15" Left="812.7" Width="170.1" Height="18.9" Text="Date/Time :[Date]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text5" Left="850.5" Top="18.9" Width="132.3" Height="18.9" Text="[PageN] Of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text4" Left="5.45" Top="103.95" Width="151.2" Height="18.9" Text="Nama Sample " Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text16" Left="5.45" Top="122.85" Width="151.2" Height="18.9" Text="Kode Sample " Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text17" Left="5.45" Top="141.75" Width="151.2" Height="18.9" Text="Customer" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text6" Left="156.65" Top="103.95" Width="18.9" Height="18.9" Text=":" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text19" Left="156.65" Top="122.85" Width="18.9" Height="18.9" Text=":" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text20" Left="156.65" Top="141.75" Width="18.9" Height="18.9" Text=":" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text7" Left="175.55" Top="103.95" Width="236.25" Height="18.9" Text="[DS.Samplename]"/>
+      <TextObject Name="Text22" Left="175.55" Top="122.85" Width="236.25" Height="18.9" Text="[DS.Sample]"/>
+      <TextObject Name="Text23" Left="175.55" Top="141.75" Width="236.25" Height="18.9" Text="[DS.Customername]"/>
+      <TextObject Name="Text18" Left="5.45" Top="160.65" Width="151.2" Height="18.9" Text="Tanggal Pembuatan" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text21" Left="156.65" Top="160.65" Width="18.9" Height="18.9" Text=":" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text24" Left="175.55" Top="160.65" Width="85.05" Height="18.9" Text="[DS.Startdate] " Format="Custom" Format.Format="dd/MM/yyyy"/>
+      <TextObject Name="Text25" Left="279.5" Top="160.65" Width="103.95" Height="18.9" Text="[DS.Enddate] " Format="Custom" Format.Format="dd/MM/yyyy"/>
+      <TextObject Name="Text26" Left="260.6" Top="160.65" Width="18.9" Height="18.9" Text="-" VertAlign="Center" Font="Arial, 12pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="201.08" Width="980.53" Height="89.86" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" AfterPrintEvent="Data1_AfterPrint" Guides="0">
+      <MatrixObject Name="Matrix2" Left="9.6" Width="176.84" Height="78.24" FixedRows="3" FixedColumns="1" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="[DS.ParamTrialName]" Totals="false"/>
+          <Header Expression="[DS.CriteriaName]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.TabName]" Sort="None" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.Waktu]" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.Standart]"/>
+        </MatrixCells>
+        <TableColumn Name="Column3" Width="55.99" AutoSize="true"/>
+        <TableColumn Name="Column4" Width="120.85" AutoSize="true"/>
+        <TableRow Name="Row4" Height="19.56" AutoSize="true">
+          <TableCell Name="Cell7" Border.Lines="All" Text="Waktu" HorzAlign="Center" VertAlign="Center" RowSpan="3"/>
+          <TableCell Name="Cell8" Border.Lines="All" Text="[ParamTrialName]" HorzAlign="Center" VertAlign="Center"/>
+        </TableRow>
+        <TableRow Name="Row5" Height="19.56" AutoSize="true">
+          <TableCell Name="Cell9"/>
+          <TableCell Name="Cell10" Border.Lines="All" Text="[CriteriaName]" HorzAlign="Center" VertAlign="Center"/>
+        </TableRow>
+        <TableRow Name="Row6" Height="19.56" AutoSize="true">
+          <TableCell Name="Cell15"/>
+          <TableCell Name="Cell16" Border.Lines="All" Text="[TabName]" HorzAlign="Center" VertAlign="Center"/>
+        </TableRow>
+        <TableRow Name="Row7" Height="19.56" AutoSize="true">
+          <TableCell Name="Cell20" Border.Lines="All" Text="[Waktu]" HorzAlign="Center" VertAlign="Center"/>
+          <TableCell Name="Cell21" Border.Lines="All" Text="[Standart]" Format="Custom" Format.Format="#,##.##" HorzAlign="Right" VertAlign="Center"/>
+        </TableRow>
+      </MatrixObject>
+      <MatrixObject Name="Matrix1" Left="796.8" Width="160.06" Height="58.68" Visible="false" Border.Lines="All" FixedRows="2" FixedColumns="1" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="[DS.CriteriaName]" Totals="false"/>
+          <Header Expression="[DS.TabName]" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.Waktu]" Sort="None" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.Standart]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="55.99" AutoSize="true"/>
+        <TableColumn Name="Column2" Width="104.07" AutoSize="true"/>
+        <TableRow Name="Row1" Height="19.56" AutoSize="true">
+          <TableCell Name="Cell1" Text="Waktu" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell2" Text="[CriteriaName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="19.56" AutoSize="true">
+          <TableCell Name="Cell3"/>
+          <TableCell Name="Cell4" Text="[TabName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="19.56" AutoSize="true">
+          <TableCell Name="Cell5" Text="[Waktu]" HorzAlign="Center" VertAlign="Center"/>
+          <TableCell Name="Cell6" Text="[Standart]" HorzAlign="Right" VertAlign="Center"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="294.94" Width="980.53" Height="189">
+      <TextObject Name="Text9" Left="110.95" Top="3" Width="217.35" Height="56.7" Text="[DS.Remark]" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text27" Left="7" Top="3" Width="85.05" Height="18.9" Text="Katerangan " Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text28" Left="92.05" Top="3" Width="18.9" Height="18.9" Text=":" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text32" Left="92.05" Top="75.6" Width="94.5" Height="18.9" Text="Dibuat Oleh," HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text33" Left="281.05" Top="75.6" Width="132.3" Height="18.9" Text="Diperiksa Oleh," HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text34" Left="488.95" Top="75.6" Width="151.2" Height="18.9" Text="Disetujui Oleh," HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text35" Left="696.85" Top="75.6" Width="160.65" Height="18.9" Text="Mengetahui Oleh," HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text10" Left="92.05" Top="170.1" Width="94.5" Height="18.9" Text="(Adm.R&amp;D)" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text29" Left="299.95" Top="170.1" Width="94.5" Height="18.9" Text="(Formulator)" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text30" Left="507.85" Top="170.1" Width="113.4" Height="18.9" Text="(Manager R&amp;D)" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text31" Left="720.2" Top="170.1" Width="122.85" Height="18.9" Text="(Marketing)" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="487.94" Width="980.53" Height="18.9">
+      <TextObject Name="Text8" Left="812.7" Width="170.1" Height="18.9" Text="ISODOC : [DS.ISODOCNO]" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

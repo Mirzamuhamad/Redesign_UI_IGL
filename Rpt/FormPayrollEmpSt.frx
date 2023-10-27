@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="02/25/2014 13:15:45" ReportInfo.Modified="02/25/2014 14:11:06" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+      Text12.Text = CType(Report.GetColumnValue(&quot;DS.UserID&quot;), String) 
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haojpcxixRhedCmnr5Cad2mP">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_MsPayrollEmpStPrint 'admin'">
+        <Column Name="Payroll_Code" DataType="System.String"/>
+        <Column Name="Payroll_Name" DataType="System.String"/>
+        <Column Name="StartDate" DataType="System.DateTime"/>
+        <Column Name="EndDate" DataType="System.DateTime"/>
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="Amount" DataType="System.Decimal"/>
+        <Column Name="Formula_Code" DataType="System.String"/>
+        <Column Name="Formula_Name" DataType="System.String"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="CompName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="UserID" DataType="System.String"/>
+        <Column Name="EmpStatus" DataType="System.String"/>
+        <Column Name="EmpStatusName" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="TotalAmount" Expression="[DS.Amount]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+  </Dictionary>
+  <ReportPage Name="Page1">
+    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="141.75">
+      <ShapeObject Name="Shape1" Top="113.4" Width="720.09" Height="28.35"/>
+      <TextObject Name="Text16" Top="4" Width="268.38" Height="25.35" Text="[DS.CompName]" Font="Arial Narrow, 12pt, style=Bold"/>
+      <TextObject Name="Text17" Left="0.13" Top="28.8" Width="381.78" Height="37.8" Text="[DS.CompAddr]" Font="Arial Narrow, 10pt, style=Bold"/>
+      <TextObject Name="Text57" Left="537.65" Width="179.55" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text35" Left="537.65" Top="46.35" Width="179.55" Height="11.34" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text7" Left="406.35" Top="118.4" Width="94.5" Height="17.01" Text="Amount" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text11" Left="226.8" Top="75.6" Width="226.8" Height="18.9" Text="Payroll - Employee Status" HorzAlign="Center" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text59" Left="506.3" Top="118.4" Width="211.68" Height="17.01" Text="Formula" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text60" Left="311.85" Top="118.4" Width="94.5" Height="17.01" Text="Start Date" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text61" Left="96.95" Top="118.4" Width="211.68" Height="17.01" Text="Emp. Status Name" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text62" Top="118.4" Width="94.5" Height="17.01" Text="Emp. St. Code" Font="Arial, 8pt, style=Bold"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="145.75" Width="718.2" Height="20.9" Condition="[DS.Payroll_Code]">
+      <TextObject Name="Text1" Left="66.15" Width="330.75" Height="18.9" Text="[DS.Payroll_Code] - [DS.Payroll_Name]" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text2" Width="66.15" Height="18.9" Text="Payroll : " VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <LineObject Name="Line3" Top="20.9" Width="718.2"/>
+      <GroupHeaderBand Name="GroupHeader2" Top="170.65" Width="718.2" Condition="[DS.Currency]">
+        <DataBand Name="Data1" Top="174.65" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" AfterDataEvent="Data1_AfterData" DataSource="Table">
+          <TextObject Name="Text3" Left="0.11" Top="1.89" Width="94.5" Height="15.12" Text="[DS.EmpStatus]" Font="Arial, 8pt"/>
+          <TextObject Name="Text4" Left="97.06" Top="1.89" Width="211.68" Height="15.12" CanGrow="true" CanShrink="true" Text="[DS.EmpStatusName]" Font="Arial, 8pt"/>
+          <TextObject Name="Text5" Left="311.41" Top="1.89" Width="94.5" Height="15.12" Text="[DS.StartDate]" Format="Custom" Format.Format="dd MMMM yyyy" Font="Arial, 8pt"/>
+          <TextObject Name="Text6" Left="408.36" Top="1.89" Width="93.5" Height="15.12" Text="[DS.Amount]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text8" Left="506.41" Top="1.89" Width="211.68" Height="15.12" CanGrow="true" CanShrink="true" Text="[DS.Formula_Name]" Font="Arial, 8pt"/>
+        </DataBand>
+        <GroupFooterBand Name="GroupFooter2" Top="197.55" Width="718.2" Height="22.68">
+          <TextObject Name="Text9" Left="346.65" Top="1" Width="56.7" Height="18.9" Text="[DS.Currency]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+          <TextObject Name="Text10" Left="408.36" Top="1" Width="94.5" Height="18.9" Text="[TotalAmount]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+          <LineObject Name="Line4" Width="718.2"/>
+          <LineObject Name="Line5" Top="20.9" Width="718.2"/>
+        </GroupFooterBand>
+      </GroupHeaderBand>
+      <GroupFooterBand Name="GroupFooter1" Top="224.23" Width="718.2"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="228.23" Width="718.2" Height="18.9">
+      <TextObject Name="Text12" Left="500.85" Width="217.35" Height="18.9" Text="[DS.UserID]" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

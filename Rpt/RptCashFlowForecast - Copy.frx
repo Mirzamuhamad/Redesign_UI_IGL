@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="04/13/2011 08:29:02" ReportInfo.Modified="04/10/2015 20:04:21" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript   
+    
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+
+    Private Sub Data1_AfterPrint(ByVal sender As object, ByVal e As EventArgs)
+      
+    End Sub
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+           
+    End Sub
+
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+
+    End Sub
+
+    Private Sub GroupHeader2_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+
+    End Sub
+
+    Private Sub ReportSummary1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+    
+    End Sub
+
+    Private Sub GroupFooter1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)                  
+    End Sub
+
+    Private Sub GroupFooter2_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+
+    Private Sub GroupFooter1_BeforeLayout(ByVal sender As object, ByVal e As EventArgs)      
+    End Sub
+
+    Private Sub GroupFooter1_AfterPrint(ByVal sender As object, ByVal e As EventArgs)      
+    End Sub
+
+    Private Sub GroupFooter1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+     
+    End Sub
+
+    Private Sub PageFooter1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)      
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haqVqGGxEuzMfDRhRVfc2EiA">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_GLRptCashFlowForecast 2015,1,'',0,0">
+        <Column Name="Column" Enabled="false" DataType="System.Int32" Calculated="true" Expression=""/>
+        <Column Name="GroupCode" DataType="System.String"/>
+        <Column Name="GroupName" DataType="System.String"/>
+        <Column Name="SubGroupCode" DataType="System.String"/>
+        <Column Name="SubGroupName" DataType="System.String"/>
+        <Column Name="Code" DataType="System.String"/>
+        <Column Name="Description" DataType="System.String"/>
+        <Column Name="Total01" DataType="System.Double"/>
+        <Column Name="Total02" DataType="System.Double"/>
+        <Column Name="Total03" DataType="System.Double"/>
+        <Column Name="Total04" DataType="System.Double"/>
+        <Column Name="Total05" DataType="System.Double"/>
+        <Column Name="Total06" DataType="System.Double"/>
+        <Column Name="Total07" DataType="System.Double"/>
+        <Column Name="Total08" DataType="System.Double"/>
+        <Column Name="Total09" DataType="System.Double"/>
+        <Column Name="Total10" DataType="System.Double"/>
+        <Column Name="Total11" DataType="System.Double"/>
+        <Column Name="Total12" DataType="System.Double"/>
+        <Column Name="Total13" DataType="System.Double"/>
+        <Column Name="Total14" DataType="System.Double"/>
+        <Column Name="Total15" DataType="System.Double"/>
+        <Column Name="Total16" DataType="System.Double"/>
+        <Column Name="Total17" DataType="System.Double"/>
+        <Column Name="Total18" DataType="System.Double"/>
+        <Column Name="Total19" DataType="System.Double"/>
+        <Column Name="Total20" DataType="System.Double"/>
+        <Column Name="Total21" DataType="System.Double"/>
+        <Column Name="Total22" DataType="System.Double"/>
+        <Column Name="Total23" DataType="System.Double"/>
+        <Column Name="Total24" DataType="System.Double"/>
+        <Column Name="Total25" DataType="System.Double"/>
+        <Column Name="Total26" DataType="System.Double"/>
+        <Column Name="Total27" DataType="System.Double"/>
+        <Column Name="Total28" DataType="System.Double"/>
+        <Column Name="Total29" DataType="System.Double"/>
+        <Column Name="Total30" DataType="System.Double"/>
+        <Column Name="Total31" DataType="System.Double"/>
+        <Column Name="Total" DataType="System.Double"/>
+        <Column Name="ColumnName" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompanyAddr" DataType="System.String"/>
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="Divide" DataType="System.Int32"/>
+        <Column Name="Rate" DataType="System.Double"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="Total1" Expression="[DS.Total01]" Evaluator="Data1"/>
+    <Total Name="Total2" Expression="[DS.Total02]" Evaluator="Data1"/>
+    <Total Name="Total3" Expression="[DS.Total03]" Evaluator="Data1"/>
+    <Total Name="Total4" Expression="[DS.Total04]" Evaluator="Data1"/>
+    <Total Name="Total5" Expression="[DS.Total05]" Evaluator="Data1"/>
+    <Total Name="Total6" Expression="[DS.Total06]" Evaluator="Data1"/>
+    <Total Name="Total7" Expression="[DS.Total07]" Evaluator="Data1"/>
+    <Total Name="Total8" Expression="[DS.Total08]" Evaluator="Data1"/>
+    <Total Name="Total9" Expression="[DS.Total09]" Evaluator="Data1"/>
+    <Total Name="Total10" Expression="[DS.Total10]" Evaluator="Data1"/>
+    <Total Name="Total11" Expression="[DS.Total11]" Evaluator="Data1"/>
+    <Total Name="Total12" Expression="[DS.Total12]" Evaluator="Data1"/>
+    <Total Name="Total13" Expression="[DS.Total13]" Evaluator="Data1"/>
+    <Total Name="Total14" Expression="[DS.Total14]" Evaluator="Data1"/>
+    <Total Name="Total15" Expression="[DS.Total15]" Evaluator="Data1"/>
+    <Total Name="Total16" Expression="[DS.Total16]" Evaluator="Data1"/>
+    <Total Name="Total17" Expression="[DS.Total17]" Evaluator="Data1"/>
+    <Total Name="Total18" Expression="[DS.Total18]" Evaluator="Data1"/>
+    <Total Name="Total19" Expression="[DS.Total19]" Evaluator="Data1"/>
+    <Total Name="Total20" Expression="[DS.Total20]" Evaluator="Data1"/>
+    <Total Name="Total21" Expression="[DS.Total21]" Evaluator="Data1"/>
+    <Total Name="Total22" Expression="[DS.Total22]" Evaluator="Data1"/>
+    <Total Name="Total23" Expression="[DS.Total23]" Evaluator="Data1"/>
+    <Total Name="Total24" Expression="[DS.Total24]" Evaluator="Data1"/>
+    <Total Name="Total25" Expression="[DS.Total25]" Evaluator="Data1"/>
+    <Total Name="Total26" Expression="[DS.Total26]" Evaluator="Data1"/>
+    <Total Name="Total27" Expression="[DS.Total27]" Evaluator="Data1"/>
+    <Total Name="Total28" Expression="[DS.Total28]" Evaluator="Data1"/>
+    <Total Name="Total29" Expression="[DS.Total29]" Evaluator="Data1"/>
+    <Total Name="Total30" Expression="[DS.Total30]" Evaluator="Data1"/>
+    <Total Name="Total31" Expression="[DS.Total31]" Evaluator="Data1"/>
+    <Total Name="TotalTotal" Expression="[DS.Total]" Evaluator="Data1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="420.1" PaperHeight="296.9" MirrorMargins="true" FirstPageSource="1" OtherPagesSource="1" Guides="-0.55,24.8,31.8,249.15,-0.1,741.54,127.39,503.5,11.45,115.4,116.05,125.5,0,741.64,115.95,125.4,0.45,740.55,1.45,417.25,0.8,435.5,-2.25,737.85,127.3,306.85,12.45,116.4,20.45,116.46,229.45,21.45,117.46,21.9,117.85,12.47,125.87,306.94,266.6,417.8,410.8,505.3,507.3,592.35,622.7,767.45,558.55,738.1,559.1,738.65,26.46,281.61,25.33,613.25,758.02,412.96,460.21,26.35,272.05,542.08,627.13,498.85,546.1,466.05,522.75,192.8,300.75,504.35,741.43,494.4,738.21,177,313.46,466.4,602.86,612.25,483.4,591.35,41.8,43.25,85.05,264.6,28.35">
+    <ColumnHeaderBand Name="ColumnHeader1" Width="1512.38" Height="151.65" BeforePrintEvent="ColumnHeader1_BeforePrint" Guides="354.27,373.17,353.2,140.85,159.75,375.85,121.05,139.95,68.15,87.05,2,20.9,24.9,62.7,378,161.2,180.1,239.8,160.2,179.1,90.5,109.4,120.85,139.75,247.7,266.6,246.7,265.6,285.5,284.5,304.4,303.4,305.4,324.3,323.3,325.5,344.4,325.3,344.2,353.65,372.55,354.1,373,9.45,18.9,37.8,47.25">
+      <TextObject Name="Text63" Left="-0.55" Top="127.47" Width="82.05" Height="18.9" Text="Description" VertAlign="Center" Font="Arial, 6pt, style=Bold"/>
+      <LineObject Name="Line5" Left="-0.1" Top="126.4" Width="1516.54"/>
+      <LineObject Name="Line15" Top="149.05" Width="1516.54"/>
+      <TextObject Name="Text5" Left="0.45" Top="68.15" Width="1505.55" Height="18.9" Border.Lines="Bottom" Border.Style="Double" Text="CASH FLOW FORECAST" HorzAlign="Center" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text1" Left="1.45" Top="2" Width="415.8" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text72" Left="0.8" Top="24.9" Width="434.7" Height="37.8" Text="[DS.CompanyAddr]" Font="Arial, 9pt"/>
+      <TextObject Name="Text44" Left="655.48" Top="90.5" Width="182.55" Height="18.9" Text="[DS.ColumnName]" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text91" Left="1324" Width="179.55" Height="9.45" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text35" Left="1324.55" Top="28.35" Width="179.55" Height="9.45" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text154" Left="103.4" Top="127.39" Width="32.13" Height="18.9" Text="1" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text155" Left="156.65" Top="127.39" Width="22.68" Height="18.9" Text="2" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text156" Left="200.9" Top="127.39" Width="22.68" Height="18.9" Text="3" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text157" Left="244.25" Top="127.39" Width="22.68" Height="18.9" Text="4" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text158" Left="287.95" Top="127.39" Width="22.68" Height="18.9" Text="5" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text159" Left="331.3" Top="127.39" Width="22.68" Height="18.9" Text="6" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text160" Left="374" Top="127.39" Width="22.68" Height="18.9" Text="7" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text161" Left="407.9" Top="127.39" Width="32.13" Height="18.9" Text="8" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text162" Left="454.05" Top="127.39" Width="32.13" Height="18.9" Text="9" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text163" Left="497.85" Top="127.39" Width="32.13" Height="18.9" Text="10" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text164" Left="541.1" Top="127.39" Width="32.13" Height="18.9" Text="11" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text165" Left="585.45" Top="127.39" Width="32.13" Height="18.9" Text="12" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text166" Left="630.15" Top="127.39" Width="32.13" Height="18.9" Text="13" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text167" Left="676.5" Top="127.39" Width="32.13" Height="18.9" Text="14" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text168" Left="722.2" Top="127.39" Width="32.13" Height="18.9" Text="15" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text169" Left="766.55" Top="127.39" Width="32.13" Height="18.9" Text="16" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text186" Left="811.15" Top="127.39" Width="32.13" Height="18.9" Text="17" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text187" Left="854.5" Top="127.39" Width="32.13" Height="18.9" Text="18" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text188" Left="894.3" Top="127.39" Width="32.13" Height="18.9" Text="19" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text189" Left="937.65" Top="127.39" Width="32.13" Height="18.9" Text="20" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text190" Left="981.35" Top="127.39" Width="32.13" Height="18.9" Text="21" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text191" Left="1025.7" Top="127.39" Width="32.13" Height="18.9" Text="22" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text192" Left="1068.95" Top="127.39" Width="32.13" Height="18.9" Text="23" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text193" Left="1113.3" Top="127.39" Width="32.13" Height="18.9" Text="24" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text194" Left="1157.45" Top="127.39" Width="32.13" Height="18.9" Text="25" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text195" Left="1201.25" Top="127.39" Width="32.13" Height="18.9" Text="26" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text196" Left="1246.5" Top="127.39" Width="32.13" Height="18.9" Text="27" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text197" Left="1289.85" Top="127.39" Width="32.13" Height="18.9" Text="28" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text198" Left="1334" Top="127.39" Width="32.13" Height="18.9" Text="29" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text199" Left="1377.35" Top="127.39" Width="32.13" Height="18.9" Text="30" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text200" Left="1418.15" Top="127.39" Width="32.13" Height="18.9" Text="31" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text201" Left="1460.95" Top="127.39" Width="41.58" Height="18.9" Text="Total" VertAlign="Center" RightToLeft="true" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text303" Left="138.75" Top="90.34" Width="51.79" Height="18.9" Text="Rate :" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text304" Left="193" Top="90.34" Width="88.05" Height="18.9" Text="[DS.Rate]" Format="Custom" Format.Format="###,###,###" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text305" Top="90.34" Width="40.8" Height="18.9" Text="Curr : " HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text306" Left="47.25" Top="90.34" Width="50.25" Height="18.9" Text="[DS.Currency]" HorzAlign="Center" Font="Arial, 9pt"/>
+    </ColumnHeaderBand>
+    <GroupHeaderBand Name="GroupHeader2" Top="154.77" Width="1512.38" Height="11.45" BeforePrintEvent="GroupHeader2_BeforePrint" Guides="0,15.9,18.9" KeepWithData="true" Condition="[DS.GroupCode]">
+      <TextObject Name="LblNo" Left="0.45" Top="2" Width="383.45" Height="9.45" Text="[DS.GroupCode]. [DS.GroupName]" HorzAlign="Right" VertAlign="Center" RightToLeft="true" WordWrap="false" Font="Arial, 6pt, style=Bold"/>
+      <LineObject Name="Line16" Width="1516.54"/>
+      <GroupHeaderBand Name="GroupHeader3" Top="169.35" Width="1512.38" Height="15.9" Condition="[DS.SubGroupCode]">
+        <TextObject Name="Text202" Top="7.45" Width="947.22" Height="6.45" CanGrow="true" CanShrink="true" CanBreak="false" Text="[DS.SubGroupName]" VertAlign="Center" Font="Arial, 6pt, style=Bold"/>
+        <DataBand Name="Data1" Top="188.37" Width="1512.38" Height="12" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" AfterPrintEvent="Data1_AfterPrint" AfterDataEvent="Data1_AfterData" Guides="2,20.9,1.2,20.1,17.9" DataSource="Table">
+          <TextObject Name="Text203" Left="3" Width="91.5" Height="9.45" Text="[DS.Description]" VertAlign="Center" Font="Arial, 5pt"/>
+          <TextObject Name="Text204" Left="103.95" Width="41.58" Height="9.45" Text="[DS.Total01]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text205" Left="147.75" Width="41.58" Height="9.45" Text="[DS.Total02]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text206" Left="190.55" Width="41.58" Height="9.45" Text="[DS.Total03]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text207" Left="233.8" Width="41.58" Height="9.45" Text="[DS.Total04]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text208" Left="277.05" Width="41.58" Height="9.45" Text="[DS.Total05]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text209" Left="321.3" Width="41.58" Height="9.45" Text="[DS.Total06]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text210" Left="365.1" Width="41.58" Height="9.45" Text="[DS.Total07]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text211" Left="408.9" Width="41.58" Height="9.45" Text="[DS.Total08]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text212" Left="453.15" Width="41.58" Height="9.45" Text="[DS.Total09]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text213" Left="498.4" Width="41.58" Height="9.45" Text="[DS.Total10]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text214" Left="544.65" Width="41.58" Height="9.45" Text="[DS.Total11]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text215" Left="590.9" Width="41.58" Height="9.45" Text="[DS.Total12]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text216" Left="634.66" Width="41.58" Height="9.45" Text="[DS.Total13]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text217" Left="679.22" Width="41.58" Height="9.45" Text="[DS.Total14]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text218" Left="724.47" Width="41.58" Height="9.45" Text="[DS.Total15]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text219" Left="767.65" Width="41.58" Height="9.45" Text="[DS.Total16]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text220" Left="811.25" Width="41.58" Height="9.45" Text="[DS.Total17]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text221" Left="855.21" Width="41.58" Height="9.45" Text="[DS.Total18]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text222" Left="899.46" Width="41.58" Height="9.45" Text="[DS.Total19]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text223" Left="942.64" Width="41.58" Height="9.45" Text="[DS.Total20]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text224" Left="985.51" Width="41.58" Height="9.45" Text="[DS.Total21]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text225" Left="1028.6" Width="41.58" Height="9.45" Text="[DS.Total22]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text226" Left="1071.85" Width="41.58" Height="9.45" Text="[DS.Total23]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text227" Left="1115.1" Width="41.58" Height="9.45" Text="[DS.Total24]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text228" Left="1159.9" Width="41.58" Height="9.45" Text="[DS.Total25]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text229" Left="1203.15" Width="41.58" Height="9.45" Text="[DS.Total26]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text230" Left="1246.64" Width="41.58" Height="9.45" Text="[DS.Total27]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text231" Left="1289.74" Width="41.58" Height="9.45" Text="[DS.Total28]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text232" Left="1333.96" Width="41.58" Height="9.45" Text="[DS.Total29]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text233" Left="1377.43" Width="41.58" Height="9.45" Text="[DS.Total30]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text234" Left="1418.26" Width="41.58" Height="9.45" Text="[DS.Total31]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text235" Left="1460.97" Width="51.03" Height="9.45" Text="[DS.Total]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        </DataBand>
+        <GroupFooterBand Name="GroupFooter3" Top="203.5" Width="1512.38" Height="18.9">
+          <TextObject Name="Text236" Top="3.45" Width="63.15" Height="9.45" Text="Total :" VertAlign="Center" Font="Arial, 7pt"/>
+          <TextObject Name="Text238" Left="103.95" Top="3.29" Width="41.58" Height="9.45" Text="[Total1]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text239" Left="147.8" Top="3.29" Width="41.58" Height="9.45" Text="[Total2]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text240" Left="190.51" Top="3.29" Width="41.58" Height="9.45" Text="[Total3]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text241" Left="233.98" Top="3.29" Width="41.58" Height="9.45" Text="[Total4]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text242" Left="277.07" Top="3.29" Width="41.58" Height="9.45" Text="[Total5]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text243" Left="321.3" Top="3.29" Width="41.58" Height="9.45" Text="[Total6]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text244" Left="365.15" Top="3.29" Width="41.58" Height="9.45" Text="[Total7]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text245" Left="409" Top="3.29" Width="41.58" Height="9.45" Text="[Total8]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text246" Left="453.22" Top="3.29" Width="41.58" Height="9.45" Text="[Total9]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text247" Left="498.58" Top="3.29" Width="41.58" Height="9.45" Text="[Total10]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text248" Left="544.7" Top="3.29" Width="41.58" Height="9.45" Text="[Total11]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text249" Left="590.81" Top="3.29" Width="41.58" Height="9.45" Text="[Total12]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text250" Left="634.66" Top="3.29" Width="41.58" Height="9.45" Text="[Total13]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text251" Left="679.27" Top="3.29" Width="41.58" Height="9.45" Text="[Total14]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text252" Left="724.63" Top="3.29" Width="41.58" Height="9.45" Text="[Total15]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text253" Left="767.72" Top="3.29" Width="41.58" Height="9.45" Text="[Total16]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text254" Left="811.19" Top="3.29" Width="41.58" Height="9.45" Text="[Total17]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text255" Left="855.04" Top="3.29" Width="41.58" Height="9.45" Text="[Total18]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text256" Left="899.64" Top="3.29" Width="41.58" Height="9.45" Text="[Total19]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text257" Left="942.73" Top="3.29" Width="41.58" Height="9.45" Text="[Total20]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text258" Left="985.45" Top="3.29" Width="41.58" Height="9.45" Text="[Total21]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text259" Left="1028.54" Top="3.29" Width="41.58" Height="9.45" Text="[Total22]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text260" Left="1072.01" Top="3.29" Width="41.58" Height="9.45" Text="[Total23]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text261" Left="1115.1" Top="3.29" Width="41.58" Height="9.45" Text="[Total24]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text262" Left="1160.08" Top="3.29" Width="41.58" Height="9.45" Text="[Total25]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text263" Left="1203.17" Top="3.29" Width="41.58" Height="9.45" Text="[Total26]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text264" Left="1246.64" Top="3.29" Width="41.58" Height="9.45" Text="[Total27]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text265" Left="1289.74" Top="3.29" Width="41.58" Height="9.45" Text="[Total28]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text266" Left="1333.96" Top="3.29" Width="41.58" Height="9.45" Text="[Total29]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text267" Left="1377.43" Top="3.29" Width="41.58" Height="9.45" Text="[Total30]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text268" Left="1418.26" Top="3.29" Width="41.58" Height="9.45" Text="[Total31]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+          <TextObject Name="Text269" Left="1460.97" Top="3.29" Width="51.03" Height="9.45" Text="[TotalTotal]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        </GroupFooterBand>
+      </GroupHeaderBand>
+      <GroupFooterBand Name="GroupFooter2" Top="225.52" Width="1512.38" Height="18.9" BeforePrintEvent="GroupFooter2_BeforePrint">
+        <TextObject Name="Text270" Top="2" Width="63.15" Height="9.45" Text="Total :" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text271" Left="103.95" Top="1.89" Width="41.58" Height="9.45" Text="[Total1]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text272" Left="147.8" Top="1.89" Width="41.58" Height="9.45" Text="[Total2]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text273" Left="190.51" Top="1.89" Width="41.58" Height="9.45" Text="[Total3]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text274" Left="233.98" Top="1.89" Width="41.58" Height="9.45" Text="[Total4]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text275" Left="277.07" Top="1.89" Width="41.58" Height="9.45" Text="[Total5]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text276" Left="321.3" Top="1.89" Width="41.58" Height="9.45" Text="[Total6]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text277" Left="365.15" Top="1.89" Width="41.58" Height="9.45" Text="[Total7]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text278" Left="409" Top="1.89" Width="41.58" Height="9.45" Text="[Total8]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text279" Left="453.22" Top="1.89" Width="41.58" Height="9.45" Text="[Total9]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text280" Left="498.58" Top="1.89" Width="41.58" Height="9.45" Text="[Total10]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text281" Left="544.7" Top="1.89" Width="41.58" Height="9.45" Text="[Total11]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text282" Left="590.81" Top="1.89" Width="41.58" Height="9.45" Text="[Total12]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text283" Left="634.66" Top="1.89" Width="41.58" Height="9.45" Text="[Total13]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text284" Left="679.27" Top="1.89" Width="41.58" Height="9.45" Text="[Total14]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text285" Left="724.63" Top="1.89" Width="41.58" Height="9.45" Text="[Total15]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text286" Left="767.72" Top="1.89" Width="41.58" Height="9.45" Text="[Total16]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text287" Left="811.19" Top="1.89" Width="41.58" Height="9.45" Text="[Total17]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text288" Left="855.04" Top="1.89" Width="41.58" Height="9.45" Text="[Total18]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text289" Left="899.64" Top="1.89" Width="41.58" Height="9.45" Text="[Total19]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text290" Left="942.73" Top="1.89" Width="41.58" Height="9.45" Text="[Total20]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text291" Left="985.45" Top="1.89" Width="41.58" Height="9.45" Text="[Total21]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text292" Left="1028.54" Top="1.89" Width="41.58" Height="9.45" Text="[Total22]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text293" Left="1072.01" Top="1.89" Width="41.58" Height="9.45" Text="[Total23]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text294" Left="1115.1" Top="1.89" Width="41.58" Height="9.45" Text="[Total24]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text295" Left="1160.08" Top="1.89" Width="41.58" Height="9.45" Text="[Total25]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text296" Left="1203.17" Top="1.89" Width="41.58" Height="9.45" Text="[Total26]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text297" Left="1246.64" Top="1.89" Width="41.58" Height="9.45" Text="[Total27]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text298" Left="1289.74" Top="1.89" Width="41.58" Height="9.45" Text="[Total28]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text299" Left="1333.96" Top="1.89" Width="41.58" Height="9.45" Text="[Total29]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text300" Left="1377.43" Top="1.89" Width="41.58" Height="9.45" Text="[Total30]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text301" Left="1418.26" Top="1.89" Width="41.58" Height="9.45" Text="[Total31]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+        <TextObject Name="Text302" Left="1460.97" Top="1.89" Width="51.03" Height="9.45" Text="[TotalTotal]" Format="Custom" Format.Format="###,###,###" VertAlign="Center" RightToLeft="true" Font="Arial, 5pt"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="247.55" Width="1512.38" BeforePrintEvent="ReportSummary1_BeforePrint"/>
+    <PageFooterBand Name="PageFooter1" Top="250.67" Width="1512.38" Height="25.9" CanGrow="true" BeforePrintEvent="PageFooter1_BeforePrint" Guides="48.9,62.35,7,-452.16,6.45,-452.71,150.75,157.2,166.65,128.52,-453.26,-453.61,48.76,62.21,89.5,102.95,116.4,117.85,131.3,132.75,146.2,89.05,102.5,103.95,117.4,118.4,131.85,132.3,145.75,9.45,-449.71">
+      <LineObject Name="Line17" Top="7" Width="1516.54"/>
+      <LineObject Name="Line36" Top="6.45" Height="-459.16"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

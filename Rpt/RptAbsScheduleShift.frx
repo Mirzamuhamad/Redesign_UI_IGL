@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="08/06/2014 13:30:46" ReportInfo.Modified="12/31/2014 14:40:16" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+
+    Private Sub Cell1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+           cell1.Text=CType(Report.GetColumnValue(&quot;DS.ColumnName&quot;), String)
+    End Sub
+
+    Private Sub Page1_StartPage(ByVal sender As object, ByVal e As EventArgs)
+           cell1.Text=CType(Report.GetColumnValue(&quot;DS.ColumnName&quot;), String)
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haqtSevVDIJdyZQmnmQ2VuBT">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="exec  S_PYRptScheduleShift '20140501', '20140720', '', '', '', '', 0, 0, 'N', 'N', ''">
+        <Column Name="ColumnName" DataType="System.String"/>
+        <Column Name="GroupCode" DataType="System.String"/>
+        <Column Name="GroupName" DataType="System.String"/>
+        <Column Name="EmpNumb" DataType="System.String"/>
+        <Column Name="EmpName" DataType="System.String"/>
+        <Column Name="MonthNames" DataType="System.String"/>
+        <Column Name="DayNo" DataType="System.Int32"/>
+        <Column Name="Shift" DataType="System.String"/>
+        <Column Name="CompName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="Periode" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="420.1" PaperHeight="296.9" StartPageEvent="Page1_StartPage">
+    <ReportTitleBand Name="ReportTitle1" Top="20" Width="1512.38" Height="19.2"/>
+    <PageHeaderBand Name="PageHeader1" Top="59.2" Width="1512.38" Height="86.7">
+      <TextObject Name="Text1" Left="13.65" Top="67.5" Width="1496.1" Height="19.2" Text="[DS.Periode]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text2" Left="9.6" Width="542.7" Height="19.2" Text="[DS.CompName]" Font="Arial, 13pt, style=Bold"/>
+      <TextObject Name="Text3" Left="9.6" Top="28.8" Width="542.7" Height="19.2" Text="[DS.CompAddr]" Font="Arial, 9pt"/>
+      <TextObject Name="Text4" Left="13.65" Top="48.15" Width="1496.1" Height="19.2" Text="SCHEDULE SHIFT" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text5" Left="1350.6" Width="153.6" Height="19.2" Text="[Date]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text6" Left="1350.6" Top="19.2" Width="153.6" Height="28.8" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="165.9" Width="1512.38" Height="94.73">
+      <MatrixObject Name="Matrix1" Left="0.15" Top="9.6" Width="312.82" Height="58.68" FixedRows="2" FixedColumns="3" AutoSize="false" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="[DS.MonthNames]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.DayNo]" Sort="None" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.GroupName]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.EmpNumb]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.EmpName]" Sort="None" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.Shift]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="82.12"/>
+        <TableColumn Name="Column2" Width="77.55"/>
+        <TableColumn Name="Column3" Width="115.54"/>
+        <TableColumn Name="Column4" Width="37.61"/>
+        <TableRow Name="Row1" Height="19.56">
+          <TableCell Name="Cell1" Border.Lines="All" BeforePrintEvent="Cell1_BeforePrint" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell2" Border.Lines="All" Text="Employee No" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell7" Border.Lines="All" Text="Employee Name" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell13" Border.Lines="All" Text="[MonthNames]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="19.56">
+          <TableCell Name="Cell3"/>
+          <TableCell Name="Cell4"/>
+          <TableCell Name="Cell8"/>
+          <TableCell Name="Cell14" Border.Lines="All" Text="[DayNo]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="19.56" AutoSize="true">
+          <TableCell Name="Cell5" Border.Lines="All" Text="[GroupName]" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell6" Border.Lines="All" Text="[EmpNumb]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell9" Border.Lines="All" Text="[EmpName]" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell15" Border.Lines="All" Text="[Shift]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="280.63" Width="1512.38" Height="19.2"/>
+  </ReportPage>
+</Report>

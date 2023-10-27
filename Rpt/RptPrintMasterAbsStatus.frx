@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="03/29/2011 16:25:53" ReportInfo.Modified="11/11/2013 08:21:58" ReportInfo.CreatorVersion="2013.3.5.0">
+  <ScriptText>
+Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+
+Namespace FastReport
+  Public Class ReportScript
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+      Text1.Text = CType(Report.GetColumnValue(&quot;DS.UserID&quot;), String) 
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43hapZkuQ2hFA5gwGfPHbihEgR">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_FormPrintMasterAbsStatus 'vMsAbsStatus','AbsStatusCode','AbsStatusName','FgAbSence','MinusAbsensi','Absence Status File','Absence Status Code','Absence Status Name','Have Absence','Minus Absence','','admin'           ">
+        <Column Name="NAME" DataType="System.String"/>
+        <Column Name="Title" DataType="System.String"/>
+        <Column Name="Column1" DataType="System.String"/>
+        <Column Name="Column2" DataType="System.String"/>
+        <Column Name="Name2" Alias="NAME2" DataType="System.String"/>
+        <Column Name="Column3" DataType="System.String"/>
+        <Column Name="Column4" DataType="System.String"/>
+        <Column Name="Code" DataType="System.String"/>
+        <Column Name="Name3" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompanyAddr" DataType="System.String"/>
+        <Column Name="Userid" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" RawPaperSize="1" FirstPageSource="15" OtherPagesSource="15" Guides="292.95,604.8,0,709.75,3,208.9,217.35,311.85,321.3,519.75,529.2,576.45,585.9,642.6,652.05,708.75,207.9,707.75,93.5">
+    <PageHeaderBand Name="PageHeader1" Width="740.5" Height="122.04" Guides="1,29.45,4.45,23.35,4,22.9">
+      <ShapeObject Name="Shape1" Top="96.59" Width="738.1" Height="25.45"/>
+      <TextObject Name="Text3" Left="3.02" Top="102.04" Width="156.87" Height="18.9" Text="[DS.Column1]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text7" Left="163" Top="101.59" Width="217.35" Height="18.9" Text="[DS.Column2]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text18" Left="383.05" Top="101.64" Width="173.12" Height="18.9" Text="[DS.Column3]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text20" Left="559.56" Top="101.64" Width="173.12" Height="18.9" Text="[DS.Column4]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text56" Left="2" Top="2.75" Width="538.65" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text55" Left="2" Top="28.1" Width="480.44" Height="18.9" Text="[DS.CompanyAddr]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text57" Left="545.2" Top="28.1" Width="179.55" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text15" Left="187.22" Top="51.45" Width="362.88" Height="28.35" Text="[DS.Title]" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text35" Left="545.2" Top="74.45" Width="179.55" Height="11.34" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="126.04" Width="740.5" Height="23.9" CanGrow="true" CanShrink="true" AfterDataEvent="Data1_AfterData" CanBreak="true" Guides="0,18.9" DataSource="Table">
+      <TextObject Name="Text2" Left="3" Top="4" Width="156.87" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.CODE]" Duplicates="Hide" Font="Arial, 8pt"/>
+      <TextObject Name="Text6" Left="163" Top="4" Width="217.35" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.NAME]" Font="Arial, 8pt"/>
+      <TextObject Name="Text19" Left="382.89" Top="4.16" Width="173.12" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.NAME2]" Font="Arial, 8pt"/>
+      <TextObject Name="Text21" Left="559.59" Top="4.16" Width="173.26" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.NAME3]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" Font="Arial, 8pt"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="153.94" Width="740.5" Height="28.35" Guides="9.45,13.45,27.35">
+      <LineObject Name="Line1" Width="736.1"/>
+      <TextObject Name="Text1" Left="600.8" Top="5.45" Width="132.3" Height="18.9" Text="[DS.UserID]" HorzAlign="Right" Font="Arial, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

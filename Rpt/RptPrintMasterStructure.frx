@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="03/29/2011 16:25:53" ReportInfo.Modified="03/13/2023 16:30:36" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>
+Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+
+Namespace FastReport
+  Public Class ReportScript
+
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+      Text58.Text = CType(Report.GetColumnValue(&quot;DS.UserID&quot;), String) 
+    End Sub
+   End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLAsUhwqjjPF/vYCqvA1BDk6KVhWPhvjkH6++4kjz5gnUtEYj5O4DJcN//IanAIkMfIBXsfMEzJJUr1joeMKJDFqzOEvXUG1mlahZKmZMBjUzYPTbyKOmQgqhf3eflGUbcK4C+EBlIhRhwhadYEC50mQ2ZWEXa3fkFOukFIo7lFCe">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" PropName="MsProductType" Enabled="true" SelectCommand="EXEC S_FormPrintMasterStructure 'admin'">
+        <Column Name="Column1" DataType="System.String"/>
+        <Column Name="UserId" DataType="System.String"/>
+        <Column Name="ID" DataType="System.String"/>
+        <Column Name="ParentID" DataType="System.String"/>
+        <Column Name="StructureCode" DataType="System.String"/>
+        <Column Name="StructureName" DataType="System.String"/>
+        <Column Name="LevelCode" DataType="System.String"/>
+        <Column Name="LandArea" DataType="System.Decimal"/>
+        <Column Name="BuildingArea" DataType="System.Decimal"/>
+        <Column Name="FgActive" DataType="System.String"/>
+        <Column Name="UserDate" DataType="System.DateTime"/>
+        <Column Name="Account" DataType="System.String"/>
+        <Column Name="LevelName" DataType="System.String"/>
+        <Column Name="Accountname" DataType="System.String"/>
+        <Column Name="Company" DataType="System.String"/>
+        <Column Name="Address" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" FirstPageSource="15" OtherPagesSource="15" Guides="0,709.75,3.02,146.66,150.64,294.28,189,551.88,1,269.38,1.13,382.91,300.05,443.69,447.56,573.43,578.84,704.71,529.2,708.75,3,146.64,300.13,443.77,447.59,573.46,578.73,704.74,706.3,578.72,704.73">
+    <PageHeaderBand Name="PageHeader1" Width="740.5" Height="121.49" Guides="94.59,120.04,100.04,118.94,99.59,118.49,65.9,91.25,4,29.35,28.8,66.6,99.64,118.54,0,18.9,46.35,57.69">
+      <ShapeObject Name="Shape1" Top="86.59" Width="738.1" Height="34.9"/>
+      <TextObject Name="Text3" Left="3.02" Top="91.41" Width="49.14" Height="28.35" Text="ID" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text15" Left="189" Top="56.45" Width="362.88" Height="25.35" Text="MASTER STRUCTUR" HorzAlign="Center" VertAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text16" Left="48.25" Width="268.38" Height="25.35" Text="[DS.Company]" Font="Arial Narrow, 12pt, style=Bold"/>
+      <TextObject Name="Text17" Left="48.38" Top="24.8" Width="509.63" Height="28.35" Text="[DS.Address]" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Text57" Left="554.2" Width="179.55" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text35" Left="554.2" Top="46.35" Width="179.55" Height="11.34" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text59" Left="59.72" Top="91.41" Width="58.59" Height="28.35" Text="Parent ID" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text60" Left="121.87" Top="91.41" Width="86.94" Height="28.35" Text="Structure Code" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text61" Left="214.37" Top="91.41" Width="105.84" Height="28.35" Text="Structure Name" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text62" Left="324.32" Top="91.41" Width="70.04" Height="28.35" Text="Level Name" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text63" Left="396.92" Top="91.41" Width="61.04" Height="28.35" Text="Land Area" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text64" Left="484.07" Top="91.41" Width="58.94" Height="28.35" Text="Building Area" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text65" Left="544.12" Top="91.41" Width="80.39" Height="28.35" Text="Account" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text66" Left="625.17" Top="91.41" Width="113.74" Height="28.35" Text="Account Name" Font="Arial, 8pt, style=Bold"/>
+      <PictureObject Name="Picture2" Width="47.25" Height="37.8" Image="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"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="125.66" Width="740.5" Height="250.7" CanGrow="true" CanShrink="true" AfterDataEvent="Data1_AfterData" CanBreak="true" Guides="4,22.9,4.16,23.06" DataSource="Table">
+      <MatrixObject Name="Matrix1" Width="232.12" Height="58.68" FixedRows="1" FixedColumns="1" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="[DS.LandArea]"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.LevelCode]"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.StructureName]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="82.73" AutoSize="true"/>
+        <TableColumn Name="Column2" Width="109.41" AutoSize="true"/>
+        <TableColumn Name="Column3" Width="39.98" AutoSize="true"/>
+        <TableRow Name="Row1" Height="19.56" AutoSize="true">
+          <TableCell Name="Cell1" Text="LevelCode" HorzAlign="Center" VertAlign="Center"/>
+          <TableCell Name="Cell2" Text="[LandArea]" HorzAlign="Center" VertAlign="Center"/>
+          <TableCell Name="Cell5" Text="Total" HorzAlign="Center" VertAlign="Center"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="19.56" AutoSize="true">
+          <TableCell Name="Cell3" Text="[LevelCode]" HorzAlign="Center" VertAlign="Center"/>
+          <TableCell Name="Cell4" Text="[StructureName]" HorzAlign="Right" VertAlign="Center"/>
+          <TableCell Name="Cell6" HorzAlign="Right" VertAlign="Center"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="19.56" AutoSize="true">
+          <TableCell Name="Cell7" Text="Total" HorzAlign="Center" VertAlign="Center"/>
+          <TableCell Name="Cell8" HorzAlign="Right" VertAlign="Center"/>
+          <TableCell Name="Cell9" HorzAlign="Right" VertAlign="Center"/>
+        </TableRow>
+      </MatrixObject>
+      <Sort>
+        <Sort Expression="[DS.StructureCode]"/>
+      </Sort>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="380.52" Width="740.5" Height="18.9" BeforePrintEvent="PageFooter1_BeforePrint" Guides="0,18.9">
+      <LineObject Name="Line1" Width="734.65"/>
+      <TextObject Name="Text58" Left="597.72" Width="135.46" Height="18.9" CanBreak="false" Text="[DS.UserId]" HorzAlign="Right" VertAlign="Center" Font="Arial, 6.75pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

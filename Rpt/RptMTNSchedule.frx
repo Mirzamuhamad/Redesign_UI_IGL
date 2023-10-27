@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="03/27/2014 09:48:18" ReportInfo.Modified="03/16/2015 18:58:42" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    
+     
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haoKv03Dr3XT8YPPVzfNqZRU">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_MTNRptSchedule 2014, 1, 2015, 1, '', '', '', '', 0, 0, '', '', ''">
+        <Column Name="Job" DataType="System.String"/>
+        <Column Name="MTNSection" DataType="System.String"/>
+        <Column Name="MTNSectionName" DataType="System.String"/>
+        <Column Name="MTNItem" DataType="System.String"/>
+        <Column Name="MTNItemName" DataType="System.String"/>
+        <Column Name="JobName" DataType="System.String"/>
+        <Column Name="LastSchedule" DataType="System.String"/>
+        <Column Name="Pattern" DataType="System.String"/>
+        <Column Name="Year" DataType="System.Int32"/>
+        <Column Name="Period" DataType="System.Int32"/>
+        <Column Name="Week" DataType="System.Int32"/>
+        <Column Name="Schedule" DataType="System.String"/>
+        <Column Name="Actual" DataType="System.String"/>
+        <Column Name="PeriodName" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="StrPeriod" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="MTNType" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="420.1" PaperHeight="296.9" LeftMargin="0.5" RightMargin="0.5" FirstPageSource="1" OtherPagesSource="1">
+    <ReportTitleBand Name="ReportTitle1" Width="1584.2"/>
+    <PageHeaderBand Name="PageHeader1" Top="4" Width="1584.2" Height="94.5">
+      <TextObject Name="Text1" Left="9.45" Width="264.6" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text2" Left="9.45" Top="18.9" Width="623.7" Height="28.35" Text="[DS.CompAddr]" Font="Arial, 8pt"/>
+      <TextObject Name="Text3" Left="519.75" Top="28.35" Width="292.95" Height="37.8" Text="MINTENANCE SCHEDULE" HorzAlign="Center" VertAlign="Bottom" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text13" Left="519.75" Top="66.15" Width="292.95" Height="28.35" Text="Periode : [DS.StrPeriod]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text15" Left="1389.15" Width="132.3" Height="18.9" Text="[Date]" HorzAlign="Right" Font="Arial, 7pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="102.5" Width="1584.2" Height="86.94" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" AfterPrintEvent="Data1_AfterPrint" Guides="0">
+      <MatrixObject Name="Matrix1" Width="406.37" Height="86.94" FixedRows="4" FixedColumns="5" AutoSize="false" CellsSideBySide="true" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="[DS.Year]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.PeriodName]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.Week]" Sort="None" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.MTNSectionName]" Totals="false"/>
+          <Header Expression="[DS.MTNType]" Totals="false"/>
+          <Header Expression="[DS.MTNItemName]" Totals="false"/>
+          <Header Expression="[DS.JobName]" Totals="false"/>
+          <Header Expression="[DS.LastSchedule]" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.Schedule]"/>
+          <Cell Expression="[DS.Actual]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="37.66"/>
+        <TableColumn Name="Column2" Width="47.11"/>
+        <TableColumn Name="Column3" Width="94.36"/>
+        <TableColumn Name="Column4" Width="160.51"/>
+        <TableColumn Name="Column5" Width="47.11"/>
+        <TableColumn Name="Column6" Width="10.31"/>
+        <TableColumn Name="Column7" Width="9.31"/>
+        <TableRow Name="Row1" Height="17.01">
+          <TableCell Name="Cell1" Border.Lines="All" Text="Section" HorzAlign="Center" VertAlign="Center" Font="Arial, 6pt, style=Bold" RowSpan="4"/>
+          <TableCell Name="Cell2" Border.Lines="All" Text="MTN Type" HorzAlign="Center" VertAlign="Center" Font="Arial, 6pt, style=Bold" RowSpan="4"/>
+          <TableCell Name="Cell9" Border.Lines="All" Text="MTN Item Name" HorzAlign="Center" VertAlign="Center" Font="Arial, 6pt, style=Bold" RowSpan="4"/>
+          <TableCell Name="Cell11" Border.Lines="All" Text="Job" HorzAlign="Center" VertAlign="Center" Font="Arial, 6pt, style=Bold" RowSpan="4"/>
+          <TableCell Name="Cell13" Border.Lines="All" Text="Last Schedule" HorzAlign="Center" VertAlign="Center" Font="Arial, 6pt, style=Bold" RowSpan="4"/>
+          <TableCell Name="Cell15" Border.Lines="All" Text="[Year]" HorzAlign="Center" VertAlign="Center" Font="Arial, 6pt, style=Bold" TabWidth="100" ColSpan="2"/>
+          <TableCell Name="Cell44"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="17.01">
+          <TableCell Name="Cell3"/>
+          <TableCell Name="Cell4"/>
+          <TableCell Name="Cell10"/>
+          <TableCell Name="Cell12"/>
+          <TableCell Name="Cell14"/>
+          <TableCell Name="Cell16" Border.Lines="All" Text="[PeriodName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 6pt, style=Bold" ColSpan="2"/>
+          <TableCell Name="Cell45"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="17.01">
+          <TableCell Name="Cell19"/>
+          <TableCell Name="Cell20"/>
+          <TableCell Name="Cell21"/>
+          <TableCell Name="Cell22"/>
+          <TableCell Name="Cell23"/>
+          <TableCell Name="Cell24" Border.Lines="All" Text="[Week]" HorzAlign="Center" VertAlign="Center" Font="Arial, 6pt, style=Bold" TabWidth="100" ColSpan="2"/>
+          <TableCell Name="Cell46"/>
+        </TableRow>
+        <TableRow Name="Row4" Height="0">
+          <TableCell Name="Cell28"/>
+          <TableCell Name="Cell29"/>
+          <TableCell Name="Cell30"/>
+          <TableCell Name="Cell31"/>
+          <TableCell Name="Cell32"/>
+          <TableCell Name="Cell33" Border.Lines="All" Text="S" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell47" Border.Lines="All" Text="A" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row5" Height="35.91">
+          <TableCell Name="Cell38" Border.Lines="All" Text="[MTNSectionName]" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell39" Border.Lines="All" Text="[MTNType]" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell40" Border.Lines="All" Text="[MTNItemName]" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell41" Border.Lines="All" Text="[JobName]" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell42" Border.Lines="All" Text="[LastSchedule]" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell43" Border.Lines="All" Text="[Schedule]" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt">
+            <Highlight>
+              <Condition Expression="Value = &quot;N&quot;" Fill.Color="YellowGreen" TextFill.Color="Black" ApplyFill="true"/>
+              <Condition Expression="Value = &quot;Y&quot;" Fill.Color="Brown" TextFill.Color="White" ApplyFill="true"/>
+              <Condition Expression="Value = &quot;&quot;" TextFill.Color="Black"/>
+            </Highlight>
+          </TableCell>
+          <TableCell Name="Cell48" Border.Lines="All" Text="[Actual]" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt" TabWidth="100">
+            <Highlight>
+              <Condition Expression="Value = &quot;N&quot;" Fill.Color="YellowGreen" TextFill.Color="Black" ApplyFill="true"/>
+              <Condition Expression="Value = &quot;Y&quot;" Fill.Color="Brown" TextFill.Color="White" ApplyFill="true"/>
+              <Condition Expression="Value = &quot;&quot;" TextFill.Color="Black"/>
+              <Condition Expression="Value &lt;&gt; &quot;&quot; AND Value &lt;&gt; &quot;N&quot; AND Value &lt;&gt; &quot;Y&quot;" Fill.Color="Violet" TextFill.Color="Black" ApplyFill="true"/>
+            </Highlight>
+          </TableCell>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="193.44" Width="1584.2" Height="18.9">
+      <TextObject Name="Text5" Left="1389.15" Width="122.85" Height="18.9" Text="[PageN] Of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

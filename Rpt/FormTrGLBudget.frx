@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="06/23/2011 10:58:22" ReportInfo.Modified="04/08/2014 17:17:54" ReportInfo.CreatorVersion="2013.3.5.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport  
+  Public Class ReportScript
+    dim nomor as integer
+
+   
+    Private Sub PageHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      IF CType(Report.GetColumnValue(&quot;DS.Period&quot;), String)= &quot;1&quot;  Then
+         Text15.Text = &quot;Januari&quot;
+      ELSE IF CType(Report.GetColumnValue(&quot;DS.Period&quot;), String)= &quot;2&quot;  Then
+        Text15.Text = &quot;Februari&quot;
+       ELSE IF  CType(Report.GetColumnValue(&quot;DS.Period&quot;), String)= &quot;3&quot;  Then
+        Text15.Text = &quot;Maret&quot;
+        ELSE IF CType(Report.GetColumnValue(&quot;DS.Period&quot;), String)= &quot;4&quot;  Then
+        Text15.Text = &quot;April&quot;
+       ELSE IF  CType(Report.GetColumnValue(&quot;DS.Period&quot;), String)= &quot;5&quot;  Then
+        Text15.Text = &quot;Mei&quot;
+       ELSE IF  CType(Report.GetColumnValue(&quot;DS.Period&quot;), String)= &quot;6&quot;  Then
+        Text15.Text = &quot;Juni&quot;
+       ELSE IF  CType(Report.GetColumnValue(&quot;DS.Period&quot;), String)= &quot;7&quot;  Then
+        Text15.Text = &quot;Juli&quot;
+       ELSE IF  CType(Report.GetColumnValue(&quot;DS.Period&quot;), String)= &quot;8&quot;  Then
+        Text15.Text = &quot;Agustus&quot;
+       ELSE IF  CType(Report.GetColumnValue(&quot;DS.Period&quot;), String)= &quot;9&quot;  Then
+        Text15.Text = &quot;September&quot;
+       ELSE IF  CType(Report.GetColumnValue(&quot;DS.Period&quot;), String)= &quot;10&quot;  Then
+        Text15.Text = &quot;Oktober&quot;
+      ELSE IF  CType(Report.GetColumnValue(&quot;DS.Period&quot;), String)= &quot;11&quot;  Then
+        Text15.Text = &quot;November&quot;
+      ELSE IF  CType(Report.GetColumnValue(&quot;DS.Period&quot;), String)= &quot;12&quot;  Then
+        Text15.Text = &quot;Desember&quot;
+      END IF
+      
+    End Sub
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      nomor = nomor + 1
+      Text18.Text = nomor.tostring
+    End Sub
+
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      nomor = 0
+    End Sub
+
+    
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43har5y8yf94ozuHY3e8oflxMo">
+      <TableDataSource Name="Table1" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_GLBudgetForm '2013','2','0'">
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="Account" DataType="System.String"/>
+        <Column Name="Costctr" DataType="System.String"/>
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="AccountName" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="ISODocNo" DataType="System.String"/>
+        <Column Name="Years" DataType="System.String"/>
+        <Column Name="Period" DataType="System.String"/>
+        <Column Name="Revisi" DataType="System.String"/>
+        <Column Name="CostCtrName" DataType="System.String"/>
+        <Column Name="AmountPrev" DataType="System.String"/>
+        <Column Name="ActualPrev" DataType="System.String"/>
+        <Column Name="Amount" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1">
+    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="160.87" BeforePrintEvent="PageHeader1_BeforePrint">
+      <TextObject Name="Text5" Left="4" Top="124.85" Width="28.35" Height="34.02" Text="No" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text7" Left="36.8" Top="124.85" Width="132.3" Height="34.02" Text="Account" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text10" Left="301.95" Top="124.85" Width="94.5" Height="34.02" Text="Cost Center" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text12" Left="396.45" Top="124.85" Width="94.5" Height="34.02" Text="Currency" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text17" Left="170.1" Top="124.85" Width="132.3" Height="34.02" Text="Account Name" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <LineObject Name="Line2" Top="122.85" Width="718.2"/>
+      <LineObject Name="Line6" Top="2" Width="718.2"/>
+      <LineObject Name="Line7" Top="160.65" Width="718.2"/>
+      <TextObject Name="Text1" Left="4" Top="4" Width="264.6" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text2" Left="4" Top="20.9" Width="264.6" Height="37.8" Text="[DS.CompAddr]" Font="Arial, 8pt"/>
+      <TextObject Name="Text37" Left="542.65" Top="9.45" Width="170.1" Height="18.9" Text="Date/Time :[Date]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text38" Left="542.65" Top="28.35" Width="170.1" Height="18.9" Text="[PageN] Of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text3" Left="45.8" Top="70.15" Width="652.05" Height="18.9" Text="BUDGETTING" HorzAlign="Center" VertAlign="Center" Font="Arial, 12pt, style=Bold, Underline"/>
+      <TextObject Name="Text34" Top="103.95" Width="66.15" Height="18.9" Text="Periode" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text35" Left="66.15" Top="103.95" Width="18.9" Height="18.9" Text=":" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text36" Left="150.2" Top="103.95" Width="113.4" Height="18.9" Text="[DS.Years]" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text15" Left="79.6" Top="103.95" Width="94.5" Height="18.9" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <LineObject Name="Line9" Left="491.4" Top="141.75" Width="226.8"/>
+      <TextObject Name="Text41" Left="491.4" Top="126.63" Width="226.8" Height="15.12" Text="Amount" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text42" Left="491.4" Top="141.75" Width="113.4" Height="15.12" Text="Previous" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text43" Left="604.8" Top="141.75" Width="113.4" Height="15.12" Text="Current" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="166.93" Width="718.2" BeforePrintEvent="GroupHeader1_BeforePrint" StartNewPage="true" Condition="[DS.Years]">
+      <DataBand Name="Data1" Top="172.99" Width="718.2" Height="28.35" BeforePrintEvent="Data1_BeforePrint" AfterDataEvent="Data1_AfterData" Guides="0" DataSource="Table1">
+        <TextObject Name="Text4" Left="37.8" Width="132.3" Height="18.9" Text="[DS.Account]"/>
+        <TextObject Name="Text8" Left="170.1" Width="122.85" Height="18.9" Text="[DS.AccountName]"/>
+        <TextObject Name="Text11" Left="623.7" Width="94.5" Height="18.9" Text="[DS.Amount]"/>
+        <TextObject Name="Text13" Left="396.9" Width="94.5" Height="18.9" Text="[DS.Currency]"/>
+        <TextObject Name="Text14" Left="302.4" Width="94.5" Height="18.9" Text="[DS.CostCtrName]"/>
+        <TextObject Name="Text9" Left="500.85" Width="94.5" Height="18.9" Text="[DS.AmountPrev]"/>
+        <TextObject Name="Text18" Left="4" Top="1.13" Width="28.35" Height="15.12" HorzAlign="Center" Font="Arial, 9pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="207.4" Width="718.2"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="213.46" Width="718.2" Height="207.9">
+      <TextObject Name="Text6" Left="4" Top="9.45" Width="415.8" Height="62.37" Text="Catatan :[DS.Remark]" Font="Arial, 9pt"/>
+      <TextObject Name="Text20" Left="56.7" Top="89.5" Width="113.4" Height="15.12" Text="Membuat," HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text21" Left="283.5" Top="89.5" Width="113.4" Height="15.12" Text="Mengecek," HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text27" Left="604.8" Top="192.45" Width="103.95" Height="13.23" Text="Page : [Page#] of [TotalPages#]" HorzAlign="Center" Font="Arial, 7pt"/>
+      <LineObject Name="Line1" Top="189" Height="-1024.75"/>
+      <LineObject Name="Line3" Top="4.45" Width="718.2"/>
+      <LineObject Name="Line4" Top="85.05" Width="718.2"/>
+      <LineObject Name="Line5" Top="189" Width="718.2"/>
+      <LineObject Name="Line8" Left="718.2" Top="189" Height="-1024.75"/>
+      <LineObject Name="Line13" Left="226.8" Top="85.05" Height="103.95"/>
+      <TextObject Name="Text32" Left="13.9" Top="166.65" Width="207.9" Height="18.9" Text="(......................................................)" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text33" Left="245.7" Top="166.65" Width="207.9" Height="18.9" Text="(......................................................)" HorzAlign="Center" Font="Arial, 9pt"/>
+      <LineObject Name="Line14" Left="34.8" Top="6.45" Height="-723.4"/>
+      <LineObject Name="Line15" Left="463.05" Top="85.05" Height="103.95"/>
+      <TextObject Name="Text39" Left="538.65" Top="90.05" Width="113.4" Height="15.12" Text="Mengetahui," HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text40" Left="491.4" Top="170.1" Width="207.9" Height="18.9" Text="(......................................................)" HorzAlign="Center" Font="Arial, 9pt"/>
+      <LineObject Name="Line18" Left="170.1" Top="8.45" Height="-723.4"/>
+      <LineObject Name="Line19" Left="301.4" Top="7.9" Height="-723.4"/>
+      <LineObject Name="Line20" Left="396.9" Top="7" Height="-723.4"/>
+      <LineObject Name="Line21" Left="491.4" Top="7" Height="-723.4"/>
+      <LineObject Name="Line22" Left="604.8" Top="6.45" Height="-704.5"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

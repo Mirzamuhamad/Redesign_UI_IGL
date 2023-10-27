@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" StartReportEvent="_StartReport" ReportInfo.Created="03/29/2011 16:25:53" ReportInfo.Modified="09/15/2016 12:36:07" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>
+Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+
+Namespace FastReport
+  Public Class ReportScript
+
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+       
+    End Sub
+
+    Private Sub _StartReport(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Text62.Visible =  CType(Report.GetColumnValue(&quot;DS.LastDate&quot;), DateTime) &gt; &quot;2001-01-01&quot; 
+    End Sub
+   End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqAFHGp6KQj27H4qUwAIR20hSnyrpNtgmeY+I5zyTmYE0HuZfX1hs9fAqnt4DRtzHmxb0xiLk9tmMre94UdME3GEMbNEPIjw4pD0ZuQW5+SdLR0SdcgBL7XycsfUoJ+uzKUaIBmw780Ln+cffWMVo1e3+3JvvxpS9O0wn6JwBJ9CbhI31BuUAPbLZ32ijvIHBK">
+      <TableDataSource Name="Table1" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_MsPriceListView '20161010', ''">
+        <Column Name="Product" DataType="System.String"/>
+        <Column Name="ProductName" DataType="System.String"/>
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="Price" DataType="System.Decimal"/>
+        <Column Name="LastDate" DataType="System.DateTime"/>
+        <Column Name="LastPrice" DataType="System.String"/>
+        <Column Name="FgInput" DataType="System.String"/>
+        <Column Name="Unit" DataType="System.String"/>
+        <Column Name="Period" DataType="System.DateTime"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" FirstPageSource="15" OtherPagesSource="15">
+    <PageHeaderBand Name="PageHeader1" Width="740.5" Height="106.04">
+      <ShapeObject Name="Shape1" Left="1" Top="80.59" Width="738.1" Height="25.45"/>
+      <TextObject Name="Text3" Left="3.02" Top="83.81" Width="121.78" Height="18.9" Text="Product" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text7" Left="148" Top="83.81" Width="198.6" Height="18.9" Text="Product Name" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text15" Left="0.3" Top="27.5" Width="736.83" Height="25.35" Text="PRODUCT COST PRICE" HorzAlign="Center" VertAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text18" Left="499.2" Top="83.81" Width="48" Height="18.9" Text="Unit" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text20" Left="374.4" Top="83.81" Width="38.4" Height="18.9" Text="Curr" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text22" Left="412.8" Top="83.81" Width="80.36" Height="18.9" Text="Price" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text57" Left="558.2" Width="179.55" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text35" Left="558.2" Top="70.55" Width="179.55" Height="11.34" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text11" Left="2.02" Top="57.6" Width="96" Height="23.8" Text="Effective Date :" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text12" Left="98.6" Top="57.6" Width="163.2" Height="23.8" Text="[DS.Period]" Format="Custom" Format.Format="dd-MMM-yy" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text59" Left="551.2" Top="84.4" Width="77.8" Height="18.9" Text="Last Price" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text60" Left="633.6" Top="84.4" Width="97" Height="18.9" Text="Last Effective" Font="Arial, 9pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="110.04" Width="740.5" Height="19.2" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" AfterDataEvent="Data1_AfterData" CanBreak="true" DataSource="Table1">
+      <TextObject Name="Text1" Width="144" Height="19.2" Text="[DS.Product]" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text5" Left="144" Width="230.4" Height="19.2" CanGrow="true" Text="[DS.ProductName]" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text8" Left="499.2" Width="57.6" Height="19.2" Text="[DS.Unit]" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text9" Left="374.4" Width="38.4" Height="19.2" Text="[DS.Currency]" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text10" Left="408.2" Width="86.4" Height="19.2" Text="[DS.Price]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text61" Left="547.2" Width="86.4" Height="19.2" Text="[DS.LastPrice]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text62" Left="637.6" Width="96" Height="19.2" Text="[DS.LastDate]" Format="Custom" Format.Format="dd-MMM-yy" VertAlign="Center" Font="Arial, 8pt"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="133.24" Width="740.5" Height="18.9" BeforePrintEvent="PageFooter1_BeforePrint">
+      <LineObject Name="Line1" Width="738.65"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="05/20/2011 08:38:19" ReportInfo.Modified="10/10/2014 17:55:08" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+   Public Class ReportScript
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+
+    Private Sub PageHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+    End Sub                 
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43harzfsnh7tWIStEnwibwAyrO">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PEFormEmpReprimand 'IE/ST/13/11/0002'">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="FgStatus" DataType="System.String"/>
+        <Column Name="Column" Enabled="false" DataType="System.Int32" Calculated="true" Expression=""/>
+        <Column Name="Status" DataType="System.String"/>
+        <Column Name="RemarkDt" DataType="System.String"/>
+        <Column Name="Company" DataType="System.String"/>
+        <Column Name="RemarkHd" DataType="System.String"/>
+        <Column Name="Department" DataType="System.String"/>
+        <Column Name="EffectiveDate" DataType="System.DateTime"/>
+        <Column Name="IndisciplinerType" DataType="System.String"/>
+        <Column Name="IndisciplinerStatus" DataType="System.String"/>
+        <Column Name="MasaBerlaku" DataType="System.Int32"/>
+        <Column Name="EmpAppr1" DataType="System.String"/>
+        <Column Name="EmpNameAppr1" DataType="System.String"/>
+        <Column Name="JbtAppr1" DataType="System.String"/>
+        <Column Name="Perjanjian" DataType="System.String"/>
+        <Column Name="EmpNumb" DataType="System.String"/>
+        <Column Name="EmpName" DataType="System.String"/>
+        <Column Name="JobTitle" DataType="System.String"/>
+        <Column Name="Section" DataType="System.String"/>
+        <Column Name="IndisciplinerInfo" DataType="System.String"/>
+        <Column Name="StatementEmp" DataType="System.String"/>
+        <Column Name="StatementAppr" DataType="System.String"/>
+        <Column Name="EmpAppr2" DataType="System.String"/>
+        <Column Name="EmpNameAppr2" DataType="System.String"/>
+        <Column Name="JbtAppr2" DataType="System.String"/>
+        <Column Name="Judul" DataType="System.String"/>
+        <Column Name="Keterangan" DataType="System.String"/>
+        <Column Name="UntilDate" DataType="System.DateTime"/>
+        <Column Name="City" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" FirstPageSource="15" OtherPagesSource="15" Guides="0,292.95,1.55,738.37,738.65,740.1,9.45,103.95,113.4,680.4,37.8,737.1,43.25,731.65,28.35,408.8,524.55,525.65,660.4,663.95,132.3,189,192,201.45,204.45,450.15,203.9,449.6,730.1,387.45,727.65,255.15,368.55,170.1,444.15,538.65,652.05,453.6,412.35,491.4,699.3,739.75">
+    <PageHeaderBand Name="PageHeader1" Top="20" Width="740.5" Height="139.2" Guides="0,18.9,122.85,137.75,94.5,89.6,87.05">
+      <TextObject Name="Text3" Width="292.95" Height="18.9" Text="[DS.Company]" Font="Arial, 11pt, style=Bold"/>
+      <TextObject Name="Text68" Left="1.55" Top="122.85" Width="736.82" Height="14.9" Text="[DS.TransNmbr]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text1" Left="1.55" Top="94.5" Width="737.1" Height="28.35" Text="[DS.Judul]" HorzAlign="Center" VertAlign="Center" Font="Arial, 16pt, style=Bold"/>
+      <LineObject Name="Line2" Top="89.6" Width="740.1" Border.Style="Double" Border.Width="1.5" Diagonal="true"/>
+      <LineObject Name="Line3" Top="87.05" Width="740.1" Border.Style="Double" Border.Width="1.5" Diagonal="true"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="179.2" Width="740.5" Height="793.8" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" AfterDataEvent="Data1_AfterData" StartNewPage="true" Guides="9.45,28.35,30.35,49.25,50.7,69.6,85.05,103.95,104.95,180.55,109.4,175.55,189,207.9,206.9,210.9,229.8,232.25,251.15,253.15,272.05,275.05,293.95,295.95,314.85,316.3,335.2,463.05,481.95,483.95,502.85,567,585.9,670.95,689.85,557.55,576.45,708.75,746.55,790.25" DataSource="Table">
+      <TextObject Name="Text2" Left="9.45" Top="9.45" Width="94.5" Height="18.9" Text="Nama" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text69" Left="103.95" Top="9.45" Width="9.45" Height="18.9" Text=":" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text4" Left="113.4" Top="9.45" Width="567" Height="18.9" Text="[DS.EmpName]" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text70" Left="9.45" Top="30.35" Width="94.5" Height="18.9" Text="Jabatan" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text71" Left="103.95" Top="30.35" Width="9.45" Height="18.9" Text=":" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text72" Left="113.4" Top="30.35" Width="567" Height="18.9" Text="[DS.JobTitle]" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text73" Left="9.45" Top="50.7" Width="94.5" Height="18.9" Text="Organization" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text74" Left="103.95" Top="50.7" Width="9.45" Height="18.9" Text=":" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text75" Left="113.4" Top="50.7" Width="567" Height="18.9" Text="[DS.Department]" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text5" Left="37.8" Top="85.05" Width="699.3" Height="18.9" Text="Sehubung dengan Pelanggaran tata tertib, yaitu :" VertAlign="Center" Font="Arial, 9pt"/>
+      <ShapeObject Name="Shape1" Left="37.8" Top="104.95" Width="699.3" Height="75.6" Border.Style="Double" Border.Width="1.5"/>
+      <TextObject Name="Text6" Left="43.25" Top="109.4" Width="688.4" Height="66.15" Text="[DS.IndisciplinerInfo]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text76" Left="28.35" Top="85.05" Width="9.45" Height="18.9" Text="-" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text77" Left="37.8" Top="189" Width="371" Height="18.9" Text="Berdasarkan pada Peraturan Perusahaan dengan ini kami berikan" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text78" Left="28.35" Top="189" Width="9.45" Height="18.9" Text="-" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text7" Left="408.8" Top="189" Width="115.75" Height="17.9" Text="[DS.Keterangan]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text79" Left="525.65" Top="189" Width="134.75" Height="18.9" Text="kepada Saudara/i" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text80" Left="37.8" Top="210.9" Width="626.15" Height="18.9" Text="Surat Teguran ini berlaku selama [DS.MasaBerlaku] bulan, terhitung :" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text81" Left="28.35" Top="210.9" Width="9.45" Height="18.9" Text="-" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text82" Left="37.8" Top="232.25" Width="94.5" Height="18.9" Text="Mulai tanggal" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text83" Left="37.8" Top="253.15" Width="151.2" Height="18.9" Text="Sampai dengan tanggal" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text84" Left="192" Top="232.25" Width="9.45" Height="18.9" Text=":" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text85" Left="192" Top="253.15" Width="9.45" Height="18.9" Text=":" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text8" Left="204.45" Top="232.25" Width="245.7" Height="18.9" Text="[DS.EffectiveDate]" Format="Custom" Format.Format="dd MMMM yyyy" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text86" Left="203.9" Top="253.15" Width="245.7" Height="18.9" Text="[DS.UntilDate]" Format="Custom" Format.Format="dd MMMM yyyy" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text87" Left="37.8" Top="275.05" Width="692.3" Height="18.9" Text="Apabila dalam masa berikutnya [DS.Keterangan] ini terjadi lagi Pelanggaran lainnya, maka Perusahaan akan memberikan" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text88" Left="28.35" Top="275.05" Width="9.45" Height="18.9" Text="-" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text89" Left="37.8" Top="295.95" Width="692.3" Height="18.9" Text="sanski berupa Surat Peringatan kepada Saudara/i" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text90" Left="28.35" Top="316.3" Width="9.45" Height="18.9" Text="-" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text91" Left="37.8" Top="316.3" Width="692.3" Height="18.9" Text="Demikian agar Saudara/i maklum hendaknya" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text92" Left="387.45" Top="463.05" Width="340.2" Height="18.9" Text="Dikeluarkan di : [DS.City]" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text93" Left="387.45" Top="483.95" Width="340.2" Height="18.9" Text="Pada tanggal : [Date]" Format="Custom" Format.Format="dd MMMM yyyy" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text94" Left="255.15" Top="567" Width="113.4" Height="18.9" Text="Yang menerima," HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text9" Left="170.1" Top="670.95" Width="274.05" Height="18.9" Text="( [DS.EmpName] )" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text95" Left="538.65" Top="557.55" Width="113.4" Height="18.9" Text="Mengetahui," HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text96" Left="453.6" Top="670.95" Width="274.05" Height="18.9" Text="([DS.EmpNameAppr1])" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text10" Left="170.1" Top="689.85" Width="274.05" Height="18.9" Text="[DS.JobTitle]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <LineObject Name="Line4" Left="204.45" Top="689.85" Width="207.9" Border.Width="1.5"/>
+      <TextObject Name="Text11" Left="453.6" Top="689.85" Width="274.05" Height="18.9" Text="[DS.JbtAppr1]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <LineObject Name="Line5" Left="491.4" Top="689.85" Width="207.9" Border.Width="1.5"/>
+      <TextObject Name="Text13" Top="746.55" Width="170.1" Height="43.7" Text="Tembusan :&#13;&#10;1. Yang Bersangkutan&#13;&#10;2. Yth. Manager Terkait&#13;&#10;3. Arsip" Font="Arial, 7pt, style=Bold, Italic"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="993" Width="740.5" Height="12.45" Guides="0">
+      <LineObject Name="Line1" Width="739.75"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

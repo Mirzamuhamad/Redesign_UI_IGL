@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="04/29/2014 16:04:49" ReportInfo.Modified="10/29/2015 09:14:56" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    Dim CountNo As Integer
+
+
+    Private Sub PageHeader1_AfterPrint(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+
+    Private Sub MasterData2_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      CountNo = CountNo + 1
+      No.Text = CountNo.ToString
+      
+      if CType(Report.GetColumnValue(&quot;DS.StartDate&quot;), String)= &quot;01 Jan 1900&quot; then 
+        Text36.Visible = False
+      else Text36.Visible = True
+      end if
+      
+    End Sub
+
+    Private Sub PageHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      ColumnHeader1.Visible = False
+      Child1.Visible = False
+
+      If CType(Report.GetColumnValue(&quot;DS.ReportType&quot;), String) = &quot;0&quot; Then 
+        QrlGroupA.Visible = False
+        QrlGroupB.Visible = False
+        QrlGroupA2.Visible = False
+        QrlGroupB2.Visible = False
+        QrlColumA.Text = &quot;Job Level&quot;
+        QrlColumB.Text = &quot;Job Level&quot;
+        QrlColumC.Text = &quot;Department&quot;
+        QrlColumD.Text = &quot;Department&quot;
+      elseif CType(Report.GetColumnValue(&quot;DS.ReportType&quot;), String) = &quot;1&quot; Then 
+        QrlGroupA.Visible = True
+        QrlGroupB.Visible = True
+        QrlGroupA2.Visible = True
+        QrlGroupB2.Visible = True
+        QrlGroupA.Text = &quot;DEPARTMENT&quot;
+        QrlGroupB.Text = &quot;DEPARTMENT&quot;
+        QrlColumA.Text = &quot;Job Level&quot;
+        QrlColumB.Text = &quot;Job Level&quot;
+        QrlColumC.Text = &quot;Job Title&quot;
+        QrlColumD.Text = &quot;Job Title&quot;
+      elseif CType(Report.GetColumnValue(&quot;DS.ReportType&quot;), String) = &quot;2&quot; Then 
+        QrlGroupA.Visible = True
+        QrlGroupB.Visible = True
+        QrlGroupA2.Visible = True
+        QrlGroupB2.Visible = True
+        QrlGroupA.Text = &quot;JOB LEVEL&quot;
+        QrlGroupB.Text = &quot;JOB LEVEL&quot;
+        QrlColumA.Text = &quot;Department&quot;
+        QrlColumB.Text = &quot;Department&quot;
+        QrlColumC.Text = &quot;Job Title&quot;
+        QrlColumD.Text = &quot;Job Title&quot;
+     elseif CType(Report.GetColumnValue(&quot;DS.ReportType&quot;), String) = &quot;3&quot; Then 
+        QrlGroupA.Visible = True
+        QrlGroupB.Visible = True
+        QrlGroupA2.Visible = True
+        QrlGroupB2.Visible = True
+        QrlGroupA.Text = &quot;JOB TITLE&quot;
+        QrlGroupB.Text = &quot;JOB TITLE&quot;
+        QrlColumA.Text = &quot;Job Level&quot;
+        QrlColumB.Text = &quot;Job Level&quot;
+        QrlColumC.Text = &quot;Department&quot;
+        QrlColumD.Text = &quot;Department&quot;
+    elseif CType(Report.GetColumnValue(&quot;DS.ReportType&quot;), String) = &quot;4&quot; Then     
+        QrlGroupA.Visible = True
+        QrlGroupB.Visible = True
+        QrlGroupA2.Visible = True
+        QrlGroupB2.Visible = True
+        QrlGroupA.Text = &quot;EMPLOYEE TYPE&quot;
+        QrlGroupB.Text = &quot;EMPLOYEE TYPE&quot;
+        QrlColumA.Text = &quot;Job Level&quot;
+        QrlColumB.Text = &quot;Job Level&quot;
+        QrlColumC.Text = &quot;Department&quot;
+        QrlColumD.Text = &quot;Department&quot;
+    elseif CType(Report.GetColumnValue(&quot;DS.ReportType&quot;), String) = &quot;5&quot; Then     
+        QrlGroupA.Visible = True
+        QrlGroupB.Visible = True
+        QrlGroupA2.Visible = True
+        QrlGroupB2.Visible = True
+        QrlGroupA.Text = &quot;WORKPLACE&quot;
+        QrlGroupB.Text = &quot;WORKPLACE&quot;
+        QrlColumA.Text = &quot;Job Level&quot;
+        QrlColumB.Text = &quot;Job Level&quot;
+        QrlColumC.Text = &quot;Department&quot;
+        QrlColumD.Text = &quot;Department&quot;
+    End If
+    End Sub
+  
+
+    Private Sub MasterData2_AfterData(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+
+    Private Sub MasterData2_AfterPrint(ByVal sender As object, ByVal e As EventArgs)
+         
+    End Sub
+
+    Private Sub GroupHeader1_AfterPrint(ByVal sender As object, ByVal e As EventArgs)
+      CountNo = 0
+      ColumnHeader1.Visible = True
+      Child1.Visible = True
+      PageFooter1.Visible = True
+    End Sub
+
+    Private Sub GroupFooter1_AfterPrint(ByVal sender As object, ByVal e As EventArgs)
+      ColumnHeader1.Visible = False
+      Child1.Visible = False
+      PageFooter1.Visible = False
+    End Sub
+
+    Private Sub No_AfterPrint(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+
+    Private Sub No_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqCj2r1mxL3N1BQpaK8n6cMVXSm9zCceeHbkl6kN2POiHLaye2wQShdaiS/6kaMu20uV2r2EoMnxGJMawKwQqwQOsGdf1uZ6PlbID27EpRetjfONBGoeTDlf61sgFHNmC7xcjIaPztq0/JNAJ5g0DX2b7sDxo54BkJ6NVHYSpVoZWCSVeyCDoipFVC/PN/huWM">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PERptEmpList 0, '','','','',''">
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="GroupCode" DataType="System.String"/>
+        <Column Name="GroupName" DataType="System.String"/>
+        <Column Name="Emp_No" DataType="System.String"/>
+        <Column Name="Emp_Name" DataType="System.String"/>
+        <Column Name="Birth_Date" DataType="System.DateTime"/>
+        <Column Name="JobLevelName" DataType="System.String"/>
+        <Column Name="Department" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="ReportType" DataType="System.String"/>
+        <Column Name="StartDate" DataType="System.DateTime"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" FirstPageSource="15" OtherPagesSource="15" Guides="191.03,553.49,0,481.88,0.05,378,481.95,737.1,102.17,103.95,112.62,113.4,733.32,-1,741.1,3,32.57,34.8,139.97,140.2,310.52,312.3,379.67,381.45,448.82,449.05,595.47,594.8,738.87,742.1,34.78,139.95,3.02,32.59,141.2,311.52,381.47,448.84,449.14,595.56,594.67,738.74,32.5,139.86,311.43,448.75,740.96,595.43,379.58,1,740.66,743.53">
+    <PageHeaderBand Name="PageHeader1" Width="740.5" Height="75.6" BeforePrintEvent="PageHeader1_BeforePrint" AfterPrintEvent="PageHeader1_AfterPrint" Guides="50.46,75.45,22.68,51.03,0.1,26.56,0,18.9,37.8">
+      <TextObject Name="Memo1" Left="191.03" Top="50.46" Width="362.46" Height="24.99" Text="REPORT EMPLOYEE LISTING" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 12pt, style=Bold"/>
+      <TextObject Name="QrlCompLineA" Top="22.68" Width="481.88" Height="28.35" Text="[DS.CompAddr]" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Company" Left="0.05" Top="0.1" Width="377.95" Height="26.46" Text="[DS.CompanyName]" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text54" Left="481.95" Width="255.15" Height="18.9" Text="Date : [Date]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text55" Left="481.95" Top="18.9" Width="255.15" Height="18.9" Text="[Page#] Of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+    </PageHeaderBand>
+    <ColumnHeaderBand Name="ColumnHeader1" Top="79.77" Width="740.5" Height="18.9" Guides="0,18.9">
+      <TextObject Name="QrlGroupA" Width="102.17" Height="18.9" Text="Department" Padding="2, 1, 2, 1" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="QrlGroupA2" Left="103.95" Width="8.67" Height="18.9" Text=":" Padding="2, 1, 2, 1" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="QRExpr2" Left="113.4" Width="619.92" Height="18.9" Text="[DS.GroupName]" Padding="2, 1, 2, 1" Font="Arial, 8pt, style=Bold"/>
+      <ChildBand Name="Child1" Top="102.83" Width="740.5" Height="28.35" Guides="-1,27.35,3,21.9,3.02,21.92">
+        <ShapeObject Name="Shape1" Left="-1" Top="-1" Width="742.1" Height="28.35"/>
+        <TextObject Name="Text28" Left="3" Top="3" Width="29.57" Height="18.9" Text="No" Padding="2, 1, 2, 1" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text60" Left="34.8" Top="3" Width="95.72" Height="18.9" Text="Employee No" Padding="2, 1, 2, 1" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text61" Left="130.75" Top="3.02" Width="179.77" Height="18.9" Text="Employee Name" Padding="2, 1, 2, 1" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text62" Left="312.3" Top="3" Width="67.37" Height="18.9" Text="Start Date" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text63" Left="381.45" Top="3" Width="67.37" Height="18.9" Text="Birth Date" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="QrlColumB" Left="449.05" Top="3" Width="146.42" Height="18.9" Text="Job Level" Padding="2, 1, 2, 1" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="QrlColumD" Left="594.8" Top="3" Width="144.07" Height="18.9" Text="Job Title" Padding="2, 1, 2, 1" Font="Arial, 8pt, style=Bold"/>
+      </ChildBand>
+    </ColumnHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="135.35" Width="740.5" Height="18.9" AfterPrintEvent="GroupHeader1_AfterPrint" StartNewPage="true" Guides="0,18.9" Condition="[DS.GroupCode]">
+      <TextObject Name="QrlGroupB" Width="102.17" Height="18.9" Text="Employee" Padding="2, 1, 2, 1" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="QrlGroupB2" Left="103.95" Width="8.67" Height="18.9" Text=":" Padding="2, 1, 2, 1" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="QRExpr1" Left="113.4" Width="619.92" Height="18.9" Text="[DS.GroupName]" Padding="2, 1, 2, 1" Font="Arial, 8pt, style=Bold"/>
+      <ChildBand Name="Child3" Top="158.42" Width="740.5" Height="28.35" Guides="0,28.35,4.45,22.35,23.35">
+        <ShapeObject Name="Shape2" Width="742.1" Height="28.35"/>
+        <TextObject Name="Text67" Left="34.78" Top="4.45" Width="95.72" Height="17.9" Text="Employee No" Padding="2, 1, 2, 1" Font="Arial, 7pt, style=Bold"/>
+        <TextObject Name="Text66" Left="3.02" Top="4.45" Width="29.57" Height="18.9" Text="No" Padding="2, 1, 2, 1" HorzAlign="Right" Font="Arial, 7pt, style=Bold"/>
+        <TextObject Name="Text68" Left="131.75" Top="4.45" Width="179.77" Height="17.9" Text="Employee Name" Padding="2, 1, 2, 1" Font="Arial, 7pt, style=Bold"/>
+        <TextObject Name="Text69" Left="312.3" Top="4.45" Width="67.37" Height="17.9" Text="Start Date" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+        <TextObject Name="Text70" Left="381.47" Top="4.45" Width="67.37" Height="17.9" Text="Birth Date" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+        <TextObject Name="QrlColumA" Left="449.14" Top="4.45" Width="146.42" Height="17.9" Text="Job Level" Padding="2, 1, 2, 1" Font="Arial, 7pt, style=Bold"/>
+        <TextObject Name="QrlColumC" Left="594.67" Top="4.45" Width="144.07" Height="17.9" Text="Job Title" Padding="2, 1, 2, 1" Font="Arial, 7pt, style=Bold"/>
+      </ChildBand>
+      <DataBand Name="MasterData2" Top="190.93" Width="740.5" Height="18.9" CanGrow="true" CanShrink="true" BeforePrintEvent="MasterData2_BeforePrint" AfterPrintEvent="MasterData2_AfterPrint" AfterDataEvent="MasterData2_AfterData" Guides="0,18.9" DataSource="Table">
+        <TextObject Name="No" Left="3.02" Width="29.48" Height="18.9" CanGrow="true" CanShrink="true" BeforePrintEvent="No_BeforePrint" AfterPrintEvent="No_AfterPrint" Text="No" Padding="2, 1, 2, 1" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="spRptEmployee" Left="34.78" Width="105.08" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.Emp_No]" Padding="2, 1, 2, 1" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="spRptEmpNumb" Left="141.2" Width="170.23" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.Emp_Name]" Padding="2, 1, 2, 1" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="spRptEmpStatusName" Left="381.47" Width="67.28" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.Birth_Date]" Padding="2, 1, 2, 1" Format="Custom" Format.Format="dd MMM yy" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="spRptJobTitle" Left="594.67" Width="146.29" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.Department]" Padding="2, 1, 2, 1" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text35" Left="449.14" Width="146.29" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.JobLevelName]" Padding="2, 1, 2, 1" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text36" Left="312.3" Width="67.28" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.StartDate]" Padding="2, 1, 2, 1" Format="Custom" Format.Format="dd MMM yy" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="214" Width="740.5" AfterPrintEvent="GroupFooter1_AfterPrint" Guides="0">
+        <LineObject Name="Line6" Left="1" Width="739.66"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="218.17" Width="740.5" Height="22.68" Guides="0">
+      <LineObject Name="Line5" Width="743.53"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

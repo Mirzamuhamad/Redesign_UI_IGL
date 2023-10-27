@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="01/09/2014 08:58:36" ReportInfo.Modified="02/26/2014 15:15:19" ReportInfo.CreatorVersion="1.2.47.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haq63h180cS3F3iRLvIpcAnW">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PEFormJamsostekRegOut '0005/UJE-PGA/01/', ''">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="NoPendaftaran" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="BulanCode" DataType="System.Int32"/>
+        <Column Name="BulanName" DataType="System.String"/>
+        <Column Name="TahunBulan" DataType="System.String"/>
+        <Column Name="Tahun" DataType="System.Int32"/>
+        <Column Name="Unit" DataType="System.String"/>
+        <Column Name="EmpApprCode" DataType="System.String"/>
+        <Column Name="EmpApprName" DataType="System.String"/>
+        <Column Name="JobTtlApprCode" DataType="System.String"/>
+        <Column Name="JobTtlApprName" DataType="System.String"/>
+        <Column Name="EmpAckCode" DataType="System.String"/>
+        <Column Name="EmpAckName" DataType="System.String"/>
+        <Column Name="JobTtlAckCode" DataType="System.String"/>
+        <Column Name="JobTtlAckName" DataType="System.String"/>
+        <Column Name="NoUrut" DataType="System.Int32"/>
+        <Column Name="EmpNumb" DataType="System.String"/>
+        <Column Name="EmpName" DataType="System.String"/>
+        <Column Name="JamsostekNo" DataType="System.String"/>
+        <Column Name="BirthDate" DataType="System.DateTime"/>
+        <Column Name="Gender" DataType="System.String"/>
+        <Column Name="SalaryGP" DataType="System.Decimal"/>
+        <Column Name="RemarkDt" DataType="System.String"/>
+        <Column Name="SACompany" DataType="System.String"/>
+        <Column Name="SAAddress" DataType="System.String"/>
+        <Column Name="SACity" DataType="System.String"/>
+        <Column Name="SAUnit" DataType="System.String"/>
+        <Column Name="SAPostCode" DataType="System.String"/>
+        <Column Name="TotalSal" DataType="System.Decimal"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="TotSalary" Expression="[DS.SalaryGP]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" LeftMargin="3" RightMargin="3" FirstPageSource="14" OtherPagesSource="14">
+    <PageHeaderBand Name="PageHeader1" Width="793.42" Height="165.1">
+      <ShapeObject Name="Shape2" Top="127.3" Width="793.04" Height="37.8"/>
+      <ShapeObject Name="Shape1" Top="75.6" Width="793.04" Height="52.92"/>
+      <TextObject Name="Text1" Top="103.95" Width="189" Height="18.9" Text="[DS.NoPendaftaran]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text2" Left="245.7" Top="103.95" Width="217.35" Height="18.9" Text="[DS.SACompany]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text3" Left="472.5" Top="103.95" Width="37.8" Height="18.9" Text="[DS.SAUnit]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text4" Left="529.2" Top="103.95" Width="154.98" Height="18.9" Text="[DS.TahunBulan]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text5" Left="733.32" Top="83.05" Width="56.7" Height="18.9" Text=": [Page#]" Font="Arial, 8pt"/>
+      <TextObject Name="Text6" Left="733.32" Top="103.95" Width="56.7" Height="18.9" Text=": [TotalPages#]" Font="Arial, 8pt"/>
+      <TextObject Name="Text8" Top="132.3" Width="45.36" Height="30.24" Text="Nomor Urut" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text10" Left="46.25" Top="132.3" Width="86.94" Height="30.24" Text="Nomor Induk Karyawan" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text12" Left="240.25" Top="132.3" Width="275.94" Height="15.12" Text="Nama Lengkap Tenaga Kerja" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text14" Left="518.3" Top="132.3" Width="64.26" Height="15.12" Text="Tgl Lahir" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text16" Left="583.45" Top="132.3" Width="24.57" Height="15.12" Text="L/P" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text18" Left="609.8" Top="132.3" Width="85.05" Height="15.12" Text="Upah Sebulan" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text20" Left="696.85" Top="132.3" Width="94.5" Height="15.12" Text="Keterangan" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text21" Left="240.25" Top="148.2" Width="275.94" Height="15.12" Text="(sesuai dengan KTP &amp; gelar serta sebutan diletakkan di belakang)" HorzAlign="Center" Font="Arial, 6.5pt"/>
+      <TextObject Name="Text22" Left="518.3" Top="148.2" Width="64.26" Height="15.12" Text="(tgl/bln/thn)" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text23" Left="583.45" Top="148.2" Width="24.57" Height="15.12" Text="(1)" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text24" Left="609.8" Top="148.2" Width="85.05" Height="15.12" Text="(Rp.)" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text25" Left="696.85" Top="148.2" Width="94.5" Height="15.12" Text="(2)" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text26" Top="83.05" Width="189" Height="18.9" Text="No. Pendaftaran perusahaan (NPP) : " HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text27" Left="245.7" Top="83.05" Width="217.35" Height="18.9" Text="Nama Perusahaan :" Font="Arial, 8pt"/>
+      <TextObject Name="Text28" Left="472.5" Top="83.05" Width="37.8" Height="18.9" Text="Unit : " Font="Arial, 8pt"/>
+      <TextObject Name="Text29" Left="529.2" Top="83.05" Width="154.98" Height="18.9" Text="Terhitung mulai bln / thn" Font="Arial, 8pt"/>
+      <TextObject Name="Text30" Left="699.3" Top="83.05" Width="34.02" Height="18.9" Text="Hlm" Font="Arial, 8pt"/>
+      <TextObject Name="Text31" Left="699.3" Top="103.95" Width="34.02" Height="18.9" Text="dari" Font="Arial, 8pt"/>
+      <TextObject Name="Text32" Left="132.75" Top="132.3" Width="107.73" Height="15.12" Text="Nomor Peserta" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text33" Left="132.75" Top="148.2" Width="107.73" Height="15.12" Text="(diisi bila sudah memiliki)" HorzAlign="Center" Font="Arial, 6.5pt"/>
+      <LineObject Name="Line1" Left="696.3" Top="75.6" Height="88.83"/>
+      <LineObject Name="Line2" Left="516.75" Top="75.6" Height="88.83"/>
+      <LineObject Name="Line3" Left="240.25" Top="75.6" Height="88.83"/>
+      <LineObject Name="Line6" Left="47.25" Top="128.3" Height="35.91"/>
+      <LineObject Name="Line7" Left="133.3" Top="128.3" Height="35.91"/>
+      <LineObject Name="Line8" Left="582.9" Top="128.3" Height="35.91"/>
+      <LineObject Name="Line9" Left="609.25" Top="128.3" Height="35.91"/>
+      <TextObject Name="Text35" Left="259.68" Top="35.3" Width="274.05" Height="18.9" Text="DAFTAR TENAGA KERJA KELUAR" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="169.1" Width="793.42" Height="17.01" CanGrow="true" CanShrink="true" DataSource="Table">
+      <TextObject Name="Text7" Width="45.36" Height="17.01" Text="[DS.NoUrut]" HorzAlign="Right" VertAlign="Center" Font="Arial, 7.5pt"/>
+      <TextObject Name="Text9" Left="46.25" Width="86.94" Height="17.01" CanGrow="true" CanShrink="true" Text="[DS.EmpNumb]" VertAlign="Center" Font="Arial, 7.5pt"/>
+      <TextObject Name="Text11" Left="240.25" Width="275.94" Height="17.01" Text="[DS.EmpName]" VertAlign="Center" Font="Arial, 7.5pt"/>
+      <TextObject Name="Text13" Left="518.3" Width="64.26" Height="17.01" Text="[DS.BirthDate]" Format="Date" Format.Format="d" VertAlign="Center" Font="Arial, 7.5pt"/>
+      <TextObject Name="Text15" Left="583.45" Width="24.57" Height="17.01" Text="[DS.Gender]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7.5pt"/>
+      <TextObject Name="Text17" Left="609.8" Width="85.05" Height="17.01" Text="[DS.SalaryGP]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial, 7.5pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text19" Left="696.85" Width="94.5" Height="17.01" CanGrow="true" CanShrink="true" Text="[DS.RemarkDt]" VertAlign="Center" Font="Arial, 7.5pt"/>
+      <LineObject Name="Line10" Left="47.25" Top="-1" Height="15.12" CanGrow="true" CanShrink="true" GrowToBottom="true"/>
+      <LineObject Name="Line11" Height="17.01" CanGrow="true" CanShrink="true" GrowToBottom="true"/>
+      <LineObject Name="Line12" Left="133.3" Height="15.12" CanGrow="true" CanShrink="true" GrowToBottom="true"/>
+      <LineObject Name="Line13" Left="240.25" Height="17.01" CanGrow="true" CanShrink="true" GrowToBottom="true"/>
+      <LineObject Name="Line14" Left="516.75" Height="17.01" CanGrow="true" CanShrink="true" GrowToBottom="true"/>
+      <LineObject Name="Line15" Left="609.25" Height="15.12" CanGrow="true" CanShrink="true" GrowToBottom="true"/>
+      <LineObject Name="Line16" Left="582.9" Height="15.12" CanGrow="true" CanShrink="true" GrowToBottom="true"/>
+      <LineObject Name="Line17" Left="696.3" Height="17.01" CanGrow="true" CanShrink="true" GrowToBottom="true"/>
+      <LineObject Name="Line18" Left="792.8" Height="17.01" CanGrow="true" CanShrink="true" GrowToBottom="true"/>
+    </DataBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="190.11" Width="793.42" Height="18.9">
+      <TextObject Name="Text34" Left="609.8" Width="85.05" Height="18.9" Text="[TotSalary]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+      <LineObject Name="Line5" Top="18.9" Width="793.42"/>
+      <LineObject Name="Line19" Left="792.8" Height="18.9"/>
+      <LineObject Name="Line20" Left="516.75" Height="18.9"/>
+      <LineObject Name="Line21" Left="240.25" Height="18.9"/>
+      <LineObject Name="Line22" Height="18.9"/>
+      <LineObject Name="Line23" Left="696.3" Height="18.9"/>
+      <LineObject Name="Line4" Width="793.42"/>
+      <TextObject Name="Text36" Left="255.15" Width="217.35" Height="18.9" Text="TOTAL" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="213.01" Width="793.42" Height="18.9"/>
+  </ReportPage>
+</Report>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="05/10/2011 14:31:32" ReportInfo.Modified="01/25/2014 18:51:42" ReportInfo.CreatorVersion="1.2.47.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43harI/ZLFBG9xPeEVH8JELOmU">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC [S_MKRptSupplierList] '','','',1,'joshep'">
+        <Column Name="Groupby" DataType="System.String"/>
+        <Column Name="Supplier_Code" DataType="System.String"/>
+        <Column Name="Supplier_Name" DataType="System.String"/>
+        <Column Name="Address_1" DataType="System.String"/>
+        <Column Name="Phone" DataType="System.String"/>
+        <Column Name="Fax" DataType="System.String"/>
+        <Column Name="Contact_Person" DataType="System.String"/>
+        <Column Name="Contact_HP" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="Address" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" FirstPageSource="14" OtherPagesSource="14" Guides="0,1039.5,132.3,359.1,6.43,129.28,364.01,610.84,614.25,708.75,712.91,807.41,810.81,933.66,938.57,1029.67,442.26,602.91,519.75,585.9,818.15,1035.5,94.5,364.1,610.8,712.75,807.25,810.7,933.55,938.55,1029.5">
+    <PageHeaderBand Name="PageHeader1" Top="20" Width="1047.06" Height="119.74" Guides="96.39,119.74,99.39,115.29,99.41,115.31,69.93,88.83,0,18.9,66.15,9.45,22.68,79.6,92.83">
+      <ShapeObject Name="Shape1" Top="96.39" Width="1039.5" Height="23.35"/>
+      <TextObject Name="Text6" Left="132.3" Top="99.39" Width="226.8" Height="15.9" Text="Supplier Name"/>
+      <TextObject Name="Text7" Left="6.43" Top="99.39" Width="122.85" Height="15.9" Text="Supplier Code"/>
+      <TextObject Name="Text12" Left="364.01" Top="99.41" Width="246.83" Height="15.9" Text="Address"/>
+      <TextObject Name="Text13" Left="614.25" Top="99.41" Width="94.5" Height="15.9" Text="Phone"/>
+      <TextObject Name="Text14" Left="712.91" Top="99.41" Width="94.5" Height="15.9" Text="Fax"/>
+      <TextObject Name="Text15" Left="810.81" Top="99.41" Width="122.85" Height="15.9" Text="Contact Name"/>
+      <TextObject Name="Text16" Left="938.57" Top="99.41" Width="91.1" Height="15.9" Text="Contact Phone"/>
+      <TextObject Name="Text1" Left="442.26" Top="69.93" Width="160.65" Height="18.9" Text="SUPPLIER LIST" AutoWidth="true" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text17" Width="519.75" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text18" Top="18.9" Width="585.9" Height="47.25" Text="[DS.Address]" Font="Arial, 8.25pt"/>
+      <TextObject Name="Text40" Left="818.15" Top="9.45" Width="217.35" Height="13.23" Text="Date/Time : [Date]" Format="Custom" Format.Format="dd/MM/yyyy hh:mm:ss" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text42" Left="818.15" Top="79.6" Width="217.35" Height="13.23" Text="Page : [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="159.74" Width="1047.06" Height="18.9" Guides="0,18.9" Condition="[DS.Groupby]">
+      <TextObject Name="Text2" Width="94.5" Height="18.9" Text="[[DS.Groupby]]" AutoWidth="true" Font="Arial, 10pt, style=Bold"/>
+      <DataBand Name="Data1" Top="198.64" Width="1047.06" Height="18.9" Guides="0,18.9" DataSource="Table">
+        <TextObject Name="Text3" Left="6.43" Width="122.85" Height="18.9" Text="[DS.Supplier_Code]"/>
+        <TextObject Name="Text5" Left="132.3" Width="226.8" Height="18.9" Text="[DS.Supplier_Name]"/>
+        <TextObject Name="Text4" Left="364.1" Width="246.7" Height="18.9" Text="[DS.Address_1]"/>
+        <TextObject Name="Text8" Left="614.25" Width="94.5" Height="18.9" Text="[DS.Phone]"/>
+        <TextObject Name="Text9" Left="712.75" Width="94.5" Height="18.9" Text="[DS.Fax]"/>
+        <TextObject Name="Text10" Left="810.7" Width="122.85" Height="18.9" Text="[DS.Contact_Person]"/>
+        <TextObject Name="Text11" Left="938.55" Width="90.95" Height="18.9" Text="[DS.Contact_HP]"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="237.54" Width="1047.06" Height="0.45" Guides="0">
+        <LineObject Name="Line1" Width="1039.5" Diagonal="true"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="257.99" Width="1047.06" Height="18.9"/>
+  </ReportPage>
+</Report>

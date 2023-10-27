@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="07/04/2011 15:39:43" ReportInfo.Modified="03/06/2019 10:55:18" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+      dim Dept as String
+      dim Req as String
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+       if Dept &lt;&gt; Report.GetColumnValue(&quot;DS.JobPlant&quot;) then
+        Text1.Visible = True            
+        Dept = Report.GetColumnValue(&quot;DS.JobPlant&quot;) 
+       else
+        Text1.Visible = false             
+       End If      
+      
+       if Req &lt;&gt; Report.GetColumnValue(&quot;DS.TransNmbr&quot;) then
+        'Text3.Visible = true
+        'Text5.Visible = true
+        'Text7.Visible = true 
+        'Text9.Visible = true 
+        Req = Report.GetColumnValue(&quot;DS.TransNmbr&quot;) 
+       else
+        'Text3.Visible = false
+        'Text5.Visible = false
+        'Text7.Visible = false 
+        'Text9.Visible = false 
+       End if
+    End Sub       
+
+    Private Sub ReportTitle1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Dept = &quot;&quot;
+      Req = &quot;&quot;
+    End Sub
+
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Dept = &quot;&quot;
+      Req = &quot;&quot;
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLGyiz5qWMjsA99V/W+nNq1W3g2zii+WzFvwn5S/yO9ty4j5cNSou1n2RnV42VCogqhWDGBfTi9Ny1OneZGYjfinOHGpdCxzvpie7qu5vUxEx4MCFZZfHfGnHRCgUFUBKbmMlG5NqLQAbah7tE2SUt7RDEz6sMsgfIJ3ZUliXwBV7">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PLRptWOTopBottomRekapOuts '20180101','20181231','', '', '', '', '0', '0', '', '', 'admin'">
+        <Column Name="Column" Enabled="false" DataType="System.Int32" Calculated="true" Expression=""/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="Period" DataType="System.String"/>
+        <Column Name="CompanyNPWP" DataType="System.String"/>
+        <Column Name="CompanyAddress" DataType="System.String"/>
+        <Column Name="UserId" DataType="System.String"/>
+        <Column Name="GroupCode" DataType="System.String"/>
+        <Column Name="JobPlant" DataType="System.String"/>
+        <Column Name="StatusTanam" DataType="System.String"/>
+        <Column Name="Rotasi" DataType="System.String"/>
+        <Column Name="WONo" DataType="System.String"/>
+        <Column Name="Team" DataType="System.String"/>
+        <Column Name="Qty" DataType="System.Double"/>
+        <Column Name="Unit" DataType="System.String"/>
+        <Column Name="Price" DataType="System.Double"/>
+        <Column Name="TotalJobPrice" DataType="System.Double"/>
+        <Column Name="RotasiT" DataType="System.String"/>
+        <Column Name="WONoT" DataType="System.String"/>
+        <Column Name="TeamT" DataType="System.String"/>
+        <Column Name="QtyT" DataType="System.Double"/>
+        <Column Name="UnitT" DataType="System.String"/>
+        <Column Name="PriceT" DataType="System.Double"/>
+        <Column Name="TotalJobPriceT" DataType="System.Double"/>
+        <Column Name="Block" DataType="System.String"/>
+        <Column Name="BlockName" DataType="System.String"/>
+        <Column Name="BlockUnion" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="Total1" Expression="[DS.TotalJobPrice]" Evaluator="Data1" IncludeInvisibleRows="true"/>
+    <Total Name="Total2" Expression="[DS.TotalJobPriceT]" Evaluator="Data1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="420.1" PaperHeight="296.9" LeftMargin="2.5" TopMargin="2.5" RightMargin="2.5" BottomMargin="2.5" FirstPageSource="261" OtherPagesSource="261" Guides="321.3,737.1,400.68,621.81,0,538.65,793.8,1039.5,1047.28,7.56,128.52,129.3,250.14,251.26,335.76,340.2,427.14,430.92,529.2,532.98,669.06,672.84,895.86,793.69,882.63,884.41,958.23,963.79,1041.5,362.88,3.78,355.2,37.8,113.4">
+    <ReportTitleBand Name="ReportTitle1" Width="1569.08" BeforePrintEvent="ReportTitle1_BeforePrint" Guides="60.48,79.38,87.16,102.28,0,18.9,20.9,58.7,9.45,22.68,79.6,92.83">
+      <TextObject Name="Text58" Left="-9450" Top="-9450" Width="94.24" Height="18.9" Text="Bedeng&#13;&#10;" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="6.25" Width="1569.08" Height="190.55" Guides="0,26.46,4,22.9,3.78,22.68,189,18.9">
+      <TextObject Name="Text2" Left="2.11" Top="161" Width="22.24" Height="18.9" Text="No&#13;&#10;" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text11" Left="589.12" Top="63.7" Width="427.14" Height="19.2" Text="Rekap Outstanding WO Bottom dan WO Top" HorzAlign="Center" VertAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text25" Left="-1.89" Top="2.11" Width="332.64" Height="18.9" Text="[DS.CompanyName]" VertAlign="Center" Font="Arial, 16pt, style=Bold"/>
+      <TextObject Name="Text162" Top="24.9" Width="209.79" Height="56.7" Text="[DS.CompanyAddress]" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line1" Left="4" Top="22.9" Width="194" Border.Width="2"/>
+      <TextObject Name="Text172" Left="32.8" Top="155.55" Width="100.17" Height="31.35" Text="Jenis KEgiatan  / Pekerjaan" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line101" Left="0.46" Top="152.75" Width="1558.79"/>
+      <LineObject Name="Line6" Left="-3" Top="189.55" Width="1561.8"/>
+      <TextObject Name="Text240" Left="673.62" Top="85.05" Width="75.93" Height="15.9" Text="Period	:" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text241" Left="748.65" Top="86.05" Width="239.85" Height="13.45" Text="[DS.Period]" Format="Custom" Format.Format="dd mmmm yyyy" Font="Arial, 8pt"/>
+      <TextObject Name="Text245" Left="141.75" Top="161.65" Width="88.17" Height="15.9" Text="Setatus Tanam" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text42" Left="1313.55" Width="245.7" Height="13.23" Text="Page : [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text266" Left="246.15" Top="161.65" Width="50.37" Height="15.9" Text="Rotasi" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text267" Left="297.95" Top="161.65" Width="97.62" Height="15.9" Text="Wo No" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text268" Left="394.45" Top="161.65" Width="94.62" Height="15.9" Text="Block" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text269" Left="490.95" Top="152.65" Width="97.62" Height="34.8" Text="WO Bottom Team" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text270" Left="599.35" Top="161.65" Width="50.37" Height="15.9" Text="Qty" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text271" Left="651.05" Top="161.65" Width="29.92" Height="15.9" Text="Unit" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text272" Left="690.85" Top="161.65" Width="57.27" Height="15.9" Text="Job Price" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text273" Left="832.6" Top="161.65" Width="50.37" Height="15.9" Text="Rotasi" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text274" Left="889.3" Top="161.65" Width="69.27" Height="15.9" Text="Wo No" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text275" Left="974.35" Top="161.65" Width="97.62" Height="15.9" Text="Block" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text276" Left="1090.75" Top="152.65" Width="125.97" Height="34.8" Text="WO Top Priority Team" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text290" Left="753.55" Top="161.65" Width="76.17" Height="24.35" Text="Total Job Price" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text292" Left="1267.3" Top="161.65" Width="50.37" Height="15.9" Text="Qty" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text293" Left="1314.55" Top="161.65" Width="40.92" Height="15.9" Text="Unit" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text294" Left="1375.7" Top="161.65" Width="57.27" Height="15.9" Text="Job Price" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text295" Left="1443.4" Top="161.65" Width="113.97" Height="24.35" Text="Total Job Price" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="203.05" Width="1569.08" BeforePrintEvent="GroupHeader1_BeforePrint" Guides="0" Condition="[DS.JobPlant]" SortOrder="None">
+      <DataBand Name="Data1" Top="209.3" Width="1569.08" Height="32.13" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" Guides="3.78,22.68,47.25,47.25,47.25,47.25,47.25,47.25,47.25,47.25,47.25,47.25,28.35,37.8,37.8,37.8,37.8,37.8,37.8,37.8,37.8,37.8,56.7,56.7" DataSource="Table">
+        <TextObject Name="Text3" Top="1.78" Width="26.35" Height="30.35" CanBreak="false" Text="[AbsRow#]" WordWrap="false" Font="Arial, 8pt"/>
+        <TextObject Name="Text1" Left="29.8" Top="2" Width="104" Height="27.9" Text="[DS.JobPlant]" Font="Arial, 8pt"/>
+        <TextObject Name="Text277" Left="139.2" Top="2" Width="94.55" Height="27.9" Text="[DS.StatusTanam]" Font="Arial, 8pt"/>
+        <TextObject Name="Text278" Left="246.15" Top="2" Width="47.3" Height="27.9" Text="[DS.Rotasi]" Font="Arial, 8pt"/>
+        <TextObject Name="Text279" Left="296.4" Top="2" Width="94.55" Height="27.9" Text="[DS.WONo]" Font="Arial, 8pt"/>
+        <TextObject Name="Text281" Left="393.35" Top="2" Width="94.55" Height="27.9" Text="[DS.BlockUnion]" Font="Arial, 8pt"/>
+        <TextObject Name="Text282" Left="493.3" Top="2" Width="104" Height="27.9" Text="[DS.Team]" Font="Arial, 8pt"/>
+        <TextObject Name="Text283" Left="601.7" Top="2" Width="50.75" Height="27.9" Text="[DS.Qty]" Format="Custom" Format.Format="##,#0.##" Font="Arial, 8pt"/>
+        <TextObject Name="Text284" Left="652.4" Top="2" Width="34.85" Height="27.9" Text="[DS.Unit]" Font="Arial, 8pt"/>
+        <TextObject Name="Text285" Left="697.65" Top="2" Width="50.75" Height="27.9" Text="[DS.PriceT]" Format="Custom" Format.Format="##,#0.##" Font="Arial, 8pt"/>
+        <TextObject Name="Text286" Left="833.4" Top="2" Width="48.3" Height="27.9" Text="[DS.RotasiT]" HorzAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text287" Left="887.1" Top="2" Width="67.2" Height="27.9" Text="[DS.WONoT]" Font="Arial, 8pt"/>
+        <TextObject Name="Text288" Left="970.15" Top="2" Width="114.45" Height="27.9" Text="[DS.BlockUnion]" Font="Arial, 8pt"/>
+        <TextObject Name="Text289" Left="1091" Top="2" Width="166.7" Height="27.9" Text="[DS.TeamT]" Font="Arial, 8pt"/>
+        <TextObject Name="Text291" Left="753.35" Top="2" Width="76.65" Height="27.9" Text="[DS.TotalJobPrice]" Format="Custom" Format.Format="##,#0.##" Font="Arial, 8pt"/>
+        <TextObject Name="Text296" Left="1377.05" Top="2" Width="57.75" Height="27.9" Text="[DS.PriceT]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text297" Left="1444.2" Top="2" Width="114.45" Height="27.9" Text="[DS.TotalJobPriceT]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text298" Left="1263.65" Top="2" Width="57.75" Height="27.9" Text="[DS.QtyT]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text299" Left="1320.35" Top="2" Width="48.3" Height="27.9" Text="[DS.UnitT]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="247.68" Width="1569.08" Height="9" CanBreak="true" Guides="18.9,9.45,9.45,9.45,9.45,9.45">
+        <LineObject Name="Line31" Width="1559.24"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="262.93" Width="1569.08" Height="37.8">
+      <TextObject Name="Text300" Left="689.3" Top="1.45" Width="66.72" Height="15.9" Text="Sub Total" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text301" Left="756" Top="1.45" Width="152.25" Height="18.45" Text="[Total1]" Format="Custom" Format.Format="##,#0.##" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text302" Left="1445.85" Top="1" Width="114.45" Height="18.45" Text="[DS.TotalJobPriceT]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="306.98" Width="1569.08" Height="18.68" Guides="0,9.45,9.45,18.9,9.45,9.45,9.45">
+      <TextObject Name="Text57" Left="1496.21" Top="4" Width="61.72" Height="11.9" Text="[DS.UserId]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <LineObject Name="Line83" Left="-9.45" Top="2" Width="1565.8"/>
+      <TextObject Name="Text40" Top="5.45" Width="283.5" Height="13.23" Text="Date/Time : [Date]" Format="Custom" Format.Format="dd/MM/yyyy hh:mm:ss" Font="Arial, 7pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

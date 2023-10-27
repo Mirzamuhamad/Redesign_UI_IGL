@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="yes"?>
+<DS>
+  <Opname>
+    <TransNmbr>AS/SP/14/11/0001</TransNmbr>
+    <Product>R3 A</Product>
+    <Product_Name>LDPE Resin Titanlene LDF260YZ  ( LD )</Product_Name>
+    <specification />
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>256,125</QtySystem>
+    <QtyActual>256,150</QtyActual>
+    <QtyOpname>25</QtyOpname>
+    <QtyRollSystem>10,245</QtyRollSystem>
+    <QtyRollActual>10,246</QtyRollActual>
+    <QtyRollOpname>1</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>KG</Unit>
+    <UnitPack>SAK</UnitPack>
+    <UnitM2 />
+    <Remark />
+  </Opname>
+</DS>

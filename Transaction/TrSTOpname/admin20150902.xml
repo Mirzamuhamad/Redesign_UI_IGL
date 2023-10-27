@@ -1,0 +1,643 @@
+<?xml version="1.0" standalone="yes"?>
+<DS>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>01 001 019</Product>
+    <Product_Name>Sensor Level Control Dia 18mm 24v DC</Product_Name>
+    <specification />
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>150</QtyActual>
+    <QtyOpname>150</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>150</QtyRollActual>
+    <QtyRollOpname>150</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>150</QtyM2Actual>
+    <QtyM2Opname>150</QtyM2Opname>
+    <Unit>PCS</Unit>
+    <UnitPack>PCS</UnitPack>
+    <UnitM2>PCS</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>01 001 020</Product>
+    <Product_Name>Selenoid Valve 24v DC 5/2 Way 3/8" Single Acting</Product_Name>
+    <specification />
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>15</QtyActual>
+    <QtyOpname>15</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>15</QtyRollActual>
+    <QtyRollOpname>15</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>15</QtyM2Actual>
+    <QtyM2Opname>15</QtyM2Opname>
+    <Unit>PCS</Unit>
+    <UnitPack>PCS</UnitPack>
+    <UnitM2>PCS</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>01 001 021</Product>
+    <Product_Name>Cable Serabut 4 x 1.5 mm2</Product_Name>
+    <specification />
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>12</QtyActual>
+    <QtyOpname>12</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>12</QtyRollActual>
+    <QtyRollOpname>12</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>12</QtyM2Actual>
+    <QtyM2Opname>12</QtyM2Opname>
+    <Unit>MTR </Unit>
+    <UnitPack>MTR </UnitPack>
+    <UnitM2>MTR </UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>01 001 022</Product>
+    <Product_Name>Circuit Breaker</Product_Name>
+    <specification>Siemens Sirius
+3RV1021-OJA10</specification>
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>159</QtyActual>
+    <QtyOpname>159</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>159</QtyRollActual>
+    <QtyRollOpname>159</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>159</QtyM2Actual>
+    <QtyM2Opname>159</QtyM2Opname>
+    <Unit>PCS</Unit>
+    <UnitPack>PCS</UnitPack>
+    <UnitM2>PCS</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>01 001 023</Product>
+    <Product_Name>Contactor</Product_Name>
+    <specification>Siemens Sirius
+3RT 1016 1BB41 24v DC</specification>
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>19</QtyActual>
+    <QtyOpname>19</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>19</QtyRollActual>
+    <QtyRollOpname>19</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>19</QtyM2Actual>
+    <QtyM2Opname>19</QtyM2Opname>
+    <Unit>PCS</Unit>
+    <UnitPack>PCS</UnitPack>
+    <UnitM2>PCS</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>02 001 050</Product>
+    <Product_Name>Neple  PVC 3/8 x 8mm</Product_Name>
+    <specification />
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>49</QtyActual>
+    <QtyOpname>49</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>49</QtyRollActual>
+    <QtyRollOpname>49</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>49</QtyM2Actual>
+    <QtyM2Opname>49</QtyM2Opname>
+    <Unit>PCS</Unit>
+    <UnitPack>PCS</UnitPack>
+    <UnitM2>PCS</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>02 001 051</Product>
+    <Product_Name>Selang PU 8mm</Product_Name>
+    <specification />
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>2,631</QtyActual>
+    <QtyOpname>2,631</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>2,631</QtyRollActual>
+    <QtyRollOpname>2,631</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>2,631</QtyM2Actual>
+    <QtyM2Opname>2,631</QtyM2Opname>
+    <Unit>MTR </Unit>
+    <UnitPack>MTR </UnitPack>
+    <UnitM2>MTR </UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>02 001 052</Product>
+    <Product_Name>Speed Control 3/8" x 8mm</Product_Name>
+    <specification />
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>498</QtyActual>
+    <QtyOpname>498</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>498</QtyRollActual>
+    <QtyRollOpname>498</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>498</QtyM2Actual>
+    <QtyM2Opname>498</QtyM2Opname>
+    <Unit>PCS</Unit>
+    <UnitPack>PCS</UnitPack>
+    <UnitM2>PCS</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>02 001 053</Product>
+    <Product_Name>Tonjokan Gasket Tissue</Product_Name>
+    <specification>Bahan Material : Stainless Steel
+P : 148,5mm
+L: 12mm</specification>
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>377</QtyActual>
+    <QtyOpname>377</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>377</QtyRollActual>
+    <QtyRollOpname>377</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>377</QtyM2Actual>
+    <QtyM2Opname>377</QtyM2Opname>
+    <Unit>PCS</Unit>
+    <UnitPack>PCS</UnitPack>
+    <UnitM2>PCS</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>02 100 053</Product>
+    <Product_Name>Modifikasi Tonjokan Gasket Tissue</Product_Name>
+    <specification>Bahan Material : Stainliess Steel</specification>
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>37</QtyActual>
+    <QtyOpname>37</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>37</QtyRollActual>
+    <QtyRollOpname>37</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>37</QtyM2Actual>
+    <QtyM2Opname>37</QtyM2Opname>
+    <Unit>PCS</Unit>
+    <UnitPack>PCS</UnitPack>
+    <UnitM2>PCS</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>03 037 003</Product>
+    <Product_Name>Neple Connector Selang SUS 316, NPT 3/4" x Selang Dia. 1/2"</Product_Name>
+    <specification />
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>23</QtyActual>
+    <QtyOpname>23</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>23</QtyRollActual>
+    <QtyRollOpname>23</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>23</QtyM2Actual>
+    <QtyM2Opname>23</QtyM2Opname>
+    <Unit>Btg</Unit>
+    <UnitPack>Btg</UnitPack>
+    <UnitM2>Btg</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>03 044 004</Product>
+    <Product_Name>Silicone Sheet 8 mm</Product_Name>
+    <specification />
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>10</QtyActual>
+    <QtyOpname>10</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>10</QtyRollActual>
+    <QtyRollOpname>10</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>10</QtyM2Actual>
+    <QtyM2Opname>10</QtyM2Opname>
+    <Unit>PCS</Unit>
+    <UnitPack>PCS</UnitPack>
+    <UnitM2>PCS</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>1 A 021</Product>
+    <Product_Name>INK STAMPLE MATIC</Product_Name>
+    <specification />
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>104</QtyActual>
+    <QtyOpname>104</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>104</QtyRollActual>
+    <QtyRollOpname>104</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>104</QtyM2Actual>
+    <QtyM2Opname>104</QtyM2Opname>
+    <Unit>BTL </Unit>
+    <UnitPack>BTL </UnitPack>
+    <UnitM2>BTL </UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>1 D 012</Product>
+    <Product_Name>Botol Sample untuk resin</Product_Name>
+    <specification />
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>47</QtyActual>
+    <QtyOpname>47</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>47</QtyRollActual>
+    <QtyRollOpname>47</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>47</QtyM2Actual>
+    <QtyM2Opname>47</QtyM2Opname>
+    <Unit>PCS</Unit>
+    <UnitPack>PCS</UnitPack>
+    <UnitM2>PCS</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>1 D 11</Product>
+    <Product_Name>Vernier Calipre (Jangka Sorong)</Product_Name>
+    <specification>Kapasitas 15cm
+Accurancy : 0.05 mm</specification>
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>17</QtyActual>
+    <QtyOpname>17</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>17</QtyRollActual>
+    <QtyRollOpname>17</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>17</QtyM2Actual>
+    <QtyM2Opname>17</QtyM2Opname>
+    <Unit>UNIT</Unit>
+    <UnitPack>UNIT</UnitPack>
+    <UnitM2>UNIT</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>1 F 001</Product>
+    <Product_Name>KALIBRASI PENGGARIS </Product_Name>
+    <specification />
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>25</QtyActual>
+    <QtyOpname>25</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>25</QtyRollActual>
+    <QtyRollOpname>25</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>25</QtyM2Actual>
+    <QtyM2Opname>25</QtyM2Opname>
+    <Unit>UNIT</Unit>
+    <UnitPack>UNIT</UnitPack>
+    <UnitM2>UNIT</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>1 F 005</Product>
+    <Product_Name>KALIBRASI Timbangan Elektronik</Product_Name>
+    <specification>310g, Merk : AND, Type : GF - 300</specification>
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>26</QtyActual>
+    <QtyOpname>26</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>26</QtyRollActual>
+    <QtyRollOpname>26</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>26</QtyM2Actual>
+    <QtyM2Opname>26</QtyM2Opname>
+    <Unit>UNIT</Unit>
+    <UnitPack>UNIT</UnitPack>
+    <UnitM2>UNIT</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>1 F 006</Product>
+    <Product_Name>KALIBRASI Counter Meter</Product_Name>
+    <specification>Merk : Kisung 
+Type : KS 1450
+</specification>
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>20</QtyActual>
+    <QtyOpname>20</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>20</QtyRollActual>
+    <QtyRollOpname>20</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>20</QtyM2Actual>
+    <QtyM2Opname>20</QtyM2Opname>
+    <Unit>UNIT</Unit>
+    <UnitPack>UNIT</UnitPack>
+    <UnitM2>UNIT</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>1 F 008</Product>
+    <Product_Name>KALIBRASI Tensilon, 1KN</Product_Name>
+    <specification>Merk : AND, type RTG 1210</specification>
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>33</QtyActual>
+    <QtyOpname>33</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>33</QtyRollActual>
+    <QtyRollOpname>33</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>33</QtyM2Actual>
+    <QtyM2Opname>33</QtyM2Opname>
+    <Unit>UNIT</Unit>
+    <UnitPack>UNIT</UnitPack>
+    <UnitM2>UNIT</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>1 F 014</Product>
+    <Product_Name>KALIBRASI Conter Meter</Product_Name>
+    <specification>Merk : Auntics, type CT 6M - 2 P</specification>
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>24</QtyActual>
+    <QtyOpname>24</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>24</QtyRollActual>
+    <QtyRollOpname>24</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>24</QtyM2Actual>
+    <QtyM2Opname>24</QtyM2Opname>
+    <Unit>UNIT</Unit>
+    <UnitPack>UNIT</UnitPack>
+    <UnitM2>UNIT</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>1 F 015</Product>
+    <Product_Name>KALIBRASI Counter Meter</Product_Name>
+    <specification>Merk : Auntics, type CT 6 S - 2 P </specification>
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>1,300</QtyActual>
+    <QtyOpname>1,300</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>1,300</QtyRollActual>
+    <QtyRollOpname>1,300</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>1,300</QtyM2Actual>
+    <QtyM2Opname>1,300</QtyM2Opname>
+    <Unit>UNIT</Unit>
+    <UnitPack>UNIT</UnitPack>
+    <UnitM2>UNIT</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>1 P74 M</Product>
+    <Product_Name>GENERAL CORE</Product_Name>
+    <specification>76.5 ID X 12T X 1100 MM</specification>
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>297</QtySystem>
+    <QtyActual>7</QtyActual>
+    <QtyOpname>-290</QtyOpname>
+    <QtyRollSystem>297</QtyRollSystem>
+    <QtyRollActual>7</QtyRollActual>
+    <QtyRollOpname>-290</QtyRollOpname>
+    <QtyM2System>297</QtyM2System>
+    <QtyM2Actual>7</QtyM2Actual>
+    <QtyM2Opname>-290</QtyM2Opname>
+    <Unit>PCS</Unit>
+    <UnitPack>PCS</UnitPack>
+    <UnitM2>PCS</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>14G22WH7000SS</Product>
+    <Product_Name>SS-14GR-22CM-White-HOSF</Product_Name>
+    <specification />
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>1,144</QtyActual>
+    <QtyOpname>1,144</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>114.4</QtyRollActual>
+    <QtyRollOpname>114.4</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>176,000</QtyM2Actual>
+    <QtyM2Opname>176,000</QtyM2Opname>
+    <Unit>KG</Unit>
+    <UnitPack>ROLL</UnitPack>
+    <UnitM2>SQM</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>14G24WH7000SS</Product>
+    <Product_Name>SS14G24WH7000-HOSF</Product_Name>
+    <specification />
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>4,700</QtyActual>
+    <QtyOpname>4,700</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>0</QtyRollActual>
+    <QtyRollOpname>0</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>KG</Unit>
+    <UnitPack>ROLL</UnitPack>
+    <UnitM2>SQM</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>2000-0001</Product>
+    <Product_Name>Hardisk External 1 Terra</Product_Name>
+    <specification>Hardisk External 1 Terra My Passport</specification>
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>1,335</QtyActual>
+    <QtyOpname>1,335</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>1,335</QtyRollActual>
+    <QtyRollOpname>1,335</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>1,335</QtyM2Actual>
+    <QtyM2Opname>1,335</QtyM2Opname>
+    <Unit>UNIT</Unit>
+    <UnitPack>UNIT</UnitPack>
+    <UnitM2>UNIT</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>2000-0002</Product>
+    <Product_Name>Hardisk External 2 Terra</Product_Name>
+    <specification>Hardisk External 2 Terra My Passport</specification>
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>132</QtyActual>
+    <QtyOpname>132</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>132</QtyRollActual>
+    <QtyRollOpname>132</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>132</QtyM2Actual>
+    <QtyM2Opname>132</QtyM2Opname>
+    <Unit>UNIT</Unit>
+    <UnitPack>UNIT</UnitPack>
+    <UnitM2>UNIT</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>2000-0003</Product>
+    <Product_Name>Hardisk External 3 Terra</Product_Name>
+    <specification>Hardisk External 3 Terra My Passport</specification>
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>227</QtyActual>
+    <QtyOpname>227</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>227</QtyRollActual>
+    <QtyRollOpname>227</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>227</QtyM2Actual>
+    <QtyM2Opname>227</QtyM2Opname>
+    <Unit>UNIT</Unit>
+    <UnitPack>UNIT</UnitPack>
+    <UnitM2>UNIT</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>2006-0001</Product>
+    <Product_Name>Adaptor kabel monitor samsung LED</Product_Name>
+    <specification>Daya 12V 1A
+Serial Number : A/11813EA
+</specification>
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>750</QtyActual>
+    <QtyOpname>750</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>750</QtyRollActual>
+    <QtyRollOpname>750</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>750</QtyM2Actual>
+    <QtyM2Opname>750</QtyM2Opname>
+    <Unit>UNIT</Unit>
+    <UnitPack>UNIT</UnitPack>
+    <UnitM2>UNIT</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>2006-0002</Product>
+    <Product_Name>Adaptor Kabel Epson Scanner</Product_Name>
+    <specification>Daya 24V 1.4 A
+Serial Number : IQW0442263754</specification>
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>28</QtyActual>
+    <QtyOpname>28</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>28</QtyRollActual>
+    <QtyRollOpname>28</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>28</QtyM2Actual>
+    <QtyM2Opname>28</QtyM2Opname>
+    <Unit>UNIT</Unit>
+    <UnitPack>UNIT</UnitPack>
+    <UnitM2>UNIT</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/09/0001</TransNmbr>
+    <Product>2015-000</Product>
+    <Product_Name>PCI EXPRESS VGA DDR2</Product_Name>
+    <specification>Pci Express DDR2 1GB</specification>
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>3,150</QtyActual>
+    <QtyOpname>3,150</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>3,150</QtyRollActual>
+    <QtyRollOpname>3,150</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>3,150</QtyM2Actual>
+    <QtyM2Opname>3,150</QtyM2Opname>
+    <Unit>UNIT</Unit>
+    <UnitPack>UNIT</UnitPack>
+    <UnitM2>UNIT</UnitM2>
+    <Remark>Material</Remark>
+  </Opname>
+</DS>

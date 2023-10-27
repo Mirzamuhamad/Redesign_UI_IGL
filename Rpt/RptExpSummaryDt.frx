@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="05/12/2011 16:33:47" ReportInfo.Modified="06/12/2014 11:07:09" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGs4venj70BSybBNwjC9vq8mA+gBRIOgdRqwK8irIASGbfMoVDu5dOW5Z7ySwSa+hO25c1iTiWhA0xCuNNzNL1MtX9X1ENG+SX04Ci99kyFzwuenG955hjorecwg2bIO6Pj">
+      <TableDataSource Name="Table1" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_GLRptExpenseSummary 2013, 1, 3, 1, 2013, 5, 'EXP01', 1, 1">
+        <Column Name="Total" DataType="System.Decimal"/>
+        <Column Name="Type_Account" DataType="System.String"/>
+        <Column Name="Group_Code" DataType="System.String"/>
+        <Column Name="Group_Account" DataType="System.String"/>
+        <Column Name="Class_Code" DataType="System.String"/>
+        <Column Name="Class_Account" DataType="System.String"/>
+        <Column Name="Account" DataType="System.String"/>
+        <Column Name="Year" DataType="System.Int32"/>
+        <Column Name="Period" DataType="System.Int32"/>
+        <Column Name="PeriodName" DataType="System.String"/>
+        <Column Name="Percentage" DataType="System.Double"/>
+        <Column Name="CompName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="Detail" DataType="System.String"/>
+        <Column Name="Period_Name" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" FirstPageSource="1" OtherPagesSource="1" Guides="292.95,822.15,0,576.45,831.6,1045.95,888.3,1048.95,457.09,91,299.99,59.65,208.99,397.44">
+    <ReportTitleBand Name="ReportTitle1" Width="1047.06" CanBreak="true"/>
+    <PageHeaderBand Name="PageHeader1" Top="4" Width="1047.06" Height="73.15" Guides="47.25,66.15,28.35,0,18.9">
+      <TextObject Name="Text3" Left="292.95" Top="47.25" Width="529.2" Height="18.9" Text="LAPORAN [DS.Type_Account]" HorzAlign="Center" Font="Arial Narrow, 14.25pt, style=Bold"/>
+      <TextObject Name="Text2" Top="28.35" Width="576.45" Height="18.9" Text="[DS.CompAddr]" Font="Arial Narrow, 9pt"/>
+      <TextObject Name="Text1" Width="576.45" Height="28.35" Text="[DS.CompName]" Font="Arial Narrow, 14.25pt, style=Bold"/>
+      <TextObject Name="Text29" Left="831.6" Width="214.35" Height="18.9" Text="Date / Time : [Date]" HorzAlign="Right" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text28" Left="888.3" Top="28.35" Width="160.65" Height="18.9" Text="Page [Page#] Of [TotalPages#]" HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="81.15" Width="1047.06" Height="106.12" Guides="0,84.57,35.82,17.91,68.32,52.07,16.25">
+      <MatrixObject Name="Matrix1" Width="548.04" Height="106.12" FixedRows="2" FixedColumns="3" AutoSize="false" CellsSideBySide="true" DataSource="Table1">
+        <MatrixColumns>
+          <Header Expression="[DS.PeriodName]" Sort="None" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.Group_Account]" Sort="None"/>
+          <Header Expression="[DS.Class_Account]" Sort="None"/>
+          <Header Expression="[DS.Detail]"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.Total]"/>
+          <Cell Expression="[DS.Percentage]"/>
+        </MatrixCells>
+        <TableColumn Name="Column9" Width="91"/>
+        <TableColumn Name="Column10" Width="123.94"/>
+        <TableColumn Name="Column11" Width="176"/>
+        <TableColumn Name="Column12" Width="97.45"/>
+        <TableColumn Name="Column13" Width="59.65"/>
+        <TableRow Name="Row9" Height="17.91">
+          <TableCell Name="Cell35" Border.Lines="All" Text="GROUP" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell36" Border.Lines="All" Text="Class Account" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell41" Border.Lines="All" Text="Keterangan" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell47" Border.Lines="All" Text="[PeriodName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold" ColSpan="2"/>
+          <TableCell Name="Cell63"/>
+        </TableRow>
+        <TableRow Name="Row10" Height="17.91">
+          <TableCell Name="Cell37"/>
+          <TableCell Name="Cell38"/>
+          <TableCell Name="Cell42"/>
+          <TableCell Name="Cell48" Border.Lines="All" Text="Rp" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell64" Border.Lines="All" Text="%" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row11" AutoSize="true">
+          <TableCell Name="Cell39" Border.Lines="All" Text="[Group_Account]" VertAlign="Center" Font="Arial, 8pt" RowSpan="3"/>
+          <TableCell Name="Cell40" Border.Lines="All" Text="[Class_Account]" VertAlign="Center" Font="Arial, 8pt" RowSpan="2"/>
+          <TableCell Name="Cell43" Border.Lines="All" Text="[Detail]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell49" Border.Lines="All" Text="[Total]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell65" Border.Lines="All" Text="[Percentage]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+        </TableRow>
+        <TableRow Name="Row12">
+          <TableCell Name="Cell44"/>
+          <TableCell Name="Cell45"/>
+          <TableCell Name="Cell46" Border.Lines="All" Text="SUB TOTAL" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell50" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell66" Border.Lines="All" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+        </TableRow>
+        <TableRow Name="Row13" Height="16.25">
+          <TableCell Name="Cell59"/>
+          <TableCell Name="Cell60" Border.Lines="All" Text="TOTAL" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold" ColSpan="2"/>
+          <TableCell Name="Cell61"/>
+          <TableCell Name="Cell62" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell67" Border.Lines="All" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row14" Height="16.25">
+          <TableCell Name="Cell68" Border.Lines="All" Text="GRAND TOTAL" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold" ColSpan="3"/>
+          <TableCell Name="Cell69"/>
+          <TableCell Name="Cell70"/>
+          <TableCell Name="Cell71" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell72" Border.Lines="All" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="191.27" Width="1047.06" Height="9.45" Guides="0">
+      <LineObject Name="Line1" Width="1048.95" Diagonal="true"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

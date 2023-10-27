@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="07/04/2011 15:39:43" ReportInfo.Modified="03/26/2019 11:54:22" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+      dim Divisi as String
+      dim Req as String
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+       'if Divisi &lt;&gt; Report.GetColumnValue(&quot;[sub1.BatchNo]&quot;) then
+        'Text213.Visible = True
+        'Text214.Visible = True   
+        'Text84.Visible = True   
+        'Text85.Visible = True
+        'Text86.Visible = True   
+        'Divisi = Report.GetColumnValue(&quot;[sub1.BatchNo]&quot;) 
+       'else
+       'Text213.Visible = False
+       'Text214.Visible = False   
+        'Text84.Visible = False   
+        'Text85.Visible = False
+        'Text86.Visible = False           
+       'End If      
+      
+       if Req &lt;&gt; Report.GetColumnValue(&quot;DS.TransNmbr&quot;) then
+        'Text3.Visible = true
+        'Text5.Visible = true
+        'Text7.Visible = true 
+        'Text9.Visible = true 
+        Req = Report.GetColumnValue(&quot;DS.TransNmbr&quot;) 
+       else
+        'Text3.Visible = false
+       ' Text5.Visible = false
+        'Text7.Visible = false 
+        'Text9.Visible = false 
+       End if
+    End Sub       
+
+    Private Sub ReportTitle1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Divisi = &quot;&quot;
+      Req = &quot;&quot;
+    End Sub
+
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Divisi = &quot;&quot;
+      Req = &quot;&quot;
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLGyiz5qWMjsA99V/W+nNq1W3g2zii+WzFvwn5S/yO9ty4j5cNSou1n2RnV42VCogqhWDGBfTi9Ny1OneZGYjfinOHGpdCxzvpie7qu5vUxEx4MCFZZfHfGnHRCgUFUBKbmMlG5NqLQAbah7tE2SUt7RVw965+ktSQZwc8qap4cIY">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC [S_PLRptProgressPNtoBlockV2] '20140101','20181212','','','','',0,0,'','','Admin' ">
+        <Column Name="Column" Enabled="false" DataType="System.Int32" Calculated="true" Expression=""/>
+        <Column Name="UserId" DataType="System.String"/>
+        <Column Name="BatchNo" DataType="System.String"/>
+        <Column Name="BatchDate" DataType="System.DateTime"/>
+        <Column Name="Division" DataType="System.String"/>
+        <Column Name="DivisionName" DataType="System.String"/>
+        <Column Name="Estate" DataType="System.String"/>
+        <Column Name="EstateName" DataType="System.String"/>
+        <Column Name="QtyBatch" DataType="System.Decimal"/>
+        <Column Name="Varitas" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="Bedeng" DataType="System.String"/>
+        <Column Name="BedengName" DataType="System.String"/>
+        <Column Name="Period" DataType="System.String"/>
+        <Column Name="CompanyNPWP" DataType="System.String"/>
+        <Column Name="UserId1" DataType="System.String"/>
+        <Column Name="VaritasName" DataType="System.String"/>
+        <Column Name="BatchDate1" DataType="System.DateTime"/>
+        <Column Name="Division1" DataType="System.String"/>
+        <Column Name="DivisionName1" DataType="System.String"/>
+        <Column Name="Estate1" DataType="System.String"/>
+        <Column Name="EstateName1" DataType="System.String"/>
+        <Column Name="QtyBatch1" DataType="System.Decimal"/>
+        <Column Name="Varitas1" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="Table1" Alias="sub1" DataType="System.Int32" Enabled="true" SelectCommand="EXEC [S_PLRptProgressPNtoBlockV2] '20140101','20181212','','','','',0,0,'','','Admin' ">
+        <Column Name="BatchNo" DataType="System.String"/>
+        <Column Name="UserId" DataType="System.String"/>
+        <Column Name="BatchDate" DataType="System.DateTime"/>
+        <Column Name="Division" DataType="System.String"/>
+        <Column Name="DivisionName" DataType="System.String"/>
+        <Column Name="Estate" DataType="System.String"/>
+        <Column Name="EstateName" DataType="System.String"/>
+        <Column Name="QtyBatch" DataType="System.Decimal"/>
+        <Column Name="Varitas" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="Bedeng" DataType="System.String"/>
+        <Column Name="BedengName" DataType="System.String"/>
+        <Column Name="VaritasName" DataType="System.String"/>
+        <Column Name="Period" DataType="System.String"/>
+        <Column Name="CompanyNPWP" DataType="System.String"/>
+        <Column Name="UserId1" DataType="System.String"/>
+        <Column Name="BatchDate1" DataType="System.DateTime"/>
+        <Column Name="Division1" DataType="System.String"/>
+        <Column Name="DivisionName1" DataType="System.String"/>
+        <Column Name="Estate1" DataType="System.String"/>
+        <Column Name="EstateName1" DataType="System.String"/>
+        <Column Name="QtyBatch1" DataType="System.Decimal"/>
+        <Column Name="Varitas1" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="Table2" Alias="sub2" DataType="System.Int32" Enabled="true" SelectCommand="Select * from RptBibitanPN ">
+        <Column Name="BatchNo" DataType="System.String"/>
+        <Column Name="QtyTanam" DataType="System.Decimal"/>
+        <Column Name="UserId" DataType="System.String"/>
+        <Column Name="Bedeng" DataType="System.String"/>
+        <Column Name="BedengName" DataType="System.String"/>
+        <Column Name="QtyReject" DataType="System.Decimal"/>
+        <Column Name="QtySisa" DataType="System.Decimal"/>
+      </TableDataSource>
+      <TableDataSource Name="Table3" Alias="sub3" DataType="System.Int32" Enabled="true" SelectCommand="Select * from RptBibitanMN">
+        <Column Name="BatchNo" DataType="System.String"/>
+        <Column Name="QtyTanam" DataType="System.Decimal"/>
+        <Column Name="UserId" DataType="System.String"/>
+        <Column Name="Module" DataType="System.String"/>
+        <Column Name="ModuleName" DataType="System.String"/>
+        <Column Name="QtyReject" DataType="System.Decimal"/>
+        <Column Name="QtySisa" DataType="System.Decimal"/>
+      </TableDataSource>
+      <TableDataSource Name="Table4" Alias="sub4" DataType="System.Int32" Enabled="true" SelectCommand="Select * from RptBibitanBlock">
+        <Column Name="BatchNo" DataType="System.String"/>
+        <Column Name="QtyTanam" DataType="System.Decimal"/>
+        <Column Name="QtySisip" DataType="System.Decimal"/>
+        <Column Name="Block" DataType="System.String"/>
+        <Column Name="QtyBook" DataType="System.Decimal"/>
+        <Column Name="UserId" DataType="System.String"/>
+        <Column Name="BlockName" DataType="System.String"/>
+        <Column Name="Luas" DataType="System.Decimal"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5" FirstPageSource="261" OtherPagesSource="261" Guides="321.3,737.1,400.68,621.81,0,538.65,793.8,1039.5,1047.28,7.56,128.52,129.3,250.14,251.26,335.76,340.2,427.14,430.92,529.2,532.98,669.06,672.84,895.86,793.69,882.63,884.41,958.23,963.79,1041.5,362.88,3.78,355.2,37.8" Fill.Color="White">
+    <ReportTitleBand Name="ReportTitle1" Width="1084.86" BeforePrintEvent="ReportTitle1_BeforePrint" Guides="60.48,79.38,87.16,102.28,0,18.9,20.9,58.7,9.45,22.68,79.6,92.83"/>
+    <PageHeaderBand Name="PageHeader1" Top="4.21" Width="1084.86" Height="197.45" Guides="0,26.46,4,22.9,3.78,22.68,189,141.75">
+      <TextObject Name="Text4" Left="14.45" Top="166.1" Width="65.72" Height="16.9" Text="Batch No" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text42" Left="827.15" Top="127.28" Width="245.7" Height="13.23" Text="Page : [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text40" Left="793.8" Top="9.45" Width="245.7" Height="13.23" Text="Date/Time : [Date]" Format="Custom" Format.Format="dd/MM/yyyy hh:mm:ss" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text11" Left="164.87" Top="44.35" Width="786.24" Height="19.2" Text="Form Bibitan Global ( PN + MN ) dan Rencana Tanam di TBM" HorzAlign="Center" VertAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text43" Left="314.54" Top="148.2" Width="86.83" Height="18.9" Text="Qty PN" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line4" Left="4.35" Top="144.2" Width="1071.95"/>
+      <TextObject Name="Text25" Left="1.56" Top="12.11" Width="332.64" Height="18.9" Text="[DS.CompanyName]" VertAlign="Center" Font="Arial, 16pt, style=Bold"/>
+      <LineObject Name="Line88" Left="1076.85" Top="197" Height="-52.7"/>
+      <TextObject Name="Text192" Left="7.9" Top="109.95" Width="43.82" Height="12.9" Text="Divisi" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text193" Left="58.6" Top="110.4" Width="205.47" Height="13.45" Text="[DS.DivisionName]" Font="Arial, 8pt"/>
+      <LineObject Name="Line64" Left="4.45" Top="197.45" Height="-53.25"/>
+      <LineObject Name="Line6" Left="4.45" Top="197.45" Width="1072.4"/>
+      <TextObject Name="Text194" Left="7.9" Top="126.85" Width="43.82" Height="12.9" Text="Estate" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text195" Left="58.6" Top="126.3" Width="129.87" Height="13.45" Text="[DS.EstateName]" Font="Arial, 8pt"/>
+      <TextObject Name="Text196" Left="98.5" Top="166.1" Width="84.62" Height="16.9" Text="Jenis Varietas" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text197" Left="193" Top="166.1" Width="56.27" Height="12.45" Text="Bedeng" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line113" Left="264.05" Top="171.55" Width="188.44"/>
+      <TextObject Name="Text198" Left="269.6" Top="177.55" Width="46.82" Height="12.45" Text="Tanam" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text199" Left="336.2" Top="177.55" Width="37.37" Height="12.45" Text="Reject" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text200" Left="404.45" Top="177.55" Width="27.92" Height="12.45" Text="Sisa" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line114" Left="452.15" Top="197" Height="-52.7"/>
+      <LineObject Name="Line115" Left="263.15" Top="197" Height="-52.7"/>
+      <LineObject Name="Line116" Left="187.55" Top="197" Height="-52.7"/>
+      <LineObject Name="Line117" Left="94.05" Top="197" Height="-52.7"/>
+      <LineObject Name="Line118" Left="319.85" Top="197" Height="-25.35"/>
+      <LineObject Name="Line119" Left="386" Top="197" Height="-25.35"/>
+      <TextObject Name="Text201" Left="485.95" Top="166.1" Width="56.27" Height="12.45" Text="Lokasi MN" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line120" Left="565.55" Top="197" Height="-52.7"/>
+      <TextObject Name="Text202" Left="615.94" Top="148.2" Width="86.83" Height="18.9" Text="Qty MN" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line121" Left="565.45" Top="171.55" Width="188.44"/>
+      <TextObject Name="Text203" Left="571" Top="177.55" Width="46.82" Height="12.45" Text="Tanam" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text204" Left="637.6" Top="177.55" Width="37.37" Height="12.45" Text="Reject" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text205" Left="705.85" Top="177.55" Width="27.92" Height="12.45" Text="Sisa" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line122" Left="753.55" Top="197" Height="-52.7"/>
+      <LineObject Name="Line123" Left="621.25" Top="197" Height="-25.35"/>
+      <LineObject Name="Line124" Left="687.4" Top="197" Height="-25.35"/>
+      <TextObject Name="Text206" Left="803.94" Top="148.2" Width="86.83" Height="18.9" Text="Rencana Tanam" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line125" Left="753.45" Top="171.55" Width="188.44"/>
+      <TextObject Name="Text207" Left="759" Top="177.55" Width="46.82" Height="12.45" Text="Tanam" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text208" Left="825.6" Top="177.55" Width="37.37" Height="12.45" Text="Luas" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text209" Left="889.85" Top="177.55" Width="38.92" Height="12.45" Text="Pokok" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line126" Left="941.55" Top="197" Height="-52.7"/>
+      <LineObject Name="Line127" Left="809.25" Top="197" Height="-25.35"/>
+      <LineObject Name="Line128" Left="875.4" Top="197" Height="-25.35"/>
+      <TextObject Name="Text210" Left="960.59" Top="148.2" Width="86.83" Height="18.9" Text="Realisasi Tanam" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line129" Left="888.2" Top="171.55" Width="188.44"/>
+      <TextObject Name="Text211" Left="960.35" Top="177.55" Width="37.37" Height="12.45" Text="Reject" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text212" Left="1028.6" Top="177.55" Width="27.92" Height="12.45" Text="Sisa" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line131" Left="1010.15" Top="197" Height="-25.35"/>
+      <TextObject Name="Text255" Left="433.15" Top="69.15" Width="59.72" Height="17.9" Text="Period :" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text256" Left="489.75" Top="68.6" Width="365.12" Height="18.45" Text="[DS.Period]"/>
+      <TextObject Name="Text257" Left="52.7" Top="109.95" Width="6.02" Height="12.9" Text=":" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text258" Left="52.7" Top="126.85" Width="6.02" Height="12.9" Text=":" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="205.87" Width="1084.86" BeforePrintEvent="GroupHeader1_BeforePrint" Guides="0" Condition="[DS.Division]+[DS.Estate]" SortOrder="None">
+      <DataBand Name="Data1" Top="210.08" Width="1084.86" Height="17.9" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" Guides="3.78,22.68,47.25,47.25,47.25,47.25,37.8" DataSource="Table">
+        <SubreportObject Name="Subreport1" Left="0.45" Top="-1" Width="94.5" Height="18.9" ReportPage="Page2"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="232.19" Width="1084.86" CanGrow="true" CanBreak="true" Guides="18.9,9.45,9.45" KeepWithData="true"/>
+    </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="236.4" Width="1084.86" Guides="18.9"/>
+    <PageFooterBand Name="PageFooter1" Top="240.61" Width="1084.86" Height="47.25" Guides="0,18.9,9.45,9.45,18.9,9.45,9.45">
+      <TextObject Name="Text119" Left="1017.6" Top="3" Width="70.38" Height="18.9" Text="[DS.UserId]" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line112" Left="3" Top="1" Width="1075.85"/>
+      <TextObject Name="Text259" Top="1" Width="89.28" Height="18.9" Text="Plantation" Font="Arial, 8pt, style=Bold"/>
+    </PageFooterBand>
+  </ReportPage>
+  <ReportPage Name="Page2" Landscape="true" PaperWidth="297" PaperHeight="210" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5" FirstPageSource="261" OtherPagesSource="261">
+    <DataBand Name="Data2" Width="1084.86" Height="29.35">
+      <LineObject Name="Line132" Left="4.45" Top="1" Width="1071.95"/>
+      <LineObject Name="Line133" Left="4.45" Top="29.35" Width="1071.95"/>
+      <LineObject Name="Line1" Left="4" Top="1" Height="28.35"/>
+      <LineObject Name="Line134" Left="94.05" Top="1" Height="28.35"/>
+      <LineObject Name="Line135" Left="188" Top="1" Height="28.35"/>
+      <TextObject Name="Text213" Left="17.9" Top="6.45" Width="65.72" Height="16.9" Text="[sub1.BatchNo]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text214" Left="102.95" Top="6.45" Width="65.72" Height="16.9" Text="[sub1.Varitas]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line188" Left="1076.3" Top="1" Height="28.35"/>
+      <ChildBand Name="Child1" Top="33.56" Width="1084.86" Height="17.35">
+        <SubreportObject Name="Subreport2" Left="-0.55" Top="-1.55" Width="94.5" Height="18.9" ReportPage="Page3"/>
+        <SubreportObject Name="Subreport3" Left="-0.55" Top="-2" Width="94.5" Height="18.9" ReportPage="Page4"/>
+        <SubreportObject Name="Subreport4" Left="-0.55" Top="-2" Width="94.5" Height="18.9" ReportPage="Page5"/>
+      </ChildBand>
+    </DataBand>
+  </ReportPage>
+  <ReportPage Name="Page3" Landscape="true" PaperWidth="297" PaperHeight="210" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5" FirstPageSource="261" OtherPagesSource="261">
+    <DataBand Name="Data3" Width="1084.86" Height="27.35">
+      <LineObject Name="Line136" Left="1077.4" Top="26.9" Height="-25.35"/>
+      <LineObject Name="Line137" Left="4" Top="27.35" Height="-25.35"/>
+      <LineObject Name="Line138" Left="4" Top="27.35" Width="1072.4"/>
+      <TextObject Name="Text217" Left="267.15" Top="3.45" Width="49.82" Height="21.45" Text="[sub2.QtyTanam]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text218" Left="321.75" Top="3.45" Width="62.27" Height="20.45" Text="[sub2.QtyReject]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text219" Left="389.55" Top="4" Width="59.27" Height="19.9" Text="[sub2.QtySisa]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line139" Left="451.7" Top="26.9" Height="-24.8"/>
+      <LineObject Name="Line140" Left="262.7" Top="26.9" Height="-24.8"/>
+      <LineObject Name="Line141" Left="188.1" Top="26.9" Height="-24.8"/>
+      <LineObject Name="Line143" Left="319.4" Top="26.9" Height="-25.35"/>
+      <LineObject Name="Line144" Left="385.55" Top="26.9" Height="-25.35"/>
+      <LineObject Name="Line145" Left="565.1" Top="26.9" Height="-24.8"/>
+      <LineObject Name="Line146" Left="753.1" Top="26.9" Height="-24.8"/>
+      <LineObject Name="Line147" Left="620.8" Top="26.9" Height="-25.35"/>
+      <LineObject Name="Line148" Left="686.95" Top="26.9" Height="-25.35"/>
+      <LineObject Name="Line149" Left="941.1" Top="26.9" Height="-24.8"/>
+      <LineObject Name="Line150" Left="808.8" Top="26.9" Height="-25.35"/>
+      <LineObject Name="Line151" Left="874.95" Top="26.9" Height="-25.35"/>
+      <LineObject Name="Line152" Left="1009.7" Top="26.9" Height="-25.35"/>
+      <LineObject Name="Line153" Left="3.45" Top="1.45" Width="1073.4"/>
+      <TextObject Name="Text260" Left="191.55" Top="3.45" Width="68.72" Height="21.45" Text="[sub2.BedengName]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+    </DataBand>
+  </ReportPage>
+  <ReportPage Name="Page4" Landscape="true" PaperWidth="297" PaperHeight="210" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5" FirstPageSource="261" OtherPagesSource="261">
+    <DataBand Name="Data4" Width="1084.86" Height="27.35">
+      <LineObject Name="Line154" Left="1077.4" Top="26.9" Height="-25.35"/>
+      <LineObject Name="Line155" Left="4" Top="27.35" Height="-25.35"/>
+      <LineObject Name="Line156" Left="4" Top="27.35" Width="1072.4"/>
+      <LineObject Name="Line157" Left="451.7" Top="26.9" Height="-24.8"/>
+      <LineObject Name="Line158" Left="262.7" Top="26.9" Height="-24.8"/>
+      <LineObject Name="Line159" Left="188.1" Top="26.9" Height="-24.8"/>
+      <LineObject Name="Line160" Left="319.4" Top="26.9" Height="-25.35"/>
+      <LineObject Name="Line161" Left="385.55" Top="26.9" Height="-25.35"/>
+      <LineObject Name="Line162" Left="565.1" Top="26.9" Height="-24.8"/>
+      <TextObject Name="Text231" Left="566.55" Top="5.45" Width="52.82" Height="18.45" Text="[sub3.QtyTanam]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text232" Left="624.7" Top="5.45" Width="58.27" Height="18.45" Text="[sub3.QtyReject]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text233" Left="690.95" Top="5.45" Width="61.72" Height="18.45" Text="[sub3.QtySisa]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line163" Left="753.1" Top="26.9" Height="-24.8"/>
+      <LineObject Name="Line164" Left="620.8" Top="26.9" Height="-25.35"/>
+      <LineObject Name="Line165" Left="686.95" Top="26.9" Height="-25.35"/>
+      <LineObject Name="Line166" Left="941.1" Top="26.9" Height="-24.8"/>
+      <LineObject Name="Line167" Left="808.8" Top="26.9" Height="-25.35"/>
+      <LineObject Name="Line168" Left="874.95" Top="26.9" Height="-25.35"/>
+      <LineObject Name="Line169" Left="1009.7" Top="26.9" Height="-25.35"/>
+      <LineObject Name="Line170" Left="3.45" Top="1.45" Width="1073.4"/>
+      <TextObject Name="Text250" Left="457.15" Top="5.45" Width="103.52" Height="18.45" Text="[sub3.ModuleName]" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+    </DataBand>
+  </ReportPage>
+  <ReportPage Name="Page5" Landscape="true" PaperWidth="297" PaperHeight="210" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5" FirstPageSource="261" OtherPagesSource="261">
+    <DataBand Name="Data5" Width="1084.86" Height="27.35">
+      <LineObject Name="Line171" Left="1077.4" Top="26.9" Height="-25.35"/>
+      <LineObject Name="Line172" Left="4" Top="27.35" Height="-25.35"/>
+      <LineObject Name="Line173" Left="4" Top="27.35" Width="1072.4"/>
+      <LineObject Name="Line174" Left="451.7" Top="26.9" Height="-24.8"/>
+      <LineObject Name="Line175" Left="262.7" Top="26.9" Height="-24.8"/>
+      <LineObject Name="Line176" Left="188.1" Top="26.9" Height="-24.8"/>
+      <LineObject Name="Line177" Left="319.4" Top="26.9" Height="-25.35"/>
+      <LineObject Name="Line178" Left="385.55" Top="26.9" Height="-25.35"/>
+      <LineObject Name="Line179" Left="565.1" Top="26.9" Height="-24.8"/>
+      <LineObject Name="Line180" Left="753.1" Top="26.9" Height="-24.8"/>
+      <LineObject Name="Line181" Left="620.8" Top="26.9" Height="-25.35"/>
+      <LineObject Name="Line182" Left="686.95" Top="26.9" Height="-25.35"/>
+      <TextObject Name="Text245" Left="756.55" Top="3" Width="48.82" Height="21.9" Text="[sub4.BlockName]" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line183" Left="941.1" Top="26.9" Height="-24.8"/>
+      <LineObject Name="Line184" Left="808.8" Top="26.9" Height="-25.35"/>
+      <LineObject Name="Line185" Left="874.95" Top="26.9" Height="-25.35"/>
+      <LineObject Name="Line186" Left="1009.7" Top="26.9" Height="-25.35"/>
+      <LineObject Name="Line187" Left="3.45" Top="1.45" Width="1073.4"/>
+      <TextObject Name="Text251" Left="813.25" Top="3" Width="57.82" Height="21.9" Text="[sub4.Luas]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text252" Left="877.4" Top="3" Width="59.82" Height="21.9" Text="[sub4.QtyBook]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text253" Left="945.55" Top="3" Width="63.82" Height="21.9" Text="[sub4.QtyTanam]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text254" Left="1011.7" Top="3" Width="61.82" Height="21.9" Text="[sub4.QtySisip]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Center" Font="Arial, 7pt, style=Bold"/>
+    </DataBand>
+  </ReportPage>
+</Report>

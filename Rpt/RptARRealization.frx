@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="05/20/2011 01:10:18" ReportInfo.Modified="04/10/2014 13:38:44" ReportInfo.CreatorVersion="2013.3.5.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    dim Invois AS String
+    dim Sel, TCurr, TInv as Double
+
+    Private Sub ReportTitle1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Invois = &quot;&quot;
+      Sel = 0
+    End Sub
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      if Invois &lt;&gt; Report.GetColumnValue(&quot;DS.InvoiceNo&quot;) then
+        Invois = Report.GetColumnValue(&quot;DS.InvoiceNo&quot;)
+        Sel = CDbl(Report.GetColumnValue(&quot;DS.AmountInvoice&quot;)) - Cdbl(Report.GetColumnValue(&quot;DS.AmountPay&quot;)) 
+        TInv = TInv + CDbl(Report.GetColumnValue(&quot;DS.AmountInvoice&quot;))
+        TCurr = TCurr + CDbl(Report.GetColumnValue(&quot;DS.AmountInvoice&quot;))
+      else
+        sel = Sel - Cdbl(Report.GetColumnValue(&quot;DS.AmountPay&quot;)) 
+      End If
+      TxtSel.Text = FormatNumber(Sel, 0)  
+    End Sub
+
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      TCurr = 0
+    End Sub
+
+    Private Sub GroupHeader2_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      TInv = 0
+    End Sub
+
+    Private Sub GroupFooter2_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+       txtTInv.Text = FormatNumber(TInv, 0)
+    End Sub
+
+    Private Sub GroupFooter1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      txtTCurr.Text =  FormatNumber(TCurr, 0)
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haphvBRErIObJyKhrTjNsyc8">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_FNRptARRealization '2010-03-01','2014-05-01','','','',1,'','admin'">
+        <Column Name="CustCode" DataType="System.String"/>
+        <Column Name="CustName" DataType="System.String"/>
+        <Column Name="CurrCode" DataType="System.String"/>
+        <Column Name="ForexRate" DataType="System.Decimal"/>
+        <Column Name="PONo" DataType="System.String"/>
+        <Column Name="InvoiceNo" DataType="System.String"/>
+        <Column Name="InvoiceDate" DataType="System.DateTime"/>
+        <Column Name="Termin" DataType="System.String"/>
+        <Column Name="Term" DataType="System.Int32"/>
+        <Column Name="DueDate" DataType="System.DateTime"/>
+        <Column Name="PayDate" DataType="System.DateTime"/>
+        <Column Name="AmountInvoice" DataType="System.Decimal"/>
+        <Column Name="AmountPay" DataType="System.Decimal"/>
+        <Column Name="SelisihHari" DataType="System.Int32"/>
+        <Column Name="StrPeriod" DataType="System.String"/>
+        <Column Name="CompName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="InvSupp" Expression="[DS.AmountInvoice]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="PaySupp" Expression="[DS.AmountPay]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="InvCurr" Expression="[DS.AmountInvoice]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="PayCurr" Expression="[DS.AmountPay]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" FirstPageSource="14" OtherPagesSource="14" Guides="137.97,9.45,139.86,266.49,268.38,368.55,374.22,449.82,548.1,653.94,553.77,655.83,750.33,756,842.94,852.39,1045.17,941.22,948.78,1031.94,446.04">
+    <PageHeaderBand Name="PageHeader1" Width="1047.06" Height="121.96">
+      <ShapeObject Name="Shape1" Top="102.06" Width="1045.3" Height="19.9"/>
+      <TextObject Name="Text4" Left="9.45" Top="104.06" Width="128.52" Height="13.9" Text="No PO" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text6" Left="139.86" Top="104.06" Width="126.63" Height="13.9" Text="NO Faktur" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text8" Left="268.38" Top="104.06" Width="100.17" Height="13.9" Text="Tgl. Faktur" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text10" Left="374.22" Top="104.06" Width="71.82" Height="13.9" Text="Termin&#13;&#10;" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text12" Left="449.82" Top="104.06" Width="98.28" Height="13.9" Text="Jth. Tempo" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text14" Left="553.77" Top="104.06" Width="100.17" Height="13.9" Text="Tgl. Bayar" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text16" Left="655.83" Top="104.06" Width="94.5" Height="13.9" Text="Nilai Faktur" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text18" Left="756" Top="104.06" Width="86.94" Height="13.9" Text="Nilai Bayar" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text20" Left="852.39" Top="104.06" Width="88.83" Height="13.9" Text="Selisih" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text39" Left="948.78" Top="104.06" Width="83.16" Height="13.9" Text="Sel - Bayar" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text1" Left="4" Top="17.9" Width="1027.94" Height="23.35" Text="A C C O U N T  R E C E I V A B L E" HorzAlign="Center" Font="Arial, 16pt, style=Bold"/>
+      <TextObject Name="Text2" Left="753" Top="2.78" Width="289.17" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text35" Left="753" Top="78.38" Width="289.17" Height="11.34" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text22" Left="352.32" Top="74.6" Width="336.75" Height="13.9" Text="Periode : [DS.StrPeriod]" Format="Custom" Format.Format="dd MMM yyyy" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text61" Left="352.32" Top="40.58" Width="336.75" Height="13.9" Text="REALISASI PEMBAYARAN TERHADAP" Format="Custom" Format.Format="dd MMM yyyy" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text62" Left="352.32" Top="55.7" Width="336.75" Height="13.9" Text="FAKTUR DARI SUPPLIER ([DS.CurrCode])" Format="Custom" Format.Format="dd MMM yyyy" HorzAlign="Center" Font="Arial, 8pt"/>
+      <LineObject Name="Line4" Left="348.54" Top="70.82" Width="340.2"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="128.02" Width="1047.06" BeforePrintEvent="GroupHeader1_BeforePrint" StartNewPage="true" Condition="[DS.CurrCode]" SortOrder="None">
+      <GroupHeaderBand Name="GroupHeader2" Top="134.08" Width="1047.06" Height="15.68" BeforePrintEvent="GroupHeader2_BeforePrint" Condition="[DS.CustCode]" SortOrder="None">
+        <TextObject Name="Text63" Left="9.45" Top="1.78" Width="568.89" Height="13.9" Text="[DS.CustCode] - [DS.CustName]" Font="Arial, 8pt, style=Bold"/>
+        <DataBand Name="Data1" Top="155.82" Width="1047.06" Height="18.68" BeforePrintEvent="Data1_BeforePrint" DataSource="Table">
+          <TextObject Name="Text3" Left="9.45" Top="3" Width="128.52" Height="14.9" Text="[DS.PONo]" Font="Arial, 8pt"/>
+          <TextObject Name="Text5" Left="139.86" Top="3" Width="126.63" Height="14.9" Text="[DS.InvoiceNo]" Format="Date" Format.Format="d" Font="Arial, 8pt"/>
+          <TextObject Name="Text7" Left="268.38" Top="3" Width="100.17" Height="14.9" Text="[DS.InvoiceDate]" Format="Custom" Format.Format="dd MMM yyyy" Font="Arial, 8pt"/>
+          <TextObject Name="Text9" Left="374.22" Top="3" Width="71.82" Height="14.9" Text="[DS.Termin]" Font="Arial, 8pt"/>
+          <TextObject Name="Text11" Left="449.82" Top="3" Width="98.28" Height="14.9" Text="[DS.DueDate]" Format="Custom" Format.Format="dd MMM yyyy" Font="Arial, 8pt"/>
+          <TextObject Name="Text13" Left="553.77" Top="3" Width="100.17" Height="14.9" Text="[DS.PayDate]" Format="Custom" Format.Format="dd MMM yyyy" Font="Arial, 8pt"/>
+          <TextObject Name="Text15" Left="655.83" Top="3" Width="94.5" Height="14.9" Text="[DS.AmountInvoice]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" Font="Arial, 8pt"/>
+          <TextObject Name="Text17" Left="756" Top="3" Width="86.94" Height="14.9" Text="[DS.AmountPay]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" Font="Arial, 8pt"/>
+          <TextObject Name="Text19" Left="852.39" Top="3" Width="88.83" Height="14.9" Text="[DS.SelisihHari] Hari" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="TxtSel" Left="948.78" Top="3" Width="83.16" Height="14.9" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+        </DataBand>
+        <GroupFooterBand Name="GroupFooter2" Top="180.56" Width="1047.06" Height="19.8" BeforePrintEvent="GroupFooter2_BeforePrint">
+          <LineObject Name="Line2" Left="655.83" Top="2" Width="376.11"/>
+          <TextObject Name="txtTInv" Left="655.83" Top="3.78" Width="94.5" Height="15.9" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+          <TextObject Name="Text23" Left="757.89" Top="3.78" Width="85.05" Height="15.9" Text="[PaySupp]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+          <TextObject Name="Text41" Left="449.82" Top="3.78" Width="98.28" Height="15.9" Text="SUB TOTAL" Font="Arial, 8pt, style=Bold"/>
+        </GroupFooterBand>
+      </GroupHeaderBand>
+      <GroupFooterBand Name="GroupFooter1" Top="206.42" Width="1047.06" Height="21.46" BeforePrintEvent="GroupFooter1_BeforePrint">
+        <LineObject Name="Line3" Left="655.83" Top="2.78" Width="376.11"/>
+        <TextObject Name="txtTCurr" Left="655.83" Top="5.56" Width="94.5" Height="15.9" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text26" Left="757.89" Top="5.56" Width="85.05" Height="15.9" Text="[PayCurr]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text42" Left="449.82" Top="5.56" Width="98.28" Height="15.9" Text="GRAND TOTAL" Font="Arial, 8pt, style=Bold"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="233.94" Width="1047.06" Height="18.9">
+      <TextObject Name="Text38" Left="2.35" Top="2" Width="91.5" Height="14.12" Text="Finance" VertAlign="Center" Font="Arial, 8pt"/>
+      <LineObject Name="Line1" Width="1041.95"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

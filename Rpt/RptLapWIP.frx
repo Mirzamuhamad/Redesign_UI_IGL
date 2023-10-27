@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="01/16/2012 08:27:40" ReportInfo.Modified="08/08/2016 13:34:12" ReportInfo.CreatorVersion="2015.3.12.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+    private void Cell27_BeforePrint(object sender, EventArgs e)
+    {
+      
+    }
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWStE0aPOUlsWfwxUcDuebCT0Q4g5edtpWmvIJtXEnypu2O8Gk15WeYn1caHH8UEs84AcE14WCf9uZ6qB5JDLPdQoC6wEnqrUNP62u63dH8Va">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_GLRptWIP '2016-01-01','2016-08-03', '', '', '', '', 0, 0, 'N', 'N', 'admin'">
+        <Column Name="Qty" DataType="System.Decimal"/>
+        <Column Name="Costing" DataType="System.String"/>
+        <Column Name="CostingName" DataType="System.String"/>
+        <Column Name="Account" DataType="System.String"/>
+        <Column Name="AccountName" DataType="System.String"/>
+        <Column Name="TypeName" DataType="System.String"/>
+        <Column Name="Total" DataType="System.Double"/>
+        <Column Name="Company" DataType="System.String"/>
+        <Column Name="Address" DataType="System.String"/>
+        <Column Name="Period" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5" FirstPageSource="15" OtherPagesSource="15">
+    <PageHeaderBand Name="PageHeader1" Width="778.3" Height="126.74">
+      <TextObject Name="Text29" Width="94.5" Height="18.9" Text="[DS.Company]" AutoWidth="true" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text30" Top="20.9" Width="94.5" Height="18.9" Text="[DS.Address]" AutoWidth="true" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text64" Left="718" Top="16.99" Width="75.6" Height="15.79" Text="[Date]" Format="Time" Format.Format="t" Font="Arial, 8pt"/>
+      <TextObject Name="Text65" Left="718" Top="32.35" Width="56.7" Height="15.79" Text="[Page#]" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text66" Left="604.8" Top="15.99" Width="96.39" Height="15.79" Text="Jam" Font="Arial, 8pt"/>
+      <TextObject Name="Text67" Left="604.8" Top="32.35" Width="96.39" Height="15.79" Text="Halaman" Font="Arial, 8pt"/>
+      <TextObject Name="Text68" Left="718" Width="75.6" Height="15.79" Text="[Date]" Format="Date" Format.Format="d" Font="Arial, 8pt"/>
+      <TextObject Name="Text60" Left="604.8" Width="96.39" Height="15.79" Text="Tanggal" Font="Arial, 8pt"/>
+      <TextObject Name="Text61" Left="703.75" Width="11.34" Height="15.79" Text=":" Font="Arial, 8pt"/>
+      <TextObject Name="Text62" Left="703.75" Top="15.99" Width="11.34" Height="15.79" Text=":" Font="Arial, 8pt"/>
+      <TextObject Name="Text63" Left="703.75" Top="32.35" Width="11.34" Height="15.79" Text=":" Font="Arial, 8pt"/>
+      <TextObject Name="Text1" Top="75.6" Width="774.9" Height="18.9" Text="[DS.Period]" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text69" Top="56.7" Width="774.9" Height="18.9" Text="Laporan WIP" HorzAlign="Center" Font="Arial, 12pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="130.74" Width="778.3" Height="81.25" CanGrow="true" CanShrink="true">
+      <MatrixObject Name="Matrix2" Width="241.16" Height="81.25" FixedRows="2" FixedColumns="2" DataSource="Table" ShowTitle="true">
+        <MatrixColumns>
+          <Header Expression="[DS.TypeName]" Sort="None" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.CostingName]"/>
+          <Header Expression="[DS.AccountName]"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.Qty]"/>
+        </MatrixCells>
+        <TableColumn Name="Column6" Width="81.21" AutoSize="true"/>
+        <TableColumn Name="Column7" Width="88.51" AutoSize="true"/>
+        <TableColumn Name="Column8" Width="71.44" AutoSize="true"/>
+        <TableRow Name="Row8" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell36" Border.Lines="All" HorzAlign="Center" VertAlign="Center" ColSpan="2"/>
+          <TableCell Name="Cell37"/>
+          <TableCell Name="Cell42" Border.Lines="All" Text="Type Name" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row9" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell38" Border.Lines="All" Text="CostingName" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell39" Border.Lines="All" Text="AccountName" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell43" Border.Lines="All" Text="[TypeName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row10" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell40" Border.Lines="All" Text="[CostingName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt" RowSpan="2"/>
+          <TableCell Name="Cell41" Border.Lines="All" Text="[AccountName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell44" Border.Lines="All" Text="[Qty]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+        </TableRow>
+        <TableRow Name="Row11" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell45"/>
+          <TableCell Name="Cell46" Border.Lines="All" Text="Total Account :" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell47" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+        </TableRow>
+        <TableRow Name="Row12" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell48" Border.Lines="All" Text="Total Costing :" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold" ColSpan="2"/>
+          <TableCell Name="Cell49"/>
+          <TableCell Name="Cell50" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="215.99" Width="778.3" Height="18.9"/>
+    <PageFooterBand Name="PageFooter1" Top="238.89" Width="778.3" Height="18.9"/>
+  </ReportPage>
+</Report>

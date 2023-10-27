@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="04/13/2011 08:29:02" ReportInfo.Modified="04/22/2014 16:39:33" ReportInfo.CreatorVersion="2013.3.5.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+Namespace FastReport
+  
+  Public Class ReportScript
+    dim Nomor As Integer 
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Nomor = Nomor + 1
+      Text14.Text = Nomor
+    End Sub
+
+    Private Sub ReportTitle1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Nomor = 0
+    End Sub
+
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Nomor = 0
+    End Sub
+  End Class
+ 
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43harmkK3RgpQapjbrborbj3y5">
+      <TableDataSource Name="Table1" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_FNCashBonForm '''IE/PCB/13DEC/0001''','admin'">
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="Company" DataType="System.String"/>
+        <Column Name="TransNumb" DataType="System.String"/>
+        <Column Name="Address" DataType="System.String"/>
+        <Column Name="ISODOCNO" DataType="System.String"/>
+        <Column Name="PettyNo" DataType="System.String"/>
+        <Column Name="Account_Hd" DataType="System.String"/>
+        <Column Name="AccountName_Hd" DataType="System.String"/>
+        <Column Name="Subled_Hd" DataType="System.String"/>
+        <Column Name="SubledName_Hd" DataType="System.String"/>
+        <Column Name="ItemNo" DataType="System.String"/>
+        <Column Name="Account_dt" DataType="System.String"/>
+        <Column Name="AccountName_dt" DataType="System.String"/>
+        <Column Name="Subled_dt" DataType="System.String"/>
+        <Column Name="SubledName_dt" DataType="System.String"/>
+        <Column Name="ForexAmount" DataType="System.String"/>
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="TotalForex" DataType="System.String"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="ForexRate" DataType="System.String"/>
+        <Column Name="UserID" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="139.7" FirstPageSource="14" OtherPagesSource="14" Guides="37.8,28.35,548.1,548.1,548.1,548.1,548.1">
+    <PageHeaderBand Name="PageHeader1" Width="740.5" Height="170.1">
+      <TextObject Name="Text6" Left="4.78" Top="85.61" Width="113.4" Height="18.9" Text="Advance No." Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text36" Left="129.73" Top="85.61" Width="10.45" Height="18.9" Text=":" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text47" Left="7.56" Width="453.6" Height="18.9" Text="[DS.Company]" AutoWidth="true" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text3" Left="548.1" Top="89.06" Width="179.55" Height="18.9" Text="[DS.TransDate]" Format="Custom" Format.Format="dd MMM yyyy" Font="Arial, 9pt"/>
+      <TextObject Name="Text4" Left="481.95" Top="108.51" Width="66.15" Height="18.9" Text="Currency" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text5" Left="481.95" Top="89.61" Width="66.15" Height="18.9" Text="Date" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text58" Left="4.45" Top="106.4" Width="113.4" Height="18.9" Text="Account" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text59" Left="130.05" Top="104.5" Width="10.45" Height="18.9" Text=":" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text60" Left="4.45" Top="125.3" Width="113.4" Height="18.9" Text="Subledger" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text61" Left="130.3" Top="125.3" Width="10.45" Height="18.9" Text=":" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text7" Left="141.75" Top="85.5" Width="255.15" Height="18.9" Text="[DS.PettyNo]" Font="Arial, 9pt"/>
+      <TextObject Name="Text65" Left="538.65" Top="89.5" Width="10.45" Height="18.9" Text=":" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text66" Left="538.65" Top="108.4" Width="10.45" Height="18.9" Text=":" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text68" Left="141.75" Top="124.85" Width="255.15" Height="18.9" Text="[DS.Subled_Hd] - [DS.SubledName_Hd]" Font="Arial, 9pt"/>
+      <TextObject Name="Text8" Left="548.1" Top="108.95" Width="179.55" Height="18.9" Text="[DS.Currency] - [DS.ForexRate]" Font="Arial, 9pt">
+        <Formats>
+          <GeneralFormat/>
+          <CustomFormat Format="###,##0.##"/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text9" Left="141.75" Top="103.95" Width="255.15" Height="18.9" Text="[DS.Account_Hd] - [DS.AccountName_Hd]" Font="Arial, 9pt"/>
+      <TextObject Name="Text1" Left="207.9" Top="39.8" Width="321.3" Height="28.35" Text="ADVANCE REALIZATION" HorzAlign="Center" Font="Arial, 12pt, style=Bold, Underline"/>
+      <TextObject Name="Text10" Left="207.9" Top="60.7" Width="321.3" Height="18.9" Text="[DS.TransNumb]" HorzAlign="Center"/>
+      <TextObject Name="Text11" Left="9.45" Top="18.9" Width="160.65" Height="28.35" Text="[DS.Address]" Font="Arial, 8pt"/>
+      <TextObject Name="Text55" Left="500.85" Width="226.8" Height="18.9" Text="ISO DOC : [DS.ISODOCNO]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TableObject Name="Table3" Top="151.2" Width="729.84" Height="18.9">
+        <TableColumn Name="Column5" Width="37.8"/>
+        <TableColumn Name="Column6" Width="266.02"/>
+        <TableColumn Name="Column7" Width="240.73"/>
+        <TableColumn Name="Column8" Width="185.29"/>
+        <TableRow Name="Row2" AutoSize="true">
+          <TableCell Name="Cell5" Border.Lines="All" Text="No." HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell6" Border.Lines="All" Text="Account" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell7" Border.Lines="All" Text="Subledger" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell8" Border.Lines="All" Text="Total" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        </TableRow>
+      </TableObject>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="174.27" Width="740.5" BeforePrintEvent="GroupHeader1_BeforePrint" StartNewPage="true" Condition="[DS.TransNumb]">
+      <DataBand Name="Data1" Top="178.43" Width="740.5" Height="28.35" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" Guides="0,0" DataSource="Table1">
+        <TableObject Name="Table2" Width="729.84" Height="28.35" Border.Lines="Top">
+          <TableColumn Name="Column1" Width="37.8"/>
+          <TableColumn Name="Column2" Width="266.02"/>
+          <TableColumn Name="Column3" Width="240.73"/>
+          <TableColumn Name="Column4" Width="185.29"/>
+          <TableRow Name="Row1" Height="28.35" AutoSize="true">
+            <TableCell Name="Cell1" Border.Lines="All" HorzAlign="Center" Font="Arial, 9pt">
+              <TextObject Name="Text14" Width="37.8" Height="28.35" HorzAlign="Center" VertAlign="Center"/>
+            </TableCell>
+            <TableCell Name="Cell2" Border.Lines="All" Text="[DS.Account_dt] - [DS.AccountName_dt]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt"/>
+            <TableCell Name="Cell3" Border.Lines="All" Text="[DS.Subled_dt] - [DS.SubledName_dt]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt"/>
+            <TableCell Name="Cell4" Border.Lines="All" Text="[DS.ForexAmount]" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+          </TableRow>
+        </TableObject>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="210.95" Width="740.5" Height="113.4">
+        <TextObject Name="Text25" Left="0.55" Top="4" Width="74.5" Height="18.9" Text="REMARK :" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text2" Left="75.6" Top="4" Width="94.5" Height="18.9" Text="[DS.Remark]" Font="Arial, 9pt"/>
+        <TextObject Name="Text31" Left="289.95" Top="43.25" Width="122.85" Height="18.9" Text="Approved By," HorzAlign="Center" Font="Arial, 9.75pt, style=Bold"/>
+        <TextObject Name="Text30" Left="66.15" Top="43.25" Width="122.85" Height="18.9" Text="Prepared By ," HorzAlign="Center" Font="Arial, 9.75pt, style=Bold"/>
+        <TextObject Name="Text53" Left="500.85" Top="43.25" Width="122.85" Height="18.9" Text="Acknowledged By," HorzAlign="Center" Font="Arial, 9.75pt, style=Bold"/>
+        <TextObject Name="Text51" Left="274.95" Top="94.5" Width="151.2" Height="18.9" Text="( ................................ )" HorzAlign="Center" VertAlign="Center" Font="Arial, 9.75pt"/>
+        <TextObject Name="Text52" Left="42.15" Top="93.95" Width="160.65" Height="18.9" Text="( ................................ )" HorzAlign="Center" VertAlign="Center" Font="Arial, 9.75pt"/>
+        <TextObject Name="Text54" Left="486.85" Top="94.5" Width="151.2" Height="18.9" Text="( ................................ )" HorzAlign="Center" VertAlign="Center" Font="Arial, 9.75pt"/>
+        <TextObject Name="Text69" Left="399.45" Top="4" Width="141.75" Height="18.9" Text="TOTAL :" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text70" Left="588.45" Top="4" Width="141.75" Height="18.9" Text="[DS.TotalForex]" HorzAlign="Right" Font="Arial, 9pt"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="328.52" Width="740.5"/>
+    <PageFooterBand Name="PageFooter1" Top="332.68" Width="740.5" Height="18.9" Guides="0">
+      <TextObject Name="Text12" Left="548.1" Width="189" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text13" Width="141.75" Height="18.9" Text="[PageN] Of [TotalPages#]" VertAlign="Center" Font="Arial, 8pt"/>
+      <LineObject Name="Line1" Left="5" Width="727.65" Diagonal="true"/>
+      <TextObject Name="Text15" Left="283.5" Width="141.75" Height="18.9" Text="User : [DS.UserID]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="07/04/2011 15:39:43" ReportInfo.Modified="11/05/2014 09:22:26" ReportInfo.CreatorVersion="1.2.47.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqxawGG+41w3EYVqYJ0UT+wtrY6OH+cfF7zj+N81xBBlfwJ2oUALZtgobOUfWrOgxe2+Nhsmh5BVTl6ZRVr9N2ngzF8Mlkd08/Txyvg85jhBdUeSO/k8LRsIzlP8mpduT1zxtk/XNWtX6QV0NtrMVdZbYIoHMV15ryeUZSdtH6yfU7FZe3OaVaKnpNcgdeBpqw">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_SARptUserRight '','','',0&#13;&#10;">
+        <Column Name="GroupBy" DataType="System.String"/>
+        <Column Name="Detail" DataType="System.String"/>
+        <Column Name="StrGroup" DataType="System.String"/>
+        <Column Name="StrDetail" DataType="System.String"/>
+        <Column Name="FgInsert" DataType="System.String"/>
+        <Column Name="FgEdit" DataType="System.String"/>
+        <Column Name="FgDelete" DataType="System.String"/>
+        <Column Name="FgGetAppr" DataType="System.String"/>
+        <Column Name="FgPost" DataType="System.String"/>
+        <Column Name="FgUnPost" DataType="System.String"/>
+        <Column Name="FgPrint" DataType="System.String"/>
+        <Column Name="FgComplete" DataType="System.String"/>
+        <Column Name="FgClosing" DataType="System.String"/>
+        <Column Name="FgCancel" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" TopMargin="5" BottomMargin="5" Guides="340.2">
+    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="43.25">
+      <TextObject Name="Text11" Left="3.78" Top="9.23" Width="1037.61" Height="34.02" Text="Report User Rights" AutoWidth="true" VertAlign="Center" Font="Arial, 16pt, style=Bold"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="46.95" Width="718.2" Height="57.7" StartNewPage="true" RepeatOnEveryPage="true" Condition="[DS.GroupBy]" SortOrder="None">
+      <TextObject Name="Text5" Left="9" Top="1" Width="661.5" Height="18.9" Text="[[DS.StrGroup]] : [DS.GroupBy]" Font="Arial Narrow, 9pt"/>
+      <LineObject Name="Line6" Top="18.9" Width="718.2" Diagonal="true"/>
+      <TextObject Name="Text1" Left="9.45" Top="22.9" Width="103.95" Height="28.35" Text="[DS.StrDetail]" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+      <LineObject Name="Line1" Top="53.8" Width="718.2" Diagonal="true"/>
+      <TextObject Name="Text15" Left="180.55" Top="22.9" Width="56.7" Height="28.35" Text="Edit" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text16" Left="123.85" Top="22.9" Width="56.7" Height="28.35" Text="Insert" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text17" Left="246.7" Top="22.9" Width="56.7" Height="28.35" Text="Delete" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text18" Left="314.3" Top="22.9" Width="47.25" Height="28.35" Text="Get Appr" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text19" Left="370" Top="22.9" Width="66.15" Height="28.35" Text="Posting" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text20" Left="443.6" Top="22.9" Width="56.7" Height="28.35" Text="UnPost" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text21" Left="506.75" Top="22.9" Width="47.25" Height="28.35" Text="Print" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text22" Left="557" Top="22.9" Width="56.7" Height="28.35" Text="Complete" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text23" Left="614.7" Top="22.9" Width="47.25" Height="28.35" Text="Closing" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text24" Left="666.4" Top="22.9" Width="47.25" Height="28.35" Text="Cancel" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+      <DataBand Name="Data1" Top="108.36" Width="718.2" Height="28.35" DataSource="Table">
+        <TextObject Name="Text3" Left="9.45" Top="3" Width="103.95" Height="18.9" CanGrow="true" Text="[DS.Detail]" Font="Arial Narrow, 8pt"/>
+        <TextObject Name="Text4" Left="180.55" Top="3" Width="56.7" Height="18.9" Text="[DS.FgEdit]" Font="Arial, 8pt"/>
+        <TextObject Name="Text2" Left="123.4" Top="3" Width="56.7" Height="18.9" Text="[DS.FgInsert]" Font="Arial, 8pt"/>
+        <TextObject Name="Text6" Left="246.7" Top="3" Width="56.7" Height="18.9" Text="[DS.FgDelete]" Font="Arial, 8pt"/>
+        <TextObject Name="Text7" Left="314.3" Top="3" Width="47.25" Height="18.9" Text="[DS.FgGetAppr]" Font="Arial, 8pt"/>
+        <TextObject Name="Text8" Left="371" Top="3" Width="66.15" Height="18.9" Text="[DS.FgPost]" Font="Arial Narrow, 8pt"/>
+        <TextObject Name="Text9" Left="443.6" Top="3" Width="56.7" Height="18.9" Text="[DS.FgUnPost]" Font="Arial Narrow, 8pt"/>
+        <TextObject Name="Text10" Left="506.75" Top="3" Width="47.25" Height="18.9" Text="[DS.FgPrint]" Font="Arial Narrow, 8pt"/>
+        <TextObject Name="Text12" Left="557" Top="3" Width="56.7" Height="18.9" Text="[DS.FgComplete]" Font="Arial Narrow, 8pt"/>
+        <TextObject Name="Text13" Left="614.7" Top="3" Width="47.25" Height="18.9" Text="[DS.FgClosing]" Font="Arial Narrow, 8pt"/>
+        <TextObject Name="Text14" Left="666.4" Top="3" Width="47.25" Height="18.9" Text="[DS.FgCancel]" Font="Arial Narrow, 8pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="140.41" Width="718.2" Height="9.45">
+        <LineObject Name="Line4" Top="2" Width="718.2" Diagonal="true"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="153.56" Width="718.2" Height="18.9">
+      <LineObject Name="Line3" Width="718.2"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

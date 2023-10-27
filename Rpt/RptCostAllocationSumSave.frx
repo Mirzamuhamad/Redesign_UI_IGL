@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="05/13/2011 16:03:16" ReportInfo.Modified="08/15/2016 10:21:09" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+  'Dim QtyActBalance AS Integer
+    Dim Group1 As String
+  Dim QtyActBalance, ValueAct, PriceCOGS, QtyMin, ValueMin, QtyPlus, ValuePlus, Price AS Double 
+
+    Private Sub GroupHeader2_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      QtyActBalance = 0
+      ValueAct = 0
+    End Sub
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+     ' QtyMin = CType(Report.GetColumnValue(&quot;DS.QtyIn&quot;), Decimal) - CType(Report.GetColumnValue(&quot;DS.QtyOut&quot;), Decimal)
+     ' ValueMin = CType(Report.GetColumnValue(&quot;DS.TotalIn&quot;), Decimal) - CType(Report.GetColumnValue(&quot;DS.TotalOut&quot;), Decimal) 
+     ' QtyPlus = CType(Report.GetColumnValue(&quot;DS.QtyIn&quot;), Decimal) + CType(Report.GetColumnValue(&quot;DS.QtyOut&quot;), Decimal)
+     ' ValuePlus = CType(Report.GetColumnValue(&quot;DS.TotalIn&quot;), Decimal) + CType(Report.GetColumnValue(&quot;DS.TotalOut&quot;), Decimal) 
+     ' QtyActBalance = QtyActBalance + QtyMin
+     ' ValueAct = ValueAct + ValueMin
+     ' If ((QtyActBalance &lt;= 0.01) Or (ValueAct = 0)) Then
+     '   PriceCOGS = 0
+     ' Else 
+     '   PriceCOGS = ValueAct / QtyActBalance
+     ' End If
+     ' Text11.Text = FormatNumber(QtyActBalance,0)
+     ' Text26.Text = FormatNumber(ValueAct,0)      
+     ' Text28.Text = FormatNumber(PriceCOGS,0)      
+      
+     ' If CType(Report.GetColumnValue(&quot;DS.Reference&quot;), String) = &quot;OPENING&quot; Then
+     '   Text1.Visible = False
+     ' Else 
+      '  Text1.Visible = True
+      'End if  
+    '  Text1.Visible = CType(Report.GetColumnValue(&quot;DS.Product&quot;), String) &lt;&gt; Group1
+    '  Text3.Visible = Text1.Visible
+      Group1 = CType(Report.GetColumnValue(&quot;DS.Product&quot;), String) 
+    End Sub
+
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+           Group1 = &quot;&quot;
+    End Sub
+  End Class
+End Namespace
+
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLFu5UT8CyXD+igZM35gdb+ETRUrHdPhU9E57K70owro2ygZKhQzdy7mMq5M24qEbbBwsWr8KyH8VDp0XjSaBj8QwXLObSRhUgJjXPhNVcee5r+tyoOWXP0yiBHfEtL7Rfx/X5XZ8qKc0g/Ipdcg2NfU+Sn0iQtorDT5THRWCE8IXInvWLmNJD0oCoCHOeBNpoA==">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PDRptCostingAlokasi '20150101', '20150131', '', '', '', '', 0, 0, '', '', ''">
+        <Column Name="GroupType" DataType="System.String"/>
+        <Column Name="GroupTypeName" DataType="System.String"/>
+        <Column Name="CostingCode" DataType="System.String"/>
+        <Column Name="CostingName" DataType="System.String"/>
+        <Column Name="CostingQtyBOM" DataType="System.Double"/>
+        <Column Name="CostingQty" DataType="System.Double"/>
+        <Column Name="CostingQtyWaste" DataType="System.Double"/>
+        <Column Name="CostingPercentWaste" DataType="System.Double"/>
+        <Column Name="StrPeriod" DataType="System.String"/>
+        <Column Name="Company" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="StrWorkCtr" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" LeftMargin="5" RightMargin="5" FirstPageSource="15" OtherPagesSource="15">
+    <PageHeaderBand Name="PageHeader1" Width="756" Height="75.6">
+      <TextObject Name="Text13" Left="192.78" Top="14.17" Width="340.2" Height="18.9" Text="Costing Alokasi Save" HorzAlign="Center" VertAlign="Center" Font="Arial, 14pt"/>
+      <TextObject Name="Text16" Left="557.55" Width="198.45" Height="11.34" Text="Date/Time : [Date]" Format="Custom" Format.Format="dd-MM-yyyy hh:mm:ss" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text17" Left="557.55" Top="58.7" Width="198.45" Height="11.34" Text="Page : [Page#] of [TotalPages#]" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text18" Left="192.78" Top="34.8" Width="340.2" Height="15.12" Text="[DS.StrPeriod]" Format="Custom" Format.Format="dd MMM yyyy" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text12" Width="292.95" Height="18.9" Text="[DS.Company]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text40" Top="18.9" Width="292.95" Height="37.8" Text="[DS.CompAddr]" Font="Arial, 7pt"/>
+      <TextObject Name="Text7" Top="56.7" Width="538.65" Height="18.9" Text="[DS.StrWorkCtr]" Font="Arial, 8pt, style=Bold"/>
+    </PageHeaderBand>
+    <ColumnHeaderBand Name="ColumnHeader1" Top="78.95" Width="756" Height="18.9">
+      <LineObject Name="Line1" Width="756.11"/>
+      <LineObject Name="Line11" Height="18.9"/>
+      <LineObject Name="Line12" Left="85.05" Height="18.9"/>
+      <LineObject Name="Line13" Left="170.1" Height="18.9"/>
+      <LineObject Name="Line14" Left="446.15" Height="18.9"/>
+      <LineObject Name="Line16" Left="521.2" Height="18.9"/>
+      <TextObject Name="Text4" Left="85.05" Width="85.05" Height="15.12" Text="Costing" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text10" Left="445.6" Width="75.6" Height="15.12" Text="Qty BOM" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text2" Width="79.83" Height="15.12" Text="Type" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text6" Left="170.1" Width="198.9" Height="15.12" Text="Description" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line32" Left="597.8" Height="18.9"/>
+      <TextObject Name="Text42" Left="520.2" Width="75.6" Height="15.12" Text="Qty Alokasi" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text45" Left="598.8" Width="75.6" Height="15.12" Text="Qty Waste" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line34" Left="675.4" Height="18.9"/>
+      <TextObject Name="Text49" Left="676.4" Width="75.6" Height="15.12" Text="% Waste" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line39" Left="756" Height="18.9"/>
+      <LineObject Name="Line19" Top="18.9" Width="756.11"/>
+    </ColumnHeaderBand>
+    <DataBand Name="Data1" Top="101.2" Width="756" Height="18.9" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" AfterPrintEvent="Data1_AfterPrint" DataSource="Table">
+      <TextObject Name="Text1" Left="2" Top="1.89" Width="79.83" Height="15.12" Text="[DS.GroupTypeName]" HideZeros="true" VertAlign="Bottom" Font="Arial, 8pt"/>
+      <TextObject Name="Text3" Left="85.05" Top="1.89" Width="85.05" Height="15.12" CanGrow="true" Text="[DS.CostingCode]" VertAlign="Bottom" Font="Arial, 8pt"/>
+      <TextObject Name="Text5" Left="170.1" Top="1.89" Width="274.5" Height="15.12" CanGrow="true" CanShrink="true" Text="[DS.CostingName]" VertAlign="Bottom" Font="Arial, 8pt"/>
+      <TextObject Name="Text9" Left="676.4" Top="1.89" Width="75.6" Height="15.12" Text="[DS.CostingPercentWaste]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Bottom" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text53" Left="598.8" Top="1.89" Width="75.6" Height="15.12" Text="[DS.CostingQtyWaste]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Bottom" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text55" Left="520.2" Top="1.89" Width="75.6" Height="15.12" Text="[DS.CostingQty]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Bottom" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text57" Left="445.6" Top="1.89" Width="75.6" Height="15.12" Text="[DS.CostingQtyBOM]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Bottom" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <ChildBand Name="Child1" Top="123.45" Width="756"/>
+    </DataBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="126.8" Width="756">
+      <LineObject Name="Line41" Width="756"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="130.15" Width="756" Height="18.9"/>
+  </ReportPage>
+</Report>

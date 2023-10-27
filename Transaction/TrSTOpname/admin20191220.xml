@@ -1,0 +1,103 @@
+<?xml version="1.0" standalone="yes"?>
+<DS>
+  <Opname>
+    <Product>000000000001</Product>
+    <Product_Name>PPN (MASUKAN)</Product_Name>
+    <specification />
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0</QtyOpname>
+    <Unit>Unit</Unit>
+    <Remark />
+  </Opname>
+  <Opname>
+    <Product>000000000002</Product>
+    <Product_Name>JARING ANGKUT TBS Ukuran 2,5m x 2,5m</Product_Name>
+    <specification />
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0</QtyOpname>
+    <Unit>Set</Unit>
+    <Remark />
+  </Opname>
+  <Opname>
+    <Product>00000010000140</Product>
+    <Product_Name>Gobi</Product_Name>
+    <specification />
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0</QtyOpname>
+    <Unit>Pcs</Unit>
+    <Remark />
+  </Opname>
+  <Opname>
+    <Product>00000030000100</Product>
+    <Product_Name>Peralatan Kotak P3P + Obat-Obatan</Product_Name>
+    <specification />
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0</QtyOpname>
+    <Unit>Ktk</Unit>
+    <Remark />
+  </Opname>
+  <Opname>
+    <Product>00000040000001</Product>
+    <Product_Name>TRANSAKSI NON STOK Non Size FIXED ASSET Non Seri</Product_Name>
+    <specification />
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0</QtyOpname>
+    <Unit>Unit</Unit>
+    <Remark />
+  </Opname>
+  <Opname>
+    <Product>00000040000010</Product>
+    <Product_Name>Kunci Tapak Liner</Product_Name>
+    <specification />
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0</QtyOpname>
+    <Unit>Pcs</Unit>
+    <Remark />
+  </Opname>
+  <Opname>
+    <Product>00000040000074</Product>
+    <Product_Name>Housing p/n 5173246</Product_Name>
+    <specification />
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0</QtyOpname>
+    <Unit>Pcs</Unit>
+    <Remark />
+  </Opname>
+  <Opname>
+    <Product>00000040000075</Product>
+    <Product_Name>Kikir Sinso</Product_Name>
+    <specification />
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0</QtyOpname>
+    <Unit>Pcs</Unit>
+    <Remark />
+  </Opname>
+  <Opname>
+    <Product>00000040000076</Product>
+    <Product_Name>TRANSAKSI NON STOK Non Size ALAT TULIS KANTOR (NS) Non Seri</Product_Name>
+    <specification />
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0</QtyOpname>
+    <Unit>Set</Unit>
+    <Remark />
+  </Opname>
+  <Opname>
+    <Product>00000040000077</Product>
+    <Product_Name>ROD Piston 3121522</Product_Name>
+    <specification />
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0</QtyOpname>
+    <Unit>Pcs</Unit>
+    <Remark />
+  </Opname>
+</DS>

@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="07/04/2011 15:39:43" ReportInfo.Modified="04/25/2013 18:43:05" ReportInfo.CreatorVersion="1.2.47.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLGxGpJVG405Ko0Pl+CUlHHGu87lArp3rzJixtqKv76jf4Fk5iCanaaz04sjojKrDIrMzV3/VXewJyJ55Hzgq6BdAUi1QzBkTiU7CKERttTCJfxG8/SVh1V1D6+MEfnRHJuw3L1KkzlWvKmItEAg45JIOhbL8xqVSabkdZRiBzQsF">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_FNRptAPRekap '20110701', '20110801', '','','',0,0,''">
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="Supplier" DataType="System.String"/>
+        <Column Name="Company" DataType="System.String"/>
+        <Column Name="TotalBegin" DataType="System.Decimal"/>
+        <Column Name="TotalIn" DataType="System.Decimal"/>
+        <Column Name="TotalOut" DataType="System.Decimal"/>
+        <Column Name="TotalEnd" DataType="System.Decimal"/>
+        <Column Name="Periode" DataType="System.String"/>
+        <Column Name="TotalInAdjust" DataType="System.Decimal"/>
+        <Column Name="SupplierName" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="450" PaperHeight="290" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5" FirstPageSource="14" OtherPagesSource="14">
+    <PageHeaderBand Name="PageHeader1" Width="1663.2" Height="66.15">
+      <TextObject Name="Text11" Top="2" Width="302.4" Height="15.12" Text="Laporan BTB &amp; Realisasi Pembayaran" AutoWidth="true" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text12" Top="20.9" Width="302.4" Height="15.12" Text="PERIODE [DS.Periode]" AutoWidth="true" VertAlign="Bottom" Font="Arial, 8pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="70.15" Width="1663.2" Height="94.5">
+      <MatrixObject Name="Matrix1" Width="895.83" Height="81.25" FixedRows="2" FixedColumns="3" CellsSideBySide="true" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="[DS.Company]"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.Currency]"/>
+          <Header Expression="[DS.Supplier]"/>
+          <Header Expression="[DS.SupplierName]" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.TotalBegin]"/>
+          <Cell Expression="[DS.TotalIn]"/>
+          <Cell Expression="[DS.TotalInAdjust]"/>
+          <Cell Expression="[DS.TotalOut]"/>
+          <Cell Expression="[DS.TotalEnd]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="59.22" AutoSize="true"/>
+        <TableColumn Name="Column2" Width="54.97" AutoSize="true"/>
+        <TableColumn Name="Column3" Width="85.49" AutoSize="true"/>
+        <TableColumn Name="Column4" Width="67.19" AutoSize="true"/>
+        <TableColumn Name="Column5" Width="63.51" AutoSize="true"/>
+        <TableColumn Name="Column6" Width="78.78" AutoSize="true"/>
+        <TableColumn Name="Column7" Width="73.9" AutoSize="true"/>
+        <TableColumn Name="Column8" Width="69.61" AutoSize="true"/>
+        <TableColumn Name="Column9" Width="67.16" AutoSize="true"/>
+        <TableColumn Name="Column10" Width="63.51" AutoSize="true"/>
+        <TableColumn Name="Column11" Width="68.98" AutoSize="true"/>
+        <TableColumn Name="Column12" Width="73.9" AutoSize="true"/>
+        <TableColumn Name="Column13" Width="69.61" AutoSize="true"/>
+        <TableRow Name="Row1" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell1" Border.Lines="All" Text="Curr" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell2" Border.Lines="All" Text="Supplier" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell7" Border.Lines="All" Text="Supplier Name" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell10" Border.Lines="All" Text="[Company]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" ColSpan="5"/>
+          <TableCell Name="Cell11"/>
+          <TableCell Name="Cell21"/>
+          <TableCell Name="Cell22"/>
+          <TableCell Name="Cell29"/>
+          <TableCell Name="Cell30" Border.Lines="All" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" ColSpan="5"/>
+          <TableCell Name="Cell37"/>
+          <TableCell Name="Cell51"/>
+          <TableCell Name="Cell52"/>
+          <TableCell Name="Cell61"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell3"/>
+          <TableCell Name="Cell4"/>
+          <TableCell Name="Cell8"/>
+          <TableCell Name="Cell12" Border.Lines="All" Text="Saldo Awal" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell13" Border.Lines="All" Text="Pembelian" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell23" Border.Lines="All" Text="Adjustment" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell24" Border.Lines="All" Text="Pembayaran" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell31" Border.Lines="All" Text="Saldo Akhir" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell32" Border.Lines="All" Text="Saldo Awal" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell38" Text="Pembelian" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell53" Border.Lines="All" Text="Adjustment" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell54" Border.Lines="All" Text="Pembayaran" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell62" Border.Lines="All" Text="Saldo Akhir" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell5" Border.Lines="All" Text="[Currency]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt" RowSpan="2"/>
+          <TableCell Name="Cell6" Border.Lines="All" Text="[Supplier]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell9" Border.Lines="All" Text="[SupplierName]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell14" Border.Lines="All" Text="[TotalBegin]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell15" Border.Lines="All" Text="[TotalIn]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell25" Border.Lines="All" Text="[TotalInAdjust]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell26" Border.Lines="All" Text="[TotalOut]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell33" Border.Lines="All" Text="[TotalEnd]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell34" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell39" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell55" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell56" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell63" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+        </TableRow>
+        <TableRow Name="Row4" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell16"/>
+          <TableCell Name="Cell17" Border.Lines="All" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" ColSpan="2"/>
+          <TableCell Name="Cell18"/>
+          <TableCell Name="Cell19" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell20" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell27" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell28" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell35" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell36" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell40" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell57" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell58" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell64" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row5" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell41" Border.Lines="All" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" ColSpan="3"/>
+          <TableCell Name="Cell42"/>
+          <TableCell Name="Cell43"/>
+          <TableCell Name="Cell44" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell45" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell46" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell47" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell48" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell49" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell50" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell59" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell60" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell65" Border.Lines="All" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="168.65" Width="1663.2" Height="18.9"/>
+  </ReportPage>
+</Report>

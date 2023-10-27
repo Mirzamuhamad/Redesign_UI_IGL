@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="12/16/2013 11:53:39" ReportInfo.Modified="04/09/2019 11:10:39" ReportInfo.CreatorVersion="1.2.47.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLGyiz5qWMjsA99V/W+nNq1W3g2zii+WzFvwn5S/yO9ty4j5cNSou1n2RnV42VCogqhWDGBfTi9Ny1OneZGYjfinOHGpdCxzvpie7qu5vUxEx4MCFZZfHfGnHRCgUFUBKbmMlG5NqLQAbah7tE2SUt7Ro0YRFLF7HrM3r5NEPdd5q">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PRRptPPMingguan '20150409','20190409', '', '', '', '', 0, 0, '', '', 'admin'">
+        <Column Name="Department" DataType="System.String"/>
+        <Column Name="DepartmentName" DataType="System.String"/>
+        <Column Name="Product" DataType="System.String"/>
+        <Column Name="ProductName" DataType="System.String"/>
+        <Column Name="Unit" DataType="System.String"/>
+        <Column Name="RequireDate" DataType="System.DateTime"/>
+        <Column Name="Qty" DataType="System.Double"/>
+        <Column Name="MGG" DataType="System.Int32"/>
+        <Column Name="Thn" DataType="System.Int32"/>
+        <Column Name="Bln" DataType="System.Int32"/>
+        <Column Name="MonthName" DataType="System.String"/>
+        <Column Name="ThnBln" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompanyAddress" DataType="System.String"/>
+        <Column Name="UserId" DataType="System.String"/>
+        <Column Name="TotalQty" DataType="System.Double"/>
+        <Column Name="Periode" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="279.4" PaperHeight="215.9" FirstPageSource="14" OtherPagesSource="14">
+    <PageHeaderBand Name="PageHeader1" Width="980.53" Height="122.85">
+      <TextObject Name="Text1" Width="255.15" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text2" Top="18.9" Width="255.15" Height="37.8" Text="[DS.CompanyAddress]" Font="Arial, 8pt"/>
+      <TextObject Name="Text4" Left="746.55" Width="236.25" Height="18.9" Text="[Date]" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text5" Left="765.45" Top="103.95" Width="217.35" Height="18.9" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text6" Left="381.59" Top="51.97" Width="217.35" Height="18.9" Text="Permintaan Pembelian ( PP )" HorzAlign="Center" Font="Arial, 11pt, style=Bold"/>
+      <TextObject Name="Text7" Left="381.59" Top="71.6" Width="217.35" Height="18.9" Text="[DS.Periode]" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="126.85" Width="980.53" Height="109.42">
+      <MatrixObject Name="Matrix1" Width="323.02" Height="48.75" FixedRows="2" FixedColumns="4" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="[DS.ThnBln]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.MGG]" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.DepartmentName]" Totals="false"/>
+          <Header Expression="[DS.ProductName]" Totals="false"/>
+          <Header Expression="[DS.TotalQty]" Totals="false"/>
+          <Header Expression="[DS.Unit]" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.Qty]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="101.35" AutoSize="true"/>
+        <TableColumn Name="Column2" Width="81.82" AutoSize="true"/>
+        <TableColumn Name="Column3" Width="56.18" AutoSize="true"/>
+        <TableColumn Name="Column4" Width="34.2" AutoSize="true"/>
+        <TableColumn Name="Column5" Width="49.47" AutoSize="true"/>
+        <TableRow Name="Row1" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell1" Border.Lines="All" Text="Department" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt" RowSpan="2"/>
+          <TableCell Name="Cell2" Border.Lines="All" Text="Product" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt" RowSpan="2"/>
+          <TableCell Name="Cell7" Border.Lines="All" Text="Order" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt" RowSpan="2"/>
+          <TableCell Name="Cell13" Border.Lines="All" Text="Unit" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt" RowSpan="2"/>
+          <TableCell Name="Cell17" Border.Lines="All" Text="[ThnBln]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell3"/>
+          <TableCell Name="Cell4"/>
+          <TableCell Name="Cell8"/>
+          <TableCell Name="Cell14"/>
+          <TableCell Name="Cell18" Border.Lines="All" Text="[MGG]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell5" Border.Lines="All" Text="[DepartmentName]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell6" Border.Lines="All" Text="[ProductName]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell9" Border.Lines="All" Text="[TotalQty]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell15" Border.Lines="All" Text="[Unit]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell19" Border.Lines="All" Text="[Qty]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="240.27" Width="980.53" Height="18.9">
+      <TextObject Name="Text3" Left="883.85" Width="94.5" Height="18.9" Text="[DS.UserId]" HorzAlign="Right" Font="Arial, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

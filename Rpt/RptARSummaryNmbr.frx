@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="04/27/2015 12:56:29" ReportInfo.Modified="06/01/2016 13:45:18" ReportInfo.CreatorVersion="2015.3.12.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+      Dim InvoiceNo as String
+
+    Private Sub GroupHeader2_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+          InvoiceNo = &quot;&quot;
+    End Sub
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      if CType(Report.GetColumnValue(&quot;DS.InvoiceNo&quot;), String) = InvoiceNo then 
+        Text2.Visible = False
+      else
+        Text2.Visible = True
+      end if
+      Text4.Visible = Text2.Visible
+      Text6.Visible = Text2.Visible
+      Text8.Visible = Text2.Visible
+      Text10.Visible = Text2.Visible
+      Text12.Visible = Text2.Visible
+      Text14.Visible = Text2.Visible      
+      Text16.Visible = Text2.Visible
+      Text18.Visible = Text2.Visible
+    End Sub
+
+    Private Sub Data1_AfterPrint(ByVal sender As object, ByVal e As EventArgs)
+      InvoiceNo = CType(Report.GetColumnValue(&quot;DS.InvoiceNo&quot;), String)
+      Text103.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.GrandTotBeginPpn&quot;), Double),2)
+      Text107.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.GrandTotEndPpn&quot;), Double),2)
+      Text109.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.GrandTotPpnA&quot;), Double),2)
+      Text111.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.GrandTotPpnB&quot;), Double),2)
+      Text113.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.GrandTotPpnC&quot;), Double),2)
+      Text115.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.GrandTotPpnD&quot;), Double),2)
+      Text117.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.GrandTotPpnE&quot;), Double),2)
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VZBd+MhtHnjm5PdZx4zPIHDynbHV0xczV/6vreqQZU83">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_FNRptARDetailNmbr '20150131', '', '', '', '0', 30, 60, 90, 0, 1, '', '', 0">
+        <Column Name="InvoiceNo" DataType="System.String"/>
+        <Column Name="InvoiceDate" DataType="System.DateTime"/>
+        <Column Name="SONo" DataType="System.String"/>
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="Customer" DataType="System.String"/>
+        <Column Name="CustomerName" DataType="System.String"/>
+        <Column Name="DueDate" DataType="System.DateTime"/>
+        <Column Name="Terms" DataType="System.Int32"/>
+        <Column Name="PPNNo" DataType="System.String"/>
+        <Column Name="BeginBase" DataType="System.Double"/>
+        <Column Name="BeginPPn" DataType="System.Double"/>
+        <Column Name="PaymentNo" DataType="System.String"/>
+        <Column Name="PayDate" DataType="System.DateTime"/>
+        <Column Name="BankReceipt" DataType="System.String"/>
+        <Column Name="PaymentBase" DataType="System.Double"/>
+        <Column Name="PaymentPPn" DataType="System.Double"/>
+        <Column Name="EndingBase" DataType="System.Double"/>
+        <Column Name="EndingPPn" DataType="System.Double"/>
+        <Column Name="BaseA" DataType="System.Double"/>
+        <Column Name="PPnA" DataType="System.Double"/>
+        <Column Name="BaseB" DataType="System.Double"/>
+        <Column Name="PPnB" DataType="System.Double"/>
+        <Column Name="BaseC" DataType="System.Double"/>
+        <Column Name="PPnC" DataType="System.Double"/>
+        <Column Name="BaseD" DataType="System.Double"/>
+        <Column Name="PPnD" DataType="System.Double"/>
+        <Column Name="BaseE" DataType="System.Double"/>
+        <Column Name="PPnE" DataType="System.Double"/>
+        <Column Name="Period" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompanyAddr" DataType="System.String"/>
+        <Column Name="UserId" DataType="System.String"/>
+        <Column Name="EndDate" DataType="System.String"/>
+        <Column Name="PeriodB" DataType="System.String"/>
+        <Column Name="PeriodC" DataType="System.String"/>
+        <Column Name="PeriodD" DataType="System.String"/>
+        <Column Name="PeriodE" DataType="System.String"/>
+        <Column Name="Pay_Date" DataType="System.String"/>
+        <Column Name="Due_Date" DataType="System.String"/>
+        <Column Name="HomeCurr" DataType="System.String"/>
+        <Column Name="TotBeginBaseCust" DataType="System.Double"/>
+        <Column Name="TotBeginPpnCust" DataType="System.Double"/>
+        <Column Name="TotBeginBaseCurr" DataType="System.Double"/>
+        <Column Name="TotBeginPpnCurr" DataType="System.Double"/>
+        <Column Name="GrandTotBeginPpn" DataType="System.Double"/>
+        <Column Name="TotEndBaseCust" DataType="System.Double"/>
+        <Column Name="TotEndPpnCust" DataType="System.Double"/>
+        <Column Name="TotBaseACust" DataType="System.Double"/>
+        <Column Name="TotPPnACust" DataType="System.Double"/>
+        <Column Name="TotBaseBCust" DataType="System.Double"/>
+        <Column Name="TotPPnBCust" DataType="System.Double"/>
+        <Column Name="TotBaseCCust" DataType="System.Double"/>
+        <Column Name="TotPPnCCust" DataType="System.Double"/>
+        <Column Name="TotBaseDCust" DataType="System.Double"/>
+        <Column Name="TotPPnDCust" DataType="System.Double"/>
+        <Column Name="TotBaseECust" DataType="System.Double"/>
+        <Column Name="TotPPnECust" DataType="System.Double"/>
+        <Column Name="TotEndBaseCurr" DataType="System.Double"/>
+        <Column Name="TotEndPpnCurr" DataType="System.Double"/>
+        <Column Name="TotBaseACurr" DataType="System.Double"/>
+        <Column Name="TotPPnACurr" DataType="System.Double"/>
+        <Column Name="TotBaseBCurr" DataType="System.Double"/>
+        <Column Name="TotPPnBCurr" DataType="System.Double"/>
+        <Column Name="TotBaseCCurr" DataType="System.Double"/>
+        <Column Name="TotPPnCCurr" DataType="System.Double"/>
+        <Column Name="TotBaseDCurr" DataType="System.Double"/>
+        <Column Name="TotPPnDCurr" DataType="System.Double"/>
+        <Column Name="TotBaseECurr" DataType="System.Double"/>
+        <Column Name="TotPPnECurr" DataType="System.Double"/>
+        <Column Name="GrandTotEndPpn" DataType="System.Double"/>
+        <Column Name="GrandTotPpnA" DataType="System.Double"/>
+        <Column Name="GrandTotPpnB" DataType="System.Double"/>
+        <Column Name="GrandTotPpnC" DataType="System.Double"/>
+        <Column Name="GrandTotPpnD" DataType="System.Double"/>
+        <Column Name="GrandTotPpnE" DataType="System.Double"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="GrandTotPayPPn" Expression="[DS.PaymentPPn]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="TotPayBaseCust" Expression="[DS.PaymentBase]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="TotPayBaseCurr" Expression="[DS.PaymentBase]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotPayPPnCust" Expression="[DS.PaymentPPn]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="TotPayPPnCurr" Expression="[DS.PaymentPPn]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="670" PaperHeight="420.1" TopMargin="5" BottomMargin="5">
+    <PageHeaderBand Name="PageHeader1" Width="2457" Height="151.2">
+      <TextObject Name="Text3" Top="115.85" Width="113.4" Height="18.9" Text="Invoice No" Font="Arial, 8pt"/>
+      <TextObject Name="Text5" Left="116.4" Top="100.95" Width="75.6" Height="47.25" Text="Invoice Date" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text7" Left="195" Top="115.85" Width="120.96" Height="18.9" Text="SONo" Font="Arial, 8pt"/>
+      <TextObject Name="Text9" Left="317.3" Top="115.85" Width="37.8" Height="18.9" Text="Term" Font="Arial, 8pt"/>
+      <TextObject Name="Text11" Left="357.1" Top="115.85" Width="143.64" Height="18.9" Text="PPNNo" Font="Arial, 8pt"/>
+      <TextObject Name="Text13" Left="504.3" Top="115.85" Width="75.6" Height="18.9" Text="DueDate" Font="Arial, 8pt"/>
+      <TextObject Name="Text15" Left="582.9" Top="115.85" Width="37.8" Height="18.9" Text="Curr" Font="Arial, 8pt"/>
+      <TextObject Name="Text17" Left="623.7" Top="129.3" Width="94.5" Height="18.9" Text="DPP" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text19" Left="721.2" Top="129.3" Width="113.4" Height="18.9" Text="PPn ([DS.HomeCurr])" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text21" Left="838.05" Top="129.3" Width="94.5" Height="18.9" Text="No" Font="Arial, 8pt"/>
+      <TextObject Name="Text23" Left="934.55" Top="129.3" Width="68.04" Height="18.9" Text="Date" Font="Arial, 8pt"/>
+      <TextObject Name="Text25" Left="1005.15" Top="129.3" Width="85.05" Height="18.9" Text="Bank" Font="Arial, 8pt"/>
+      <TextObject Name="Text27" Left="1092.2" Top="129.3" Width="94.5" Height="18.9" Text="DPP" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text29" Left="1190.25" Top="129.3" Width="94.5" Height="18.9" Text="PPn ([DS.HomeCurr])" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text31" Left="1287.2" Top="129.3" Width="94.5" Height="18.9" Text="DPP" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text33" Left="1384.7" Top="129.3" Width="113.4" Height="18.9" Text="PPn ([DS.HomeCurr])" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text52" Left="1500.1" Top="129.3" Width="94.5" Height="18.9" Text="DPP" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text53" Left="1587.7" Top="129.3" Width="85.05" Height="18.9" Text="PPn ([DS.HomeCurr])" HorzAlign="Right" Font="Arial, 8pt"/>
+      <LineObject Name="Line1" Top="99.95" Width="2447.55"/>
+      <TextObject Name="Text54" Width="595.35" Height="18.9" Text="[DS.CompanyName]"/>
+      <TextObject Name="Text55" Top="18.9" Width="595.35" Height="18.9" Text="[DS.CompanyAddr]" Font="Arial, 8pt"/>
+      <LineObject Name="Line2" Top="151.2" Width="2447.55"/>
+      <TextObject Name="Text57" Top="56.7" Width="283.5" Height="18.9" Text="AR Detail Report" Font="Arial, 12pt"/>
+      <TextObject Name="Text58" Top="75.6" Width="283.5" Height="18.9" Text="[DS.Period]" VertAlign="Bottom" Font="Arial, 9pt"/>
+      <TextObject Name="Text59" Left="1675.3" Top="129.3" Width="94.5" Height="18.9" Text="DPP" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text60" Left="1773.25" Top="129.3" Width="94.5" Height="18.9" Text="PPn ([DS.HomeCurr])" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text61" Left="2064.2" Top="129.3" Width="94.5" Height="18.9" Text="DPP" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text62" Left="2160.7" Top="129.3" Width="94.5" Height="18.9" Text="PPn ([DS.HomeCurr])" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text63" Left="2257.65" Top="129.3" Width="94.5" Height="18.9" Text="DPP" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text64" Left="2354.15" Top="129.3" Width="94.5" Height="18.9" Text="PPn ([DS.HomeCurr])" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text65" Left="1869.75" Top="129.3" Width="94.5" Height="18.9" Text="DPP" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text66" Left="1966.8" Top="129.3" Width="94.5" Height="18.9" Text="PPn ([DS.HomeCurr])" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text37" Left="623.7" Top="103.95" Width="210.9" Height="18.9" Border.Lines="Bottom" Text="Invoice" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text67" Left="838.05" Top="103.95" Width="444.15" Height="18.9" Border.Lines="Bottom" Text="Receipt Trade" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text68" Left="1287.2" Top="103.95" Width="209.9" Height="18.9" Border.Lines="Bottom" Text="Balance Per [DS.EndDate]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text69" Left="1500.1" Top="103.95" Width="170.1" Height="18.9" Border.Lines="Bottom" Text="&lt; 0" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text70" Left="1675.3" Top="103.95" Width="189" Height="18.9" Border.Lines="Bottom" Text="[DS.PeriodB]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text71" Left="1869.75" Top="103.95" Width="189" Height="18.9" Border.Lines="Bottom" Text="[DS.PeriodC]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text72" Left="2064.2" Top="103.95" Width="189" Height="18.9" Border.Lines="Bottom" Text="[DS.PeriodD]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text73" Left="2258.55" Top="103.95" Width="189" Height="18.9" Border.Lines="Bottom" Text="[DS.PeriodE]" HorzAlign="Center" Font="Arial, 8pt"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="155.2" Width="2457" Height="28.35" Condition="[DS.Currency]">
+      <TextObject Name="Text1" Top="9.45" Width="103.95" Height="18.9" Text="[DS.Currency]" Font="Arial, 10pt, style=Bold"/>
+      <GroupHeaderBand Name="GroupHeader2" Top="187.55" Width="2457" Height="20.9" BeforePrintEvent="GroupHeader2_BeforePrint" Condition="[DS.Customer]">
+        <TextObject Name="Text99" Width="576.45" Height="18.9" Text="[DS.CustomerName]" Font="Arial, 7pt, style=Bold"/>
+        <TextObject Name="Text39" Left="623.7" Top="2" Width="94.5" Height="18.9" Text="[DS.TotBeginBaseCust]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text44" Left="721.2" Top="2" Width="113.4" Height="18.9" Text="[DS.TotBeginPpnCust]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text48" Left="1092.2" Top="2" Width="94.5" Height="18.9" Text="[TotPayBaseCust]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text51" Left="1190.25" Top="2" Width="94.5" Height="18.9" Text="[TotPayPPnCust]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text75" Left="1287.2" Top="2" Width="94.5" Height="18.9" Text="[DS.TotEndBaseCust]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text77" Left="1384.7" Top="2" Width="113.4" Height="18.9" Text="[DS.TotEndPpnCust]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text79" Left="1500.1" Top="2" Width="94.5" Height="18.9" Text="[DS.TotBaseACust]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text81" Left="1587.6" Top="2" Width="85.05" Height="18.9" Text="[DS.TotPPnACust]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text83" Left="1675.3" Top="2" Width="94.5" Height="18.9" Text="[DS.TotBaseBCust]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text85" Left="1773.25" Top="2" Width="94.5" Height="18.9" Text="[DS.TotPPnBCust]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text87" Left="1869.75" Top="2" Width="94.5" Height="18.9" Text="[DS.TotBaseCCust]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text89" Left="1966.8" Top="2" Width="94.5" Height="18.9" Text="[DS.TotPPnCCust]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text91" Left="2064.2" Top="2" Width="94.5" Height="18.9" Text="[DS.TotBaseDCust]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text93" Left="2160.7" Top="2" Width="94.5" Height="18.9" Text="[DS.TotPPnDCust]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text95" Left="2354.15" Top="2" Width="94.5" Height="18.9" Text="[DS.TotPPnECust]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text97" Left="2257.65" Top="2" Width="94.5" Height="18.9" Text="[DS.TotBaseECust]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <DataBand Name="Data1" Top="212.45" Width="2457" Height="18.9" Visible="false" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" AfterPrintEvent="Data1_AfterPrint" DataSource="Table">
+          <TextObject Name="Text2" Width="113.4" Height="18.9" CanGrow="true" Text="[DS.InvoiceNo]" Font="Arial, 7pt"/>
+          <TextObject Name="Text4" Left="116.4" Width="75.6" Height="18.9" Text="[DS.InvoiceDate]" Format="Custom" Format.Format="dd MMM yyyy" HorzAlign="Center" Font="Arial, 7pt"/>
+          <TextObject Name="Text6" Left="195" Width="120.96" Height="18.9" Text="[DS.SONo]" Font="Arial, 7pt"/>
+          <TextObject Name="Text8" Left="317.3" Width="37.8" Height="18.9" Text="[DS.Terms]" Font="Arial, 7pt"/>
+          <TextObject Name="Text10" Left="357.1" Width="143.64" Height="18.9" Text="[DS.PPNNo]" Font="Arial, 7pt"/>
+          <TextObject Name="Text12" Left="504.3" Width="75.6" Height="18.9" Text="[DS.Due_Date]" Font="Arial, 7pt"/>
+          <TextObject Name="Text14" Left="582.9" Width="37.8" Height="18.9" Text="[DS.Currency]" Font="Arial, 7pt"/>
+          <TextObject Name="Text16" Left="623.7" Width="94.5" Height="18.9" Text="[DS.BeginBase]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text18" Left="721.2" Width="113.4" Height="18.9" Text="[DS.BeginPPn]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text20" Left="838.05" Width="94.5" Height="18.9" Text="[DS.PaymentNo]" Font="Arial, 7pt"/>
+          <TextObject Name="Text22" Left="934.55" Width="68.04" Height="18.9" Text="[DS.Pay_Date]" Font="Arial, 7pt"/>
+          <TextObject Name="Text24" Left="1005.15" Width="85.05" Height="18.9" CanGrow="true" Text="[DS.BankReceipt]" Font="Arial, 7pt"/>
+          <TextObject Name="Text26" Left="1092.2" Width="94.5" Height="18.9" Text="[DS.PaymentBase]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text28" Left="1190.25" Width="94.5" Height="18.9" Text="[DS.PaymentPPn]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text30" Left="1287.2" Width="94.5" Height="18.9" Text="[DS.EndingBase]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text32" Left="1384.7" Width="113.4" Height="18.9" Text="[DS.EndingPPn]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text34" Left="1500.1" Width="94.5" Height="18.9" Text="[DS.BaseA]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text35" Left="1587.7" Width="85.05" Height="18.9" Text="[DS.PPnA]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text36" Left="1675.3" Width="94.5" Height="18.9" Text="[DS.BaseB]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text38" Left="1773.25" Width="94.5" Height="18.9" Text="[DS.PPnB]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text40" Left="1869.75" Width="94.5" Height="18.9" Text="[DS.BaseC]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text42" Left="1966.8" Width="94.5" Height="18.9" Text="[DS.PPnC]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text43" Left="2064.2" Width="94.5" Height="18.9" Text="[DS.BaseD]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text45" Left="2160.7" Width="94.5" Height="18.9" Text="[DS.PPnD]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text47" Left="2257.65" Width="94.5" Height="18.9" Text="[DS.BaseE]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text49" Left="2354.15" Width="94.5" Height="18.9" Text="[DS.PPnE]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <Sort>
+            <Sort Expression="[DS.InvoiceDate]"/>
+            <Sort Expression="[DS.InvoiceNo]"/>
+            <Sort Expression="[DS.Pay_Date]"/>
+          </Sort>
+        </DataBand>
+        <GroupFooterBand Name="GroupFooter2" Top="235.35" Width="2457" Guides="18.9">
+          <LineObject Name="Line3" Width="2447.55" Visible="false"/>
+        </GroupFooterBand>
+      </GroupHeaderBand>
+      <GroupFooterBand Name="GroupFooter1" Top="239.35" Width="2457" Height="20.9">
+        <TextObject Name="Text41" Left="623.7" Top="2" Width="94.5" Height="18.9" Text="[DS.TotBeginBaseCurr]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text46" Left="721.2" Top="2" Width="113.4" Height="18.9" Text="[DS.TotBeginPpnCurr]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text74" Left="1190.25" Top="2" Width="94.5" Height="18.9" Text="[TotPayPPnCurr]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text76" Left="1287.2" Top="2" Width="94.5" Height="18.9" Text="[DS.TotEndBaseCurr]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text78" Left="1384.7" Top="2" Width="113.4" Height="18.9" Text="[DS.TotEndPpnCurr]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text80" Left="1500.1" Top="2" Width="94.5" Height="18.9" Text="[DS.TotBaseACurr]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text82" Left="1587.6" Top="2" Width="85.05" Height="18.9" Text="[DS.TotPPnACurr]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text84" Left="1675.3" Top="2" Width="94.5" Height="18.9" Text="[DS.TotBaseBCurr]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text86" Left="1773.25" Top="2" Width="94.5" Height="18.9" Text="[DS.TotPPnBCurr]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text88" Left="1869.75" Top="2" Width="94.5" Height="18.9" Text="[DS.TotBaseCCurr]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text90" Left="1966.8" Top="2" Width="94.5" Height="18.9" Text="[DS.TotPPnCCurr]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text92" Left="2064.2" Top="2" Width="94.5" Height="18.9" Text="[DS.TotBaseDCurr]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text94" Left="2160.7" Top="2" Width="94.5" Height="18.9" Text="[DS.TotPPnDCurr]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text96" Left="2354.15" Top="2" Width="94.5" Height="18.9" Text="[DS.TotPPnECurr]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text98" Left="2257.65" Top="2" Width="94.5" Height="18.9" Text="[DS.TotBaseECurr]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+        <LineObject Name="Line4" Width="2447.55"/>
+        <TextObject Name="Text100" Top="2" Width="576.45" Height="18.9" Text="Sub Total Per [DS.Currency]" Font="Arial, 7pt, style=Bold"/>
+        <TextObject Name="Text50" Left="1092.2" Top="2" Width="94.5" Height="18.9" Text="[TotPayBaseCurr]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="264.25" Width="2457" Height="20.79">
+      <LineObject Name="Line7" Width="2447.55"/>
+      <TextObject Name="Text101" Width="576.45" Height="18.9" Text="Grand Total" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text103" Left="721.2" Top="1.89" Width="113.4" Height="18.9" Text="[DS.GrandTotBeginPpn]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text107" Left="1384.7" Top="1.89" Width="113.4" Height="18.9" Text="[DS.GrandTotEndPpn]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text109" Left="1559.25" Top="1.89" Width="113.4" Height="18.9" Text="[DS.GrandTotPpnA]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text111" Left="1754.35" Top="1.89" Width="113.4" Height="18.9" Text="[DS.GrandTotPpnB]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text113" Left="1947.9" Top="1.89" Width="113.4" Height="18.9" Text="[DS.GrandTotPpnC]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text115" Left="2141.8" Top="1.89" Width="113.4" Height="18.9" Text="[DS.GrandTotPpnD]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text117" Left="2335.25" Top="1.89" Width="113.4" Height="18.9" Text="[DS.GrandTotPpnE]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text118" Left="1171.35" Top="1.89" Width="113.4" Height="18.9" Text="[GrandTotPayPPn]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="289.04" Width="2457" Height="22.68">
+      <TextObject Name="Text56" Left="2258.55" Width="189" Height="18.9" Text="[DS.UserId]" HorzAlign="Right" Font="Arial, 8pt"/>
+      <LineObject Name="Line5" Width="2447.55"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

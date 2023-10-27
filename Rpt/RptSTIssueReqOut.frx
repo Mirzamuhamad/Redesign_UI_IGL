@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="07/04/2011 15:39:43" ReportInfo.Modified="07/13/2015 14:43:38" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    dim Req as String
+
+    Private Sub ReportTitle1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+       Req = &quot;&quot;
+    End Sub
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      if Req &lt;&gt; Report.GetColumnValue(&quot;DS.TransNmbr&quot;) then
+        Text3.Visible = true
+        Text5.Visible = true
+        Text7.Visible = true 
+        Req = Report.GetColumnValue(&quot;DS.TransNmbr&quot;) 
+      else
+        Text3.Visible = false
+        Text5.Visible = false
+        Text7.Visible = false 
+      End if
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43hao3UKNXcQlXzp/LPpqf/rVm">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_STRPTIssueReqOut '011111','010101','','','','',1,0, 'N', 'N', 'Josh'">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="Department" DataType="System.String"/>
+        <Column Name="RequestBy" DataType="System.String"/>
+        <Column Name="Purpose" DataType="System.String"/>
+        <Column Name="ProductCode" DataType="System.String"/>
+        <Column Name="ProductName" DataType="System.String"/>
+        <Column Name="QtyRequest" DataType="System.Decimal"/>
+        <Column Name="QtyIssue" DataType="System.Decimal"/>
+        <Column Name="QtyBalance" DataType="System.Decimal"/>
+        <Column Name="Period" DataType="System.String"/>
+        <Column Name="RemarkDt" DataType="System.String"/>
+        <Column Name="CompName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" FirstPageSource="14" OtherPagesSource="14">
+    <PageHeaderBand Name="PageHeader1" Width="1047.06" Height="80.86">
+      <ShapeObject Name="Shape1" Top="52.92" Width="1047.28" Height="26.46" Shape="RoundRectangle"/>
+      <TextObject Name="Text4" Left="7.56" Top="56.92" Width="114.84" Height="18.9" Text="Request No" Font="Arial, 8pt"/>
+      <TextObject Name="Text6" Left="126.52" Top="56.92" Width="84.5" Height="18.9" Text="Request Date" Font="Arial, 8pt"/>
+      <TextObject Name="Text8" Left="215.46" Top="56.92" Width="94.5" Height="18.9" Text="Request By" Font="Arial, 8pt"/>
+      <TextObject Name="Text14" Left="313.74" Top="56.92" Width="124.74" Height="18.9" Text="Product Code" Font="Arial, 8pt"/>
+      <TextObject Name="Text16" Left="442.26" Top="56.92" Width="291.06" Height="18.9" Text="Product Name" Font="Arial, 8pt"/>
+      <TextObject Name="Text18" Left="840.94" Top="56.92" Width="70.04" Height="18.9" Text="Qty Request" Font="Arial, 8pt"/>
+      <TextObject Name="Text20" Left="912.76" Top="56.92" Width="54.92" Height="18.9" Text="Qty Issue" Font="Arial, 8pt"/>
+      <TextObject Name="Text22" Left="973.24" Top="56.7" Width="68.26" Height="18.9" Text="Qty Balance" Font="Arial, 8pt"/>
+      <TextObject Name="Text11" Left="343.98" Top="3.78" Width="359.1" Height="18.9" Text="ISSUE REQUEST OUTSTANDING" HorzAlign="Center" VertAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text12" Left="343.98" Top="30.02" Width="359.1" Height="15.12" Text="Periode : [DS.Period]" HorzAlign="Center" VertAlign="Bottom" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text24" Left="737.1" Top="56.7" Width="99.28" Height="18.9" Text="Remark" Font="Arial, 8pt"/>
+      <TextObject Name="Text2" Left="-3" Top="-3" Width="292.95" Height="18.9" Text="[DS.CompName]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text9" Left="-4" Top="14.9" Width="292.95" Height="28.35" Text="[DS.CompAddr]" Font="Arial, 7pt"/>
+      <TextObject Name="Text10" Left="841.05" Top="18.9" Width="207.9" Height="18.9" Text="[PageN]of[TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text26" Left="841.05" Width="207.9" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 7pt"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="84.86" Width="1047.06" Height="15.9" Condition="[DS.Department]">
+      <TextObject Name="Text1" Left="7.56" Width="415.8" Height="15.9" CanGrow="true" Text="Department : [DS.Department]" Font="Arial, 8pt, style=Bold"/>
+      <DataBand Name="Data1" Top="104.76" Width="1047.06" Height="22.68" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" DataSource="Table">
+        <TextObject Name="Text3" Left="7.56" Top="3.78" Width="114.84" Height="18.9" CanBreak="false" Text="[DS.TransNmbr]" Font="Arial, 8pt"/>
+        <TextObject Name="Text5" Left="126.52" Top="3.78" Width="84.5" Height="18.9" CanBreak="false" Text="[DS.TransDate]" Format="Custom" Format.Format="dd MMM yyyy" Font="Arial, 8pt"/>
+        <TextObject Name="Text7" Left="215.46" Top="3.78" Width="94.5" Height="18.9" CanBreak="false" Text="[DS.RequestBy]" Font="Arial, 8pt"/>
+        <TextObject Name="Text13" Left="313.74" Top="3.78" Width="124.74" Height="18.9" CanGrow="true" CanBreak="false" Text="[DS.ProductCode]" Font="Arial, 8pt"/>
+        <TextObject Name="Text15" Left="442.26" Top="3.78" Width="291.06" Height="18.9" CanGrow="true" CanBreak="false" Text="[DS.ProductName]" Font="Arial, 8pt"/>
+        <TextObject Name="Text17" Left="840.94" Top="3.78" Width="70.04" Height="18.9" CanBreak="false" Text="[DS.QtyRequest]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text19" Left="912.76" Top="3.78" Width="54.92" Height="18.9" CanBreak="false" Text="[DS.QtyIssue]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text23" Left="973.24" Top="3.78" Width="68.26" Height="18.9" CanBreak="false" Text="[DS.QtyBalance]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text25" Left="737.1" Top="3.78" Width="99.28" Height="18.9" CanGrow="true" CanBreak="false" Text="[DS.RemarkDt]" Font="Arial, 8pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="131.44" Width="1047.06"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="135.44" Width="1047.06" Height="18.9">
+      <TextObject Name="Text21" Left="3.78" Top="1.89" Width="94.5" Height="15.12" Text="Stock Control" Font="Arial, 8pt"/>
+      <LineObject Name="Line1" Width="1047.06"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

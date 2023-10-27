@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="09/27/2012 13:56:03" ReportInfo.Modified="01/07/2013 10:55:50" ReportInfo.CreatorVersion="1.2.47.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGs4venj70BSybBNwjC9vq8mA+gBRIOgdRqwK8irIASGbfMoVDu5dOW5Z7ySwSa+hO25c1iTiWhA0xCuNNzNL1MtX9X1ENG+SX04Ci99kyFzwtdgunZ4aXRGSXgOgPGJ5Z/WDLb7ZQ+Skykif0RU+HjOw==">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_FNRptDPSuppMutasi '010101', '121212', '', '', '', '', '', ''">
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="SuppCode" DataType="System.String"/>
+        <Column Name="SuppName" DataType="System.String"/>
+        <Column Name="SaldoBegin" DataType="System.Double"/>
+        <Column Name="InCekCair" DataType="System.Double"/>
+        <Column Name="OutHutang" DataType="System.Double"/>
+        <Column Name="OutRetur" DataType="System.Double"/>
+        <Column Name="SaldoEnd" DataType="System.Double"/>
+        <Column Name="OutTotal" DataType="System.Double"/>
+        <Column Name="Company" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="Period" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="TotalSalBegin" Expression="[DS.SaldoBegin]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotalInCekCair" Expression="[DS.InCekCair]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotalOutHutang" Expression="[DS.OutHutang]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotalOutRetur" Expression="[DS.OutRetur]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotalOutTotal" Expression="[DS.OutTotal]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotalSalEnd" Expression="[DS.SaldoEnd]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" LeftMargin="15" RightMargin="5" FirstPageSource="14" OtherPagesSource="14">
+    <PageHeaderBand Name="PageHeader1" Width="1047.06" Height="132.3">
+      <TextObject Name="Text2" Top="98.5" Width="37.8" Height="18.9" Text="No." HorzAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Text4" Left="40.8" Top="98.5" Width="85.05" Height="18.9" Text="Supplier Code" HorzAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Text6" Left="131.3" Top="98.5" Width="264.6" Height="18.9" Text="Supplier Name" HorzAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Text8" Left="399.9" Top="98.5" Width="94.5" Height="18.9" Text="Saldo Awal" HorzAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Text10" Left="497.4" Top="107.95" Width="94.5" Height="18.9" Text="Cek Cair" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Text12" Left="595.35" Top="107.95" Width="94.5" Height="18.9" Text="Hutang" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Text14" Left="693.3" Top="107.95" Width="94.5" Height="18.9" Text="Retur" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Text16" Left="887.85" Top="98.5" Width="94.5" Height="18.9" Text="Saldo Akhir" HorzAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Text17" Left="790.35" Top="107.95" Width="94.5" Height="18.9" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Text19" Left="497.4" Top="89.05" Width="94.5" Height="18.9" Border.Lines="Bottom" Text="Penambah" HorzAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Text20" Left="595.35" Top="89.05" Width="289.17" Height="18.9" Border.Lines="Bottom" Text="Pengurang" HorzAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Text21" Left="463.05" Top="28.35" Width="283.5" Height="26.46" Anchor="Top, Bottom, Left, Right" Text="Mutasi Uang Muka Pembelian" HorzAlign="Center" Font="Arial Narrow, 14pt, style=Bold"/>
+      <LineObject Name="Line1" Top="87.05" Width="1048.95"/>
+      <LineObject Name="Line2" Top="130.3" Width="1048.95"/>
+      <TextObject Name="Text22" Top="66.15" Width="151.2" Height="18.9" Text="Currency : [DS.Currency]" Font="Arial Narrow, 10pt, style=Bold"/>
+      <TextObject Name="Text23" Width="387.45" Height="18.9" Text="[DS.Company]" VertAlign="Center" Font="Arial Narrow, 10pt, style=Bold"/>
+      <TextObject Name="Text24" Top="18.9" Width="387.45" Height="18.9" Text="[DS.CompAddr]" VertAlign="Center" Font="Arial Narrow, 10pt, style=Bold"/>
+      <TextObject Name="Text52" Left="463.05" Top="52.7" Width="283.5" Height="18.9" Text="Period : [DS.Period]" HorzAlign="Center" Font="Arial Narrow, 9pt"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="136.3" Width="1047.06" StartNewPage="true" Condition="[DS.Currency]">
+      <DataBand Name="Data1" Top="140.3" Width="1047.06" Height="18.9" DataSource="Table">
+        <TextObject Name="Text1" Width="37.8" Height="18.9" Text="[Row#]" HorzAlign="Right" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Text3" Left="40.8" Width="85.05" Height="18.9" Text="[DS.SuppCode]" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Text5" Left="131.3" Width="264.6" Height="18.9" Text="[DS.SuppName]" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Text7" Left="399.9" Width="94.5" Height="18.9" Text="[DS.SaldoBegin]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" WordWrap="false" Font="Arial Narrow, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text9" Left="497.4" Width="94.5" Height="18.9" Text="[DS.InCekCair]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" WordWrap="false" Font="Arial Narrow, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text11" Left="595.35" Width="94.5" Height="18.9" Text="[DS.OutHutang]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" WordWrap="false" Font="Arial Narrow, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text13" Left="693.3" Width="94.5" Height="18.9" Text="[DS.OutRetur]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" WordWrap="false" Font="Arial Narrow, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text15" Left="887.85" Width="94.5" Height="18.9" Text="[DS.SaldoEnd]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" WordWrap="false" Font="Arial Narrow, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text18" Left="790.35" Width="94.5" Height="18.9" Text="[DS.OutTotal]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" WordWrap="false" Font="Arial Narrow, 9pt" Trimming="EllipsisCharacter"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="163.2" Width="1047.06" Height="24.57">
+        <TextObject Name="Text25" Left="399.9" Top="4" Width="94.5" Height="18.9" Text="[TotalSalBegin]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Text26" Left="497.4" Top="4" Width="94.5" Height="18.9" Text="[TotalInCekCair]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Text28" Left="693.3" Top="4" Width="94.5" Height="18.9" Text="[TotalOutRetur]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Text29" Left="790.35" Top="4" Width="94.5" Height="18.9" Text="[TotalOutTotal]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Text30" Left="887.85" Top="4" Width="94.5" Height="18.9" Text="[TotalSalEnd]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" Font="Arial Narrow, 9pt, style=Bold"/>
+        <LineObject Name="Line13" Top="3" Width="1048.95"/>
+        <TextObject Name="Text51" Left="75.6" Top="4" Width="311.85" Height="18.9" Text="Total Per [DS.Currency] :" HorzAlign="Right" Font="Arial Narrow, 10pt, style=Bold"/>
+        <TextObject Name="Text27" Left="595.35" Top="4" Width="94.5" Height="18.9" Text="[TotalOutHutang]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" Font="Arial Narrow, 9pt, style=Bold"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="191.77" Width="1047.06" Height="18.9">
+      <TextObject Name="Text50" Width="94.5" Height="15.12" Text="Finance" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line12" Width="1048.95"/>
+      <LineObject Name="Line10" Left="803.25" Width="1048.95" Border.Style="Dash"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

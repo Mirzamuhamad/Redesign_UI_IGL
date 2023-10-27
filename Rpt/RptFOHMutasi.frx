@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="05/13/2011 16:03:16" ReportInfo.Modified="09/14/2016 13:46:05" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    Private Sub GroupHeader2_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+     
+    End Sub
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+     
+    End Sub
+
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+     
+    End Sub
+  End Class
+End Namespace
+
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqAFHGp6KQj27H4qUwAIR20hSnyrpNtgmeY+I5zyTmYE0HuZfX1hs9fAqnt4DRtzHmbOvZAM6kY9TFn2R+grLQMPgar7A9ZPVoxgrx8NzIoI5mVS6/OaHUtqpQC0EOo6AIN4ITItzKYgGCMJ5ClfTnd9x8q83oo7rnP0SczhplpMMN650u+5cg8S1fqq+/BBED">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_STRptFOHMutasi '20160501', '', '', '', '', 0, 0, '', '', 'admin'">
+        <Column Name="Companyname" DataType="System.String"/>
+        <Column Name="WorkCtr" DataType="System.String"/>
+        <Column Name="CostingType" DataType="System.String"/>
+        <Column Name="Costing" DataType="System.String"/>
+        <Column Name="CostingName" DataType="System.String"/>
+        <Column Name="Account" DataType="System.String"/>
+        <Column Name="AccountName" DataType="System.String"/>
+        <Column Name="BeginHour" DataType="System.Decimal"/>
+        <Column Name="BeginTotal" DataType="System.Decimal"/>
+        <Column Name="InHour" DataType="System.Decimal"/>
+        <Column Name="InTotal" DataType="System.Decimal"/>
+        <Column Name="OutHour" DataType="System.Decimal"/>
+        <Column Name="OutTotal" DataType="System.Decimal"/>
+        <Column Name="EndHour" DataType="System.Decimal"/>
+        <Column Name="EndTotal" DataType="System.Decimal"/>
+        <Column Name="Period" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="TBegin" Expression="[DS.BeginTotal]" Evaluator="Data1" PrintOn="ReportSummary1" ResetOnReprint="true"/>
+    <Total Name="TIn" Expression="[DS.InTotal]" Evaluator="Data1" PrintOn="ReportSummary1" ResetOnReprint="true"/>
+    <Total Name="TEnd" Expression="[DS.EndTotal]" Evaluator="Data1" PrintOn="ReportSummary1" ResetOnReprint="true"/>
+    <Total Name="TOut" Expression="[DS.OutTotal]" Evaluator="Data1" PrintOn="ReportSummary1" ResetOnReprint="true"/>
+    <Total Name="SBegin" Expression="[DS.BeginTotal]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="SIn" Expression="[DS.InTotal]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="SOut" Expression="[DS.OutTotal]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="SEnd" Expression="[DS.EndTotal]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="381.99" PaperHeight="296.9" LeftMargin="24.99" TopMargin="5" RightMargin="24.99" BottomMargin="5" FirstPageSource="15" OtherPagesSource="15">
+    <PageHeaderBand Name="PageHeader1" Width="1255" Height="75.6">
+      <TextObject Name="Text13" Left="514.08" Top="14.17" Width="340.2" Height="18.9" Text="MUTASI FOH &amp; LABOR (AMOUNT) " HorzAlign="Center" VertAlign="Center" Font="Arial, 14pt"/>
+      <TextObject Name="Text16" Left="1010.1" Width="198.45" Height="11.34" Text="Date/Time : [Date]" Format="Custom" Format.Format="dd-MM-yyyy hh:mm:ss" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text17" Left="1010.1" Top="58.7" Width="198.45" Height="11.34" Text="Page : [Page#] of [TotalPages#]" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text18" Left="515.08" Top="34.8" Width="333.45" Height="15.12" Text="[DS.Period]" Format="Custom" Format.Format="dd MMM yyyy" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text12" Width="292.95" Height="18.9" Text="[DS.Companyname]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text40" Top="18.9" Width="292.95" Height="37.8" Font="Arial, 7pt"/>
+      <TextObject Name="Text11" Top="56.7" Width="756" Height="18.9" Font="Arial, 8pt, style=Bold"/>
+    </PageHeaderBand>
+    <ColumnHeaderBand Name="ColumnHeader1" Top="78.95" Width="1255" Height="38.1">
+      <LineObject Name="Line1" Width="1231.62"/>
+      <LineObject Name="Line11" Height="37.8"/>
+      <LineObject Name="Line12" Left="56.25" Height="37.8"/>
+      <LineObject Name="Line14" Left="528.6" Height="37.8"/>
+      <LineObject Name="Line16" Left="660.4" Height="37.8"/>
+      <TextObject Name="Text4" Left="65.85" Top="9.45" Width="150.6" Height="15.12" Text="Costing Name" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text10" Left="532.4" Top="19.9" Width="123" Height="13.23" Text="Amount" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text2" Top="9.45" Width="51.03" Height="15.12" Text="Costing" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text6" Left="263.55" Width="195.85" Height="34.02" Text="Account" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text41" Left="531.6" Top="1" Width="109.71" Height="13.23" Text="Beginning" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line32" Left="790.2" Height="37.8"/>
+      <TextObject Name="Text42" Left="663.75" Top="19.9" Width="123" Height="13.23" Text="Amount" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text44" Left="660.4" Top="1" Width="119.31" Height="13.23" Text="Incoming" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line33" Left="878.15" Top="15.9" Height="20.9"/>
+      <TextObject Name="Text45" Left="880.15" Top="19.9" Width="123" Height="13.23" Text="Amount" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text46" Left="791.4" Top="19.9" Width="84.75" Height="13.23" Text="Hour" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line34" Left="1005.15" Height="37.8"/>
+      <TextObject Name="Text47" Left="791.4" Top="1" Width="206.99" Height="13.23" Text="Outgoing" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text49" Left="1098.35" Top="19.9" Width="123" Height="13.23" Text="Amount" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text51" Left="1094.55" Top="1" Width="129.06" Height="13.23" Text="Ending" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line39" Left="1230.95" Height="37.8"/>
+      <LineObject Name="Line2" Left="532.6" Top="16.9" Width="695.31"/>
+      <LineObject Name="Line44" Left="218.3" Height="37.8"/>
+      <TextObject Name="Text43" Left="1008" Top="20.2" Width="84.75" Height="13.23" Text="Hour" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line31" Left="1096.4" Top="17.2" Height="20.9"/>
+    </ColumnHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="120.4" Width="1255" Height="27.5" BeforePrintEvent="GroupHeader1_BeforePrint" Condition="[DS.WorkCtr]">
+      <TextObject Name="Text67" Top="7.6" Width="332.85" Height="15.12" CanGrow="true" Text="[DS.WorkCtr]" VertAlign="Bottom" Font="Arial, 8pt"/>
+      <LineObject Name="Line46" Height="27.5" CanGrow="true" GrowToBottom="true"/>
+      <LineObject Name="Line49" Left="1230.8" Height="27.1" CanGrow="true" GrowToBottom="true"/>
+      <LineObject Name="Line19" Width="1231.62"/>
+      <DataBand Name="Data1" Top="151.25" Width="1255" Height="18.9" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" AfterPrintEvent="Data1_AfterPrint" DataSource="Table">
+        <TextObject Name="Text1" Left="2" Top="1.89" Width="51.03" Height="15.12" Text="[DS.Costing]" HideZeros="true" VertAlign="Bottom" Font="Arial, 8pt"/>
+        <TextObject Name="Text3" Left="56.25" Top="1.89" Width="160.05" Height="15.12" CanGrow="true" Text="[DS.CostingName]" VertAlign="Bottom" Font="Arial, 8pt"/>
+        <TextObject Name="Text5" Left="225.15" Top="1.89" Width="298.65" Height="15.12" CanGrow="true" CanShrink="true" Text="[DS.Account] - [DS.AccountName]" VertAlign="Bottom" Font="Arial, 8pt"/>
+        <TextObject Name="Text9" Left="532.4" Top="1.89" Width="123" Height="15.12" Text="[DS.BeginTotal]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Bottom" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+        <LineObject Name="Line4" Left="56.25" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line7" Left="528.6" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line8" Left="1007.35" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line9" Left="790.2" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line10" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line23" Left="878.15" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line24" Left="1098.15" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line38" Left="660.4" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <TextObject Name="Text52" Left="1007" Top="1.89" Width="84.75" Height="15.12" Text="[DS.InHour]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Bottom" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text53" Left="663.75" Top="1.89" Width="123" Height="15.12" Text="[DS.InTotal]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Bottom" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text54" Left="791.4" Top="1.89" Width="84.75" Height="15.12" Text="[DS.OutHour]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Bottom" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text55" Left="879.15" Top="1.89" Width="123" Height="15.12" Text="[DS.OutTotal]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Bottom" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text57" Left="1101.95" Top="1.89" Width="123" Height="15.12" Text="[DS.EndTotal]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Bottom" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+        <LineObject Name="Line45" Left="218.3" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line50" Top="-3" Width="1231.62"/>
+        <LineObject Name="Line29" Left="1230.8" Top="-2" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <ChildBand Name="Child1" Top="173.5" Width="1255"/>
+        <Sort>
+          <Sort Expression="[DS.CostingType]"/>
+          <Sort Expression="[DS.Costing]"/>
+          <Sort Expression="[DS.Account]"/>
+        </Sort>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="176.85" Width="1255" Height="17.9">
+        <TextObject Name="Text68" Left="521.4" Width="132.6" Height="15.12" Text="[SBegin]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Bottom" WordWrap="false" Font="Arial, 8pt, style=Bold" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text69" Left="288" Width="236.25" Height="14.12" Text="Total Per Work Center :" HorzAlign="Right" VertAlign="Bottom" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text70" Left="653.8" Width="132.6" Height="15.12" Text="[SIn]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Bottom" WordWrap="false" Font="Arial, 8pt, style=Bold" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text71" Left="869.6" Width="133.6" Height="15.12" Text="[SOut]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Bottom" WordWrap="false" Font="Arial, 8pt, style=Bold" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text72" Left="1086.8" Width="132.6" Height="15.12" Text="[SEnd]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Bottom" WordWrap="false" Font="Arial, 8pt, style=Bold" Trimming="EllipsisCharacter"/>
+        <LineObject Name="Line52" Left="1230.8" Height="17.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line51" Top="-2" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line53" Width="1231.62"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="198.11" Width="1255" Height="18.9">
+      <TextObject Name="Text59" Left="521.8" Width="132.6" Height="15.12" Text="[TBegin]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Bottom" WordWrap="false" Font="Arial, 8pt, style=Bold" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text61" Left="654.15" Width="132.6" Height="15.12" Text="[TIn]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Bottom" WordWrap="false" Font="Arial, 8pt, style=Bold" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text63" Left="869.55" Width="132.6" Height="15.12" Text="[TOut]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Bottom" WordWrap="false" Font="Arial, 8pt, style=Bold" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text65" Left="1085.75" Width="132.6" Height="15.12" Text="[TEnd]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Bottom" WordWrap="false" Font="Arial, 8pt, style=Bold" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text66" Left="285.9" Width="236.25" Height="15.12" Text="Grand Total :" HorzAlign="Right" VertAlign="Bottom" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line42" Width="1231.62"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="220.36" Width="1255" Height="18.9">
+      <LineObject Name="Line43" Width="1231.62"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

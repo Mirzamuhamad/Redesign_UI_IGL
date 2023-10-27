@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="07/04/2011 15:39:43" ReportInfo.Modified="10/27/2015 10:23:51" ReportInfo.CreatorVersion="1.2.47.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43hao3IO1AKxq6NMm83lFu9LEJ">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_MKRptHistoryPriceSO 2012, 1, 2012, 12, '', '', '', '0', 0,0,'', '', ''">
+        <Column Name="Tahun" DataType="System.Int32"/>
+        <Column Name="Bulan" DataType="System.Int32"/>
+        <Column Name="Price" DataType="System.Decimal"/>
+        <Column Name="ProductCode" DataType="System.String"/>
+        <Column Name="ProductName" DataType="System.String"/>
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="MaxDate" DataType="System.DateTime"/>
+        <Column Name="YearMonth" DataType="System.String"/>
+        <Column Name="Period" DataType="System.String"/>
+        <Column Name="CompName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="Specification" DataType="System.String"/>
+        <Column Name="Customer" DataType="System.String"/>
+        <Column Name="CustomerName" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" LeftMargin="5" RightMargin="5" FirstPageSource="1" OtherPagesSource="1" Guides="897.75,1048.95,0,519.75,727.65,330.75,841.05,441.47,78.32,207.9,242.88,384.77,1045.17">
+    <PageHeaderBand Name="PageHeader1" Width="1084.86" Height="119.18" Guides="0,13.23,101.95,115.18,2,20.9,21.35,52.7,54.7,81.6,108.5">
+      <TextObject Name="Text40" Left="897.75" Width="151.2" Height="13.23" Text="Date/Time : [Date]" Format="Custom" Format.Format="dd/MM/yyyy hh:mm:ss" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text42" Left="897.75" Top="101.95" Width="151.2" Height="13.23" Text="Page : [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text1" Top="2" Width="519.75" Height="18.9" Text="[DS.CompName]" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text2" Top="21.35" Width="727.65" Height="31.35" Text="[DS.CompAddr]" Font="Arial, 8pt"/>
+      <TextObject Name="Text3" Left="330.75" Top="54.7" Width="510.3" Height="26.9" Text="History Price SO" HorzAlign="Center" Font="Arial, 16pt, style=Bold"/>
+      <TextObject Name="Text43" Left="330.75" Top="81.6" Width="510.3" Height="26.9" Text="Period : [DS.Period]" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="121.96" Width="1084.86" Height="66.81" Guides="0,57.36,19.56">
+      <MatrixObject Name="Matrix1" Width="557.55" Height="66.81" FixedRows="1" FixedColumns="4" AutoSize="false" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="[DS.YearMonth]" Sort="None" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.ProductCode]" Totals="false"/>
+          <Header Expression="[DS.ProductName]" Totals="false"/>
+          <Header Expression="[DS.Currency]" Totals="false"/>
+          <Header Expression="[DS.CustomerName]" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.Price]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="78.32"/>
+        <TableColumn Name="Column2" Width="252.43"/>
+        <TableColumn Name="Column3" Width="34.98"/>
+        <TableColumn Name="Column4" Width="97.46"/>
+        <TableColumn Name="Column5" Width="94.36"/>
+        <TableRow Name="Row1" Height="19.56">
+          <TableCell Name="Cell1" Border.Lines="All" Text="Product" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell2" Border.Lines="All" Text="Product Name" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell7" Border.Lines="All" Text="Curr" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell22" Border.Lines="All" Text="Customer" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell25" Border.Lines="All" Text="[YearMonth]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="47.25">
+          <TableCell Name="Cell3" Border.Lines="All" Text="[ProductCode]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell4" Border.Lines="All" Text="[ProductName]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell8" Border.Lines="All" Text="[Currency]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell23" Border.Lines="All" Text="[DS.CustomerName]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell26" Border.Lines="All" Text="[Price]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="191.55" Width="1084.86" Height="18.9" Guides="0">
+      <LineObject Name="Line3" Width="1045.17"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

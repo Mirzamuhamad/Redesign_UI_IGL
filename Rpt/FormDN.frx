@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="12/13/2013 15:33:42" ReportInfo.Modified="11/05/2014 16:35:23" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+      Text19.Text = &quot;Remark : &quot;+CType(Report.GetColumnValue(&quot;DS.Remark&quot;), String)
+      Text43.Text = CType(Report.GetColumnValue(&quot;DS.ISODocNo&quot;), String)
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43harbDFBgJMQRsdmP2JVA9NqO">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_STFormSJ '''II/SJ/13/12/@/0001''', 'admin'">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="FgReport" DataType="System.String"/>
+        <Column Name="Status" DataType="System.String"/>
+        <Column Name="Customer" DataType="System.String"/>
+        <Column Name="Customer_Name" DataType="System.String"/>
+        <Column Name="DONo" DataType="System.String"/>
+        <Column Name="SONo" DataType="System.String"/>
+        <Column Name="CustPONo" DataType="System.String"/>
+        <Column Name="Warehouse_Code" DataType="System.String"/>
+        <Column Name="Warehouse_Name" DataType="System.String"/>
+        <Column Name="FgSubled" DataType="System.String"/>
+        <Column Name="Subled_Code" DataType="System.String"/>
+        <Column Name="Subled_Name" DataType="System.String"/>
+        <Column Name="IssuedBy" DataType="System.String"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="CarNo" DataType="System.String"/>
+        <Column Name="Driver" DataType="System.String"/>
+        <Column Name="Product" DataType="System.String"/>
+        <Column Name="Product_Name" DataType="System.String"/>
+        <Column Name="Product_Price" DataType="System.String"/>
+        <Column Name="Specification" DataType="System.String"/>
+        <Column Name="Qty" DataType="System.Decimal"/>
+        <Column Name="Unit" DataType="System.String"/>
+        <Column Name="Location" DataType="System.String"/>
+        <Column Name="Location_Name" DataType="System.String"/>
+        <Column Name="UnitWeight" DataType="System.Decimal"/>
+        <Column Name="QtyRR" DataType="System.String"/>
+        <Column Name="QtyLoss" DataType="System.String"/>
+        <Column Name="RemarkDt" DataType="System.String"/>
+        <Column Name="FgStatus" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="UserId" DataType="System.String"/>
+        <Column Name="DeliveryTime" DataType="System.String"/>
+        <Column Name="DeliveryBy" DataType="System.String"/>
+        <Column Name="DeliveryCostBy" DataType="System.String"/>
+        <Column Name="RR_Date" DataType="System.DateTime"/>
+        <Column Name="RR_CarNo" DataType="System.String"/>
+        <Column Name="RR_Driver" DataType="System.String"/>
+        <Column Name="RR_ExpeditionName" DataType="System.String"/>
+        <Column Name="RR_ExpeditionNo" DataType="System.String"/>
+        <Column Name="RR_TimeArrival" DataType="System.String"/>
+        <Column Name="RR_TimeUnLoading" DataType="System.String"/>
+        <Column Name="RR_TimeFinish" DataType="System.String"/>
+        <Column Name="RR_Remark" DataType="System.String"/>
+        <Column Name="QtyRoll" DataType="System.Decimal"/>
+        <Column Name="QtyM2" DataType="System.Decimal"/>
+        <Column Name="QtyPacking" DataType="System.Decimal"/>
+        <Column Name="QtyPerPack" DataType="System.Decimal"/>
+        <Column Name="UnitPacking" DataType="System.String"/>
+        <Column Name="DeliveryPlace" DataType="System.String"/>
+        <Column Name="CustAddress" DataType="System.String"/>
+        <Column Name="CustCity" DataType="System.String"/>
+        <Column Name="CustPhone" DataType="System.String"/>
+        <Column Name="ISODocNo" DataType="System.String"/>
+        <Column Name="CompanyAddress" DataType="System.String"/>
+        <Column Name="phone" DataType="System.String"/>
+        <Column Name="SOKind" DataType="System.String"/>
+        <Column Name="QtyOrder" DataType="System.Decimal"/>
+        <Column Name="UnitOrder" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5">
+    <PageHeaderBand Name="PageHeader1" Width="778.3" Height="226.8">
+      <TextObject Name="Text1" Width="321.3" Height="20.79" Text="[DS.CompanyName]" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text2" Left="337.18" Top="31.9" Width="160.65" Height="20.79" Border.Lines="Bottom" Text="DELIVERY NOTE" HorzAlign="Center" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text3" Left="337.18" Top="57.25" Width="160.65" Height="18.9" Text="[DS.SOKind]" HorzAlign="Center" Font="Calibri, 11pt"/>
+      <TextObject Name="Text4" Top="92.95" Width="510.3" Height="18.9" Text="[DS.DeliveryPlace]" Font="Calibri, 11pt"/>
+      <TextObject Name="Text5" Left="604.8" Top="76.27" Width="170.1" Height="18.9" Text=": [DS.TransNmbr]" Font="Calibri, 11pt"/>
+      <TextObject Name="Text6" Left="604.8" Top="92.95" Width="170.1" Height="18.9" Text=": [DS.TransDate]" Format="Custom" Format.Format="dd MMMM yyyy" Font="Calibri, 11pt"/>
+      <TextObject Name="Text7" Left="604.8" Top="110.29" Width="170.1" Height="18.9" Text=": [DS.CustPONo]" Font="Calibri, 11pt"/>
+      <TextObject Name="Text8" Left="604.8" Top="127.3" Width="170.1" Height="18.9" Text=": [DS.CarNo]" Font="Calibri, 11pt"/>
+      <TextObject Name="Text11" Left="137.2" Top="206.45" Width="196.56" Height="18.9" Text="Product Name" Font="Calibri, 10pt"/>
+      <TextObject Name="Text13" Left="451.6" Top="206.45" Width="96.39" Height="18.9" Text="Qty 2" HorzAlign="Center" Font="Calibri, 10pt"/>
+      <TextObject Name="Text17" Left="651.5" Top="206.45" Width="113.4" Height="18.9" Text="Remark" Font="Calibri, 9.5pt"/>
+      <TextObject Name="Text18" Top="206.45" Width="132.3" Height="18.9" Text="Product" Font="Calibri, 10pt"/>
+      <TextObject Name="Text26" Left="335.2" Top="206.45" Width="115.29" Height="18.9" Text="Qty 1" HorzAlign="Center" Font="Calibri, 10pt"/>
+      <TextObject Name="Text27" Left="552.55" Top="206.45" Width="94.5" Height="18.9" Text="Qty 3" HorzAlign="Center" Font="Calibri, 10pt"/>
+      <LineObject Name="Line1" Top="205.45" Width="774.9" Diagonal="true"/>
+      <TextObject Name="Text15" Left="516.5" Top="76.27" Width="85.05" Height="18.9" Text="DN No" Font="Calibri, 11pt"/>
+      <TextObject Name="Text28" Left="516.5" Top="92.95" Width="85.05" Height="18.9" Text="Delivery Date" Font="Calibri, 11pt"/>
+      <TextObject Name="Text29" Left="516.5" Top="110.29" Width="85.05" Height="18.9" Text="PO Cust No." Font="Calibri, 11pt"/>
+      <TextObject Name="Text30" Left="516.5" Top="127.3" Width="85.05" Height="18.9" Text="Vehicle No." Font="Calibri, 11pt"/>
+      <TextObject Name="Text31" Top="70.27" Width="94.5" Height="18.9" Text="To :" Font="Calibri, 11pt"/>
+      <TextObject Name="Text36" Top="183.1" Width="151.2" Height="18.9" Text="Driv Arrival Time :" Font="Calibri, 11pt"/>
+      <TextObject Name="Text37" Left="264.6" Top="183.1" Width="151.2" Height="18.9" Text="Unloading Time : " Font="Calibri, 11pt"/>
+      <TextObject Name="Text38" Left="481.95" Top="183.1" Width="151.2" Height="18.9" Text="Finish Time :" Font="Calibri, 11pt"/>
+      <TextObject Name="Text40" Top="113.85" Width="510.3" Height="37.8" Text="[DS.CustAddress]" Font="Calibri, 11pt"/>
+      <TextObject Name="Text41" Left="1.65" Top="146.1" Width="151.2" Height="18.9" Text="[DS.CustCity]" Font="Calibri, 11pt"/>
+      <TextObject Name="Text42" Left="1.55" Top="164.1" Width="207.9" Height="18.9" Text="[DS.CustPhone]" Font="Calibri, 11pt"/>
+      <TextObject Name="Text44" Top="18.9" Width="500.85" Height="35.91" Text="[DS.CompanyAddress]" Font="Calibri, 11pt"/>
+      <TextObject Name="Text45" Top="58.25" Width="283.5" Height="18.9" Visible="false" Text="[DS.phone]" Font="Calibri, 11pt"/>
+      <LineObject Name="Line2" Top="226.35" Width="774.9" Diagonal="true"/>
+      <TextObject Name="Text46" Left="517.75" Top="145.2" Width="85.05" Height="18.9" Text="Driver" Font="Calibri, 11pt"/>
+      <TextObject Name="Text47" Left="604.8" Top="145.2" Width="170.1" Height="18.9" Text=": [DS.Driver]" Font="Calibri, 11pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="230.5" Width="778.3" Height="37.8" CanGrow="true" CanShrink="true" AfterDataEvent="Data1_AfterData" DataSource="Table">
+      <TextObject Name="Text9" Width="132.3" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.Product]" Font="Calibri, 10pt"/>
+      <TextObject Name="Text10" Left="137.2" Width="196.56" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.Product_Name]" Font="Calibri, 10pt"/>
+      <TextObject Name="Text12" Left="451.6" Width="66.15" Height="18.9" Text="[DS.Qty]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" WordWrap="false" Font="Calibri, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text14" Left="512.3" Width="37.8" Height="18.9" Text="[DS.Unit]" Font="Calibri, 10pt"/>
+      <TextObject Name="Text16" Left="651.5" Width="113.4" Height="37.8" CanGrow="true" CanShrink="true" Text="[DS.RemarkDt]" Font="Calibri, 9.5pt"/>
+      <TextObject Name="Text32" Left="325.75" Width="94.5" Height="18.9" Text="[DS.QtyOrder]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" WordWrap="false" Font="Calibri, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text33" Left="552.55" Width="56.7" Height="18.9" Text="[DS.QtyRoll]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" WordWrap="false" Font="Calibri, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text34" Left="612.25" Width="37.8" Height="18.9" Text="[DS.UnitPacking]" Font="Calibri, 10pt"/>
+      <TextObject Name="Text35" Left="413.35" Width="37.8" Height="18.9" Text="[DS.UnitOrder]" Font="Calibri, 10pt"/>
+      <TextObject Name="Text25" Left="137.2" Top="18.9" Width="196.56" Height="18.9" Text="[DS.Specification]" Font="Calibri, 10pt"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="272.01" Width="778.3" Height="198.45">
+      <ShapeObject Name="Shape1" Top="78.15" Width="774.9" Height="94.5"/>
+      <TextObject Name="Text19" Top="18.9" Width="774.9" Height="37.8" Text="Remark : [DS.Remark]" Font="Calibri, 10pt"/>
+      <TextObject Name="Text20" Top="175.65" Width="614.25" Height="18.9" Text="Putih : Original, Merah, Kuning, Hijau : Finance, Biru : Gudang, Putih, Merah : Customer" Font="Calibri, 11pt"/>
+      <TextObject Name="Text21" Left="66.6" Top="85.15" Width="94.5" Height="18.9" Text="Prepared By," HorzAlign="Center" Font="Calibri, 11pt"/>
+      <TextObject Name="Text22" Left="323.05" Top="85.15" Width="94.5" Height="18.9" Text="Checked By," HorzAlign="Center" Font="Calibri, 11pt"/>
+      <TextObject Name="Text23" Left="603.65" Top="85.15" Width="103.95" Height="18.9" Text="Received By," HorzAlign="Center" Font="Calibri, 11pt"/>
+      <TextObject Name="Text24" Top="58.25" Width="519.75" Height="18.9" Text="Received the above in apparent good order and condition" Font="Calibri, 10pt"/>
+      <LineObject Name="Line3" Width="774.9" Diagonal="true"/>
+      <LineObject Name="Line4" Top="16.9" Width="774.9" Diagonal="true"/>
+      <LineObject Name="Line5" Top="145.75" Width="774.9" Diagonal="true"/>
+      <TextObject Name="Text43" Left="614.25" Top="175.65" Width="160.65" Height="18.9" Text="[DS.ISODocNo]" HorzAlign="Right" Font="Calibri, 11pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="04/14/2011 13:37:22" ReportInfo.Modified="03/27/2015 20:04:35" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+
+    Dim Nomor as integer
+    Private Sub PageHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+       
+    End Sub
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+      'Text20.Text = FormatNumber (CType(Report.GetColumnValue(&quot;DS.DiscForex&quot;), Decimal),2)
+      'Text95.Text = FormatNumber (CType(Report.GetColumnValue(&quot;DS.DPForex&quot;), Decimal),2)
+      'Text21.Text = FormatNumber (CType(Report.GetColumnValue(&quot;DS.TotalDasar&quot;), Decimal),2)
+      'Text94.Text = FormatNumber (CType(Report.GetColumnValue(&quot;DS.TotalPengenaan&quot;), Decimal),2)
+      'Text28.Text = CType(Report.GetColumnValue(&quot;DS.SaCity&quot;), String) +&quot;, &quot;+ CType(Report.GetColumnValue(&quot;DS.Sadate&quot;), String)
+      ''Text101.Text = CType(Report.GetColumnValue(&quot;DS.UserPost&quot;), String)
+      Text1.Text = FormatNumber (CType(Report.GetColumnValue(&quot;DS.ForexRate&quot;), Decimal),2)
+      Text2.Text = CType(Report.GetColumnValue(&quot;DS.UserPost&quot;), String)
+      Nomor = Nomor +1      
+      txtNo.Text = Nomor 
+    End Sub
+
+    Private Sub GroupHeader1_AfterPrint(ByVal sender As object, ByVal e As EventArgs)
+      Nomor = 0
+    End Sub
+
+    Private Sub GroupFooter1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)      
+      
+    End Sub
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Text97.Visible = CType(Report.GetColumnValue(&quot;DS.Curr&quot;), String) &lt;&gt; &quot;IDR&quot;
+      Text12.Visible = CType(Report.GetColumnValue(&quot;DS.Curr&quot;), String) = &quot;IDR&quot;
+    End Sub
+
+    Private Sub PageFooter1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Text1.Visible = Text106.Visible
+      Text102.Visible = CType(Report.GetColumnValue(&quot;DS.Curr&quot;), String) &lt;&gt; &quot;IDR&quot;
+      Text103.Visible = CType(Report.GetColumnValue(&quot;DS.Curr&quot;), String) &lt;&gt; &quot;IDR&quot;
+      Text104.Visible = CType(Report.GetColumnValue(&quot;DS.Curr&quot;), String) &lt;&gt; &quot;IDR&quot;
+      Text105.Visible = CType(Report.GetColumnValue(&quot;DS.Curr&quot;), String) &lt;&gt; &quot;IDR&quot;
+      Text106.Visible = CType(Report.GetColumnValue(&quot;DS.Curr&quot;), String) &lt;&gt; &quot;IDR&quot;
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqAFHGp6KQj27H4qUwAIR20hSnyrpNtgmeY+I5zyTmYE0HuZfX1hs9fAqnt4DRtzHmI121O+SsPyQYaoBEpYF7zUX+owqfCsyiM/wq9UV4txXqcPJU+8+G9HD8RY7fH1i1Gr8HHVJa6uZW3HZUJcUOG7GbK8yk48xVl1K8dO/Ndm5KdTIG3umrEevAQJ65dQow">
+      <TableDataSource Name="Table2" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_FNFormCustInvFPS '''AS/PFI/14/06/00003'',''IK/PFI/11/12/0005'''">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.String"/>
+        <Column Name="Status" DataType="System.String"/>
+        <Column Name="CustAddr" DataType="System.String"/>
+        <Column Name="ForexRate" DataType="System.String"/>
+        <Column Name="Product" DataType="System.String"/>
+        <Column Name="PriceForex" DataType="System.String"/>
+        <Column Name="AmountForex" DataType="System.String"/>
+        <Column Name="BaseForex" DataType="System.String"/>
+        <Column Name="PPn" DataType="System.String"/>
+        <Column Name="PPnForex" DataType="System.String"/>
+        <Column Name="TotalForex" DataType="System.String"/>
+        <Column Name="PPNNo" DataType="System.String"/>
+        <Column Name="SACompany" DataType="System.String"/>
+        <Column Name="SAAdress" DataType="System.String"/>
+        <Column Name="SANPWP" DataType="System.String"/>
+        <Column Name="SADate" DataType="System.Char"/>
+        <Column Name="SACity" DataType="System.String"/>
+        <Column Name="CustName" DataType="System.String"/>
+        <Column Name="CustAddr2" DataType="System.String"/>
+        <Column Name="CustCity" DataType="System.String"/>
+        <Column Name="CustPostCode" DataType="System.String"/>
+        <Column Name="CustNPWP" DataType="System.String"/>
+        <Column Name="DiscForex" DataType="System.Decimal"/>
+        <Column Name="DPForex" DataType="System.Decimal"/>
+        <Column Name="Qty" DataType="System.Decimal"/>
+        <Column Name="Unit" DataType="System.String"/>
+        <Column Name="Curr" DataType="System.String"/>
+        <Column Name="UserPost" DataType="System.String"/>
+        <Column Name="UserPostJbt" DataType="System.String"/>
+        <Column Name="FgPrint" DataType="System.String"/>
+        <Column Name="TotalDasar" DataType="System.Decimal"/>
+        <Column Name="TotalPengenaan" DataType="System.Decimal"/>
+        <Column Name="DiscForexDt" DataType="System.Decimal"/>
+        <Column Name="DiscIDR" DataType="System.Decimal"/>
+        <Column Name="DPIDR" DataType="System.Decimal"/>
+        <Column Name="BaseIDR" DataType="System.Decimal"/>
+        <Column Name="AmountIDR" DataType="System.Decimal"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="TotalAmountF" Expression="[DS.BaseIDR]" Evaluator="Data1" PrintOn="PageFooter1"/>
+    <Total Name="Total" Expression="[DS.AmountForex]" Evaluator="Data1" PrintOn="PageFooter1"/>
+  </Dictionary>
+</Report>

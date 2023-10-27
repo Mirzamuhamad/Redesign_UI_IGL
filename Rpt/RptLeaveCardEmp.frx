@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="07/08/2014 15:19:48" ReportInfo.Modified="08/07/2014 16:27:56" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils   
+
+Namespace FastReport
+  Public Class ReportScript
+    Dim SisaCuti, SisaCuti1 AS Double   
+
+    Private Sub PageFooter1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      If CType(Report.GetColumnValue(&quot;DS.FgSortBy&quot;), Int32) = 0 Then
+         Memo31.Text = &quot;Sort By : Employee&quot;
+      Else
+         Memo31.Text = &quot;Sort By : Department&quot;
+      End If
+    End Sub
+
+    Private Sub PageHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+        SisaCuti1 = 0
+        Photo.ImageLocation = CType(Report.GetColumnValue(&quot;DS.PATH_IMAGE&quot;), String)
+    End Sub    
+
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+        SisaCuti1 = 0
+    End Sub
+
+    Private Sub MasterData2_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      sisaCuti1 = sisaCuti1 + (CType(Report.GetColumnValue(&quot;DS.CUTI_MASUK&quot;), Decimal) - CType(Report.GetColumnValue(&quot;DS.CUTI_KELUAR&quot;), Decimal))
+      MSisa.Text = FormatNumber(SisaCuti1,0)
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VZBd+MhtHnjm5PdZx4zPIHA0OmiZIfrGENUfvX57ELIi">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PERptLeaveCard 2014,'','','',1">
+        <Column Name="NAMA" DataType="System.String"/>
+        <Column Name="NIK" DataType="System.String"/>
+        <Column Name="DEPARTMENT" DataType="System.String"/>
+        <Column Name="TANGGAL_MASUK" DataType="System.DateTime"/>
+        <Column Name="PERIODE" DataType="System.String"/>
+        <Column Name="TANGGAL_DETAIL" DataType="System.DateTime"/>
+        <Column Name="CUTI_MASUK" DataType="System.Decimal"/>
+        <Column Name="CUTI_KELUAR" DataType="System.Decimal"/>
+        <Column Name="LEAVE_STATUS" DataType="System.String"/>
+        <Column Name="KETERANGAN" DataType="System.String"/>
+        <Column Name="Company" DataType="System.String"/>
+        <Column Name="Address" DataType="System.String"/>
+        <Column Name="FgSortBy" DataType="System.Int32"/>
+        <Column Name="PATH_IMAGE" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="Company" DataType="System.String"/>
+    <Parameter Name="Logo" DataType="System.String"/>
+    <Parameter Name="UserId" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" LeftMargin="5" RightMargin="5" Guides="-11.15,767.06,1,520.7,-0.11,434.54,555.59,755.91,0,94.49,97.94,102.05,529.14,642.52,752.13,654.64,741.57,650.08,744.57,623.62,98.27,99.27,348.72,181.42,182.42,265.57,267.35,350.5,351.5,623.63,266.35,557.55,757.87,266.46,183.42,268.35,349.5,618.63,56.69,173.86,211.65,544.25">
+    <PageHeaderBand Name="PageHeader1" Top="20" Width="756" Height="293.02" BeforePrintEvent="PageHeader1_BeforePrint" Guides="80.15,105.14,22.9,75.82,0.32,23,109.61,124.73,136.06,154.96,173.86,192.76,211.66,230.55,128.5,283.46,156.96,277.9,132.28,151.18,245.67,293.02,257.01,275.91,291.02,249.45,268.35,269.35,288.25,246.67,292.03,9.45,24.57">
+      <TextObject Name="Memo1" Left="-11.15" Top="80.15" Width="778.21" Height="24.99" Text="Kartu Kontrol Cuti Tahunan Report" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="QrlCompLineA" Left="1" Top="22.9" Width="519.7" Height="52.92" Text="[DS.Address]" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 7pt"/>
+      <TextObject Name="Company" Left="-0.11" Top="0.32" Width="434.65" Height="22.68" Text="[DS.Company]" Padding="2, 1, 2, 1" AutoWidth="true" VertAlign="Center" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="SysMemo1" Left="555.59" Top="109.61" Width="200.32" Height="15.12" Text="[Page#] of [TotalPages#]" Padding="2, 1, 2, 1" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Memo2" Top="136.06" Width="94.49" Height="18.9" Text="Nama" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo3" Top="154.96" Width="94.49" Height="18.9" Text="N.I.K" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo4" Top="173.86" Width="94.49" Height="18.9" Text="Department" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo6" Top="192.76" Width="97.94" Height="18.9" Text="Tanggal Masuk" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo7" Top="211.65" Width="94.49" Height="18.9" Text="Periode" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo9" Left="94.49" Top="136.06" Width="7.56" Height="18.9" Text=":" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo10" Left="94.49" Top="154.96" Width="7.56" Height="18.9" Text=":" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo11" Left="94.49" Top="173.86" Width="7.56" Height="18.9" Text=":" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo12" Left="94.49" Top="192.76" Width="7.56" Height="18.9" Text=":" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo13" Left="94.49" Top="211.65" Width="7.56" Height="18.9" Text=":" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo14" Left="102.05" Top="136.06" Width="427.09" Height="18.9" Text="[DS.NAMA]" Padding="2, 1, 2, 1" Font="Arial, 9pt"/>
+      <TextObject Name="Memo15" Left="102.05" Top="154.96" Width="427.09" Height="18.9" Text="[DS.NIK]" Padding="2, 1, 2, 1" Font="Arial, 9pt"/>
+      <TextObject Name="Memo16" Left="102.05" Top="173.86" Width="427.09" Height="18.9" Text="[DS.DEPARTMENT]" Padding="2, 1, 2, 1" Font="Arial, 9pt"/>
+      <TextObject Name="Memo17" Left="102.05" Top="192.76" Width="427.09" Height="18.9" Text="[DS.TANGGAL_MASUK]" Padding="2, 1, 2, 1" Format="Date" Format.Format="d" Font="Arial, 9pt"/>
+      <TextObject Name="Memo18" Left="102.05" Top="211.65" Width="427.09" Height="18.9" Text="[DS.PERIODE]" Padding="2, 1, 2, 1" Font="Arial, 9pt"/>
+      <ShapeObject Name="Shape1" Left="642.52" Top="128.5" Width="109.61" Height="154.96"/>
+      <PictureObject Name="Photo" Left="654.64" Top="156.96" Width="86.93" Height="120.94" Fill.Color="White"/>
+      <ShapeObject Name="Shape2" Left="650.08" Top="132.28" Width="94.49" Height="18.9"/>
+      <TextObject Name="Memo19" Left="650.08" Top="132.28" Width="94.49" Height="18.9" Text="[DS.NIK]" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt"/>
+      <ShapeObject Name="Shape3" Top="245.67" Width="623.62" Height="47.35"/>
+      <TextObject Name="Memo20" Top="257.01" Width="98.27" Height="18.9" Text="Tanggal" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <LineObject Name="Line1" Left="98.27" Top="245.67" Height="45.35"/>
+      <TextObject Name="Memo21" Left="99.27" Top="249.45" Width="249.45" Height="18.9" Text="Cuti" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo22" Left="98.27" Top="269.35" Width="83.15" Height="18.9" Text="Masuk" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo23" Left="182.42" Top="269.35" Width="83.15" Height="18.9" Text="Keluar" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo24" Left="267.35" Top="269.35" Width="83.15" Height="18.9" Text="Sisa" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <LineObject Name="Line2" Left="351.5" Top="246.67" Height="46.35"/>
+      <TextObject Name="Memo25" Left="351.5" Top="257.01" Width="272.13" Height="18.9" Text="Keterangan" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <LineObject Name="Line3" Left="98.27" Top="268.35" Width="253.23"/>
+      <LineObject Name="Line7" Left="181.42" Top="268.35" Height="23.68"/>
+      <LineObject Name="Line8" Left="266.35" Top="268.35" Height="23.68"/>
+      <TextObject Name="Text1" Left="557.55" Top="9.45" Width="200.32" Height="15.12" Text="Date / Time : [Date]" Padding="2, 1, 2, 1" HorzAlign="Right" Font="Arial, 7pt"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="333.02" Width="756" BeforePrintEvent="GroupHeader1_BeforePrint" StartNewPage="true" Condition="[DS.NAMA]">
+      <DataBand Name="MasterData2" Top="353.02" Width="756" Height="22.68" CanGrow="true" CanShrink="true" BeforePrintEvent="MasterData2_BeforePrint" Guides="1,19.9,0,22.68,-1" DataSource="Table">
+        <TextObject Name="Memo26" Top="1" Width="98.27" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.TANGGAL_DETAIL]" Padding="2, 1, 2, 1" HideValue="0" Format="Custom" Format.Format="dd MMM yyyy" HorzAlign="Center" Font="Arial, 9pt"/>
+        <LineObject Name="Line5" Left="98.27" Height="22.68" CanGrow="true"/>
+        <LineObject Name="Line6" Height="22.68" CanGrow="true"/>
+        <LineObject Name="Line9" Left="181.42" Top="-1" Height="23.68" CanGrow="true"/>
+        <LineObject Name="Line10" Left="266.46" Top="-1" Height="23.68" CanGrow="true"/>
+        <LineObject Name="Line11" Left="351.5" Height="22.68" CanGrow="true"/>
+        <LineObject Name="Line12" Left="623.62" Height="22.68" CanGrow="true"/>
+        <TextObject Name="Memo27" Left="98.27" Top="1" Width="83.15" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.CUTI_MASUK]" Padding="2, 1, 2, 1" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 9pt"/>
+        <TextObject Name="Memo28" Left="183.42" Top="1" Width="82.15" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.CUTI_KELUAR]" Padding="2, 1, 2, 1" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 9pt"/>
+        <TextObject Name="MSisa" Left="268.35" Top="1" Width="81.15" Height="18.9" CanGrow="true" CanShrink="true" Text="Sisa" Padding="2, 1, 2, 1" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 9pt"/>
+        <TextObject Name="Memo29" Left="351.5" Top="1" Width="267.13" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.KETERANGAN]" Padding="2, 1, 2, 1" Font="Arial, 9pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="395.7" Width="756" Height="22.68" Guides="1.78,20.68,0">
+        <TextObject Name="Memo30" Top="1.78" Width="56.69" Height="18.9" Text="Catatan :" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+        <LineObject Name="Line4" Width="623.62"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="438.38" Width="756" Height="22.68" BeforePrintEvent="PageFooter1_BeforePrint" Guides="1.78,3.78,22.68">
+      <LineObject Name="Line17" Top="1.78" Width="755.91" Diagonal="true"/>
+      <TextObject Name="Memo8" Top="3.78" Width="173.86" Height="18.9" Text="Personnel" Padding="2, 1, 2, 1" Font="Arial, 8pt"/>
+      <TextObject Name="Memo31" Left="211.65" Top="3.78" Width="332.6" Height="18.9" Text="Sort By : Employee" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="03/29/2011 16:25:53" ReportInfo.Modified="10/22/2014 14:50:29" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>
+Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+
+Namespace FastReport
+  Public Class ReportScript
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+      Text59.Text = CType(Report.GetColumnValue(&quot;DS.UserId&quot;), String)
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haps5gdlM8D/hPd1aOPEfMo1">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" PropName="MsProductType" Enabled="true" SelectCommand="EXEC S_FormMsPayroll '', ''">
+        <Column Name="PayrollCode" DataType="System.String"/>
+        <Column Name="PayrollPref" DataType="System.String"/>
+        <Column Name="PayrollNo" DataType="System.String"/>
+        <Column Name="PayrollName" DataType="System.String"/>
+        <Column Name="Formula" DataType="System.String"/>
+        <Column Name="Amount" DataType="System.String"/>
+        <Column Name="PayrollType" DataType="System.String"/>
+        <Column Name="Tertanggung" DataType="System.String"/>
+        <Column Name="GroupBy" DataType="System.String"/>
+        <Column Name="Prioritas" DataType="System.String"/>
+        <Column Name="FgSlip" DataType="System.String"/>
+        <Column Name="FgPPh" DataType="System.String"/>
+        <Column Name="FgCheckAbsen" DataType="System.String"/>
+        <Column Name="FgRapel" DataType="System.String"/>
+        <Column Name="FgJamsostek" DataType="System.String"/>
+        <Column Name="FgAnnual" DataType="System.String"/>
+        <Column Name="FgValue" DataType="System.Int32"/>
+        <Column Name="FgUpdate" DataType="System.String"/>
+        <Column Name="CompName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="FormulaName" DataType="System.String"/>
+        <Column Name="FormulaDesc" DataType="System.String"/>
+        <Column Name="PayrollTypeName" DataType="System.String"/>
+        <Column Name="UserId" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" Guides="0,1046.5,3.02,80.50999,82.49,245.03,189,788.13,306.18,245.8,379.99,382.39,508.26,1,392.23,510.9,542.27,545.65,624.27,627.7,712.32,715.75,846.07,848.5,889.32,889.3,918.67,920.1,957.92,958.45,1031.62,869.4,1048.95,82.4,244.94,245.7,379.89,382.56,508.57,545.81,624.43,712.37,715.62,846.03,889.43,918.91,920.05,957.85,958.61,1031.94,1047.5,916.65,1042.66">
+    <PageHeaderBand Name="PageHeader1" Top="20" Width="1047.06" Height="119.29" Guides="93.84,119.29,97.29,116.19,96.84,115.74,60.7,89.05,2,20.9,96.89,115.79,22.35,60.15,96.5,115.4,9.45,28.35,55.8,67.14">
+      <ShapeObject Name="Shape1" Top="93.84" Width="1046.5" Height="25.45"/>
+      <TextObject Name="Text3" Left="3.02" Top="97.29" Width="77.49" Height="18.9" Text="Payroll Code" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text7" Left="82.49" Top="96.84" Width="162.54" Height="18.9" Text="Payroll Name" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text15" Left="189" Top="60.7" Width="599.13" Height="28.35" Text="PAYROLL FILE" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text16" Top="2" Width="306.18" Height="18.9" Text="[DS.CompName]" Font="Arial Narrow, 10pt, style=Bold"/>
+      <TextObject Name="Text18" Left="245.8" Top="96.89" Width="134.19" Height="18.9" Text="Formula" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text22" Left="382.39" Top="96.89" Width="125.87" Height="18.9" Text="Payroll Type" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text24" Left="1" Top="22.35" Width="391.23" Height="37.8" Text="[DS.CompAddr]" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Text25" Left="510.9" Top="96.5" Width="31.37" Height="18.9" Text="PPh" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text26" Left="545.65" Top="96.5" Width="78.62" Height="18.9" Text="Group By" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text27" Left="627.7" Top="96.5" Width="84.62" Height="18.9" Text="Priority In Slip" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text28" Left="715.75" Top="96.5" Width="130.32" Height="18.9" Text="Responsibility PPH By" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text29" Left="848.5" Top="96.5" Width="40.82" Height="18.9" Text="Rapel" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text30" Left="889.3" Top="96.5" Width="29.37" Height="18.9" Text="Slip" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text31" Left="920.1" Top="96.5" Width="37.82" Height="18.9" Text="Value" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text32" Left="958.45" Top="96.5" Width="73.17" Height="18.9" Text="Jamsostek" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text57" Left="869.4" Top="9.45" Width="179.55" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text58" Left="869.4" Top="55.8" Width="179.55" Height="11.34" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="159.29" Width="1047.06" Height="21.06" CanGrow="true" CanShrink="true" AfterDataEvent="Data1_AfterData" CanBreak="true" Guides="1,19.9,1.16,20.06" DataSource="Table">
+      <TextObject Name="Text2" Left="3.02" Top="1" Width="77.49" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.PayrollCode]" VertAlign="Center" Font="Arial, 8pt" Duplicates="Hide"/>
+      <TextObject Name="Text6" Left="82.4" Top="1" Width="162.54" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.PayrollName]" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text19" Left="245.7" Top="1.16" Width="134.19" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.FormulaName]" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text23" Left="382.56" Top="1.16" Width="126.01" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.PayrollTypeName]" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text33" Left="510.9" Top="1" Width="31.37" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.FgPPh]" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text34" Left="545.81" Top="1" Width="78.62" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.GroupBy]" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text35" Left="627.7" Top="1" Width="84.67" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.Prioritas]" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text36" Left="715.62" Top="1" Width="130.41" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.Tertanggung]" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text37" Left="848.5" Top="1" Width="40.82" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.FgRapel]" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text38" Left="889.43" Top="1" Width="29.48" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.FgSlip]" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text39" Left="920.05" Top="1" Width="37.8" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.FgValue]" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text40" Left="958.61" Top="1" Width="73.33" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.FgJamsostek]" VertAlign="Center" Font="Arial, 8pt"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="200.35" Width="1047.06" Height="18.9" Guides="0,18.9">
+      <LineObject Name="Line1" Width="1047.5"/>
+      <TextObject Name="Text59" Left="916.65" Width="126.01" Height="18.9" CanBreak="false" Text="[DS.UserId]" HorzAlign="Right" VertAlign="Center" Font="Arial, 6.75pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

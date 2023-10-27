@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="05/20/2011 08:38:19" ReportInfo.Modified="02/24/2014 14:49:51" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+   Public Class ReportScript
+    Dim No As Integer
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      No = No + 1
+      Text47.Text = No.tostring
+    End Sub
+
+    Private Sub PageHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+       No = 0
+    End Sub
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+      Text74.Text = CType(Report.GetColumnValue(&quot;DS.ISODocNo&quot;), String)
+      Text159.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.TotalAngsur&quot;), Decimal),0)
+      Text160.Text = &quot;Rev. &quot; + CType(Report.GetColumnValue(&quot;DS.Revisi&quot;), Int32).ToString
+    End Sub                 
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43hapvAKIA+nmRMDd+TLFUVCUU">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PYFormLoan ''' '''">
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="Column" Enabled="false" DataType="System.Int32" Calculated="true" Expression=""/>
+        <Column Name="CurrCode" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="ISODocNo" DataType="System.String"/>
+        <Column Name="Number" DataType="System.String"/>
+        <Column Name="Revisi" DataType="System.Int32"/>
+        <Column Name="StartDate" DataType="System.DateTime"/>
+        <Column Name="EndDate" DataType="System.DateTime"/>
+        <Column Name="LoanType" DataType="System.String"/>
+        <Column Name="JobLevel" DataType="System.String"/>
+        <Column Name="JobLevelName" DataType="System.String"/>
+        <Column Name="EmpNumb" DataType="System.String"/>
+        <Column Name="EmpNumbName" DataType="System.String"/>
+        <Column Name="Loan" DataType="System.String"/>
+        <Column Name="LoanName" DataType="System.String"/>
+        <Column Name="StartClaim" DataType="System.DateTime"/>
+        <Column Name="AmountLoan" DataType="System.Decimal"/>
+        <Column Name="Interest" DataType="System.Decimal"/>
+        <Column Name="QtyPeriod" DataType="System.Int32"/>
+        <Column Name="TermPeriod" DataType="System.String"/>
+        <Column Name="Angsuran" DataType="System.Decimal"/>
+        <Column Name="TotalBunga" DataType="System.Decimal"/>
+        <Column Name="TotalPay" DataType="System.Decimal"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="UserName" DataType="System.String"/>
+        <Column Name="Periode" DataType="System.Int32"/>
+        <Column Name="StartClaimDt" DataType="System.DateTime"/>
+        <Column Name="AmountBegin" DataType="System.Decimal"/>
+        <Column Name="AmountAngsur" DataType="System.Decimal"/>
+        <Column Name="AmountEnd" DataType="System.Decimal"/>
+        <Column Name="TotalAngsur" DataType="System.Decimal"/>
+        <Column Name="Address" DataType="System.String"/>
+        <Column Name="GroupBy" DataType="System.String"/>
+        <Column Name="TotalAngsur2" DataType="System.Decimal"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" FirstPageSource="15" OtherPagesSource="15" Guides="2.23,37.65,45.9,193.1,201.79,398.75,111.95,271.32,103.95,113.87,1,107.37,576.45,737.1,210.45,557.55,0,292.95,337.92,302.4,224.07,464.05,623.42,456.05,465.97,342.1,457.92,739.8199,699.02,464.6,740.37,456.6,466.52,342.65,458.47,463.6,739.37,341.65,457.47,741.55,407.9,567.06,576.9,736.0601,197.45,403.35,571.45,741.65,42.8,0.38,35.91,45.74,192.78,201.85,398.79,407.86,567,576.83,735.97,741.64,562,2,399.35,197.32,403.33,42.71,571.54,179.55">
+    <PageHeaderBand Name="PageHeader1" Top="20" Width="740.5" Height="226.8" BeforePrintEvent="PageHeader1_BeforePrint" Guides="188.1,220.23,188.01,220.14,87.05,101.95,60.15,71.49001,66.15,85.05,3.45,22.35,0,18.9,116.85,56.7,117.4,132.3,147.2,147.75,162.65,99.95,100.5,115.4,173.1,180.1,188.55,220.68,226.8,179.55">
+      <TextObject Name="Text37" Left="2.23" Top="188.1" Width="35.42" Height="32.13" Text="No" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text39" Left="45.9" Top="188.01" Width="147.2" Height="32.13" Text="Period" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text41" Left="201.79" Top="188.01" Width="196.96" Height="32.13" Text="Installment Beginning Saldo" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text60" Left="111.95" Top="87.05" Width="159.37" Height="14.9" Text="[DS.Number]" Font="Arial, 9pt"/>
+      <TextObject Name="Text57" Left="103.95" Top="87.05" Width="9.92" Height="14.9" Text=":" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text63" Left="1" Top="87.05" Width="106.37" Height="14.9" Text="Loan Number" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text35" Left="576.45" Top="60.15" Width="160.65" Height="11.34" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text1" Left="1" Top="66.15" Width="209.45" Height="18.9" Text="INSTALLMENT TABLE" VertAlign="Center" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text2" Left="557.55" Top="3.45" Width="179.55" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text3" Width="292.95" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 11pt, style=Bold"/>
+      <TextObject Name="Text100" Left="111.95" Top="101.95" Width="225.97" Height="14.9" Text="[DS.LoanName]" Font="Arial, 9pt"/>
+      <TextObject Name="Text101" Left="103.95" Top="101.95" Width="9.92" Height="14.9" Text=":" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text102" Left="1" Top="101.95" Width="106.37" Height="14.9" Text="Loan Name" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text129" Top="18.9" Width="302.4" Height="37.8" Text="[DS.Address]" Font="Arial, 8pt"/>
+      <TextObject Name="Text130" Left="111.95" Top="117.4" Width="112.12" Height="14.9" Text="[DS.AmountLoan]" Format="Custom" Format.Format="###,##0" Font="Arial, 9pt"/>
+      <TextObject Name="Text131" Left="103.95" Top="117.4" Width="9.92" Height="14.9" Text=":" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text132" Left="1" Top="117.4" Width="106.37" Height="14.9" Text="Amount Loan" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text133" Left="111.95" Top="132.3" Width="112.12" Height="14.9" Text="[DS.Interest]%" Format="Custom" Format.Format="###,##0" Font="Arial, 9pt"/>
+      <TextObject Name="Text134" Left="103.95" Top="132.3" Width="9.92" Height="14.9" Text=":" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text135" Left="1" Top="132.3" Width="106.37" Height="14.9" Text="Interest/Year" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text136" Left="111.95" Top="147.75" Width="112.12" Height="14.9" Text="[DS.TotalAngsur]" Format="Custom" Format.Format="###,##0" Font="Arial, 9pt"/>
+      <TextObject Name="Text137" Left="103.95" Top="147.75" Width="9.92" Height="14.9" Text=":" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text138" Left="1" Top="147.75" Width="106.37" Height="14.9" Text="Total Installment" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text139" Left="464.05" Top="85.05" Width="159.37" Height="14.9" Text="[DS.EmpNumb]" Font="Arial, 9pt"/>
+      <TextObject Name="Text140" Left="456.05" Top="85.05" Width="9.92" Height="14.9" Text=":" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text141" Left="342.1" Top="85.05" Width="115.82" Height="14.9" Text="NIK" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text142" Left="464.05" Top="100.5" Width="275.77" Height="14.9" Text="[DS.EmpNumbName]" Font="Arial, 9pt"/>
+      <TextObject Name="Text143" Left="456.05" Top="100.5" Width="9.92" Height="14.9" Text=":" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text144" Left="342.1" Top="100.5" Width="115.82" Height="14.9" Text="Name" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text145" Left="464.05" Top="117.4" Width="234.97" Height="14.9" Text="[DS.StartDate] - [DS.EndDate]" Font="Arial, 9pt">
+        <Formats>
+          <CustomFormat Format="dd/MM/yyyy"/>
+          <CustomFormat Format="dd/MM/yyyy"/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text146" Left="456.05" Top="117.4" Width="9.92" Height="14.9" Text=":" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text147" Left="342.1" Top="117.4" Width="115.82" Height="14.9" Text="Installment Period" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text148" Left="464.6" Top="132.3" Width="275.77" Height="14.9" Text="[DS.QtyPeriod] [DS.TermPeriod]" Font="Arial, 9pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text149" Left="456.6" Top="132.3" Width="9.92" Height="14.9" Text=":" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text150" Left="342.65" Top="132.3" Width="115.82" Height="14.9" Text="Installment Term" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text151" Left="463.6" Top="147.75" Width="275.77" Height="25.35" Text="[DS.Remark]" Font="Arial, 9pt"/>
+      <TextObject Name="Text152" Left="456.6" Top="147.75" Width="9.92" Height="14.9" Text=":" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text153" Left="341.65" Top="147.75" Width="115.82" Height="14.9" Text="Remark" Font="Arial, 9pt, style=Bold"/>
+      <LineObject Name="Line2" Top="180.1" Width="741.55" Diagonal="true"/>
+      <TextObject Name="Text154" Left="407.9" Top="188.55" Width="159.16" Height="32.13" Text="Payed Installment" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text155" Left="576.9" Top="188.55" Width="159.16" Height="32.13" Text="Installment Last Saldo" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <LineObject Name="Line3" Top="226.8" Width="741.55" Diagonal="true"/>
+      <LineObject Name="Line7" Left="197.45" Top="179.55" Height="47.25" Diagonal="true"/>
+      <LineObject Name="Line8" Left="403.35" Top="179.55" Height="47.25" Diagonal="true"/>
+      <LineObject Name="Line9" Left="571.45" Top="179.55" Height="47.25" Diagonal="true"/>
+      <LineObject Name="Line10" Left="741.65" Top="179.55" Height="47.25" Diagonal="true"/>
+      <LineObject Name="Line11" Left="42.8" Top="179.55" Height="47.25" Diagonal="true"/>
+      <LineObject Name="Line12" Top="179.55" Height="47.25" Diagonal="true"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="266.8" Width="740.5" StartNewPage="true" Condition="[DS.GroupBy]">
+      <DataBand Name="Data1" Top="286.8" Width="740.5" Height="23.35" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" AfterDataEvent="Data1_AfterData" Guides="2,20.9" DataSource="Table">
+        <TextObject Name="Text47" Left="0.38" Top="2" Width="35.53" Height="18.9" CanGrow="true" Text="No" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+        <TextObject Name="Text48" Left="45.74" Top="2" Width="147.04" Height="18.9" CanGrow="true" Text="[DS.StartClaimDt]" Format="Custom" Format.Format="dd/MM/yyyy" VertAlign="Center" Font="Arial, 9pt"/>
+        <TextObject Name="Text50" Left="201.85" Top="2" Width="196.94" Height="18.9" CanGrow="true" Text="[DS.AmountBegin]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+        <TextObject Name="Text156" Left="407.86" Top="2" Width="159.14" Height="18.9" CanGrow="true" Text="[DS.AmountAngsur]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+        <TextObject Name="Text157" Left="576.83" Top="2" Width="159.14" Height="18.9" CanGrow="true" Text="[DS.AmountEnd]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+        <Sort>
+          <Sort Expression="[DS.StartClaimDt]"/>
+        </Sort>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="330.15" Width="740.5"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="350.15" Width="740.5" Height="98.5" Guides="75.6,79.6,98.5,28.35,0,3,25.68,4,22.9,-670.95,-661.5">
+      <LineObject Name="Line1" Top="75.6" Width="741.64"/>
+      <TextObject Name="Text74" Left="562" Top="79.6" Width="179.55" Height="18.9" Text="[DS.ISODocNo]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <LineObject Name="Line5" Top="28.35" Width="741.55" Diagonal="true"/>
+      <LineObject Name="Line6" Width="741.55" Diagonal="true"/>
+      <TextObject Name="Text158" Left="2" Top="3" Width="397.35" Height="22.68" Text="Total" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text159" Left="407.86" Top="4" Width="159.14" Height="18.9" CanGrow="true" Text="[DS.TotalAngsur]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <LineObject Name="Line13" Left="197.32" Height="-670.95" Diagonal="true"/>
+      <LineObject Name="Line14" Left="403.33" Top="28.35" Height="-689.85" Diagonal="true"/>
+      <LineObject Name="Line17" Left="42.71" Height="-670.95" Diagonal="true"/>
+      <LineObject Name="Line19" Left="571.54" Top="28.35" Height="-689.85" Diagonal="true"/>
+      <LineObject Name="Line20" Left="741.64" Top="28.35" Height="-689.85" Diagonal="true"/>
+      <LineObject Name="Line21" Top="28.35" Height="-689.85" Diagonal="true"/>
+      <TextObject Name="Text160" Top="79.6" Width="179.55" Height="18.9" Text="Rev." Font="Arial, 6.75pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

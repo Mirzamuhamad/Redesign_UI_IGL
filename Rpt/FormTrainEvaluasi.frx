@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="05/20/2011 08:38:19" ReportInfo.Modified="10/17/2014 19:03:10" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+   Public Class ReportScript
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+
+    Private Sub PageHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+       Text4.Text = CType(Report.GetColumnValue(&quot;DS.ISODocNo&quot;), String)
+    End Sub                 
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43hapM/VTFdh14JV0OmqTcdEJJ">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PEFormTrainEvaluasi ''' '''">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="Column" Enabled="false" DataType="System.Int32" Calculated="true" Expression=""/>
+        <Column Name="TrainingName" DataType="System.String"/>
+        <Column Name="Instructor" DataType="System.String"/>
+        <Column Name="ISODocNo" DataType="System.String"/>
+        <Column Name="InstitusiName" DataType="System.String"/>
+        <Column Name="TrainingLocation" DataType="System.String"/>
+        <Column Name="Conclusion" DataType="System.String"/>
+        <Column Name="Suggestion" DataType="System.String"/>
+        <Column Name="StartDate" DataType="System.DateTime"/>
+        <Column Name="EndDate" DataType="System.DateTime"/>
+        <Column Name="JobTtlCode" DataType="System.String"/>
+        <Column Name="JobTtlName" DataType="System.String"/>
+        <Column Name="EmpName" DataType="System.String"/>
+        <Column Name="SACompany" DataType="System.String"/>
+        <Column Name="SAAddress" DataType="System.String"/>
+        <Column Name="SACity" DataType="System.String"/>
+        <Column Name="SAPostCode" DataType="System.String"/>
+        <Column Name="ResultNo" DataType="System.String"/>
+        <Column Name="EvaluasionBy" DataType="System.String"/>
+        <Column Name="EvaluasionByName" DataType="System.String"/>
+        <Column Name="EvaluasiJobTitle" DataType="System.String"/>
+        <Column Name="EvaluasiJobTitleName" DataType="System.String"/>
+        <Column Name="EvaluationType" DataType="System.String"/>
+        <Column Name="EvaluationType1" DataType="System.String"/>
+        <Column Name="EvaluationType2" DataType="System.String"/>
+        <Column Name="AfterTraining" DataType="System.String"/>
+        <Column Name="EmpNumb" DataType="System.String"/>
+        <Column Name="DeptCode" DataType="System.String"/>
+        <Column Name="DeptName" DataType="System.String"/>
+        <Column Name="EvaluasiDepartment" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" FirstPageSource="15" OtherPagesSource="15" Guides="0,738.31,597.35,739.1,426.46,500.85,9.45,221.1,226.8,238.14,236.25,706.8,706.07,255.15,501.1,519.75,716.57,833.45,718.45,707.5,707.75,15.45,34.35,147.75,166.65,128.85,289.5,708.75,740.2,398.9">
+    <PageHeaderBand Name="PageHeader1" Top="20" Width="740.5" Height="114.04" Guides="79.6,114.04,44.8,73.15,1.45,26.44,28.35,66.15">
+      <TextObject Name="Memo1" Top="79.6" Width="738.31" Height="34.44" Border.Lines="All" Border.Style="Double" Text="EVALUASI EFEKTIVITAS PELATIHAN" Padding="2, 1, 2, 1" HorzAlign="Center" VertAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text1" Left="597.35" Top="44.8" Width="141.75" Height="28.35" Border.Lines="All" Text="[DS.TransNmbr]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text5" Top="1.45" Width="426.46" Height="24.99" Text="[DS.SACompany]" Padding="2, 1, 2, 1" VertAlign="Center" Font="Arial, 11pt, style=Bold"/>
+      <TextObject Name="Text2" Top="28.35" Width="500.85" Height="37.8" Text="[DS.SAAddress]" Font="Arial, 8pt, style=Bold"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="154.04" Width="740.5" StartNewPage="true" Condition="[DS.TransNmbr]" SortOrder="None">
+      <DataBand Name="Data1" Top="174.04" Width="740.5" Height="801.8" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" AfterDataEvent="Data1_AfterData" Guides="2,20.9,30.35,49.25,58.7,77.6,121.3,140.2,147.65,166.55,176,194.9,204.35,223.25,232.7,251.6,225.7,255.05,774.45,793.35,773.45,792.35,660.05,678.95,754.55,272.05,290.95,295.95,314.85,321.3,340.2,322.3,341.2,347.65,366.55,346.65,365.55,342.2,368,85.05,103.95,378,396.9,436.15,455.05,458.05,495.85,503.1,522,527.55,546.45,552.9,571.8,573.8,611.6" DataSource="Table">
+        <TextObject Name="spRptEmployee" Left="9.45" Top="2" Width="211.65" Height="18.9" Text="NAMA PELATIHAN" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Memo2" Left="226.8" Top="2" Width="11.34" Height="18.9" Text=":" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <LineObject Name="Line6" Left="236.25" Top="20.9" Width="470.55"/>
+        <TextObject Name="Memo4" Left="9.45" Top="30.35" Width="211.65" Height="18.9" Text="WAKTU" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Memo5" Left="226.8" Top="30.35" Width="11.34" Height="18.9" Text=":" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Memo7" Left="9.45" Top="58.7" Width="211.65" Height="18.9" Text="TEMPAT" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Memo9" Left="226.8" Top="58.7" Width="11.34" Height="18.9" Text=":" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Memo11" Left="9.45" Top="121.3" Width="211.65" Height="18.9" Text="PESERTA TRAINING" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold, Underline"/>
+        <TextObject Name="spRptJobTtlName" Left="236.25" Top="30.35" Width="470.55" Height="18.9" Text="[DS.StartDate] - [DS.EndDate]" Padding="2, 1, 2, 1" Font="Arial, 9pt">
+          <Formats>
+            <CustomFormat Format="dd/MM/yyyy"/>
+            <CustomFormat Format="dd/MM/yyyy"/>
+          </Formats>
+        </TextObject>
+        <LineObject Name="Line3" Left="236.25" Top="49.25" Width="470.55"/>
+        <TextObject Name="spRptDepartment" Left="236.25" Top="58.7" Width="470.55" Height="18.9" Text="[DS.TrainingLocation]" Padding="2, 1, 2, 1" Font="Arial, 9pt"/>
+        <LineObject Name="Line4" Left="236.25" Top="77.6" Width="470.55"/>
+        <TextObject Name="spRptEmpName" Left="236.25" Top="2" Width="470.55" Height="18.9" Text="[DS.TrainingName]" Padding="2, 1, 2, 1" Font="Arial, 9pt"/>
+        <TextObject Name="Memo16" Left="9.45" Top="147.65" Width="211.65" Height="18.9" Text="NAMA" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Memo18" Left="226.8" Top="147.65" Width="11.34" Height="18.9" Text=":" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Memo20" Left="9.45" Top="176" Width="211.65" Height="18.9" Text="NIK" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Memo21" Left="226.8" Top="176" Width="11.34" Height="18.9" Text=":" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Memo23" Left="9.45" Top="204.35" Width="211.65" Height="18.9" Text="JABATAN / GOLONGAN" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Memo24" Left="226.8" Top="204.35" Width="11.34" Height="18.9" Text=":" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Memo26" Left="9.45" Top="232.7" Width="211.65" Height="18.9" Text="ORGANISASI" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Memo27" Left="226.8" Top="232.7" Width="11.34" Height="18.9" Text=":" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="spRptTrainingLocation" Left="236.25" Top="176" Width="470.55" Height="18.9" Text="[DS.EmpNumb]" Padding="2, 1, 2, 1" Font="Arial, 9pt"/>
+        <LineObject Name="Line10" Left="236.25" Top="194.9" Width="470.55"/>
+        <LineObject Name="Line7" Left="236.25" Top="166.55" Width="470.55"/>
+        <TextObject Name="spRptInstitusiName" Left="236.25" Top="204.35" Width="470.55" Height="18.9" Text="[DS.JobTtlName]" Padding="2, 1, 2, 1" Font="Arial, 9pt"/>
+        <LineObject Name="Line8" Left="236.25" Top="225.7" Width="470.55"/>
+        <TextObject Name="spRptFgSertifikat" Left="236.25" Top="232.7" Width="469.82" Height="18.9" Text="[DS.DeptName]" Padding="2, 1, 2, 1" Font="Arial, 9pt"/>
+        <LineObject Name="Line9" Left="236.25" Top="255.05" Width="470.55"/>
+        <TextObject Name="spRptStartDate" Left="236.25" Top="147.65" Width="470.55" Height="18.9" Text="[DS.EmpName]" Padding="2, 1, 2, 1" Font="Arial, 9pt">
+          <Formats>
+            <CustomFormat Format="dd/MM/yyyy"/>
+            <CustomFormat Format="dd/MM/yyyy"/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Memo8" Left="255.15" Top="774.45" Width="245.95" Height="18.9" Text="MANAGER SEKSI" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Memo15" Left="519.75" Top="773.45" Width="196.82" Height="18.9" Text="PENILAI" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="spRptSACity" Left="519.75" Top="660.05" Width="313.7" Height="18.9" Text="[DS.SACity] , [Date]" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold">
+          <Formats>
+            <GeneralFormat/>
+            <CustomFormat Format="dd MMMM yyyy"/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Memo17" Left="519.75" Top="754.55" Width="198.7" Height="18.9" Text="_____________________" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Memo14" Left="255.15" Top="754.55" Width="245.95" Height="18.9" Text="_____________________" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text6" Left="9.45" Top="272.05" Width="211.65" Height="18.9" Text="PENILAIAN (ATASAN)" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold, Underline"/>
+        <TextObject Name="Text7" Left="9.45" Top="295.95" Width="211.65" Height="18.9" Text="NAMA" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text8" Left="226.8" Top="295.95" Width="11.34" Height="18.9" Text=":" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text9" Left="9.45" Top="321.3" Width="211.65" Height="18.9" Text="NIK" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text10" Left="226.8" Top="322.3" Width="11.34" Height="18.9" Text=":" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text11" Left="9.45" Top="347.65" Width="211.65" Height="18.9" Text="JABATAN / GOLONGAN" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text12" Left="226.8" Top="346.65" Width="11.34" Height="18.9" Text=":" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text15" Left="236.25" Top="322.3" Width="470.55" Height="18.9" Text="[DS.EvaluasionBy]" Padding="2, 1, 2, 1" Font="Arial, 9pt"/>
+        <LineObject Name="Line11" Left="236.25" Top="342.2" Width="470.55"/>
+        <LineObject Name="Line12" Left="236.25" Top="314.85" Width="470.55"/>
+        <TextObject Name="Text16" Left="236.25" Top="346.65" Width="470.55" Height="18.9" Text="[DS.EvaluasiJobTitleName] / [DS.EvaluasiDepartment]" Padding="2, 1, 2, 1" Font="Arial, 9pt"/>
+        <LineObject Name="Line13" Left="236.25" Top="368" Width="470.55"/>
+        <TextObject Name="Text18" Left="236.25" Top="295.95" Width="470.55" Height="18.9" Text="[DS.EvaluasionByName]" Padding="2, 1, 2, 1" Font="Arial, 9pt">
+          <Formats>
+            <CustomFormat Format="dd/MM/yyyy"/>
+            <CustomFormat Format="dd/MM/yyyy"/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text19" Left="9.45" Top="85.05" Width="211.65" Height="18.9" Text="PENYELENGGARA" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text20" Left="226.8" Top="85.05" Width="11.34" Height="18.9" Text=":" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text21" Left="236.25" Top="85.05" Width="470.55" Height="18.9" Text="[DS.InstitusiName]" Padding="2, 1, 2, 1" Font="Arial, 9pt"/>
+        <LineObject Name="Line14" Left="236.25" Top="103.95" Width="470.55"/>
+        <TextObject Name="Text22" Left="9.45" Top="378" Width="698.05" Height="18.9" Text="PENILAIAN TERHADAP PESERTA SEBELUM MENGIKUTI TRAINING :" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text23" Left="9.45" Top="436.15" Width="698.05" Height="18.9" Text="PENILAIAN TERHADAP PESERTA SETELAH MENGIKUTI TRAINING :" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text3" Left="9.45" Top="458.05" Width="698.3" Height="37.8" Text="[DS.AfterTraining]" Font="Arial, 9pt"/>
+        <TextObject Name="Text24" Left="9.45" Top="503.1" Width="698.05" Height="18.9" Text="KESIMPULAN TERHADAP HASIL TRAINING YANG TELAH DIIKUTI :" Padding="2, 1, 2, 1" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text13" Left="15.45" Top="527.55" Width="18.9" Height="18.9" Border.Lines="All" Text="[DS.EvaluationType1]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt"/>
+        <TextObject Name="Text14" Left="147.75" Top="527.55" Width="18.9" Height="18.9" Border.Lines="All" Text="[DS.EvaluationType2]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt"/>
+        <TextObject Name="Text17" Left="34.35" Top="527.55" Width="94.5" Height="18.9" Text="EFFECTIVE" VertAlign="Center" Font="Arial, 9pt"/>
+        <TextObject Name="Text25" Left="166.65" Top="527.55" Width="122.85" Height="18.9" Text="NON EFFECTIVE" VertAlign="Center" Font="Arial, 9pt"/>
+        <TextObject Name="Text26" Left="9.45" Top="552.9" Width="698.05" Height="18.9" Text="SARAN TERHADAP PROGRAM TRAINING YANG TELAH DIIKUTI, MAUPUN PROGRAM TRAINING LAINNYA :" Padding="2, 1, 2, 1" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text27" Left="9.45" Top="573.8" Width="699.3" Height="37.8" Text="[DS.Suggestion]" Font="Arial, 9pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="995.84" Width="740.5"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="1015.84" Width="740.5" Height="20.9" Guides="0,2,18.9">
+      <LineObject Name="Line1" Width="740.2"/>
+      <TextObject Name="Text4" Left="398.9" Top="2" Width="340.2" Height="16.9" Text="[DS.ISODocNo]" HorzAlign="Right" VertAlign="Center" Font="Arial, 6.75pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

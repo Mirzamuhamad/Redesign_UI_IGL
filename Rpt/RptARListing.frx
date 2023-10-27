@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="05/20/2011 01:10:18" ReportInfo.Modified="10/28/2015 18:27:17" ReportInfo.CreatorVersion="1.2.47.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haqHFMzhcwMSq50xWMqwkeRy">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_FNRptARListing '101010', '111111', '','','', 0, 0, 'Agunk'">
+        <Column Name="CustCode" DataType="System.String"/>
+        <Column Name="CustName" DataType="System.String"/>
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="AmountBegin" DataType="System.Decimal"/>
+        <Column Name="AmountNew" DataType="System.Decimal"/>
+        <Column Name="AmountNotaDN" DataType="System.Decimal"/>
+        <Column Name="AmountNotaCN" DataType="System.Decimal"/>
+        <Column Name="AmountReceipt" DataType="System.Decimal"/>
+        <Column Name="AmountEnd" DataType="System.Decimal"/>
+        <Column Name="AmountGiro" DataType="System.Decimal"/>
+        <Column Name="AmountDP" DataType="System.Decimal"/>
+        <Column Name="AmountSJ" DataType="System.Decimal"/>
+        <Column Name="StrPeriod" DataType="System.String"/>
+        <Column Name="CompName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="TotaBegin" Expression="[DS.AmountBegin]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotalNew" Expression="[DS.AmountNew]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotalNotaDN" Expression="[DS.AmountNotaDN]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotalNotaCN" Expression="[DS.AmountNotaCN]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotalReceipt" Expression="[DS.AmountReceipt]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotalEnd" Expression="[DS.AmountEnd]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotalGiro" Expression="[DS.AmountGiro]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotalDP" Expression="[DS.AmountDP]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotalSJ" Expression="[DS.AmountSJ]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="350" PaperHeight="280" FirstPageSource="1" OtherPagesSource="1" Guides="187.11,5.67,189,247.59,253.26,342.09,347.76,436.59,442.26,529.2,619.92,534.87,625.59,708.75,714.42,797.58,965.79,1037.61,880.74,801.36,884.52,960.12">
+    <PageHeaderBand Name="PageHeader1" Width="1247.4" Height="109.22">
+      <ShapeObject Name="Shape1" Top="68.04" Width="1243.75" Height="40.92"/>
+      <TextObject Name="Text4" Left="5.67" Top="81.38" Width="370.44" Height="13.9" Text="Customer" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text6" Left="387.45" Top="81.38" Width="58.59" Height="13.9" Text="Currency" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text8" Left="451.71" Top="81.38" Width="88.83" Height="13.9" Text="Beginning" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text10" Left="546.21" Top="81.38" Width="88.83" Height="13.9" Text="New Sales" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text12" Left="640.71" Top="81.38" Width="86.94" Height="13.9" Text="Nota DN" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text14" Left="733.32" Top="81.38" Width="75.6" Height="13.9" Text="Nota CN" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text16" Left="814.59" Top="81.38" Width="83.16" Height="13.9" Text="Receipt" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text18" Left="903.42" Top="81.38" Width="92.61" Height="13.9" Text="Ending" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text20" Left="1183.14" Top="90.72" Width="52.92" Height="13.9" Text="SJ" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text39" Left="1101.97" Top="90.72" Width="75.6" Height="13.9" Text="DP" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text40" Left="999.81" Top="90.72" Width="98.28" Height="13.9" Text="Giro" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text41" Left="999.81" Top="71.82" Width="236.25" Height="13.9" Text="Outstanding" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line2" Left="999.81" Top="86.94" Width="236.25"/>
+      <TextObject Name="Text1" Top="15.12" Width="1241.73" Height="23.35" Text="Account Receivable Listing" HorzAlign="Center" Font="Arial, 16pt, style=Bold"/>
+      <TextObject Name="Text2" Left="903.42" Width="335.19" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text22" Left="482.28" Top="37.8" Width="276.39" Height="18.9" Text="Period : [DS.StrPeriod]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text51" Left="1037.61" Top="47.25" Width="198.45" Height="13.23" Text="Hal [Page#] dari [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="113.39" Width="1247.4" Condition="[DS.Currency]">
+      <DataBand Name="Data1" Top="117.55" Width="1247.4" Height="18.68" DataSource="Table">
+        <TextObject Name="Text3" Left="5.67" Top="3" Width="370.44" Height="14.9" Text="[DS.CustCode] - [DS.CustName]" Font="Arial, 6.5pt"/>
+        <TextObject Name="Text5" Left="387.45" Top="3" Width="58.59" Height="14.9" Text="[DS.Currency]" Format="Date" Format.Format="d" Font="Arial, 6.5pt"/>
+        <TextObject Name="Text7" Left="451.71" Top="3" Width="88.83" Height="14.9" Text="[DS.AmountBegin]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 6.5pt"/>
+        <TextObject Name="Text9" Left="546.21" Top="3" Width="88.83" Height="14.9" Text="[DS.AmountNew]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 6.5pt"/>
+        <TextObject Name="Text11" Left="640.71" Top="3" Width="86.94" Height="14.9" Text="[DS.AmountNotaDN]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 6.5pt"/>
+        <TextObject Name="Text13" Left="733.32" Top="3" Width="75.6" Height="14.9" Text="[DS.AmountNotaCN]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 6.5pt"/>
+        <TextObject Name="Text15" Left="814.59" Top="3" Width="83.16" Height="14.9" Text="[DS.AmountReceipt]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 6.5pt"/>
+        <TextObject Name="Text17" Left="903.42" Top="3" Width="92.61" Height="14.9" Text="[DS.AmountEnd]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 6.5pt"/>
+        <TextObject Name="Text19" Left="1183.14" Top="3" Width="52.92" Height="14.9" Text="[DS.AmountSJ]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" WordWrap="false" Font="Arial, 6.5pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text42" Left="999.81" Top="3.78" Width="98.28" Height="14.9" Text="[DS.AmountGiro]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 6.5pt"/>
+        <TextObject Name="Text43" Left="1101.97" Top="3.78" Width="75.6" Height="14.9" Text="[DS.AmountDP]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 6.5pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="140.4" Width="1247.4" Height="20.9">
+        <TextObject Name="Text46" Left="326.97" Top="4" Width="58.59" Height="13.9" Text="Total :" HorzAlign="Right" Font="Arial, 6.5pt, style=Bold"/>
+        <TextObject Name="Text47" Left="387.45" Top="4" Width="58.59" Height="14.9" Text="[DS.Currency]" Format="Date" Format.Format="d" Font="Arial, 6.5pt, style=Bold"/>
+        <TextObject Name="Text21" Left="451.71" Top="4" Width="88.83" Height="14.9" Text="[TotaBegin]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 6.5pt, style=Bold"/>
+        <TextObject Name="Text23" Left="546.21" Top="4" Width="88.83" Height="14.9" Text="[TotalNew]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 6.5pt, style=Bold"/>
+        <TextObject Name="Text24" Left="638.82" Top="4" Width="88.83" Height="14.9" Text="[TotalNotaDN]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 6.5pt, style=Bold"/>
+        <TextObject Name="Text25" Left="733.32" Top="4" Width="75.6" Height="14.9" Text="[TotalNotaCN]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 6.5pt, style=Bold"/>
+        <TextObject Name="Text26" Left="814.59" Top="4" Width="83.16" Height="14.9" Text="[TotalReceipt]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 6.5pt, style=Bold"/>
+        <TextObject Name="Text27" Left="903.42" Top="4" Width="92.61" Height="14.9" Text="[TotalEnd]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 6.5pt, style=Bold"/>
+        <TextObject Name="Text28" Left="999.81" Top="4" Width="98.28" Height="14.9" Text="[TotalGiro]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 6.5pt, style=Bold"/>
+        <TextObject Name="Text29" Left="1101.97" Top="4" Width="75.6" Height="14.9" Text="[TotalDP]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 6.5pt, style=Bold"/>
+        <TextObject Name="Text30" Left="1183.14" Top="4" Width="52.92" Height="14.9" Text="[TotalSJ]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 6.5pt, style=Bold"/>
+        <LineObject Name="Line3" Left="5.67" Top="2" Width="1243.62"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="165.47" Width="1247.4" Height="18.9">
+      <TextObject Name="Text38" Left="2.35" Top="2" Width="91.5" Height="14.12" Text="Finance" VertAlign="Center" Font="Arial, 8pt"/>
+      <LineObject Name="Line1" Width="1243.62"/>
+      <TextObject Name="Text48" Left="483.39" Width="276.39" Height="14.12" Text="Report Type : Summary By Customer" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

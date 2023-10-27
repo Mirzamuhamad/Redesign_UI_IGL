@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="05/20/2011 08:38:19" ReportInfo.Modified="10/16/2013 13:51:49" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLJO+VzUL7sYiQzf91apK+yYhtN5RQrkF80IxQ4MjswLaLvUQEX7PRnbdc26BDBCZaj5tP05Na/Twm+7KFkfT6sH1IZ0DR6zaTm+eJdoYCUVHR7nI1wxuNt3SDoFQNAH4+FC8cBcZ22fWhTDyAcBfMSYNzLnx+EYOL55ADhpjbRAJ">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_GLFormFAOpname 'KJ/GLO/09/MAR0001'">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="Status" DataType="System.String"/>
+        <Column Name="OpnameDate" DataType="System.DateTime"/>
+        <Column Name="Operator" DataType="System.String"/>
+        <Column Name="RemarkHd" DataType="System.String"/>
+        <Column Name="FixedAsset" DataType="System.String"/>
+        <Column Name="FAName" DataType="System.String"/>
+        <Column Name="LocationType" DataType="System.String"/>
+        <Column Name="LocationCode" DataType="System.String"/>
+        <Column Name="LocationName" DataType="System.String"/>
+        <Column Name="QtySystem" DataType="System.Int32"/>
+        <Column Name="QtyActual" DataType="System.Int32"/>
+        <Column Name="QtyOpname" DataType="System.Int32"/>
+        <Column Name="RemarkDt" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="Sys" Expression="[DS.QtySystem]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="Act" Expression="[DS.QtyActual]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="OPN" Expression="[DS.QtyOpname]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Guides="217.35,472.5,538.65,718.2,774.9,935.55,-9450,-9378,3.78,80.7,83.16,90.08,94.5,244.42,419.58,496.5,498.96,505.88,510.3,660.22,0,5.23,74.55,78.83,217.3,220.35,303.4,305.85,389.97,392.79,500.25,504.4,572.85,577.01,640.46,641.82,715.27,5.27,74.46999,714.42,393.12,500.58,4.45,98.95,716.75">
+    <ReportTitleBand Name="ReportTitle1" Top="20" Width="718.2" Height="102.06" Guides="18.9,47.25,0,56.7,68.04,-9450,-9436.77,51.48,66.38,68.38,83.28,85.5,100.4,98.62">
+      <TextObject Name="Text1" Left="217.35" Top="18.9" Width="255.15" Height="28.35" Text="FA OPNAME" HorzAlign="Center" Font="Arial, 16pt, style=Bold"/>
+      <TextObject Name="Text2" Left="538.65" Width="179.55" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text35" Left="774.9" Top="56.7" Width="160.65" Height="11.34" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text42" Left="-9450" Top="-9450" Width="72" Height="13.23" Text="AMOUNT" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text54" Left="3.78" Top="51.48" Width="76.92" Height="14.9" Text="Opname No" Font="Arial, 8pt"/>
+      <TextObject Name="Text55" Left="3.78" Top="68.38" Width="76.92" Height="14.9" Text="Date" Font="Arial, 8pt"/>
+      <TextObject Name="Text56" Left="3.78" Top="85.5" Width="76.92" Height="14.9" Text="Opname Date" Font="Arial, 8pt"/>
+      <TextObject Name="Text57" Left="83.16" Top="51.48" Width="6.92" Height="14.9" Text=":" Font="Arial, 8pt"/>
+      <TextObject Name="Text58" Left="83.16" Top="68.38" Width="6.92" Height="14.9" Text=":" Font="Arial, 8pt"/>
+      <TextObject Name="Text59" Left="83.16" Top="85.5" Width="6.92" Height="14.9" Text=":" Font="Arial, 8pt"/>
+      <TextObject Name="Text60" Left="94.5" Top="51.48" Width="149.92" Height="14.9" Text="[DS.TransNmbr]" Font="Arial, 8pt"/>
+      <TextObject Name="Text61" Left="94.5" Top="68.38" Width="149.92" Height="14.9" Text="[DS.TransDate]" Format="Custom" Format.Format="dd MMM yyyy" Font="Arial, 8pt"/>
+      <TextObject Name="Text62" Left="94.5" Top="85.5" Width="149.92" Height="14.9" Text="[DS.OpnameDate]" Format="Custom" Format.Format="dd MMM yyyy" Font="Arial, 8pt"/>
+      <TextObject Name="Text63" Left="3.78" Top="51.48" Width="76.92" Height="14.9" Text="Opname No" Font="Arial, 8pt"/>
+      <TextObject Name="Text64" Left="419.58" Top="51.48" Width="76.92" Height="14.9" Text="Operator" Font="Arial, 8pt"/>
+      <TextObject Name="Text65" Left="419.58" Top="68.38" Width="76.92" Height="14.9" Text="Remark" Font="Arial, 8pt"/>
+      <TextObject Name="Text66" Left="498.96" Top="51.48" Width="6.92" Height="14.9" Text=":" Font="Arial, 8pt"/>
+      <TextObject Name="Text67" Left="498.96" Top="68.38" Width="6.92" Height="14.9" Text=":" Font="Arial, 8pt"/>
+      <TextObject Name="Text68" Left="510.3" Top="51.48" Width="149.92" Height="14.9" Text="[DS.Operator]" Font="Arial, 8pt"/>
+      <TextObject Name="Text69" Left="510.3" Top="68.38" Width="149.92" Height="30.24" Text="[DS.RemarkHd]" Format="Custom" Format.Format="dd MMM yyyy" Font="Arial, 8pt"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="142.06" Width="718.2" Height="23.9" Guides="0,23.9,5,18.23,4.91,18.14">
+      <ShapeObject Name="Shape1" Width="718.2" Height="23.9"/>
+      <TextObject Name="Text36" Left="5.23" Top="5" Width="69.32" Height="13.23" Text="Fixed Asset" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text37" Left="78.83" Top="5" Width="138.47" Height="13.23" Text="Fixed Asset Name" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text39" Left="220.35" Top="4.91" Width="83.05" Height="13.23" Text="Location Type" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text40" Left="305.85" Top="4.91" Width="84.12" Height="13.23" Text="Location Code" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text41" Left="392.79" Top="4.91" Width="107.46" Height="13.23" Text="Location Name" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text43" Left="504.4" Top="4.91" Width="68.45" Height="13.23" Text="Qty System" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text44" Left="577.01" Top="4.91" Width="63.45" Height="13.23" Text="Qty Actual" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text45" Left="641.82" Top="5" Width="73.45" Height="13.23" Text="Qty Opname" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="185.96" Width="718.2" Height="23.35" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" Guides="2,20.9" DataSource="Table">
+      <TextObject Name="Text46" Left="5.27" Top="2" Width="69.2" Height="18.9" CanGrow="true" Text="[DS.FixedAsset]" Font="Arial, 8pt"/>
+      <TextObject Name="Text47" Left="78.83" Top="2" Width="138.47" Height="18.9" CanGrow="true" Text="[DS.FAName]" Font="Arial, 8pt"/>
+      <TextObject Name="Text48" Left="220.35" Top="2" Width="83.05" Height="18.9" CanGrow="true" Text="[DS.LocationType]" Font="Arial, 8pt"/>
+      <TextObject Name="Text49" Left="305.85" Top="2" Width="84.12" Height="18.9" CanGrow="true" Text="[DS.LocationCode]" Font="Arial, 8pt"/>
+      <TextObject Name="Text50" Left="392.79" Top="2" Width="107.46" Height="18.9" CanGrow="true" Text="[DS.LocationName]" Font="Arial, 8pt"/>
+      <TextObject Name="Text51" Left="504.4" Top="2" Width="68.45" Height="18.9" Text="[DS.QtySystem]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text52" Left="577.01" Top="2" Width="63.45" Height="18.9" Text="[DS.QtyActual]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text53" Left="641.82" Top="2" Width="73.45" Height="18.9" Text="[DS.QtyOpname]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 8pt"/>
+    </DataBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="229.31" Width="718.2" Height="17.01" Guides="3.78,17.01,1">
+      <TextObject Name="Text70" Left="504.4" Top="3.78" Width="68.45" Height="13.23" Text="[Sys]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text71" Left="577.01" Top="3.78" Width="63.45" Height="13.23" Text="[Act]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text72" Left="641.82" Top="3.78" Width="73.45" Height="13.23" Text="[OPN]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 8pt"/>
+      <LineObject Name="Line2" Left="498.96" Top="1" Width="215.46"/>
+      <TextObject Name="Text73" Left="393.12" Top="3.78" Width="107.46" Height="13.23" Text="Total" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="266.32" Width="718.2" Height="18.9" Guides="0,15.12,13.23">
+      <TextObject Name="Text38" Left="4.45" Width="94.5" Height="15.12" Text="General Ledger" VertAlign="Center" Font="Arial, 8pt"/>
+      <LineObject Name="Line1" Width="716.75" Height="13.23"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

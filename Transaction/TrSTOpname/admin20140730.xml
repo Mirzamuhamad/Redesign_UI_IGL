@@ -1,0 +1,23 @@
+<?xml version="1.0" standalone="yes"?>
+<DS>
+  <Opname>
+    <Product>001 015 017</Product>
+    <Product_Name>LampuTLD 36 Watt</Product_Name>
+    <specification />
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>120</QtyActual>
+    <QtyOpname>120</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>120</QtyRollActual>
+    <QtyRollOpname>120</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>120</QtyM2Actual>
+    <QtyM2Opname>120</QtyM2Opname>
+    <Unit>PCS</Unit>
+    <UnitPack>PCS</UnitPack>
+    <UnitM2>PCS</UnitM2>
+    <Remark>21</Remark>
+  </Opname>
+</DS>

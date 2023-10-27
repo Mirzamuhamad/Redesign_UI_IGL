@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" StartReportEvent="_StartReport" ReportInfo.Created="03/27/2014 09:48:18" ReportInfo.Modified="12/28/2015 13:21:15" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    Dim No AS String
+
+    Private Sub _StartReport(ByVal sender As object, ByVal e As EventArgs)
+      No = &quot;&quot;
+    End Sub
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      'Text4.Visible = CType(Report.GetColumnValue(&quot;DS.LHMNo&quot;), String) &lt;&gt; No
+      'Text6.Visible = Text4.Visible
+      
+      'cell1.Visible = CType(Report.GetColumnValue(&quot;DS.LHMNo&quot;), String) &lt;&gt; No
+      'cell2.Visible = Text4.Visible   
+      
+      If CType(Report.GetColumnValue(&quot;DS.ReportDate&quot;), DateTime) &lt;&gt; Nothing Then
+         Text6.Text = string.Format(&quot;{0:dd MMM yyyy}&quot;, CType(Report.GetColumnValue(&quot;DS.ReportDate&quot;), DateTime))
+      Else
+        Text6.Text = &quot;&quot;
+      End If  
+    End Sub
+
+    Private Sub Data1_AfterPrint(ByVal sender As object, ByVal e As EventArgs)
+      No = CType(Report.GetColumnValue(&quot;DS.LHMNo&quot;), String)
+    End Sub
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)         
+    End Sub
+
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)   
+      If CType(Report.GetColumnValue(&quot;DS.StrDept&quot;), String) = &quot;Y&quot; Then
+        'tDepartment.Visible = True    
+        tDepartment.Text = &quot;Deaprtment : &quot; + CType(Report.GetColumnValue(&quot;DS.Department&quot;), String)
+        GroupHeader1.StartNewPage = True
+        GroupHeader1.Condition = &quot;[DS.Department]&quot;
+      Else
+        'tDepartment.Visible = False
+        tDepartment.Text = &quot;Deaprtment : All&quot; 
+        GroupHeader1.StartNewPage = False
+        GroupHeader1.Condition = &quot;[DS.CompanyName]&quot;
+      End If
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43harEROwoZZSYLA0x1krnIN64">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_MTNProgressReport '20100101', '20151111', '', '', '', '', 0, 0, 0, 0, ''">
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="MONo" DataType="System.String"/>
+        <Column Name="Job" DataType="System.String"/>
+        <Column Name="PIC" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompanyAddress" DataType="System.String"/>
+        <Column Name="Periode" DataType="System.String"/>
+        <Column Name="LHMNo" DataType="System.String"/>
+        <Column Name="ReportDate" DataType="System.DateTime"/>
+        <Column Name="MTNItem" DataType="System.String"/>
+        <Column Name="MTNItem_Name" DataType="System.String"/>
+        <Column Name="JobName" DataType="System.String"/>
+        <Column Name="Cause" DataType="System.String"/>
+        <Column Name="Recommendation" DataType="System.String"/>
+        <Column Name="FgMTNItemWorkNormal" DataType="System.String"/>
+        <Column Name="Department" DataType="System.String"/>
+        <Column Name="StrDept" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="279.4" PaperHeight="215.9" LeftMargin="5" RightMargin="5" Guides="179.55,311.85,387.45,510.3,623.7,737.1,850.5,963.9,103.95,1011.15">
+    <ReportTitleBand Name="ReportTitle1" Top="20" Width="1018.33"/>
+    <PageHeaderBand Name="PageHeader1" Top="40" Width="1018.33" Height="89.05">
+      <TextObject Name="Text1" Width="264.6" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text2" Top="18.9" Width="311.85" Height="37.8" Text="[DS.CompanyAddress]" Font="Arial, 8pt"/>
+      <TextObject Name="Text3" Left="362.69" Top="47.25" Width="292.95" Height="18.9" Text="LAPORAN KERJA MAINTENANCE" HorzAlign="Center" VertAlign="Center" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text13" Left="362.69" Top="66.15" Width="292.95" Height="18.9" Text="Periode : [DS.Periode]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text15" Left="874.4" Width="132.3" Height="18.9" Text="[Date]" HorzAlign="Right" Font="Arial, 7pt"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="149.05" Width="1018.33" Height="66.15" BeforePrintEvent="GroupHeader1_BeforePrint" RepeatOnEveryPage="true" Condition="[DS.CompanyName]" SortOrder="None">
+      <TextObject Name="Text9" Left="311.85" Top="47.25" Width="75.6" Height="18.9" Border.Lines="All" Text="Code" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text11" Left="387.45" Top="47.25" Width="122.85" Height="18.9" Border.Lines="All" Text="Name" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text14" Left="510.3" Top="28.35" Width="113.4" Height="37.8" Border.Lines="All" Text="Job" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text17" Left="623.7" Top="28.35" Width="113.4" Height="37.8" Border.Lines="Right, Top, Bottom" Text="PIC" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text19" Left="737.1" Top="28.35" Width="113.4" Height="37.8" Border.Lines="All" Text="Cause" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text22" Top="28.35" Width="103.95" Height="37.8" Border.Lines="All" Text="LHM No" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text23" Left="103.95" Top="28.35" Width="75.6" Height="37.8" Border.Lines="All" Text="Date" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text24" Left="179.55" Top="28.35" Width="132.3" Height="37.8" Border.Lines="All" Text="MO No" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text25" Left="850.5" Top="28.35" Width="113.4" Height="37.8" Border.Lines="All" Text="Recommendation" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text26" Left="963.9" Top="28.35" Width="47.25" Height="37.8" Border.Lines="All" Text="Work" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text27" Left="311.85" Top="28.35" Width="198.45" Height="18.9" Border.Lines="All" Text="Maintenance" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="tDepartment" Width="907.2" Height="18.9" Font="Arial, 9pt, style=Bold"/>
+      <DataBand Name="Data1" Top="235.2" Width="1018.33" Height="18.9" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" AfterPrintEvent="Data1_AfterPrint" AfterDataEvent="Data1_AfterData" DataSource="Table">
+        <TextObject Name="Text18" Left="737.1" Width="113.4" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.Cause]" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text8" Left="311.85" Width="75.6" Height="18.9" Border.Lines="All" GrowToBottom="true" CanBreak="false" Text="[DS.MTNItem]" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text4" Width="103.95" Height="18.9" Border.Lines="All" GrowToBottom="true" CanBreak="false" Text="[DS.LHMNo]" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text6" Left="103.95" Width="75.6" Height="18.9" Border.Lines="All" GrowToBottom="true" CanBreak="false" Text="[DS.ReportDate]" Format="Custom" Format.Format="dd MMM yyyy" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text10" Left="387.45" Width="122.85" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.MTNItem_Name]" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text12" Left="510.3" Width="113.4" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.JobName]" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text16" Left="623.7" Width="113.4" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.PIC]" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text20" Left="850.5" Width="113.4" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.Recommendation]" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text7" Left="179.55" Width="132.3" Height="18.9" Border.Lines="All" GrowToBottom="true" CanBreak="false" Text="[DS.MONo]" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text21" Left="963.9" Width="47.25" Height="18.9" Border.Lines="All" GrowToBottom="true" Text="[DS.FgMTNItemWorkNormal]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="274.1" Width="1018.33"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="294.1" Width="1018.33" Height="18.9">
+      <TextObject Name="Text5" Left="914.65" Width="94.5" Height="18.9" Text="[PageN] Of [TotalPages#]" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

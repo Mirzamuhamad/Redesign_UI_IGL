@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="04/13/2011 08:29:02" ReportInfo.Modified="05/03/2016 08:40:52" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript   
+    dim iGroup, iSub as Integer
+
+    Private Sub Data1_AfterPrint(ByVal sender As object, ByVal e As EventArgs)
+      ISub += 1 
+    End Sub
+
+    Private Sub GroupFooter2_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      GroupFooter2.Visible = iGroup &gt;1
+    End Sub
+
+    Private Sub GroupHeader2_AfterPrint(ByVal sender As object, ByVal e As EventArgs)
+      iGroup=0
+    End Sub
+
+    Private Sub Text202_AfterPrint(ByVal sender As object, ByVal e As EventArgs)
+      iGroup += 1
+      ISub =0
+    End Sub
+
+    Private Sub GroupFooter3_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      GroupFooter3.Visible =isub &gt; 1
+    End Sub
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+       
+    End Sub
+
+    Private Sub GroupFooter5_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      GroupFooter5.Visible = Len(CType(Report.GetColumnValue(&quot;DS.FlowName&quot;), String)) &gt; 0
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43harkJR5z2rOIjIVm4nLrx7hi">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_GLRptCashFlowSummary 2015,1,'Actual','',0">
+        <Column Name="Column" Enabled="false" DataType="System.Int32" Calculated="true" Expression=""/>
+        <Column Name="GroupCode" DataType="System.String"/>
+        <Column Name="GroupName" DataType="System.String"/>
+        <Column Name="SubGroupCode" DataType="System.String"/>
+        <Column Name="SubGroupName" DataType="System.String"/>
+        <Column Name="Code" DataType="System.String"/>
+        <Column Name="Description" DataType="System.String"/>
+        <Column Name="Total" DataType="System.Double"/>
+        <Column Name="ColumnName" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompanyAddr" DataType="System.String"/>
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="Divide" DataType="System.Int32"/>
+        <Column Name="Type" DataType="System.String"/>
+        <Column Name="Flow" DataType="System.String"/>
+        <Column Name="FlowName" DataType="System.String"/>
+        <Column Name="FgValue" DataType="System.Int32"/>
+      </TableDataSource>
+      <TableDataSource Name="Table1" Alias="DS2" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_GLRptCashFlowSummary 2015,1,'Actual','',2">
+        <Column Name="Account" DataType="System.String"/>
+        <Column Name="Account_Name" DataType="System.String"/>
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="Total" DataType="System.Double"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="TotalTotal" Expression="[DS.Total]*[DS.FgValue]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="SubTotalTotal" Expression="[DS.Total]" Evaluator="Data1" PrintOn="GroupFooter3"/>
+    <Total Name="TotalSum" Expression="[DS2.Total]" Evaluator="Data2" PrintOn="GroupFooter1"/>
+    <Total Name="TotalFlow" Expression="[DS.Total]" Evaluator="Data1" PrintOn="GroupFooter5"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" LeftMargin="2" TopMargin="2" RightMargin="2" BottomMargin="2" MirrorMargins="true" FirstPageSource="15" OtherPagesSource="15">
+    <ColumnHeaderBand Name="ColumnHeader1" Width="800.98" Height="94.5" BeforePrintEvent="ColumnHeader1_BeforePrint">
+      <TextObject Name="Text5" Left="0.45" Top="49.25" Width="793.8" Height="18.9" Border.Lines="Bottom" Border.Style="Double" Text="Cash Flow Summary [DS.Type]" HorzAlign="Center" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text1" Left="1.45" Top="2" Width="415.8" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text72" Left="0.8" Top="24.9" Width="434.7" Height="18.9" Text="[DS.CompanyAddr]" Font="Arial, 9pt"/>
+      <TextObject Name="Text91" Left="611.25" Width="160.55" Height="9.45" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text35" Left="611.8" Top="28.35" Width="160.55" Height="9.45" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text44" Top="75.6" Width="793.8" Height="18.9" Text="[DS.ColumnName]" HorzAlign="Center" Font="Arial, 7pt"/>
+    </ColumnHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="98.5" Width="800.98" Height="47.25" StartNewPage="true" RepeatOnEveryPage="true" Condition="[DS.Currency]">
+      <TextObject Name="Text305" Width="40.8" Height="18.9" Text="Curr : " HorzAlign="Center"/>
+      <TextObject Name="Text303" Left="141.75" Width="51.79" Height="18.9" Text="Divide :" HorzAlign="Center"/>
+      <TextObject Name="Text304" Left="189" Width="88.05" Height="18.9" Text="[DS.Divide]" Format="Custom" Format.Format="###,###,###" HorzAlign="Center"/>
+      <TextObject Name="Text306" Left="47.25" Width="50.25" Height="18.9" Text="[DS.Currency]" HorzAlign="Center"/>
+      <LineObject Name="Line15" Top="42.8" Width="793.89"/>
+      <TextObject Name="Text63" Top="20.9" Width="299.4" Height="18.9" Text="Description" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <LineObject Name="Line5" Top="17.9" Width="793.89"/>
+      <TextObject Name="Text154" Left="414.8" Top="20.9" Width="145.53" Height="18.9" Text="TOTAL" HorzAlign="Center" VertAlign="Center" RightToLeft="true" Font="Arial, 10pt, style=Bold"/>
+      <GroupHeaderBand Name="GroupHeader2" Top="149.75" Width="800.98" Height="20.9" BeforePrintEvent="GroupHeader2_BeforePrint" AfterPrintEvent="GroupHeader2_AfterPrint" KeepWithData="true" Condition="[DS.GroupCode]">
+        <TextObject Name="LblNo" Left="3" Top="2" Width="411.8" Height="18.9" Text="[DS.GroupName]" HorzAlign="Right" VertAlign="Center" RightToLeft="true" WordWrap="false" Font="Arial, 10pt, style=Bold"/>
+        <GroupHeaderBand Name="GroupHeader5" Top="174.65" Width="800.98" Condition="[DS.Flow]">
+          <GroupHeaderBand Name="GroupHeader3" Top="178.65" Width="800.98" Height="16.35" Condition="[DS.SubGroupCode]">
+            <TextObject Name="Text202" Left="21.9" Top="0.45" Width="408.57" Height="15.9" CanGrow="true" CanShrink="true" AfterPrintEvent="Text202_AfterPrint" CanBreak="false" Text="[DS.SubGroupName]" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+            <DataBand Name="Data1" Top="199" Width="800.98" Height="18.9" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" AfterPrintEvent="Data1_AfterPrint" AfterDataEvent="Data1_AfterData" DataSource="Table">
+              <TextObject Name="Text203" Left="40.8" Width="403.35" Height="18.9" Text="[DS.Description]" VertAlign="Center"/>
+              <TextObject Name="Text204" Left="414.8" Width="145.53" Height="18.9" Text="[DS.Total]" Format="Custom" Format.Format="#,###;(#,###);- ;" RightToLeft="true"/>
+              <Sort>
+                <Sort Expression="[DS.Currency]"/>
+                <Sort Expression="[DS.GroupCode]"/>
+                <Sort Expression="[DS.SubGroupCode]"/>
+              </Sort>
+            </DataBand>
+            <GroupFooterBand Name="GroupFooter3" Top="221.9" Width="800.98" Height="22.35" BeforePrintEvent="GroupFooter3_BeforePrint">
+              <TextObject Name="Text236" Left="21.9" Top="3.45" Width="403.35" Height="18.9" Text="SUB TOTAL" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+              <TextObject Name="Text238" Left="414.8" Top="3.29" Width="145.53" Height="18.9" Text="[SubTotalTotal]" Format="Custom" Format.Format="#,###;(#,###);- ;" RightToLeft="true"/>
+            </GroupFooterBand>
+          </GroupHeaderBand>
+          <GroupFooterBand Name="GroupFooter5" Top="248.25" Width="800.98" Height="18.9" BeforePrintEvent="GroupFooter5_BeforePrint">
+            <TextObject Name="Text310" Left="21.92" Width="403.35" Height="18.9" Text="[DS.FlowName]" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+            <TextObject Name="Text311" Left="414.67" Width="145.53" Height="18.9" Text="[TotalFlow]" Format="Custom" Format.Format="#,###;(#,###);- ;" RightToLeft="true"/>
+          </GroupFooterBand>
+        </GroupHeaderBand>
+        <GroupFooterBand Name="GroupFooter2" Top="271.15" Width="800.98" Height="20.9" BeforePrintEvent="GroupFooter2_BeforePrint">
+          <TextObject Name="Text270" Left="3" Top="2" Width="403.35" Height="18.9" Text="TOTAL [DS.GroupName]" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TextObject Name="Text271" Left="414.8" Top="1.89" Width="145.53" Height="18.9" Text="[TotalTotal]" Format="Custom" Format.Format="#,###;(#,###);- ;" RightToLeft="true"/>
+        </GroupFooterBand>
+      </GroupHeaderBand>
+      <GroupFooterBand Name="GroupFooter1" Top="296.05" Width="800.98"/>
+    </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="300.05" Width="800.98" Height="47.25" BeforePrintEvent="ReportSummary1_BeforePrint">
+      <SubreportObject Name="Subreport1" Top="28.35" Width="94.5" Height="18.9" ReportPage="Page2"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="351.3" Width="800.98" Height="25.9" CanGrow="true" BeforePrintEvent="PageFooter1_BeforePrint">
+      <LineObject Name="Line17" Top="7" Width="793.89"/>
+    </PageFooterBand>
+  </ReportPage>
+  <ReportPage Name="Page2" Landscape="true" PaperWidth="510" PaperHeight="296.9" LeftMargin="3" RightMargin="3" FirstPageSource="1" OtherPagesSource="1">
+    <GroupHeaderBand Name="GroupHeader4" Width="1905.12" Condition="[DS2.Currency]">
+      <DataBand Name="Data2" Top="38.35" Width="1905.12" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Table1">
+        <TextObject Name="Text7" Left="4" Width="351.54" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS2.Account_Name]" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Text8" Left="358.1" Width="47.25" Height="18.9" Text="[DS2.Currency]" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Text9" Left="414.67" Top="-1" Width="145.53" Height="18.9" Text="[DS2.Total]" Format="Custom" Format.Format="#,###;(#,###);- ;" HorzAlign="Right" WordWrap="false" Font="Arial, 10pt, style=Bold" Trimming="EllipsisCharacter"/>
+        <DataHeaderBand Name="DataHeader1" Top="4" Width="1905.12" Height="30.35">
+          <TextObject Name="Text307" Left="4" Top="9.45" Width="143.64" Height="18.9" Text="Account Name" Font="Arial, 10pt, style=Bold"/>
+          <TextObject Name="Text3" Left="358.1" Top="9.45" Width="47.25" Height="18.9" Text="Curr" Font="Arial, 10pt, style=Bold"/>
+          <LineObject Name="Line1" Width="1888.11"/>
+          <LineObject Name="Line18" Top="30.35" Width="1888.11"/>
+          <TextObject Name="Text309" Left="414.67" Top="9.45" Width="145.53" Height="18.9" Text="Total" HorzAlign="Center" VertAlign="Center" RightToLeft="true" Font="Arial, 10pt, style=Bold"/>
+        </DataHeaderBand>
+        <DataFooterBand Name="DataFooter1" Top="61.25" Width="1905.12"/>
+        <Sort>
+          <Sort Expression="[DS2.Currency]"/>
+          <Sort Expression="[DS2.Account]"/>
+        </Sort>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter4" Top="65.25" Width="1905.12" Height="22.68">
+        <TextObject Name="Text37" Left="414.67" Top="3.78" Width="145.53" Height="18.9" Text="[TotalSum]" Format="Custom" Format.Format="#,###;(#,###);- ;" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+        <LineObject Name="Line19" Width="1888.11"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+  </ReportPage>
+</Report>

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="10/01/2013 16:14:00" ReportInfo.Modified="04/26/2016 14:59:45" ReportInfo.CreatorVersion="1.2.47.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haq9kEsMsXB9PC1ZheTvIjcl">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_GLRptPLMonthly 2014,12,1,1,2014,12,'','','','',0,0,'N','N',''">
+        <Column Name="Total" DataType="System.Double"/>
+        <Column Name="Year" DataType="System.Int32"/>
+        <Column Name="Period" DataType="System.Int32"/>
+        <Column Name="PeriodName" DataType="System.String"/>
+        <Column Name="ItemCode" DataType="System.String"/>
+        <Column Name="ItemName" DataType="System.String"/>
+        <Column Name="Percentage" DataType="System.Decimal"/>
+        <Column Name="ItemNo" DataType="System.Int32"/>
+        <Column Name="Strperiod" DataType="System.String"/>
+        <Column Name="CompName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="420" PaperHeight="290" FirstPageSource="14" OtherPagesSource="14">
+    <ReportTitleBand Name="ReportTitle1" Width="1512" Height="4.45"/>
+    <PageHeaderBand Name="PageHeader1" Top="8.3" Width="1512" Height="89.56">
+      <TextObject Name="Text22" Width="274.05" Height="28.35" Text="[DS.CompName]" AutoWidth="true" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text3" Left="129.75" Top="49.25" Width="1256.85" Height="18.9" Anchor="Top" Text="PROFIT LOSS MONTHLY" HorzAlign="Center" VertAlign="Center" Font="Arial, 14.25pt, style=Bold"/>
+      <TextObject Name="Text2" Top="29.35" Width="548.1" Height="18.9" Text="[DS.CompAddr]"/>
+      <TextObject Name="Text35" Left="1304.1" Top="75.6" Width="160.65" Height="11.34" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text37" Left="1304.1" Top="18.9" Width="160.65" Height="11.34" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 7pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="101.7" Width="1512" Height="63.5">
+      <MatrixObject Name="Matrix1" Left="0.45" Top="4.45" Width="400.68" Height="54.05" FixedRows="2" FixedColumns="1" AutoSize="false" CellsSideBySide="true" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="[DS.PeriodName]" Sort="None" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.ItemName]" Sort="None" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.Total]"/>
+          <Cell Expression="[DS.Percentage]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="230.58"/>
+        <TableColumn Name="Column2" Width="113.4"/>
+        <TableColumn Name="Column3" Width="56.7"/>
+        <TableRow Name="Row1" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell1" Border.Lines="All" Text="DESCRIPTION" VertAlign="Center" Font="Arial, 8pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell2" Border.Lines="All" Text="[PeriodName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" ColSpan="2"/>
+          <TableCell Name="Cell7"/>
+        </TableRow>
+        <TableRow Name="Row2" AutoSize="true">
+          <TableCell Name="Cell3"/>
+          <TableCell Name="Cell4" Border.Lines="All" Text="TOTAL" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell8" Border.Lines="All" Text="%" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row3" AutoSize="true">
+          <TableCell Name="Cell5" Border.Lines="All" Text="[ItemName]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell6" Border.Lines="All" Text="[Total]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell9" Border.Lines="All" Text="[Percentage]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="169.05" Width="1512" Height="18.9"/>
+  </ReportPage>
+</Report>

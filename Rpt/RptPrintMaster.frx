@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="03/29/2011 16:25:53" ReportInfo.Modified="05/10/2019 14:23:32" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>
+Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+
+Namespace FastReport
+  Public Class ReportScript
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+        Text1.Text = CType(Report.GetColumnValue(&quot;DS.UserID&quot;), String)  
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haqt/phPGpHdG+G9xBzNQ8OL">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_FormPrintMaster 'MsJob', 'JobCode', 'JobCode','JobName','Job File','Job Code','Job Name', '', admin">
+        <Column Name="CODE" DataType="System.String"/>
+        <Column Name="NAME" DataType="System.String"/>
+        <Column Name="Title" DataType="System.String"/>
+        <Column Name="Column1" DataType="System.String"/>
+        <Column Name="Column2" DataType="System.String"/>
+        <Column Name="UserID" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompanyAddr" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" FirstPageSource="15" OtherPagesSource="15" Guides="0,728.65,5,210.9,215.35,726.65,2,540.65,482.44,545.2,724.75,187.22,550.1,3,209.01,215.46,726.89,594.45,726.75">
+    <PageHeaderBand Name="PageHeader1" Width="740.5" Height="121.04" Guides="95.59,121.04,101.04,119.94,100.59,119.49,4.1,23,29.45,48.35,52.8,81.15,75.8,87.14">
+      <ShapeObject Name="Shape1" Top="95.59" Width="728.65" Height="25.45"/>
+      <TextObject Name="Text3" Left="5" Top="101.04" Width="205.9" Height="18.9" Text="[DS.Column1]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text7" Left="215.35" Top="100.59" Width="511.3" Height="18.9" Text="[DS.Column2]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text56" Left="2" Top="4.1" Width="538.65" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text55" Left="2" Top="27.45" Width="285.44" Height="37.8" Text="[DS.CompanyAddr]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text57" Left="545.2" Top="29.45" Width="179.55" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text15" Left="187.22" Top="61.25" Width="362.88" Height="28.35" Text="[DS.Title]" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text35" Left="545.2" Top="75.8" Width="179.55" Height="11.34" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="124.49" Width="740.5" Height="22.9" AfterDataEvent="Data1_AfterData" Guides="4,22.9" DataSource="Table">
+      <TextObject Name="Text2" Left="3" Top="4" Width="206.01" Height="18.9" Text="[DS.CODE]" Font="Arial, 8pt" Duplicates="Hide"/>
+      <TextObject Name="Text6" Left="215.46" Top="4" Width="511.43" Height="18.9" Text="[DS.NAME]" Font="Arial, 8pt"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="150.84" Width="740.5" Height="28.35" Guides="0,6.45,25.35">
+      <LineObject Name="Line1" Width="726.65"/>
+      <TextObject Name="Text1" Left="594.45" Top="6.45" Width="132.3" Height="18.9" Text="[DS.UserID]" HorzAlign="Right" Font="Arial, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

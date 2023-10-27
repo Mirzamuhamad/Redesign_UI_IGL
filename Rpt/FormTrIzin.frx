@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="05/20/2011 08:38:19" ReportInfo.Modified="10/10/2014 18:33:59" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+   Public Class ReportScript
+            
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+         Text2.Text = CType(Report.GetColumnValue(&quot;DS.ISODocNo&quot;), String)
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haoA81fomDvf06mDzYD5xC9N">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PEFormIzin ''">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="Column" Enabled="false" DataType="System.Int32" Calculated="true" Expression=""/>
+        <Column Name="Company" DataType="System.String"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="EmpNumb" DataType="System.String"/>
+        <Column Name="EmpName" DataType="System.String"/>
+        <Column Name="JobTtlCode" DataType="System.String"/>
+        <Column Name="JobTtlName" DataType="System.String"/>
+        <Column Name="DeptCode" DataType="System.String"/>
+        <Column Name="DeptName" DataType="System.String"/>
+        <Column Name="DateComplete" DataType="System.DateTime"/>
+        <Column Name="CompStartHour" DataType="System.String"/>
+        <Column Name="CompEndHour" DataType="System.String"/>
+        <Column Name="Keluhan" DataType="System.String"/>
+        <Column Name="RemarkComp" DataType="System.String"/>
+        <Column Name="SACompany" DataType="System.String"/>
+        <Column Name="SAAddress" DataType="System.String"/>
+        <Column Name="SACity" DataType="System.String"/>
+        <Column Name="SAPostCode" DataType="System.String"/>
+        <Column Name="Tahun" DataType="System.Int32"/>
+        <Column Name="Bulan" DataType="System.String"/>
+        <Column Name="Hari" DataType="System.Int32"/>
+        <Column Name="Address" DataType="System.String"/>
+        <Column Name="ISODocNo" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" FirstPageSource="15" OtherPagesSource="15" Guides="0,453.6,1,738.1,738.2,9.45,289.14,410.08,614.17,28.35,402.52,66.15,213.33,214.35,224.91,226.8,759.71,557.48,691.68,364.73,214.33,215.35,75.6,234.34,283.47,302.4,491.38,529.2,725.74,755.91,226.78,453.58,680.38,283.5,737.1">
+    <PageHeaderBand Name="PageHeader1" Top="20" Width="740.5" Height="207.9" BeforePrintEvent="PageHeader1_BeforePrint" Guides="0,18.9,92.05,120.4,87.05,141.75,164.43,183.32,206">
+      <TextObject Name="Text3" Width="453.6" Height="18.9" Text="[DS.Company]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text1" Left="1" Top="92.05" Width="737.1" Height="28.35" Text="PERMOHONAN IZIN PULANG / KELUAR KANTOR" HorzAlign="Center" VertAlign="Center" Font="Arial, 16pt, style=Bold"/>
+      <LineObject Name="Line2" Top="87.05" Width="738.2"/>
+      <TextObject Name="Memo2" Left="9.45" Top="141.75" Width="279.69" Height="22.68" Text="Kepada Yth," Padding="2, 1, 2, 1" Font="Arial, 11pt"/>
+      <TextObject Name="Memo44" Left="9.45" Top="164.42" Width="400.63" Height="18.9" Text="Kepala Bagian Personalia" Padding="2, 1, 2, 1" Font="Arial, 11pt"/>
+      <TextObject Name="spRptSACompany" Left="9.45" Top="183.32" Width="604.72" Height="22.68" Text="[DS.SACompany]" Padding="2, 1, 2, 1" Font="Arial, 11pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="247.9" Width="740.5" Height="533.65" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" AfterDataEvent="Data1_AfterData" Guides="18.9,41.58,56.7,75.6,94.5,95.5,114.4,115.4,134.3,79.05,97.95,116.85,135.75,160.65,183.33,77.05,96.95,189,211.68,209.9,228.8,247.7,266.6,208.9,227.8,229.8,248.7,267.6,228.35,396.9,415.8,510.3,529.2,434.7,453.6,472.5" DataSource="Table">
+      <TextObject Name="spRptItemNo" Left="28.35" Top="18.9" Width="374.17" Height="22.68" CanGrow="true" CanShrink="true" Text="Yang bertandatangan dibawah ini," Padding="2, 1, 2, 1" HorzAlign="Justify" Font="Arial, 11pt"/>
+      <TextObject Name="spRptMaterialName" Left="66.15" Top="56.7" Width="147.18" Height="18.9" CanGrow="true" CanShrink="true" Text="Nama" Padding="2, 1, 2, 1" Font="Arial, 11pt"/>
+      <TextObject Name="spRptSpecification" Left="66.15" Top="75.6" Width="147.18" Height="18.9" CanGrow="true" CanShrink="true" Text="Organization" Padding="2, 1, 2, 1" Font="Arial, 11pt"/>
+      <TextObject Name="spRptRemark" Left="66.15" Top="95.5" Width="147.18" Height="18.9" CanGrow="true" CanShrink="true" Text="N I K" Padding="2, 1, 2, 1" Font="Arial, 11pt"/>
+      <TextObject Name="Memo3" Left="66.15" Top="115.4" Width="147.18" Height="18.9" CanGrow="true" CanShrink="true" Text="Alasan" Padding="2, 1, 2, 1" Font="Arial, 11pt"/>
+      <TextObject Name="Memo4" Left="214.35" Top="56.7" Width="10.56" Height="18.9" CanGrow="true" CanShrink="true" Text=":" Padding="2, 1, 2, 1" Font="Arial, 11pt"/>
+      <TextObject Name="Memo5" Left="214.35" Top="75.6" Width="10.56" Height="18.9" CanGrow="true" CanShrink="true" Text=":" Padding="2, 1, 2, 1" Font="Arial, 11pt"/>
+      <TextObject Name="Memo6" Left="214.35" Top="95.5" Width="10.56" Height="18.9" CanGrow="true" CanShrink="true" Text=":" Padding="2, 1, 2, 1" Font="Arial, 11pt"/>
+      <TextObject Name="Memo7" Left="214.35" Top="115.4" Width="10.56" Height="18.9" CanGrow="true" CanShrink="true" Text=":" Padding="2, 1, 2, 1" Font="Arial, 11pt"/>
+      <TextObject Name="spRptEmpName" Left="226.8" Top="56.7" Width="532.91" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.EmpName]" Padding="2, 1, 2, 1" VertAlign="Center" Font="Arial, 11pt"/>
+      <TextObject Name="spRptDeptName" Left="226.8" Top="79.05" Width="532.91" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.DeptName]" Padding="2, 1, 2, 1" VertAlign="Center" Font="Arial, 11pt"/>
+      <TextObject Name="spRptEmpNumb" Left="226.8" Top="97.95" Width="532.91" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.EmpNumb]" Padding="2, 1, 2, 1" VertAlign="Center" Font="Arial, 11pt"/>
+      <TextObject Name="spRptKeluhan" Left="226.8" Top="116.85" Width="532.91" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.Keluhan]" Padding="2, 1, 2, 1" VertAlign="Center" Font="Arial, 11pt"/>
+      <TextObject Name="Memo8" Left="28.35" Top="160.65" Width="529.13" Height="22.68" CanGrow="true" CanShrink="true" Text="Dengan ini mohon IZIN PULANG / KELUAR KANTOR pada :" Padding="2, 1, 2, 1" HorzAlign="Justify" Font="Arial, 11pt"/>
+      <LineObject Name="Line6" Left="226.8" Top="77.05" Width="464.88" Border.Style="Dot"/>
+      <LineObject Name="Line7" Left="226.8" Top="96.95" Width="464.88" Border.Style="Dot"/>
+      <LineObject Name="Line8" Left="226.8" Top="116.85" Width="464.88" Border.Style="Dot"/>
+      <LineObject Name="Line9" Left="226.8" Top="135.75" Width="464.88" Border.Style="Dot"/>
+      <TextObject Name="Memo9" Left="66.15" Top="189" Width="298.58" Height="22.68" CanGrow="true" CanShrink="true" Text="Catatan Personalia" Padding="2, 1, 2, 1" Font="Arial, 11pt, style=Bold, Underline"/>
+      <TextObject Name="Memo10" Left="66.15" Top="209.9" Width="148.18" Height="18.9" CanGrow="true" CanShrink="true" Text="Tanggal" Padding="2, 1, 2, 1" Font="Arial, 11pt"/>
+      <TextObject Name="Memo11" Left="66.15" Top="228.8" Width="148.18" Height="18.9" CanGrow="true" CanShrink="true" Text="Istirahat dari jam" Padding="2, 1, 2, 1" Font="Arial, 11pt"/>
+      <TextObject Name="Memo12" Left="66.15" Top="247.7" Width="148.18" Height="18.9" CanGrow="true" CanShrink="true" Text="Sampai jam" Padding="2, 1, 2, 1" Font="Arial, 11pt"/>
+      <TextObject Name="Memo14" Left="215.35" Top="209.9" Width="9.56" Height="18.9" CanGrow="true" CanShrink="true" Text=":" Padding="2, 1, 2, 1" Font="Arial, 11pt"/>
+      <TextObject Name="Memo15" Left="215.35" Top="228.8" Width="9.56" Height="18.9" CanGrow="true" CanShrink="true" Text=":" Padding="2, 1, 2, 1" Font="Arial, 11pt"/>
+      <TextObject Name="Memo16" Left="215.35" Top="247.7" Width="9.56" Height="18.9" CanGrow="true" CanShrink="true" Text=":" Padding="2, 1, 2, 1" Font="Arial, 11pt"/>
+      <TextObject Name="spRptHari" Left="226.8" Top="208.9" Width="532.91" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.Hari] [DS.Bulan] [DS.Tahun]" Padding="2, 1, 2, 1" VertAlign="Center" Font="Arial, 11pt"/>
+      <TextObject Name="spRptCompStartHour" Left="226.8" Top="229.8" Width="532.91" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.CompStartHour]" Padding="2, 1, 2, 1" VertAlign="Center" Font="Arial, 11pt"/>
+      <TextObject Name="spRptCompStartHour1" Left="226.8" Top="248.7" Width="532.91" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.CompEndHour]" Padding="2, 1, 2, 1" VertAlign="Center" Font="Arial, 11pt"/>
+      <LineObject Name="Line10" Left="226.8" Top="228.35" Width="464.88" Border.Style="Dot"/>
+      <LineObject Name="Line11" Left="226.8" Top="247.7" Width="464.88" Border.Style="Dot"/>
+      <LineObject Name="Line12" Left="226.8" Top="267.6" Width="464.88" Border.Style="Dot"/>
+      <TextObject Name="Memo18" Left="75.6" Top="396.9" Width="158.74" Height="18.9" CanGrow="true" CanShrink="true" Text="Karyawan Ybs," Padding="2, 1, 2, 1" Font="Arial, 11pt"/>
+      <TextObject Name="spRptEmpName1" Left="75.6" Top="510.3" Width="207.87" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.EmpName]" Padding="2, 1, 2, 1" Font="Arial, 11pt"/>
+      <TextObject Name="Memo19" Left="302.4" Top="396.9" Width="188.98" Height="18.9" CanGrow="true" CanShrink="true" Text="Mengetahui / Menyetujui," Padding="2, 1, 2, 1" Font="Arial, 11pt"/>
+      <TextObject Name="Memo20" Left="302.4" Top="415.8" Width="188.98" Height="18.9" CanGrow="true" CanShrink="true" Text="Kepala Divisi Bagian" Padding="2, 1, 2, 1" Font="Arial, 11pt"/>
+      <TextObject Name="Memo21" Left="529.2" Top="396.9" Width="196.54" Height="18.9" CanGrow="true" CanShrink="true" Text="Menyetujui," Padding="2, 1, 2, 1" Font="Arial, 11pt"/>
+      <TextObject Name="Memo22" Left="529.2" Top="415.8" Width="196.54" Height="18.9" CanGrow="true" CanShrink="true" Text="GA Office / Factory" Padding="2, 1, 2, 1" Font="Arial, 11pt"/>
+      <TextObject Name="Memo24" Top="453.6" Width="755.91" Height="18.9" CanGrow="true" CanShrink="true" Padding="2, 1, 2, 1" Font="Arial, 11pt"/>
+      <LineObject Name="Line13" Left="75.6" Top="529.2" Width="151.18"/>
+      <LineObject Name="Line14" Left="302.4" Top="529.2" Width="151.18"/>
+      <LineObject Name="Line3" Left="529.2" Top="529.2" Width="151.18"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="801.55" Width="740.5" Height="21.9" Guides="0,18.9">
+      <LineObject Name="Line1" Width="738.2"/>
+      <TextObject Name="Text2" Left="283.5" Width="453.6" Height="18.9" Text="[DS.ISODocNo]" HorzAlign="Right" VertAlign="Center" Font="Arial, 6.5pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

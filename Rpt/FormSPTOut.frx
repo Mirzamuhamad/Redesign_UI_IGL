@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="04/21/2011 08:48:38" ReportInfo.Modified="08/20/2021 17:55:26" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.QrCode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+  Dim No As Integer  
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+     ' No = No +1
+     ' Text58.Text = No
+   'TextF.Text = CType(Report.GetColumnValue(&quot;DS.AngkutJam&quot;), String)
+   'TextR.Text = CType(Report.GetColumnValue(&quot;DS.TPH&quot;), String )
+   'TextS.Text = FormatDateTime(CType(Report.GetColumnValue(&quot;DS.AngkutDate&quot;), DateTime ),&quot;dd MMM yyyy&quot;) 
+  ' TextS.Text = CType(Report.GetColumnValue(&quot;DS.AngkutDate&quot;), String)
+       
+    End Sub
+    
+                                
+    Private Sub ReportSummary1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+ 
+    
+   
+    
+
+    Private Sub PageFooter1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+     
+    End Sub
+    End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLCerhH8KdWxiXlqQvHAmKjuC35k2/RQ+ukwx6x11e7rL5aYXQINMislopVGDBVMyA5CsBcKQ+i3ba/YWoirCgnzCDmqiK1tiyXLrdM3So8fS7rmksPbRgPzTBw76bk4tpPbePgXhGreb0qB7UwHnnzOXxJHurZTf7HC2mP/s1ykgJD7kD8h+iAP0vyhjBLkmvw==">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PLFormSPTOut'''IAL/SPO/2010/0001'''">
+        <Column Name="Column" Enabled="false" DataType="System.Int32" Calculated="true" Expression=""/>
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="CarNo" DataType="System.String"/>
+        <Column Name="IsiQrcode" DataType="System.String"/>
+        <Column Name="Do_No" DataType="System.String"/>
+        <Column Name="So_No" DataType="System.String"/>
+        <Column Name="CarName" DataType="System.String"/>
+        <Column Name="Customer" DataType="System.String"/>
+        <Column Name="CustomerName" DataType="System.String"/>
+        <Column Name="Operator" DataType="System.String"/>
+        <Column Name="OperatorName" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="70" PaperHeight="50" LeftMargin="5" TopMargin="0" RightMargin="5" BottomMargin="0" FirstPageSource="256" OtherPagesSource="256" Guides="189,132.3,132.3,132.3" StartPageEvent="Page1_StartPage">
+    <ColumnHeaderBand Name="ColumnHeader1" Width="226.8" Height="18.9">
+      <TextObject Name="Text1" Left="79.05" Top="5" Width="71.15" Height="13.9" Text="SLIP SPT-OUT" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 8pt, style=Bold"/>
+    </ColumnHeaderBand>
+    <DataBand Name="Data1" Top="20.01" Width="226.8" Height="158.3" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" AfterDataEvent="Data1_AfterData" DataSource="Table">
+      <BarcodeObject Name="Barcode1" Left="63.8" Top="2.55" Width="99.05" Height="95.1" BeforePrintEvent="PageHeader1_AfterData" AutoSize="false" DataColumn="DS.IsiQrcode" ShowText="false" Barcode="Datamatrix" Barcode.SymbolSize="Auto" Barcode.Encoding="Auto" Barcode.CodePage="1252" Barcode.PixelSize="3"/>
+      <TextObject Name="Text2" Left="13.35" Top="124.5" Width="59.6" Height="9.55" Text="No Kendaraan" Font="Arial Narrow, 6pt"/>
+      <TextObject Name="Text3" Left="13.35" Top="113.6" Width="51.7" Height="9.55" Text="Nama Supir" Font="Arial Narrow, 6pt"/>
+      <TextObject Name="Text5" Left="60.4" Top="113.5" Width="9.1" Height="9.55" Text=":" Font="Arial Narrow, 6pt, style=Bold"/>
+      <TextObject Name="Text7" Left="60.4" Top="124.5" Width="8.1" Height="9.55" Text=":" Font="Arial Narrow, 6pt, style=Bold"/>
+      <TextObject Name="Text8" Left="66.95" Top="123.95" Width="149.75" Height="9.55" Text="[DS.CarNo]" Font="Arial Narrow, 6pt"/>
+      <TextObject Name="Text9" Left="66.95" Top="113.7" Width="149.75" Height="9.8" Text="[DS.OperatorName] - [DS.Operator] " Font="Arial Narrow, 6pt"/>
+      <LineObject Name="Line1" Left="16.35" Top="110.15" Width="190.1"/>
+      <TextObject Name="Text4" Left="13.35" Top="135.3" Width="50.7" Height="9.55" Text="Customer" Font="Arial Narrow, 6pt"/>
+      <TextObject Name="Text6" Left="60.6" Top="135.3" Width="8.1" Height="9.55" Text=":" Font="Times New Roman, 6pt, style=Bold"/>
+      <TextObject Name="Text10" Left="67.05" Top="134.3" Width="149.75" Height="9.55" Text="[DS.CustomerName]" Font="Arial Narrow, 6pt"/>
+      <TextObject Name="Text11" Left="13.35" Top="144.75" Width="50.7" Height="9.55" Text="Product" Font="Arial Narrow, 6pt"/>
+      <TextObject Name="Text12" Left="60.6" Top="144.75" Width="8.1" Height="9.55" Text=":" Font="Times New Roman, 6pt, style=Bold"/>
+      <TextObject Name="Text13" Left="67.05" Top="143.75" Width="149.75" Height="9.55" Text="CPO" Font="Arial Narrow, 6pt"/>
+      <TextObject Name="Text14" Left="40.6" Top="98.8" Width="149.75" Height="9.8" Text="[DS.TransNmbr]" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 6pt"/>
+    </DataBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="179.42" Width="226.8" AfterDataEvent="ReportSummary1_AfterData"/>
+    <PageFooterBand Name="PageFooter1" Top="180.53" Width="226.8" CanGrow="true" BeforePrintEvent="PageFooter1_BeforePrint" AfterDataEvent="PageFooter1_AfterData"/>
+  </ReportPage>
+</Report>

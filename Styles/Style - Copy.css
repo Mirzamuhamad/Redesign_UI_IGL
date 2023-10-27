@@ -1,0 +1,935 @@
+
+/*@font-face 
+
+        {
+            font-family: 'Roboto'; 
+            font-style: normal;
+   			 font-weight: normal;
+            src: url('../Roboto/Roboto-Condensed.ttf');
+        }
+*/
+
+a {
+	text-decoration: none;
+	font-size: 11px;
+	font-family: Roboto;
+	font-weight: bold;
+	color: #0092C8;
+	border-radius: 4px;
+}
+.H1
+{
+	font-size: 20px;	
+	font-weight:bold;
+	color: #4f4f4f;
+	text-transform: uppercase;
+	font-family: Roboto;
+		
+}
+
+.Advence-search {
+	background-image: url(../Image/icon-advance.png);
+  padding-top: 10px;
+  border-radius: 5px;
+  background-color: #0092C8;
+  font-weight: bold;
+  font-family: Roboto;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  padding-top: 8px;
+  padding-bottom: 6px;
+  padding-left: 25px;
+  padding-right: 5px;
+  width: 100px;
+  cursor: pointer;
+  margin-left: 5px;
+  text-decoration: none;
+  background-repeat: no-repeat;
+  background-position:left; 
+}	
+
+.Advence-search:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/icon-advance.png);
+	   background-color: #5DA2D4;
+        /*background-color:transparent;        */
+        background-position:left; 
+	}	
+
+
+.Hr
+{
+	
+	color: #d1d1d1;
+	border-color: #d1d1d1;
+	/*border-radius: 5px;*/
+		
+}
+
+.lbstatus{
+  padding-top: 10px;
+  border-radius: 5px;
+  background-color: #0092C8;
+  font-weight: bold;
+  font-family: Roboto;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  padding-top: 8px;
+  padding-bottom: 6px;
+  padding-left: 50px;
+  padding-right: 100px;
+  width: 400px;
+  cursor: pointer;
+  margin-left: 5px;
+  text-decoration: none;
+}
+
+.DropDownList
+{
+	font-family: Roboto;	
+	font-size: 11px;
+	height: 28px;
+	border: 1px solid #ccc;
+  	border-radius: 4px;
+  	resize: vertical;
+  	color: #333333;
+}
+
+ .TextBox
+{
+	font-family: Roboto;	
+	font-size: 11px;
+	height: 24px;
+	border: 1px solid #ccc;
+  	border-radius: 4px;
+  	color: #333333;
+  
+}
+
+.TextBoxSP
+{
+	font-family: Roboto;	
+	font-size: 11px;
+	height: 24px;
+	border: 1px solid #ccc;
+  	border-radius: 4px;
+  	resize: vertical;
+	text-align:right;
+	color: #333333;
+}
+
+.TextBoxR
+{
+	color: #333333;
+	font-family: Roboto;	
+	font-size: 11px;
+	height: 24px;
+	border: 1px solid #ccc;
+  	border-radius: 4px;
+  	resize: vertical;
+	background-color: #ebebe4;	
+}
+
+.TextBoxMulti
+{
+	color: #333333;
+	font-family: Roboto;	
+	font-size: 11px;	
+	height: 40px; 
+}
+
+.TextBoxMultiR
+{
+	color: #333333;
+	font-family: Roboto;	
+	font-size: 11px;
+	background-color: #ebebe4;
+	height: 40px; 
+}
+
+.Button
+{
+	font-family: Roboto;	
+	font-size:11px;
+
+}
+
+.ButtonR
+{	background-color : Transparent;		
+ 	border-style: none;
+	display: none;
+}
+
+.Content
+{
+	font-family: Roboto;	
+	font-size: 11px;
+	color: #333333;
+}
+
+.Watermarked
+{
+	font-family:Roboto;
+	color :Silver;
+	font-size:11px;
+}
+
+.Grid
+{
+	border: solid 1px white;
+}
+
+
+
+.Grid td
+{
+	border: solid 2px #FFFFFF;
+	margin: 2px 2px 2px 2px;
+	font-family: Roboto;
+	padding: 3px 3px 3px 3px;
+	border-radius: 5px;
+	width: 10px;
+	/*text-align: center;	*/
+	
+}
+
+.GridHeader
+{	
+	color:White;
+	font-weight:bold;
+	background-color: #0092c8; /*#cc9900;	*/
+	text-align:center;
+	font-size: 11px;
+	height: 40px;
+	letter-spacing: 0.5px;
+}
+
+.GridHeader a
+{
+	text-decoration: none;			
+	color: white;	
+	padding: 0px 15px 0px 15px;
+	/*text-align:center;*/
+}
+
+.GridItem, .GridAltItem
+{
+	font-size: 11px;
+	
+}
+
+/*grid detail css*/
+.GridItem
+{
+	background-color: #F1FBFF;
+	/*color: Black;*/
+	height: 30px;
+}
+
+.GridItem td 
+{
+	border: solid 2px #FFFFFF;
+	margin: 2px 2px 2px 2px;
+	font-family: Roboto;
+	padding: 3px 3px 3px 3px;	
+	
+}
+/*==================*/
+
+
+/*tr td {
+border: solid 2px #FFFFFF;
+}*/
+
+.GridFooter
+{	
+	color: whitesmoke;
+}
+
+
+
+/*cs untuk detail tabel*/
+.GridAltItem
+{
+	background-color: White;
+	height: 30px;
+}
+
+.GridAltItem td 
+{
+	border: solid 2px #FFFFFF;
+	margin: 2px 2px 2px 2px;
+	font-family: Roboto;
+	padding: 3px 3px 3px 3px;	
+	
+}
+
+.GridFilter
+{
+	background-color: Gray;
+	color: Black;
+	font-size: 11px;
+}
+
+.GridFilter a
+{
+	text-decoration: none;
+}
+
+.GridPager
+{
+	font-size: x-small;
+	background-color: #F7F7DE;
+	color : #4f4f4f;
+	font-size: 11px;
+	font-family: Roboto;
+
+}
+
+.ob_gEC
+{
+	padding: 0px;
+	font-family: Roboto;
+	font-size: 11px;
+	color: #202426;			
+	background-color: #FFFFFF;	
+	border: 1px solid #196585;
+}
+
+.TextDate
+{
+	font-family: Roboto; 
+	font-size: 11px;
+	/*background-color: Silver;*/
+	width: 80px; 
+	height: 	26px;
+	border: 1px solid #ccc;
+  	border-radius: 4px;
+  	resize: vertical;
+  	color: #333333;
+
+}
+
+.Menu
+{
+	font-family: Roboto;	
+	font-size: 11px;
+	font-weight:bold;	
+
+}
+
+.MenuItem
+{
+	background-color: #FEE0C6;
+	color: Black;
+	border-color: Black;
+    border-width: 1px;	
+    /*border-style: groove;*/
+    padding: 0px 11px 0px 11px;
+    height: 	30px;
+    border-radius: 4px;
+}
+
+.MenuSelect
+{
+	background-color: #d2691e;
+	color: White;
+	border-color:White;	
+	border-width: 1px;	
+}
+
+.bitbtn
+	{
+	    background-repeat: no-repeat;        
+        background-position:left;
+        /*background-color:Transparent;        */
+	    /*border:1px solid #a1a1a1;*/
+	    /*padding:0px 20px; */
+	    text-align:left;
+	    font-weight: bold;
+	    letter-spacing: 1px;
+	    padding:0 0 0 20px; 
+	    /*font: bold 0.9em/1.8em Arial, Helvetica;	*/
+	    font-family: Roboto;	
+        white-space: nowrap;
+        /*background-color: #ddd;    */
+        /*margin: 0 0 0 px;       */
+	    width:70px;
+	    -moz-box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+        -webkit-box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+	    /*text-shadow: 0 1px 0 rgba(255,255,255,.8);*/
+        -webkit-border-radius: 5px;        
+        -moz-border-radius:5px; /* Firefox 3.6 and earlier */
+        border-radius:5px;
+	}
+	        
+    .bitbtn:hover
+    {
+        /*background-color: #eee; 
+              */
+        ackground-color: #5DA2D4;
+        background-position:left; 
+        background-repeat: no-repeat;        
+        /*background-image: url(../Image/key.bmp);*/
+        /*background-image: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#ddd));
+        background-image: -webkit-linear-gradient(top, #fafafa, #ddd);
+        background-image: -moz-linear-gradient(top, #fafafa, #ddd);
+        background-image: -ms-linear-gradient(top, #fafafa, #ddd);
+        background-image: -o-linear-gradient(top, #fafafa, #ddd);
+        background-image: linear-gradient(top, #fafafa, #ddd); */
+    }
+    
+    .bitbtn:active
+    {
+        background-repeat: no-repeat;
+        -moz-box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;
+        -webkit-box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;
+        /*box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;*/
+        position: relative;
+        top: px;
+    }
+    
+    .bitbtn:focus
+    {	background-repeat: no-repeat;
+        outline: 0;
+        background: #5DA2D4;
+    }    
+    
+    .bitbtn:before
+    {
+        background-repeat: no-repeat;
+        background: #5DA2D4;
+        background: rgba(0,0,0,.1);                
+        float: left;        
+        width: 1em;
+        text-shadow: 0 1px 0 rgba(0,0,0,.4);
+        text-align: center;
+        font-size: 1.5em;
+        margin: 0 1em 0 -1em;
+        padding: 0 .2em;        
+		
+        -moz-box-shadow: 1px 0 0 rgba(0,0,0,.5), 2px 0 0 rgba(255,255,255,.5);
+        -webkit-box-shadow: 1px 0 0 rgba(0,0,0,.5), 2px 0 0 rgba(255,255,255,.5);
+        /*box-shadow: 1px 0 0 rgba(0,0,0,.5), 2px 0 0 rgba(255,255,255,.5);*/
+        -moz-border-radius: .15em 0 0 .15em;
+        -webkit-border-radius: .15em 0 0 .15em;
+        /*border-radius: .15em 0 0 .15em;     
+        pointer-events: none;		*/
+    }
+
+.bitbtndt
+	{
+	    background-repeat: no-repeat;        
+        background-position:left;
+        background-color:Transparent;        
+	    /*border:1px solid #a1a1a1;*/
+	    /*padding:0px 20px; */
+	    text-align:left;
+	    padding:0 0 0 20px; 
+	    font-weight: bold;
+	     font-family: Roboto;
+	    /*font: bold 0.9em/1.8em Arial, Helvetica;	*/
+        white-space: nowrap;
+        background-color: #ddd;
+        margin: 0 0 0 0px;       
+	    /*text-shadow: 0 1px 0 rgba(255,255,255,.8);*/
+        -moz-border-radius: .2em;
+        -webkit-border-radius: .2em;        
+        -moz-box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+        -webkit-box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+	    border-radius:5px;
+	    -moz-border-radius:5px; 
+	    /* Firefox 3.6 and earlier */
+	}
+	        
+    .bitbtndt:hover
+    {
+        /*background-color: #eee;       */
+        /*background-color:transparent;*/
+        background-position:left; 
+        background-repeat: no-repeat;        
+        /*background-image: url(../Image/key.bmp);*/
+        /*background-image: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#ddd));
+        background-image: -webkit-linear-gradient(top, #fafafa, #ddd);
+        background-image: -moz-linear-gradient(top, #fafafa, #ddd);
+        background-image: -ms-linear-gradient(top, #fafafa, #ddd);
+        background-image: -o-linear-gradient(top, #fafafa, #ddd);
+        background-image: linear-gradient(top, #fafafa, #ddd); */
+    }
+    
+    .bitbtndt:active
+    {
+        -moz-box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;
+        -webkit-box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;
+        /*box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;*/
+        position: relative;
+        top: 1px;
+    }
+    
+    .bitbtndt:focus
+    {
+        outline: 0;
+        background: #fafafa;
+    }    
+    
+	.btnadd
+	{   
+		background-image: url(../Image/icon-add.png);
+		height:28px;
+		width: 80px;
+		text-align: center;
+	      font-size: 11px;	    	    
+		  border:1px solid #a1a1a1;	    
+		  background-color: #0092C8;
+		  color: white;
+		  margin-left: 5px;
+		  border: none;
+		  border-radius: 4px;
+		  cursor: pointer;
+		  outline:0px !important;
+    	  box-shadow: none !important;
+	}	
+	.btnadd:hover
+	{  background-repeat: no-repeat;
+	   /*background-image: url(../Image/iadd2.bmp);*/
+	   background-color: #5DA2D4;
+        /*background-color:transparent;        */
+        background-position:left; 
+	}
+
+	.btnedit
+	{   background-image: url(../Image/icon-edit.png);
+			height:28px;
+			width: 80px;
+		text-align: center;
+	      font-size: 11px;	    	    
+		  border:1px solid #a1a1a1;	    
+		  background-color: #0092C8;
+		  color: white;
+		  margin-left: 5px;
+		  border: none;
+		  border-radius: 4px;
+		  cursor: pointer;
+		  outline:0px !important;
+    	  box-shadow: none !important;
+    	  	}
+	.btnedit:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/icon-edit.png);	
+	   background-color: #5DA2D4;
+        /*background-color:transparent;        */
+        background-position:left; 
+        background-repeat: no-repeat;	
+	}
+	
+	.btndelete
+	{   background-image: url(../Image/icon-delete.png); 
+		height:28px;
+		width: 80px;
+		text-align: center;
+	      font-size: 11px;	    	    
+		  border:1px solid #a1a1a1;	    
+		  background-color: #e36e6e;
+		  color: white;
+		  margin-left: 5px;
+		  border: none;
+		  border-radius: 4px;
+		  cursor: pointer;
+		  outline:0px !important;
+    	  box-shadow: none !important;
+	}
+	.btndelete:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/icon-delete.png); 
+	   background-color: #C55F5F;
+        /*background-color:transparent;        */
+        background-position:left; 
+        background-repeat: no-repeat;
+	}
+	
+	.btnsave
+	{   background-image: url(../Image/icon-save.Png); 
+		height:28px;
+		width: 80px;
+		text-align: center;
+	      font-size: 11px;	    	    
+		  border:1px solid #a1a1a1;	    
+		  background-color: #0092C8;
+		  color: white;
+		  margin-left: 5px;
+		  border: none;
+		  border-radius: 4px;
+		  cursor: pointer;
+		  outline:0px !important;
+    	  box-shadow: none !important;
+	}	
+	.btnsave:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/icon-save.png); 
+	   background-color: #5DA2D4;
+        /*background-color:transparent;        */
+        background-position:left; 
+        background-repeat: no-repeat;
+	}
+	
+	.btncancel
+	{   background-image: url(../Image/icon-back.png); 
+		height:28px;
+		width: 80px;
+		text-align: center;
+	      font-size: 11px;	    	    
+		  border:1px solid #a1a1a1;	    
+		  background-color: #0092C8;
+		  color: white;
+		  margin-left: 5px;
+		  border: none;
+		  border-radius: 4px;
+		  cursor: pointer;
+		  outline:0px !important;
+    	  box-shadow: none !important;
+	}
+	.btncancel:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/icon-back.png); 
+	   background-color: #5DA2D4;
+        /*background-color:transparent;        */
+        background-position:left; 
+        background-repeat: no-repeat;
+	}
+	
+	.btnprint
+	{   background-image: url(../Image/icon-print.png); 
+		height:28px;
+	      font-size: 11px;	    	    
+		  border:1px solid #a1a1a1;	    
+		  background-color: #0092C8;
+		  color: white;
+		  margin-left: 5px;
+		  border: none;
+		  border-radius: 4px;
+		  cursor: pointer;
+		  outline:0px !important;
+    	  box-shadow: none !important;}
+	.btnprint:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/icon-print.png); 
+
+		background-color: #5DA2D4;
+        /*background-color:transparent;        */
+        background-position:left; }
+	
+	.btnclose
+	{   background-image: url(../Image/icon-back.png); 
+		font-size: 11px;	    	    
+		  border:1px solid #a1a1a1;	    
+		  background-color: #0092C8;
+		  color: white;
+		  margin-left: 5px;
+		  border: none;
+		  border-radius: 4px;
+		  cursor: pointer;
+		  outline:0px !important;
+    	  box-shadow: none !important;
+	}
+	.btnclose:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/icon-back.png); 
+		background-color: #5DA2D4;
+        /*background-color:transparent;        */
+        background-position:left; }
+	
+	.btnunclose
+	{   background-image: url(../Image/iunclose.bmp); 
+		font-size: 11px;	    	    
+		  border:1px solid #a1a1a1;	    
+		  background-color: #0092C8;
+		  color: white;
+		  margin-left: 5px;
+		  border: none;
+		  border-radius: 4px;
+		  cursor: pointer;
+		  outline:0px !important;
+    	  box-shadow: none !important;}
+	.btnunclose:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/iunclose2.bmp); }
+	
+	.btnok
+	{   background-image: url(../Image/iok.bmp); }	
+	.btnok:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/iok2.bmp); }
+	
+	.btnupload
+	{   background-image: url(../Image/iupload.bmp); }
+	.btnupload:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/iupload2.bmp); }
+			
+	.btnemail
+	{   background-image: url(../Image/iemail.bmp); }
+	.btnemail:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/iemail2.bmp); }
+			
+	.btnpreview
+	{   background-image: url(../Image/iview.bmp); }
+	.btnpreview:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/iview2.bmp); 
+	background-color: #5DA2D4;
+        /*background-color:transparent;        */
+        background-position:left; 
+        background-repeat: no-repeat; }
+	
+	.btnexcel
+	{   background-image: url(../Image/iexcel.bmp);
+		  height:28px;
+	      font-size: 11px;	    	    
+		  border:1px solid #a1a1a1;	    
+		  background-color: #0092C8;
+		  color: white;
+		  margin-left: 5px;
+		  border: none;
+		  border-radius: 4px;
+		  cursor: pointer;
+		  outline:0px !important;
+    	  box-shadow: none !important;} 
+	.btnexcel:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/iexcel2.bmp);
+		background-color: #5DA2D4;
+        /*background-color:transparent;        */
+        background-position:left; 
+        background-repeat: no-repeat; }
+	
+	.btnsearch
+	{   background-image: url(../Image/icon-search.png); 
+		    /*width:26px;*/
+	      height:28px;
+	      width: 100px;
+	      text-align: center;
+	      font-size: 11px;	    	    
+		  border:2px solid #a1a1a1;	    
+		  background-color: #0092C8;
+		  color: white;
+		  margin-left: 5px;
+		  border: none;
+		  border-radius: 4px;
+		  cursor: pointer;
+		  outline:0px !important;
+    	  box-shadow: none !important;}
+
+    	  
+	.btnsearch:hover
+	{  
+	   background-image: url(../Image/icon-search.png);
+	    background-color: #5DA2D4;
+        /*background-color:transparent;        */
+        background-position:left; 
+        background-repeat: no-repeat;  }
+	
+	.btndetail
+	{   background-image: url(../Image/icon-edit.png); 
+		height:28px;
+			width: 80px;
+	      text-align: center;
+	      font-size: 11px;	    	    
+		  border:1px solid #a1a1a1;	    
+		  background-color: #0092C8;
+		  color: white;
+		  margin-left: 5px;
+		  border: none;
+		  border-radius: 4px;
+		  cursor: pointer;
+		  outline:0px !important;
+    	  box-shadow: none !important;}
+	.btndetail:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/icon-edit.png);
+	   background-color: #5DA2D4;
+        /*background-color:transparent;        */
+        background-position:left; 
+        background-repeat: no-repeat;   }
+	
+	.btncopyto
+	{   background-image: url(../Image/icopyto.bmp); 
+	height:28px;
+	      font-size: 11px;	    	    
+		  border:1px solid #a1a1a1;	    
+		  background-color: #0092C8;
+		  color: white;
+		  margin-left: 5px;
+		  border: none;
+		  border-radius: 4px;
+		  cursor: pointer;
+		  outline:0px !important;
+    	  box-shadow: none !important;}
+	.btncopyto:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/icopyto2.bmp); }
+	
+	.btnsavenew
+	{   background-image: url(../Image/icon-save-new.png); 
+		height:28px;
+		width: 120px;
+	      font-size: 11px;	    	    
+		  border:1px solid #a1a1a1;	    
+		  background-color: #0092C8;
+		  color: white;
+		  margin-left: 5px;
+		  border: none;
+		  border-radius: 4px;
+		  cursor: pointer;
+		  outline:0px !important;
+    	  box-shadow: none !important;}
+	.btnsavenew:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/icon-save-new.png); 
+	   background-color: #5DA2D4;
+        /*background-color:transparent;        */
+        background-position:left;}
+	
+	.btnback
+	{   background-image: url(../Image/icon-home.png); 
+		height:28px;
+		width: 80px;
+		text-align: center;
+	      font-size: 11px;	    	    
+		  border:1px solid #a1a1a1;	    
+		  background-color: #0092C8;
+		  color: white;
+		  margin-left: 5px;
+		  border: none;
+		  border-radius: 4px;
+		  cursor: pointer;
+		  outline:0px !important;
+    	  box-shadow: none !important;}
+	.btnback:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/icon-home.png); 
+		background-color: #5DA2D4;
+        /*background-color:transparent;        */
+        background-position:left;}
+		
+	.btncopy
+	{   background-image: url(../Image/icopy.bmp); }
+	.btncopy:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/icopy2.bmp); }
+		
+	.btnclear
+	{   background-image: url(../Image/iclear.bmp); }
+	.btnclear:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/iclear2.bmp); }
+		
+	.btngetitem
+	{   background-image: url('../Image/igetitem.bmp');
+	height: 18px;
+}
+	.btngetitem:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/igetitem2.bmp); }
+		
+	.btnapply
+	{   background-image: url(../Image/icon-save.png); 
+		height:28px;
+	      font-size: 11px;	    	    
+		  border:1px solid #a1a1a1;	    
+		  background-color: #0092C8;
+		  color: white;
+		  margin-left: 5px;
+		  border: none;
+		  border-radius: 4px;
+		  cursor: pointer;
+		  outline:0px !important;
+    	  box-shadow: none !important;
+	}
+	.btnapply:hover
+	{  background-repeat: no-repeat;
+	   background-image: url(../Image/icon-save.png); 
+	   background-color: #5DA2D4;
+        /*background-color:transparent;        */
+        background-position:left;
+	}
+		
+
+
+.btngo
+	{
+	    /*background-repeat: no-repeat;                
+        background-color:Transparent;        
+        background-position:center; */      
+	    width:26px;
+	    height:28px;    
+	      font-family: Roboto;	    
+		  background-color: #0092C8;
+		  color: white;
+		  margin-left: 5px;
+		  text-align: center;
+		  border: none;
+		  padding: 0 0 0 0px;
+		  border-radius: 4px;
+		  cursor: pointer;
+ 		  outline:0px !important;
+    	  box-shadow: none !important;}
+	
+
+
+
+.btngo:hover
+    {
+
+        background-color: #5DA2D4;
+        background-position:left; 
+        background-repeat: no-repeat;  
+    }
+
+    
+    .btnassign
+	{
+	    /*background-repeat: no-repeat;                
+        background-color:Transparent;        
+        background-position:center; */
+        border:1px solid #a1a1a1;	  	      
+	    width:38px;
+	    height:38px;	    	    
+	    padding:0px 0px; 
+	    text-align:center;
+	    padding:0 0 0 0px; 
+	    /*font: bold 1.5em/2.2em Arial, Helvetica;	*/
+	     font-family: Roboto;
+        white-space: nowrap;
+        background-color: #ddd;
+        margin: 15 0 15 0px;       
+	    /*width:100px;*/
+	    text-shadow: 0 1px 0 rgba(255,255,255,.8);
+        -moz-border-radius: .2em;
+        -webkit-border-radius: .2em;        
+        -moz-box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+        -webkit-box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+	    border-radius:5px;
+	    -moz-border-radius:5px; /* Firefox 3.6 and earlier */
+	}
+	
+	.btnassign:hover
+    {
+        /*background-color: #eee;       */
+        background-color:transparent;        
+        background-position:center; 
+        background-repeat: no-repeat;  
+    }
+
+    .LinkButton{
+    	color: red;
+    	text-decoration: none;
+    }
+
+

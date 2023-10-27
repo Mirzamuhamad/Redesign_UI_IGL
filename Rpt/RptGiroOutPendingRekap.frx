@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="05/12/2011 16:33:47" ReportInfo.Modified="12/18/2013 13:15:30" ReportInfo.CreatorVersion="2013.3.5.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haqcFjkSbUnj5Abe2YPgBvzV">
+      <TableDataSource Name="Table1" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_FNRptGiroOutPendingRekap '2001-01-01','2013-11-11','','','',''">
+        <Column Name="Company" DataType="System.String"/>
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="DueDate" DataType="System.DateTime"/>
+        <Column Name="TotalForex" DataType="System.Decimal"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" FirstPageSource="1" OtherPagesSource="1">
+    <ReportTitleBand Name="ReportTitle1" Width="1047.06" Height="120.68">
+      <TextObject Name="Text3" Left="1.89" Width="529.2" Height="18.9" Text="REKAPITULASI DATA OUTSTANDING GIRO SUPPLIER" Font="Arial Narrow, 14.25pt, style=Bold"/>
+      <TextObject Name="Text4" Left="1.89" Top="21.9" Width="56.7" Height="18.9" Visible="false" Text="BULAN :" Font="Arial Narrow, 8.25pt, style=Bold"/>
+      <TextObject Name="Text5" Left="61.04" Top="21.9" Width="56.7" Height="18.9" Visible="false" Format="Custom" Format.Format="dd-mm-yyyy" Font="Arial Narrow, 8.25pt, style=Bold"/>
+      <TextObject Name="Text6" Left="143.64" Top="21.9" Width="66.15" Height="18.9" Visible="false" Format="Custom" Format.Format="dd-mm-yyy" Font="Arial Narrow, 8.25pt, style=Bold"/>
+      <TextObject Name="Text7" Left="115.29" Top="21.9" Width="28.35" Height="18.9" Visible="false" Text="-" Font="Arial Narrow, 8.25pt, style=Bold"/>
+      <TextObject Name="Text8" Left="963.9" Top="18.9" Width="66.15" Height="18.9" Text="[Date]" Format="Custom" Format.Format="dd-mm-yyyy" HorzAlign="Right" Font="Arial Narrow, 8.25pt"/>
+      <TextObject Name="Text9" Left="963.9" Top="56.7" Width="66.15" Height="18.9" Text="[Page]" HorzAlign="Right" Font="Arial Narrow, 8.25pt"/>
+      <TextObject Name="Text18" Left="904.75" Top="18.9" Width="47.25" Height="28.35" Text="Tanggal " Font="Arial Narrow, 8.25pt, style=Bold"/>
+      <TextObject Name="Text19" Left="904.75" Top="37.8" Width="47.25" Height="18.9" Text="Jam" Font="Arial Narrow, 8.25pt, style=Bold"/>
+      <TextObject Name="Text20" Left="904.75" Top="56.7" Width="47.25" Height="18.9" Text="Halaman" Font="Arial Narrow, 8.25pt, style=Bold"/>
+      <TextObject Name="Text21" Left="963.9" Top="37.8" Width="66.15" Height="18.9" Text="[Date]" Format="Custom" Format.Format="hh:mm:ss" HorzAlign="Right" Font="Arial Narrow, 8.25pt"/>
+      <TextObject Name="Text22" Left="954.45" Top="18.9" Width="9.45" Height="18.9" Text=":" Font="Arial Narrow, 8.25pt, style=Bold"/>
+      <TextObject Name="Text23" Left="954.45" Top="37.8" Width="9.45" Height="18.9" Text=":" Font="Arial Narrow, 8.25pt, style=Bold"/>
+      <TextObject Name="Text24" Left="954.45" Top="56.7" Width="9.45" Height="18.9" Text=":" Font="Arial Narrow, 8.25pt, style=Bold"/>
+      <MatrixObject Name="Matrix2" Left="7.56" Top="62.37" Width="302.11" Height="58.31" FixedRows="1" FixedColumns="1" AutoSize="false" DataSource="Table1" Style="White">
+        <MatrixColumns>
+          <Header Expression="[DS.Company]"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.DueDate]"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.TotalForex]"/>
+        </MatrixCells>
+        <TableColumn Name="Column6" Width="85.22"/>
+        <TableColumn Name="Column7" Width="105.72"/>
+        <TableColumn Name="Column8" Width="111.17"/>
+        <TableRow Name="Row6" Height="19.48">
+          <TableCell Name="Cell26" Border.Lines="All" Text="Tanggal" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 9.75pt, style=Bold"/>
+          <TableCell Name="Cell27" Border.Lines="All" Text="[Company]" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 9.75pt, style=Bold"/>
+          <TableCell Name="Cell32" Border.Lines="All" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 9.75pt, style=Bold" TabWidth="100"/>
+        </TableRow>
+        <TableRow Name="Row7" Height="19.35">
+          <TableCell Name="Cell28" Border.Lines="All" Text="[DueDate]" Format="Custom" Format.Format="dd-MMM-yyyy" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 9.75pt"/>
+          <TableCell Name="Cell29" Border.Lines="All" Text="[TotalForex]" Format="Custom" Format.Format="###,#0.##" HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 9.75pt"/>
+          <TableCell Name="Cell33" Border.Lines="All" Format="Custom" Format.Format="###,#0.##" HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 9.75pt"/>
+        </TableRow>
+        <TableRow Name="Row8" Height="19.48">
+          <TableCell Name="Cell30" Border.Lines="All" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 9.75pt, style=Bold"/>
+          <TableCell Name="Cell31" Border.Lines="All" Format="Custom" Format.Format="###,#0.##" HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 9.75pt, style=Bold"/>
+          <TableCell Name="Cell34" Border.Lines="All" Format="Custom" Format.Format="###,#0.##" HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 9.75pt, style=Bold"/>
+        </TableRow>
+      </MatrixObject>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="124.68" Width="1047.06"/>
+    <DataBand Name="Data1" Top="128.68" Width="1047.06"/>
+    <PageFooterBand Name="PageFooter1" Top="132.68" Width="1047.06" Height="18.9"/>
+  </ReportPage>
+</Report>

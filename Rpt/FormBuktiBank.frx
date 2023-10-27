@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="04/13/2011 08:29:02" ReportInfo.Modified="09/18/2013 13:52:20" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+
+  
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+
+    End Sub
+
+    Private Sub ReportTitle1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+     
+    End Sub
+
+    Private Sub Data1_AfterPrint(ByVal sender As object, ByVal e As EventArgs)
+      txtterbilang.Text = UCase(CType(Report.GetColumnValue(&quot;DS.Terbilang&quot;), String))
+      txtDebit.Text= FormatNumber(CType(Report.GetColumnValue(&quot;DS.TotalDebit&quot;), Decimal))
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGs4venj70BSybBNwjC9vq8mA+gBRIOgdRqwK8irIASGbfMoVDu5dOW5Z7ySwSa+hO25c1iTiWhA0xCuNNzNL1MtX9X1ENG+SX04Ci99kyFzwsmpcP1B1HxYQv244+lVQeg">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_FNFormBuktiBank 'IK/PAP/09MAR/0001','BANK OUT' ">
+        <Column Name="TransNmbr" Alias="Nomor" DataType="System.String"/>
+        <Column Name="TransDate" Alias="Tanggal" DataType="System.String"/>
+        <Column Name="FgSubLed" DataType="System.String"/>
+        <Column Name="Qty" DataType="System.String"/>
+        <Column Name="Customer" DataType="System.String"/>
+        <Column Name="CustomerName" DataType="System.String"/>
+        <Column Name="BankCode" DataType="System.String"/>
+        <Column Name="BankName" DataType="System.String"/>
+        <Column Name="CHBGNo" DataType="System.String"/>
+        <Column Name="Account" DataType="System.String"/>
+        <Column Name="AccountName" DataType="System.String"/>
+        <Column Name="AccClassCode" DataType="System.String"/>
+        <Column Name="AccClassName" DataType="System.String"/>
+        <Column Name="SubledCode" DataType="System.String"/>
+        <Column Name="SubledName" DataType="System.String"/>
+        <Column Name="Uraian" DataType="System.String"/>
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="Debit" DataType="System.Decimal"/>
+        <Column Name="Credit" DataType="System.Decimal"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="TotalDebit" DataType="System.Decimal"/>
+        <Column Name="TotalCredit" DataType="System.Decimal"/>
+        <Column Name="Terbilang" DataType="System.String"/>
+        <Column Name="Judul" DataType="System.String"/>
+        <Column Name="VoucherNo" DataType="System.String"/>
+        <Column Name="Type" DataType="System.String"/>
+        <Column Name="ItemNo" DataType="System.Int32"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="159.7" LeftMargin="0" TopMargin="0" RightMargin="0" BottomMargin="0" MirrorMargins="true">
+    <ReportTitleBand Name="ReportTitle1" Width="816.1" Height="187.89" BeforePrintEvent="ReportTitle1_BeforePrint">
+      <TextObject Name="Text2" Left="662.84" Top="31.35" Width="151.2" Height="17.9" Text="[DS.Nomor]"/>
+      <TextObject Name="Text3" Left="662.84" Top="50.25" Width="94.5" Height="17.9" Text="[DS.Tanggal]" Format="Custom" Format.Format="dd-MMM-yyyy"/>
+      <TextObject Name="Text7" Left="156.76" Top="88.05" Width="378" Height="18.9" Text="[DS.CustomerName]"/>
+      <TextObject Name="Text44" Left="661.73" Top="149.31" Width="85.05" Height="18.9" Visible="false" Text="[DS.Currency]"/>
+      <TextObject Name="Text52" Left="156.76" Top="122.85" Width="385.56" Height="18.9" CanGrow="true" GrowToBottom="true" Text="[DS.BankName]"/>
+      <TextObject Name="Text55" Left="662.84" Top="122.85" Width="139.86" Height="18.9" Text="[DS.CHBGNo]"/>
+    </ReportTitleBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="191.89" Width="816.1" StartNewPage="true" Condition="[DS.Nomor]" ResetPageNumber="true">
+      <DataBand Name="Data1" Top="195.89" Width="816.1" Height="22.35" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" AfterPrintEvent="Data1_AfterPrint" DataSource="Table">
+        <TextObject Name="Text27" Left="107.29" Top="3" Width="15.08" Height="18.9" Text="[DS.FgSubLed]"/>
+        <TextObject Name="Text28" Left="173.47" Top="3" Width="365.97" Height="18.9" CanGrow="true" CanShrink="true" CanBreak="false" Text="[DS.Uraian]"/>
+        <TextObject Name="LblNo" Left="18.9" Top="3" Width="86.94" Height="18.9" Text="[DS.Account]"/>
+        <TextObject Name="Text49" Left="565.47" Top="3" Width="111.51" Height="18.9" Text="[DS.Debit]" HideZeros="true" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right"/>
+        <TextObject Name="Text53" Left="128.52" Top="3" Width="102.02" Height="18.9" Text="[DS.SubledCode]"/>
+        <TextObject Name="Text56" Left="680.4" Top="3.45" Width="102.06" Height="18.9" Text="[DS.Credit]" HideZeros="true" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right"/>
+        <Sort>
+          <Sort Expression="[DS.Nomor]"/>
+          <Sort Expression="[DS.ItemNo]"/>
+        </Sort>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="222.24" Width="816.1"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="226.24" Width="816.1" Height="134.1" CanGrow="true">
+      <TextObject Name="txtterbilang" Left="105" Top="9.45" Width="714.42" Height="18.9" CanGrow="true" Text="[DS.Terbilang]"/>
+      <TextObject Name="txtDebit" Left="658.3" Top="-3.9" Width="120.96" Height="18.9" Visible="false" Text="[DS.TotalDebit]" Padding="2, -1, 2, 0" Format="Custom" Format.Format="###,###" HorzAlign="Right"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

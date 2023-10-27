@@ -1,0 +1,446 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="04/07/2011 11:14:44" ReportInfo.Modified="06/14/2022 10:47:50" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    dim Dept, Dept2, Req as String
+    
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+     Text231.Text = CType(Report.GetColumnValue(&quot;DS.UserID&quot;), String)
+       Dept = &quot;&quot;
+      if Dept &lt;&gt; Report.GetColumnValue(&quot;DS.Descript&quot;) then
+        Line67.Visible = True
+        Line74.Visible = True
+        Line68.Visible = True
+        Line83.Visible = True
+        Text219.Visible = True
+        Line69.Visible = True
+        Line70.Visible = True
+        Line71.Visible = True
+        Line72.Visible = True
+        Line73.Visible = True
+        Line75.Visible = True
+        Line76.Visible = True
+        Line77.Visible = True
+        Line78.Visible = True
+        Line79.Visible = True
+        Line80.Visible = True
+        Line82.Visible = True
+        
+        Text185.Visible = True
+        Text186.Visible = True
+        Text213.Visible = True
+        Text1.Visible = True
+        Text217.Visible = True
+        Text218.Visible = True
+        Text187.Visible = True
+        Text214.Visible = True
+        Text215.Visible = True
+        Text216.Visible = True
+        
+        Text226.Visible = True
+        Text221.Visible = True
+        Text193.Visible = True
+        Text194.Visible = True
+        
+        Text227.Visible = True
+        Text222.Visible = True
+        Text200.Visible = True
+        Text208.Visible = True
+        
+        Text228.Visible = True
+        Text223.Visible = True
+        Text201.Visible = True
+        Text209.Visible = True
+        
+        Text229.Visible = True
+        Text224.Visible = True
+        Text202.Visible = True
+        Text210.Visible = True
+        
+        Text230.Visible = True
+        Text225.Visible = True
+        Text203.Visible = True
+        Text211.Visible = True
+        Text220.Visible = True
+        Text212.Visible = True
+        
+       
+      else
+        Line67.Visible = False
+        Line67.Visible = False
+        Line74.Visible = False
+        Line68.Visible = False
+        Line83.Visible = False
+        Text219.Visible = False
+        Line69.Visible = False
+        Line70.Visible = False
+        Line71.Visible = False
+        Line72.Visible = False
+        Line73.Visible = False
+        Line75.Visible = False
+        Line76.Visible = False
+        Line77.Visible = False
+        Line78.Visible = False
+        Line79.Visible = False
+        Line80.Visible = False
+        Line82.Visible = False
+        
+        Text185.Visible = False
+        Text186.Visible = False
+        Text213.Visible = False
+        Text1.Visible = False
+        Text217.Visible = False
+        Text218.Visible = False
+        Text187.Visible = False
+        Text214.Visible = False
+        Text215.Visible = False
+        Text216.Visible = False
+        
+        Text226.Visible = False
+        Text221.Visible = False
+        Text193.Visible = False
+        Text194.Visible = False
+        
+        Text227.Visible = False
+        Text222.Visible = False
+        Text200.Visible = False
+        Text208.Visible = False
+        
+        Text228.Visible = False
+        Text223.Visible = False
+        Text201.Visible = False
+        Text209.Visible = False
+        
+        Text229.Visible = False
+        Text224.Visible = False
+        Text202.Visible = False
+        Text210.Visible = False
+        
+        Text230.Visible = False
+        Text225.Visible = False
+        Text203.Visible = False
+        Text211.Visible = False
+        Text220.Visible = False
+        Text212.Visible = False
+       
+      End If 
+      
+      if Dept2 &lt;&gt; Report.GetColumnValue(&quot;DS.NoWL&quot;) then
+        LineG.Visible = True
+        LineH.Visible = True
+        LineL.Visible = True
+        Line54.Visible = True
+        Line59.Visible = True
+        Line60.Visible = True
+        Line41.Visible = True
+        Line42.Visible = True
+        Line43.Visible = True
+        Line44.Visible = True
+        Line61.Visible = True
+        Line62.Visible = True
+        Line63.Visible = True
+        Line64.Visible = True
+        Line65.Visible = True
+        Line66.Visible = True        
+        Shape1.Visible = True        
+        Text66.Visible = True
+        Text175.Visible = True
+        Text144.Visible = True
+        Text176.Visible = True
+        Text102.Visible = True
+        Text160.Visible = True
+        Text161.Visible = True
+        Text70.Visible = True
+        Text162.Visible = True
+        Text163.Visible = True
+        Text169.Visible = True
+        TextB.Visible = True
+        Text177.Visible = True
+        Text164.Visible = True
+        Text170.Visible = True
+        Text178.Visible = True
+        Text165.Visible = True
+        Text171.Visible = True
+        Text179.Visible = True
+        Text166.Visible = True
+        Text172.Visible = True
+        Text180.Visible = True
+        Text167.Visible = True
+        Text173.Visible = True
+        Text181.Visible = True
+        Text168.Visible = True
+        Text174.Visible = True
+        Text124.Visible = True
+        Text232.Visible = True 
+        
+        Dept2 = Report.GetColumnValue(&quot;DS.NoWL&quot;) 
+      else
+  
+        LineG.Visible = False
+        LineH.Visible = False
+        LineL.Visible = False
+        Line54.Visible = False
+        Line59.Visible = False
+        Line60.Visible = False
+        Line41.Visible = False
+        Line42.Visible = False
+        Line43.Visible = False
+        Line44.Visible = False
+        Line61.Visible = False
+        Line62.Visible = False
+        Line63.Visible = False
+        Line64.Visible = False
+        Line65.Visible = False
+        Line66.Visible = False
+        Shape1.Visible = False        
+        Text66.Visible = False
+        Text175.Visible = False
+        Text144.Visible = False
+        Text176.Visible = False
+        Text102.Visible = False
+        Text160.Visible = False
+        Text161.Visible = False
+        Text70.Visible = False
+        Text162.Visible = False
+        Text163.Visible = False
+        Text169.Visible = False
+        TextB.Visible = False
+        Text177.Visible = False
+        Text164.Visible = False
+        Text170.Visible = False
+        Text178.Visible = False
+        Text165.Visible = False
+        Text171.Visible = False
+        Text179.Visible = False
+        Text166.Visible = False
+        Text172.Visible = False
+        Text180.Visible = False
+        Text167.Visible = False
+        Text173.Visible = False
+        Text181.Visible = False
+        Text168.Visible = False
+        Text174.Visible = False
+        Text124.Visible = False
+        Text232.Visible = False 
+       
+      End If     
+      
+      
+
+          
+    End Sub
+    
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+ 
+    End Sub
+
+    Private Sub ReportSummary1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+   
+    End Sub
+
+   
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqAFHGp6KQj27H4qUwAIR20hSnyrpNtgmeY+I5zyTmYE0HuZfX1hs9fAqnt4DRtzHmGhuLqQKgmKQ5zr9jopSpaKdPnABANIUMN9weEafbi0X9ZM4e/TzYpckeM7xEB6GRoK9zJTu7hjVX7MMg3MXsry0SmGvraFUkhI+E4hqHr8bjbvLtj7+yvHZ6QgBSyKr5">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PRLandOfferingSurvey '''IGL/LPR/2202/0003''', 2, 'Admin'">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.String"/>
+        <Column Name="BlockNo" DataType="System.String"/>
+        <Column Name="PersilNo" DataType="System.String"/>
+        <Column Name="SPPT" DataType="System.Decimal"/>
+        <Column Name="Luas" DataType="System.Decimal"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="UserID" DataType="System.String"/>
+        <Column Name="Desa" DataType="System.String"/>
+        <Column Name="NoWl" DataType="System.String"/>
+        <Column Name="AwalName" DataType="System.String"/>
+        <Column Name="LuasAwal" DataType="System.Decimal"/>
+        <Column Name="WlLvlName1" DataType="System.String"/>
+        <Column Name="LuasLvlNo1" DataType="System.Decimal"/>
+        <Column Name="WlLvlName2" DataType="System.String"/>
+        <Column Name="LuasLvlNo2" DataType="System.Decimal"/>
+        <Column Name="WlLvlName3" DataType="System.String"/>
+        <Column Name="LuasLvlNo3" DataType="System.Decimal"/>
+        <Column Name="WlLvlName4" DataType="System.String"/>
+        <Column Name="LuasLvlNo4" DataType="System.Decimal"/>
+        <Column Name="WlLvlName5" DataType="System.String"/>
+        <Column Name="LuasLvlNo5" DataType="System.Decimal"/>
+        <Column Name="NoDok" DataType="System.String"/>
+        <Column Name="NameRecv" DataType="System.String"/>
+        <Column Name="NameRecv2" DataType="System.String"/>
+        <Column Name="NameRecv3" DataType="System.String"/>
+        <Column Name="NameRecv4" DataType="System.String"/>
+        <Column Name="NameRecv5" DataType="System.String"/>
+        <Column Name="NoAjb" DataType="System.String"/>
+        <Column Name="NoAjb2" DataType="System.String"/>
+        <Column Name="NoAjb3" DataType="System.String"/>
+        <Column Name="NoAjb4" DataType="System.String"/>
+        <Column Name="NoAjb5" DataType="System.String"/>
+        <Column Name="Luas2" DataType="System.Decimal"/>
+        <Column Name="Luas3" DataType="System.Decimal"/>
+        <Column Name="Luas4" DataType="System.Decimal"/>
+        <Column Name="Luas5" DataType="System.Decimal"/>
+        <Column Name="Sisa" DataType="System.Decimal"/>
+        <Column Name="Sisa2" DataType="System.Decimal"/>
+        <Column Name="Sisa3" DataType="System.Decimal"/>
+        <Column Name="Sisa4" DataType="System.Decimal"/>
+        <Column Name="Sisa5" DataType="System.Decimal"/>
+        <Column Name="Descript" DataType="System.String"/>
+        <Column Name="DocDate" DataType="System.DateTime"/>
+        <Column Name="RemarkDt" DataType="System.String"/>
+        <Column Name="RemarkSubDt" DataType="System.String"/>
+        <Column Name="SPPT_PBB" DataType="System.String"/>
+        <Column Name="NoWarisLevel" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" LeftMargin="5" TopMargin="0" RightMargin="5" BottomMargin="5" FirstPageSource="15" OtherPagesSource="15" Guides="639.27,722.4301,726.21,462.6,532.75,473.5,641.71,490.96,452.6,644.49,729.54,724.31,471.5,464.5,473.95,472.5,867.51,536.65,623.7,456.05,454.6,527.2,538.1,637.05,9.9,506.85,724.2,725.21,527.65,638.6,642.8,726.3,456.5,526.2,532.2,632.15,1,3.45,462.72,537.34,641.29,530.89,634.84,534.65,726.2,636.6,633.15,727.65,508.3,724.32,629.82,733.77,725.66,725.76,529.2,638.43,455.15,635.43,3,0,0">
+    <PageHeaderBand Name="PageHeader1" Width="1084.86" Height="96.5" CanShrink="true" Guides="269.05,284.17,282.28,262.6,28.35,43.47,5.45,20.57,90.5,130.19,214.35,231.36,138.3,155.31,199.45,216.46,75.6,90.72,45.25,67.93,-13.23,0,128.75,250.82,92.5,126.52,94.5,109.62,95.61,166.55,183.56,180,197.01,137.97,114.4,129.52,129.3,148.2,60.7,77.71,151.2,168.21,246.7,263.71,233.25,250.26,5,18.23,25.15,38.38">
+      <TextObject Name="Text2" Left="206.5" Top="9.23" Width="259.15" Height="21.12" Text="MONITORING LETTER C" Font="Cambria, 14pt, style=Bold"/>
+      <TextObject Name="Text145" Left="5.95" Top="63.93" Width="195.06" Height="28.35" Text="PT. Irama Gemilang Lestari" VertAlign="Center" Font="Arial Narrow, 8pt, style=Bold"/>
+      <LineObject Name="Line16" Left="3.27" Top="4.38" Width="1075.17"/>
+      <PictureObject Name="Picture1" Left="-9450" Top="-9450" Width="75.6" Height="75.6"/>
+      <LineObject Name="Line37" Left="3.35" Top="4.45" Height="91.48"/>
+      <LineObject Name="Line38" Left="1078.3" Top="4.45" Height="91.96"/>
+      <PictureObject Name="Picture2" Left="29.45" Top="7.35" Width="56.7" Height="56.7" Image="iVBORw0KGgoAAAANSUhEUgAAACwAAAAoCAYAAACFFRgXAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADrwAAA68AZW8ckkAAA+gSURBVFhHnVgJeFTVFZ5AgqWlLshqLSggW5Eii4BgQECloojYTzbZZCuLlBI2QdlsRduyqljZamNigFiWsCeExEBWQhICSZBsJCSZJDPZJ7PP/P3PfTNhQPxae77v5M17795z/3vuf5YXnQ2Ag+qmKpEf6sal1AU7nG5tlMtpvfOe6pYhTeN/RHzG31ebRIwJElH57Sved3bonLw0zbvLkAbY7RnscAho/uY7t9PHYNP4/1G84+87T1tT0/uJC7q7J/tOuKN2Oz1LcTple3euDpd2vZ9oJr02fD1H9V3Tq3eJd54oxWecTnsuRnwHeVVeiZe18Zq/3eq3gJWr71hf0ebIc+0o7wLtNXg/bRIfu953vNXdeSHqNUgwbgKjujjQTm2wOiCkEJ86OFvAON0+XrtHvGvcZdd3rHfAf1OveO6bALsVDKoCS1iCVF55BgrQiqpq5OTmwe7UON3Eay8IH/FMu0d8xjUN8Mz33t+r90gTYOYAWAmLOYG/PYA1d6K6xIg9n+/FmFEv4vlhgcjJyuZ7WUSbe+8avvpDkTni8XtVs3V/I/JOaMUs4X3gpApgUfG1Akw7qd8lYuLLr+HhB1qhua4ZAvyaIeiPS+EwN8Btt6i5Xrv30x/KvYA9QH31B0bkuQC2ErB4kQ8l8uWnxSE+Bmw2G8IPHUaXxzshQOcHf50OLQP88av27dCta2dciD7HaXalLuZpl0sW10Sc73RqMeBw2UkhGxotJlQYypFfmIfc/DzoyyvRYLIqvyhMFKGi2FG25LkHm6bacWuAPRt12oXDhMAFvg4NRoeObdDST4eHqBMDn8c3O3egIOUydmzehNnTp6K6phJ2R2OTAVnI6eQmZGG3lXbqYKwtwoW44/hk21osDZqJ2fN+j/ETx2DMy4EYN+EVLH53CQ4eCkdWTjZjwgNWLNpow8HQllsPaIeNlPDeC3CnmW7nls+fj0THJzqgeYAO3Ts8hKPbPoE5Jg6FwWEoPHgEuJGLXX/+EKfPRHAiF6GHFVAPz9xohMNtYHa5jdKqBFy+Hoa41D2IT9+PuLQDuJj2Nb49vRMb/roEL48fjofbtULbx9pg5uxZOB8dAxvTkm8VtTNDeX/rpCQIaHsj/3JQUX4Bhg8ZBH96ddTAXsg9dgimI9/i/KSZ2NfveewfOQ7WUxcAfQXKbxXAamls8qrDaWGqa1BgqxuyUFAahYSMvYhK3IIzl9YjMmUDoq9sRmzmx7ictxs5+kPILT+PkzH/xNgJw6BrrkOrB3+B+QsWIifne0Urq5mZyANWAZbEZPJUMnmw8f0P8AD5+uqQZ2CIPIGK7dsQMXAIYjr1RXLXoYjoMRwpc1YA2fmSnBkHpILsWMhI71rtRhSVpiI2IRgHj21A+JnVOB6zAuHRCxBydgpCzv0eIVFv4JvoN3AobjoiklYi4/a/UFgViV3716F1xwfg569Dnz69ERFxUsGy2TRnOu0szXb6Xpay2Z1IJT87t2uPoU8+ifzww8jf8hFO9BuE+M70dOe+uPZYH8T0HIqQZ0fj6uf7gRoTo5RzLcI3yd9mVBhzkX4tEmnXI1BYdh7FxrMoNPwbecZQZJbtxPmry3Ho4mSExLyq9NDFtxAcORnnUtdxzBEcP/8ZHu/2SzQjHdu0aY2ysnJFDx6i5mEtpF3qCNatXoPW9G7U33fBvC8UEQOGI7lLH9zo3AM5nboh8YkeONq3P/a+MBoR6zeTFgYt2yi+CS1MDEIDLNYyWOx62F2VfFXNdapYJW+T2TmoQyJyjP/C6SsrERo7CV/FjMTh5LE4eHEiDn83HzcNYTh86q/4dZdW8CNF5ryzANVVDGxJDlxHR6sK+Zdf7kXgoCF4Z/RY2M9cQPSLryP6yb642vVpJHfqjrhev0HaxAkwMFM4Y2OAggJ6uA4wM+gYzd7MIBx2wUS1UFkNmdZsDjPjxMa91fFpMa+50JujEJv9IULjxiEscSS+uTSKG3gdR+IWo8B4HHu++jN+/ssWaObXAh9v2a45haB13lw3ZdLb6NH+McT9Yw9yNv8FJ7v2ROpTfRDZlTQYNVZxGZlpQF01OWCmAeZXMwOOqVA4JrQSU1Yp27za6HEHodkZiFLyVa7mhrhDZo8qji2HwRKPcxmrEHZpPMLiR+Nw4u8QGjUJpy5tQHlNBha9Ox86FqtVK9dyHmEy5epkoaqqGrwwfBQmDB4Gw5ETiBg3HrG9+iKqc1dcfHUicJTpi0mfCJlSmOwJQQqMzLVaCYI/nCSaABb1Nklmuw0Wbk71JhwjPJerg3astjr+LEdx/QkG31x69zUc+u51HIyaicSsL9BgK8SiJQuwePFiGAwGBVayEQG7cPPmDbw44gVsXbQMdf8MRcjTA3Cmd3/EjnoJjm+Ps5moZUaoRnJ8HNYErcbKoDV4d+kyHDnKdzwqU30Djh0Nx6LF8zFp8ptYu24V1q9/H6mpqTCbrdix7VME/WkVVixfjQ0fbIS+tIzbcfA0yHd8j5T8/QS6EOEXluDyzS9QbUvD1p2bMZEUlGIiVdhikTZAKMH6nJGegrlTpyFyx2fIXbUe/+47GN8OeA6Vf9sJlDOwOEmq39WcLLwy9jX2FP7o9lQvnDh5Gg0NjXiPwdryZ/7o37835syZhhdGDkOAfzMsXrgEdcwkO3fsRouAX8BPF4Cl3Kher1ednpv0cMCA4uoknIzbjvT8g9zADWTeuIBt27cwTAq001EE5qkROLs1EzLTE/DRmjW4euBrZM5ZhLDe/XBm8tvsfDJUrjWx0jSwYRcGhoYcQgv/lpgxc47iasSJU/D390f3Hl2Qlp7MI7ehvq4KQcuXYfq0GTDJ/EY7Bj07DA8/0hZX0tMIlI2Ww8Qr8zYzS4ONhcZciDpbsfK6saaE2cZLJfY2DgvjxONhAVxadAORh8Nx+9gppEybjeC+z+DKlk/IW6NKWzbyjuwlYDeOHotQgTBn7nwadWHV6veg82uO6TNncIQL5sY6XGNwRhw/itDQMFxOSUdFZQ36DRyMR9q2ow/S1Wl5myL5cmm0SXbh0Utgkv2yIfks07yrlXuxLfQg4EbYTNWoKSqCI+0qoqdOR9jo0Sg5cZSvWBhYsl1WCS8JLAdCw4Lh38KPRz8HjY0WLCOfdTzqyVOmq1JafKsIb0+bgg4sQG3atMPsWfOQm3cL/Z8djEfZ6cUnJ3FpkoFeT7uSidraegKXpovOpIoN+SzTaMDnLjlXb7KXj1B5KH0t0xPK9Dgzfx5C3pwAeybp0MiEbeUuZaNSHjkh/EgYmrF0Lpg3X0X8geBQNGvREj169kFeHnMzn+VkX0enx3+tQCfEp5ASNgwaOgSt2z+K69nXCMyNsJBwPDc4EOlXmCopAlTmKpWLajEJlF4XwKqVpccJWGJKawtRW4MLmzbi69nvAPnsFQQwo5znRosulN4uYXZYSAroMIScTEu9ivLKCkyeOole1mH0qJHYu2c33l+zkglfp0Bfy8zByRNn0bZtW/g102HZsj9g7erlaPvQo5jwyng01FczzUmLyjW8gJV6g82r4jBSQnoWca6wh00BCiKOI2R5ECw389gn0PPcqYN8ksYjmq3fSy+NwYjA4RgVOAL79uylYTuMVeXYtHE9Bg96Fr17PYXxr/0OCxfNw6xZM3A1IwsrSJvAwECMHDEMo0YMwYB+vZhGR+D0sWNw2kg7aUgUoHtB+6gHtPpEknxu5Y7cjEyU6pEYdhimW8X0LttFckgaJNmvyeREXV0DI78ONcZSmOrKYbew8klbyQOSml9Wyi8Jcp/xj5pGAyu3BZVGA+eaqcwI9VWor6/k3EquxxLOuYqj0osoGvD2fqrE848U8bKUUqulgXN5La2AxVirOnwrnysWyQZlLPsGuMQr7KLsOQR7k1rCd6SO7MpjT/uclaoo/BPPsdeQMu2u532NapCsTGdCBwHqdjEv+wKW9Tz2lCohYGYXFZ1CaMl3LqEB7+1sN8WzAtbKAdLiiT26hX8qYK2Lwu3vd8JQ+Cl3e47HdIML1Kj3EkCSURwqwll05NjVJmsI+hZq664i71YM6hpyNcDyry/hrOKtJrJeE9gmwCoP856A1D/6aFwFIAfLVO4FFqKUvkFtgkdaVpjFhxmwlH+Om0lTcTN+AhoKVrLAhHN6KgcxWN08bqees5nHHaU0VsjfjAlrKluSU8jJCkFR4Vn2IaxkQkMB5zkFuQoeceL9RDU/cmTCVQEsE8RD8lw7Wu29ND2p8dHYvW0dwZ2HMWseihKeQXlST+iT+qEs9Q1YSzYx0wQT2CnOiqMBqjuW98dgq/oCZbmbcS1pFXLStvLZddqUss91BSvBat+EpAev2seo7MSrmujk6BQgqvafHE205M3prEQy2cZAWrZwJg4e+BDWcn6NJL4OfXIv1KR0RHVCe+gv9URx/FAUpfJ59lxU5wehMncVyrJXoPjaUuQkz0DGxekozt4Me+0JAmbOttVzAYLkUlpVE5CaesHfUU1U4WjageZuitxLIbao8ilHFB0VixFD+iP/+hk0lB/EzdSZyEsYCGNiJ9TEP4LaxPaoSX4cxpQu9PpTuJ3QG4XxA5F7cQSyYsfhRvJc1BR/CpMhArWVSXBajaShgJXj11Rb98dUkzuA73onf9h8sGxL821llfvT0pVo1aIFgha/hezUvQS9Gw1FQShPGYPqpEEwJDwNfXx3lF3qhrKE7ihN+i1KkgOhT5vEFPkBbBUHkHFpByJPfobCglTalX/AiGd9Af93UUGn5AeAxcONbMBNKCkrxdN9B6AZe4YWrGi/eeJBbN00Ddfjt8GhD4Zb/wUsxZ+gNm8davJWoq5gNSwlf4Hb+A+YS4JxJfrv+Oi9Kdj03nykX46lXRs/tqnsIaSv+P8Ay3jvqai5Yky+w2ww1FRj7fpNeLJLD/jrmivQP6N2aR+A6W8OwZfblyDxwqfIubIPt3K+Qn7mPpw7+j4++3gG3n5jAEYO6ortH30Ao75EfXVIfAhLmY8U4J8iPw6YKvXNxqCrt0qjDVxOz8DyoJXo1aM32jzYGgEE7ceeQdSfn+WPPKTDrzq0RMd2AejW6WE8N7Antmxcg/wbmbRHC7QlqcvO4iTy06BqQsBeHnjUC1zueJXYlT5DAEvNkg3k5RfiVMQ5bNu6S21g1tw5eGvqFMx+Zy5Wsz/esWMXIs+ysBQVEx9tKrJKpfOUX7UWH/2PNPAV9U2nGRBDXmOaQVnHzJosT6VEW9zsGRRs7dNdxksjLjZE5ai96fBeUf8dpYoz1Meo2oTn5U8QBVjYpIH15r47gMWmliGlKxBOm3kvGURUKzYq6as86t2sptozDWyTiEGq9wv6pwnwH9RXBUso965QAAAAAElFTkSuQmCC"/>
+      <LineObject Name="Line53" Left="3.45" Top="96.5" Width="1075.41"/>
+      <TextObject Name="Text148" Left="208" Top="47.79" Width="63.8" Height="17.12" Text="Desa" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text149" Left="208" Top="76.14" Width="63.8" Height="17.12" Text="Block" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text150" Left="255.25" Top="47.79" Width="16.55" Height="17.12" Text=":" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text151" Left="255.25" Top="76.14" Width="16.55" Height="17.12" Text=":" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text152" Left="463.15" Top="47.79" Width="26" Height="17.12" Text="C" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text153" Left="463.15" Top="76.14" Width="63.8" Height="17.12" Text="SPPT" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text154" Left="510.4" Top="47.79" Width="16.55" Height="17.12" Text=":" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text155" Left="510.4" Top="76.14" Width="16.55" Height="17.12" Text=":" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text156" Left="623.8" Top="47.79" Width="16.55" Height="17.12" Text="/" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text157" Left="746.65" Top="47.79" Width="16.55" Height="17.12" Text="P" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text158" Left="765.55" Top="47.79" Width="16.55" Height="17.12" Text=":" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text159" Left="907.3" Top="47.79" Width="16.55" Height="17.12" Text="/" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text182" Left="264.7" Top="76.14" Width="177.2" Height="17.12" Text="[DS.BlockNo]" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text183" Left="264.7" Top="47.79" Width="177.2" Height="17.12" Text="[DS.Desa]" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text184" Left="519.85" Top="76.14" Width="177.2" Height="17.12" Text="[DS.SPPT_PBB]" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="98.67" Width="1084.86" StartNewPage="true" Condition="[DS.TransNmbr]" SortOrder="None" ResetPageNumber="true">
+      <DataBand Name="Data1" Top="100.85" Width="1084.86" Height="102.17" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" AfterDataEvent="Data1_AfterData" Guides="-2,11.23,13.12,1,14.23,16.9,-1,12.23,18.9,18.9" DataSource="Table" KeepDetail="true">
+        <ShapeObject Name="Shape1" Left="4.45" Top="28.35" Width="122.85" Height="38.8" Border.Color="Transparent" Border.Width="0.25" Fill.Color="Bisque"/>
+        <TextObject Name="Text66" Left="4" Top="37.8" Width="104.85" Height="20.01" Text="No WL" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <TextObject Name="Text144" Left="126.85" Top="37.8" Width="119.02" Height="19.67" Text="No Percil" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <TextObject Name="Text102" Left="249.7" Top="37.8" Width="35.45" Height="17.12" Text="Detail" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <TextObject Name="Text70" Left="287.5" Top="37.8" Width="72.15" Height="17.01" Text="Awal" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <TextObject Name="Text124" Left="608.8" Top="30.35" Width="63.62" Height="15.12" Text="Waris Level No." Font="Arial Narrow, 7pt"/>
+        <LineObject Name="LineG" Left="4" Top="28.35" Width="1074.17" Diagonal="true"/>
+        <LineObject Name="Line41" Left="126.85" Top="28.35" Height="71.77"/>
+        <LineObject Name="Line42" Left="249.7" Top="28.35" Height="71.77"/>
+        <LineObject Name="Line43" Left="287.5" Top="28.35" Height="71.77"/>
+        <LineObject Name="Line44" Left="400.9" Top="28.35" Height="71.77"/>
+        <LineObject Name="LineL" Left="400.9" Top="47.25" Width="519.46" Diagonal="true"/>
+        <TextObject Name="TextB" Left="438.7" Top="49.7" Width="43.08" Height="13.23" Text="1" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <LineObject Name="LineH" Left="4" Top="66.15" Width="1075.17" Diagonal="true"/>
+        <LineObject Name="Line54" Left="4" Top="28.35" Height="71.77"/>
+        <LineObject Name="Line59" Left="249.7" Top="85.05" Width="670.82" Diagonal="true"/>
+        <LineObject Name="Line60" Left="4" Top="101.95" Width="1074.17" Diagonal="true"/>
+        <TextObject Name="Text160" Left="249.7" Top="66.15" Width="35.45" Height="17.12" Text="Nama" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <TextObject Name="Text161" Left="249.7" Top="85.05" Width="35.45" Height="17.12" Text="Luas" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <TextObject Name="Text162" Left="287.5" Top="66.15" Width="109.95" Height="16.01" Text="[DS.AwalName]" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <TextObject Name="Text163" Left="287.5" Top="85.05" Width="109.95" Height="17.01" Text="[DS.LuasAwal]" Format="Custom" Format.Format="##,#0.##" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <LineObject Name="Line61" Left="504.85" Top="47.25" Height="52.87"/>
+        <TextObject Name="Text164" Left="533.2" Top="49.7" Width="43.08" Height="13.23" Text="2" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <LineObject Name="Line62" Left="608.8" Top="47.25" Height="52.87"/>
+        <TextObject Name="Text165" Left="637.15" Top="49.7" Width="43.08" Height="13.23" Text="3" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <TextObject Name="Text166" Left="741.1" Top="49.7" Width="43.08" Height="13.23" Text="4" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <TextObject Name="Text167" Left="835.6" Top="49.7" Width="43.08" Height="13.23" Text="5" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <LineObject Name="Line63" Left="712.75" Top="47.25" Height="52.87"/>
+        <LineObject Name="Line64" Left="816.7" Top="47.25" Height="52.87"/>
+        <LineObject Name="Line65" Left="920.65" Top="28.35" Height="71.77"/>
+        <TextObject Name="Text168" Left="958.45" Top="47.25" Width="80.88" Height="13.23" Text="Remark" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <TextObject Name="Text169" Left="400.9" Top="66.15" Width="101.5" Height="16.01" Text="[DS.WlLvlName1]" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <TextObject Name="Text170" Left="504.85" Top="66.15" Width="101.5" Height="16.01" Text="[DS.WlLvlName2]" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <TextObject Name="Text171" Left="608.8" Top="66.15" Width="101.5" Height="16.01" Text="[DS.WlLvlName3]" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <TextObject Name="Text172" Left="712.75" Top="66.15" Width="101.5" Height="16.01" Text="[DS.WlLvlName4]" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <TextObject Name="Text173" Left="816.7" Top="66.15" Width="101.5" Height="16.01" Text="[DS.WlLvlName5]" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <TextObject Name="Text174" Left="920.65" Top="66.15" Width="158.2" Height="17.01" GrowToBottom="true" CanBreak="false" Text="[DS.RemarkDt]" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <TextObject Name="Text175" Left="4" Top="66.15" Width="120.4" Height="35.91" Text="[DS.NoWl]" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <TextObject Name="Text176" Left="126.85" Top="66.15" Width="120.4" Height="35.91" Text="[DS.PersilNo]" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <TextObject Name="Text177" Left="400.9" Top="85.05" Width="101.5" Height="17.01" Text="[DS.LuasLvlNo1]" Format="Custom" Format.Format="##,0#.##" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <TextObject Name="Text178" Left="504.85" Top="85.05" Width="101.5" Height="17.01" Text="[DS.LuasLvlNo2]" Format="Custom" Format.Format="##,0#.##" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <TextObject Name="Text179" Left="608.8" Top="85.05" Width="101.5" Height="17.01" Text="[DS.LuasLvlNo3]" Format="Custom" Format.Format="##,0#.##" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <TextObject Name="Text180" Left="712.75" Top="85.05" Width="101.5" Height="17.01" Text="[DS.LuasLvlNo4]" Format="Custom" Format.Format="##,0#.##" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <TextObject Name="Text181" Left="816.7" Top="85.05" Width="101.5" Height="17.01" Text="[DS.LuasLvlNo5]" Format="Custom" Format.Format="##,0#.##" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <LineObject Name="Line66" Left="1079.3" Top="28.8" Height="72.77"/>
+        <TextObject Name="Text232" Left="669.95" Top="30.35" Width="63.62" Height="15.12" Text="[DS.NoWarisLevel]" Font="Arial Narrow, 7pt"/>
+        <DataBand Name="Data2" Top="205.19" Width="1084.86" Height="97.95" CanGrow="true" CanShrink="true" KeepDetail="true">
+          <TextObject Name="Text185" Left="13.45" Top="22.35" Width="20.8" Height="14.01" Text="No" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text186" Left="51.25" Top="22.35" Width="71.77" Height="18.67" Text="No Dokumen" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text187" Left="211.9" Top="22.35" Width="73.25" Height="17.12" Text="Nama" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <LineObject Name="Line67" Left="4" Top="22.35" Width="1077.17" Diagonal="true"/>
+          <LineObject Name="Line68" Left="41.8" Top="22.35" Height="74.22"/>
+          <LineObject Name="Line69" Left="211.9" Top="22.35" Height="74.22"/>
+          <LineObject Name="Line70" Left="259.15" Top="22.35" Height="74.22"/>
+          <LineObject Name="Line71" Left="400.9" Top="22.35" Height="74.22"/>
+          <LineObject Name="Line72" Left="4" Top="41.25" Width="1077.01" Diagonal="true"/>
+          <LineObject Name="Line73" Left="211.9" Top="60.15" Width="604.67" Diagonal="true"/>
+          <LineObject Name="Line74" Left="4" Top="22.35" Height="74.22"/>
+          <LineObject Name="Line75" Left="211.9" Top="79.05" Width="604.67" Diagonal="true"/>
+          <TextObject Name="Text193" Left="259.15" Top="60.15" Width="141.3" Height="15.01" Text="[DS.Luas]" Format="Custom" Format.Format="##,0#.##" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text194" Left="259.15" Top="79.05" Width="141.3" Height="16.01" Text="[DS.Sisa]" Format="Custom" Format.Format="##,#0.##" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <LineObject Name="Line77" Left="504.85" Top="22.35" Height="74.22"/>
+          <LineObject Name="Line78" Left="608.8" Top="22.35" Height="74.22"/>
+          <LineObject Name="Line79" Left="712.75" Top="22.35" Height="74.22"/>
+          <LineObject Name="Line80" Left="816.7" Top="22.35" Height="74.22"/>
+          <TextObject Name="Text200" Left="400.9" Top="60.15" Width="101.5" Height="15.01" Text="[DS.Luas2]" Format="Custom" Format.Format="##,0#.##" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text201" Left="504.85" Top="60.15" Width="101.5" Height="15.01" Text="[DS.Luas3]" Format="Custom" Format.Format="##,0#.##" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text202" Left="608.8" Top="60.15" Width="101.5" Height="15.01" Text="[DS.Luas4]" Format="Custom" Format.Format="##,0#.##" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text203" Left="712.75" Top="60.15" Width="101.5" Height="15.01" Text="[DS.Luas5]" Format="Custom" Format.Format="##,0#.##" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <LineObject Name="Line82" Left="1081.3" Top="22.35" Height="74.22"/>
+          <TextObject Name="Text208" Left="400.9" Top="79.05" Width="101.5" Height="16.01" Text="[DS.Sisa2]" Format="Custom" Format.Format="##,0#.##" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text209" Left="504.85" Top="79.05" Width="101.5" Height="16.01" Text="[DS.Sisa3]" Format="Custom" Format.Format="##,0#.##" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text210" Left="608.8" Top="79.05" Width="101.5" Height="16.01" Text="[DS.Sisa4]" Format="Custom" Format.Format="##,0#.##" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text211" Left="712.75" Top="79.05" Width="101.5" Height="17.01" Text="[DS.Sisa5]" Format="Custom" Format.Format="##,0#.##" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <LineObject Name="Line76" Left="4" Top="97.95" Width="1077.17" Diagonal="true"/>
+          <TextObject Name="Text213" Left="126.85" Top="22.35" Width="81.22" Height="18.67" Text="Dokumen Date" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <LineObject Name="Line83" Left="126.85" Top="22.35" Height="74.22"/>
+          <TextObject Name="Text214" Left="211.9" Top="41.25" Width="73.25" Height="17.12" Text="No AJB" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text215" Left="211.9" Top="60.15" Width="73.25" Height="17.12" Text="Luas (m2)" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text216" Left="211.9" Top="79.05" Width="73.25" Height="17.12" Text="Sisa (m2)" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text217" Left="51.25" Top="41.25" Width="72.15" Height="54.81" Text="[DS.NoDok]" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text1" Left="4" Top="50.7" Width="37.8" Height="36.8" Text="[DS.NoWl]" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text218" Left="126.85" Top="41.25" Width="82.6" Height="54.81" Text="[DS.DocDate]" Format="Custom" Format.Format="dd MMM yyyy" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text219" Left="4" Top="3.45" Width="100.12" Height="19.67" Text="&quot;[DS.Descript]&quot;" VertAlign="Center" Font="Arial Narrow, 7pt, style=Bold"/>
+          <TextObject Name="Text220" Left="816.7" Top="22.35" Width="100.12" Height="13.67" Text="Remark" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text221" Left="259.15" Top="41.25" Width="141.3" Height="14.01" Text="[DS.NoAjb]" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text222" Left="400.9" Top="41.25" Width="101.5" Height="14.01" Text="[DS.NoAjb2]" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text223" Left="504.85" Top="41.25" Width="101.5" Height="14.01" Text="[DS.NoAjb3]" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text224" Left="608.8" Top="41.25" Width="101.5" Height="14.01" Text="[DS.NoAjb4]" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text225" Left="712.75" Top="41.25" Width="101.5" Height="14.01" Text="[DS.NoAjb5]" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text226" Left="259.15" Top="22.35" Width="141.3" Height="16.01" Text="[DS.NameRecv]" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text227" Left="400.9" Top="22.35" Width="101.5" Height="16.01" Text="[DS.NameRecv2]" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text228" Left="504.85" Top="22.35" Width="101.5" Height="16.01" Text="[DS.NameRecv3]" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text229" Left="608.8" Top="22.35" Width="101.5" Height="16.01" Text="[DS.NameRecv4]" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text230" Left="712.75" Top="22.35" Width="101.5" Height="16.01" Text="[DS.NameRecv5]" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text212" Left="816.7" Top="41.25" Width="262.15" Height="17.01" CanBreak="false" Text="[DS.RemarkSubDt]" Format="Custom" Format.Format="##,0#.##" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        </DataBand>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="305.32" Width="1084.86" Guides="9.45,56.7"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="307.49" Width="1084.86" Height="18.9" Guides="278.05,306.4,149.75,162.98,244.25,257.48,274.05,-566.4,273.84,-566.61,306.64,-566.16,176.1,270.6,286.5,305.4,149.2,168.1,309.85,328.75,306.85,142.8,0,141.75,170.1,125.85,139.08,122.85,106.95,120.18,85.05,81.05,56.48,23.35,36.58,18.9,17.68,-567.4,64.15,77.38,58.7,-565.4,94.5,0">
+      <TextObject Name="Text3" Left="3" Width="396.9" Height="18.9" Text="[Date]" Format="Date" Format.Format="F" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text231" Left="684.4" Width="396.9" Height="18.9" Text="[DS.UserID]" HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

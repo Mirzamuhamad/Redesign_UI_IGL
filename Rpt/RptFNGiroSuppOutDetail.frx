@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="07/04/2011 15:39:43" ReportInfo.Modified="12/18/2013 11:35:15" ReportInfo.CreatorVersion="2013.3.5.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43harHveBn1XAH3qQOlewKQyqg">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_FNRptGiroSuppOut 2012,1,2013,12,'','','','',1,'admin'  ">
+        <Column Name="Tahun" DataType="System.Int32"/>
+        <Column Name="Bulan" DataType="System.Int32"/>
+        <Column Name="YearMonth" DataType="System.String"/>
+        <Column Name="Total" DataType="System.Double"/>
+        <Column Name="Supplier" DataType="System.String"/>
+        <Column Name="SupplierName" DataType="System.String"/>
+        <Column Name="GiroNo" DataType="System.String"/>
+        <Column Name="GiroDate" DataType="System.DateTime"/>
+        <Column Name="DueDate" DataType="System.DateTime"/>
+        <Column Name="TOPDay" DataType="System.Int32"/>
+        <Column Name="Factory" DataType="System.String"/>
+        <Column Name="UserType" DataType="System.String"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="Period" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" FirstPageSource="1" OtherPagesSource="1" Guides="340.2">
+    <PageHeaderBand Name="PageHeader1" Width="1047.06" Height="47.25">
+      <TextObject Name="Text11" Left="-5.67" Top="9.23" Width="1037.61" Height="34.02" Text="Giro On Hand Outstanding Supplier Detail" AutoWidth="true" VertAlign="Center" Font="Arial, 16pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="51.25" Width="1047.06" Height="131.66" CanGrow="true" CanBreak="true" KeepDetail="true">
+      <MatrixObject Name="Matrix1" Width="684.94" Height="77.61" FixedRows="2" FixedColumns="6" AutoSize="false" DataSource="Table" ShowTitle="true">
+        <MatrixColumns>
+          <Header Expression="[DS.YearMonth]"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.GiroNo]"/>
+          <Header Expression="[DS.GiroDate]" Totals="false"/>
+          <Header Expression="[DS.DueDate]" Totals="false"/>
+          <Header Expression="[DS.TOPDay]" Totals="false"/>
+          <Header Expression="[DS.SupplierName]" Totals="false"/>
+          <Header Expression="[DS.Remark]" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.Total]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="75.68"/>
+        <TableColumn Name="Column2" Width="58.62" AutoSize="true"/>
+        <TableColumn Name="Column3" Width="58.01" AutoSize="true"/>
+        <TableColumn Name="Column4" Width="35.27"/>
+        <TableColumn Name="Column5" Width="150.42"/>
+        <TableColumn Name="Column6" Width="144.6"/>
+        <TableColumn Name="Column7" Width="72.64"/>
+        <TableColumn Name="Column8" Width="89.7"/>
+        <TableRow Name="Row1" Height="16.25">
+          <TableCell Name="Cell1" Border.Lines="All" HorzAlign="Center" VertAlign="Center" ColSpan="6"/>
+          <TableCell Name="Cell2"/>
+          <TableCell Name="Cell11"/>
+          <TableCell Name="Cell17"/>
+          <TableCell Name="Cell25"/>
+          <TableCell Name="Cell35"/>
+          <TableCell Name="Cell39" Border.Lines="All" Text="OUTSANDING GIRO" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" ColSpan="2"/>
+          <TableCell Name="Cell43"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="28.86">
+          <TableCell Name="Cell3" Border.Lines="All" Text="No Giro" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell4" Border.Lines="All" Text="TGL T/F" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell12" Border.Lines="All" Text="TGL JT" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell18" Border.Lines="All" Text="TOP&#13;&#10;(hari)" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell26" Border.Lines="All" Text="Supplier" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell36" Border.Lines="All" Text="Keterangan" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell40" Border.Lines="All" Text="[YearMonth]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell44" Border.Lines="All" Text="Nominal" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell9" Border.Lines="All" Text="[GiroNo]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell10" Border.Lines="All" Text="[GiroDate]" Format="Custom" Format.Format="dd-MMM-yy" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell13" Border.Lines="All" Text="[DueDate]" Format="Custom" Format.Format="dd-MMM-yy" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell19" Border.Lines="All" Text="[TOPDay]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell27" Border.Lines="All" Text="[SupplierName]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell37" Border.Lines="All" Text="[Remark]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell41" Border.Lines="All" Text="[Total]" Format="Custom" Format.Format="###,###" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell45" Border.Lines="All" Format="Custom" Format.Format="###,###" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+        </TableRow>
+        <TableRow Name="Row4" Height="16.25">
+          <TableCell Name="Cell14" Border.Lines="All" Text="Total :   " HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt" ColSpan="6"/>
+          <TableCell Name="Cell15"/>
+          <TableCell Name="Cell16"/>
+          <TableCell Name="Cell20"/>
+          <TableCell Name="Cell28"/>
+          <TableCell Name="Cell38"/>
+          <TableCell Name="Cell42" Border.Lines="All" Format="Custom" Format.Format="###,###" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell46" Border.Lines="All" Format="Custom" Format.Format="###,###" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="186.91" Width="1047.06" Height="18.9">
+      <LineObject Name="Line3" Left="-9.45" Width="1054.62"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="03/27/2014 09:48:18" ReportInfo.Modified="03/27/2014 15:31:18" ReportInfo.CreatorVersion="2013.3.5.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    dim Nomor As Integer 
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Nomor = Nomor + 1
+      Cell36.Text = Nomor
+    End Sub
+    
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Nomor = 0
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43hao0SvmYJ51/mTVQqMeWAGes">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_MTNRptMachineDownTime '2010-03-25','2014-03-27','','','',0,'admin'">
+        <Column Name="MachineCode" DataType="System.String"/>
+        <Column Name="MachineName" DataType="System.String"/>
+        <Column Name="MachineSpec" DataType="System.String"/>
+        <Column Name="MachineGroup" DataType="System.String"/>
+        <Column Name="ProductionDate" DataType="System.DateTime"/>
+        <Column Name="StartTime" DataType="System.String"/>
+        <Column Name="EndTime" DataType="System.String"/>
+        <Column Name="HourTime" DataType="System.Decimal"/>
+        <Column Name="CauseDownTime" DataType="System.String"/>
+        <Column Name="Tindakan" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="Period" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="279.4" PaperHeight="215.9" RawPaperSize="1" FirstPageSource="14" OtherPagesSource="14">
+    <ReportTitleBand Name="ReportTitle1" Width="980.53"/>
+    <PageHeaderBand Name="PageHeader1" Top="5.71" Width="980.53"/>
+    <GroupHeaderBand Name="GroupHeader1" Top="11.43" Width="980.53" Height="223.75" BeforePrintEvent="GroupHeader1_BeforePrint" StartNewPage="true" Condition="[DS.MachineCode]">
+      <TextObject Name="Text1" Left="9.45" Top="9.45" Width="264.6" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text2" Left="9.45" Top="28.35" Width="264.6" Height="37.8" Text="[DS.CompAddr]"/>
+      <TextObject Name="Text3" Left="387.45" Top="40.8" Width="217.35" Height="37.8" Text="DOWNTIME MACHINE" HorzAlign="Center" VertAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text4" Left="359.1" Top="109.95" Width="141.75" Height="18.9" Text="Machine Name" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text7" Left="500.85" Top="109.95" Width="9.45" Height="18.9" Text=":" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text10" Left="513.75" Top="109.95" Width="255.15" Height="18.9" Text="[DS.MachineName]" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text5" Left="359.1" Top="128.85" Width="141.75" Height="18.9" Text="Machine Spec" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text8" Left="500.85" Top="128.85" Width="9.45" Height="18.9" Text=":" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text11" Left="514.3" Top="128.85" Width="255.15" Height="18.9" Text="[DS.MachineSpec]" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text12" Left="514.3" Top="147.75" Width="255.15" Height="18.9" Text="[DS.MachineGroup]" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text6" Left="359.1" Top="147.75" Width="141.75" Height="18.9" Text="Machine Group" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text9" Left="500.85" Top="147.75" Width="9.45" Height="18.9" Text=":" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TableObject Name="Table1" Left="9.45" Top="176.5" Width="940.29" Height="47.25" Border.Lines="All">
+        <TableColumn Name="Column1" Width="41.21"/>
+        <TableColumn Name="Column2" Width="154.57"/>
+        <TableColumn Name="Column3" Width="126.22"/>
+        <TableColumn Name="Column4" Width="116.78"/>
+        <TableColumn Name="Column5" Width="107.32"/>
+        <TableColumn Name="Column6" Width="182.92"/>
+        <TableColumn Name="Column7" Width="211.27"/>
+        <TableRow Name="Row1" Height="15.75">
+          <TableCell Name="Cell1" Border.Lines="All" Text="No." HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell2" Border.Lines="All" Text="Tanggal" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell3" Border.Lines="All" Text="Waktu" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold" ColSpan="2"/>
+          <TableCell Name="Cell4" Border.Lines="All"/>
+          <TableCell Name="Cell5" Border.Lines="All" Text="Total Waktu" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell26" Border.Lines="All" Text="Penyebab Kerusakan Mesin" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell27" Border.Lines="All" Text="Tindakan Perbaikan Mesin&#13;&#10;" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold" RowSpan="3"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="15.75">
+          <TableCell Name="Cell6" Border.Lines="All" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell7" Border.Lines="All"/>
+          <TableCell Name="Cell8" Border.Lines="All" Text="Start" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell9" Border.Lines="All" Text="Finish" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell10" Border.Lines="All"/>
+          <TableCell Name="Cell31" Border.Lines="All"/>
+          <TableCell Name="Cell32" Border.Lines="All"/>
+        </TableRow>
+        <TableRow Name="Row5" Height="15.75">
+          <TableCell Name="Cell56" Border.Lines="All" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell57" Border.Lines="All"/>
+          <TableCell Name="Cell58" Text="Jam" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell59" Border.Lines="All" Text="Jam" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell60" Border.Lines="All"/>
+          <TableCell Name="Cell61" Border.Lines="All"/>
+          <TableCell Name="Cell62" Border.Lines="All"/>
+        </TableRow>
+      </TableObject>
+      <TextObject Name="Text13" Left="368.55" Top="72.6" Width="255.15" Height="18.9" Text="Periode : [DS.Period]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <DataBand Name="Data1" Top="240.89" Width="980.53" Height="28.81" DataSource="Table">
+        <TableObject Name="Table1" Left="9.45" Top="0.45" Width="940.29" Height="28.36">
+          <TableColumn Name="Column11" Width="41.21"/>
+          <TableColumn Name="Column12" Width="154.57"/>
+          <TableColumn Name="Column13" Width="126.22"/>
+          <TableColumn Name="Column14" Width="116.78"/>
+          <TableColumn Name="Column15" Width="107.32"/>
+          <TableColumn Name="Column16" Width="182.92"/>
+          <TableColumn Name="Column17" Width="211.27"/>
+          <TableRow Name="Row3" Height="14.18">
+            <TableCell Name="Cell36" Border.Lines="Left, Right, Bottom" BeforePrintEvent="Data1_BeforePrint" HorzAlign="Center" VertAlign="Center" RowSpan="2"/>
+            <TableCell Name="Cell37" Border.Lines="Left, Right, Bottom" Text="[DS.ProductionDate]" Format="Custom" Format.Format="dd/MM/yyyy" HorzAlign="Center" VertAlign="Center" RowSpan="2"/>
+            <TableCell Name="Cell38" Border.Lines="Left, Right, Bottom" Text="[DS.StartTime]" HorzAlign="Center" VertAlign="Center" RowSpan="2"/>
+            <TableCell Name="Cell39" Border.Lines="Left, Right, Bottom" Text="[DS.EndTime]" HorzAlign="Center" VertAlign="Center" RowSpan="2"/>
+            <TableCell Name="Cell40" Border.Lines="Left, Right, Bottom" Text="[DS.HourTime]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Center" VertAlign="Center" RowSpan="2"/>
+            <TableCell Name="Cell41" Border.Lines="Left, Right, Bottom" Text="[DS.CauseDownTime]" HorzAlign="Center" VertAlign="Center" RowSpan="2"/>
+            <TableCell Name="Cell42" Border.Lines="Left, Right, Bottom" Text="[DS.Tindakan]" HorzAlign="Center" VertAlign="Center" RowSpan="2"/>
+          </TableRow>
+          <TableRow Name="Row4" Height="14.18">
+            <TableCell Name="Cell46" Border.Lines="All"/>
+            <TableCell Name="Cell47" Border.Lines="All"/>
+            <TableCell Name="Cell48" Border.Lines="All"/>
+            <TableCell Name="Cell49" Border.Lines="All"/>
+            <TableCell Name="Cell50" Border.Lines="All"/>
+            <TableCell Name="Cell51" Border.Lines="All"/>
+            <TableCell Name="Cell52" Border.Lines="All"/>
+          </TableRow>
+        </TableObject>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="275.42" Width="980.53"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="281.13" Width="980.53"/>
+  </ReportPage>
+</Report>

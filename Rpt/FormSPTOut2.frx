@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="10/28/2020 10:07:11" ReportInfo.Modified="02/19/2021 15:01:33" ReportInfo.CreatorVersion="2017.4.7.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+
+  End Class
+End Namespace
+                                              </ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLEkWIWzjSp9u4fnNl2HWgBzMr6nUiIDT/VMde2jt0mLbQjCm//P5Q7b3N6NHanPK8mKGIEyvPR6gBnFZ8r/iDGGMaFClsXCUbitFVE+Sha3l5xQsxTEjFQPuIQ+8/1zMN2zlJjebylne6B8dBtahSHnIgUWNu/8qwVQWlh48aEXjjau4xvX+JdaaOLoCa79rQw==">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PLFormSPTOut '''IAL/SPTOUT/2012/0001'''">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="Do_No" DataType="System.String"/>
+        <Column Name="So_No" DataType="System.String"/>
+        <Column Name="CarNo" DataType="System.String"/>
+        <Column Name="CarName" DataType="System.String"/>
+        <Column Name="Customer" DataType="System.String"/>
+        <Column Name="CustomerName" DataType="System.String"/>
+        <Column Name="Operator" DataType="System.String"/>
+        <Column Name="IsiQrcode" DataType="System.String"/>
+        <Column Name="OperatorName" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="70" PaperHeight="50" LeftMargin="0" TopMargin="0" RightMargin="0" BottomMargin="0" FirstPageSource="256" OtherPagesSource="256">
+    <ReportTitleBand Name="ReportTitle1" Width="264.6" Height="9.45"/>
+    <DataBand Name="Data1" Top="13.45" Width="264.6" Height="160.65" DataSource="Table">
+      <BarcodeObject Name="Barcode1" Left="75.6" Top="5" Width="112.95" Height="103.95" BeforePrintEvent="PageHeader1_AfterData" AutoSize="false" DataColumn="DS.IsiQrcode" ShowText="false" Barcode="QR Code" Barcode.ErrorCorrection="L" Barcode.Encoding="UTF8" Barcode.QuietZone="true"/>
+      <TextObject Name="Text2" Left="32.8" Top="116.4" Width="59.6" Height="9.55" Text="No Kendaraan" VertAlign="Center" Font="Arial Narrow, 6pt"/>
+      <TextObject Name="Text3" Left="32.8" Top="105.5" Width="51.7" Height="9.55" Text="Nama Supir" VertAlign="Center" Font="Arial Narrow, 6pt"/>
+      <TextObject Name="Text5" Left="79.85" Top="105.4" Width="9.1" Height="9.55" Text=":" VertAlign="Center" Font="Arial Narrow, 6pt, style=Bold"/>
+      <TextObject Name="Text7" Left="79.85" Top="115.4" Width="8.1" Height="9.55" Text=":" VertAlign="Center" Font="Arial Narrow, 6pt, style=Bold"/>
+      <TextObject Name="Text8" Left="86.4" Top="116.85" Width="149.75" Height="9.55" Text="[DS.CarNo]" VertAlign="Center" Font="Arial Narrow, 6pt"/>
+      <TextObject Name="Text9" Left="86.4" Top="106.6" Width="149.75" Height="9.8" Text="[DS.Operator]" VertAlign="Center" Font="Arial Narrow, 6pt"/>
+      <LineObject Name="Line1" Left="36.25" Top="103.05" Width="189.1"/>
+      <TextObject Name="Text4" Left="32.8" Top="128.2" Width="50.7" Height="9.55" Text="Customer" VertAlign="Center" Font="Arial Narrow, 6pt"/>
+      <TextObject Name="Text6" Left="80.05" Top="128.2" Width="8.1" Height="9.55" Text=":" VertAlign="Center" Font="Times New Roman, 6pt, style=Bold"/>
+      <TextObject Name="Text10" Left="86.5" Top="128.2" Width="178.1" Height="9.55" Text="[DS.CustomerName]" VertAlign="Center" Font="Arial Narrow, 6pt"/>
+      <TextObject Name="Text1" Left="96.95" Top="-1" Width="71.15" Height="13.9" Text="SLIP SPT-OUT" HorzAlign="Center" Font="Arial Narrow, 8pt, style=Bold"/>
+    </DataBand>
+  </ReportPage>
+</Report>

@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="05/20/2011 08:38:19" ReportInfo.Modified="01/21/2015 14:32:39" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+       
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43hao3Y3c/rWNZRaO84ZXc66vF">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_GLRptBSheet 2011, 01, 2011, 01, 0, 0, 0, 1">
+        <Column Name="TypeCode" DataType="System.String"/>
+        <Column Name="TypeName" DataType="System.String"/>
+        <Column Name="GroupCode" DataType="System.String"/>
+        <Column Name="GroupName" DataType="System.String"/>
+        <Column Name="SubGroupCode" DataType="System.String"/>
+        <Column Name="SubGroupName" DataType="System.String"/>
+        <Column Name="AmountCur" DataType="System.Decimal"/>
+        <Column Name="AmountLast" DataType="System.Decimal"/>
+        <Column Name="ColumnName" DataType="System.String"/>
+        <Column Name="ColumnName2" DataType="System.String"/>
+        <Column Name="AmountMove" DataType="System.Decimal"/>
+        <Column Name="PercentMove" DataType="System.Decimal"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompanyAddr" DataType="System.String"/>
+        <Column Name="PercentCur" DataType="System.Decimal"/>
+        <Column Name="PercentLast" DataType="System.Decimal"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="CurGroup" Expression="[DS.AmountCur]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="LastGroup" Expression="[DS.AmountLast]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="CurType" Expression="[DS.AmountCur]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="LastType" Expression="[DS.AmountLast]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TAmountMove" Expression="[DS.AmountMove]" Evaluator="Data1"/>
+    <Total Name="TPercenMove" Expression="[DS.PercentMove]" Evaluator="Data1"/>
+    <Total Name="TGroupAmountMove" Expression="[DS.AmountMove]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="TGroupPercentMove" Expression="[DS.PercentMove]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="TTypeAmountMove" Expression="[DS.AmountMove]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TTypePercentMove" Expression="[DS.PercentMove]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="PercCurrGroup" Expression="[DS.PercentCur]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="PercCurrType" Expression="[DS.PercentCur]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="PercLastGroup" Expression="[DS.PercentLast]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="PercLastType" Expression="[DS.PercentLast]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" LeftMargin="5" RightMargin="5" BottomMargin="20" FirstPageSource="1" OtherPagesSource="1" Guides="-18.9">
+    <PageHeaderBand Name="PageHeader1" Top="20" Width="756" Height="85.95">
+      <TextObject Name="Text1" Left="198.45" Top="42.25" Width="295.73" Height="28.35" Text="BALANCE SHEET REPORT" HorzAlign="Center" Font="Arial, 16pt, style=Bold"/>
+      <TextObject Name="Text2" Left="567" Width="191.55" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text17" Left="548.1" Top="71.15" Width="210.45" Height="11.34" Text="Page : [Page#] of [TotalPages#]" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text69" Width="538.65" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text70" Top="21.8" Width="538.65" Height="18.9" Text="[DS.CompanyAddr]" Font="Arial, 8pt, style=Bold"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="125.95" Width="756" Height="34.13" BeforePrintEvent="GroupHeader1_BeforePrint" StartNewPage="true" Condition="[DS.TypeCode]" SortOrder="None">
+      <ShapeObject Name="Shape1" Top="0.78" Width="761" Height="33.35"/>
+      <TextObject Name="Text36" Left="5.34" Top="3.78" Width="267.74" Height="25.68" Text="[DS.TypeName]" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text37" Left="274.17" Top="3.78" Width="159.14" Height="13.23" Text="[DS.ColumnName]" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text39" Left="433.81" Top="3.78" Width="159.14" Height="13.23" Text="[DS.ColumnName2]" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text63" Left="594.35" Top="4" Width="159.2" Height="13.23" Text="Movement" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text67" Left="595.35" Top="18.9" Width="103.5" Height="13.23" Text="Amount" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text68" Left="699.4" Top="18.9" Width="54.7" Height="13.23" Text="%" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line5" Left="274.05" Top="17.9" Width="487.38"/>
+      <TextObject Name="Text71" Left="434.7" Top="18.9" Width="103.57" Height="13.23" Text="Amount" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text72" Left="538.2" Top="18.9" Width="54.81" Height="13.23" Text="%" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text73" Left="274.5" Top="18.9" Width="103.57" Height="13.23" Text="Amount" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text74" Left="378" Top="18.9" Width="54.81" Height="13.23" Text="%" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <GroupHeaderBand Name="GroupHeader2" Top="180.08" Width="756" Height="21.9" Condition="[DS.GroupCode]" SortOrder="None">
+        <TextObject Name="Text55" Left="3.78" Top="3" Width="296.71" Height="14.9" Text="[DS.GroupName]" Font="Arial, 8pt, style=Bold"/>
+        <DataBand Name="Data1" Top="221.98" Width="756" Height="17.35" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" DataSource="Table">
+          <TextObject Name="Text46" Left="9.83" Width="262.42" Height="14.9" CanGrow="true" Text="[DS.SubGroupName]" Font="Arial, 8pt"/>
+          <TextObject Name="Text51" Left="274.5" Width="103.57" Height="14.9" CanGrow="true" Text="[DS.AmountCur]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 8pt"/>
+          <TextObject Name="Text52" Left="434.7" Width="103.57" Height="14.9" CanGrow="true" Text="[DS.AmountLast]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 8pt"/>
+          <TextObject Name="Text65" Left="595.35" Width="103.68" Height="14.9" CanGrow="true" Text="[DS.AmountMove]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 8pt"/>
+          <TextObject Name="Text66" Left="699.4" Width="54.81" Height="14.9" CanGrow="true" Text="[DS.PercentMove]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 8pt"/>
+          <TextObject Name="Text75" Left="538.2" Width="54.81" Height="14.9" CanGrow="true" Text="[DS.PercentLast]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 8pt"/>
+          <TextObject Name="Text76" Left="378" Width="54.81" Height="14.9" CanGrow="true" Text="[DS.PercentCur]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 8pt"/>
+        </DataBand>
+        <GroupFooterBand Name="GroupFooter2" Top="259.33" Width="756" Height="17.45">
+          <TextObject Name="Text57" Left="9.9" Top="3.78" Width="263.3" Height="11.9" Text="TOTAL - [DS.GroupName]" Font="Arial, 8pt, style=Bold"/>
+          <LineObject Name="Line3" Left="274.05" Width="479.5"/>
+          <TextObject Name="Text58" Left="274.5" Top="3.78" Width="103.57" Height="13.45" Text="[CurGroup]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+          <TextObject Name="Text59" Left="434.7" Top="3.78" Width="103.57" Height="13.61" Text="[LastGroup]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+          <TextObject Name="Text5" Left="595.35" Top="3.78" Width="103.68" Height="13.61" Text="[TGroupAmountMove]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+          <TextObject Name="Text6" Left="699.4" Top="3.78" Width="54.81" Height="13.61" Text="[TGroupPercentMove]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+          <TextObject Name="Text77" Left="378" Top="3.78" Width="54.81" Height="13.45" Text="[PercCurrGroup]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+          <TextObject Name="Text78" Left="538.2" Top="3.78" Width="54.81" Height="13.45" Text="[PercLastGroup]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        </GroupFooterBand>
+      </GroupHeaderBand>
+      <GroupFooterBand Name="GroupFooter1" Top="296.78" Width="756" Height="17.77">
+        <TextObject Name="Text54" Left="5.34" Top="4.16" Width="268.61" Height="11.9" Text="GRAND TOTAL - [DS.TypeName]" Font="Arial, 8pt, style=Bold"/>
+        <LineObject Name="Line2" Left="274.05" Width="479.5"/>
+        <TextObject Name="Text9" Left="274.5" Top="4" Width="103.57" Height="13.45" Text="[CurType]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text10" Left="434.7" Top="4.16" Width="103.57" Height="13.61" Text="[LastType]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text7" Left="595.35" Top="4.16" Width="103.68" Height="13.61" Text="[TTypeAmountMove]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text8" Left="699.4" Top="4.16" Width="54.81" Height="13.61" Text="[TTypePercentMove]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text79" Left="378" Top="4.16" Width="54.81" Height="13.45" Text="[PercCurrType]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text80" Left="538.2" Top="4.16" Width="54.81" Height="13.45" Text="[PercLastType]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="334.55" Width="756" Height="18.9">
+      <TextObject Name="Text38" Left="4.45" Width="94.5" Height="15.12" Text="Accounting" VertAlign="Center" Font="Arial, 8pt"/>
+      <LineObject Name="Line1" Width="754.55"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

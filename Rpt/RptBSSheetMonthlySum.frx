@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="10/01/2013 16:14:00" ReportInfo.Modified="01/21/2015 14:48:30" ReportInfo.CreatorVersion="1.2.47.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haqzMdZn6+zaLKCoqiAo8MUz">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_GLRptBSheetMonth 2014, 1, 3, 2, 2014, 6, '', '', '', '', 0, 0, 'N', 'N', 'Admin'  ">
+        <Column Name="GroupCode" DataType="System.String"/>
+        <Column Name="GroupName" DataType="System.String"/>
+        <Column Name="Total" DataType="System.Double"/>
+        <Column Name="TypeCode" DataType="System.String"/>
+        <Column Name="TypeName" DataType="System.String"/>
+        <Column Name="SubGroupCode" DataType="System.String"/>
+        <Column Name="SubGroupName" DataType="System.String"/>
+        <Column Name="Year" DataType="System.Int32"/>
+        <Column Name="Period" DataType="System.Int32"/>
+        <Column Name="PeriodName" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompanyAddr" DataType="System.String"/>
+        <Column Name="Title" DataType="System.String"/>
+        <Column Name="TabCode" DataType="System.String"/>
+        <Column Name="TabName" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" FirstPageSource="15" OtherPagesSource="15">
+    <ReportTitleBand Name="ReportTitle1" Top="20" Width="1047.06" Height="4.45"/>
+    <PageHeaderBand Name="PageHeader1" Top="44.45" Width="1047.06" Height="89.56">
+      <TextObject Name="Text22" Width="274.05" Height="28.35" Text="[DS.CompanyName]" AutoWidth="true" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text3" Left="1.23" Top="58.7" Width="1039.5" Height="18.9" Anchor="Top" Text="[DS.Title]" HorzAlign="Center" VertAlign="Center" Font="Arial, 14.25pt, style=Bold"/>
+      <TextObject Name="Text2" Top="29.35" Width="548.1" Height="18.9" Text="[DS.CompanyAddr]"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="154.01" Width="1047.06" Height="96.1">
+      <MatrixObject Name="Matrix1" Left="0.45" Top="6.45" Width="346.03" Height="83.65" FixedRows="2" FixedColumns="3" AutoSize="false" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="[DS.PeriodName]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.TabName]" Sort="None" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.TypeName]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.GroupName]" Sort="None"/>
+          <Header Expression="[DS.SubGroupName]" Sort="None"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.Total]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="51.02"/>
+        <TableColumn Name="Column2" Width="75.26"/>
+        <TableColumn Name="Column3" Width="111.26"/>
+        <TableColumn Name="Column4" Width="108.49"/>
+        <TableRow Name="Row1" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell1" Border.Lines="All" Text="Position" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell2" Border.Lines="All" Text="Group" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell7" Border.Lines="All" Text="Sub Group" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell13" Border.Lines="All" Text="[PeriodName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row2" AutoSize="true">
+          <TableCell Name="Cell3"/>
+          <TableCell Name="Cell4"/>
+          <TableCell Name="Cell8"/>
+          <TableCell Name="Cell14" Border.Lines="All" Text="[TabName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="16" AutoSize="true">
+          <TableCell Name="Cell5" Border.Lines="All" Text="[TypeName]" VertAlign="Center" Font="Arial, 7pt" RowSpan="3"/>
+          <TableCell Name="Cell6" Border.Lines="All" Text="[GroupName]" VertAlign="Center" Font="Arial, 7pt" RowSpan="2"/>
+          <TableCell Name="Cell9" Border.Lines="All" Text="[SubGroupName]" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell15" Border.Lines="All" Text="[Total]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+        </TableRow>
+        <TableRow Name="Row4" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell10"/>
+          <TableCell Name="Cell11"/>
+          <TableCell Name="Cell12" Border.Lines="All" Text="Sub Total" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell16" Border.Lines="All" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row5" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell21"/>
+          <TableCell Name="Cell22" Border.Lines="All" Text="Total" VertAlign="Center" Font="Arial, 8pt, style=Bold" ColSpan="2"/>
+          <TableCell Name="Cell23"/>
+          <TableCell Name="Cell24" Border.Lines="All" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="270.11" Width="1047.06" Height="18.9"/>
+  </ReportPage>
+</Report>

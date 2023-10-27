@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="05/10/2011 14:31:32" ReportInfo.Modified="08/12/2014 09:37:09" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+
+
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+       
+    End Sub
+
+    Private Sub Page1_StartPage(ByVal sender As object, ByVal e As EventArgs)
+       GroupHeader1.StartNewPage = (CType(Report.GetColumnValue(&quot;DS.FgForceNewPage&quot;), String)=&quot;Y&quot;)
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43hapP0kDZeGWSMJyFWdCLh+Mc">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC  S_PYRptAbsSummary '20140501', '20140720', '', '', '', '', 0, 0, 'N', 'N', ''">
+        <Column Name="GroupCode" DataType="System.String"/>
+        <Column Name="GroupName" DataType="System.String"/>
+        <Column Name="EmpName" DataType="System.String"/>
+        <Column Name="CompName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="Periode" DataType="System.String"/>
+        <Column Name="GroupBy" DataType="System.String"/>
+        <Column Name="NIK" DataType="System.String"/>
+        <Column Name="IdAbs" DataType="System.String"/>
+        <Column Name="HireDate" DataType="System.DateTime"/>
+        <Column Name="TerminateDate" DataType="System.DateTime"/>
+        <Column Name="AbsHdr" DataType="System.Int32"/>
+        <Column Name="AbsCuti" DataType="System.Int32"/>
+        <Column Name="AbsIjin" DataType="System.Int32"/>
+        <Column Name="AbsDinas" DataType="System.Int32"/>
+        <Column Name="AbsAlpha" DataType="System.Int32"/>
+        <Column Name="AbsOff" DataType="System.Int32"/>
+        <Column Name="AbsTotal" DataType="System.Double"/>
+        <Column Name="LateComing" DataType="System.Double"/>
+        <Column Name="EarlyOut" DataType="System.Double"/>
+        <Column Name="XLateComing" DataType="System.Int32"/>
+        <Column Name="XEarlyOut" DataType="System.Int32"/>
+        <Column Name="HourShift" DataType="System.Double"/>
+        <Column Name="HourAbs" DataType="System.Double"/>
+        <Column Name="OTHour" DataType="System.Double"/>
+        <Column Name="SisaCuti" DataType="System.Double"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210.01" LeftMargin="10.01" TopMargin="10.01" RightMargin="10.01" BottomMargin="10.01" FirstPageSource="14" OtherPagesSource="14" Guides="0,0,48,201.6,278.4,585.6,700.8,816,326.4,364.8,403.2,451.2,499.2,537.6,576,691.2,652.8,633.6,633.6,633.6,643.2,643.2,768,748.8,748.8,748.8,748.8,758.4,969.6,816,931.2,806.4" StartPageEvent="Page1_StartPage">
+    <PageHeaderBand Name="PageHeader1" Width="1046.98" Height="160.67" Guides="0,86.4,96,115.2,153.6,134.4,134.4,163.2,134.4">
+      <TextObject Name="Text6" Left="48" Top="118.5" Width="153.6" Height="15.9" Text="Nama Karyawan" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text7" Top="118.5" Width="48" Height="15.9" Text="NIK" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text13" Left="201.6" Top="118.5" Width="76.8" Height="15.9" Text="Hire Date" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text17" Width="404.55" Height="18.9" Text="[DS.CompName]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text18" Top="18.9" Width="406.35" Height="28.35" Text="[DS.CompAddr]" Font="Arial, 8.25pt"/>
+      <TextObject Name="Text43" Top="77.1" Width="1046.4" Height="18.9" Text="[DS.Periode]" HorzAlign="Center" Font="Arial, 8.25pt"/>
+      <LineObject Name="Line3" Top="159" Width="1044.48" Height="-0.8" Diagonal="true"/>
+      <TextObject Name="Text47" Left="-9600" Top="-9600" Width="153.6" Height="19.2" Text="Date : [Date]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text48" Left="891.95" Width="153.6" Height="19.2" Text="Date : [Date]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text49" Left="892.8" Top="19.29" Width="153.6" Height="19.02" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <LineObject Name="Line5" Left="278.4" Top="134.4" Width="297.6" Diagonal="true"/>
+      <TextObject Name="Text14" Left="278.4" Top="118.08" Width="297.6" Height="16.32" Text="Status Absence" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <LineObject Name="Line6" Top="106.4" Width="1044.48" Diagonal="true"/>
+      <TextObject Name="Text50" Left="278.4" Top="137.7" Width="48" Height="15.9" Text="Hadir" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text51" Left="326.4" Top="137.7" Width="38.4" Height="15.9" Text="Cuti" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text52" Left="364.8" Top="137.7" Width="38.4" Height="15.9" Text="Ijin" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text53" Left="403.2" Top="137.7" Width="48" Height="15.9" Text="Dinas" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text54" Left="451.2" Top="137.7" Width="48" Height="15.9" Text="Alpha" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text57" Left="499.2" Top="137.7" Width="38.4" Height="15.9" Text="Total" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text58" Left="537.6" Top="137.7" Width="38.4" Height="15.9" Text="Off" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text1" Top="48" Width="1046.4" Height="19.2" Text="ABSENCE SUMMARY" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text61" Left="585.6" Top="118.08" Width="105.6" Height="16.32" Text="Late Come" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <LineObject Name="Line7" Left="585.6" Top="134.4" Width="105.6" Diagonal="true"/>
+      <TextObject Name="Text62" Left="585.6" Top="137.7" Width="48" Height="15.9" Text="Hour" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text63" Left="653.4" Top="137.7" Width="37.8" Height="15.9" Text="Freq" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text65" Left="700.8" Top="118.08" Width="105.6" Height="16.32" Text="Early Out" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <LineObject Name="Line8" Left="700.8" Top="134.4" Width="105.6" Diagonal="true"/>
+      <TextObject Name="Text66" Left="700.8" Top="137.7" Width="48" Height="15.9" Text="Hour" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text67" Left="768" Top="137.7" Width="38.4" Height="15.9" Text="Freq" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text71" Left="816" Top="118.08" Width="153.6" Height="16.32" Text="Hour" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text72" Left="816" Top="137.7" Width="67.2" Height="15.9" Text="Effective" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text73" Left="883.2" Top="137.7" Width="48" Height="15.9" Text="Actual" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text74" Left="931.2" Top="137.7" Width="38.4" Height="15.9" Text="OT" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <LineObject Name="Line9" Left="816" Top="134.4" Width="153.6" Diagonal="true"/>
+      <TextObject Name="Text78" Left="979.2" Top="118.08" Width="67.2" Height="16.32" Text="Sisa Cuti" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="164.67" Width="1046.98" Height="29.35" BeforePrintEvent="GroupHeader1_BeforePrint" Guides="0" RepeatOnEveryPage="true" Condition="[DS.GroupCode]">
+      <TextObject Name="Text2" Top="10.45" Width="537.6" Height="18.9" Text="[DS.GroupBy] : [DS.GroupName]" AutoWidth="true" Font="Arial, 8pt, style=Bold"/>
+      <DataBand Name="Data1" Top="198.02" Width="1046.98" Height="19.5" Guides="0,18.9" DataSource="Table">
+        <TextObject Name="Text3" Width="48" Height="18.9" Text="[DS.NIK]" Format="Custom" Format.Format="dd/MMM/yy" Font="Arial, 8pt"/>
+        <TextObject Name="Text5" Left="48" Width="153.6" Height="18.9" Text="[DS.EmpName]" Font="Arial, 8pt"/>
+        <TextObject Name="Text8" Left="325.65" Width="39.15" Height="18.9" Text="[DS.AbsCuti]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 8pt"/>
+        <TextObject Name="Text9" Left="364.8" Width="38.4" Height="18.9" Text="[DS.AbsIjin]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 8pt"/>
+        <TextObject Name="Text12" Left="201.6" Top="-0.3" Width="76.8" Height="19.2" Text="[DS.HireDate]" Format="Custom" Format.Format="dd MMM yy" Font="Arial, 8pt"/>
+        <TextObject Name="Text4" Left="278.4" Width="48" Height="18.9" Text="[DS.AbsHdr]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 8pt"/>
+        <TextObject Name="Text55" Left="403.2" Width="46.95" Height="18.9" Text="[DS.AbsDinas]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 8pt"/>
+        <TextObject Name="Text56" Left="451.2" Width="46.95" Height="18.9" Text="[DS.AbsAlpha]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 8pt"/>
+        <TextObject Name="Text59" Left="499.2" Width="38.4" Height="18.9" Text="[DS.AbsTotal]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 8pt"/>
+        <TextObject Name="Text64" Left="576.15" Width="57.45" Height="18.9" Text="[DS.LateComing]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 8pt"/>
+        <TextObject Name="Text68" Left="691.35" Top="-0.3" Width="57.45" Height="18.9" Text="[DS.EarlyOut]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 8pt"/>
+        <TextObject Name="Text69" Left="633.9" Width="57.3" Height="18.9" Text="[DS.XLateComing]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 8pt"/>
+        <TextObject Name="Text70" Left="749.1" Width="57.3" Height="18.9" Text="[DS.XEarlyOut]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 8pt"/>
+        <TextObject Name="Text75" Left="806.55" Width="76.65" Height="18.9" Text="[DS.HourShift]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 8pt"/>
+        <TextObject Name="Text76" Left="873.75" Width="57.45" Height="18.9" Text="[DS.HourAbs]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 8pt"/>
+        <TextObject Name="Text77" Left="921.75" Width="47.85" Height="18.9" Text="[DS.OTHour]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 8pt"/>
+        <TextObject Name="Text79" Left="960.3" Width="76.5" Height="18.9" Text="[DS.SisaCuti]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 8pt"/>
+        <TextObject Name="Text60" Left="537.6" Width="38.4" Height="18.9" Text="[DS.AbsOff]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 8pt"/>
+        <Sort>
+          <Sort Expression="[DS.GroupCode]"/>
+          <Sort Expression="[DS.NIK]"/>
+        </Sort>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="221.52" Width="1046.98" Height="0.75" Guides="0">
+        <LineObject Name="Line1" Width="1044.48" Diagonal="true"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="226.27" Width="1046.98" Height="18.9"/>
+  </ReportPage>
+</Report>

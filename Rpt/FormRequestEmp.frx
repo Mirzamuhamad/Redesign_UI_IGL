@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="01/02/2014 15:12:37" ReportInfo.Modified="06/27/2014 09:19:04" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+      Text1.Text = CType(Report.GetColumnValue(&quot;DS.UserID&quot;), String)  
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43hapxQxC8vFHDW16RXjIk6F9p">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PEFormRequestEmp  '0006/RNE-PGA/01/','Admin'">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="RequestType" DataType="System.String"/>
+        <Column Name="DeptCode" DataType="System.String"/>
+        <Column Name="DeptName" DataType="System.String"/>
+        <Column Name="Reason" DataType="System.String"/>
+        <Column Name="TotalMale" DataType="System.Int32"/>
+        <Column Name="TotalFemale" DataType="System.Int32"/>
+        <Column Name="Total" DataType="System.Int32"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="JobTtlCode" DataType="System.String"/>
+        <Column Name="JobTtlName" DataType="System.String"/>
+        <Column Name="EmpStatusCode" DataType="System.String"/>
+        <Column Name="EmpStatusName" DataType="System.String"/>
+        <Column Name="RangeTime" DataType="System.String"/>
+        <Column Name="StartDate" DataType="System.DateTime"/>
+        <Column Name="QtyMale" DataType="System.Int32"/>
+        <Column Name="QtyFemale" DataType="System.Int32"/>
+        <Column Name="QtyTotal" DataType="System.Int32"/>
+        <Column Name="SyaratUmum" DataType="System.String"/>
+        <Column Name="SyaratKhusus" DataType="System.String"/>
+        <Column Name="Responsibility" DataType="System.String"/>
+        <Column Name="RemarkDt" DataType="System.String"/>
+        <Column Name="PK_Dt" DataType="System.String"/>
+        <Column Name="Company" DataType="System.String"/>
+        <Column Name="Address" DataType="System.String"/>
+        <Column Name="UserId" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="Company" DataType="System.String"/>
+    <Parameter Name="Logo" DataType="System.String"/>
+    <Parameter Name="UserId" DataType="System.String"/>
+    <Parameter Name="ReqType" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="330.2" LeftMargin="5" RightMargin="5">
+    <PageHeaderBand Name="PageHeader1" Width="778.3"/>
+    <GroupHeaderBand Name="GroupHeader2" Top="4" Width="778.3" Condition="[DS.TransNmbr]" SortOrder="None">
+      <GroupHeaderBand Name="GroupHeader1" Top="8" Width="778.3" Height="202.14" StartNewPage="true" Condition="[DS.PK_Dt]" SortOrder="None" KeepTogether="true">
+        <TextObject Name="spRptJobPlant" Left="168.14" Top="148.79" Width="211.91" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.DeptName]" Padding="2, 1, 2, 1" WordWrap="false" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="spRptTeamName" Left="168.14" Top="170.33" Width="151.18" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.TransDate]" Padding="2, 1, 2, 1" Format="Date" Format.Format="d" WordWrap="false" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo1" Left="129.64" Top="86.52" Width="518.93" Height="22.68" Text="FORMULIR PERMINTAAN KARYAWAN [DS.RequestType]" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 14pt, style=Bold"/>
+        <TextObject Name="Company" Left="3.05" Top="9.45" Width="377.95" Height="22.68" Text="[DS.Company]" Padding="2, 1, 2, 1" AutoWidth="true" VertAlign="Center" Font="Arial Narrow, 14pt, style=Bold"/>
+        <TextObject Name="Memo2" Left="3" Top="148.33" Width="137.95" Height="18.9" Text="1. DEPARTEMENT SEKSI" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo3" Left="3" Top="170.33" Width="137.95" Height="18.9" Text="2. TANGGAL PERMINTAAN " Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo18" Left="145.44" Top="148.33" Width="18.9" Height="18.9" Text=" : " Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo22" Left="146.44" Top="170.33" Width="18.9" Height="18.9" Text=" : " Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+        <LineObject Name="Line2" Left="-2" Top="6.63" Width="782.46" Diagonal="true"/>
+        <TextObject Name="Memo12" Left="273.35" Top="115.33" Width="25.18" Height="18.9" Text="No. " Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="spRptTransNmbr" Left="307.35" Top="115.33" Width="158.74" Height="18.9" Text="[DS.TransNmbr]" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Text1" Left="3" Top="37.8" Width="377.95" Height="22.68" Text="[DS.Address]" Padding="2, 1, 2, 1" AutoWidth="true" VertAlign="Center" Font="Arial Narrow, 10pt"/>
+        <TextObject Name="Text57" Left="567" Top="18.9" Width="207.9" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+        <TextObject Name="Text35" Left="567" Top="116.05" Width="207.9" Height="11.34" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+        <DataBand Name="MasterData2" Top="214.14" Width="778.3" Height="217.77" AfterDataEvent="MasterData2_AfterData" DataSource="Table">
+          <TextObject Name="spRptQty" Left="169.14" Top="2.54" Width="56.69" Height="18.9" Text="[DS.QtyTotal]" Padding="2, 1, 2, 1" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial Narrow, 9pt"/>
+          <TextObject Name="spRptUnit" Left="350.9" Top="2.54" Width="56.69" Height="18.9" Text="[DS.QtyMale]" Padding="2, 1, 2, 1" Format="Custom" Format.Format="#,##0" Font="Arial Narrow, 9pt"/>
+          <TextObject Name="spRptWorkDay" Left="472.97" Top="2.54" Width="56.69" Height="18.9" Text="[DS.QtyFemale]" Padding="2, 1, 2, 1" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial Narrow, 9pt"/>
+          <TextObject Name="spRptCapacity" Left="247.23" Top="47.54" Width="410.02" Height="55.9" Text="[DS.SyaratUmum]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" Font="Arial Narrow, 9pt"/>
+          <TextObject Name="spRptStartdate" Left="248.23" Top="107.54" Width="410.02" Height="55.9" Text="[DS.SyaratKhusus]" Padding="2, 1, 2, 1" Format="Date" Format.Format="d" Font="Arial Narrow, 9pt"/>
+          <TextObject Name="Memo4" Left="4" Top="2.54" Width="137.95" Height="18.9" Text="3. JUMLAH PERMINTAAN" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+          <TextObject Name="Memo5" Left="4" Top="25.87" Width="137.95" Height="18.9" Text="4. PERSYARATAN" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+          <TextObject Name="Memo6" Left="46" Top="47.54" Width="170.08" Height="18.9" Text="A. PENDIDIKAN + PENGALAMAN" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+          <TextObject Name="Memo7" Left="46" Top="107.54" Width="170.08" Height="18.9" Text="B. KHUSUS" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+          <TextObject Name="Memo8" Left="4" Top="169.54" Width="257.01" Height="18.9" Text="5. TUGAS POKOK YANG AKAN DIKERJAKAN" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+          <TextObject Name="Memo9" Left="4" Top="193.54" Width="257.01" Height="18.9" Text="6. CALON KARYAWAN DIHARAPKAN MASUK MULAI" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+          <TextObject Name="Memo15" Left="230.44" Top="2.54" Width="117.17" Height="18.9" Text="ORANG  TERDIRI DARI " Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+          <TextObject Name="Memo16" Left="412.1" Top="2.54" Width="55.98" Height="18.9" Text="PRIA DAN " Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+          <TextObject Name="Memo17" Left="537.1" Top="2.54" Width="45.35" Height="18.9" Text="WANITA" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+          <TextObject Name="Memo26" Left="146.44" Top="2.87" Width="18.9" Height="18.9" Text=" : " Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+          <TextObject Name="Memo27" Left="146.44" Top="25.87" Width="18.9" Height="18.9" Text=" : " Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+          <TextObject Name="Memo28" Left="217.53" Top="47.54" Width="26.46" Height="18.9" Text=" : " Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+          <TextObject Name="Memo29" Left="219" Top="107.54" Width="26.46" Height="18.9" Text=" : " Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+          <TextObject Name="Memo30" Left="265.44" Top="170.54" Width="26.46" Height="18.9" Text=" : " Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+          <TextObject Name="Memo31" Left="265.44" Top="193.54" Width="26.46" Height="18.9" Text=" : " Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+          <TextObject Name="Memo32" Left="297.44" Top="170.54" Width="410.02" Height="18.9" Text="[DS.Responsibility]" Padding="2, 1, 2, 1" Format="Date" Format.Format="d" Font="Arial Narrow, 9pt"/>
+          <TextObject Name="Memo33" Left="296.44" Top="193.54" Width="151.18" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.Startdate]" Padding="2, 1, 2, 1" Format="Date" Format.Format="d" WordWrap="false" Font="Arial Narrow, 9pt"/>
+        </DataBand>
+      </GroupHeaderBand>
+      <GroupFooterBand Name="GroupFooter1" Top="435.91" Width="778.3" Height="37.8"/>
+    </GroupHeaderBand>
+    <DataBand Name="Data1" Top="477.71" Width="778.3" Height="37.8"/>
+    <ReportSummaryBand Name="ReportSummary1" Top="519.51" Width="778.3" KeepChild="true"/>
+    <PageFooterBand Name="PageFooter1" Top="523.51" Width="778.3" Height="226.8">
+      <TextObject Name="UserId" Left="1018.18" Top="5.08" Width="188.98" Height="15.12" Padding="2, 1, 2, 1" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Memo21" Left="626.72" Top="2.62" Width="75.59" Height="18.9" Text="Dibuat Oleh, " Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Memo19" Left="69.14" Top="1.37" Width="83.15" Height="18.9" Text="Disetujui Oleh, " Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Memo20" Left="347.53" Top="1.37" Width="83.15" Height="18.9" Text="Diketahui Oleh, " Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Memo23" Left="44.98" Top="66.77" Width="135.78" Height="18.9" Text="( .......................................... )" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+      <TextObject Name="Memo24" Left="321.21" Top="73.77" Width="135.78" Height="18.9" Text="( .......................................... )" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+      <TextObject Name="Memo25" Left="595.15" Top="73.96" Width="135.78" Height="18.9" Text="( .......................................... )" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+      <LineObject Name="Line14" Left="779.55" Top="194.87" Height="-1133.86" Diagonal="true"/>
+      <TextObject Name="Memo10" Left="2.78" Top="109.09" Width="80.15" Height="18.9" Text="CATATAN :" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Memo11" Left="17.9" Top="128.09" Width="462.15" Height="18.9" Text="1. ESTIMASI WAKTU PERMINTAAN KARYAWAN D3/S1 DITENTUKAN MINIMAL 2 BULAN" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Memo13" Left="17.9" Top="151.09" Width="377.15" Height="18.9" Text="2. APABILA DIPERLUKAN BOLEH MEMAKAI LEMBARAN TAMBAHAN" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Memo34" Left="45" Top="88.43" Width="135.15" Height="18.9" Text="PRESIDEN DIREKTUR" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Memo35" Left="321" Top="94.76" Width="135.15" Height="18.9" Text="GENERAL MANAGER" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Memo36" Left="595" Top="95.76" Width="135.15" Height="18.9" Text="MANAGER" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+      <LineObject Name="Line1" Left="-2.38" Top="196.31" Width="782.46" Diagonal="true"/>
+      <TextObject Name="Page" Left="44.98" Top="198.31" Width="78.46" Height="18.9" Text="[Page#] of [TotalPages#]" Padding="2, 1, 2, 1" Font="Arial Narrow, 10pt, style=Bold"/>
+      <TextObject Name="Memo14" Left="0.62" Top="198.31" Width="41.57" Height="18.9" Text="Page : " Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 10pt, style=Bold"/>
+      <LineObject Name="Line8" Left="-2" Top="195.13" Height="-1133.86" Diagonal="true"/>
+      <TextObject Name="Text58" Left="642.6" Top="204.9" Width="132.3" Height="18.9" Text="[DS.UserID]" HorzAlign="Right" Font="Arial, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

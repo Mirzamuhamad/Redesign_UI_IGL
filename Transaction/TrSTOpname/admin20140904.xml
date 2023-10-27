@@ -1,0 +1,103 @@
+<?xml version="1.0" standalone="yes"?>
+<DS>
+  <Opname>
+    <TransNmbr>AS/SP/14/09/0001</TransNmbr>
+    <Product>2101001</Product>
+    <Product_Name>Allufoil Tissue King Palace  (17cm x 500m) ex IG</Product_Name>
+    <Location>GEN</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>100</QtyActual>
+    <QtyOpname>100</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>100</QtyRollActual>
+    <QtyRollOpname>100</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>ROLL</Unit>
+    <UnitPack>ROLL</UnitPack>
+    <UnitM2>SQM</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <Product>1 P74 M</Product>
+    <Product_Name>GENERAL CORE</Product_Name>
+    <specification>76.5 ID X 12T X 1100 MM</specification>
+    <Location />
+    <Location_Name />
+    <QtySystem>0.00</QtySystem>
+    <QtyActual>0.00</QtyActual>
+    <QtyOpname>0.00</QtyOpname>
+    <QtyRollSystem>0.00</QtyRollSystem>
+    <QtyRollActual>0.00</QtyRollActual>
+    <QtyRollOpname>0.00</QtyRollOpname>
+    <QtyM2System>0.00</QtyM2System>
+    <QtyM2Actual>0.00</QtyM2Actual>
+    <QtyM2Opname>0.00</QtyM2Opname>
+    <Unit>PCS</Unit>
+    <UnitPack>PCS</UnitPack>
+    <UnitM2>PCS</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <Product>1 P75 M</Product>
+    <Product_Name>GENERAL CORE</Product_Name>
+    <specification>76.5 ID x 12T x 1300mm</specification>
+    <Location />
+    <Location_Name />
+    <QtySystem>0.00</QtySystem>
+    <QtyActual>0.00</QtyActual>
+    <QtyOpname>0.00</QtyOpname>
+    <QtyRollSystem>0.00</QtyRollSystem>
+    <QtyRollActual>0.00</QtyRollActual>
+    <QtyRollOpname>0.00</QtyRollOpname>
+    <QtyM2System>0.00</QtyM2System>
+    <QtyM2Actual>0.00</QtyM2Actual>
+    <QtyM2Opname>0.00</QtyM2Opname>
+    <Unit>PCS</Unit>
+    <UnitPack>PCS</UnitPack>
+    <UnitM2>PCS</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <Product>AIM15</Product>
+    <Product_Name>PE NBF Mamamia Pants</Product_Name>
+    <specification>15gsm x 150mm x 8000 m</specification>
+    <Location />
+    <Location_Name />
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0.00</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>0</QtyRollActual>
+    <QtyRollOpname>0.00</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0.00</QtyM2Opname>
+    <Unit>KG</Unit>
+    <UnitPack>ROLL</UnitPack>
+    <UnitM2>SQM</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <Product>AIM16</Product>
+    <Product_Name>PE NBF Generik Pants</Product_Name>
+    <specification>15gsm x 150mm x 8000m</specification>
+    <Location />
+    <Location_Name />
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0.00</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>0</QtyRollActual>
+    <QtyRollOpname>0.00</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0.00</QtyM2Opname>
+    <Unit>KG</Unit>
+    <UnitPack>ROLL</UnitPack>
+    <UnitM2>SQM</UnitM2>
+    <Remark />
+  </Opname>
+</DS>

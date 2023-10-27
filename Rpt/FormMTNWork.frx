@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="01/13/2015 13:29:33" ReportInfo.Modified="01/13/2015 13:59:44" ReportInfo.CreatorVersion="1.2.47.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqxBq5Y2n/9yvTGKs7Jq1tsrcvuxX/gj/DXJiP9F59aPlpfLQJ8kPeYoA1Mj5vniNjzaK2SyCRUzC05+yyqPE2ar4QQnQG5EV+hTPCUa3DxmjdcK0q5bScy1HaCGjssNmq4IFqVKGtj0Sng4FAGRRKRQO4Bro7piqOuspWN2QM0wc1RHKCkBi8VpNnstKPeMUe">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_MTNWorkForm 'MWO/15-01/0002', 0, ''">
+        <Column Name="MONo" DataType="System.String"/>
+        <Column Name="Revisi" DataType="System.Int32"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="Status" DataType="System.String"/>
+        <Column Name="ReffNmbr" DataType="System.String"/>
+        <Column Name="Department" DataType="System.String"/>
+        <Column Name="RequestBy" DataType="System.String"/>
+        <Column Name="RequestDate" DataType="System.DateTime"/>
+        <Column Name="FgOutSource" DataType="System.String"/>
+        <Column Name="OutSourceTo" DataType="System.String"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="UserPrep" DataType="System.String"/>
+        <Column Name="DatePrep" DataType="System.DateTime"/>
+        <Column Name="UserAppr" DataType="System.String"/>
+        <Column Name="DateAppr" DataType="System.DateTime"/>
+        <Column Name="ItemNo" DataType="System.Int32"/>
+        <Column Name="MTNItem" DataType="System.String"/>
+        <Column Name="MTNItemName" DataType="System.String"/>
+        <Column Name="Job" DataType="System.String"/>
+        <Column Name="JobName" DataType="System.String"/>
+        <Column Name="Problem" DataType="System.String"/>
+        <Column Name="PIC" DataType="System.String"/>
+        <Column Name="RemarkDt" DataType="System.String"/>
+        <Column Name="DoneLHM" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="Table1" Alias="DS2" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_MTNWorkFormPart 'MWO/15-01/0002', 0, ''">
+        <Column Name="MONo" DataType="System.String"/>
+        <Column Name="Revisi" DataType="System.Int32"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="Status" DataType="System.String"/>
+        <Column Name="ReffNmbr" DataType="System.String"/>
+        <Column Name="Department" DataType="System.String"/>
+        <Column Name="RequestBy" DataType="System.String"/>
+        <Column Name="RequestDate" DataType="System.DateTime"/>
+        <Column Name="FgOutSource" DataType="System.String"/>
+        <Column Name="OutSourceTo" DataType="System.String"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="UserPrep" DataType="System.String"/>
+        <Column Name="DatePrep" DataType="System.DateTime"/>
+        <Column Name="UserAppr" DataType="System.String"/>
+        <Column Name="DateAppr" DataType="System.DateTime"/>
+        <Column Name="Sparepart" DataType="System.String"/>
+        <Column Name="SparepartName" DataType="System.String"/>
+        <Column Name="Qty" DataType="System.Decimal"/>
+        <Column Name="Unit" DataType="System.String"/>
+        <Column Name="QtyIssue" DataType="System.Decimal"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1">
+    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="189">
+      <TextObject Name="Text1" Left="217.35" Width="179.55" Height="18.9" Text="Maintenance Order" HorzAlign="Center" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text23" Top="78.6" Width="94.5" Height="18.9" Text="Department" Font="Arial, 9pt"/>
+      <TextObject Name="Text24" Top="97.5" Width="94.5" Height="18.9" Text="Request By" Font="Arial, 9pt"/>
+      <TextObject Name="Text25" Top="116.4" Width="94.5" Height="18.9" Text="Outsource" Font="Arial, 9pt"/>
+      <TextObject Name="Text26" Left="425.25" Top="78.6" Width="94.5" Height="18.9" Text="Date" Font="Arial, 9pt"/>
+      <TextObject Name="Text27" Left="425.25" Top="97.5" Width="94.5" Height="18.9" Text="Request Date" Font="Arial, 9pt"/>
+      <TextObject Name="Text28" Left="425.25" Top="116.4" Width="94.5" Height="18.9" Text="Reff. No." Font="Arial, 9pt"/>
+      <TextObject Name="Text10" Top="163.65" Width="37.8" Height="18.9" Text="No." Font="Arial, 8pt"/>
+      <TextObject Name="Text14" Left="128.3" Top="163.65" Width="113.4" Height="18.9" Text="MTN Item Name" Font="Arial, 8pt"/>
+      <TextObject Name="Text16" Left="245.7" Top="163.65" Width="113.4" Height="18.9" Text="Job" Font="Arial, 8pt"/>
+      <TextObject Name="Text18" Left="363.1" Top="163.65" Width="113.4" Height="18.9" Text="Problem" Font="Arial, 8pt"/>
+      <TextObject Name="Text20" Left="479.95" Top="163.65" Width="113.4" Height="18.9" Text="PIC" Font="Arial, 8pt"/>
+      <TextObject Name="Text22" Left="595.35" Top="163.65" Width="120.96" Height="18.9" Text="Remark" Font="Arial, 8pt"/>
+      <TextObject Name="Text12" Left="37.8" Top="163.65" Width="86.94" Height="18.9" Text="MTN Item Code" Font="Arial, 8pt"/>
+      <LineObject Name="Line1" Top="162.65" Width="718.2"/>
+      <LineObject Name="Line2" Top="183.55" Width="718.2"/>
+      <TextObject Name="Text2" Left="217.35" Top="18.9" Width="179.55" Height="18.9" Text="No : [DS.MONo]" HorzAlign="Center"/>
+      <TextObject Name="Text3" Left="94.5" Top="78.6" Width="226.8" Height="18.9" Text=": [DS.Department]" Font="Arial, 9pt"/>
+      <TextObject Name="Text4" Left="94.5" Top="97.5" Width="226.8" Height="18.9" Text=": [DS.RequestBy]" Font="Arial, 9pt"/>
+      <TextObject Name="Text5" Left="94.5" Top="116.4" Width="226.8" Height="18.9" Text=":  [DS.OutSourceTo]" Font="Arial, 9pt"/>
+      <TextObject Name="Text6" Left="519.75" Top="78.6" Width="226.8" Height="18.9" Text=": [DS.TransDate]" Format="Custom" Format.Format="dd MMMM yyyy" Font="Arial, 9pt"/>
+      <TextObject Name="Text7" Left="519.75" Top="97.5" Width="226.8" Height="18.9" Text=": [DS.RequestDate]" Format="Custom" Format.Format="dd MMMM yyyy" Font="Arial, 9pt"/>
+      <TextObject Name="Text8" Left="519.75" Top="116.4" Width="226.8" Height="18.9" Text=": [DS.ReffNmbr]" Font="Arial, 9pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="193" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Table">
+      <TextObject Name="Text9" Width="37.8" Height="18.9" Text="[DS.ItemNo]" Font="Arial, 8pt"/>
+      <TextObject Name="Text11" Left="37.8" Width="86.94" Height="18.9" Text="[DS.MTNItem]" Font="Arial, 8pt"/>
+      <TextObject Name="Text13" Left="128.3" Width="113.4" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.MTNItemName]" Font="Arial, 8pt"/>
+      <TextObject Name="Text15" Left="245.7" Width="113.4" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.JobName]" Font="Arial, 8pt"/>
+      <TextObject Name="Text17" Left="363.1" Width="113.4" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.Problem]" Font="Arial, 8pt"/>
+      <TextObject Name="Text19" Left="479.95" Width="113.4" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.PIC]" Font="Arial, 8pt"/>
+      <TextObject Name="Text29" Left="595.35" Width="120.96" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.RemarkDt]" Font="Arial, 8pt"/>
+    </DataBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="215.9" Width="718.2" Height="28.35">
+      <SubreportObject Name="Subreport1" Top="9.45" Width="151.2" Height="18.9" ReportPage="Page2"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="248.25" Width="718.2" Height="132.3"/>
+  </ReportPage>
+  <ReportPage Name="Page2">
+    <DataBand Name="Data2" Top="41.8" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Table1">
+      <TextObject Name="Text21" Width="94.5" Height="18.9" Text="[DS2.Sparepart]" Font="Arial, 8pt"/>
+      <TextObject Name="Text31" Left="94.5" Width="179.55" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS2.SparepartName]" Font="Arial, 8pt"/>
+      <TextObject Name="Text33" Left="274.05" Width="94.5" Height="18.9" Text="[DS2.Qty]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text35" Left="372.55" Width="94.5" Height="18.9" Text="[DS2.Unit]" Font="Arial, 8pt"/>
+      <DataHeaderBand Name="DataHeader1" Width="718.2" Height="37.8">
+        <TextObject Name="Text30" Top="14.45" Width="94.5" Height="18.9" Text="Sparepart" Font="Arial, 8pt"/>
+        <TextObject Name="Text32" Left="94.5" Top="14.45" Width="179.55" Height="18.9" Text="Sparepart Name" Font="Arial, 8pt"/>
+        <TextObject Name="Text34" Left="274.05" Top="14.45" Width="94.5" Height="18.9" Text="Qty" HorzAlign="Right" Font="Arial, 8pt"/>
+        <TextObject Name="Text36" Left="372.55" Top="14.45" Width="94.5" Height="18.9" Text="Unit" Font="Arial, 8pt"/>
+        <LineObject Name="Line3" Top="13.45" Width="718.2"/>
+        <LineObject Name="Line4" Top="34.35" Width="718.2"/>
+      </DataHeaderBand>
+    </DataBand>
+  </ReportPage>
+</Report>

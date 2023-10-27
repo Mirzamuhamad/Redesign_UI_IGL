@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="04/21/2011 08:48:38" ReportInfo.Modified="12/18/2019 11:09:22" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    dim Dept as String
+    dim Req as String
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      if Dept &lt;&gt; Report.GetColumnValue(&quot;DS.Department&quot;) then
+        'Text1.Visible = true              
+        Dept = Report.GetColumnValue(&quot;DS.Department&quot;) 
+      else
+        'Text1.Visible = false             
+      End If      
+      
+      if Req &lt;&gt; Report.GetColumnValue(&quot;DS.TransNmbr&quot;) then
+        'Text3.Visible = true
+        'Text5.Visible = true
+        'Text7.Visible = true 
+        'Text9.Visible = true 
+        Req = Report.GetColumnValue(&quot;DS.TransNmbr&quot;) 
+      else
+        'Text3.Visible = false
+        ' Text5.Visible = false
+        'Text7.Visible = false 
+        'Text9.Visible = false 
+      End if
+    End Sub       
+
+    Private Sub ReportTitle1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Dept = &quot;&quot;
+      Req = &quot;&quot;
+    End Sub
+
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Dept = &quot;&quot;
+      Req = &quot;&quot;
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLLbj4Q2auRldhUsXipeWB9fFBCwrNWrBSxbUS9wDVic7ffDp0pvDfifwz+oIb3nte5s+jJmXvClFRR4dQ4MExtvL+fI1gnf6TS5vP85DiI7M91IwZXMPDEZcGx4UeREcMCnOXmvRlouHF23J5PLk+Ce+BPdV1t0CZJcm0G8y5W+t">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PLRptMasterPlan 'IAL/MP/1909/0002', '2020', '5', '', '', '','','0','0','','',  'Admin'    ">
+        <Column Name="Column" Enabled="false" DataType="System.Int32" Calculated="true" Expression=""/>
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="City" DataType="System.String"/>
+        <Column Name="Address1" DataType="System.String"/>
+        <Column Name="Address2" DataType="System.String"/>
+        <Column Name="StatusTanam" DataType="System.String"/>
+        <Column Name="StartRange" DataType="System.Int32"/>
+        <Column Name="JobPlant" DataType="System.String"/>
+        <Column Name="JobName" DataType="System.String"/>
+        <Column Name="LevelPlant" DataType="System.String"/>
+        <Column Name="LevelPlantName" DataType="System.String"/>
+        <Column Name="Capacity" DataType="System.Decimal"/>
+        <Column Name="UnitAreal" DataType="System.String"/>
+        <Column Name="Volume" DataType="System.Decimal"/>
+        <Column Name="Rotation" DataType="System.Int32"/>
+        <Column Name="Material" DataType="System.String"/>
+        <Column Name="Qty" DataType="System.Decimal"/>
+        <Column Name="Unit" DataType="System.String"/>
+        <Column Name="Harga" DataType="System.Decimal"/>
+        <Column Name="TotalHarga" DataType="System.Decimal"/>
+        <Column Name="YearRpt" DataType="System.String"/>
+        <Column Name="PK" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="TotalHarga" Expression="[DS.TotalHarga]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5" FirstPageSource="261" OtherPagesSource="261" StartPageEvent="Page1_StartPage">
+    <ReportTitleBand Name="ReportTitle1" Width="756" CanGrow="true">
+      <RichObject Name="Rich1" Left="-9459.45" Top="-9223.2" Width="94.5" Height="18.9" Text="{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Microsoft Sans Serif;}}&#13;&#10;\viewkind4\uc1\pard\f0\fs17\par&#13;&#10;}&#13;&#10;"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="4.3" Width="756" Height="45.8" AfterDataEvent="PageHeader1_AfterData" CanBreak="true">
+      <TextObject Name="Text1" Left="1.9" Width="311.85" Height="25.35" Text="[DS.CompanyName]" AutoWidth="true" Font="Arial Narrow, 14pt, style=Bold"/>
+      <TextObject Name="Text2" Left="595.35" Top="19.9" Width="160.65" Height="18.9" Text="Page : [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text163" Left="7" Top="28.35" Width="25.35" Height="15.12" Text="No :" Font="Arial Narrow, 8pt, style=Bold"/>
+      <TextObject Name="Text174" Left="29.25" Top="26.9" Width="141.75" Height="18.9" Text="[DS.YearRpt]" AutoWidth="true" Font="Arial Narrow, 8pt, style=Bold"/>
+      <TextObject Name="Text3" Left="453.6" Width="302.4" Height="18.9" Text="[Date]" Format="Date" Format.Format="F" HorzAlign="Right" Font="Arial Narrow, 8pt"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="54.4" Width="756" Height="62.15" Condition="[DS.PK]" SortOrder="None">
+      <TextObject Name="Text69" Left="9.45" Top="35.8" Width="150.2" Height="22.68" Text="Keterangan" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 8pt, style=Bold"/>
+      <TextObject Name="Text72" Left="255.15" Top="35.8" Width="56.7" Height="22.68" Text="Bahan" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 8pt, style=Bold"/>
+      <LineObject Name="Line1" Left="9.45" Top="35.8" Width="736.31"/>
+      <TextObject Name="Text131" Left="689.85" Top="35.8" Width="47.25" Height="22.68" Text="Rp / Ha" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 8pt, style=Bold"/>
+      <TextObject Name="Text166" Left="463.05" Top="35.8" Width="46.25" Height="22.68" Text="Satuan" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 8pt, style=Bold"/>
+      <TextObject Name="Text167" Left="387.45" Top="35.8" Width="66.15" Height="22.68" Text="Jml Bhn / Alokasi" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 8pt, style=Bold"/>
+      <LineObject Name="Line7" Left="9.45" Top="35.8" Height="26.35"/>
+      <LineObject Name="Line10" Left="189" Top="35.8" Height="26.35"/>
+      <LineObject Name="Line11" Left="378" Top="35.8" Height="26.35"/>
+      <LineObject Name="Line12" Left="463.05" Top="35.8" Height="26.35"/>
+      <LineObject Name="Line13" Left="661.5" Top="35.8" Height="26.35"/>
+      <LineObject Name="Line14" Left="746.55" Top="35.8" Height="26.35"/>
+      <TextObject Name="Text182" Left="519.75" Top="35.8" Width="46.25" Height="22.68" Text="Harga" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 8pt, style=Bold"/>
+      <TextObject Name="Text183" Left="576.45" Top="35.8" Width="36.25" Height="22.68" Text="Vol (%)" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 8pt, style=Bold"/>
+      <TextObject Name="Text184" Left="623.7" Top="35.8" Width="36.25" Height="22.68" Text="Rotasi" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 8pt, style=Bold"/>
+      <LineObject Name="Line30" Left="510.3" Top="35.8" Height="26.35"/>
+      <LineObject Name="Line31" Left="576.45" Top="35.8" Height="26.35"/>
+      <LineObject Name="Line32" Left="614.25" Top="35.8" Height="26.35"/>
+      <TextObject Name="Text5" Left="217.35" Width="283.5" Height="28.35" Text="[DS.LevelPlantName]" HorzAlign="Center" Font="Arial Narrow, 14pt, style=Bold, Underline"/>
+      <LineObject Name="Line2" Left="9.45" Top="62.15" Width="737.31"/>
+      <DataBand Name="Data1" Top="120.85" Width="756" Height="18.9" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" AfterDataEvent="Data1_AfterData" CanBreak="true" DataSource="Table">
+        <TextObject Name="Text70" Left="11.35" Width="174.75" Height="16.23" CanGrow="true" Text="[DS.JobName]" Font="Arial Narrow, 8pt"/>
+        <TextObject Name="Text75" Left="464.7" Width="42.25" Height="16.23" Text="[DS.Unit]" Format="Custom" Format.Format="##,#0.##" WordWrap="false" Font="Arial Narrow, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text134" Left="512.3" Width="62.15" Height="18.12" Text="[DS.Harga]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Center" WordWrap="false" Font="Arial Narrow, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text135" Left="669.95" Width="76.6" Height="18.12" Text="[DS.TotalHarga]" WordWrap="false" Font="Arial Narrow, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text170" Left="578.45" Width="35.25" Height="18.12" Text="[DS.Volume]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Center" WordWrap="false" Font="Arial Narrow, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text171" Left="189.55" Width="186" Height="16.23" CanGrow="true" Text="[DS.Material]" HorzAlign="Center" Font="Arial Narrow, 8pt"/>
+        <TextObject Name="Text172" Left="383" Width="75.6" Height="16.23" CanGrow="true" Text="[DS.Qty]" Font="Arial Narrow, 8pt"/>
+        <TextObject Name="Text185" Left="618.7" Width="43.25" Height="18.12" Text="[DS.Rotation]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Center" WordWrap="false" Font="Arial Narrow, 8pt" Trimming="EllipsisCharacter"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="144.05" Width="756" Height="40.47" CanBreak="true" KeepWithData="true" RepeatOnEveryPage="true">
+        <LineObject Name="Line33" Left="9.45" Width="739.86"/>
+        <TextObject Name="Text186" Left="670.95" Top="3.45" Width="87.6" Height="18.12" Text="[TotalHarga]" WordWrap="false" Font="Arial Narrow, 8pt, style=Bold" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text187" Left="9.45" Top="3.45" Width="178.65" Height="18.12" Text="Total Biaya [DS.LevelPlantName]" WordWrap="false" Font="Arial Narrow, 8pt, style=Bold" Trimming="EllipsisCharacter"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="188.83" Width="756" Height="15.9" CanGrow="true" BeforePrintEvent="PageFooter1_BeforePrint" AfterDataEvent="PageFooter1_AfterData">
+      <LineObject Name="Line4" Left="9.45" Width="738.86"/>
+      <TextObject Name="Text188" Left="9.45" Width="48.7" Height="15.9" Text="Plantation" Format="Date" Format.Format="F" Font="Arial Narrow, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

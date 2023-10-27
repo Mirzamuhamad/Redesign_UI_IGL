@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="12/27/2013 15:30:34" ReportInfo.Modified="01/08/2014 17:08:42" ReportInfo.CreatorVersion="1.2.47.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43harnj3RYkg2S3LjW77+bO/3V">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PEFormCandidate 'IE/CD/13/12/0001', ''">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="RequestNo" DataType="System.String"/>
+        <Column Name="JobTtlCode" DataType="System.String"/>
+        <Column Name="JobTtlName" DataType="System.String"/>
+        <Column Name="EmpStatusCode" DataType="System.String"/>
+        <Column Name="EmpStatusName" DataType="System.String"/>
+        <Column Name="EmpName" DataType="System.String"/>
+        <Column Name="Gender" DataType="System.String"/>
+        <Column Name="BirthPlace" DataType="System.String"/>
+        <Column Name="BirthDate" DataType="System.DateTime"/>
+        <Column Name="Height" DataType="System.Int32"/>
+        <Column Name="Weight" DataType="System.Int32"/>
+        <Column Name="LastEducation" DataType="System.String"/>
+        <Column Name="LastCertificateNo" DataType="System.String"/>
+        <Column Name="ResAddr1" DataType="System.String"/>
+        <Column Name="ResAddr2" DataType="System.String"/>
+        <Column Name="ResCity" DataType="System.String"/>
+        <Column Name="ResCityName" DataType="System.String"/>
+        <Column Name="ResZipCode" DataType="System.String"/>
+        <Column Name="ResPhone" DataType="System.String"/>
+        <Column Name="HandPhone" DataType="System.String"/>
+        <Column Name="OriAddr1" DataType="System.String"/>
+        <Column Name="OriAddr2" DataType="System.String"/>
+        <Column Name="OriCity" DataType="System.String"/>
+        <Column Name="OriCityName" DataType="System.String"/>
+        <Column Name="OriZipCode" DataType="System.String"/>
+        <Column Name="OriPhone" DataType="System.String"/>
+        <Column Name="MaritalSt" DataType="System.String"/>
+        <Column Name="Religion" DataType="System.String"/>
+        <Column Name="ReligionName" DataType="System.String"/>
+        <Column Name="TypeCard" DataType="System.String"/>
+        <Column Name="IDCard" DataType="System.String"/>
+        <Column Name="Penyakit" DataType="System.String"/>
+        <Column Name="ReferenceBy" DataType="System.String"/>
+        <Column Name="Status" DataType="System.String"/>
+        <Column Name="Result" DataType="System.String"/>
+        <Column Name="AbsenceCardNo" DataType="System.String"/>
+        <Column Name="Email" DataType="System.String"/>
+        <Column Name="UserPrep" DataType="System.String"/>
+        <Column Name="DatePrep" DataType="System.DateTime"/>
+        <Column Name="UserAppr" DataType="System.String"/>
+        <Column Name="DateAppr" DataType="System.DateTime"/>
+        <Column Name="EmpNumb" DataType="System.String"/>
+        <Column Name="FgPPH21" DataType="System.String"/>
+        <Column Name="NPWP" DataType="System.String"/>
+        <Column Name="ExpCompany1" DataType="System.String"/>
+        <Column Name="ExpCompany2" DataType="System.String"/>
+        <Column Name="ExpCompany3" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" TopMargin="5" BottomMargin="5" FirstPageSource="14" OtherPagesSource="14">
+    <PageHeaderBand Name="PageHeader1" Width="740.5" Height="75.6">
+      <TextObject Name="Text37" Left="247.4" Top="28.35" Width="245.7" Height="18.9" Border.Lines="Bottom" Text="DATA PRIBADI CALON KARYAWAN" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="79.6" Width="740.5" Height="615.14" DataSource="Table">
+      <ShapeObject Name="Shape5" Top="591.35" Width="729.54" Height="20.79"/>
+      <ShapeObject Name="Shape2" Top="367.55" Width="729.54" Height="41.58"/>
+      <ShapeObject Name="Shape4" Top="538.65" Width="729.54" Height="20.79"/>
+      <ShapeObject Name="Shape3" Width="455.49" Height="69.93"/>
+      <ShapeObject Name="Shape1" Top="100.95" Width="729.54" Height="232.47"/>
+      <TextObject Name="Text1" Left="189" Top="2" Width="264.6" Height="18.9" Text="[DS.TransDate]" Format="Date" Format.Format="d" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text2" Top="2" Width="189" Height="18.9" Text="Tanggal Seleksi" Font="Arial, 9pt"/>
+      <TextObject Name="Text3" Left="189" Top="20.9" Width="264.6" Height="18.9" Text="[DS.TransNmbr]" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text4" Top="20.9" Width="189" Height="18.9" Text="Nomor Peserta" Font="Arial, 9pt"/>
+      <TextObject Name="Text5" Left="189" Top="39.8" Width="264.6" Height="28.35" Text="[DS.JobTtlName]" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text6" Top="39.8" Width="189" Height="28.35" Text="Jabatan/Bidang pekerjaan yang dilamar" Font="Arial, 9pt"/>
+      <TextObject Name="Text7" Left="170.1" Top="103.95" Width="274.05" Height="18.9" Text="[DS.EmpName]" Font="Arial, 9pt"/>
+      <TextObject Name="Text8" Top="103.95" Width="170.1" Height="18.9" Text="Nama Lengkap" Font="Arial, 9pt"/>
+      <TextObject Name="Text9" Left="453.6" Top="103.95" Width="94.5" Height="18.9" Text="[DS.Gender]" Font="Arial, 9pt"/>
+      <TextObject Name="Text10" Left="170.1" Top="122.85" Width="151.2" Height="18.9" Text="[DS.BirthPlace]" Font="Arial, 9pt"/>
+      <TextObject Name="Text11" Top="122.85" Width="170.1" Height="18.9" Text="Tempat / Tgl. Lahir" Font="Arial, 9pt"/>
+      <TextObject Name="Text12" Left="321.3" Top="122.85" Width="94.5" Height="18.9" Text="[DS.BirthDate]" Format="Date" Format.Format="d" Font="Arial, 9pt"/>
+      <TextObject Name="Text13" Left="170.1" Top="141.75" Width="207.9" Height="18.9" Text="[DS.ReligionName]" Font="Arial, 9pt"/>
+      <TextObject Name="Text14" Top="141.75" Width="170.1" Height="18.9" Text="Agama" Font="Arial, 9pt"/>
+      <TextObject Name="Text15" Left="170.1" Top="160.65" Width="321.3" Height="18.9" Text="[DS.ResAddr1]" Font="Arial, 9pt"/>
+      <TextObject Name="Text17" Left="170.1" Top="179.55" Width="321.3" Height="18.9" Text="[DS.ResAddr2]" Font="Arial, 9pt"/>
+      <TextObject Name="Text19" Left="170.1" Top="198.45" Width="170.1" Height="18.9" Text="[DS.ResCityName]" Font="Arial, 9pt"/>
+      <TextObject Name="Text20" Left="340.2" Top="198.45" Width="94.5" Height="18.9" Text="[DS.ResZipCode]" Font="Arial, 9pt"/>
+      <TextObject Name="Text21" Left="170.1" Top="217.35" Width="207.9" Height="18.9" Text="Telepon : [DS.ResPhone]" Font="Arial, 9pt"/>
+      <TextObject Name="Text22" Left="453.6" Top="217.35" Width="151.2" Height="18.9" Text="Handphone : [DS.HandPhone]" Font="Arial, 9pt"/>
+      <TextObject Name="Text24" Left="170.1" Top="236.25" Width="321.3" Height="18.9" Text="[DS.OriAddr1]" Font="Arial, 9pt"/>
+      <TextObject Name="Text25" Left="170.1" Top="255.15" Width="321.3" Height="18.9" Text="[DS.OriAddr2]" Font="Arial, 9pt"/>
+      <TextObject Name="Text26" Left="170.1" Top="274.05" Width="170.1" Height="18.9" Text="[DS.OriCityName]" Font="Arial, 9pt"/>
+      <TextObject Name="Text27" Left="340.2" Top="274.05" Width="94.5" Height="18.9" Text="[DS.OriZipCode]" Font="Arial, 9pt"/>
+      <TextObject Name="Text28" Left="453.6" Top="274.05" Width="151.2" Height="18.9" Text="Telepon : [DS.OriPhone]" Font="Arial, 9pt"/>
+      <TextObject Name="Text29" Left="170.1" Top="368.55" Width="444.15" Height="18.9" Border.Lines="Left" Text="[DS.LastEducation]" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text30" Left="170.1" Top="387.45" Width="444.15" Height="18.9" Border.Lines="Left" Text="[DS.LastCertificateNo]" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text16" Top="236.25" Width="170.1" Height="18.9" Text="Alamat Lengkap ( surat )" Font="Arial, 9pt"/>
+      <TextObject Name="Text18" Top="160.65" Width="170.1" Height="18.9" Text="Alamat Lengkap ( domisili )" Font="Arial, 9pt"/>
+      <TextObject Name="Text23" Top="312.85" Width="170.1" Height="18.9" Text="Status" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text31" Left="170.1" Top="592.35" Width="444.15" Height="18.9" Border.Lines="Left" Text="[DS.Penyakit]" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text33" Left="170.1" Top="539.65" Width="444.15" Height="18.9" Border.Lines="Left" Text="[DS.ReferenceBy]" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text34" Left="170.1" Top="292.95" Width="103.95" Height="18.9" Text="[DS.TypeCard]" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text35" Left="274.05" Top="292.95" Width="94.5" Height="18.9" Text="[DS.IDCard]" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text36" Left="170.1" Top="311.85" Width="141.75" Height="18.9" Text="[DS.Status]" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text32" Top="292.95" Width="170.1" Height="18.9" Text="Identitas Diri" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text38" Top="387.45" Width="170.1" Height="18.9" Text="No. Sertifikat Terakhir" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text39" Top="368.55" Width="170.1" Height="18.9" Text="Pendidikan Terakhir" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text40" Top="592.35" Width="170.1" Height="18.9" Text="Penyakit yang pernah diderita" VertAlign="Center" Font="Arial, 8.5pt"/>
+      <TextObject Name="Text41" Top="539.65" Width="170.1" Height="18.9" Text="Nama Referensi" VertAlign="Center" Font="Arial, 9pt"/>
+      <LineObject Name="Line1" Top="19.9" Width="453.6"/>
+      <LineObject Name="Line2" Top="39.8" Width="453.6"/>
+      <LineObject Name="Line4" Top="122.85" Width="725.76"/>
+      <LineObject Name="Line5" Top="141.75" Width="725.76"/>
+      <LineObject Name="Line6" Top="160.65" Width="725.76"/>
+      <LineObject Name="Line7" Top="236.25" Width="725.76"/>
+      <LineObject Name="Line8" Top="292.95" Width="725.76"/>
+      <LineObject Name="Line10" Top="387.45" Width="725.76"/>
+      <LineObject Name="Line3" Left="170.1" Top="101.95" Height="230.58"/>
+      <LineObject Name="Line11" Left="170.1" Top="179.55" Width="555.66"/>
+      <LineObject Name="Line12" Left="170.1" Top="198.45" Width="555.66"/>
+      <LineObject Name="Line13" Left="170.1" Top="217.35" Width="555.66"/>
+      <LineObject Name="Line14" Left="170.1" Top="255.15" Width="555.66"/>
+      <LineObject Name="Line15" Left="170.1" Top="274.05" Width="555.66"/>
+      <TextObject Name="Text42" Top="83.05" Width="113.4" Height="15.12" Text="I . DATA UTAMA" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text43" Top="351.65" Width="226.8" Height="15.12" Text="II . PENDIDIKAN TERAKHIR" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text44" Top="426.7" Width="226.8" Height="15.12" Text="III . PENGALAMAN KERJA" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text45" Top="521.75" Width="113.4" Height="15.12" Text="IV . REFERENSI" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text46" Top="576.45" Width="113.4" Height="15.12" Text="V . LAIN-LAIN" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <ShapeObject Name="Shape6" Top="441.6" Width="729.54" Height="62.37"/>
+      <TextObject Name="Text47" Top="444.15" Width="170.1" Height="18.9" Text="Pernah Bekerja di" VertAlign="Center" Font="Arial, 9pt"/>
+      <LineObject Name="Line9" Left="170.1" Top="442.15" Height="59.35"/>
+      <LineObject Name="Line17" Left="170.1" Top="463.05" Width="555.66"/>
+      <LineObject Name="Line18" Left="170.1" Top="481.95" Width="555.66"/>
+      <LineObject Name="Line19" Top="311.85" Width="725.76"/>
+      <TextObject Name="Text48" Left="170.1" Top="444.15" Width="548.1" Height="18.9" Text="[DS.ExpCompany1]" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text50" Left="170.1" Top="463.05" Width="548.1" Height="18.9" Text="[DS.ExpCompany2]" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text51" Left="170.1" Top="481.95" Width="548.1" Height="18.9" Text="[DS.ExpCompany3]" VertAlign="Center" Font="Arial, 9pt"/>
+      <LineObject Name="Line20" Left="189" Height="68.04"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="698.74" Width="740.5"/>
+  </ReportPage>
+</Report>

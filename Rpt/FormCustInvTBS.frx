@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="04/10/2014 10:38:21" ReportInfo.Modified="09/28/2018 10:49:47" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+       Dim Nomor AS integer
+
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+        Nomor = 0
+    End Sub
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Nomor = Nomor + 1
+      Text51.Text = (Nomor).ToString 
+      Text20.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.PriceForex&quot;), Decimal),CType(Report.GetColumnValue(&quot;DS.DigitDecimal&quot;), Int32)) 
+      Text22.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.AmountForex&quot;), Decimal),CType(Report.GetColumnValue(&quot;DS.DigitDecimal&quot;), Int32)) 
+      Text24.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.TotalForex&quot;), Decimal),CType(Report.GetColumnValue(&quot;DS.DigitDecimal&quot;), Int32)) 
+      Text16.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.NettoWeight&quot;), Decimal),CType(Report.GetColumnValue(&quot;DS.DigitDecimal&quot;), Int32)) 
+      Text26.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.PPnForex&quot;), Decimal),CType(Report.GetColumnValue(&quot;DS.DigitDecimal&quot;), Int32)) 
+      Text27.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.TotalInvoice&quot;), Decimal),CType(Report.GetColumnValue(&quot;DS.DigitDecimal&quot;), Int32)) 
+'      Text55.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.BaseForex&quot;), Decimal),CType(Report.GetColumnValue(&quot;DS.DigitDecimal&quot;), Int32)) 
+    '  Text30.Text = CType(Report.GetColumnValue(&quot;DS.PrintName&quot;), String)
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLGyiz5qWMjsA99V/W+nNq1W3g2zii+WzFvwn5S/yO9ty4j5cNSou1n2RnV42VCogqruM9ru73OErtihuewlYgpEco6FLu+2axRowNblASA6MVirH6QmNjBTf1xrlIMYWdIHRz65uqkwgQppsxD8bDag06AO2cHETPjw4soBSM7zE">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_FNFormCustInvTBS 'ASY/CTB/1809/0001'">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="Status" DataType="System.String"/>
+        <Column Name="Customer" DataType="System.String"/>
+        <Column Name="BillTo" DataType="System.String"/>
+        <Column Name="Attn" DataType="System.String"/>
+        <Column Name="Term" DataType="System.String"/>
+        <Column Name="DueDate" DataType="System.DateTime"/>
+        <Column Name="BankReceipt" DataType="System.String"/>
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="ForexRate" DataType="System.Decimal"/>
+        <Column Name="BaseForex" DataType="System.Decimal"/>
+        <Column Name="DiscForex" DataType="System.Decimal"/>
+        <Column Name="PPn" DataType="System.Decimal"/>
+        <Column Name="PPnForex" DataType="System.Decimal"/>
+        <Column Name="TotalForex" DataType="System.Decimal"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="UserAppr" DataType="System.String"/>
+        <Column Name="Product" DataType="System.String"/>
+        <Column Name="SONo" DataType="System.String"/>
+        <Column Name="Unit" DataType="System.String"/>
+        <Column Name="PriceForex" DataType="System.Decimal"/>
+        <Column Name="AmountForex" DataType="System.Decimal"/>
+        <Column Name="CustAddr" DataType="System.String"/>
+        <Column Name="CustPhone" DataType="System.String"/>
+        <Column Name="CustPostCode" DataType="System.String"/>
+        <Column Name="CurrName" DataType="System.String"/>
+        <Column Name="CurrDigit" DataType="System.Int32"/>
+        <Column Name="OtherForex" DataType="System.Decimal"/>
+        <Column Name="SPBManualNo" DataType="System.String"/>
+        <Column Name="NettoWeight" DataType="System.Decimal"/>
+        <Column Name="JatuhTempo" DataType="System.String"/>
+        <Column Name="DownPayment" DataType="System.Decimal"/>
+        <Column Name="NetSales" DataType="System.Decimal"/>
+        <Column Name="DPPPNForex" DataType="System.Decimal"/>
+        <Column Name="TotalInvoice" DataType="System.Decimal"/>
+        <Column Name="RefNmbr" DataType="System.String"/>
+        <Column Name="SAPhone" DataType="System.String"/>
+        <Column Name="SAFax" DataType="System.String"/>
+        <Column Name="SAAddr" DataType="System.String"/>
+        <Column Name="SAAddr2" DataType="System.String"/>
+        <Column Name="NamaRekening" DataType="System.String"/>
+        <Column Name="Account" DataType="System.String"/>
+        <Column Name="NoRekening" DataType="System.String"/>
+        <Column Name="Bank" DataType="System.String"/>
+        <Column Name="BankName" DataType="System.String"/>
+        <Column Name="FgStatus" DataType="System.String"/>
+        <Column Name="FgPrint" DataType="System.String"/>
+        <Column Name="Terbilang" DataType="System.String"/>
+        <Column Name="ISODocNo" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompAddress" DataType="System.String"/>
+        <Column Name="CompPhone" DataType="System.String"/>
+        <Column Name="CompCity" DataType="System.String"/>
+        <Column Name="PrintDate" DataType="System.DateTime"/>
+        <Column Name="PrintName" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5">
+    <PageHeaderBand Name="PageHeader1" Width="778.3" Height="202.9">
+      <TextObject Name="Text1" Left="620.1" Top="94.5" Width="151.2" Height="17.01" Text=": [DS.TransNmbr]" Font="Arial Narrow, 10pt"/>
+      <TextObject Name="Text2" Left="620.1" Top="113.4" Width="151.2" Height="17.01" Text=": [DS.TransDate]" Format="Custom" Format.Format="dd MMMM yyyy" Font="Arial Narrow, 10pt"/>
+      <TextObject Name="Text3" Left="620.1" Top="132.3" Width="151.2" Height="17.01" Text=": [DS.SONo]" Font="Arial Narrow, 10pt"/>
+      <TextObject Name="Text5" Left="620.1" Top="151.2" Width="151.2" Height="17.01" Text=": [DS.SPBManualNo]" Font="Arial Narrow, 10pt"/>
+      <TextObject Name="Text13" Left="30.8" Top="181" Width="362.88" Height="18.9" Text="Description" HorzAlign="Center" Font="Arial Narrow, 10pt"/>
+      <TextObject Name="Text17" Left="394.9" Top="181" Width="132.3" Height="18.9" Text="NETTO WEIGHT" HorzAlign="Center" Font="Arial Narrow, 10pt"/>
+      <TextObject Name="Text21" Left="524.2" Top="181" Width="113.4" Height="18.9" Text="HARGA SATUAN" HorzAlign="Center" Font="Arial Narrow, 10pt"/>
+      <TextObject Name="Text23" Left="621.7" Top="181" Width="151.2" Height="18.9" Text="JUMLAH HARGA" HorzAlign="Center" Font="Arial Narrow, 10pt"/>
+      <TextObject Name="Text32" Width="378" Height="26.46" Text="[DS.CompanyName]" Font="Arial Narrow, 12pt"/>
+      <TextObject Name="Text33" Top="17.9" Width="378" Height="17.01" Text="[DS.CompAddress]" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text34" Top="34.8" Width="378" Height="17.01" Text="[DS.CompPhone]" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text36" Top="50.25" Width="774.9" Height="25.8" Text="FAKTUR PENJUALAN" HorzAlign="Center" Font="Arial Narrow, 12pt, style=Bold, Underline"/>
+      <TextObject Name="Text10" Left="516.15" Top="94.5" Width="94.5" Height="17.01" Text="No." Font="Arial Narrow, 10pt"/>
+      <TextObject Name="Text41" Left="516.15" Top="113.4" Width="94.5" Height="17.01" Text="Date" Font="Arial Narrow, 10pt"/>
+      <TextObject Name="Text42" Left="516.15" Top="132.3" Width="94.5" Height="17.01" Text="SPB No." Font="Arial Narrow, 10pt"/>
+      <TextObject Name="Text44" Left="516.15" Top="151.2" Width="94.5" Height="17.01" Text="SPB Manual" Font="Arial Narrow, 10pt"/>
+      <LineObject Name="Line1" Top="179.55" Width="774.9"/>
+      <LineObject Name="Line2" Top="202.9" Width="774.9"/>
+      <TextObject Name="Text50" Top="181" Width="28.35" Height="18.9" Text="No" HorzAlign="Center" Font="Arial Narrow, 10pt"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="206.9" Width="778.3" BeforePrintEvent="GroupHeader1_BeforePrint" Condition="[DS.TransNmbr]">
+      <DataBand Name="Data1" Top="210.9" Width="778.3" Height="18.9" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" DataSource="Table">
+        <TextObject Name="Text12" Left="30.8" Width="362.88" Height="18.9" CanGrow="true" Text="[DS.Product]" VertAlign="Center" Font="Arial Narrow, 10pt"/>
+        <TextObject Name="Text16" Left="394.9" Width="132.3" Height="18.9" Text="[DS.NettoWeight]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial Narrow, 10pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text20" Left="533.65" Width="103.95" Height="18.9" Text="[DS.PriceForex]" Format="Custom" Format.Format="#,##0.######" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial Narrow, 10pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text22" Left="640.6" Width="132.3" Height="18.9" Text="[DS.AmountForex]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial Narrow, 10pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text51" Width="28.35" Height="18.9" Text="No" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 10pt"/>
+        <Sort>
+          <Sort Expression="[DS.TransNmbr]"/>
+          <Sort Expression="[DS.Product]"/>
+        </Sort>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="233.8" Width="778.3" Height="302.4" PrintOnBottom="true">
+        <TextObject Name="Text24" Left="621.7" Top="6.45" Width="151.2" Height="18.9" Text="[DS.TotalForex]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" WordWrap="false" Font="Arial Narrow, 10pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text26" Left="621.7" Top="27.8" Width="151.2" Height="18.9" Text="[DS.PPnForex]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" WordWrap="false" Font="Arial Narrow, 10pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text27" Left="621.7" Top="46.7" Width="151.2" Height="18.9" Text="[DS.TotalInvoice]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" WordWrap="false" Font="Arial Narrow, 10pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text28" Left="523.55" Top="69.6" Width="103.95" Height="17.9" Text="[DS.CompCity]," Font="Arial Narrow, 10pt"/>
+        <TextObject Name="Text29" Left="627.5" Top="69.6" Width="132.3" Height="17.9" Text="[DS.TransDate]" Format="Custom" Format.Format="dd MMMM yyyy" Font="Arial Narrow, 10pt"/>
+        <TextObject Name="Text31" Top="6.45" Width="472.5" Height="47.25" Text="NOTE : [DS.Remark]" Font="Arial Narrow, 10pt"/>
+        <TextObject Name="Text11" Left="466.5" Top="6.45" Width="151.2" Height="18.9" Text="Sub Total : " HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 10pt"/>
+        <TextObject Name="Text47" Left="466.5" Top="27.8" Width="151.2" Height="18.9" Text="PPN : " HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 10pt"/>
+        <TextObject Name="Text48" Left="466.5" Top="46.7" Width="151.2" Height="18.9" Text="T O T A L : " HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 10pt"/>
+        <LineObject Name="Line3" Top="4" Width="774.9"/>
+        <TextObject Name="Text52" Top="56.7" Width="472.5" Height="37.8" Text="SAYS : [DS.Terbilang]" Font="Arial Narrow, 10pt"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="540.2" Width="778.3"/>
+    <OverlayBand Name="Overlay1" Top="544.2" Width="778.3" Height="37.8"/>
+  </ReportPage>
+</Report>

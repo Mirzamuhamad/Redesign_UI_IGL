@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="05/26/2015 13:27:48" ReportInfo.Modified="05/26/2015 16:09:37" ReportInfo.CreatorVersion="1.2.47.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWeZFN9dAVOTx97FhfK5tIuW5dgRceKzeyLCome/hrFEDi2/0/1ETuHQHQqK+6mz+yZYSEZMP+5xZE5xl7X79Gtf6VI/LkoPcWFP8uI3VyYMh">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_FNRptTaxRateNotValid '20140101', '20150101','', '', '', '', 0, 0, 'N', 'N', 'admin' ">
+        <Column Name="InvoiceNo" DataType="System.String"/>
+        <Column Name="InvoiceDate" DataType="System.DateTime"/>
+        <Column Name="Customer" DataType="System.String"/>
+        <Column Name="Customer_Name" DataType="System.String"/>
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="PPNno" DataType="System.String"/>
+        <Column Name="PPnDate" DataType="System.DateTime"/>
+        <Column Name="PPn_Rate" DataType="System.Decimal"/>
+        <Column Name="New_PPn_Rate" DataType="System.Double"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="UserId" DataType="System.String"/>
+        <Column Name="StrPeriod" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1">
+    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="158.76">
+      <TextObject Name="Text3" Top="126.85" Width="143.64" Height="30.24" Text="Invoice No" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text5" Left="141.75" Top="126.85" Width="94.5" Height="30.24" Text="Invoice Date" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text7" Left="293.4" Top="126.85" Width="181.44" Height="30.24" Text="PPn No" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text10" Left="476.05" Top="126.85" Width="94.5" Height="30.24" Text="PPn Date" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text12" Left="572" Top="126.85" Width="71.82" Height="30.24" Text="PPn Rate" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text14" Left="645.6" Top="126.85" Width="71.82" Height="30.24" Text="New &#13;&#10;PPn Rate" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text15" Left="236.7" Top="126.85" Width="56.7" Height="30.24" Text="Curr" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <LineObject Name="Line1" Top="158.65" Width="718.2"/>
+      <LineObject Name="Line2" Top="124.85" Width="718.2"/>
+      <TextObject Name="Text16" Left="226.8" Top="62.37" Width="264.6" Height="18.9" Text="PPN Rate Not Valid Report" HorzAlign="Center" VertAlign="Center" Font="Arial, 14pt"/>
+      <TextObject Name="Text17" Left="567" Width="151.2" Height="18.9" Text="[Date]" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text18" Left="567" Top="103.95" Width="151.2" Height="18.9" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text19" Width="292.95" Height="18.9" Text="[DS.CompanyName]" VertAlign="Center" Font="Arial, 11pt, style=Bold"/>
+      <TextObject Name="Text20" Top="18.9" Width="292.95" Height="28.35" Text="[DS.CompAddr]" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text22" Left="226.8" Top="81.05" Width="264.6" Height="18.9" Text="[DS.StrPeriod]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="162.76" Width="718.2" Condition="[DS.Currency]">
+      <GroupHeaderBand Name="GroupHeader2" Top="166.76" Width="718.2" Height="24.57" Condition="[DS.Customer]">
+        <TextObject Name="Text1" Top="2" Width="444.15" Height="18.9" Text="[DS.Customer] - [DS.Customer_Name]" Font="Arial, 10pt, style=Bold"/>
+        <LineObject Name="Line4" Top="21.9" Width="718.2"/>
+        <DataBand Name="Data1" Top="195.33" Width="718.2" Height="22.68" DataSource="Table">
+          <TextObject Name="Text2" Width="143.64" Height="18.9" Text="[DS.InvoiceNo]"/>
+          <TextObject Name="Text4" Left="141.75" Width="94.5" Height="18.9" Text="[DS.InvoiceDate]" Format="Custom" Format.Format="dd-MM-yyyy"/>
+          <TextObject Name="Text6" Left="293.4" Width="257.04" Height="18.9" Text="[DS.PPNno]"/>
+          <TextObject Name="Text8" Left="236.7" Width="56.7" Height="18.9" Text="[DS.Currency]"/>
+          <TextObject Name="Text9" Left="476.05" Width="94.5" Height="18.9" Text="[DS.PPnDate]" Format="Custom" Format.Format="dd-MM-yyyy"/>
+          <TextObject Name="Text11" Left="572" Width="71.82" Height="18.9" Text="[DS.PPn_Rate]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" WordWrap="false" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text13" Left="645.6" Width="71.82" Height="18.9" Text="[DS.New_PPn_Rate]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" WordWrap="false" Trimming="EllipsisCharacter"/>
+          <Sort>
+            <Sort Expression="[DS.Customer]"/>
+            <Sort Expression="[DS.InvoiceDate]"/>
+            <Sort Expression="[DS.InvoiceNo]"/>
+          </Sort>
+        </DataBand>
+        <GroupFooterBand Name="GroupFooter2" Top="222.01" Width="718.2">
+          <LineObject Name="Line5" Width="718.2"/>
+        </GroupFooterBand>
+      </GroupHeaderBand>
+      <GroupFooterBand Name="GroupFooter1" Top="226.01" Width="718.2"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="230.01" Width="718.2" Height="18.9">
+      <TextObject Name="Text21" Left="623.7" Width="94.5" Height="18.9" Text="[DS.UserId]" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text23" Width="94.5" Height="18.9" Text="Finance" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line3" Width="718.2"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

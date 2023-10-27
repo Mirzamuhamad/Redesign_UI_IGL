@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="05/20/2011 01:10:18" ReportInfo.Modified="12/16/2013 10:44:33" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    dim supp as String
+    dim No as Integer
+    
+    Private Sub ReportTitle1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+        supp = &quot;&quot;
+        No = 0
+        if Report.GetColumnValue(&quot;DS.FgForce&quot;) = &quot;Y&quot; then
+          GroupHeader1.StartNewPage = true
+        end if
+    End Sub
+
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      supp = &quot;&quot;
+    End Sub
+
+    Private Sub GroupHeader2_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      supp = &quot;&quot;
+    End Sub
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      if supp &lt;&gt; Report.GetColumnValue(&quot;DS.SuppCode&quot;) then
+        supp = Report.GetColumnValue(&quot;DS.SuppCode&quot;)
+        No = No + 1
+        txtNo.Text = No.ToString
+        txtSupp.Visible=true
+        txtSuppName.Visible = true
+        txtNo.Visible = true
+      else
+        txtSupp.Visible=false
+        txtSuppName.Visible = false
+        txtNo.Visible = false
+      end if
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43hapO8cCP4vX8Z8SNCV1lqrNW">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_STRptBTB '010101','121212','','','','',0, 'Y','Joshep'">
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="SuppCode" DataType="System.String"/>
+        <Column Name="SuppName" DataType="System.String"/>
+        <Column Name="BTBNo" DataType="System.String"/>
+        <Column Name="BTBDate" DataType="System.DateTime"/>
+        <Column Name="PONo" DataType="System.String"/>
+        <Column Name="ProductCode" DataType="System.String"/>
+        <Column Name="ProductName" DataType="System.String"/>
+        <Column Name="Specification" DataType="System.String"/>
+        <Column Name="Qty" DataType="System.Decimal"/>
+        <Column Name="Unit" DataType="System.String"/>
+        <Column Name="ForexRate" DataType="System.Decimal"/>
+        <Column Name="PriceForex" DataType="System.Decimal"/>
+        <Column Name="AmountForex" DataType="System.Decimal"/>
+        <Column Name="DiscForex" DataType="System.Decimal"/>
+        <Column Name="PPn" DataType="System.Decimal"/>
+        <Column Name="PPNForex" DataType="System.Decimal"/>
+        <Column Name="TotalForex" DataType="System.Decimal"/>
+        <Column Name="UserId" DataType="System.String"/>
+        <Column Name="FgForce" DataType="System.String"/>
+        <Column Name="StrPeriod" DataType="System.String"/>
+        <Column Name="Company" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="AmountCurr" Expression="[DS.AmountForex]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="DiscCurr" Expression="[DS.DiscForex]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="PPNCurr" Expression="[DS.PPNForex]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotalCurr" Expression="[DS.TotalForex]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="AmountSupp" Expression="[DS.AmountForex]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="DiscSupp" Expression="[DS.DiscForex]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="PPNSupp" Expression="[DS.PPNForex]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="TotalSupp" Expression="[DS.TotalForex]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="QtyCurr" Expression="[DS.Qty]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="QtySupp" Expression="[DS.Qty]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="420" PaperHeight="210" FirstPageSource="14" OtherPagesSource="14" Guides="0,1512,3,31.35,33.02,123.74,126.3,277.5,280.17,403.02,404.91,518.31,520.2,588.24,591.24,674.4,676.29,846.39,848.5,886.3,887.75,942.56,945.45,1021.05,1022.94,1060.74,1062.63,1130.67,1133.23,1223.95,1225.72,1316.44,1318.67,1409.39,1411.28,1507.67,661.5,979.9,979.35,1436.2,1492.9,1370.25,1419.39,1421.95,1433.29,406.35,519.75,-1.22,30.91,944,1511,882.3,880.41,2.35,93.85,1242.29,1506.89,4.54,1511.25">
+    <PageHeaderBand Name="PageHeader1" Top="20" Width="1512" Height="95.5" Guides="75.6,94.5,77.6,91.5,18.9,42.25,41.58,60.48,42.34,49.9,54.25,65.59,41.34,48.9,28.35,39.69,0,56.7">
+      <ShapeObject Name="Shape1" Top="75.6" Width="1512" Height="18.9"/>
+      <TextObject Name="Text4" Left="3" Top="77.6" Width="28.35" Height="13.9" Text="No" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text6" Left="33.02" Top="77.6" Width="90.72" Height="13.9" Text="Kode Supplier" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text8" Left="126.3" Top="77.6" Width="151.2" Height="13.9" Text="Nama Supplier" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text10" Left="280.17" Top="77.6" Width="122.85" Height="13.9" Text="PO No.&#13;&#10;" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text12" Left="404.91" Top="77.6" Width="113.4" Height="13.9" Text="BTB No" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text14" Left="520.2" Top="77.6" Width="68.04" Height="13.9" Text="Tgl BTB" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text16" Left="591.24" Top="77.6" Width="83.16" Height="13.9" Text="Kode Barang" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text20" Left="676.29" Top="77.6" Width="170.1" Height="13.9" Text="Nama Barang" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text41" Left="848.5" Top="77.6" Width="37.8" Height="13.9" Text="Curr" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text42" Left="887.75" Top="77.6" Width="54.81" Height="13.9" Text="Kurs" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text43" Left="945.45" Top="77.6" Width="75.6" Height="13.9" Text="Quantity" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text44" Left="1022.94" Top="77.6" Width="37.8" Height="13.9" Text="Unit" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text45" Left="1062.63" Top="77.6" Width="68.04" Height="13.9" Text="Harga" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text46" Left="1133.23" Top="77.6" Width="90.72" Height="13.9" Text="Jumlah" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text47" Left="1225.72" Top="77.6" Width="90.72" Height="13.9" Text="Discount" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text48" Left="1318.67" Top="77.6" Width="90.72" Height="13.9" Text="PPN" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text49" Left="1411.28" Top="77.6" Width="96.39" Height="13.9" Text="Total" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text1" Left="661.5" Top="18.9" Width="318.4" Height="23.35" Text="Stock RR Per Supplier Report" Font="Arial, 16pt, style=Bold"/>
+      <TextObject Name="Text22" Left="661.5" Top="41.58" Width="317.85" Height="18.9" Text="Periode : [DS.StrPeriod]" Format="Custom" Format.Format="dd MMM yyyy" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text64" Left="1436.2" Top="42.34" Width="56.7" Height="7.56" Text="[Date]" Format="Time" Format.Format="t" HorzAlign="Right" Font="Arial, 6pt"/>
+      <TextObject Name="Text65" Left="1436.2" Top="54.25" Width="56.7" Height="11.34" Text="[Page#]" HorzAlign="Right" Font="Arial, 6pt"/>
+      <TextObject Name="Text66" Left="1370.25" Top="41.34" Width="49.14" Height="7.56" Text="Jam" Font="Arial, 6pt"/>
+      <TextObject Name="Text67" Left="1370.25" Top="54.25" Width="49.14" Height="11.34" Text="Halaman" Font="Arial, 6pt"/>
+      <TextObject Name="Text68" Left="1436.2" Top="28.35" Width="56.7" Height="11.34" Text="[Date]" Format="Date" Format.Format="d" HorzAlign="Right" Font="Arial, 6pt"/>
+      <TextObject Name="Text69" Left="1370.25" Top="28.35" Width="49.14" Height="11.34" Text="Tanggal" Font="Arial, 6pt"/>
+      <TextObject Name="Text70" Left="1421.95" Top="28.35" Width="11.34" Height="11.34" Text=":" Font="Arial, 6pt"/>
+      <TextObject Name="Text71" Left="1421.95" Top="41.34" Width="11.34" Height="7.56" Text=":" Font="Arial, 6pt"/>
+      <TextObject Name="Text63" Left="1421.95" Top="54.25" Width="11.34" Height="11.34" Text=":" Font="Arial, 6pt"/>
+      <TextObject Name="Text2" Width="406.35" Height="18.9" Text="[DS.Company]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text3" Top="18.9" Width="519.75" Height="37.8" Text="[DS.CompAddr]" Font="Arial, 9pt"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="135.5" Width="1512" BeforePrintEvent="GroupHeader1_BeforePrint" Condition="[DS.Currency]">
+      <GroupHeaderBand Name="GroupHeader2" Top="155.5" Width="1512" BeforePrintEvent="GroupHeader2_BeforePrint" Condition="[DS.SuppCode]">
+        <DataBand Name="Data1" Top="175.5" Width="1512" Height="14.9" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" Guides="0,14.9,14.74" DataSource="Table">
+          <TextObject Name="txtSupp" Left="33.02" Width="90.72" Height="14.9" CanGrow="true" Text="[DS.SuppCode]" Format="Date" Format.Format="d" Font="Arial, 8pt"/>
+          <TextObject Name="txtSuppName" Left="126.3" Width="151.2" Height="14.9" CanGrow="true" CanShrink="true" Text="[DS.SuppName]" Font="Arial, 8pt"/>
+          <TextObject Name="txtPO" Left="280.17" Width="122.85" Height="14.9" CanGrow="true" Text="[DS.PONo]" Format="Custom" Format.Format="dd MMM yyyy" Font="Arial, 8pt"/>
+          <TextObject Name="txtBTB" Left="404.91" Width="113.4" Height="14.9" CanGrow="true" Text="[DS.BTBNo]" Font="Arial, 8pt"/>
+          <TextObject Name="txtBTBDate" Left="520.2" Width="68.04" Height="14.9" CanGrow="true" Text="[DS.BTBDate]" Format="Custom" Format.Format="dd MMM yy" Font="Arial, 8pt"/>
+          <TextObject Name="Text15" Left="591.24" Width="83.16" Height="14.9" CanGrow="true" Text="[DS.ProductCode]" Font="Arial, 8pt"/>
+          <TextObject Name="Text19" Left="676.29" Width="170.1" Height="14.9" CanGrow="true" CanShrink="true" Text="[DS.ProductName] / [DS.Specification]" Format="Custom" Format.Format="###,##0.##" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text50" Left="945.45" Width="75.6" Height="14.9" CanGrow="true" Text="[DS.Qty]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text51" Left="848.5" Width="37.8" Height="14.9" CanGrow="true" Text="[DS.Currency]" Font="Arial, 8pt"/>
+          <TextObject Name="Text52" Left="887.75" Width="54.81" Height="14.9" CanGrow="true" Text="[DS.ForexRate]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 8pt"/>
+          <TextObject Name="Text53" Left="1022.94" Width="37.8" Height="14.9" CanGrow="true" Text="[DS.Unit]" Font="Arial, 8pt"/>
+          <TextObject Name="Text54" Left="1062.63" Width="68.04" Height="14.9" CanGrow="true" Text="[DS.PriceForex]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text55" Left="1133.23" Width="90.72" Height="14.9" CanGrow="true" Text="[DS.AmountForex]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text56" Left="1225.72" Width="90.72" Height="14.9" CanGrow="true" Text="[DS.DiscForex]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text57" Left="1318.67" Width="90.72" Height="14.9" CanGrow="true" Text="[DS.PPNForex]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text58" Left="1411.28" Width="96.39" Height="14.9" CanGrow="true" Text="[DS.TotalForex]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="txtNo" Left="-1.22" Width="32.13" Height="14.74" CanGrow="true" HorzAlign="Right" Font="Arial, 8pt"/>
+        </DataBand>
+        <GroupFooterBand Name="GroupFooter2" Top="210.4" Width="1512" Height="18.68" Guides="0,2,17.9,15.9">
+          <LineObject Name="Line1" Left="944" Width="567"/>
+          <TextObject Name="Text17" Left="1133.23" Top="2" Width="90.72" Height="15.9" CanGrow="true" Text="[AmountSupp]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+          <TextObject Name="Text18" Left="1225.72" Top="2" Width="90.72" Height="15.9" CanGrow="true" Text="[DiscSupp]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+          <TextObject Name="Text23" Left="1318.67" Top="2" Width="90.72" Height="15.9" CanGrow="true" Text="[PPNSupp]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+          <TextObject Name="Text24" Left="1411.28" Top="2" Width="96.39" Height="15.9" CanGrow="true" Text="[TotalSupp]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+          <TextObject Name="Text59" Left="591.24" Top="2" Width="291.06" Height="13.9" Text="Total Per Supplier [DS.SuppCode] :" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+          <TextObject Name="Text61" Left="945.45" Top="2" Width="75.6" Height="15.9" CanGrow="true" Text="[QtySupp]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        </GroupFooterBand>
+      </GroupHeaderBand>
+      <GroupFooterBand Name="GroupFooter1" Top="249.08" Width="1512" Height="18.9" Guides="0.22,3,16.9,18.9">
+        <LineObject Name="Line2" Left="944" Top="0.22" Width="567"/>
+        <TextObject Name="Text25" Left="1133.23" Top="3" Width="90.72" Height="13.9" CanGrow="true" Text="[AmountCurr]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text26" Left="1225.72" Top="3" Width="90.72" Height="13.9" CanGrow="true" Text="[DiscCurr]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text27" Left="1318.67" Top="3" Width="90.72" Height="13.9" CanGrow="true" Text="[PPNCurr]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text28" Left="1411.28" Top="3" Width="96.39" Height="13.9" CanGrow="true" Text="[TotalCurr]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text60" Left="591.24" Top="3" Width="289.17" Height="13.9" Text="Total Per Currency [DS.Currency] :" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text62" Left="945.45" Top="3" Width="75.6" Height="15.9" CanGrow="true" Text="[QtyCurr]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="287.98" Width="1512" Height="16.12" Guides="2,16.12,0,14.9">
+      <TextObject Name="Text38" Left="2.35" Top="2" Width="91.5" Height="14.12" Text="Finance" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text21" Left="1242.29" Width="264.6" Height="14.9" Text="[DS.UserId]" HorzAlign="Right" Font="Arial, 8pt"/>
+      <LineObject Name="Line3" Left="4.54" Width="1506.71"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

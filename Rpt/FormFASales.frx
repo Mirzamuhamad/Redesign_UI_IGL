@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="04/10/2014 10:38:21" ReportInfo.Modified="11/26/2015 10:58:02" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+       Dim Nomor AS integer
+
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+        Nomor = 0
+    End Sub
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Nomor = Nomor + 1
+      Text51.Text = (Nomor).ToString 
+      Text16.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.Qty&quot;), Decimal),CType(Report.GetColumnValue(&quot;DS.DigitDecimal&quot;), Int32)) 
+      Text20.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.AmountHome&quot;), Decimal),CType(Report.GetColumnValue(&quot;DS.DigitDecimal&quot;), Int32)) 
+      Text22.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.AmountForex&quot;), Decimal),CType(Report.GetColumnValue(&quot;DS.DigitDecimal&quot;), Int32)) 
+      Text24.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.BaseForex&quot;), Decimal),CType(Report.GetColumnValue(&quot;DS.DigitDecimal&quot;), Int32)) 
+      Text26.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.PPNForex&quot;), Decimal),CType(Report.GetColumnValue(&quot;DS.DigitDecimal&quot;), Int32)) 
+      Text27.Text = FormatNumber(CType(Report.GetColumnValue(&quot;DS.TotalForex&quot;), Decimal),CType(Report.GetColumnValue(&quot;DS.DigitDecimal&quot;), Int32)) 
+      Text31.Text = &quot;Note : &quot; + CType(Report.GetColumnValue(&quot;DS.Remark&quot;), String)
+      Text52.Text = &quot;Says : &quot; + CType(Report.GetColumnValue(&quot;DS.Terbilang&quot;), String)     
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haoptRK1Yb4lyhWRzeHjcw86">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_GLFormFASales ''''''">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="Status" DataType="System.String"/>
+        <Column Name="FgReport" DataType="System.String"/>
+        <Column Name="Attn" DataType="System.String"/>
+        <Column Name="Term" DataType="System.String"/>
+        <Column Name="DueDate" DataType="System.DateTime"/>
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="ForexRate" DataType="System.Decimal"/>
+        <Column Name="BaseForex" DataType="System.Decimal"/>
+        <Column Name="PPn" DataType="System.Decimal"/>
+        <Column Name="PPnForex" DataType="System.Decimal"/>
+        <Column Name="TotalForex" DataType="System.Decimal"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="UserPrep" DataType="System.String"/>
+        <Column Name="DatePrep" DataType="System.DateTime"/>
+        <Column Name="UserAppr" DataType="System.String"/>
+        <Column Name="DateAppr" DataType="System.DateTime"/>
+        <Column Name="Qty" DataType="System.Decimal"/>
+        <Column Name="Unit" DataType="System.String"/>
+        <Column Name="AmountForex" DataType="System.Decimal"/>
+        <Column Name="ISODocNo" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompAddress" DataType="System.String"/>
+        <Column Name="CompPhone" DataType="System.String"/>
+        <Column Name="CompCity" DataType="System.String"/>
+        <Column Name="PrintDate" DataType="System.DateTime"/>
+        <Column Name="Terbilang" DataType="System.String"/>
+        <Column Name="DigitDecimal" DataType="System.Int32"/>
+        <Column Name="PrintName" DataType="System.String"/>
+        <Column Name="UserType" DataType="System.String"/>
+        <Column Name="UserCode" DataType="System.String"/>
+        <Column Name="FACode" DataType="System.String"/>
+        <Column Name="FAName" DataType="System.String"/>
+        <Column Name="AmountHome" DataType="System.Decimal"/>
+        <Column Name="UserName" DataType="System.String"/>
+        <Column Name="UserAddr" DataType="System.String"/>
+        <Column Name="UserCity" DataType="System.String"/>
+        <Column Name="UserPhone" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5">
+    <PageHeaderBand Name="PageHeader1" Top="20" Width="778.3" Height="259.6">
+      <TextObject Name="Text1" Left="620.1" Top="94.5" Width="151.2" Height="17.01" Text=": [DS.TransNmbr]" Font="Calibri, 11pt"/>
+      <TextObject Name="Text2" Left="620.1" Top="113.4" Width="151.2" Height="17.01" Text=": [DS.TransDate]" Format="Custom" Format.Format="dd MMMM yyyy" Font="Calibri, 11pt"/>
+      <TextObject Name="Text4" Left="620.1" Top="132.3" Width="151.2" Height="17.01" Text=": [DS.DueDate]" Format="Custom" Format.Format="dd MMMM yyyy" Font="Calibri, 11pt"/>
+      <TextObject Name="Text5" Left="620.1" Top="151.2" Width="151.2" Height="17.01" Text=": [DS.Currency]" Font="Calibri, 11pt"/>
+      <TextObject Name="Text7" Top="112.3" Width="406.35" Height="17.01" Text="[DS.UserName]" Font="Calibri, 11pt"/>
+      <TextObject Name="Text8" Top="131.2" Width="406.35" Height="35.91" Text="[DS.UserAddr]" Font="Calibri, 11pt"/>
+      <TextObject Name="Text9" Top="170.1" Width="406.35" Height="17.01" Text="[DS.UserCity]" Font="Calibri, 11pt"/>
+      <TextObject Name="Text13" Left="30.8" Top="237.7" Width="117.18" Height="18.9" Text="Fixed Asset Code" HorzAlign="Center" Font="Calibri, 11pt"/>
+      <TextObject Name="Text15" Left="150.2" Top="237.7" Width="251.37" Height="18.9" Text="Fixed Asset Name" HorzAlign="Center" Font="Calibri, 11pt"/>
+      <TextObject Name="Text17" Left="404.35" Top="237.7" Width="75.6" Height="18.9" Text="Qty" HorzAlign="Center" Font="Calibri, 11pt"/>
+      <TextObject Name="Text19" Left="483.05" Top="237.7" Width="47.25" Height="18.9" Text="Unit" HorzAlign="Center" Font="Calibri, 11pt"/>
+      <TextObject Name="Text21" Left="533.65" Top="237.7" Width="109.95" Height="18.9" Text="Amount Home" HorzAlign="Center" Font="Calibri, 11pt"/>
+      <TextObject Name="Text23" Left="646.5" Top="237.7" Width="125.85" Height="18.9" Text="Amount Forex" HorzAlign="Center" Font="Calibri, 11pt"/>
+      <TextObject Name="Text32" Width="378" Height="17.01" Text="[DS.CompanyName]" Font="Calibri, 11pt"/>
+      <TextObject Name="Text33" Top="17.9" Width="378" Height="17.01" Text="[DS.CompAddress]" Font="Calibri, 11pt"/>
+      <TextObject Name="Text34" Top="34.8" Width="378" Height="17.01" Text="[DS.CompPhone]" Font="Calibri, 11pt"/>
+      <TextObject Name="Text36" Top="50.25" Width="774.9" Height="25.8" Text="FIXED ASSET SALES" HorzAlign="Center" Font="Calibri, 14pt, style=Bold, Underline"/>
+      <TextObject Name="Text38" Top="94.5" Width="160.65" Height="17.01" Text="to the honorable :" Font="Calibri, 11pt"/>
+      <TextObject Name="Text39" Top="189" Width="406.35" Height="17.01" Text="Phone No :  [DS.UserPhone]" Font="Calibri, 11pt"/>
+      <TextObject Name="Text10" Left="516.15" Top="94.5" Width="94.5" Height="17.01" Text="No." Font="Calibri, 11pt"/>
+      <TextObject Name="Text41" Left="516.15" Top="113.4" Width="94.5" Height="17.01" Text="Date" Font="Calibri, 11pt"/>
+      <TextObject Name="Text43" Left="516.15" Top="132.3" Width="94.5" Height="17.01" Text="Due Date" Font="Calibri, 11pt"/>
+      <TextObject Name="Text44" Left="516.15" Top="151.2" Width="94.5" Height="17.01" Text="Currency" Font="Calibri, 11pt"/>
+      <LineObject Name="Line1" Top="236.25" Width="774.9"/>
+      <LineObject Name="Line2" Top="259.6" Width="774.9"/>
+      <TextObject Name="Text50" Top="237.7" Width="28.35" Height="18.9" Text="No" HorzAlign="Center" Font="Calibri, 11pt"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="299.6" Width="778.3" BeforePrintEvent="GroupHeader1_BeforePrint" Condition="[DS.TransNmbr]">
+      <DataBand Name="Data1" Top="319.6" Width="778.3" Height="18.9" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" DataSource="Table">
+        <TextObject Name="Text12" Left="30.8" Width="117.18" Height="18.9" CanGrow="true" Text="[DS.FACode]" VertAlign="Center" Font="Calibri, 11pt"/>
+        <TextObject Name="Text14" Left="150.2" Width="251.37" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.FAName]" VertAlign="Center" Font="Calibri, 11pt"/>
+        <TextObject Name="Text16" Left="404.35" Width="75.6" Height="18.9" CanGrow="true" Text="[DS.Qty]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" VertAlign="Center" Font="Calibri, 11pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text18" Left="483.05" Width="47.25" Height="18.9" CanGrow="true" Text="[DS.Unit]" HorzAlign="Center" VertAlign="Center" Font="Calibri, 11pt"/>
+        <TextObject Name="Text20" Left="533.65" Width="109.95" Height="18.9" CanGrow="true" Text="[DS.AmountHome]" Format="Custom" Format.Format="#,##0.######" HorzAlign="Right" VertAlign="Center" Font="Calibri, 11pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text22" Left="646.5" Width="125.85" Height="18.9" CanGrow="true" Text="[DS.AmountForex]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" VertAlign="Center" Font="Calibri, 11pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text51" Width="28.35" Height="18.9" CanGrow="true" Text="No" HorzAlign="Center" VertAlign="Center" Font="Calibri, 11pt"/>
+        <Sort>
+          <Sort Expression="[DS.TransNmbr]"/>
+          <Sort Expression="[DS.FACode]"/>
+        </Sort>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="358.5" Width="778.3" Height="264.6" PrintOnBottom="true">
+        <TextObject Name="Text24" Left="621.7" Top="6.45" Width="151.2" Height="18.9" Text="[DS.BaseForex]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" WordWrap="false" Font="Calibri, 11pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text26" Left="621.7" Top="25.35" Width="151.2" Height="18.9" Text="[DS.PPnForex]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" WordWrap="false" Font="Calibri, 11pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text27" Left="621.7" Top="44.25" Width="151.2" Height="18.9" Text="[DS.TotalForex]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" WordWrap="false" Font="Calibri, 11pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text28" Left="542.45" Top="154.65" Width="236.25" Height="18.9" Text="[DS.CompCity], [DS.TransDate]" HorzAlign="Center" Font="Calibri, 11pt">
+          <Formats>
+            <GeneralFormat/>
+            <CustomFormat Format="dd MMMM yyyy"/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text30" Left="570.8" Top="244.25" Width="179.55" Height="18.9" Border.Lines="Top" HorzAlign="Center" Font="Calibri, 11pt"/>
+        <TextObject Name="Text31" Top="6.45" Width="463.05" Height="47.25" Text="NOTE : [DS.Remark]" Font="Calibri, 11pt"/>
+        <TextObject Name="Text11" Left="466.5" Top="6.45" Width="151.2" Height="18.9" Text="Total Amount : " HorzAlign="Right" VertAlign="Center" Font="Calibri, 11pt"/>
+        <TextObject Name="Text47" Left="466.5" Top="25.35" Width="151.2" Height="18.9" Text="VAT : " HorzAlign="Right" VertAlign="Center" Font="Calibri, 11pt"/>
+        <TextObject Name="Text48" Left="466.5" Top="44.25" Width="151.2" Height="18.9" Text="Grand Total : " HorzAlign="Right" VertAlign="Center" Font="Calibri, 11pt"/>
+        <LineObject Name="Line3" Top="4" Width="774.9"/>
+        <TextObject Name="Text52" Top="56.7" Width="463.05" Height="37.8" Text="SAYS : [DS.Terbilang]" Font="Calibri, 11pt"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="643.1" Width="778.3"/>
+  </ReportPage>
+</Report>

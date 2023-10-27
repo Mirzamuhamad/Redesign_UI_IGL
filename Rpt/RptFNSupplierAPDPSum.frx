@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="05/20/2011 01:10:18" ReportInfo.Modified="04/15/2014 14:07:39" ReportInfo.CreatorVersion="2013.3.5.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+         
+    End Sub
+
+    Private Sub Text44_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      
+    End Sub
+
+    Private Sub PageHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      
+    End Sub
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+      Text44.Text = string.Format(&quot;{0:#,##0.##}&quot;,CType(Report.GetColumnValue(&quot;DS.BTBTotal&quot;), Decimal) + CType(Report.GetColumnValue(&quot;DS.APTotal&quot;), Decimal)) 
+      Text11.Text = string.Format(&quot;{0:#,##0.##}&quot;,CType(Report.GetColumnValue(&quot;DS.BTBTotal&quot;), Decimal)+ CType(Report.GetColumnValue(&quot;DS.APTotal&quot;), Decimal) - CType(Report.GetColumnValue(&quot;DS.DPTotal&quot;), Decimal))
+      
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haoAMxFCixkp6dHRRzcp5mTz">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_FNRptSupplierAPDPSum '2012-02-07','','','', 0,'admin' ">
+        <Column Name="SuppCode" DataType="System.String"/>
+        <Column Name="SuppName" DataType="System.String"/>
+        <Column Name="Supplier" DataType="System.String"/>
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="BTBTotal" DataType="System.Decimal"/>
+        <Column Name="APTotal" DataType="System.Decimal"/>
+        <Column Name="DPTotal" DataType="System.Decimal"/>
+        <Column Name="StrPeriod" DataType="System.String"/>
+        <Column Name="CompName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="Total" Expression="[DS.BTBTotal]" Evaluator="Data1" PrintOn="ReportSummary1" ResetOnReprint="true"/>
+    <Total Name="TotalPerCurr" Expression="[DS.BTBTotal]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotalBTB" Expression="[DS.BTBTotal]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotalAP" Expression="[DS.APTotal]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotalSaldo" Expression="[DS.BTBTotal]+[DS.APTotal]" Evaluator="Data1"/>
+    <Total Name="TotalDP" Expression="[DS.DPTotal]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="Totaladvance" Expression="[DS.BTBTotal]+[DS.APTotal]-[DS.DPTotal]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" RawPaperSize="1" FirstPageSource="14" OtherPagesSource="14" Guides="103.95,9.45,113.4,217.35,226.8,396.9,406.35,500.85,510.3,746.55,907.2,756,916.65,954.45,963.9,1039.5,510.3">
+    <PageHeaderBand Name="PageHeader1" Width="740.5" Height="118.18" BeforePrintEvent="PageHeader1_BeforePrint">
+      <ShapeObject Name="Shape1" Top="79.38" Width="724" Height="38.8"/>
+      <TextObject Name="Text4" Left="9.45" Top="81.38" Width="94.5" Height="13.9" Text="Nama Supplier" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text6" Left="189" Top="100.28" Width="103.95" Height="13.9" Text="BTB Pending " HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text8" Left="300.4" Top="100.28" Width="85.05" Height="13.9" Text="Berinvoice" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text10" Left="491.4" Top="81.38" Width="107.4" Height="32.8" Text="Advance Pembelian" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text12" Left="600.8" Top="81.38" Width="113.4" Height="13.9" Text="Saldo A/P - Advance" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text1" Left="170.1" Top="18.9" Width="400.68" Height="23.35" Text="Laporan Outstanding AP vs Advance" HorzAlign="Center" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text22" Left="172.1" Top="45.03" Width="396.9" Height="18.9" Text="Date : [DS.StrPeriod]" Format="Custom" Format.Format="dd MMM yyyy" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text2" Left="527.31" Top="3.78" Width="207.9" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text43" Left="387.45" Top="99.95" Width="103.95" Height="14.9" Text="Total" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text45" Left="189" Top="81.05" Width="302.4" Height="13.9" Text=" Saldo A/P" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line5" Left="183.33" Top="97.5" Width="308.07"/>
+      <TextObject Name="Text13" Left="9.45" Width="396.9" Height="18.9" Text="[DS.CompName]" Font="Arial Narrow, 10pt, style=Bold"/>
+      <TextObject Name="Text50" Left="9.45" Top="63.15" Width="264.6" Height="13.9" Text="Hutang : [DS.Currency]" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line1" Left="183.55" Top="78.6" Height="37.8" Diagonal="true"/>
+      <LineObject Name="Line6" Left="491.4" Top="78.6" Height="37.8" Diagonal="true"/>
+      <LineObject Name="Line7" Left="599.35" Top="79.6" Height="37.8" Diagonal="true"/>
+      <TextObject Name="Text14" Left="9.45" Top="18.8" Width="189" Height="28.35" Text="[DS.CompAddr]" Font="Arial, 8pt"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="124.24" Width="740.5" Condition="[DS.Currency]">
+      <DataBand Name="Data1" Top="130.3" Width="740.5" Height="14.9" BeforePrintEvent="Data1_BeforePrint" AfterDataEvent="Data1_AfterData" DataSource="Table">
+        <TextObject Name="Text44" Left="391.45" Width="94.5" Height="14.9" BeforePrintEvent="Text44_BeforePrint" Text="([DS.BTBTotal] + [DS.APTotal])" Format="Custom" Format.Format="###,##0.####" HorzAlign="Right" Font="Arial, 8pt"/>
+        <TextObject Name="Text9" Left="491.4" Width="105.95" Height="14.9" Text="[DS.DPTotal]" Format="Custom" Format.Format="###,##0.####" HorzAlign="Right" Font="Arial, 8pt"/>
+        <TextObject Name="Text3" Left="9.45" Width="207.9" Height="14.9" Text="[DS.SuppName]" Format="Custom" Format.Format="dd MMM yyyy" Font="Arial, 8pt"/>
+        <TextObject Name="Text5" Left="189" Width="103.95" Height="14.9" Text="[DS.BTBTotal]" Format="Custom" Format.Format="###,##0.####" HorzAlign="Right" Font="Arial, 8pt"/>
+        <TextObject Name="Text7" Left="300.4" Width="85.05" Height="14.9" Text="[DS.APTotal]" Format="Custom" Format.Format="###,##0.####" HorzAlign="Right" Font="Arial, 8pt"/>
+        <TextObject Name="Text11" Left="603.8" Width="122.85" Height="14.9" Text="[DS.BTBTotal]+[DS.APTotal]-[DS.DPTotal]" Format="Custom" Format.Format="###,##0.####" HorzAlign="Right" Font="Arial, 8pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="151.26" Width="740.5" Height="18.9" Guides="0">
+        <TextObject Name="Text18" Left="604.8" Width="122.85" Height="18.9" Text="[Totaladvance]" Format="Custom" Format.Format="###,##0.####" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text42" Left="37.8" Width="151.2" Height="14.9" Text="Total Per [DS.Currency]" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text46" Left="491.4" Width="103.95" Height="18.9" Text="[TotalDP]" Format="Custom" Format.Format="###,##0.####" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text47" Left="391.45" Width="94.5" Height="18.9" Text="[TotalSaldo]" Format="Custom" Format.Format="###,##0.####" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text48" Left="299.4" Width="85.05" Height="18.9" Text="[TotalAP]" Format="Custom" Format.Format="###,##0.####" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text49" Left="189" Width="103.95" Height="18.9" Text="[TotalBTB]" Format="Custom" Format.Format="###,##0.####" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <LineObject Name="Line2" Top="16.9" Width="723.87"/>
+        <LineObject Name="Line4" Width="723.87" Border.Style="Dash"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="176.22" Width="740.5" Height="16.9">
+      <TextObject Name="Text17" Left="604.8" Top="2" Width="122.85" Height="13.9" Visible="false" Text="[Total]" Format="Custom" Format.Format="###,##0.####" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text39" Left="452.6" Top="2" Width="152.2" Height="14.9" Visible="false" Text="Grand Total :&#13;&#10;" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="199.18" Width="740.5" Height="18.9">
+      <TextObject Name="Text41" Left="113.4" Width="480.95" Height="18.9" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text38" Left="2.35" Top="2" Width="91.5" Height="14.12" Text="Finance" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text21" Left="595.35" Width="132.3" Height="14.9" Text="[PageN] of [TotalPages#]" HorzAlign="Right" Font="Arial, 8pt"/>
+      <LineObject Name="Line3" Left="-2.45" Width="723.87"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="04/14/2011 13:37:22" ReportInfo.Modified="03/03/2016 12:01:51" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+
+    'Dim Nomor as integer
+    Private Sub PageHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+       
+    End Sub
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+      'Text20.Text = FormatNumber (CType(Report.GetColumnValue(&quot;DS.DiscForex&quot;), Decimal),2)
+      'Text95.Text = FormatNumber (CType(Report.GetColumnValue(&quot;DS.DPForex&quot;), Decimal),2)
+      'Text21.Text = FormatNumber (CType(Report.GetColumnValue(&quot;DS.TotalDasar&quot;), Decimal),2)
+      'Text94.Text = FormatNumber (CType(Report.GetColumnValue(&quot;DS.TotalPengenaan&quot;), Decimal),2)
+      Text28.Text = CType(Report.GetColumnValue(&quot;DS.SaCity&quot;), String) +&quot;, &quot;+ CType(Report.GetColumnValue(&quot;DS.Sadate&quot;), String)
+      ''Text101.Text = CType(Report.GetColumnValue(&quot;DS.UserPost&quot;), String)
+      Text1.Text = FormatNumber (CType(Report.GetColumnValue(&quot;DS.ForexRate&quot;), Decimal),2)
+      Text2.Text = CType(Report.GetColumnValue(&quot;DS.UserPost&quot;), String)
+      'Nomor = Nomor +1      
+      'txtNo.Text = Nomor 
+    End Sub
+
+    Private Sub GroupHeader1_AfterPrint(ByVal sender As object, ByVal e As EventArgs)
+      'Nomor = 0
+    End Sub
+
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Text97.Visible = CType(Report.GetColumnValue(&quot;DS.Curr&quot;), String) &lt;&gt; UCase(&quot;IDR&quot;)
+      Text12.Visible = CType(Report.GetColumnValue(&quot;DS.Curr&quot;), String) = UCase(&quot;IDR&quot;)
+      
+     End Sub
+
+    Private Sub PageFooter1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Text1.Visible = Text106.Visible
+      
+    End Sub
+
+    Private Sub PageFooter1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+      'Text102.Visible = CType(Report.GetColumnValue(&quot;DS.Curr&quot;), String) &lt;&gt; UCase(&quot;IDR&quot;)
+      'Text103.Visible = CType(Report.GetColumnValue(&quot;DS.Curr&quot;), String) &lt;&gt; UCase(&quot;IDR&quot;)
+      'Text104.Visible = CType(Report.GetColumnValue(&quot;DS.Curr&quot;), String) &lt;&gt; UCase(&quot;IDR&quot;)
+      'Text105.Visible = CType(Report.GetColumnValue(&quot;DS.Curr&quot;), String) &lt;&gt; UCase(&quot;IDR&quot;)
+      'Text106.Visible = CType(Report.GetColumnValue(&quot;DS.Curr&quot;), String) &lt;&gt; UCase(&quot;IDR&quot;)
+    End Sub
+
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      
+    End Sub
+
+    Private Sub PageFooter1_AfterPrint(ByVal sender As object, ByVal e As EventArgs)
+      
+    End Sub
+
+    Private Sub Text102_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      
+    End Sub
+
+    Private Sub GroupFooter1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Text103.Text =   FormatNumber(CType(Report.GetColumnValue(&quot;DS.DiscForex&quot;), Decimal), 3)
+      Text104.Text =   FormatNumber(CType(Report.GetColumnValue(&quot;DS.DPForex&quot;), Decimal), 3)
+      
+      Text105.Text =   FormatNumber(CType(Report.GetColumnValue(&quot;DS.TotalForex&quot;), Decimal), 3)
+      Text106.Text =   FormatNumber(CType(Report.GetColumnValue(&quot;DS.PPNForex&quot;), Decimal), 3)
+      
+      
+      Text20.Text =   FormatNumber(CType(Report.GetColumnValue(&quot;DS.DiscIDR&quot;), Decimal), 0)
+      Text95.Text =   FormatNumber(CType(Report.GetColumnValue(&quot;DS.DPIDR&quot;), Decimal), 0)
+      
+      Text21.Text =   FormatNumber(CType(Report.GetColumnValue(&quot;DS.TotalDasar&quot;), Decimal), 0)
+      Text94.Text =   FormatNumber(CType(Report.GetColumnValue(&quot;DS.TotalPengenaan&quot;), Decimal), 0)
+      
+      Text102.Visible = CType(Report.GetColumnValue(&quot;DS.Curr&quot;), String) &lt;&gt; UCase(&quot;IDR&quot;)
+      Text103.Visible = CType(Report.GetColumnValue(&quot;DS.Curr&quot;), String) &lt;&gt; UCase(&quot;IDR&quot;)
+      Text104.Visible = CType(Report.GetColumnValue(&quot;DS.Curr&quot;), String) &lt;&gt; UCase(&quot;IDR&quot;)
+      Text105.Visible = CType(Report.GetColumnValue(&quot;DS.Curr&quot;), String) &lt;&gt; UCase(&quot;IDR&quot;)
+      Text106.Visible = CType(Report.GetColumnValue(&quot;DS.Curr&quot;), String) &lt;&gt; UCase(&quot;IDR&quot;)
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqxBq5Y2n/9yvTGKs7Jq1tsrcvuxX/gj/DXJiP9F59aPlpfLQJ8kPeYoA1Mj5vniNj2ux+N7HUFFPTIxuw7ZA46pTDRy4pP0GKhp2jdDBIcU9KGzkwL/6oOn/KE0b9UwJTJaCBF2nrf5Mzu2AMwRapQyr2xVEd71V6nluNfygULaaV69RkoOcpEM9jTMW+PWTC">
+      <TableDataSource Name="Table2" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_FNFormDPCustInvFPS '''CI/15/03/00891'','''''">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.String"/>
+        <Column Name="Status" DataType="System.String"/>
+        <Column Name="CustAddr" DataType="System.String"/>
+        <Column Name="ForexRate" DataType="System.String"/>
+        <Column Name="Product" DataType="System.String"/>
+        <Column Name="PriceForex" DataType="System.String"/>
+        <Column Name="AmountForex" DataType="System.String"/>
+        <Column Name="BaseForex" DataType="System.String"/>
+        <Column Name="PPn" DataType="System.String"/>
+        <Column Name="PPnForex" DataType="System.String"/>
+        <Column Name="TotalForex" DataType="System.String"/>
+        <Column Name="PPNNo" DataType="System.String"/>
+        <Column Name="SACompany" DataType="System.String"/>
+        <Column Name="SAAdress" DataType="System.String"/>
+        <Column Name="SANPWP" DataType="System.String"/>
+        <Column Name="SADate" DataType="System.Char"/>
+        <Column Name="SACity" DataType="System.String"/>
+        <Column Name="CustName" DataType="System.String"/>
+        <Column Name="CustAddr2" DataType="System.String"/>
+        <Column Name="CustCity" DataType="System.String"/>
+        <Column Name="CustPostCode" DataType="System.String"/>
+        <Column Name="CustNPWP" DataType="System.String"/>
+        <Column Name="DiscForex" DataType="System.Decimal"/>
+        <Column Name="DPForex" DataType="System.Decimal"/>
+        <Column Name="Qty" DataType="System.Decimal"/>
+        <Column Name="Unit" DataType="System.String"/>
+        <Column Name="Curr" DataType="System.String"/>
+        <Column Name="UserPost" DataType="System.String"/>
+        <Column Name="UserPostJbt" DataType="System.String"/>
+        <Column Name="FgPrint" DataType="System.String"/>
+        <Column Name="TotalDasar" DataType="System.Decimal"/>
+        <Column Name="TotalPengenaan" DataType="System.Decimal"/>
+        <Column Name="DiscForexDt" DataType="System.Decimal"/>
+        <Column Name="DiscIDR" DataType="System.Decimal"/>
+        <Column Name="DPIDR" DataType="System.Decimal"/>
+        <Column Name="BaseIDR" DataType="System.Decimal"/>
+        <Column Name="AmountIDR" DataType="System.Decimal"/>
+        <Column Name="ItemNo" DataType="System.Int32"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="TotalAmountF" Expression="[DS.AmountIDR]" Evaluator="Data1" PrintOn="PageFooter1"/>
+    <Total Name="Total" Expression="[DS.AmountForex]" Evaluator="Data1" PrintOn="PageFooter1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279" LeftMargin="0" TopMargin="5" RightMargin="0" BottomMargin="0" FirstPageSource="15" OtherPagesSource="15">
+    <PageHeaderBand Name="PageHeader1" Width="816.1" Height="370.44" BeforePrintEvent="PageHeader1_BeforePrint">
+      <TextObject Name="Text69" Left="172.55" Top="236.3" Width="633.15" Height="92.61" Text="[DS.CustName]" Font="Arial, 9pt"/>
+      <TextObject Name="Text71" Left="172.55" Top="265.2" Width="633.15" Height="45.36" Text="[DS.CustAddr2] &#13;&#10;[DS.CustAddr]&#13;&#10;[DS.CustCity]" Font="Arial, 9pt"/>
+      <TextObject Name="Text73" Left="172.55" Top="313.65" Width="472.5" Height="17.01" Text="[DS.CustNPWP]" Font="Arial, 9pt"/>
+      <TextObject Name="Text96" Left="648.6" Top="34.07" Width="173.88" Height="14.23" Text=" [DS.TransNmbr]"/>
+      <TextObject Name="Text99" Left="419.35" Top="34.07" Width="173.88" Height="14.23" Text=" [DS.PPNno]" Font="Arial, 10pt, style=Bold"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader2" Top="374.44" Width="816.1" StartNewPage="true" Condition="[DS.TransNmbr]">
+      <DataBand Name="Data1" Top="378.44" Width="816.1" Height="63.5" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" AfterDataEvent="Data1_AfterData" DataSource="Table2">
+        <TextObject Name="Text10" Left="155.31" Top="26.86" Width="349.65" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.Product]" VertAlign="Center"/>
+        <TextObject Name="Text12" Left="610.37" Top="26.86" Width="148.18" Height="18.9" Text="[DS.AmountForex]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center"/>
+        <TextObject Name="txtNo" Left="90.5" Top="26.86" Width="41.58" Height="18.9" Text="[DS.ItemNo]"/>
+        <TextObject Name="Text97" Left="492.5" Top="26.1" Width="119.83" Height="18.9" Text="[DS.BaseForex]&#13;&#10;" Format="Custom" Format.Format="#,##0.000" HorzAlign="Right" VertAlign="Center"/>
+        <Sort>
+          <Sort Expression="[DS.PPNNo]"/>
+          <Sort Expression="[DS.ItemNo]"/>
+        </Sort>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="445.94" Width="816.1" BeforePrintEvent="GroupFooter1_BeforePrint"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="449.94" Width="816.1" Height="477.04" BeforePrintEvent="PageFooter1_BeforePrint" AfterPrintEvent="PageFooter1_AfterPrint" AfterDataEvent="PageFooter1_AfterData">
+      <TextObject Name="Text1" Left="189" Top="271.05" Width="94.5" Height="18.9" Visible="false" Text="[DS.ForexRate]" Format="Custom" Format.Format="#,##0.##"/>
+      <TextObject Name="Text2" Left="491.4" Top="226.8" Width="255.15" Height="18.9" Text="[DS.UserPost]" HorzAlign="Center"/>
+      <TextObject Name="Text28" Left="472.5" Top="141.75" Width="264.6" Height="24.57" Text="[DS.SACity], [DS.SADate]" Format="Custom" Format.Format="" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text94" Left="623.7" Top="87.05" Width="129.28" Height="15.12" Text="[DS.TotalPengenaan]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text106" Left="491.4" Top="87.05" Width="119.83" Height="15.12" Text="[DS.PPNForex]" Format="Custom" Format.Format="###,##0.000" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text21" Left="623.7" Top="66.15" Width="129.28" Height="15.12" Text="[DS.TotalDasar]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text105" Left="491.4" Top="66.15" Width="119.83" Height="15.12" Text="[DS.TotalForex]" Format="Custom" Format.Format="###,##0.000" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text95" Left="623.7" Top="44.25" Width="129.28" Height="15.12" Text="[DS.DPIDR]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text104" Left="491.4" Top="44.25" Width="119.83" Height="15.12" Text="[DS.DPForex]" Format="Custom" Format.Format="###,##0.000" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text20" Left="623.7" Top="25.35" Width="129.28" Height="15.12" Text="[DS.DiscIDR]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text103" Left="491.4" Top="25.35" Width="119.83" Height="15.12" Text="[DS.DiscForex]" Format="Custom" Format.Format="###,##0.000" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text16" Left="623.7" Top="5.45" Width="129.28" Height="15.12" Text="[TotalAmountF]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text102" Left="491.4" Top="5.45" Width="119.83" Height="15.12" BeforePrintEvent="Text102_BeforePrint" Text="[Total]" Format="Custom" Format.Format="###,##0.000" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text3" Left="132.3" Width="198.45" Height="13.23" Text="______________________" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

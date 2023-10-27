@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AccType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AccTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccTypeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strTitle" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAccountResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateBerat">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServerIP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServerDB" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="iType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="iTranId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="iprodName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="iCustName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="iTruckNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="iDateIn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="iTimeIn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="iDateOut" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="iTimeOut" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="iGross" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="iTare" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="iNet" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="iNote" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="iUser1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="iUser2" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateBeratResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateBeratResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DsUpdateBerat">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServerIP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServerDB" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ds">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DsUpdateBeratResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DsUpdateBeratResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="AccTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:AccType" />
+  </wsdl:message>
+  <wsdl:message name="AccTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:AccTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAccountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAccount" />
+  </wsdl:message>
+  <wsdl:message name="GetAccountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBeratSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateBerat" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBeratSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateBeratResponse" />
+  </wsdl:message>
+  <wsdl:message name="DsUpdateBeratSoapIn">
+    <wsdl:part name="parameters" element="tns:DsUpdateBerat" />
+  </wsdl:message>
+  <wsdl:message name="DsUpdateBeratSoapOut">
+    <wsdl:part name="parameters" element="tns:DsUpdateBeratResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TimbangSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AccType">
+      <wsdl:input message="tns:AccTypeSoapIn" />
+      <wsdl:output message="tns:AccTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAccount">
+      <wsdl:input message="tns:GetAccountSoapIn" />
+      <wsdl:output message="tns:GetAccountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBerat">
+      <wsdl:input message="tns:UpdateBeratSoapIn" />
+      <wsdl:output message="tns:UpdateBeratSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DsUpdateBerat">
+      <wsdl:input message="tns:DsUpdateBeratSoapIn" />
+      <wsdl:output message="tns:DsUpdateBeratSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TimbangSoap" type="tns:TimbangSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AccType">
+      <soap:operation soapAction="http://tempuri.org/AccType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccount">
+      <soap:operation soapAction="http://tempuri.org/GetAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBerat">
+      <soap:operation soapAction="http://tempuri.org/UpdateBerat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DsUpdateBerat">
+      <soap:operation soapAction="http://tempuri.org/DsUpdateBerat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TimbangSoap12" type="tns:TimbangSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AccType">
+      <soap12:operation soapAction="http://tempuri.org/AccType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccount">
+      <soap12:operation soapAction="http://tempuri.org/GetAccount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBerat">
+      <soap12:operation soapAction="http://tempuri.org/UpdateBerat" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DsUpdateBerat">
+      <soap12:operation soapAction="http://tempuri.org/DsUpdateBerat" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Timbang">
+    <wsdl:port name="TimbangSoap" binding="tns:TimbangSoap">
+      <soap:address location="http://localhost/servertimbangan/timbang.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TimbangSoap12" binding="tns:TimbangSoap12">
+      <soap12:address location="http://localhost/servertimbangan/timbang.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

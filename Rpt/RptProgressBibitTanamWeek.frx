@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="07/04/2011 15:39:43" ReportInfo.Modified="04/02/2019 13:43:50" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    Dim No As Integer    
+  
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+
+    Private Sub Data1_AfterPrint(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+    
+    Private Sub PageFooter1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)      
+    End Sub
+
+    Private Sub Matrix2_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLGyiz5qWMjsA99V/W+nNq1W3g2zii+WzFvwn5S/yO9ty4j5cNSou1n2RnV42VCogqhWDGBfTi9Ny1OneZGYjfinOHGpdCxzvpie7qu5vUxEx4MCFZZfHfGnHRCgUFUBKbmMlG5NqLQAbah7tE2SUt7Qra40ILBKmTBw9JsAVqlB/">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC [S_PLRptProgressBibitTanamWeek]  2017, 1,2018, 12,'','','','',0,0,'','',''">
+        <Column Name="Column" Enabled="false" DataType="System.Int32" Calculated="true" Expression=""/>
+        <Column Name="Estate" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompanyNPWP" DataType="System.String"/>
+        <Column Name="Block" DataType="System.String"/>
+        <Column Name="Divisi" DataType="System.String"/>
+        <Column Name="Luas" DataType="System.Decimal"/>
+        <Column Name="MaxCap" DataType="System.Decimal"/>
+        <Column Name="TabCode" DataType="System.String"/>
+        <Column Name="TabName" DataType="System.String"/>
+        <Column Name="QtyTransp" DataType="System.Decimal"/>
+        <Column Name="QtyTanam" DataType="System.Decimal"/>
+        <Column Name="Periode" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" FirstPageSource="14" OtherPagesSource="14" Guides="321.3,737.1,400.68,621.81,0,538.65,793.8,1039.5,1047.28,7.56,128.52,129.3,250.14,251.26,335.76,340.2,427.14,430.92,529.2,532.98,669.06,672.84,895.86,793.69,882.63,884.41,958.23,963.79,1041.5,362.88,3.78,355.2,37.8" Fill.Color="White">
+    <ReportTitleBand Name="ReportTitle1" Width="1047.06" BeforePrintEvent="ReportTitle1_BeforePrint" Guides="60.48,79.38,87.16,102.28,0,18.9,20.9,58.7,9.45,22.68,79.6,92.83"/>
+    <PageHeaderBand Name="PageHeader1" Top="4" Width="1047.06" Height="122.85" Guides="0,26.46,4,22.9,3.78,22.68,189,151.2">
+      <TextObject Name="Text42" Left="793.8" Top="108.38" Width="245.7" Height="13.23" Text="Page : [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text40" Left="793.8" Top="9.45" Width="245.7" Height="13.23" Text="Date/Time : [Date]" Format="Custom" Format.Format="dd/MM/yyyy hh:mm:ss" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text11" Left="179.87" Top="69.7" Width="786.24" Height="19.2" Text="PROGRESS KELUAR BIBIT VS TANAM PERMINGGU" HorzAlign="Center" VertAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text25" Left="7.56" Top="7.56" Width="332.64" Height="18.9" Text="[DS.CompanyName]" VertAlign="Center" Font="Arial, 16pt, style=Bold"/>
+      <TextObject Name="Text21" Left="9.56" Top="30.91" Width="131.19" Height="18.9" Text="[DS.Estate]" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line1" Left="2.01" Top="122.85" Width="1038.04"/>
+      <TextObject Name="Text1" Left="497.51" Top="94.5" Width="345.87" Height="18.9" Text="[DS.Periode]"/>
+      <TextObject Name="Text45" Left="435.15" Top="94.5" Width="77.49" Height="18.9" Text="Periode :" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="130.85" Width="1047.06" Height="143.74" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" Guides="3.78,22.68,47.25,47.25,47.25,47.25">
+      <MatrixObject Name="Matrix1" Width="532.09" Height="143.74" FixedRows="2" FixedColumns="4" AutoSize="false" CellsSideBySide="true" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="[DS.TabName]"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.Divisi]"/>
+          <Header Expression="[DS.Block]"/>
+          <Header Expression="[DS.Luas]" Totals="false"/>
+          <Header Expression="[DS.MaxCap]" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.QtyTransp]"/>
+          <Cell Expression="[DS.QtyTanam]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="80.62"/>
+        <TableColumn Name="Column2" Width="67.58"/>
+        <TableColumn Name="Column3" Width="64.61"/>
+        <TableColumn Name="Column4" Width="57.35"/>
+        <TableColumn Name="Column5" Width="70.33"/>
+        <TableColumn Name="Column6" Width="70.33"/>
+        <TableColumn Name="Column7" Width="62.69"/>
+        <TableColumn Name="Column8" Width="58.58"/>
+        <TableRow Name="Row1" Height="29.45">
+          <TableCell Name="Cell1" Border.Lines="All" Text="Divisi" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell2" Border.Lines="All" Text="Block" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell7" Border.Lines="All" Text="Luas&#13;&#10;(Ha)" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell10" Border.Lines="All" Text="MaxCap" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell11" Border.Lines="All" Text="[TabName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" ColSpan="2"/>
+          <TableCell Name="Cell21"/>
+          <TableCell Name="Cell31" Border.Lines="All" Text="Grand Total&#13;&#10;" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" ColSpan="2"/>
+          <TableCell Name="Cell43"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="29.01">
+          <TableCell Name="Cell3"/>
+          <TableCell Name="Cell4"/>
+          <TableCell Name="Cell8"/>
+          <TableCell Name="Cell12"/>
+          <TableCell Name="Cell13" Border.Lines="All" Text="Transp" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell22" Border.Lines="All" Text="Tanam" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell32" Border.Lines="All" Text="Transp" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell44" Border.Lines="All" Text="Tanam" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="27.26">
+          <TableCell Name="Cell5" Border.Lines="All" Text="[Divisi]" VertAlign="Center" Font="Arial, 8pt" RowSpan="2"/>
+          <TableCell Name="Cell6" Border.Lines="All" Text="[Block]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell9" Border.Lines="All" Text="[Luas]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell14" Border.Lines="All" Text="[MaxCap]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Right" Font="Arial, 8pt"/>
+          <TableCell Name="Cell15" Border.Lines="All" Text="[QtyTransp]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell23" Border.Lines="All" Text="[QtyTanam]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell33" Border.Lines="All" Format="Custom" Format.Format="##,#0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell45" Border.Lines="All" Format="Custom" Format.Format="##,#0.##" HorzAlign="Right" VertAlign="Center"/>
+        </TableRow>
+        <TableRow Name="Row4" Height="29.01">
+          <TableCell Name="Cell16"/>
+          <TableCell Name="Cell17" Border.Lines="All" Text="Total Tanam + Sisip" VertAlign="Center" Font="Arial, 8pt, style=Bold" ColSpan="3"/>
+          <TableCell Name="Cell18"/>
+          <TableCell Name="Cell19"/>
+          <TableCell Name="Cell20" Border.Lines="All" Format="Custom" Format.Format="##,#0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell24" Border.Lines="All" Format="Custom" Format.Format="##,#0.##" HorzAlign="Right" VertAlign="Center"/>
+          <TableCell Name="Cell34" Border.Lines="All" Format="Custom" Format.Format="##,#0.##" HorzAlign="Right" VertAlign="Center"/>
+          <TableCell Name="Cell46" Border.Lines="All" Format="Custom" Format.Format="##,#0.##" HorzAlign="Right" VertAlign="Center"/>
+        </TableRow>
+        <TableRow Name="Row5" Height="29.01">
+          <TableCell Name="Cell25" Border.Lines="All" Text="Grand Total :" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold" ColSpan="4"/>
+          <TableCell Name="Cell26"/>
+          <TableCell Name="Cell27"/>
+          <TableCell Name="Cell28"/>
+          <TableCell Name="Cell29" Border.Lines="All" Format="Custom" Format.Format="##,#0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell30" Border.Lines="All" Format="Custom" Format.Format="##,#0.##" HorzAlign="Right" VertAlign="Center"/>
+          <TableCell Name="Cell35" Border.Lines="All" Format="Custom" Format.Format="##,#0.##" HorzAlign="Right" VertAlign="Center"/>
+          <TableCell Name="Cell47" Border.Lines="All" Format="Custom" Format.Format="##,#0.##" HorzAlign="Right" VertAlign="Center"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="278.59" Width="1047.06" Height="28.35" Guides="0,18.9,9.45,9.45,18.9,9.45,9.45"/>
+  </ReportPage>
+</Report>

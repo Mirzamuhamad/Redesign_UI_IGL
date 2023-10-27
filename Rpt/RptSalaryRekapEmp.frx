@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="05/20/2011 08:38:19" ReportInfo.Modified="11/05/2014 14:04:31" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+   Public Class ReportScript
+    Dim No As Integer    
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)        
+    End Sub
+
+    Private Sub PageHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs) 
+    End Sub
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+
+    Private Sub Matrix1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+     
+    End Sub
+
+    Private Sub Cell1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+
+    Private Sub Matrix1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+
+    Private Sub Page1_StartPage(ByVal sender As object, ByVal e As EventArgs)
+        Cell1.Text = CType(Report.GetColumnValue(&quot;DS.GroupBy&quot;), String)
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43harL1n3f+KpETC+IFzdCJ6gs">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PYRptSalaryRekap 2014,5,2014,7, '', '', '', '', 1, 0, 'N', 'N', ''">
+        <Column Name="Column" Enabled="false" DataType="System.Int32" Calculated="true" Expression=""/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="GroupBy" DataType="System.String"/>
+        <Column Name="GroupCode" DataType="System.String"/>
+        <Column Name="GroupName" DataType="System.String"/>
+        <Column Name="TabName" DataType="System.String"/>
+        <Column Name="CompName" DataType="System.String"/>
+        <Column Name="StrPeriod" DataType="System.String"/>
+        <Column Name="TabGrpCode" DataType="System.String"/>
+        <Column Name="TabGrpName" DataType="System.String"/>
+        <Column Name="TabSort" DataType="System.String"/>
+        <Column Name="TabCode" DataType="System.String"/>
+        <Column Name="Total" DataType="System.Double"/>
+        <Column Name="BankAccountNo" DataType="System.String"/>
+        <Column Name="BankName" DataType="System.String"/>
+        <Column Name="TotalMasuk" DataType="System.Int32"/>
+        <Column Name="TotalAlpha" DataType="System.Int32"/>
+        <Column Name="TotalLeave" DataType="System.Int32"/>
+      </TableDataSource>
+      <TableDataSource Name="Table1" Alias="DS2" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PYRptSalaryRekap 2014,5,2014,7, '', '', '', '', 0, 0, 'N', '2', ''">
+        <Column Name="Bank" DataType="System.String"/>
+        <Column Name="Total" DataType="System.Double"/>
+        <Column Name="CompName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="StrPeriod" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="TotalSub" Expression="[DS2.Total]" Evaluator="Data2" PrintOn="DataFooter1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" FirstPageSource="14" OtherPagesSource="14" Guides="0,623.7,500.85,283.5,745.27,745.42,888.3,1048.95,869.4,189.7,98.65,94.5,1048.57" StartPageEvent="Page1_StartPage">
+    <PageHeaderBand Name="PageHeader1" Width="1047.06" Height="80.39" BeforePrintEvent="PageHeader1_BeforePrint" Guides="18.9,39.25,0,67.05,80.39,38.7,66.05,56.7,68.04">
+      <TextObject Name="Text5" Top="18.9" Width="623.7" Height="20.35" Text="[DS.CompAddr]" Font="Arial, 7pt"/>
+      <TextObject Name="Text3" Width="500.85" Height="18.9" Text="[DS.CompName]" Font="Arial, 11pt, style=Bold"/>
+      <TextObject Name="Text69" Left="283.5" Top="67.05" Width="461.77" Height="13.34" Text="[DS.StrPeriod]" Format="Date" Format.Format="d" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text1" Left="283.5" Top="38.7" Width="461.92" Height="27.35" Text="REKAPITULASI SALARY" HorzAlign="Center" Font="Arial, 16pt, style=Bold"/>
+      <TextObject Name="Text35" Left="888.3" Top="56.7" Width="160.65" Height="11.34" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text2" Left="869.4" Width="179.55" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="84.39" Width="1047.06" Height="73.62" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" AfterDataEvent="Data1_AfterData" Guides="0,70.97,35.82,17.91,52.07">
+      <MatrixObject Name="Matrix2" Top="-2.65" Width="520.45" Height="73.62" FixedRows="2" FixedColumns="6" AutoSize="false" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="[DS.TabGrpName]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.TabName]" Sort="None" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.GroupName]" Sort="None"/>
+          <Header Expression="[DS.BankAccountNo]" Totals="false"/>
+          <Header Expression="[DS.BankName]" Totals="false"/>
+          <Header Expression="[DS.TotalMasuk]" Totals="false"/>
+          <Header Expression="[DS.TotalAlpha]" Totals="false"/>
+          <Header Expression="[DS.TotalLeave]" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.Total]"/>
+        </MatrixCells>
+        <TableColumn Name="Column3" Width="98.65"/>
+        <TableColumn Name="Column4"/>
+        <TableColumn Name="Column5"/>
+        <TableColumn Name="Column6"/>
+        <TableColumn Name="Column7"/>
+        <TableColumn Name="Column8"/>
+        <TableColumn Name="Column9" Width="91.05"/>
+        <TableRow Name="Row7" Height="17.91" AutoSize="true">
+          <TableCell Name="Cell1" Border.Lines="All" Text="GroupName" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell14" Border.Lines="All" Text="Account No" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell21" Border.Lines="All" Text="Bank" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell28" Border.Lines="All" Text="Total Kerja" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell32" Border.Lines="All" Text="Total Alpha" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell36" Border.Lines="All" Text="Total Ijin" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell46" Border.Lines="All" Text="[TabGrpName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row8" Height="17.91" AutoSize="true">
+          <TableCell Name="Cell15"/>
+          <TableCell Name="Cell16"/>
+          <TableCell Name="Cell22"/>
+          <TableCell Name="Cell29"/>
+          <TableCell Name="Cell33"/>
+          <TableCell Name="Cell37"/>
+          <TableCell Name="Cell47" Border.Lines="All" Text="[TabName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row9">
+          <TableCell Name="Cell17" Border.Lines="All" Text="[GroupName]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell18" Border.Lines="All" Text="[BankAccountNo]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt"/>
+          <TableCell Name="Cell23" Border.Lines="All" Text="[BankName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt"/>
+          <TableCell Name="Cell30" Border.Lines="All" Text="[TotalMasuk]" Format="Custom" Format.Format="#,###0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+          <TableCell Name="Cell34" Border.Lines="All" Text="[TotalAlpha]" Format="Custom" Format.Format="#,###0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+          <TableCell Name="Cell38" Border.Lines="All" Text="[TotalLeave]" Format="Custom" Format.Format="#,###0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+          <TableCell Name="Cell48" Border.Lines="All" Text="[Total]" Format="Custom" Format.Format="#,###0.##" HorzAlign="Right" VertAlign="Center"/>
+        </TableRow>
+        <TableRow Name="Row10" AutoSize="true">
+          <TableCell Name="Cell19" Border.Lines="All" Text="Grand Total" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold" ColSpan="6"/>
+          <TableCell Name="Cell20"/>
+          <TableCell Name="Cell24"/>
+          <TableCell Name="Cell31"/>
+          <TableCell Name="Cell35"/>
+          <TableCell Name="Cell39"/>
+          <TableCell Name="Cell49" Border.Lines="All" Format="Custom" Format.Format="#,###0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="162.01" Width="1047.06" Height="37.8" Guides="9.45,28.35">
+      <SubreportObject Name="Subreport1" Top="9.45" Width="94.5" Height="18.9" ReportPage="Page2"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="203.81" Width="1047.06" Height="21.9" Guides="0">
+      <LineObject Name="Line1" Width="1048.57"/>
+    </PageFooterBand>
+  </ReportPage>
+  <ReportPage Name="Page2" Guides="3,192,196,299.95,302.4,193,0,299.94">
+    <DataBand Name="Data2" Top="26.8" Width="718.2" Height="21.9" CanGrow="true" Guides="1,19.9,0,21.9" DataSource="Table1">
+      <TextObject Name="Text70" Left="3" Top="1" Width="189" Height="18.9" CanGrow="true" Text="[DS2.Bank]" VertAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text71" Left="196" Top="1" Width="103.95" Height="18.9" CanGrow="true" Text="[DS2.Total]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+      <LineObject Name="Line9" Left="302.4" Height="21.9" CanGrow="true" GrowToBottom="true"/>
+      <LineObject Name="Line10" Left="193" Height="21.9" CanGrow="true" GrowToBottom="true"/>
+      <LineObject Name="Line11" Height="21.9" CanGrow="true" GrowToBottom="true"/>
+      <LineObject Name="Line16" Top="21.9" Width="302.4"/>
+      <DataHeaderBand Name="DataHeader1" Width="718.2" Height="22.8" Guides="2,20.9,0,21.9,22.8">
+        <TextObject Name="Text4" Left="3" Top="2" Width="189" Height="18.9" Text="Bank" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text6" Left="195.99" Top="2" Width="103.95" Height="18.9" Text="Total" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <LineObject Name="Line6" Left="302.4" Height="21.9"/>
+        <LineObject Name="Line7" Left="193" Height="21.9"/>
+        <LineObject Name="Line8" Height="21.9"/>
+        <LineObject Name="Line3" Top="22.8" Width="302.4"/>
+        <LineObject Name="Line15" Width="302.4"/>
+      </DataHeaderBand>
+      <DataFooterBand Name="DataFooter1" Top="52.7" Width="718.2" Height="21.45" CanGrow="true" Guides="0,18.9,-2,19.9,-3,21.45">
+        <TextObject Name="Text72" Left="3" Width="189" Height="18.9" CanGrow="true" Text="Grand Total" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text73" Left="196" Width="103.95" Height="18.9" CanGrow="true" Text="[TotalSub]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <LineObject Name="Line12" Left="302.4" Top="-2" Height="21.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line13" Left="193" Top="-2" Height="21.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line14" Top="-3" Height="21.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line17" Top="21.45" Width="302.4"/>
+      </DataFooterBand>
+    </DataBand>
+  </ReportPage>
+</Report>

@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="06/23/2011 10:58:22" ReportInfo.Modified="01/08/2014 09:39:51" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport  
+  Public Class ReportScript
+    dim nomor as integer
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+      Text6.Text = CType(Report.GetColumnValue(&quot;DS.Remark&quot;), String)
+      Text24.Text = CType(Report.GetColumnValue(&quot;DS.UserAppr&quot;), String)
+      Text25.Text = CType(Report.GetColumnValue(&quot;DS.UserPrep&quot;), String)
+     ' txtUser.Text = CType(Report.GetColumnValue(&quot;DS.UserId&quot;), String)
+      Text35.Text = CType(Report.GetColumnValue(&quot;DS.ISODocNo&quot;), String)
+    End Sub
+
+    Private Sub PageHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Text3.Text = &quot;FORMULIR TIDAK SCAN&quot;
+    End Sub
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      nomor = nomor + 1
+      Text18.Text = nomor.tostring 
+    End Sub
+
+
+    Private Sub GroupHeader1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+      nomor = 0
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43hapSj6tghEardxNiTwel1t/B">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PEFormNonAbsence '''IN/NA//000001'''">
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="EmpNumb" DataType="System.String"/>
+        <Column Name="EmpName" DataType="System.String"/>
+        <Column Name="JobTtlCode" DataType="System.String"/>
+        <Column Name="JobTtlName" DataType="System.String"/>
+        <Column Name="DeptCode" DataType="System.String"/>
+        <Column Name="DeptName" DataType="System.String"/>
+        <Column Name="TimeIn" DataType="System.String"/>
+        <Column Name="TimeOut" DataType="System.String"/>
+        <Column Name="AbsStatus" DataType="System.String"/>
+        <Column Name="AbsStatusName" DataType="System.String"/>
+        <Column Name="Reason" DataType="System.String"/>
+        <Column Name="SACompany" DataType="System.String"/>
+        <Column Name="SAAddress" DataType="System.String"/>
+        <Column Name="SACity" DataType="System.String"/>
+        <Column Name="SAPostCode" DataType="System.String"/>
+        <Column Name="ISODocNo" DataType="System.String"/>
+        <Column Name="CompanyAddress" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="UserPrep" DataType="System.String"/>
+        <Column Name="DatePrep" DataType="System.DateTime"/>
+        <Column Name="UserAppr" DataType="System.String"/>
+        <Column Name="DateAppr" DataType="System.DateTime"/>
+        <Column Name="KeepingDate" DataType="System.DateTime"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" FirstPageSource="1" OtherPagesSource="1">
+    <PageHeaderBand Name="PageHeader1" Width="740.5" Height="113.62" BeforePrintEvent="PageHeader1_BeforePrint">
+      <TextObject Name="Text1" Left="59.7" Top="57.7" Width="170.1" Height="15.12" Text="[DS.TransNmbr]" Font="Arial, 9pt"/>
+      <TextObject Name="Text2" Left="59.7" Top="76.6" Width="170.1" Height="15.12" Text="[DS.TransDate]" Format="Custom" Format.Format="dd-MMM-yyyy" Font="Arial, 9pt"/>
+      <TextObject Name="Text3" Top="28.35" Width="510.3" Height="18.9" Text="FORMULIR TIDAK SCAN" HorzAlign="Right" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text5" Left="4" Top="96.5" Width="28.35" Height="15.12" Text="No" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text7" Left="36.8" Top="96.5" Width="236.25" Height="15.12" Text="Employee Name" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text10" Left="414.35" Top="96.5" Width="56.7" Height="15.12" Text="Time In" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text12" Left="475.5" Top="96.5" Width="66.15" Height="15.12" Text="Time Out" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text17" Left="280.05" Top="96.5" Width="122.85" Height="15.12" Text="Department" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text19" Left="1" Top="57.7" Width="47.25" Height="15.12" Text="No." Font="Arial, 9pt"/>
+      <TextObject Name="Text29" Left="1" Top="76.6" Width="47.25" Height="15.12" Text="Date" Font="Arial, 9pt"/>
+      <LineObject Name="Line2" Top="94.5" Width="737.1"/>
+      <LineObject Name="Line6" Top="2" Width="737.1"/>
+      <LineObject Name="Line7" Top="113.4" Width="737.1"/>
+      <TextObject Name="Text31" Top="6.45" Width="94.5" Height="26.46" Text="[DS.CompanyName]" AutoWidth="true" Font="Arial, 14pt"/>
+      <TextObject Name="Text27" Left="623.7" Top="21.9" Width="113.4" Height="13.23" Text="Page : [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text34" Left="557.55" Top="4.45" Width="179.55" Height="13.23" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text36" Left="545.1" Top="96.5" Width="189" Height="15.12" Text="Reason" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text38" Left="47.25" Top="57.7" Width="9.45" Height="15.12" Text=":" Font="Arial, 9pt"/>
+      <TextObject Name="Text39" Left="47.25" Top="76.6" Width="9.45" Height="15.12" Text=":" Font="Arial, 9pt"/>
+      <TextObject Name="Text41" Left="19" Top="47.25" Width="510.3" Height="18.9" Text="TIMEKEEPING MAINTENACE" HorzAlign="Right" Font="Arial, 12pt, style=Italic"/>
+      <TextObject Name="Text42" Left="654.05" Top="76.6" Width="80.6" Height="15.12" Text="[DS.KeepingDate]" Format="Custom" Format.Format="dd-MMM-yyyy" Font="Arial, 9pt"/>
+      <TextObject Name="Text43" Left="519.75" Top="76.6" Width="122.85" Height="15.12" Text="Time Keeping Date" Font="Arial, 9pt"/>
+      <TextObject Name="Text44" Left="641.6" Top="76.6" Width="9.45" Height="15.12" Text=":" Font="Arial, 9pt"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="118.62" Width="740.5" AfterDataEvent="GroupHeader1_AfterData" StartNewPage="true" Condition="[DS.TransNmbr]">
+      <DataBand Name="Data1" Top="123.62" Width="740.5" Height="15.12" BeforePrintEvent="Data1_BeforePrint" AfterDataEvent="Data1_AfterData" DataSource="Table">
+        <TextObject Name="Text4" Left="36.8" Width="236.25" Height="15.12" Text="[DS.EmpNumb] - [DS.EmpName]" Font="Arial, 9pt"/>
+        <TextObject Name="Text9" Left="414.35" Width="56.7" Height="15.12" Text="[DS.TimeIn]" HorzAlign="Right" Font="Arial, 9pt"/>
+        <TextObject Name="Text11" Left="475.5" Width="66.15" Height="15.12" Text="[DS.TimeOut]" HorzAlign="Right" Font="Arial, 9pt"/>
+        <TextObject Name="Text18" Left="4" Width="28.35" Height="15.12" Text="[Row#]" HorzAlign="Right" Font="Arial, 9pt"/>
+        <TextObject Name="Text30" Left="280.05" Width="122.85" Height="15.12" CanGrow="true" Text="[DS.JobTtlName] / [DS.DeptName]" Font="Arial, 9pt"/>
+        <TextObject Name="Text37" Left="545.1" Width="192.45" Height="15.12" CanGrow="true" Text="[DS.Reason]" Font="Arial, 9pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="143.74" Width="740.5"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="148.74" Width="740.5" Height="152.75">
+      <TextObject Name="Text20" Left="94.5" Top="27.8" Width="113.4" Height="15.12" Text="Approved By," HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text21" Left="481.95" Top="27.8" Width="113.4" Height="15.12" Text="Prepared By," HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text24" Left="94.5" Top="80.05" Width="113.4" Height="15.12" Text="[DS.UserAppr]" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text25" Left="481.95" Top="80.05" Width="113.4" Height="15.12" Text="[DS.UserPrep]" HorzAlign="Center" Font="Arial, 9pt"/>
+      <LineObject Name="Line1" Top="127.3" Height="-952.15"/>
+      <LineObject Name="Line3" Top="4.45" Width="737.1"/>
+      <LineObject Name="Line5" Top="127.3" Width="737.1"/>
+      <LineObject Name="Line8" Left="737.1" Top="127.3" Height="-952.15"/>
+      <LineObject Name="Line13" Left="349.65" Top="4.45" Height="122.85"/>
+      <TextObject Name="Text32" Left="47.25" Top="86.05" Width="207.9" Height="18.9" Text="(......................................................)" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text33" Left="435.7" Top="86.05" Width="207.9" Height="18.9" Text="(......................................................)" HorzAlign="Center" Font="Arial, 9pt"/>
+      <LineObject Name="Line4" Width="737.1"/>
+      <LineObject Name="PL2" Left="274.05" Top="5.45" Height="-738.3"/>
+      <LineObject Name="PL3" Left="409.35" Top="5.45" Height="-738.3"/>
+      <LineObject Name="PL4" Left="473.5" Top="5.45" Height="-738.3"/>
+      <LineObject Name="PL1" Left="37.8" Top="5.45" Height="-738.3"/>
+      <TextObject Name="txtUser" Left="602.8" Top="140.3" Width="132.3" Height="12.45" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text35" Left="604.8" Top="127.85" Width="132.3" Height="14.9" Text="[DS.ISODocNo]" HorzAlign="Right" Font="Arial, 8pt"/>
+      <LineObject Name="Line16" Left="545.1" Top="4" Height="-738.3"/>
+      <TextObject Name="Text40" Top="9.45" Width="56.7" Height="15.12" Text="Remark :" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text6" Left="56.7" Top="9.45" Width="676.95" Height="15.12" Text="[DS.Remark]" Font="Arial, 9pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

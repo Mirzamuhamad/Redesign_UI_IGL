@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" DoublePass="true" ReportInfo.Created="11/27/2013 16:44:09" ReportInfo.Modified="10/15/2014 14:39:29" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+
+
+    Private Sub MasterData2_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      if CType(Report.GetColumnValue(&quot;DS.Gender&quot;), String) = &quot;Male&quot; then               
+        SJkP.Visible = True
+        SJkW.Visible = False                                           
+      else
+        SJkP.Visible = False
+        SJkW.Visible = True
+      End if
+      
+      
+      
+      if CType(Report.GetColumnValue(&quot;DS.AccidentDamage&quot;), String) = &quot;Fatal&quot; then         
+        SJenisFatal.Visible = True
+        SJenisKehilangan.Visible = False
+        SJenisPerawatan.Visible = False
+        SJenisP3K.Visible = False      
+      Else if CType(Report.GetColumnValue(&quot;DS.AccidentDamage&quot;), String) = &quot;Kehilangan Hari Kerja&quot; Then
+        SJenisFatal.Visible = False
+        SJenisKehilangan.Visible = True
+        SJenisPerawatan.Visible = False
+        SJenisP3K.Visible = False
+      Else if CType(Report.GetColumnValue(&quot;DS.AccidentDamage&quot;), String) = &quot;Perawatan Medis&quot; Then
+        SJenisFatal.Visible = False
+        SJenisKehilangan.Visible = False
+        SJenisPerawatan.Visible = True
+        SJenisP3K.Visible = False               
+      Else            
+        SJenisFatal.Visible = False
+        SJenisKehilangan.Visible = False
+        SJenisPerawatan.Visible = False
+        SJenisP3K.Visible = True           
+      End if  
+      
+      
+      
+      If  CType(Report.GetColumnValue(&quot;DS.MasaKerja&quot;), String) = &quot;1 - 3 Bulan&quot; then
+        SMasa3Bln.Visible = True
+        SMasa11Bln.Visible = False
+        SMasa3Tahun.Visible = False
+        SMasalbh3Tahun.Visible = False                     
+      Else If CType(Report.GetColumnValue(&quot;DS.MasaKerja&quot;), String) = &quot;4 - 11 Bulan&quot; then      
+        SMasa3Bln.Visible = False
+        SMasa11Bln.Visible = True
+        SMasa3Tahun.Visible = False
+        SMasalbh3Tahun.Visible = False                              
+      Else If CType(Report.GetColumnValue(&quot;DS.MasaKerja&quot;), String)= &quot;1 - 3 Tahun&quot; then
+        SMasa3Bln.Visible = False
+        SMasa11Bln.Visible = False
+        SMasa3Tahun.Visible = True
+        SMasalbh3Tahun.Visible = False                    
+      Else      
+        SMasa3Bln.Visible = False
+        SMasa11Bln.Visible = False
+        SMasa3Tahun.Visible = False
+        SMasalbh3Tahun.Visible = True
+      End if 
+
+    
+      if CType(Report.GetColumnValue(&quot;DS.AccidentWhen&quot;), String)  = &quot;Berangkat&quot; then     
+        SKejadianBerangkat.Visible = True
+        SKejadianPulang.Visible = False
+        SKejadianKerja.Visible = False
+        SKejadianIstirahat.Visible = False
+        SKejadianLembur.Visible = False    
+      Else If CType(Report.GetColumnValue(&quot;DS.AccidentWhen&quot;), String) = &quot;Pulang Kerja&quot; then 
+        SKejadianBerangkat.Visible = False
+        SKejadianPulang.Visible = True
+        SKejadianKerja.Visible = False
+        SKejadianIstirahat.Visible = False
+        SKejadianLembur.Visible = False  
+      Else If CType(Report.GetColumnValue(&quot;DS.AccidentWhen&quot;), String) = &quot;Jam Kerja&quot; then    
+        SKejadianBerangkat.Visible = False
+        SKejadianPulang.Visible = False
+        SKejadianKerja.Visible = True
+        SKejadianIstirahat.Visible = False
+        SKejadianLembur.Visible = False
+      Else If CType(Report.GetColumnValue(&quot;DS.AccidentWhen&quot;), String) = &quot;Jam Istirahat&quot; then     
+        SKejadianBerangkat.Visible = False
+        SKejadianPulang.Visible = False
+        SKejadianKerja.Visible = False
+        SKejadianIstirahat.Visible = True
+        SKejadianLembur.Visible = False  
+      Else               
+        SKejadianBerangkat.Visible = False
+        SKejadianPulang.Visible = False
+        SKejadianKerja.Visible = False
+        SKejadianIstirahat.Visible = False
+        SKejadianLembur.Visible = True
+      End if 
+                  
+      If CType(Report.GetColumnValue(&quot;DS.Perawatan&quot;), String) = &quot;Rawat Jalan&quot; then
+        SPerawatanJalan.Visible = True
+        SPerawatanInap.Visible = False                                       
+      Else     
+        SPerawatanJalan.Visible = False
+        SPerawatanInap.Visible = True             
+      End if                  
+            
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haofL/JsvLpjoYejrmIrj5i1">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PEFormAccident '''0003/ARE-PGA/01/'',''0001/ARE-PGA/11/'',''0002/ARE-PGA/11/''','admin'">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="Tahun" DataType="System.Int32"/>
+        <Column Name="Bulan" DataType="System.Int32"/>
+        <Column Name="BulanName" DataType="System.String"/>
+        <Column Name="Tanggal" DataType="System.Int32"/>
+        <Column Name="DeptCode" DataType="System.String"/>
+        <Column Name="DeptName" DataType="System.String"/>
+        <Column Name="EmpNumb" DataType="System.String"/>
+        <Column Name="EmpName" DataType="System.String"/>
+        <Column Name="Gender" DataType="System.String"/>
+        <Column Name="AccidentTime" DataType="System.String"/>
+        <Column Name="AccidentPlace" DataType="System.String"/>
+        <Column Name="EmpStatusCode" DataType="System.String"/>
+        <Column Name="EmpStatusName" DataType="System.String"/>
+        <Column Name="AccidentDamage" DataType="System.String"/>
+        <Column Name="MasaKerja" DataType="System.String"/>
+        <Column Name="AccidentWhen" DataType="System.String"/>
+        <Column Name="Hospital" DataType="System.String"/>
+        <Column Name="NamaSaksi" DataType="System.String"/>
+        <Column Name="Perawatan" DataType="System.String"/>
+        <Column Name="TempatLuka" DataType="System.String"/>
+        <Column Name="AccidentUraian" DataType="System.String"/>
+        <Column Name="KondisiTakAman" DataType="System.String"/>
+        <Column Name="TindakanTakAman" DataType="System.String"/>
+        <Column Name="SaranManager" DataType="System.String"/>
+        <Column Name="SaranSafety" DataType="System.String"/>
+        <Column Name="Company" DataType="System.String"/>
+        <Column Name="Address" DataType="System.String"/>
+        <Column Name="UserID" DataType="System.String"/>
+        <Column Name="DepartmentSaksi" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="Company" DataType="System.String"/>
+    <Parameter Name="Logo" DataType="System.String"/>
+    <Parameter Name="UserId" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="330.2" LeftMargin="5" RightMargin="5" Guides="0,245.7,330.75,519.75,292.95,560.86,604.8,780.35,381.78,377.95,584.05,602.19,582.12,601.02,26.46,37.8,23.68,38.8,24.46,39.58,24.68,36.02,400.63,415.75,680.32,752.13,597.17,668.98,480,551.81,472.44,23.61,558.45,370.8,3.78,69.47,85.26,240.22,27.35,254.4,0.22,778.8,2,780.58,71.81,80.81,778.58,268.35,360.5,16.56,541.92,396.85,582.05,390.73,563.15,575.9301,585.83,712,257.01,359.06,593.39,625.07,641.74,698.43,714.33,746.01,25.68,252.73,419.53,453.83,476.22,495.12,536.98,56.7,68.03,90.71,188.98,200.32,213.1,217.32,270.23,548.31,812.88,548.03,771.03,25.9,37.24,40.57,252.22,41.57,253.22,401.41,416.53,600.95,665.2,706.78,-0.22,778.36,20.34,579.71,302.65,328.82,555.87,302.37,555.59,729.45,657.92,767.25,371.44,396.73,375.95,392.51,399.85,626.9,767.24,1.22,779.8,394.51,759.19,266.13,512.08,25.46,371.39,397.46,28.46,364.84,762.68,744.57,777.99,0.84,204.93,54.02,137.17,2.22,202.53,83.15,109.61,192.76,98.27,204.09,-0.1,456.15,777.41,538.02,602.27,578.49,661.64,688.09,771.2401,608.72,729.66,465.1,548.25,453.76,563.37,676.76,777.79,454.32,779.36,52.91,222.99,657.64,49.13,455.32,776.58,640.15,775.61">
+    <GroupHeaderBand Name="GroupHeader1" Top="20" Width="778.3" Height="141.75" Guides="122.85,141.75,94.5,107.73,66.15,89.25,56.7,68.04,28.35,0,26.46,18.9" Condition="[DS.TransNmbr]" ResetPageNumber="true">
+      <TextObject Name="Text1" Top="122.85" Width="245.7" Height="18.9" Text="TransNmbr : [DS.TransNmbr]" Font="Arial Narrow, 9pt, style=Bold"/>
+      <TextObject Name="Memo6" Left="330.75" Top="94.5" Width="189" Height="13.23" Text="(Diisi Oleh Seksi)" Padding="2, 1, 2, 1" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Memo1" Left="292.95" Top="66.15" Width="267.91" Height="23.1" Text="LAPORAN KECELAKAAN KERJA" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 14pt, style=Bold, Underline"/>
+      <TextObject Name="Text35" Left="604.8" Top="56.7" Width="175.55" Height="11.34" Text="Page [Page] of [TotalPages]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text17" Top="28.35" Width="381.78" Height="37.8" Text="[DS.Address]" Font="Arial Narrow, 10pt, style=Bold"/>
+      <TextObject Name="Company" Width="377.95" Height="26.46" Text="[DS.Company]" Padding="2, 1, 2, 1" AutoWidth="true" VertAlign="Center" Font="Arial Narrow, 14pt, style=Bold"/>
+      <TextObject Name="Text57" Left="604.8" Width="175.55" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <DataBand Name="MasterData2" Top="181.75" Width="778.3" Height="939.31" BeforePrintEvent="MasterData2_BeforePrint" Guides="229.55,248.45,206.09,224.99,185.2,204.1,302.36,321.26,279.69,298.59,207.87,226.77,162.52,181.42,230.55,249.45,51.91,70.81,23.33,624.27,378.61,22.33,252.88,3.78,22.68,3.92,22.82,26.46,41.58,0,22.46,45.13,25.24,44.14,45.36,253.23,377.96,25.46,44.36,52.91,71.81,79.37,102.05,83.15,98.27,68.03,45.35,109.61,128.51,83.93,99.05,136.06,158.74,139.84,154.96,140.62,155.74,275.91,256.79,275.69,271.91,257.57,272.69,294.81,340.16,322.6,337.72,340.5,368.85,400.63,378.88,624.55,378.1,623.77,381.73,396.85,411.97,430.87,410.19,429.09,440.43,463.1,442.43,461.33,457.55,442.21,461.11,444.21,459.33,624.72,650.08,629.4,644.52,649.17,785.23,676.54,654.64,673.54,669.76,648.72,784.78,648.95,785.01,653.86,672.76,668.98,717.45,743.91,684.87,703.77,720.67,739.57,735.79,721.89,740.79,737.01,748.23,776.58,748.35,776.7,784.13,783.6,-0.6500244,784.04,-0.210022,922.37,786.4,805.3,806.77,833.23,810.55,829.45,805.77,922.94,923.97,807.8,787.13,806.03,811.28,830.1801,786.13,805.03,811.58,830.48,785.13,921.19,924.19,939.31,833.28" DataSource="Table">
+        <ShapeObject Name="SKejadianLembur" Left="584.05" Top="229.55" Width="18.14" Height="18.9" Shape="Ellipse"/>
+        <ShapeObject Name="SKejadianIstirahat" Left="584.05" Top="206.09" Width="18.14" Height="18.9" Shape="Ellipse"/>
+        <ShapeObject Name="SKejadianKerja" Left="584.05" Top="185.2" Width="18.14" Height="18.9" Shape="Ellipse"/>
+        <ShapeObject Name="SPerawatanInap" Left="582.12" Top="302.36" Width="18.9" Height="18.9" Shape="Ellipse"/>
+        <ShapeObject Name="SPerawatanJalan" Left="582.12" Top="279.69" Width="18.9" Height="18.9" Shape="Ellipse"/>
+        <TextObject Name="Memo45" Left="26.46" Top="207.87" Width="11.34" Height="18.9" Text="C." Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <ShapeObject Name="SJenisKehilangan" Left="23.68" Top="185.2" Width="15.12" Height="18.9" Shape="Ellipse"/>
+        <ShapeObject Name="SJenisFatal" Left="24.46" Top="162.52" Width="15.12" Height="18.9" Shape="Ellipse"/>
+        <ShapeObject Name="SJenisPerawatan" Left="24.68" Top="207.87" Width="11.34" Height="18.9" Shape="Ellipse"/>
+        <ShapeObject Name="SJenisP3K" Left="23.68" Top="230.55" Width="15.12" Height="18.9" Shape="Ellipse"/>
+        <ShapeObject Name="SMasalbh3Tahun" Left="400.63" Top="230.55" Width="15.12" Height="18.9" Shape="Ellipse"/>
+        <ShapeObject Name="SMasa3Tahun" Left="400.63" Top="207.87" Width="15.12" Height="18.9" Shape="Ellipse"/>
+        <ShapeObject Name="SMasa11Bln" Left="400.63" Top="185.2" Width="15.12" Height="18.9" Shape="Ellipse"/>
+        <ShapeObject Name="SMasa3Bln" Left="400.63" Top="162.52" Width="15.12" Height="18.9" Shape="Ellipse"/>
+        <ShapeObject Name="SKejadianPulang" Left="680.32" Top="162.52" Width="71.81" Height="18.9" Shape="Ellipse"/>
+        <ShapeObject Name="SKejadianBerangkat" Left="597.17" Top="162.52" Width="71.81" Height="18.9" Shape="Ellipse"/>
+        <ShapeObject Name="SJkW" Left="480" Top="51.91" Width="71.81" Height="18.9" Shape="Ellipse"/>
+        <ShapeObject Name="SJkP" Left="400.63" Top="51.91" Width="71.81" Height="18.9" Shape="Ellipse"/>
+        <LineObject Name="Line7" Left="23.61" Top="23.33" Height="600.94" Diagonal="true"/>
+        <LineObject Name="Line9" Left="558.45" Top="23.33" Height="355.28" Diagonal="true"/>
+        <LineObject Name="Line11" Left="370.8" Top="22.33" Height="230.55" Diagonal="true"/>
+        <TextObject Name="Memo10" Left="3.78" Top="3.78" Width="65.69" Height="18.9" Text="Department" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo11" Left="85.26" Top="3.92" Width="154.96" Height="18.9" Text="[DS.DeptName]" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo15" Left="27.35" Top="26.46" Width="227.05" Height="15.12" Text="Nama Korban" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <LineObject Name="Line2" Left="0.22" Width="778.58" Diagonal="true"/>
+        <LineObject Name="Line3" Left="2" Top="22.46" Width="778.58" Diagonal="true"/>
+        <TextObject Name="Memo2" Left="71.81" Top="3.78" Width="9" Height="18.9" Text=" : " Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <LineObject Name="Line4" Top="45.13" Width="778.58" Diagonal="true"/>
+        <TextObject Name="Memo3" Left="268.35" Top="25.24" Width="92.15" Height="18.9" Text="NIK" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo4" Left="3.78" Top="26.46" Width="12.78" Height="18.9" Text="1" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo5" Left="415.75" Top="26.46" Width="126.17" Height="18.9" Text="Jenis Kelamin (Pilih Satu)" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+        <LineObject Name="Line6" Left="396.85" Top="22.68" Height="230.55" Diagonal="true"/>
+        <LineObject Name="Line15" Left="582.05" Top="22.68" Height="355.28" Diagonal="true"/>
+        <TextObject Name="Memo7" Left="377.95" Top="25.46" Width="12.78" Height="18.9" Text="2" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo8" Left="563.15" Top="26.46" Width="12.78" Height="18.9" Text="3" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo9" Left="585.83" Top="26.46" Width="126.17" Height="18.9" Text="Waktu Kecelakaan" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo13" Left="26.46" Top="52.91" Width="230.55" Height="18.9" Text="[DS.EmpName]" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo16" Left="268.35" Top="52.91" Width="90.71" Height="18.9" Text="[DS.EmpNumb]" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo18" Left="593.39" Top="52.91" Width="31.68" Height="18.9" Text="Jam :" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo22" Left="641.74" Top="52.91" Width="56.69" Height="18.9" Text="[DS.AccidentTime]" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo26" Left="714.33" Top="52.91" Width="31.68" Height="18.9" Text="WIB" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <LineObject Name="Line16" Top="79.37" Width="778.58" Diagonal="true"/>
+        <LineObject Name="Line17" Top="102.05" Width="778.58" Diagonal="true"/>
+        <TextObject Name="Memo27" Left="3.78" Top="83.15" Width="12.78" Height="18.9" Text="6" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo28" Left="377.95" Top="83.15" Width="12.78" Height="18.9" Text="5" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo29" Left="563.15" Top="83.15" Width="12.78" Height="18.9" Text="6" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo30" Left="25.68" Top="83.15" Width="227.05" Height="15.12" Text="Tanggal Kecelakaan (Tgl / Bln / Thn)" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo31" Left="419.53" Top="52.91" Width="34.3" Height="15.12" Text="Male" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <LineObject Name="Line18" Left="476.22" Top="45.35" Height="34.02" Diagonal="true"/>
+        <TextObject Name="Memo32" Left="495.12" Top="52.91" Width="41.86" Height="15.12" Text="Female" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="spRptTanggal" Left="26.46" Top="109.61" Width="30.24" Height="18.9" Text="[DS.Tanggal]" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo33" Left="68.03" Top="109.61" Width="12.78" Height="18.9" Text="/" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="spRptBulanName" Left="90.71" Top="109.61" Width="98.27" Height="18.9" Text="[DS.BulanName]" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo34" Left="200.32" Top="109.61" Width="12.78" Height="18.9" Text="/" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="spRptTahun" Left="217.32" Top="109.61" Width="52.91" Height="18.9" Text="[DS.Tahun]" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo35" Left="400.63" Top="83.15" Width="147.68" Height="15.12" Text="Lokasi Kejadian" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo36" Left="585.83" Top="83.93" Width="227.05" Height="15.12" Text="Status Karyawan" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="spRptAccidentPlace" Left="400.63" Top="109.61" Width="147.4" Height="18.9" Text="[DS.AccidentPlace]" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="spRptEmpStatusName" Left="593.39" Top="109.61" Width="177.64" Height="18.9" Text="[DS.EmpStatusName]" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <LineObject Name="Line19" Top="136.06" Width="778.58" Diagonal="true"/>
+        <LineObject Name="Line20" Top="158.74" Width="778.58" Diagonal="true"/>
+        <TextObject Name="Memo37" Left="3.78" Top="139.84" Width="12.78" Height="18.9" Text="7" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo38" Left="377.95" Top="139.84" Width="12.78" Height="18.9" Text="8" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo39" Left="563.15" Top="139.84" Width="12.78" Height="18.9" Text="9" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo40" Left="25.68" Top="139.84" Width="227.05" Height="15.12" Text="Jenis Kecelakaan (Pilih Satu)" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo41" Left="400.63" Top="139.84" Width="147.68" Height="15.12" Text="Masa Kerja (Pilih Satu)" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo42" Left="585.83" Top="140.62" Width="227.05" Height="15.12" Text="Kejadian Pada Saat Jam" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo43" Left="25.9" Top="162.52" Width="11.34" Height="18.9" Text="A." Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo44" Left="26.46" Top="185.2" Width="11.34" Height="18.9" Text="B." Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo46" Left="26.46" Top="230.55" Width="11.34" Height="18.9" Text="D." Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo47" Left="40.57" Top="162.52" Width="211.65" Height="18.9" Text="Fatal" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo48" Left="41.57" Top="185.2" Width="211.65" Height="18.9" Text="Kehilangan Hari Kerja" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo49" Left="41.57" Top="207.87" Width="211.65" Height="18.9" Text="Perawatan Medis" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo50" Left="41.57" Top="230.55" Width="211.65" Height="18.9" Text="P3K" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo51" Left="401.41" Top="162.52" Width="15.12" Height="18.9" Text="A." Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo52" Left="401.41" Top="185.2" Width="15.12" Height="18.9" Text="B." Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo53" Left="401.41" Top="207.87" Width="15.12" Height="18.9" Text="C." Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo54" Left="401.41" Top="230.55" Width="15.12" Height="18.9" Text="D." Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo55" Left="419.53" Top="162.52" Width="128.5" Height="18.9" Text="1 - 3 Bulan" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo56" Left="419.53" Top="185.2" Width="128.5" Height="18.9" Text="4 - 11 Bulan" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo57" Left="419.53" Top="207.87" Width="128.5" Height="18.9" Text="1 - 3 Tahun" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo58" Left="419.53" Top="230.55" Width="128.5" Height="18.9" Text="&gt; 3 Tahun" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo59" Left="585.83" Top="162.52" Width="11.34" Height="18.9" Text="A." Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo60" Left="585.83" Top="185.2" Width="11.34" Height="18.9" Text="B." Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo61" Left="585.83" Top="207.87" Width="11.34" Height="18.9" Text="C." Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo62" Left="585.83" Top="230.55" Width="11.34" Height="18.9" Text="D." Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo63" Left="600.95" Top="162.52" Width="64.25" Height="18.9" Text="Berangkat" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo64" Left="600.95" Top="185.2" Width="105.83" Height="18.9" Text="Jam Kerja" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo65" Left="600.95" Top="207.87" Width="105.83" Height="18.9" Text="Jam Istirahat" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo66" Left="597.17" Top="230.55" Width="109.61" Height="18.9" Text="Jam Lembur" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <LineObject Name="Line21" Left="-0.22" Top="253.23" Width="778.58" Diagonal="true"/>
+        <LineObject Name="Line22" Left="-0.22" Top="275.91" Width="778.58" Diagonal="true"/>
+        <TextObject Name="Memo67" Left="3.78" Top="256.79" Width="16.56" Height="18.9" Text="10" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo69" Left="563.15" Top="256.79" Width="16.56" Height="18.9" Text="11" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo70" Left="25.68" Top="256.79" Width="227.05" Height="15.12" Text="Saksi Sewaktu Kecelakaan" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo72" Left="585.83" Top="257.57" Width="227.05" Height="15.12" Text="Perawatan Korban (Nama Tempat)" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo68" Left="26.46" Top="279.69" Width="276.19" Height="15.12" Text="Nama" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo71" Left="328.82" Top="279.69" Width="227.05" Height="15.12" Text="Organization" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="spRptNamaSaksi" Left="26.46" Top="302.36" Width="275.91" Height="37.8" Text="[DS.NamaSaksi]" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="spRptSectionSaksi" Left="328.82" Top="302.36" Width="226.77" Height="37.8" Text="[DS.DepartmentSaksi]" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo73" Left="585.83" Top="279.69" Width="11.34" Height="18.9" Text="A." Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo74" Left="585.83" Top="302.36" Width="11.34" Height="18.9" Text="B." Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo75" Left="600.95" Top="279.69" Width="128.5" Height="18.9" Text="Rawat Jalan" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo76" Left="600.95" Top="302.36" Width="128.5" Height="18.9" Text="Rawat Inap" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo77" Left="585.83" Top="322.6" Width="72.09" Height="15.12" Text="Nama Klinik" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="spRptHospital" Left="585.83" Top="340.5" Width="181.42" Height="28.35" Text="[DS.Hospital]" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <LineObject Name="Line23" Top="377.95" Width="778.58" Diagonal="true"/>
+        <LineObject Name="Line24" Top="400.63" Width="778.58" Diagonal="true"/>
+        <LineObject Name="Line10" Left="371.44" Top="378.88" Height="245.67" Diagonal="true"/>
+        <LineObject Name="Line12" Left="396.73" Top="378.1" Height="245.67" Diagonal="true"/>
+        <TextObject Name="Memo78" Left="3.78" Top="381.73" Width="16.56" Height="18.9" Text="12" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo79" Left="25.68" Top="381.73" Width="227.05" Height="15.12" Text="Bagian Tubuh Yang Luka" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo80" Left="375.95" Top="381.73" Width="16.56" Height="18.9" Text="13" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo81" Left="399.85" Top="381.73" Width="227.05" Height="15.12" Text="Uraian Kejadian Kecelakaan" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="spRptTempatLuka" Left="26.46" Top="411.97" Width="332.6" Height="18.9" Text="[DS.TempatLuka]" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="spRptAccidentUraian" Left="400.63" Top="410.19" Width="366.61" Height="18.9" Text="[DS.AccidentUraian]" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <LineObject Name="Line25" Left="1.22" Top="440.43" Width="778.58" Diagonal="true"/>
+        <LineObject Name="Line26" Left="1.22" Top="463.1" Width="778.58" Diagonal="true"/>
+        <TextObject Name="Memo82" Left="3.78" Top="442.43" Width="16.56" Height="18.9" Text="14" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo83" Left="25.68" Top="442.43" Width="227.05" Height="15.12" Text="Organ Tubuh Yang Luka" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo84" Left="377.95" Top="442.21" Width="16.56" Height="18.9" Text="15" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo85" Left="399.85" Top="444.21" Width="359.34" Height="15.12" Text="Gambar Alat / Benda / Lokasi Yang Mengakibatkan Kecelakaan" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <LineObject Name="Line13" Top="624.72" Width="778.58" Diagonal="true"/>
+        <LineObject Name="Line27" Top="650.08" Width="778.58" Diagonal="true"/>
+        <TextObject Name="Memo86" Left="266.13" Top="629.4" Width="245.95" Height="15.12" Text="FAKTOR PENYEBAB (Diisi Oleh Department Ybs)" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+        <LineObject Name="Line28" Left="25.46" Top="649.17" Height="136.06" Diagonal="true"/>
+        <LineObject Name="Line29" Top="676.54" Width="778.58" Diagonal="true"/>
+        <TextObject Name="Memo87" Left="3.78" Top="654.64" Width="16.56" Height="18.9" Text="16" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo88" Left="25.68" Top="654.64" Width="227.05" Height="15.12" Text="Kondisi Tidak Aman (Unsafe Condition)" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <LineObject Name="Line30" Left="371.39" Top="648.72" Height="136.06" Diagonal="true"/>
+        <LineObject Name="Line31" Left="397.46" Top="648.95" Height="136.06" Diagonal="true"/>
+        <TextObject Name="Memo89" Left="377.95" Top="653.86" Width="16.56" Height="18.9" Text="17" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo90" Left="399.85" Top="653.86" Width="227.05" Height="15.12" Text="Tindakan Tidak Aman (Unsafe Action)" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <LineObject Name="Line32" Top="717.45" Width="778.58" Diagonal="true"/>
+        <LineObject Name="Line33" Top="743.91" Width="778.58" Diagonal="true"/>
+        <TextObject Name="spRptKondisiTakAman" Left="28.46" Top="684.87" Width="336.38" Height="18.9" Text="[DS.KondisiTakAman]" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="spRptTindakanTakAman" Left="399.85" Top="684.87" Width="362.83" Height="18.9" Text="[DS.TindakanTakAman]" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo91" Left="3.78" Top="720.67" Width="16.56" Height="18.9" Text="18" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo92" Left="25.68" Top="720.67" Width="227.05" Height="15.12" Text="Saran - Saran Dari Manager Department Ybs" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo93" Left="377.95" Top="721.89" Width="16.56" Height="18.9" Text="19" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo94" Left="399.85" Top="721.89" Width="227.05" Height="15.12" Text="Saran - Saran Dari Safety" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="spRptSaranManager" Left="28.46" Top="748.23" Width="336.38" Height="28.35" Text="[DS.SaranManager]" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="spRptSaranSafety" Left="400.63" Top="748.35" Width="366.61" Height="28.35" Text="[DS.SaranSafety]" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <LineObject Name="Line34" Top="784.13" Width="778.58" Diagonal="true"/>
+        <TextObject Name="Memo97" Left="665.2" Top="162.52" Width="15.12" Height="18.9" Text="/" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo98" Left="680.32" Top="162.52" Width="64.25" Height="18.9" Text="Pulang Kerja" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <LineObject Name="Line8" Left="-0.22" Top="783.6" Height="-784.25" Diagonal="true"/>
+        <LineObject Name="Line14" Left="777.99" Top="784.04" Height="-784.25" Diagonal="true"/>
+        <LineObject Name="Line47" Left="0.84" Top="922.37" Width="204.09" Diagonal="true"/>
+        <TextObject Name="Memo17" Left="54.02" Top="786.4" Width="83.15" Height="18.9" Text="Department Ybs" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <LineObject Name="Line48" Left="2.22" Top="806.77" Width="200.31" Diagonal="true"/>
+        <LineObject Name="Line49" Left="2.22" Top="833.23" Width="200.31" Diagonal="true"/>
+        <TextObject Name="Memo99" Top="810.55" Width="83.15" Height="18.9" Text="SH / Asman Ybs" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo100" Left="109.61" Top="810.55" Width="83.15" Height="18.9" Text="Manager Dept" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+        <LineObject Name="Line50" Left="98.27" Top="805.77" Height="117.17" Diagonal="true"/>
+        <LineObject Name="Line51" Left="204.09" Top="784.13" Height="139.84" Diagonal="true"/>
+        <LineObject Name="Line52" Left="-0.1" Top="784.13" Height="139.84" Diagonal="true"/>
+        <LineObject Name="Line35" Left="456.15" Top="807.8" Width="321.26" Diagonal="true"/>
+        <TextObject Name="Memo19" Left="538.02" Top="787.13" Width="64.25" Height="18.9" Text="Department" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo23" Left="578.49" Top="811.28" Width="83.15" Height="18.9" Text="Asman Safety" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo24" Left="688.09" Top="811.28" Width="83.15" Height="18.9" Text="Chief Safety" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo101" Left="608.72" Top="786.13" Width="120.94" Height="18.9" Text="[DS.DeptName]" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt"/>
+        <TextObject Name="Memo102" Left="465.1" Top="811.58" Width="83.15" Height="18.9" Text="Safety Staff" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial Narrow, 9pt, style=Bold"/>
+        <LineObject Name="Line36" Left="453.76" Top="785.13" Height="136.06" Diagonal="true"/>
+        <LineObject Name="Line37" Left="563.37" Top="807.8" Height="113.39" Diagonal="true"/>
+        <LineObject Name="Line38" Left="676.76" Top="807.8" Height="113.39" Diagonal="true"/>
+        <LineObject Name="Line39" Left="777.79" Top="785.13" Height="136.06" Diagonal="true"/>
+        <LineObject Name="Line5" Left="454.32" Top="921.19" Width="325.04" Diagonal="true"/>
+        <TextObject Name="Memo12" Left="52.91" Top="924.19" Width="170.08" Height="15.12" Text="1. Lembar Asli File PGA" Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo21" Left="657.64" Top="924.19" Width="120.94" Height="15.12" Text="2. Copy 1 File Dept Ybs" Padding="2, 1, 2, 1" HorzAlign="Right" Font="Arial Narrow, 9pt, style=Bold"/>
+        <TextObject Name="Memo14" Top="924.19" Width="49.13" Height="15.12" Text="Catatan : " Padding="2, 1, 2, 1" Font="Arial Narrow, 9pt, style=Bold"/>
+        <LineObject Name="Line1" Left="455.32" Top="833.28" Width="321.26" Diagonal="true"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="1141.06" Width="778.3"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="1161.06" Width="778.3" Height="20.35" Guides="1.45,16.57">
+      <TextObject Name="Text58" Left="640.15" Top="1.45" Width="135.46" Height="15.12" CanBreak="false" Text="[DS.UserId]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

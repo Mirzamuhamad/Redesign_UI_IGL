@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="04/21/2011 08:48:38" ReportInfo.Modified="03/04/2019 10:08:02" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    dim Dept as String
+    dim Req as String
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      if Dept &lt;&gt; Report.GetColumnValue(&quot;DS.Department&quot;) then
+        'Text1.Visible = true              
+        Dept = Report.GetColumnValue(&quot;DS.Department&quot;) 
+      else
+        'Text1.Visible = false             
+      End If      
+      
+      if Req &lt;&gt; Report.GetColumnValue(&quot;DS.TransNmbr&quot;) then
+        'Text3.Visible = true
+        'Text5.Visible = true
+        'Text7.Visible = true 
+        'Text9.Visible = true 
+        Req = Report.GetColumnValue(&quot;DS.TransNmbr&quot;) 
+      else
+        'Text3.Visible = false
+        ' Text5.Visible = false
+        'Text7.Visible = false 
+        'Text9.Visible = false 
+      End if
+    End Sub       
+
+    Private Sub ReportTitle1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Dept = &quot;&quot;
+      Req = &quot;&quot;
+    End Sub
+
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Dept = &quot;&quot;
+      Req = &quot;&quot;
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLGyiz5qWMjsA99V/W+nNq1W3g2zii+WzFvwn5S/yO9ty4j5cNSou1n2RnV42VCogqruM9ru73OErtihuewlYgpEco6FLu+2axRowNblASA6MVirH6QmNjBTf1xrlIMYWdCrPpWmRmYOvNQGo9ddGRHP1dPlCgy9nxVLszFU1ToMd">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PLRptJobPlant  '0','','Admin'  ">
+        <Column Name="Column" Enabled="false" DataType="System.Int32" Calculated="true" Expression=""/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="StatusTanam" DataType="System.String"/>
+        <Column Name="JobName" DataType="System.String"/>
+        <Column Name="Capacity" DataType="System.Decimal"/>
+        <Column Name="Rotation" DataType="System.Int32"/>
+        <Column Name="Qty" DataType="System.Decimal"/>
+        <Column Name="JobCode" DataType="System.String"/>
+        <Column Name="JobGroupPlant" DataType="System.String"/>
+        <Column Name="JobGroupPlantName" DataType="System.String"/>
+        <Column Name="StatusTanamName" DataType="System.String"/>
+        <Column Name="Material1" DataType="System.String"/>
+        <Column Name="Material2" DataType="System.String"/>
+        <Column Name="Material3" DataType="System.String"/>
+        <Column Name="Material4" DataType="System.String"/>
+        <Column Name="Material5" DataType="System.String"/>
+        <Column Name="Rotasi" DataType="System.String"/>
+        <Column Name="Bulan" DataType="System.Int32"/>
+        <Column Name="NormaHK" DataType="System.Double"/>
+        <Column Name="HKValue" DataType="System.Double"/>
+        <Column Name="Dosis" DataType="System.Decimal"/>
+        <Column Name="Nilai" DataType="System.Decimal"/>
+        <Column Name="UnitHD" DataType="System.String"/>
+        <Column Name="Unitdt" DataType="System.String"/>
+        <Column Name="UnitNorma" DataType="System.String"/>
+        <Column Name="Percentage" DataType="System.Decimal"/>
+        <Column Name="PercentageRotasi" DataType="System.Decimal"/>
+        <Column Name="CompanyNPWP" DataType="System.String"/>
+        <Column Name="CompanyAddress" DataType="System.String"/>
+        <Column Name="UserId" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5" FirstPageSource="261" OtherPagesSource="261" StartPageEvent="Page1_StartPage">
+    <ReportTitleBand Name="ReportTitle1" Width="756" CanGrow="true">
+      <RichObject Name="Rich1" Left="-9459.45" Top="-9223.2" Width="94.5" Height="18.9" Text="{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Microsoft Sans Serif;}}&#13;&#10;\viewkind4\uc1\pard\f0\fs17\par&#13;&#10;}&#13;&#10;"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="3.45" Width="756" Height="120.85" AfterDataEvent="PageHeader1_AfterData" CanBreak="true">
+      <TextObject Name="Text1" Left="1.9" Width="311.85" Height="25.35" Text="[DS.CompanyName]" AutoWidth="true" Font="Arial Narrow, 14pt, style=Bold"/>
+      <TextObject Name="Text2" Left="595.35" Top="19.9" Width="160.65" Height="18.9" Text="Page : [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text174" Left="2.9" Top="26.9" Width="207.9" Height="37.8" Text="[DS.CompanyAddress]" AutoWidth="true" Font="Arial Narrow, 8pt, style=Bold"/>
+      <TextObject Name="Text3" Left="585.9" Width="170.1" Height="18.9" Text="[Date]" Format="Date" Format.Format="F" HorzAlign="Right" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text5" Left="236.25" Top="53.25" Width="311.85" Height="28.35" Text="Master Job Plant (Pengembangan LC)" HorzAlign="Center" Font="Arial Narrow, 14pt, style=Bold, Underline"/>
+      <TextObject Name="Text69" Left="18.9" Top="94.5" Width="150.2" Height="22.68" Text="Jenis Pekerjaan" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 8pt, style=Bold"/>
+      <TextObject Name="Text72" Left="198.45" Top="94.5" Width="40.8" Height="22.68" Text="Status Tanam" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 8pt, style=Bold"/>
+      <LineObject Name="Line1" Left="10.45" Top="94.5" Width="738.31"/>
+      <TextObject Name="Text131" Left="491.4" Top="94.5" Width="245.7" Height="22.68" Text="Material" VertAlign="Center" Font="Arial Narrow, 8pt, style=Bold"/>
+      <TextObject Name="Text166" Left="311.85" Top="94.5" Width="55.7" Height="22.68" Text="Norma HK" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 8pt, style=Bold"/>
+      <TextObject Name="Text167" Left="245.7" Top="94.5" Width="63.6" Height="22.68" Text="Rotasi" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 8pt, style=Bold"/>
+      <LineObject Name="Line7" Left="10.45" Top="94.5" Height="26.35"/>
+      <LineObject Name="Line10" Left="190" Top="94.5" Height="26.35"/>
+      <LineObject Name="Line11" Left="246.7" Top="94.5" Height="26.35"/>
+      <LineObject Name="Line12" Left="312.85" Top="94.5" Height="26.35"/>
+      <LineObject Name="Line13" Left="403.35" Top="94.5" Height="26.35"/>
+      <LineObject Name="Line14" Left="747.55" Top="94.5" Height="26.35"/>
+      <TextObject Name="Text182" Left="415.8" Top="94.5" Width="65.15" Height="22.68" Text="Nilai Rupiah" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 8pt, style=Bold"/>
+      <LineObject Name="Line32" Left="488.4" Top="94.5" Height="26.35"/>
+      <LineObject Name="Line41" Left="10.45" Top="120.85" Width="737.31"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="127.75" Width="756" Condition="[DS.CompanyName]" SortOrder="None">
+      <DataBand Name="Data1" Top="131.19" Width="756" Height="29.9" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" AfterDataEvent="Data1_AfterData" CanBreak="true" DataSource="Table">
+        <TextObject Name="Text70" Left="11.35" Width="175.75" Height="28.68" CanGrow="true" Text="[DS.JobName]" Font="Arial Narrow, 8pt"/>
+        <TextObject Name="Text75" Left="404" Width="80.05" Height="26.68" Text="[DS.Nilai]" Format="Custom" Format.Format="##,#0.##" WordWrap="false" Font="Arial Narrow, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text134" Left="487.4" Top="1" Width="259.15" Height="25.57" Text="[DS.Material1] [DS.Material2] [DS.Material3] [DS.Material4] [DS.Material5]" Format="Custom" Format.Format="##,#0.##" WordWrap="false" Font="Arial Narrow, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text171" Left="189.55" Width="53.7" Height="27.68" CanGrow="true" Text="[DS.StatusTanamName]" HorzAlign="Center" Font="Arial Narrow, 8pt"/>
+        <LineObject Name="Line2" Left="9.45" Width="738.31"/>
+        <LineObject Name="Line34" Left="190" Height="29.9"/>
+        <LineObject Name="Line35" Left="246.7" Height="29.9"/>
+        <LineObject Name="Line36" Left="312.85" Height="29.9"/>
+        <LineObject Name="Line37" Left="402.9" Height="29.9"/>
+        <LineObject Name="Line33" Left="9.45" Top="29.9" Width="737.86"/>
+        <TextObject Name="Text189" Left="246.25" Width="64.6" Height="27.23" CanGrow="true" Text="[DS.Rotasi]" HorzAlign="Center" Font="Arial Narrow, 8pt"/>
+        <TextObject Name="Text190" Left="313.4" Width="42.25" Height="27.68" CanGrow="true" Text="[DS.NormaHK]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Center" Font="Arial Narrow, 8pt"/>
+        <TextObject Name="Text191" Left="356.65" Width="46.25" Height="27.68" CanGrow="true" Text="[DS.UnitNorma]" HorzAlign="Center" Font="Arial Narrow, 8pt"/>
+        <LineObject Name="Line38" Left="487.95" Height="29.9"/>
+        <LineObject Name="Line39" Left="748.1" Height="29.9"/>
+        <LineObject Name="Line40" Left="10" Height="29.9"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="164.54" Width="756" CanBreak="true" KeepWithData="true" RepeatOnEveryPage="true"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="167.99" Width="756" Height="15.9" CanGrow="true" BeforePrintEvent="PageFooter1_BeforePrint" AfterDataEvent="PageFooter1_AfterData">
+      <LineObject Name="Line4" Left="9.45" Width="738.86"/>
+      <TextObject Name="Text188" Left="9.45" Width="48.7" Height="15.9" Text="Plantation" Format="Date" Format.Format="F" Font="Arial Narrow, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

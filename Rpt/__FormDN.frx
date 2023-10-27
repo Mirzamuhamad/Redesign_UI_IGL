@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="12/13/2013 15:33:42" ReportInfo.Modified="08/11/2016 18:19:19" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haoPCPpcsku9D2uCmsRlxZ8t">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_STFormSJ '''II/SJ/13/12/@/0001''', 'admin'">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="FgReport" DataType="System.String"/>
+        <Column Name="Status" DataType="System.String"/>
+        <Column Name="Customer" DataType="System.String"/>
+        <Column Name="Customer_Name" DataType="System.String"/>
+        <Column Name="DONo" DataType="System.String"/>
+        <Column Name="SONo" DataType="System.String"/>
+        <Column Name="CustPONo" DataType="System.String"/>
+        <Column Name="Warehouse_Code" DataType="System.String"/>
+        <Column Name="Warehouse_Name" DataType="System.String"/>
+        <Column Name="FgSubled" DataType="System.String"/>
+        <Column Name="Subled_Code" DataType="System.String"/>
+        <Column Name="Subled_Name" DataType="System.String"/>
+        <Column Name="IssuedBy" DataType="System.String"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="CarNo" DataType="System.String"/>
+        <Column Name="Driver" DataType="System.String"/>
+        <Column Name="Product" DataType="System.String"/>
+        <Column Name="Product_Name" DataType="System.String"/>
+        <Column Name="Product_Price" DataType="System.String"/>
+        <Column Name="Specification" DataType="System.String"/>
+        <Column Name="Qty" DataType="System.Decimal"/>
+        <Column Name="Unit" DataType="System.String"/>
+        <Column Name="Location" DataType="System.String"/>
+        <Column Name="Location_Name" DataType="System.String"/>
+        <Column Name="UnitWeight" DataType="System.Decimal"/>
+        <Column Name="QtyRR" DataType="System.String"/>
+        <Column Name="QtyLoss" DataType="System.String"/>
+        <Column Name="RemarkDt" DataType="System.String"/>
+        <Column Name="FgStatus" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="UserId" DataType="System.String"/>
+        <Column Name="DeliveryTime" DataType="System.String"/>
+        <Column Name="DeliveryBy" DataType="System.String"/>
+        <Column Name="DeliveryCostBy" DataType="System.String"/>
+        <Column Name="RR_Date" DataType="System.DateTime"/>
+        <Column Name="RR_CarNo" DataType="System.String"/>
+        <Column Name="RR_Driver" DataType="System.String"/>
+        <Column Name="RR_ExpeditionName" DataType="System.String"/>
+        <Column Name="RR_ExpeditionNo" DataType="System.String"/>
+        <Column Name="RR_TimeArrival" DataType="System.String"/>
+        <Column Name="RR_TimeUnLoading" DataType="System.String"/>
+        <Column Name="RR_TimeFinish" DataType="System.String"/>
+        <Column Name="RR_Remark" DataType="System.String"/>
+        <Column Name="QtyRoll" DataType="System.Decimal"/>
+        <Column Name="QtyM2" DataType="System.Decimal"/>
+        <Column Name="QtyPacking" DataType="System.Decimal"/>
+        <Column Name="QtyPerPack" DataType="System.Decimal"/>
+        <Column Name="UnitPacking" DataType="System.String"/>
+        <Column Name="DeliveryPlace" DataType="System.String"/>
+        <Column Name="CustAddress" DataType="System.String"/>
+        <Column Name="CustCity" DataType="System.String"/>
+        <Column Name="CustPhone" DataType="System.String"/>
+        <Column Name="ISODocNo" DataType="System.String"/>
+        <Column Name="CompanyAddress" DataType="System.String"/>
+        <Column Name="phone" DataType="System.String"/>
+        <Column Name="SOKind" DataType="System.String"/>
+        <Column Name="QtyOrder" DataType="System.Decimal"/>
+        <Column Name="UnitOrder" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5" FirstPageSource="261" OtherPagesSource="261">
+    <PageHeaderBand Name="PageHeader1" Width="1084.86" Height="226.8">
+      <TextObject Name="Text15" Top="38.87" Width="1033.83" Height="18.9" Text="FORM OPNAME" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text37" Width="292.95" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 11pt, style=Bold"/>
+      <TextObject Name="Text38" Top="21.32" Width="493.65" Height="34.35" Text="[DS.CompAddr]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text39" Left="3" Top="66.02" Width="214.35" Height="18.9" Text="Tanggal : [Date]" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text28" Left="879.85" Top="13.86" Width="160.65" Height="18.9" Text="Page [Page#] Of [TotalPages#]" HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="230.8" Width="1084.86" Height="37.8" CanGrow="true" CanShrink="true" AfterDataEvent="Data1_AfterData" DataSource="Table"/>
+    <PageFooterBand Name="PageFooter1" Top="272.6" Width="1084.86" Height="198.45"/>
+  </ReportPage>
+</Report>

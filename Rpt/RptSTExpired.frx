@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="03/27/2014 09:48:18" ReportInfo.Modified="04/02/2014 15:14:12" ReportInfo.CreatorVersion="2013.3.5.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    
+          
+    dim NoProduct AS String  
+    dim Nomor AS String
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+    Nomor=0
+    End Sub
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+        
+      If CType(Report.GetColumnValue(&quot;DS.Product&quot;), String) = NoProduct Then
+        Cell77.Text = &quot;&quot;
+       
+      Else
+        Nomor=Nomor+1
+        Cell77.Text= Nomor
+        
+      End IF
+      
+      
+    End Sub
+    
+    
+
+    Private Sub Data1_AfterPrint(ByVal sender As object, ByVal e As EventArgs)
+      NoProduct=CType(Report.GetColumnValue(&quot;DS.Product&quot;), String)
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haooGu37YRVSHC+nITjDp7HG">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_RptSTExpiredform '2013-01-01','2014-12-01','','','','admin'">
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="ProductGrp" DataType="System.String"/>
+        <Column Name="ProductGrpName" DataType="System.String"/>
+        <Column Name="Product" DataType="System.String"/>
+        <Column Name="ProductName" DataType="System.String"/>
+        <Column Name="Specification" DataType="System.String"/>
+        <Column Name="Supplier" DataType="System.String"/>
+        <Column Name="RRDate" DataType="System.DateTime"/>
+        <Column Name="ExpDate" DataType="System.DateTime"/>
+        <Column Name="LotNo" DataType="System.String"/>
+        <Column Name="Qty" DataType="System.Double"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="Period" DataType="System.String"/>
+        <Column Name="UserID" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="279.4" PaperHeight="215.9" FirstPageSource="14" OtherPagesSource="14">
+    <ReportTitleBand Name="ReportTitle1" Width="980.53"/>
+    <PageHeaderBand Name="PageHeader1" Top="6.35" Width="980.53" Height="75.6">
+      <TextObject Name="Text1" Left="9.45" Width="264.6" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text2" Left="9.45" Top="18.9" Width="311.85" Height="37.8" Text="[DS.CompAddr]" Font="Arial, 8pt"/>
+      <TextObject Name="Text3" Left="321.3" Top="37.8" Width="292.95" Height="18.9" Text="LAPORAN STOCK EXPIRED" HorzAlign="Center" VertAlign="Center" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text13" Left="321.3" Top="56.7" Width="292.95" Height="18.9" Text="Periode : [DS.Period]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text15" Left="727.65" Width="245.7" Height="18.9" Text="Date/TIme :[Date]" HorzAlign="Right" Font="Arial, 7pt"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="88.3" Width="980.53" Height="63.64" CanGrow="true" BeforePrintEvent="GroupHeader1_BeforePrint" StartNewPage="true" RepeatOnEveryPage="true" Condition="[DS.ProductGrp]">
+      <TableObject Name="Table1" Left="5.07" Top="6.4" Width="967.1" Height="57.24" Border.Lines="All">
+        <TableColumn Name="Column1" Width="47.75"/>
+        <TableColumn Name="Column2" Width="107.82"/>
+        <TableColumn Name="Column3" Width="32.21"/>
+        <TableColumn Name="Column4" Width="183.42"/>
+        <TableColumn Name="Column5" Width="60.55"/>
+        <TableColumn Name="Column6" Width="1"/>
+        <TableColumn Name="Column7" Width="121.99"/>
+        <TableColumn Name="Column8" Width="46.39"/>
+        <TableColumn Name="Column9" Width="93.64"/>
+        <TableColumn Name="Column10" Width="112.54"/>
+        <TableColumn Name="Column11" Width="159.79"/>
+        <TableRow Name="Row1" Height="16.31">
+          <TableCell Name="Cell1" Border.Lines="All" Text="No." HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell2" Border.Lines="All" Text="Kode Barang" VertAlign="Center" Font="Arial, 10pt, style=Bold" ColSpan="2" RowSpan="3"/>
+          <TableCell Name="Cell3" Border.Lines="All" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell4" Border.Lines="All" Text="Nama Barang&#13;&#10;" VertAlign="Center" Font="Arial, 10pt, style=Bold" ColSpan="3" RowSpan="3"/>
+          <TableCell Name="Cell5" Border.Lines="All" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell26" Border.Lines="All" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell62" Border.Lines="Bottom" Text="Supplier" VertAlign="Center" Font="Arial, 10pt, style=Bold" ColSpan="2" RowSpan="3"/>
+          <TableCell Name="Cell63" Border.Lines="All" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell64" Border.Lines="All" Text="Tgl Masuk" VertAlign="Center" Font="Arial, 10pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell65" Border.Lines="All" Text="Exp Date" VertAlign="Center" Font="Arial, 10pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell66" Border.Lines="All" Text="Batch/No Lot" VertAlign="Center" Font="Arial, 10pt, style=Bold" RowSpan="3"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="16.31">
+          <TableCell Name="Cell6" Border.Lines="All" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell7" Border.Lines="All"/>
+          <TableCell Name="Cell8" Border.Lines="All" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell9" Border.Lines="All" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell10" Border.Lines="All"/>
+          <TableCell Name="Cell31" Border.Lines="All"/>
+          <TableCell Name="Cell67"/>
+          <TableCell Name="Cell68"/>
+          <TableCell Name="Cell69"/>
+          <TableCell Name="Cell70"/>
+          <TableCell Name="Cell71" Border.Lines="All" VertAlign="Center"/>
+        </TableRow>
+        <TableRow Name="Row5" Height="1">
+          <TableCell Name="Cell56" Border.Lines="All" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell57" Border.Lines="All"/>
+          <TableCell Name="Cell58" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell59" Border.Lines="All" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell60" Border.Lines="All"/>
+          <TableCell Name="Cell61" Border.Lines="All"/>
+          <TableCell Name="Cell72"/>
+          <TableCell Name="Cell73"/>
+          <TableCell Name="Cell74"/>
+          <TableCell Name="Cell75"/>
+          <TableCell Name="Cell76" Border.Lines="All" VertAlign="Center"/>
+        </TableRow>
+        <TableRow Name="Row9" Height="23.62">
+          <TableCell Name="Cell110" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TableCell Name="Cell111" Border.Lines="Left" Text="[DS.ProductGrpName]" VertAlign="Center" Font="Arial, 10pt, style=Bold" ColSpan="10"/>
+          <TableCell Name="Cell112" Border.Lines="Left" VertAlign="Center"/>
+          <TableCell Name="Cell113" Border.Lines="Left" VertAlign="Center"/>
+          <TableCell Name="Cell114" Border.Lines="Left" VertAlign="Center"/>
+          <TableCell Name="Cell115" Border.Lines="Left" VertAlign="Center"/>
+          <TableCell Name="Cell116" Border.Lines="Left" VertAlign="Center"/>
+          <TableCell Name="Cell117" Border.Lines="Left" VertAlign="Center"/>
+          <TableCell Name="Cell118" Border.Lines="Left" VertAlign="Center"/>
+          <TableCell Name="Cell119" Border.Lines="Left" VertAlign="Center"/>
+          <TableCell Name="Cell120" Border.Lines="Left" VertAlign="Center"/>
+        </TableRow>
+      </TableObject>
+      <DataBand Name="Data1" Top="158.29" Width="980.53" Height="35.22" CanGrow="true" CanShrink="true" DataSource="Table">
+        <TableObject Name="Table1" Left="5" Top="0.45" Width="967.1" Height="34.77" Border.Lines="All">
+          <TableColumn Name="Column12" Width="47.75"/>
+          <TableColumn Name="Column13" Width="107.82"/>
+          <TableColumn Name="Column14" Width="32.21"/>
+          <TableColumn Name="Column15" Width="183.42"/>
+          <TableColumn Name="Column16" Width="60.55"/>
+          <TableColumn Name="Column17" Width="1"/>
+          <TableColumn Name="Column18" Width="121.99"/>
+          <TableColumn Name="Column19" Width="46.39"/>
+          <TableColumn Name="Column20" Width="93.64"/>
+          <TableColumn Name="Column21" Width="112.54"/>
+          <TableColumn Name="Column22" Width="159.79"/>
+          <TableRow Name="Row6" Height="11.59">
+            <TableCell Name="Cell77" Border.Lines="All" BeforePrintEvent="Data1_BeforePrint" AfterPrintEvent="Data1_AfterPrint" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt" RowSpan="3"/>
+            <TableCell Name="Cell78" Border.Lines="All" Text="[DS.Product]" VertAlign="Center" Font="Arial, 9pt" ColSpan="2" RowSpan="3"/>
+            <TableCell Name="Cell79" Border.Lines="All" VertAlign="Center" Font="Arial, 9pt"/>
+            <TableCell Name="Cell80" Border.Lines="All" Text="[DS.ProductName]" VertAlign="Center" Font="Arial, 9pt" ColSpan="3" RowSpan="3"/>
+            <TableCell Name="Cell81" Border.Lines="All" VertAlign="Center" Font="Arial, 9pt"/>
+            <TableCell Name="Cell82" Border.Lines="All" VertAlign="Center" Font="Arial, 9pt"/>
+            <TableCell Name="Cell83" Text="[DS.Supplier]" VertAlign="Center" Font="Arial, 9pt" ColSpan="2" RowSpan="3"/>
+            <TableCell Name="Cell84" Border.Lines="All" VertAlign="Center" Font="Arial, 9pt"/>
+            <TableCell Name="Cell85" Border.Lines="All" Text="[DS.RRDate]" Format="Custom" Format.Format="dd/MM/yyyy" VertAlign="Center" Font="Arial, 9pt" RowSpan="3"/>
+            <TableCell Name="Cell86" Border.Lines="All" Text="[DS.ExpDate]" Format="Custom" Format.Format="dd/MM/yyyy" VertAlign="Center" Font="Arial, 9pt" RowSpan="3"/>
+            <TableCell Name="Cell87" Border.Lines="All" Text="[DS.LotNo]" VertAlign="Center" Font="Arial, 9pt" RowSpan="3"/>
+          </TableRow>
+          <TableRow Name="Row7" Height="11.59">
+            <TableCell Name="Cell88" Border.Lines="All" HorzAlign="Center" Font="Arial, 9pt"/>
+            <TableCell Name="Cell89" Border.Lines="All" Font="Arial, 9pt"/>
+            <TableCell Name="Cell90" Border.Lines="All" VertAlign="Center" Font="Arial, 9pt"/>
+            <TableCell Name="Cell91" Border.Lines="All" VertAlign="Center" Font="Arial, 9pt"/>
+            <TableCell Name="Cell92" Border.Lines="All" Font="Arial, 9pt"/>
+            <TableCell Name="Cell93" Border.Lines="All" Font="Arial, 9pt"/>
+            <TableCell Name="Cell94" Font="Arial, 9pt"/>
+            <TableCell Name="Cell95" Font="Arial, 9pt"/>
+            <TableCell Name="Cell96" Font="Arial, 9pt"/>
+            <TableCell Name="Cell97" Font="Arial, 9pt"/>
+            <TableCell Name="Cell98" Border.Lines="All" VertAlign="Center" Font="Arial, 9pt"/>
+          </TableRow>
+          <TableRow Name="Row8" Height="11.59">
+            <TableCell Name="Cell99" Border.Lines="All" HorzAlign="Center" Font="Arial, 9pt"/>
+            <TableCell Name="Cell100" Border.Lines="All" Font="Arial, 9pt"/>
+            <TableCell Name="Cell101" VertAlign="Center" Font="Arial, 9pt"/>
+            <TableCell Name="Cell102" Border.Lines="All" VertAlign="Center" Font="Arial, 9pt"/>
+            <TableCell Name="Cell103" Border.Lines="All" Font="Arial, 9pt"/>
+            <TableCell Name="Cell104" Border.Lines="All" Font="Arial, 9pt"/>
+            <TableCell Name="Cell105" Font="Arial, 9pt"/>
+            <TableCell Name="Cell106" Font="Arial, 9pt"/>
+            <TableCell Name="Cell107" Font="Arial, 9pt"/>
+            <TableCell Name="Cell108" Font="Arial, 9pt"/>
+            <TableCell Name="Cell109" Border.Lines="All" VertAlign="Center" Font="Arial, 9pt"/>
+          </TableRow>
+        </TableObject>
+      </DataBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="199.86" Width="980.53" Height="18.9">
+      <TextObject Name="Text5" Left="842.05" Width="132.3" Height="18.9" Text="[PageN] Of [TotalPages#]" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text4" Left="667.5" Width="170.1" Height="18.9" Text="User : [DS.UserID]" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

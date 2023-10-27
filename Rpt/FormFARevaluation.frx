@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="06/30/2011 08:24:29" ReportInfo.Modified="10/18/2013 10:37:30" ReportInfo.CreatorVersion="1.2.47.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlq086BPHqj9vnNOnDWy0fMfKzbndlUe+mVR0KMZSv45+pjwzvcu2wrBz5ONaMXCfTtDcBvQp29WKjDwQ9IcYfxyVktD/A14ik9EWIqwYJO4WDNmrrGUXZWteB+diTBYzRU+4MCgfgftQMnSKdvGj1AwRbyu9wXlUzKai3tZ5JEVST771QWHGH5ia1q1QnkLzD1">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_GLFormFARevaluation 'IK/FAR/09MAR/0001'">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="Trans_Date" DataType="System.String"/>
+        <Column Name="Status" DataType="System.String"/>
+        <Column Name="FgReport" DataType="System.String"/>
+        <Column Name="Operator" DataType="System.String"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="UserPrep" DataType="System.String"/>
+        <Column Name="DatePrep" DataType="System.DateTime"/>
+        <Column Name="UserAppr" DataType="System.String"/>
+        <Column Name="DateAppr" DataType="System.DateTime"/>
+        <Column Name="TransNmbr1" DataType="System.String"/>
+        <Column Name="FixedAsset" DataType="System.String"/>
+        <Column Name="FA_Name" DataType="System.String"/>
+        <Column Name="BalanceLife" DataType="System.String"/>
+        <Column Name="BalanceAmount" DataType="System.String"/>
+        <Column Name="FgRemove" DataType="System.String"/>
+        <Column Name="NewLife" DataType="System.String"/>
+        <Column Name="NewAmount" DataType="System.String"/>
+        <Column Name="Remark1" DataType="System.String"/>
+        <Column Name="RevLife" DataType="System.String"/>
+        <Column Name="RevAmount" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="TotalBalAmount" Expression="[DS.BalanceAmount]" Evaluator="Data1" PrintOn="PageFooter1"/>
+    <Total Name="TotalNewAmount" Expression="[DS.NewAmount]" Evaluator="Data1" PrintOn="PageFooter1"/>
+    <Total Name="TotalRevAmount" Expression="[DS.RevAmount]" Evaluator="Data1" PrintOn="PageFooter1"/>
+    <Total Name="TotAmountBalance" Expression="[DS.BalanceAmount]" Evaluator="Data1" PrintOn="PageFooter1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Guides="529.2,699.3,9.45,103.95,119.85,327.75,340.2,378,382,457.6,467.05,504.85,510.3,585.9,594.9,632.7,637.15,712.75,0,198.45,463.05,525.42,457.38,584.23,712.08,425.25,718.2,334.75,590.9,325.08,113.4,75.6,245.7,453.6,623.7,380,508.3,635.15,591.35,500.85,614.25">
+    <PageHeaderBand Name="PageHeader1" Top="20" Width="718.2" Height="179.55" Guides="66.15,81.27,82.6,97.72,100.05,115.17,162.65,175.88,0,22.68,143.75,158.87,28.35,47.25,141.75,179.55,160.65,144.75,157.98">
+      <TextObject Name="Text1" Left="529.2" Top="66.15" Width="170.1" Height="15.12" Text=": [DS.TransNmbr]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text2" Left="529.2" Top="82.6" Width="170.1" Height="15.12" Text=": [DS.Trans_Date]" Font="Arial, 9pt"/>
+      <TextObject Name="Text3" Left="529.2" Top="100.05" Width="170.1" Height="15.12" Text=": [DS.Operator]" Font="Arial, 9pt"/>
+      <TextObject Name="Text5" Left="9.45" Top="162.65" Width="94.5" Height="13.23" Text="Code" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text7" Left="119.85" Top="162.65" Width="207.9" Height="13.23" Text="Description" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text9" Left="340.2" Top="162.65" Width="37.8" Height="13.23" Text="Life" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text11" Left="382" Top="162.65" Width="75.6" Height="13.23" Text="Amount" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text13" Left="467.05" Top="162.65" Width="37.8" Height="13.23" Text="Life" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text15" Left="510.3" Top="162.65" Width="75.6" Height="13.23" Text="Amount" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text17" Left="594.9" Top="162.65" Width="37.8" Height="13.23" Text="Life" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text19" Left="637.15" Top="162.65" Width="75.6" Height="13.23" Text="Amount" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text20" Width="198.45" Height="22.68" Text="[DS.CompanyName]" AutoWidth="true" Font="Arial, 14pt"/>
+      <TextObject Name="Text21" Left="463.05" Top="66.15" Width="62.37" Height="15.12" Text="Nomor" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text22" Left="463.05" Top="82.6" Width="62.37" Height="15.12" Text="Date" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text23" Left="463.05" Top="100.05" Width="62.37" Height="15.12" Text="Operator" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text24" Left="340.2" Top="143.75" Width="117.18" Height="15.12" Text="Balance" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text25" Left="467.05" Top="143.75" Width="117.18" Height="15.12" Text="New Asset Value" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text26" Left="594.9" Top="143.75" Width="117.18" Height="15.12" Text="Revaluation" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text27" Left="425.25" Top="28.35" Width="292.95" Height="18.9" Text="FIXED ASSET REVALUATION" HorzAlign="Right" Font="Arial, 14pt, style=Bold"/>
+      <LineObject Name="Line1" Top="141.75" Height="37.8"/>
+      <LineObject Name="Line2" Top="141.75" Width="718.2"/>
+      <LineObject Name="Line4" Left="334.75" Top="141.75" Height="37.8"/>
+      <LineObject Name="Line5" Left="463.05" Top="141.75" Height="37.8"/>
+      <LineObject Name="Line6" Left="590.9" Top="141.75" Height="37.8"/>
+      <LineObject Name="Line7" Left="718.2" Top="141.75" Height="37.8"/>
+      <LineObject Name="Line8" Top="179.55" Width="718.2"/>
+      <LineObject Name="Line18" Top="160.65" Width="718.2"/>
+      <TextObject Name="Text39" Left="9.45" Top="144.75" Width="315.63" Height="13.23" Text="Fixed Asset" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <LineObject Name="Line23" Left="113.4" Top="160.65" Height="18.9"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="219.55" Width="718.2" Height="18.9" CanGrow="true" Guides="0,18.9" DataSource="Table">
+      <TextObject Name="Text4" Left="9.45" Width="94.5" Height="18.9" Text="[DS.FixedAsset]" Font="Arial, 8pt"/>
+      <TextObject Name="Text6" Left="119.85" Width="207.9" Height="18.9" Text="[DS.FA_Name]" Font="Arial, 8pt"/>
+      <TextObject Name="Text8" Left="340.2" Width="37.8" Height="18.9" Text="[DS.BalanceLife]" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text10" Left="382" Width="75.6" Height="18.9" CanGrow="true" Text="[DS.BalanceAmount]" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text12" Left="467.05" Width="37.8" Height="18.9" Text="[DS.NewLife]" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text14" Left="510.3" Width="75.6" Height="18.9" CanGrow="true" Text="[DS.NewAmount]" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text16" Left="594.9" Width="37.8" Height="18.9" Text="[DS.RevLife]" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text18" Left="637.15" Width="75.6" Height="18.9" CanGrow="true" Text="[DS.RevAmount]" HorzAlign="Right" Font="Arial, 8pt"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="258.45" Width="718.2" Height="160.65" CanGrow="true" CanBreak="true" Guides="141.75,-708.8,0,18.9,31.18,46.3,28.35,43.47,112.45,127.57,94.5,109.62,-0.45,-716.55,-725.65,144.75,159.87">
+      <LineObject Name="Line10" Top="141.75" Height="-850.55"/>
+      <LineObject Name="Line11" Width="718.2"/>
+      <LineObject Name="Line12" Top="18.9" Width="718.2"/>
+      <TextObject Name="Text28" Left="382" Width="75.6" Height="18.9" CanGrow="true" CanBreak="false" Text="[TotalBalAmount]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text29" Left="510.3" Width="75.6" Height="18.9" CanGrow="true" Text="[TotalNewAmount]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text30" Left="637.15" Width="75.6" Height="18.9" CanGrow="true" Text="[TotalRevAmount]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text31" Left="75.6" Top="31.18" Width="170.1" Height="15.12" Text="Approved By," HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text32" Left="453.6" Top="28.35" Width="170.1" Height="15.12" Text="Prepared By," HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text33" Left="75.6" Top="112.45" Width="170.1" Height="15.12" Text="Ka. Accounting" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text34" Left="453.6" Top="112.45" Width="170.1" Height="15.12" Text="Admin Accounting" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text35" Left="75.6" Top="94.5" Width="170.1" Height="15.12" Text="(.........................................)" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text36" Left="453.6" Top="94.5" Width="170.1" Height="15.12" Text="(.........................................)" HorzAlign="Center" Font="Arial, 9pt"/>
+      <LineObject Name="Line13" Top="141.75" Width="718.2"/>
+      <LineObject Name="Line14" Left="334.75" Top="141.75" Height="-850.55"/>
+      <LineObject Name="Line15" Left="718.2" Top="141.75" Height="-850.55"/>
+      <LineObject Name="Line16" Left="113.4" Top="-0.45" Height="-716.1" CanGrow="true"/>
+      <LineObject Name="Line17" Left="380" Top="18.9" Height="-744.55" CanGrow="true"/>
+      <LineObject Name="Line19" Left="508.3" Top="18.9" Height="-744.55" CanGrow="true"/>
+      <LineObject Name="Line20" Left="635.15" Top="18.9" Height="-744.55" CanGrow="true"/>
+      <LineObject Name="Line21" Left="591.35" Top="18.9" Height="-744.55" CanGrow="true"/>
+      <LineObject Name="Line22" Left="463.05" Top="18.9" Height="-744.55" CanGrow="true"/>
+      <TextObject Name="Text37" Top="144.75" Width="500.85" Height="15.12" Text="1. Putih : Finance    2. Merah : Arsip Script Acc.    3. Kuning : Customer    4. Hijau : Accounting - AR" Font="Arial, 8pt"/>
+      <TextObject Name="Text38" Left="614.25" Top="144.75" Width="103.95" Height="15.12" Text="Page : [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

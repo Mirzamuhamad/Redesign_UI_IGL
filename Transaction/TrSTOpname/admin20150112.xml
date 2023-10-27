@@ -1,0 +1,843 @@
+<?xml version="1.0" standalone="yes"?>
+<DS>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>21011520</Product>
+    <Product_Name>Ponds Cleansing Wipes 25</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>7,270</QtyActual>
+    <QtyOpname>7,270</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>201.94444444</QtyRollActual>
+    <QtyRollOpname>201.94444444</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>201.94444444</QtyM2Actual>
+    <QtyM2Opname>201.94444444</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2>CTN</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>21011521</Product>
+    <Product_Name>Ponds Cleansing Wipes 7</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>144</QtyActual>
+    <QtyOpname>144</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>3</QtyRollActual>
+    <QtyRollOpname>3</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>3</QtyM2Actual>
+    <QtyM2Opname>3</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2>CTN</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>21035373</Product>
+    <Product_Name>Zwitsal Baby Cleansing Wipes 10 (New Parfume)</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>0</QtyRollActual>
+    <QtyRollOpname>0</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2>CTN</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>297266</Product>
+    <Product_Name>Refreshing Wet Tissue Mint Tea 10</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>6,912</QtyActual>
+    <QtyOpname>6,912</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>48</QtyRollActual>
+    <QtyRollOpname>48</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PCS</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2 />
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>297267</Product>
+    <Product_Name>Refreshing Wet Tissue Non Parfum 10</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>4,464</QtyActual>
+    <QtyOpname>4,464</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>31</QtyRollActual>
+    <QtyRollOpname>31</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PCS</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2 />
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>567853</Product>
+    <Product_Name>Ponds Cleansing Wipes 25 u/ export (93250889)</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>10,512</QtyActual>
+    <QtyOpname>10,512</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>292</QtyRollActual>
+    <QtyRollOpname>292</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>292</QtyM2Actual>
+    <QtyM2Opname>292</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2>CTN</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>60024792</Product>
+    <Product_Name>Zwitsal Baby Cleansing Wipes 30</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>0</QtyRollActual>
+    <QtyRollOpname>0</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2>CTN</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>9101028</Product>
+    <Product_Name>Popoku Baby Wet Wipes 10</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>70,128</QtyActual>
+    <QtyOpname>70,128</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>487</QtyRollActual>
+    <QtyRollOpname>487</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PCS</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2 />
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>9123079</Product>
+    <Product_Name>Alfamart Tisu Basah Baby  50</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>7,488</QtyActual>
+    <QtyOpname>7,488</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>208</QtyRollActual>
+    <QtyRollOpname>208</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2 />
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>9123080</Product>
+    <Product_Name>Pucelle Body Refreshing Wipes Snowy Mint 10</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>240</QtyActual>
+    <QtyOpname>240</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>5</QtyRollActual>
+    <QtyRollOpname>5</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>5</QtyM2Actual>
+    <QtyM2Opname>5</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2>CTN</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>9123081</Product>
+    <Product_Name>Pucelle Body Refreshing Wipes Lime Squash 10</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>0</QtyRollActual>
+    <QtyRollOpname>0</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2>CTN</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>9123082</Product>
+    <Product_Name>Pucelle Body Refreshing Wipes Floral Fusion 10</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>48</QtyActual>
+    <QtyOpname>48</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>1</QtyRollActual>
+    <QtyRollOpname>1</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>1</QtyM2Actual>
+    <QtyM2Opname>1</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2>CTN</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>9123083</Product>
+    <Product_Name>Gatsby Face Cleansing Paper Ice Type 10</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>0</QtyRollActual>
+    <QtyRollOpname>0</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2 />
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>9123084</Product>
+    <Product_Name>Gatsby Face Cleansing Paper Refreshing Type 10</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>0</QtyRollActual>
+    <QtyRollOpname>0</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2 />
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>9123085</Product>
+    <Product_Name>Baby Wipes HUKI Fragrance 10</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>0</QtyRollActual>
+    <QtyRollOpname>0</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2 />
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>9123086</Product>
+    <Product_Name>Baby Wipes HUKI Fragrance 50</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>0</QtyRollActual>
+    <QtyRollOpname>0</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PACK </Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2 />
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>91247124</Product>
+    <Product_Name>HUKI Baby Wipes Fragrance 50's</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>29,016</QtyActual>
+    <QtyOpname>29,016</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>806</QtyRollActual>
+    <QtyRollOpname>806</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2>0</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>91247144</Product>
+    <Product_Name>HUKI Baby Wipes Fragrance 50's </Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>864</QtyActual>
+    <QtyOpname>864</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>24</QtyRollActual>
+    <QtyRollOpname>24</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2>0</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>9154062</Product>
+    <Product_Name>Mamy Poko Baby Wipes 2 ( B Grade )</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>2,880</QtyActual>
+    <QtyOpname>2,880</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>5</QtyRollActual>
+    <QtyRollOpname>5</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PCS</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2 />
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>9188045</Product>
+    <Product_Name>Zwitsal Baby CLassic Wipes 30</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>33,096</QtyActual>
+    <QtyOpname>33,096</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>1,379</QtyRollActual>
+    <QtyRollOpname>1,379</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>1,379</QtyM2Actual>
+    <QtyM2Opname>1,379</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2>CTN</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>21011520</Product>
+    <Product_Name>Ponds Cleansing Wipes 25</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>7,270</QtyActual>
+    <QtyOpname>7,270</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>201.94444444</QtyRollActual>
+    <QtyRollOpname>201.94444444</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>201.94444444</QtyM2Actual>
+    <QtyM2Opname>201.94444444</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2>CTN</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>21011521</Product>
+    <Product_Name>Ponds Cleansing Wipes 7</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>144</QtyActual>
+    <QtyOpname>144</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>3</QtyRollActual>
+    <QtyRollOpname>3</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>3</QtyM2Actual>
+    <QtyM2Opname>3</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2>CTN</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>21035373</Product>
+    <Product_Name>Zwitsal Baby Cleansing Wipes 10 (New Parfume)</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>0</QtyRollActual>
+    <QtyRollOpname>0</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2>CTN</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>297266</Product>
+    <Product_Name>Refreshing Wet Tissue Mint Tea 10</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>6,912</QtyActual>
+    <QtyOpname>6,912</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>48</QtyRollActual>
+    <QtyRollOpname>48</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PCS</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2 />
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>297267</Product>
+    <Product_Name>Refreshing Wet Tissue Non Parfum 10</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>4,464</QtyActual>
+    <QtyOpname>4,464</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>31</QtyRollActual>
+    <QtyRollOpname>31</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PCS</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2 />
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>567853</Product>
+    <Product_Name>Ponds Cleansing Wipes 25 u/ export (93250889)</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>10,512</QtyActual>
+    <QtyOpname>10,512</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>292</QtyRollActual>
+    <QtyRollOpname>292</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>292</QtyM2Actual>
+    <QtyM2Opname>292</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2>CTN</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>60024792</Product>
+    <Product_Name>Zwitsal Baby Cleansing Wipes 30</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>0</QtyRollActual>
+    <QtyRollOpname>0</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2>CTN</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>9101028</Product>
+    <Product_Name>Popoku Baby Wet Wipes 10</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>70,128</QtyActual>
+    <QtyOpname>70,128</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>487</QtyRollActual>
+    <QtyRollOpname>487</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PCS</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2 />
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>9123079</Product>
+    <Product_Name>Alfamart Tisu Basah Baby  50</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>7,488</QtyActual>
+    <QtyOpname>7,488</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>208</QtyRollActual>
+    <QtyRollOpname>208</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2 />
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>9123080</Product>
+    <Product_Name>Pucelle Body Refreshing Wipes Snowy Mint 10</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>240</QtyActual>
+    <QtyOpname>240</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>5</QtyRollActual>
+    <QtyRollOpname>5</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>5</QtyM2Actual>
+    <QtyM2Opname>5</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2>CTN</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>9123081</Product>
+    <Product_Name>Pucelle Body Refreshing Wipes Lime Squash 10</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>0</QtyRollActual>
+    <QtyRollOpname>0</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2>CTN</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>9123082</Product>
+    <Product_Name>Pucelle Body Refreshing Wipes Floral Fusion 10</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>48</QtyActual>
+    <QtyOpname>48</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>1</QtyRollActual>
+    <QtyRollOpname>1</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>1</QtyM2Actual>
+    <QtyM2Opname>1</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2>CTN</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>9123083</Product>
+    <Product_Name>Gatsby Face Cleansing Paper Ice Type 10</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>0</QtyRollActual>
+    <QtyRollOpname>0</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2 />
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>9123084</Product>
+    <Product_Name>Gatsby Face Cleansing Paper Refreshing Type 10</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>0</QtyRollActual>
+    <QtyRollOpname>0</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2 />
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>9123085</Product>
+    <Product_Name>Baby Wipes HUKI Fragrance 10</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>0</QtyRollActual>
+    <QtyRollOpname>0</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2 />
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>9123086</Product>
+    <Product_Name>Baby Wipes HUKI Fragrance 50</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>0</QtyActual>
+    <QtyOpname>0</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>0</QtyRollActual>
+    <QtyRollOpname>0</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PACK </Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2 />
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>91247124</Product>
+    <Product_Name>HUKI Baby Wipes Fragrance 50's</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>29,016</QtyActual>
+    <QtyOpname>29,016</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>806</QtyRollActual>
+    <QtyRollOpname>806</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2>0</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>91247144</Product>
+    <Product_Name>HUKI Baby Wipes Fragrance 50's </Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>864</QtyActual>
+    <QtyOpname>864</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>24</QtyRollActual>
+    <QtyRollOpname>24</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2>0</UnitM2>
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>9154062</Product>
+    <Product_Name>Mamy Poko Baby Wipes 2 ( B Grade )</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>2,880</QtyActual>
+    <QtyOpname>2,880</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>5</QtyRollActual>
+    <QtyRollOpname>5</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>0</QtyM2Actual>
+    <QtyM2Opname>0</QtyM2Opname>
+    <Unit>PCS</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2 />
+    <Remark />
+  </Opname>
+  <Opname>
+    <TransNmbr>AS/SP/15/01/0001</TransNmbr>
+    <Product>9188045</Product>
+    <Product_Name>Zwitsal Baby CLassic Wipes 30</Product_Name>
+    <specification />
+    <Location>Gen</Location>
+    <Location_Name>LOKASI UMUM</Location_Name>
+    <QtySystem>0</QtySystem>
+    <QtyActual>33,096</QtyActual>
+    <QtyOpname>33,096</QtyOpname>
+    <QtyRollSystem>0</QtyRollSystem>
+    <QtyRollActual>1,379</QtyRollActual>
+    <QtyRollOpname>1,379</QtyRollOpname>
+    <QtyM2System>0</QtyM2System>
+    <QtyM2Actual>1,379</QtyM2Actual>
+    <QtyM2Opname>1,379</QtyM2Opname>
+    <Unit>PACK</Unit>
+    <UnitPack>CTN</UnitPack>
+    <UnitM2>CTN</UnitM2>
+    <Remark />
+  </Opname>
+</DS>

@@ -1,0 +1,258 @@
+/*LINK MENU MASTER*/
+
+div.sdmenu {
+	/*width: 200px;*/
+	width:100%;
+	font-family: Arial Narrow;
+	font-size: 11px;	
+	letter-spacing: 1px;
+	font-weight:normal;
+	padding-bottom: 13px;
+	
+	/*background: url(bottom.gif) no-repeat  right bottom;*/	
+}
+
+/*link menu menu 1*/
+
+div.sdmenu div.collapsed {
+	/*background:#8A918A;	*/
+	overflow: hidden;
+	text-transform: uppercase;
+	/*border-bottom: 6px solid #404242;*/
+	height: 38px;
+	cursor: pointer;
+
+}
+
+
+/*Menu Stelah di klik*/
+div.sdmenu div.dmenu span {
+	display: block;
+	padding: 5px 5px;
+	font-family: Arial Narrow;
+	font-size: 11px;
+	/*background-color: ;*/
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: bold;
+	color: white;
+	padding-top: 13px;
+	padding-bottom: 13px;
+	background: url(arrowDown.png) no-repeat 150px center #666666;
+	/*cursor: default;*/
+	border-bottom: 1px solid #ddd;
+	cursor: pointer;
+}
+
+
+
+div.sdmenu div.dmenu {
+	/*background: url(title.gif) repeat-x; */
+	background:#8A918A;
+	border-bottom: 1px solid #ddd;
+	overflow: hidden;
+	color: #fff;
+}
+
+/*
+div.sdmenu div.dmenu:first-child {
+	background:#8A918A;
+	border-bottom: 1px solid #ddd;
+	overflow: hidden;
+	color: #fff;
+}*/
+
+div.sdmenu div.dmenu:hover {
+	background-color : #404242; /* url(linkarrow.gif) no-repeat right center;*/
+	color: #fff;
+	border-bottom: 1px solid #ddd;
+	text-decoration: none;
+}
+
+
+div.sdmenu div.sub {
+	background: #eee;
+	border-bottom: 1px solid #ddd;
+	overflow: hidden;
+}
+
+
+
+
+div.sdmenu div.sub span {
+	background: #eee;
+	background: url(arrowdouble-2.png) no-repeat 150px center #666;
+	overflow: hidden;
+	padding: 5px 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+	color: #;
+	padding-top: 13px;
+	padding-bottom: 13px;
+	font-weight: bold;
+}
+
+div.sdmenu div.collapsed span {
+	/*mengatur menu span */
+	/*display: block;*/
+	padding: 5px 25px 5px 25px;
+	font-weight: bold;
+	color: white;
+	letter-spacing: 1px;
+	font-size: 11px;
+	background: url(MenuArrow.png) no-repeat 0px center;
+	cursor: Pointer;
+	/*border-bottom: 1px solid #ddd;*/
+	display: inline-block;
+  	position: relative;
+  /*transition: 1s;	*/
+	padding-top: 13px; 
+	padding-bottom: 13px;
+  	border-radius: 5px;
+  /*padding: 10px;*/
+  	width: 140px;
+  	transition:  0.5s;
+}
+
+
+
+div.sdmenu div.collapsed span:after {
+  /*content: '\00bb';*/
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -25px;
+  transition: 1s;
+}
+
+div.sdmenu div.collapsed:hover span {
+  padding-right: 25px;
+  background-color: #545454;
+}
+
+div.sdmenu div.collapsed:hover span:after {
+  opacity: 1;
+  left: 0;
+}
+
+
+div.sdmenu div.subcollapsed {
+	/*background:#8A918A;	*/
+	overflow: hidden;
+	border-bottom: 1px solid #ddd;
+	height: 30px;
+	padding-bottom: 5px;
+}
+
+div.sdmenu div.subcollapsed span {
+	display: block;
+	padding: 5px 10px;
+	font-weight: bold;
+	text-overflow: ellipsis ;
+	background: #404242 url(arrowdouble1.png) no-repeat 150px center;
+	cursor: pointer;
+	border-bottom: 1px solid #ddd;
+	color: #F9F9F9;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	letter-spacing: 1px;
+	font-size: 11px;
+	overflow: hidden;
+  white-space: nowrap;
+  text-overflow: "...         ";
+  /*max-width: 100px;*/
+}
+
+div.sdmenu div a {
+	padding: 5px 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+	font-size: 10px;
+	background: #D2D2D2;
+	display: block;
+	border-bottom: 1px solid #dfdfdf;
+	color: #1c1c1c;
+	text-transform: uppercase;
+	font-style: arial;
+	font-family: arial;
+	text-decoration: none;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	transition: background-color 0.5s ease-in 100ms
+}
+
+div.sdmenu div a.submn {
+	padding: 5px 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+	background: #D2D2D2;
+	display: block;
+	border-bottom: 1px solid #ddd;
+	color: #1c1c1c;
+	padding-top: 8px;
+	padding-bottom: 8px;
+
+}
+
+div.sdmenu div a.current {
+	background : Red;
+}
+
+div.sdmenu div a:hover {
+	background : #5B5B5B url(arrowWhite.png) no-repeat right center;
+	color: #fff;
+	text-decoration: none;
+	letter-spacing: 1px;
+	font-weight: bold;
+	transition: 0.5s;
+
+}
+
+
+
+
+
+/*body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 80%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 30px;
+}
+
+.sidenav a {
+  padding: 0px 0px 0px 1px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+*/

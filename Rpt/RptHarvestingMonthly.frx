@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="07/04/2011 15:39:43" ReportInfo.Modified="01/29/2019 16:20:56" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+      dim Dept as String
+      dim Req as String
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+       if Dept &lt;&gt; Report.GetColumnValue(&quot;DS.Department&quot;) then
+        'Text1.Visible = true              
+        Dept = Report.GetColumnValue(&quot;DS.Department&quot;) 
+       else
+        'Text1.Visible = false             
+       End If      
+      
+       if Req &lt;&gt; Report.GetColumnValue(&quot;DS.TransNmbr&quot;) then
+        'Text3.Visible = true
+        'Text5.Visible = true
+        'Text7.Visible = true 
+        'Text9.Visible = true 
+        Req = Report.GetColumnValue(&quot;DS.TransNmbr&quot;) 
+       else
+        'Text3.Visible = false
+       ' Text5.Visible = false
+        'Text7.Visible = false 
+        'Text9.Visible = false 
+       End if
+    End Sub       
+
+    Private Sub ReportTitle1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Dept = &quot;&quot;
+      Req = &quot;&quot;
+    End Sub
+
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Dept = &quot;&quot;
+      Req = &quot;&quot;
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLGyiz5qWMjsA99V/W+nNq1W3g2zii+WzFvwn5S/yO9ty4j5cNSou1n2RnV42VCogqhWDGBfTi9Ny1OneZGYjfinOHGpdCxzvpie7qu5vUxEx4MCFZZfHfGnHRCgUFUBKbmMlG5NqLQAbah7tE2SUt7QGYS9pfGS/V5M13t3eCh20">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PLRptHarvestingMonthly '20170515', '20180521', '', '', '', '','0','0','','', 'Admin'">
+        <Column Name="Column" Enabled="false" DataType="System.Int32" Calculated="true" Expression=""/>
+        <Column Name="CompanyNPWP" DataType="System.String"/>
+        <Column Name="Period" DataType="System.String"/>
+        <Column Name="CompanyAddress" DataType="System.String"/>
+        <Column Name="UserId" DataType="System.String"/>
+        <Column Name="Year" DataType="System.Int32"/>
+        <Column Name="Period1" DataType="System.Int32"/>
+        <Column Name="Blok" DataType="System.String"/>
+        <Column Name="Divisi" DataType="System.String"/>
+        <Column Name="Estate" DataType="System.String"/>
+        <Column Name="Luas" DataType="System.Decimal"/>
+        <Column Name="Pokok" DataType="System.Int32"/>
+        <Column Name="TahunTanam" DataType="System.String"/>
+        <Column Name="Month" DataType="System.Int32"/>
+        <Column Name="Janjang" DataType="System.Decimal"/>
+        <Column Name="Kgs" DataType="System.Decimal"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" FirstPageSource="14" OtherPagesSource="14" Guides="321.3,737.1,400.68,621.81,0,538.65,793.8,1039.5,1047.28,7.56,128.52,129.3,250.14,251.26,335.76,340.2,427.14,430.92,529.2,532.98,669.06,672.84,895.86,793.69,882.63,884.41,958.23,963.79,1041.5,362.88,3.78,355.2,37.8" Fill.Color="White">
+    <ReportTitleBand Name="ReportTitle1" Width="1047.06" BeforePrintEvent="ReportTitle1_BeforePrint" Guides="60.48,79.38,87.16,102.28,0,18.9,20.9,58.7,9.45,22.68,79.6,92.83"/>
+    <PageHeaderBand Name="PageHeader1" Top="4.17" Width="1047.06" Height="122.85" Guides="0,26.46,4,22.9,3.78,22.68,189,151.2">
+      <TextObject Name="Text42" Left="795.25" Top="23.33" Width="245.7" Height="13.23" Text="Page : [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text40" Left="793.8" Top="9.45" Width="245.7" Height="13.23" Text="Date/Time : [Date]" Format="Custom" Format.Format="dd/MM/yyyy hh:mm:ss" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text11" Left="424.57" Top="60.25" Width="266.49" Height="19.2" Text="HARVESTING MONTHLY" HorzAlign="Center" VertAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text25" Left="7.56" Top="7.56" Width="332.64" Height="18.9" Text="[DS.CompanyName]" VertAlign="Center" Font="Arial, 16pt, style=Bold"/>
+      <TextObject Name="Text21" Left="9.56" Top="25.91" Width="291.84" Height="58.7" Text="[DS.CompanyAddress]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text1" Left="497.51" Top="85.05" Width="345.87" Height="18.9" Text="[DS.Period1]"/>
+      <TextObject Name="Text45" Left="435.15" Top="85.05" Width="77.49" Height="18.9" Text="Periode :" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="131.18" Width="1047.06" Height="122.4" Border.Lines="All" BeforePrintEvent="GroupHeader1_BeforePrint" CanBreak="true" Guides="0,0" Condition="[DS.Divisi]" SortOrder="None">
+      <MatrixObject Name="Matrix1" Left="0.89" Width="826.96" Height="120.01" FixedRows="3" FixedColumns="5" AutoSize="false" CellsSideBySide="true" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="[DS.Year]"/>
+          <Header Expression="[DS.Month]" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.Divisi]"/>
+          <Header Expression="[DS.Blok]" Totals="false"/>
+          <Header Expression="[DS.TahunTanam]" Totals="false"/>
+          <Header Expression="[DS.Estate]" Totals="false"/>
+          <Header Expression="[DS.Luas]" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.Janjang]"/>
+          <Cell Expression="[DS.Kgs]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="151.2"/>
+        <TableColumn Name="Column2" Width="80.41"/>
+        <TableColumn Name="Column3" Width="113.4"/>
+        <TableColumn Name="Column4"/>
+        <TableColumn Name="Column5"/>
+        <TableColumn Name="Column6" Width="103.95"/>
+        <TableColumn Name="Column7" Width="94.5"/>
+        <TableColumn Name="Column8" Width="75.6"/>
+        <TableColumn Name="Column9" Width="75.6"/>
+        <TableRow Name="Row1">
+          <TableCell Name="Cell1" Border.Lines="All" Text="Divisi" HorzAlign="Center" VertAlign="Center" RowSpan="3"/>
+          <TableCell Name="Cell2" Border.Lines="All" HorzAlign="Center" VertAlign="Center" RowSpan="3">
+            <TextObject Left="7" Top="13.45" Width="37.8" Height="18.9" Text="Blok" HorzAlign="Center"/>
+          </TableCell>
+          <TableCell Name="Cell18" Border.Lines="All" Text="TahunTanam" HorzAlign="Center" VertAlign="Center" RowSpan="3"/>
+          <TableCell Name="Cell21" Border.Lines="All" Text="Estate" HorzAlign="Center" VertAlign="Center" RowSpan="3"/>
+          <TableCell Name="Cell24" Border.Lines="All" Text="Luas" HorzAlign="Center" VertAlign="Center" RowSpan="3"/>
+          <TableCell Name="Cell27" Border.Lines="All" Text="[Year]" HorzAlign="Center" VertAlign="Center" ColSpan="2"/>
+          <TableCell Name="Cell30" Border.Lines="All"/>
+          <TableCell Name="Cell33" Border.Lines="All" Text="Total" HorzAlign="Center" VertAlign="Center" ColSpan="2" RowSpan="2"/>
+          <TableCell Name="Cell34" Border.Lines="All"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="25.51">
+          <TableCell Name="Cell3" Border.Lines="All"/>
+          <TableCell Name="Cell4" Border.Lines="All"/>
+          <TableCell Name="Cell19" Border.Lines="All"/>
+          <TableCell Name="Cell22" Border.Lines="All"/>
+          <TableCell Name="Cell25" Border.Lines="All"/>
+          <TableCell Name="Cell28" Border.Lines="All" Text="[Month]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" ColSpan="2"/>
+          <TableCell Name="Cell31" Border.Lines="All"/>
+          <TableCell Name="Cell35" Border.Lines="All"/>
+          <TableCell Name="Cell36" Border.Lines="All"/>
+        </TableRow>
+        <TableRow Name="Row3">
+          <TableCell Name="Cell5" Border.Lines="All"/>
+          <TableCell Name="Cell6" Border.Lines="All"/>
+          <TableCell Name="Cell20" Border.Lines="All"/>
+          <TableCell Name="Cell23" Border.Lines="All"/>
+          <TableCell Name="Cell26" Border.Lines="All"/>
+          <TableCell Name="Cell29" Border.Lines="All" Text="Janjang" HorzAlign="Center" VertAlign="Center"/>
+          <TableCell Name="Cell32" Border.Lines="All" Text="Kgs" HorzAlign="Center" VertAlign="Center"/>
+          <TableCell Name="Cell37" Border.Lines="All" Text="Janjang" HorzAlign="Center" VertAlign="Center"/>
+          <TableCell Name="Cell38" Border.Lines="All" Text="Kgs" HorzAlign="Center" VertAlign="Center"/>
+        </TableRow>
+        <TableRow Name="Row4" Height="28.35">
+          <TableCell Name="Cell39" Border.Lines="All" Text="[Divisi]" HorzAlign="Center" VertAlign="Center"/>
+          <TableCell Name="Cell40" Border.Lines="All" Text="[Blok]" HorzAlign="Center" VertAlign="Center"/>
+          <TableCell Name="Cell41" Border.Lines="All" Text="[TahunTanam]" VertAlign="Center"/>
+          <TableCell Name="Cell42" Border.Lines="All" Text="[Estate]" HorzAlign="Center" VertAlign="Center"/>
+          <TableCell Name="Cell43" Border.Lines="All" Text="[Luas]" HorzAlign="Center" VertAlign="Center"/>
+          <TableCell Name="Cell44" Border.Lines="All" Text="[Janjang]" Format="Custom" Format.Format="##.0#.##" HorzAlign="Right" VertAlign="Center"/>
+          <TableCell Name="Cell45" Border.Lines="All" Text="[Kgs]" HorzAlign="Right" VertAlign="Center"/>
+          <TableCell Name="Cell46" Border.Lines="All" HorzAlign="Right" VertAlign="Center"/>
+          <TableCell Name="Cell47" Border.Lines="All" HorzAlign="Right" VertAlign="Center"/>
+        </TableRow>
+        <TableRow Name="Row5" Height="28.35">
+          <TableCell Name="Cell52" Border.Lines="All" Text="Grand Total" HorzAlign="Center" VertAlign="Center" ColSpan="5"/>
+          <TableCell Name="Cell53" Border.Lines="All"/>
+          <TableCell Name="Cell54" Border.Lines="All"/>
+          <TableCell Name="Cell55" Border.Lines="All"/>
+          <TableCell Name="Cell56" Border.Lines="All"/>
+          <TableCell Name="Cell57" Border.Lines="All" HorzAlign="Right" VertAlign="Center"/>
+          <TableCell Name="Cell58" Border.Lines="All" HorzAlign="Right" VertAlign="Center"/>
+          <TableCell Name="Cell59" Border.Lines="All" HorzAlign="Right" VertAlign="Center"/>
+          <TableCell Name="Cell60" Border.Lines="All" HorzAlign="Right" VertAlign="Center"/>
+        </TableRow>
+      </MatrixObject>
+      <DataBand Name="Data1" Top="257.75" Width="1047.06" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" Guides="3.78,22.68,47.25,47.25,47.25,47.25" DataSource="Table"/>
+      <GroupFooterBand Name="GroupFooter1" Top="261.92" Width="1047.06" Height="34.8" CanGrow="true" Guides="18.9,9.45,9.45,47.25,189,245.7,245.7" KeepWithData="true">
+        <LineObject Name="Line6" Top="9.45" Width="1048.95"/>
+        <TextObject Name="Text61" Left="945" Top="15.9" Width="100.17" Height="18.9" Text="[DS.UserId]" HorzAlign="Center"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="300.88" Width="1047.06" Height="37.8">
+      <TextObject Name="Text44" Width="1043.25" Height="35.8" Fill.Color="Beige" Text="Report Summary" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="342.85" Width="1047.06" Height="28.35" Guides="0,18.9,9.45,9.45,18.9,9.45,9.45"/>
+  </ReportPage>
+</Report>

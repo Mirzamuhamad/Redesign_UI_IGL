@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="03/27/2014 09:48:18" ReportInfo.Modified="07/09/2015 17:15:59" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+      Text25.Text=CType(Report.GetColumnValue(&quot;DS.SpecificationHD&quot;), String)
+      Text126.Text = CType(Report.GetColumnValue(&quot;DS.ISODocNo&quot;), String)
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43hap0VKbaareOziIQBVR+SkQx">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="Exec S_RDFormulaForm 'IE/FM/14/04/0001','0','0'">
+        <Column Name="Product" DataType="System.String"/>
+        <Column Name="ProductName" DataType="System.String"/>
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="RatioPremix" DataType="System.Decimal"/>
+        <Column Name="CustName" DataType="System.String"/>
+        <Column Name="Material" DataType="System.String"/>
+        <Column Name="MaterialName" DataType="System.String"/>
+        <Column Name="Percentage" DataType="System.Decimal"/>
+        <Column Name="Company" DataType="System.String"/>
+        <Column Name="CompanyAddr" DataType="System.String"/>
+        <Column Name="Revisi" DataType="System.Int32"/>
+        <Column Name="SpecificationHD" DataType="System.String"/>
+        <Column Name="UserType" DataType="System.String"/>
+        <Column Name="ISODocNo" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="Table2" Alias="DS2" DataType="System.Int32" Enabled="true" SelectCommand="Exec S_RDFormulaForm 'IE/FM/14/04/0001','0','1'">
+        <Column Name="ItemNo" DataType="System.Int32"/>
+        <Column Name="ProcedureDesc1" DataType="System.String"/>
+        <Column Name="ProcedureDesc2" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="Table3" Alias="DS3" DataType="System.Int32" Enabled="true" SelectCommand="Exec S_RDFormulaForm 'IE/FM/14/04/0001','0','2'">
+        <Column Name="Material" DataType="System.String"/>
+        <Column Name="ProductName" DataType="System.String"/>
+        <Column Name="Specification" DataType="System.String"/>
+        <Column Name="Ukuran" DataType="System.String"/>
+        <Column Name="Tebal" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="Table6" Alias="DS4" DataType="System.Int32" Enabled="true" SelectCommand="Exec S_RDFormulaForm 'IE/FM/14/04/0001','0','3'">
+        <Column Name="ItemNo" DataType="System.Int32"/>
+        <Column Name="StandardPack" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="Total" Expression="[DS.Percentage]" Evaluator="Data1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" FirstPageSource="14" OtherPagesSource="14" Guides="67.2,316.8,432,537.6,739.2">
+    <ReportTitleBand Name="ReportTitle1" Width="740.5"/>
+    <PageHeaderBand Name="PageHeader1" Top="4" Width="740.5"/>
+    <GroupHeaderBand Name="GroupHeader1" Top="8" Width="740.5" Height="276.18" CanGrow="true" BeforePrintEvent="GroupHeader1_BeforePrint" StartNewPage="true" RepeatOnEveryPage="true" Condition="[DS.TransNmbr]">
+      <TextObject Name="Text16" Left="9.45" Top="134.1" Width="85.05" Height="18.9" Text="Revisi" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text6" Left="9.45" Top="115.2" Width="85.05" Height="18.9" Text="Nomor" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text17" Left="9.45" Top="153" Width="85.05" Height="18.9" Text="Tanggal" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text7" Left="94.5" Top="115.2" Width="9.15" Height="18.9" Text=":" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text18" Left="94.5" Top="134.1" Width="9.15" Height="18.9" Text=":" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text19" Left="94.5" Top="153" Width="9.15" Height="18.9" Text=":" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text20" Left="9.45" Top="191.25" Width="85.05" Height="18.9" Text="Nama Produk" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text21" Left="94.5" Top="191.25" Width="9.15" Height="18.9" Text=":" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text23" Left="94.5" Top="210.15" Width="9.15" Height="18.9" Text=":" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text24" Left="9.45" Top="210.15" Width="85.05" Height="18.9" Text="Customer" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text8" Left="103.65" Top="115.2" Width="179.55" Height="18.9" Text="[DS.TransNmbr]" Font="Arial, 8pt"/>
+      <TextObject Name="Text28" Left="103.65" Top="134.1" Width="179.55" Height="18.9" Text="[DS.Revisi]" Font="Arial, 8pt"/>
+      <TextObject Name="Text29" Left="103.65" Top="153" Width="179.55" Height="18.9" Text="[DS.TransDate]" Format="Custom" Format.Format="dd/MM/yyyy" Font="Arial, 8pt"/>
+      <TextObject Name="Text30" Left="103.65" Top="191.25" Width="611.55" Height="18.9" Text="[DS.ProductName]" Font="Arial, 8pt"/>
+      <TextObject Name="Text31" Left="103.65" Top="210.15" Width="611.55" Height="18.9" Text="[DS.CustName]" Font="Arial, 8pt"/>
+      <TextObject Name="Text9" Left="1.45" Top="233.45" Width="207.9" Height="18.9" Text="1. Komposisi Premix" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text2" Left="9.6" Top="28.5" Width="311.85" Height="37.8" Text="[DS.CompanyAddr]" Font="Arial, 8pt"/>
+      <TextObject Name="Text3" Left="104.1" Top="66.3" Width="557.55" Height="18.9" Text="MASTER FORMULA" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold, Underline"/>
+      <TextObject Name="Text10" Left="104.1" Top="85.2" Width="557.55" Height="18.9" Text="No.  [DS.TransNmbr]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text1" Left="9.6" Width="264.6" Height="18.9" Text="[DS.Company]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text15" Left="491.55" Width="245.7" Height="18.9" Text="Date/TIme :[Date]" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text51" Left="9.6" Top="258.9" Width="57.6" Height="17.28" Border.Lines="All" Text="No." HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text52" Left="67.2" Top="258.9" Width="249.6" Height="17.28" Border.Lines="All" Text="Name" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text53" Left="316.8" Top="258.9" Width="115.2" Height="17.28" Border.Lines="All" Text="Kode Bahan" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text54" Left="432" Top="258.9" Width="105.6" Height="17.28" Border.Lines="All" Text="%" Format="Custom" Format.Format="#,##0" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text128" Left="9.25" Top="172.1" Width="85.05" Height="18.9" Text="Kode Produk" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text129" Left="94.3" Top="172.1" Width="9.15" Height="18.9" Text=":" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text130" Left="103.75" Top="172.1" Width="611.55" Height="18.9" Text="[DS.Product]" Font="Arial, 8pt"/>
+      <DataBand Name="Data1" Top="288.18" Width="740.5" Height="17.28" CanGrow="true" CanShrink="true" AfterDataEvent="Data1_AfterData" DataSource="Table">
+        <TextObject Name="Text47" Left="9.6" Width="57.6" Height="17.28" Border.Lines="Left, Right, Bottom" Text="[Row#]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text48" Left="67.2" Width="249.6" Height="17.28" Border.Lines="Left, Right, Bottom" Text="[DS.MaterialName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text49" Left="316.8" Width="115.2" Height="17.28" Border.Lines="Left, Right, Bottom" Text="[DS.Material]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text50" Left="432" Width="105.6" Height="17.28" Border.Lines="Left, Right, Bottom" Text="[DS.Percentage]" Format="Custom" Format.Format="#,##0.000" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+        <ChildBand Name="Child1" Top="309.46" Width="740.5"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="313.46" Width="740.5" Height="70.05">
+        <SubreportObject Name="Subreport1" Top="51.15" Width="94.5" Height="18.9" ReportPage="Page2"/>
+        <TextObject Name="Text11" Top="29.8" Width="264.6" Height="18.9" Text="2. Perbandingan Tissue kering dengan premix  :" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text26" Left="264.6" Top="29.8" Width="94.5" Height="18.9" Text="[DS.RatioPremix]" Font="Arial, 8pt"/>
+        <TextObject Name="Text5" Left="432" Width="105.6" Height="17.28" Border.Lines="Left, Right, Bottom" Text="[Total] %" Format="Custom" Format.Format="#,##0" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text46" Left="316.8" Width="115.2" Height="17.28" Border.Lines="Left, Right, Bottom" Text="Total Percent :" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="387.51" Width="740.5" Height="160.35">
+      <TextObject Name="Text34" Left="67.2" Top="141.45" Width="113.4" Height="18.9" Text="R&amp;D" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text38" Left="537.6" Top="141.45" Width="103.95" Height="18.9" Text="Factory Manager" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text4" Left="67.2" Top="65.85" Width="113.4" Height="18.9" Text="Dibuat oleh," HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text37" Left="537.6" Top="65.85" Width="103.95" Height="18.9" Text="Disetujui oleh," HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text45" Top="9.6" Width="132.3" Height="18.9" Text="6. Spesifikasi Produk :" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text25" Left="132.3" Top="9.6" Width="453.6" Height="18.15" CanGrow="true" Text="[DS.SpecificationHD]" Font="Arial, 8pt"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="551.86" Width="740.5" Height="19.05">
+      <TextObject Name="Text126" Left="583.55" Top="9.6" Width="155.65" Height="9.45" Text="F-R&amp;D-T-001/01" HorzAlign="Right" Font="Arial, 6pt"/>
+      <TextObject Name="Text127" Left="316.8" Width="155.65" Height="9.45" Visible="false" Text="[DS.ISODocNo]" HorzAlign="Right" Font="Arial, 6pt"/>
+    </PageFooterBand>
+  </ReportPage>
+  <ReportPage Name="Page2">
+    <DataBand Name="Data2" Top="22.29" Width="718.2" Height="19.2" CanGrow="true" CanShrink="true" DataSource="Table2">
+      <TextObject Name="Text12" Left="9.6" Width="28.35" Height="18.9" Text="[DS2.ItemNo]." Font="Arial, 8pt"/>
+      <TextObject Name="Text13" Left="37.95" Width="666.3" Height="19.2" CanGrow="true" Text="[DS2.ProcedureDesc1][DS2.ProcedureDesc2]" Font="Arial, 8pt"/>
+      <DataHeaderBand Name="DataHeader2" Width="718.2" Height="18.9">
+        <TextObject Name="Text39" Width="207.9" Height="18.9" Text="3. Prosedur Pembuatan Premix" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      </DataHeaderBand>
+      <DataFooterBand Name="DataFooter2" Top="44.88" Width="718.2" Height="18.75">
+        <SubreportObject Name="Subreport2" Top="-0.15" Width="94.5" Height="18.9" ReportPage="Page3"/>
+      </DataFooterBand>
+    </DataBand>
+  </ReportPage>
+  <ReportPage Name="Page3" Guides="9.6">
+    <DataBand Name="Data3" Top="41.19" Width="718.2" Height="17.9" CanGrow="true" CanShrink="true" DataSource="Table3">
+      <TableObject Name="Table4" Left="9.6" Top="-1" Width="700.79" Height="18.9">
+        <TableColumn Name="Column22" Width="50.75"/>
+        <TableColumn Name="Column23" Width="211.22"/>
+        <TableColumn Name="Column24" Width="121.52"/>
+        <TableColumn Name="Column25" Width="93.17"/>
+        <TableColumn Name="Column26" Width="93.17"/>
+        <TableColumn Name="Column27" Width="130.96"/>
+        <TableRow Name="Row6" AutoSize="true">
+          <TableCell Name="Cell43" Border.Lines="Left, Right, Bottom" Text="[Row#]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell44" Border.Lines="Left, Right, Bottom" Text="[DS3.ProductName]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell45" Border.Lines="Left, Right, Bottom" Text="[DS3.Material]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell46" Border.Lines="Left, Right, Bottom" Text="[DS3.Ukuran]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell47" Border.Lines="Left, Right, Bottom" Text="[DS3.Tebal]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell48" Border.Lines="Left, Right, Bottom" Text="[DS3.Specification]" VertAlign="Center" Font="Arial, 8pt"/>
+        </TableRow>
+      </TableObject>
+      <DataHeaderBand Name="DataHeader1" Width="718.2" Height="37.8">
+        <TextObject Name="Text43" Width="274.05" Height="18.9" Text="4. Material produk :" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TableObject Name="Table4" Left="9.6" Top="18.9" Width="700.78" Height="18.9">
+          <TableColumn Name="Column15" Width="50.75"/>
+          <TableColumn Name="Column16" Width="211.21"/>
+          <TableColumn Name="Column17" Width="121.52"/>
+          <TableColumn Name="Column18" Width="93.17"/>
+          <TableColumn Name="Column19" Width="93.17"/>
+          <TableColumn Name="Column20" Width="130.96"/>
+          <TableRow Name="Row5">
+            <TableCell Name="Cell36" Border.Lines="All" Text="No." HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+            <TableCell Name="Cell37" Border.Lines="All" Text="Nama Material" Font="Arial, 8pt, style=Bold"/>
+            <TableCell Name="Cell38" Border.Lines="All" Text="Kode Material" Font="Arial, 8pt, style=Bold"/>
+            <TableCell Name="Cell39" Border.Lines="All" Text="Ukuran" Font="Arial, 8pt, style=Bold"/>
+            <TableCell Name="Cell40" Border.Lines="All" Text="Tebal" Font="Arial, 8pt, style=Bold"/>
+            <TableCell Name="Cell41" Border.Lines="All" Text="Spesifikasi Material" Font="Arial, 8pt, style=Bold"/>
+          </TableRow>
+        </TableObject>
+      </DataHeaderBand>
+      <DataFooterBand Name="DataFooter1" Top="62.48" Width="718.2" Height="32.95">
+        <SubreportObject Name="Subreport3" Top="4.45" Width="94.5" Height="18.9" ReportPage="Page4"/>
+      </DataFooterBand>
+    </DataBand>
+  </ReportPage>
+  <ReportPage Name="Page4" Guides="9.6">
+    <DataBand Name="Data4" Top="22.9" Width="718.2" Height="18.9" DataSource="Table6">
+      <TextObject Name="Text14" Left="9.6" Width="28.35" Height="18.9" Text="[DS4.ItemNo]." Font="Arial, 8pt"/>
+      <TextObject Name="Text22" Left="37.95" Width="670.95" Height="18.9" Text="[DS4.StandardPack]" Font="Arial, 8pt"/>
+      <DataHeaderBand Name="DataHeader3" Width="718.2" Height="18.9">
+        <TextObject Name="Text44" Width="274.05" Height="18.9" Text="5. Standart Pengemasan" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      </DataHeaderBand>
+    </DataBand>
+  </ReportPage>
+</Report>

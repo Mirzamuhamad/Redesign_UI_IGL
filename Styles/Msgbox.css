@@ -1,0 +1,38 @@
+﻿body, input
+{
+	font-family: Tahoma;
+	font-size: 11px;
+}
+
+.modalBackground
+{
+	background-color: Gray;
+	filter: alpha(opacity=80);
+	opacity: 0.8;
+}
+
+.modalPopup
+{
+	background-color: #ffffdd;
+	border-width: 1px;
+	-moz-border-radius: 5px;
+	border-style: solid;
+	border-color: Gray;	
+	min-width: 300px;
+	max-width:450px;
+	min-height:100px;
+	max-height:200px;	
+	top:100px;
+	left:150px;
+}
+
+.topHandle
+{
+	background-color: #97bae6;	
+}
+
+.table
+{
+	padding:0;
+	margin:0;
+}

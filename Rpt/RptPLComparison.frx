@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="05/12/2011 13:44:05" ReportInfo.Modified="05/31/2016 15:33:21" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    Dim TotalPercent, TotalPercentYTD as Double 
+    
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)        
+    End Sub
+
+    Private Sub GroupHeader2_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      TotalPercent = 0
+      TotalPercentYTD = 0
+    End Sub
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      
+    End Sub
+
+    Private Sub GroupFooter2_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      if (Report.GetTotalValue(&quot;TotBudget&quot;)).ToDouble  &gt; 0 Then 
+        TotalPercent = (Report.GetTotalValue(&quot;TotVariant&quot;) / Report.GetTotalValue(&quot;TotBudget&quot;)) * 100        
+      else  
+        TotalPercent = 0
+      end if
+      if (Report.GetTotalValue(&quot;TotBudgetYTD&quot;)).ToDouble  &gt; 0 Then 
+        TotalPercentYTD = (Report.GetTotalValue(&quot;TotVariantYTD&quot;) / Report.GetTotalValue(&quot;TotBudgetYTD&quot;)) * 100
+      else  
+        TotalPercentYTD = 0
+      end if
+      Text15.Text = FormatNumber(TotalPercent,2)
+      Text66.Text = FormatNumber(TotalPercentYTD,2)
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haotveROkWa+FwqDuQDTjK92">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_GLRptPLComparison 2015, 3,'', '', '', '', 0, 0, 'N', 'N', ''">
+        <Column Name="TotalCode" DataType="System.String"/>
+        <Column Name="TotalName" DataType="System.String"/>
+        <Column Name="TypeCode" DataType="System.String"/>
+        <Column Name="TypeName" DataType="System.String"/>
+        <Column Name="Kolom" DataType="System.String"/>
+        <Column Name="KolomYTD" DataType="System.String"/>
+        <Column Name="CompName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="Actual" DataType="System.Double"/>
+        <Column Name="Budget" DataType="System.Double"/>
+        <Column Name="Variant" DataType="System.Double"/>
+        <Column Name="VarPercent" DataType="System.Double"/>
+        <Column Name="ActualYTD" DataType="System.Double"/>
+        <Column Name="BudgetYTD" DataType="System.Double"/>
+        <Column Name="VariantYTD" DataType="System.Double"/>
+        <Column Name="VarPercentYTD" DataType="System.Double"/>
+        <Column Name="CCType" DataType="System.String"/>
+        <Column Name="FgActual" DataType="System.Int32"/>
+        <Column Name="FgBudget" DataType="System.Int32"/>
+        <Column Name="FgActualYTD" DataType="System.Int32"/>
+        <Column Name="FgBudgetYTD" DataType="System.Int32"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="TotActual" Expression="[DS.Actual]*[DS.FgActual]" Evaluator="Data1" PrintOn="GroupFooter2" ResetAfterPrint="false"/>
+    <Total Name="TotBudget" Expression="[DS.Budget]*[DS.FgBudget]" Evaluator="Data1" ResetAfterPrint="false"/>
+    <Total Name="TotVariant" Expression="[DS.Variant]" Evaluator="Data1" PrintOn="GroupFooter2" ResetAfterPrint="false"/>
+    <Total Name="TotActualYTD" Expression="[DS.ActualYTD]*[DS.FgActualYTD]" Evaluator="Data1" PrintOn="GroupFooter2" ResetAfterPrint="false"/>
+    <Total Name="TotBudgetYTD" Expression="[DS.BudgetYTD]*[DS.FgBudgetYTD]" Evaluator="Data1" PrintOn="GroupFooter2" ResetAfterPrint="false"/>
+    <Total Name="TotVariantYTD" Expression="[DS.VariantYTD]" Evaluator="Data1" PrintOn="GroupFooter2" ResetAfterPrint="false"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" LeftMargin="5" RightMargin="5" FirstPageSource="1" OtherPagesSource="1">
+    <ReportTitleBand Name="ReportTitle1" Width="1084.86"/>
+    <ColumnHeaderBand Name="ColumnHeader1" Top="4" Width="1084.86" Height="163.27">
+      <TextObject Name="Text5" Left="2" Top="122.97" Width="305.96" Height="13.23" Text="D E S C R I P T I O N" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text9" Left="311.85" Top="122.97" Width="383.67" Height="18.9" Border.Lines="Bottom" Text="[DS.Kolom]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <LineObject Name="Line1" Top="121.07" Width="1081.08"/>
+      <TextObject Name="Text39" Left="703.3" Top="122.97" Width="374.22" Height="18.9" Border.Lines="Bottom" Text="[DS.KolomYTD]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text34" Left="331.53" Top="52.58" Width="383.67" Height="28.35" Text="Profit And Loss Comparison Report" HorzAlign="Center" VertAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text35" Left="897.75" Top="56.7" Width="188.65" Height="11.34" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text37" Left="897.75" Top="3.78" Width="188.65" Height="11.34" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text48" Top="1.45" Width="415.8" Height="22.68" Text="[DS.CompName]" VertAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text49" Top="17.9" Width="415.8" Height="32.13" Text="[DS.CompAddr]" VertAlign="Center" Font="Arial, 8pt"/>
+      <LineObject Name="Line2" Top="160.65" Width="1081.08"/>
+      <TextObject Name="Text3" Top="99.5" Width="321.3" Height="18.9" Text="[DS.CCType] ( dalam satuan rupiah )" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text7" Left="310.96" Top="143.75" Width="105.84" Height="15.12" Text="Actual" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text59" Left="419.25" Top="143.75" Width="105.84" Height="15.12" Text="Budget" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text60" Left="527.2" Top="143.75" Width="105.84" Height="15.12" Text="Variant" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text61" Left="635.6" Top="143.75" Width="56.7" Height="15.12" Text=" % " HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text62" Left="699.3" Top="143.75" Width="105.84" Height="15.12" Text="Actual" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text63" Left="807.25" Top="143.75" Width="105.84" Height="15.12" Text="Budget" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text64" Left="916.65" Top="143.75" Width="105.84" Height="15.12" Text="Variant" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text65" Left="1024.05" Top="143.75" Width="56.7" Height="15.12" Text=" % " HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+    </ColumnHeaderBand>
+    <GroupHeaderBand Name="GroupHeader2" Top="171.27" Width="1084.86" Height="1.89" BeforePrintEvent="GroupHeader2_BeforePrint" Condition="[DS.TotalCode]" SortOrder="None">
+      <DataBand Name="Data1" Top="177.16" Width="1084.86" Height="22.68" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" DataSource="Table">
+        <TextObject Name="Text4" Left="6.56" Top="2.84" Width="302.4" Height="13.23" CanGrow="true" Text="[DS.TypeName]" VertAlign="Center" Font="Arial, 9pt"/>
+        <TextObject Name="Text6" Left="310.96" Top="2.84" Width="105.84" Height="13.23" Text="[DS.Actual]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+        <TextObject Name="Text40" Left="699.3" Top="2.84" Width="105.84" Height="13.23" Text="[DS.ActualYTD]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+        <TextObject Name="Text53" Left="419.25" Top="2.84" Width="105.84" Height="13.23" Text="[DS.Budget]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+        <TextObject Name="Text54" Left="527.2" Top="2.84" Width="105.84" Height="13.23" Text="[DS.Variant]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+        <TextObject Name="Text55" Left="635.6" Top="2.84" Width="56.7" Height="13.23" Text="[DS.VarPercent]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+        <TextObject Name="Text56" Left="807.25" Top="2.84" Width="105.84" Height="13.23" Text="[DS.BudgetYTD]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+        <TextObject Name="Text2" Left="916.65" Top="2.84" Width="105.84" Height="13.23" Text="[DS.VariantYTD]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text57" Left="1024.05" Top="2.84" Width="56.7" Height="13.23" Text="[DS.VarPercent]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter2" Top="203.84" Width="1084.86" Height="18.9" BeforePrintEvent="GroupFooter2_BeforePrint">
+        <TextObject Name="Text50" Left="2" Top="3" Width="305.96" Height="13.23" Text="[DS.TotalName]" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <LineObject Name="Line9" Left="311.85" Width="767.34"/>
+        <TextObject Name="Text8" Left="310.96" Top="3" Width="105.84" Height="13.23" Text="[TotActual]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text10" Left="419.25" Top="3" Width="105.84" Height="13.23" Text="[TotBudget]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text11" Left="527.2" Top="3" Width="105.84" Height="13.23" Text="[TotVariant]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text12" Left="699.3" Top="3" Width="105.84" Height="13.23" Text="[TotActualYTD]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text13" Left="807.25" Top="3" Width="105.84" Height="13.23" Text="[TotBudgetYTD]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text14" Left="916.65" Top="3" Width="105.84" Height="13.23" Text="[TotVariantYTD]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text15" Left="635.6" Top="3" Width="56.7" Height="13.23" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text66" Left="1024.05" Top="3" Width="56.7" Height="13.23" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="226.74" Width="1084.86" Height="11.34">
+      <LineObject Name="Line10" Width="1081.08"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="242.08" Width="1084.86" Height="19.12">
+      <TextObject Name="Text36" Top="4" Width="94.5" Height="15.12" Text="Accounting" VertAlign="Center" Font="Arial, 8pt"/>
+      <LineObject Name="Line8" Width="1081.08"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

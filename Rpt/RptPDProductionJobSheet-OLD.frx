@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="07/04/2011 15:39:43" ReportInfo.Modified="12/18/2015 08:49:26" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+      dim Dept as String
+      dim Req as String
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+       'if Dept &lt;&gt; Report.GetColumnValue(&quot;DS.Department&quot;) then
+       'Text1.Visible = true              
+       'Dept = Report.GetColumnValue(&quot;DS.Department&quot;) 
+       'else
+       'Text1.Visible = false             
+       'End If      
+      
+       'if Req &lt;&gt; Report.GetColumnValue(&quot;DS.TransNmbr&quot;) then
+       ' Text3.Visible = true
+       ' Text5.Visible = true
+       ' Text7.Visible = true 
+       ' Text9.Visible = true 
+       ' Req = Report.GetColumnValue(&quot;DS.TransNmbr&quot;) 
+       'else
+       ' Text3.Visible = false
+       ' Text5.Visible = false
+       ' Text7.Visible = false 
+       ' Text9.Visible = false 
+       'End if
+    End Sub       
+
+    Private Sub ReportTitle1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Dept = &quot;&quot;
+      Req = &quot;&quot;
+    End Sub
+
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Dept = &quot;&quot;
+      Req = &quot;&quot;
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VUmBkP0mhJBMztMlhi3GseAS9uUAbyXw2yXaF2YEfS9KdweO1DBpF7T9Ee3K/vfg2w==">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PDRptProductionJobSheet '20150101', '20150130', '', '', '', '', 0, 0, '', '', ''">
+        <Column Name="Period" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="Address" DataType="System.String"/>
+        <Column Name="Specification" DataType="System.String"/>
+        <Column Name="Product_Type" DataType="System.String"/>
+        <Column Name="ProductType_Name" DataType="System.String"/>
+        <Column Name="Product" DataType="System.String"/>
+        <Column Name="Product_Name" DataType="System.String"/>
+        <Column Name="Unit" DataType="System.String"/>
+        <Column Name="QtyBegin" DataType="System.Decimal"/>
+        <Column Name="QtyIn" DataType="System.Decimal"/>
+        <Column Name="QtyBOMOK" DataType="System.Decimal"/>
+        <Column Name="PercentBOMOK" DataType="System.Decimal"/>
+        <Column Name="QtyBOMNG" DataType="System.Decimal"/>
+        <Column Name="PercentBOMNG" DataType="System.Decimal"/>
+        <Column Name="QtyWaste" DataType="System.Decimal"/>
+        <Column Name="PercentWaste" DataType="System.Decimal"/>
+        <Column Name="QtyUsage" DataType="System.Decimal"/>
+        <Column Name="QtyEnd" DataType="System.Decimal"/>
+        <Column Name="ProductFG" DataType="System.String"/>
+        <Column Name="ProductFG_Name" DataType="System.String"/>
+        <Column Name="QtyFGOK" DataType="System.Decimal"/>
+        <Column Name="QtyFGReject" DataType="System.Decimal"/>
+        <Column Name="Machine" DataType="System.String"/>
+        <Column Name="MachineName" DataType="System.String"/>
+        <Column Name="Process" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="TotGrpSaldoAwal" Expression="[DS.QtyBegin]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotGrpMasuk" Expression="[DS.QtyIn]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotGrpFgOK" Expression="[DS.QtyBOMOK]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotGrpPerFgOK" Expression="[DS.PercentBOMOK]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotGrpFgReject" Expression="[DS.QtyBOMNG]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotGrpPerFgReject" Expression="[DS.PercentBOMNG]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotGrpWaste" Expression="[DS.QtyWaste]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotGrpPerWaste" Expression="[DS.PercentWaste]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotGrpTotalPemakaian" Expression="[DS.QtyUsage]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotGrpSaldoAkhir" Expression="[DS.QtyEnd]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotSaldoAwal" Expression="[DS.QtyBegin]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="TotMasuk" Expression="[DS.QtyIn]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="TotFgOK" Expression="[DS.QtyBOMOK]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="TotPerFgOK" Expression="[DS.PercentBOMOK]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="TotFgReject" Expression="[DS.QtyBOMNG]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="TotPerFgReject" Expression="[DS.PercentBOMNG]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="TotWaste" Expression="[DS.QtyWaste]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="TotPerWaste" Expression="[DS.PercentWaste]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="TotPemakaian" Expression="[DS.QtyUsage]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="TotSaldoAkhir" Expression="[DS.QtyEnd]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" FirstPageSource="14" OtherPagesSource="14">
+    <ReportTitleBand Name="ReportTitle1" Width="1047.06" BeforePrintEvent="ReportTitle1_BeforePrint"/>
+    <PageHeaderBand Name="PageHeader1" Top="3.85" Width="1047.06" Height="177.36">
+      <ShapeObject Name="Shape1" Top="132" Width="1047.28" Height="45.36" Shape="RoundRectangle"/>
+      <TextObject Name="Text4" Left="4.45" Top="136" Width="82.04" Height="35.8" Text="Kode Barang" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text8" Left="88.3" Top="136" Width="190.89" Height="35.8" Text="Nama Barang" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text14" Left="281.18" Top="136" Width="43.03" Height="35.8" Text="Satuan" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text16" Left="327.09" Top="136" Width="81.27" Height="35.8" Text="Saldo Awal" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text18" Left="497.74" Top="136" Width="363.99" Height="18.9" Text="Pemakaian" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text20" Left="579.91" Top="154.9" Width="64.26" Height="18.9" Text="%" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text42" Left="822.15" Top="112.38" Width="217.35" Height="13.23" Text="Page : [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text26" Top="30.46" Width="538.65" Height="16.8" Text="[DS.Address]" Font="Arial, 9pt"/>
+      <TextObject Name="Text25" Top="3.78" Width="538.65" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 13pt, style=Bold"/>
+      <TextObject Name="Text40" Left="822.15" Top="9.45" Width="217.35" Height="13.23" Text="Date/Time : [Date]" Format="Custom" Format.Format="dd/MM/yyyy hh:mm:ss" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text11" Left="7.56" Top="69.7" Width="1031.94" Height="19.2" Text="PRODUCTION JOB SHEET REPORT" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text12" Left="362.88" Top="96" Width="306.18" Height="19.2" Text="Periode : [DS.Period]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text43" Left="411.25" Top="136.3" Width="81.27" Height="35.8" Text="Masuk" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text44" Left="496.3" Top="155.2" Width="81.27" Height="18.9" Text="Fg OK" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text45" Left="626.6" Top="155.2" Width="81.27" Height="18.9" Text="Fg Reject" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text46" Left="707.2" Top="155.2" Width="45.47" Height="18.9" Text="%" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text47" Left="743.55" Top="155.2" Width="81.27" Height="18.9" Text="Waste" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text48" Left="826.15" Top="155.2" Width="54.92" Height="18.9" Text="%" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text49" Left="878.4" Top="136.3" Width="80.82" Height="37.8" Text="Total Pemakaian" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text50" Left="962.9" Top="136.3" Width="80.82" Height="37.8" Text="Saldo Akhir" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+      <LineObject Name="Line3" Left="497.85" Top="154.2" Width="383.45"/>
+      <TextObject Name="Text1" Left="7.56" Top="113.4" Width="275.94" Height="18.9" Text="[DS.ProductFG] - [DS.ProductFG_Name]" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text78" Left="304.41" Top="113.4" Width="145.53" Height="18.9" Text="FG OK : [DS.QtyFGOK]" Format="Custom" Format.Format="#,##0.00" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text79" Left="455.72" Top="113.4" Width="173.88" Height="18.9" Text="FG REJECT : [DS.QtyFGReject]" Format="Custom" Format.Format="#,##0.00" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text80" Left="633.15" Top="113.4" Width="325.08" Height="18.9" Text="MACHINE : [DS.MachineName]" Format="Custom" Format.Format="#,##0.00" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader2" Top="185.05" Width="1047.06" StartNewPage="true" Condition="[DS.ProductFG]">
+      <GroupHeaderBand Name="GroupHeader1" Top="188.9" Width="1047.06" Height="17.9" BeforePrintEvent="GroupHeader1_BeforePrint" Condition="[DS.Product_Type]" SortOrder="None">
+        <TextObject Name="Text24" Top="3" Width="362.88" Height="14.9" Text="[DS.ProductType_Name]" Font="Arial, 8pt, style=Bold"/>
+        <DataBand Name="Data1" Top="210.64" Width="1047.06" Height="22.9" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" DataSource="Table">
+          <TextObject Name="Text3" Left="4.54" Top="3.78" Width="82.03" Height="18.9" CanGrow="true" Text="[DS.Product]" Font="Arial, 7pt"/>
+          <TextObject Name="Text5" Left="88.22" Top="3.78" Width="190.89" Height="18.9" CanGrow="true" Text="[DS.Product_Name]" Font="Arial, 7pt"/>
+          <TextObject Name="Text13" Left="281.24" Top="3.78" Width="43.09" Height="18.9" CanGrow="true" Text="[DS.Unit]" Font="Arial, 7pt"/>
+          <TextObject Name="Text15" Left="327.09" Top="3.78" Width="81.27" Height="18.9" CanGrow="true" Text="[DS.QtyBegin]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+          <TextObject Name="Text17" Left="411.12" Top="3.78" Width="81.27" Height="18.9" CanGrow="true" Text="[DS.QtyIn]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text19" Left="496.28" Top="3.78" Width="81.27" Height="18.9" CanGrow="true" Text="[DS.QtyBOMOK]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text23" Left="580.06" Top="3.78" Width="64.26" Height="18.9" CanGrow="true" Text="[DS.PercentBOMOK]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text51" Left="626.72" Top="4" Width="81.27" Height="18.9" CanGrow="true" Text="[DS.QtyBOMNG]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text52" Left="707.24" Top="4" Width="54.81" Height="18.9" CanGrow="true" Text="[DS.PercentBOMNG]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text53" Left="743.53" Top="4" Width="81.27" Height="18.9" CanGrow="true" Text="[DS.QtyWaste]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text54" Left="826.31" Top="4" Width="64.26" Height="18.9" CanGrow="true" Text="[DS.PercentWaste]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text55" Left="878.42" Top="4" Width="80.89" Height="18.9" CanGrow="true" Text="[DS.QtyUsage]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text56" Left="962.77" Top="4" Width="80.89" Height="18.9" CanGrow="true" Text="[DS.QtyEnd]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <Sort>
+            <Sort Expression="[DS.ProductFG]"/>
+            <Sort Expression="[DS.Product_Type]"/>
+            <Sort Expression="[DS.Process]"/>
+          </Sort>
+        </DataBand>
+        <GroupFooterBand Name="GroupFooter1" Top="237.39" Width="1047.06" Height="23.35">
+          <LineObject Name="Line4" Left="-0.55" Width="1048.95"/>
+          <TextObject Name="Text57" Top="1.89" Width="319.63" Height="18.9" Text="Total [DS.ProductType_Name]" Font="Arial, 7pt, style=Bold"/>
+          <LineObject Name="Line5" Top="23.35" Width="1048.95"/>
+          <TextObject Name="Text58" Left="327.09" Top="2" Width="81.27" Height="18.9" CanGrow="true" Text="[TotGrpSaldoAwal]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+          <TextObject Name="Text59" Left="411.12" Top="2" Width="81.27" Height="18.9" CanGrow="true" Text="[TotGrpMasuk]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text60" Left="496.28" Top="2" Width="81.27" Height="18.9" CanGrow="true" Text="[TotGrpFgOK]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text61" Left="580.06" Top="2" Width="64.26" Height="18.9" CanGrow="true" Text="[TotGrpPerFgOK]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text62" Left="626.72" Top="2" Width="81.27" Height="18.9" CanGrow="true" Text="[TotGrpFgReject]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text63" Left="707.24" Top="2" Width="54.81" Height="18.9" CanGrow="true" Text="[TotGrpPerFgReject]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text64" Left="743.53" Top="2" Width="81.27" Height="18.9" CanGrow="true" Text="[TotGrpWaste]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text65" Left="826.31" Top="2" Width="64.26" Height="18.9" CanGrow="true" Text="[TotGrpPerWaste]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text66" Left="878.42" Top="2" Width="80.89" Height="18.9" CanGrow="true" Text="[TotGrpTotalPemakaian]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text67" Left="962.77" Top="2" Width="80.89" Height="18.9" CanGrow="true" Text="[TotGrpSaldoAkhir]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+        </GroupFooterBand>
+      </GroupHeaderBand>
+      <GroupFooterBand Name="GroupFooter2" Top="264.59" Width="1047.06"/>
+    </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="268.43" Width="1047.06" Height="21.35">
+      <TextObject Name="Text68" Left="327.09" Top="1" Width="81.27" Height="18.9" CanGrow="true" Text="[TotSaldoAwal]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text69" Left="411.12" Top="1" Width="81.27" Height="18.9" CanGrow="true" Text="[TotMasuk]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text70" Left="496.28" Top="1" Width="81.27" Height="18.9" CanGrow="true" Text="[TotFgOK]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text71" Left="580.06" Top="1" Width="64.26" Height="18.9" CanGrow="true" Text="[TotPerFgOK]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text72" Left="626.72" Top="1" Width="81.27" Height="18.9" CanGrow="true" Text="[TotFgReject]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text73" Left="707.24" Top="1" Width="54.81" Height="18.9" CanGrow="true" Text="[TotPerFgReject]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text74" Left="743.53" Top="1" Width="81.27" Height="18.9" CanGrow="true" Text="[TotWaste]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text75" Left="826.31" Top="1" Width="64.26" Height="18.9" CanGrow="true" Text="[TotPerWaste]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text76" Left="878.42" Top="1" Width="80.89" Height="18.9" CanGrow="true" Text="[TotPemakaian]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text77" Left="962.77" Top="1" Width="80.89" Height="18.9" CanGrow="true" Text="[TotSaldoAkhir]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="293.63" Width="1047.06" Height="18.9">
+      <TextObject Name="Text21" Left="3.78" Width="94.5" Height="18.9" Text="Production" Font="Arial, 8pt"/>
+      <LineObject Name="Line1" Left="9.45" Width="9.45"/>
+      <LineObject Name="Line2" Left="1.35" Width="1044.5"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

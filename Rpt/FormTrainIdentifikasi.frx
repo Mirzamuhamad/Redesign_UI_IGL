@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="05/20/2011 08:38:19" ReportInfo.Modified="10/15/2014 09:17:51" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+   Public Class ReportScript
+    Dim No As Integer
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      No = No + 1
+      Text47.Text = No.tostring
+      Text89.Visible = CType(Report.GetColumnValue(&quot;DS.TglPelaksanaan&quot;), DateTime) &lt;&gt; Nothing
+      Text53.Visible = CType(Report.GetColumnValue(&quot;DS.JangkaWaktu&quot;), Int32) &lt;&gt; Nothing 
+    End Sub
+
+    Private Sub PageHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+       No = 0
+    End Sub
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+       Text4.Text = CType(Report.GetColumnValue(&quot;DS.ISODocNo&quot;), String)
+    End Sub                 
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haob6THS6G3Hp0nmLGUzhvvX">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PEFormTrainIdentifikasi ''' '''">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="FgStatus" DataType="System.String"/>
+        <Column Name="Column" Enabled="false" DataType="System.Int32" Calculated="true" Expression=""/>
+        <Column Name="GroupA" DataType="System.Int32"/>
+        <Column Name="LastPage" DataType="System.Int32"/>
+        <Column Name="Urut" DataType="System.Int32"/>
+        <Column Name="Status" DataType="System.String"/>
+        <Column Name="Year" DataType="System.Int32"/>
+        <Column Name="CourseTitle" DataType="System.String"/>
+        <Column Name="Training" DataType="System.String"/>
+        <Column Name="TrainingName" DataType="System.String"/>
+        <Column Name="Sasaran" DataType="System.String"/>
+        <Column Name="Materi" DataType="System.String"/>
+        <Column Name="Instructor" DataType="System.String"/>
+        <Column Name="Participant" DataType="System.Int32"/>
+        <Column Name="EstMonth" DataType="System.Int32"/>
+        <Column Name="TrainingPlace" DataType="System.String"/>
+        <Column Name="CostPerson" DataType="System.Int32"/>
+        <Column Name="RemarkDt" DataType="System.String"/>
+        <Column Name="UserPrep" DataType="System.String"/>
+        <Column Name="UserAppr" DataType="System.String"/>
+        <Column Name="Company" DataType="System.String"/>
+        <Column Name="RemarkHd" DataType="System.String"/>
+        <Column Name="DatePrep" DataType="System.DateTime"/>
+        <Column Name="Institution" DataType="System.String"/>
+        <Column Name="InstitutionName" DataType="System.String"/>
+        <Column Name="Rate" DataType="System.Decimal"/>
+        <Column Name="DateAppr" DataType="System.DateTime"/>
+        <Column Name="TglPelaksanaan" DataType="System.DateTime"/>
+        <Column Name="JangkaWaktu" DataType="System.Int32"/>
+        <Column Name="ISODocNo" DataType="System.String"/>
+        <Column Name="DeptCode" DataType="System.String"/>
+        <Column Name="DeptName" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" FirstPageSource="15" OtherPagesSource="15" Guides="-1,1047.5,0.23,26.2,26.45,249.25,250.04,361.95,362.8,487.45,487.2,561.6,560.5,609.55,920.65,1045.85,608.2,695.6,697.2,808.4,808.25,919.45,94.5,518.47,85.05,91.97,0,80.92,878.85,1039.5,311.85,801.97,803.25,859.95,292.95,0.38,249.35,249.86,361.75,362.88,487.62,560.57,609.71,487.24,561.71,695.52,697.03,808.16,919.29,920.81,1045.93,1046.05,99.82,103.95,203.77,217.35,317.17,330.75,9.45,213.22,326.62,529.2,855.82,864.95,866.4,638.47,708.75,1048.95">
+    <PageHeaderBand Name="PageHeader1" Top="20" Width="1047.06" Height="133.85" BeforePrintEvent="PageHeader1_BeforePrint" Guides="101.5,133.85,106.5,129.18,106.41,129.09,128.64,127.73,106.95,127.18,79.6,94.5,56.7,68.04,47.25,62.15,18.9,0">
+      <ShapeObject Name="Shape2" Left="-1" Top="101.5" Width="1048.5" Height="32.35"/>
+      <TextObject Name="Text37" Left="0.23" Top="106.5" Width="25.97" Height="22.68" Text="No" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text39" Left="26.45" Top="106.41" Width="222.8" Height="22.68" Text="Nama" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text41" Left="250.04" Top="106.41" Width="111.91" Height="22.68" Text="Judul Training" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text43" Left="362.8" Top="106.41" Width="124.65" Height="22.23" Text="Penyelenggara" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text86" Left="487.2" Top="106.5" Width="74.4" Height="21.23" Text="Tanggal Pelaksanaan" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text87" Left="560.5" Top="106.5" Width="49.05" Height="21.23" Text="Jangka Waktu" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text88" Left="920.65" Top="106.5" Width="125.2" Height="21.23" Text="Keterangan" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text96" Left="608.2" Top="106.95" Width="87.4" Height="20.23" Text="Biaya" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text97" Left="697.2" Top="106.5" Width="111.2" Height="21.23" Text="Sasaran" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text98" Left="808.25" Top="106.5" Width="111.2" Height="21.23" Text="Materi" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text60" Left="94.5" Top="79.6" Width="423.97" Height="14.9" Text="[DS.DeptName]" Format="Custom" Format.Format="dd MMM yyyy" Font="Arial, 8pt"/>
+      <TextObject Name="Text57" Left="85.05" Top="79.6" Width="6.92" Height="14.9" Text=":" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text63" Top="79.6" Width="80.92" Height="14.9" Text="Organization" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text35" Left="878.85" Top="56.7" Width="160.65" Height="11.34" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text68" Left="311.85" Top="47.25" Width="490.12" Height="14.9" Text="[DS.TransNmbr]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text1" Left="311.85" Top="18.9" Width="491.4" Height="28.35" Text="Formulir Permohonan Training / Pendidikan" HorzAlign="Center" VertAlign="Center" Font="Arial, 16pt, style=Bold"/>
+      <TextObject Name="Text2" Left="859.95" Width="179.55" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text3" Width="292.95" Height="18.9" Text="[DS.Company]" Font="Arial, 11pt, style=Bold"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="173.85" Width="1047.06" StartNewPage="true" Condition="[DS.TransNmbr]" SortOrder="None">
+      <DataBand Name="Data1" Top="193.85" Width="1047.06" Height="23.35" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" AfterDataEvent="Data1_AfterData" Guides="2,20.9" DataSource="Table">
+        <TextObject Name="Text47" Left="0.38" Top="2" Width="26.08" Height="18.9" CanGrow="true" Text="No" VertAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text48" Left="26.46" Top="2" Width="222.89" Height="18.9" CanGrow="true" Text="[DS.Participant]" VertAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text50" Left="249.86" Top="2" Width="111.89" Height="18.9" CanGrow="true" Text="[DS.CourseTitle]" VertAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text51" Left="362.88" Top="2" Width="124.74" Height="18.9" CanGrow="true" Text="[DS.InstitutionName]" VertAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text53" Left="560.57" Top="2" Width="49.14" Height="18.9" CanGrow="true" Text="[DS.JangkaWaktu]" VertAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text89" Left="487.24" Top="2" Width="74.47" Height="18.9" CanGrow="true" Text="[DS.TglPelaksanaan]" Format="Custom" Format.Format="dd/MM/yyyy" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text90" Left="608.2" Top="2" Width="87.32" Height="18.9" CanGrow="true" Text="[DS.CostPerson]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text91" Left="697.03" Top="2" Width="111.13" Height="18.9" CanGrow="true" Text="[DS.Sasaran]" VertAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text92" Left="808.16" Top="2" Width="111.13" Height="18.9" CanGrow="true" Text="[DS.Materi]" VertAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text99" Left="920.81" Top="2" Width="125.12" Height="18.9" CanGrow="true" Text="[DS.RemarkDt]" VertAlign="Center" Font="Arial, 8pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="237.2" Width="1047.06"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="257.2" Width="1047.06" Height="172.1" Guides="151.2,122.85,137.75,47.25,141.75,28.35,43.25,18.9,139.3,90.5,94.5,153.2,170.1">
+      <LineObject Name="Line1" Top="151.2" Width="1046.05"/>
+      <TextObject Name="Text93" Top="122.85" Width="99.82" Height="14.9" Text="Tgl :" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text101" Left="103.95" Top="122.85" Width="99.82" Height="14.9" Text="Tgl :" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text102" Left="217.35" Top="122.85" Width="99.82" Height="14.9" Text="Tgl :" Font="Arial, 8pt, style=Bold"/>
+      <ShapeObject Name="Shape3" Top="47.25" Width="330.75" Height="94.5"/>
+      <TextObject Name="Text78" Left="9.45" Top="28.35" Width="90.37" Height="14.9" Text="Pemohon" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <ShapeObject Name="Shape1" Top="18.9" Width="330.75" Height="28.35"/>
+      <TextObject Name="Text83" Left="103.95" Top="28.35" Width="109.27" Height="14.9" Text="Dept HRD &amp; GA" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line3" Left="103.95" Top="18.9" Height="120.4" Diagonal="true"/>
+      <LineObject Name="Line4" Left="217.35" Top="18.9" Height="120.4" Diagonal="true"/>
+      <TextObject Name="Text100" Left="217.35" Top="28.35" Width="109.27" Height="14.9" Text="Direksi" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text104" Left="529.2" Top="47.25" Width="326.62" Height="43.25" Text="Masa Ikatan Dinas selama () Tahun&#13;&#10;Dimulai sejak karyawan aktif bekerja kembali setelah selesai masa Training / Pendidikan" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line5" Left="529.2" Top="47.25" Width="335.75"/>
+      <ShapeObject Name="Shape4" Left="529.2" Top="18.9" Width="337.2" Height="75.6"/>
+      <TextObject Name="Text103" Left="529.2" Top="28.35" Width="109.27" Height="14.9" Text="Kondis - kondisi" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text4" Left="708.75" Top="153.2" Width="340.2" Height="16.9" Text="[DS.ISODocNo]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="06/01/2011 09:14:08" ReportInfo.Modified="02/18/2013 16:50:37" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+          Dim Saldo As Double
+          Dim TransNo as String          
+
+          Private Sub Page1_StartPage(ByVal sender As object, ByVal e As EventArgs)
+               
+          End Sub
+
+          Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+          End Sub
+
+    Private Sub GroupHeader1_AfterPrint(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLGxGpJVG405Ko0Pl+CUlHHGu87lArp3rzJixtqKv76jfbIJtH1U9M9ITQMdrVNfL97YmpLkkUN1e1ABVbXTnKG6zVQENZ1yqbpam37xZvaLFA2MaUDLLk6FVyK91ds2pXbvvnX05CCkZ7G09tgBg6QvCWhe0CiWseMwK2MtRUhsowqTZYVWmdIgiTiT3GVI/OA==">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PRRptPORekapSupplier 2012,1,2012,2,0,'','','','','admin'">
+        <Column Name="Tahun" DataType="System.Int32"/>
+        <Column Name="Bulan" DataType="System.Int32"/>
+        <Column Name="Supplier" DataType="System.String"/>
+        <Column Name="Supplier_Name" DataType="System.String"/>
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="BulanName" DataType="System.String"/>
+        <Column Name="Total" DataType="System.Decimal"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompanyAddr" DataType="System.String"/>
+        <Column Name="UserId" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" LeftMargin="5.4" RightMargin="7" FirstPageSource="1" OtherPagesSource="1" StartPageEvent="Page1_StartPage">
+    <PageHeaderBand Name="PageHeader1" Top="20" Width="1075.79" Height="91.05">
+      <TextObject Name="Text37" Top="66.15" Width="378" Height="15.12" Text="Rekap Pembelian Per Supplier" AllowExpressions="false"/>
+      <TextObject Name="Text15" Width="444.15" Height="15.12" Text="[DS.CompanyName]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text16" Top="16.9" Width="444.15" Height="26.46" Text="[DS.CompanyAddr]" Font="Arial, 8pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="131.05" Width="1075.79" Height="92.35" BeforePrintEvent="Data1_BeforePrint" AfterDataEvent="Data1_AfterData">
+      <MatrixObject Name="Matrix1" Left="9.45" Width="284.6" Height="92.35" FixedRows="2" FixedColumns="2" AutoSize="false" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="[DS.Tahun]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.BulanName]" Sort="None" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.Supplier_Name]"/>
+          <Header Expression="[DS.Currency]" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.Total]"/>
+        </MatrixCells>
+        <TableColumn Name="Column6" Width="183.66"/>
+        <TableColumn Name="Column7" Width="33.54"/>
+        <TableColumn Name="Column8" Width="67.4"/>
+        <TableRow Name="Row6" Height="16">
+          <TableCell Name="Cell26" Border.Lines="All" Text="Supplier" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell27" Border.Lines="All" Text="Curr" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell32" Border.Lines="All" Text="[Tahun]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row7" Height="16">
+          <TableCell Name="Cell28"/>
+          <TableCell Name="Cell29"/>
+          <TableCell Name="Cell33" Border.Lines="All" Text="[BulanName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row8" Height="34.9">
+          <TableCell Name="Cell30" Border.Lines="All" Text="[Supplier_Name]" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell31" Border.Lines="All" Text="[Currency]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell34" Border.Lines="All" Text="[Total]" Format="Custom" Format.Format="###,###.###" HorzAlign="Right" VertAlign="Center" Font="Arial, 6pt"/>
+        </TableRow>
+        <TableRow Name="Row9" Height="25.45">
+          <TableCell Name="Cell35" Border.Lines="All" Text="Total " HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold" ColSpan="2"/>
+          <TableCell Name="Cell36"/>
+          <TableCell Name="Cell37" Border.Lines="All" Format="Custom" Format.Format="###,###.###" HorzAlign="Right" VertAlign="Center" Font="Arial, 6pt, style=Bold"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <ColumnFooterBand Name="ColumnFooter1" Top="243.4" Width="1075.79"/>
+    <PageFooterBand Name="PageFooter1" Top="263.4" Width="1075.79" Height="103.95">
+      <TextObject Name="Text40" Left="950" Top="88.83" Width="109.95" Height="15.12" Text="[DS.UserId]" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line24" Top="88.05" Width="1058.4"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

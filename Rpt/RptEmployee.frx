@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="03/29/2011 16:25:53" ReportInfo.Modified="08/23/2016 09:46:44" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>
+Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+
+Namespace FastReport
+  Public Class ReportScript
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43harRjaWoma7DQB2f5j/FezmJ">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_MsRptEmployee ''">
+        <Column Name="Emp_No" DataType="System.String"/>
+        <Column Name="Emp_Name" DataType="System.String"/>
+        <Column Name="Gender" DataType="System.String"/>
+        <Column Name="Hire_Date" DataType="System.DateTime"/>
+        <Column Name="Birth_Date" DataType="System.DateTime"/>
+        <Column Name="End_Date" DataType="System.DateTime"/>
+        <Column Name="MaritalTax" DataType="System.String"/>
+        <Column Name="Job_Title" DataType="System.String"/>
+        <Column Name="Job_Level" DataType="System.String"/>
+        <Column Name="Emp_Status_Name" DataType="System.String"/>
+        <Column Name="FgLeave" DataType="System.String"/>
+        <Column Name="Work_Place" DataType="System.String"/>
+        <Column Name="End_Date_Contract" DataType="System.DateTime"/>
+        <Column Name="Section_Name" DataType="System.Int32"/>
+        <Column Name="Fg_Active" DataType="System.String"/>
+        <Column Name="Fg_Acknowledged" DataType="System.String"/>
+        <Column Name="Fg_Approval" DataType="System.String"/>
+        <Column Name="FgPermanent" DataType="System.String"/>
+        <Column Name="AbsenceCard" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompanyAddr" DataType="System.String"/>
+        <Column Name="Sub_Section" DataType="System.String"/>
+        <Column Name="Sub_Section_Name" DataType="System.String"/>
+        <Column Name="Birth_Place" DataType="System.String"/>
+        <Column Name="Religion" DataType="System.String"/>
+        <Column Name="Weight" DataType="System.Decimal"/>
+        <Column Name="Height" DataType="System.Decimal"/>
+        <Column Name="HandPhone" DataType="System.String"/>
+        <Column Name="Email" DataType="System.String"/>
+        <Column Name="MaritalSt" DataType="System.String"/>
+        <Column Name="Work_Period" DataType="System.Decimal"/>
+        <Column Name="Age" DataType="System.Decimal"/>
+        <Column Name="Job_Title_Code" DataType="System.String"/>
+        <Column Name="Job_Level_Code" DataType="System.String"/>
+        <Column Name="Emp_Status_Code" DataType="System.String"/>
+        <Column Name="Salary_Type" DataType="System.String"/>
+        <Column Name="Work_Place_Code" DataType="System.String"/>
+        <Column Name="SKNo" DataType="System.String"/>
+        <Column Name="ApplicantNo" DataType="System.String"/>
+        <Column Name="FgTKA" DataType="System.String"/>
+        <Column Name="FgActive" DataType="System.String"/>
+        <Column Name="AKDHKNo" DataType="System.String"/>
+        <Column Name="PINBB" DataType="System.String"/>
+        <Column Name="FgJamsosTek" DataType="System.String"/>
+        <Column Name="JamSosTekNo" DataType="System.String"/>
+        <Column Name="JamSosTekDate" DataType="System.DateTime"/>
+        <Column Name="Res_Addr1" DataType="System.String"/>
+        <Column Name="Res_Addr2" DataType="System.String"/>
+        <Column Name="Res_City" DataType="System.String"/>
+        <Column Name="Res_PostCode" DataType="System.String"/>
+        <Column Name="NPWP" DataType="System.String"/>
+        <Column Name="Division_Name" DataType="System.Int32"/>
+        <Column Name="Dept_Code" DataType="System.String"/>
+        <Column Name="Dept_Name" DataType="System.String"/>
+        <Column Name="BloodType" DataType="System.String"/>
+        <Column Name="Tribe" DataType="System.String"/>
+        <Column Name="TypeCard" DataType="System.String"/>
+        <Column Name="IDCard" DataType="System.String"/>
+        <Column Name="Res_AddrStatus" DataType="System.String"/>
+        <Column Name="TKAStatus" DataType="System.String"/>
+        <Column Name="LastCertificateNo" DataType="System.String"/>
+        <Column Name="Ori_City" DataType="System.String"/>
+        <Column Name="Ori_Addr1" DataType="System.String"/>
+        <Column Name="Ori_Addr2" DataType="System.String"/>
+        <Column Name="Ori_PostCode" DataType="System.String"/>
+        <Column Name="Ori_Phone" DataType="System.String"/>
+        <Column Name="Res_Phone" DataType="System.String"/>
+        <Column Name="MaritalDocNo" DataType="System.String"/>
+        <Column Name="MaritalDate" DataType="System.DateTime"/>
+        <Column Name="FgSales" DataType="System.String"/>
+        <Column Name="ReligionName" DataType="System.String"/>
+        <Column Name="UserId" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="279.4" PaperHeight="215.9" FirstPageSource="1" OtherPagesSource="1" Guides="0,1047.06,1046.17,3,110.62,115.29,319.41,325.08,553.77,559.44,672.84,676.62,790.02,793.69,929.77,933.66,1039.5,98.28,93.5,748.44,1043.28">
+    <ReportTitleBand Name="ReportTitle1" Width="980.53" Height="84.38" BeforePrintEvent="ReportTitle1_BeforePrint" Guides="0,18.9">
+      <TextObject Name="Text57" Left="793.69" Top="18.9" Width="179.55" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text58" Left="793.69" Top="73.04" Width="179.55" Height="11.34" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text56" Left="-0.45" Top="1" Width="538.65" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text55" Left="3" Top="18.9" Width="480.44" Height="18.9" Text="[DS.CompanyAddr]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text1" Top="37.8" Width="980.53" Height="18.23" Anchor="Top, Bottom, Left, Right" Text="EMPLOYEE FILE" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="88.38" Width="980.53" Height="30.25" Guides="1,29.45,4.45,23.35,4,22.9,3.78,22.68">
+      <TextObject Name="Text3" Top="9.45" Width="66.15" Height="18.9" Text="NIK" Font="Arial, 6pt"/>
+      <TextObject Name="Text5" Left="66.15" Top="9.45" Width="75.6" Height="18.9" Text="Name" Font="Arial, 6pt"/>
+      <TextObject Name="Text7" Left="141.75" Top="9.45" Width="37.8" Height="18.9" Text="Gender" Font="Arial, 6pt"/>
+      <TextObject Name="Text9" Left="179.55" Top="9.45" Width="47.25" Height="18.9" Text="Start Date" Font="Arial, 6pt"/>
+      <TextObject Name="Text11" Left="236.25" Top="9.45" Width="47.25" Height="18.9" Text="Birth Date" Font="Arial, 6pt"/>
+      <TextObject Name="Text14" Left="340.2" Top="9.45" Width="47.25" Height="18.9" Text="End Date" Font="Arial, 6pt"/>
+      <TextObject Name="Text16" Left="391.45" Top="9.45" Width="37.8" Height="18.9" Text="Religion" Font="Arial, 6pt"/>
+      <TextObject Name="Text18" Left="431.25" Top="9.45" Width="37.8" Height="18.9" Text="Weight" Font="Arial, 6pt"/>
+      <TextObject Name="Text21" Left="469.05" Top="9.45" Width="37.8" Height="18.9" Text="Height" Font="Arial, 6pt"/>
+      <TextObject Name="Text23" Left="506.85" Top="9.45" Width="47.25" Height="18.9" Text="HP" Font="Arial, 6pt"/>
+      <TextObject Name="Text24" Left="283.5" Top="9.45" Width="47.25" Height="18.9" Text="Birth Place" Font="Arial, 6pt"/>
+      <TextObject Name="Text26" Left="566" Top="9.45" Width="37.8" Height="18.9" Text="Email" Font="Arial, 6pt"/>
+      <TextObject Name="Text28" Left="603.8" Top="9.45" Width="47.25" Height="18.9" Text="Marital Status" Font="Arial, 6pt"/>
+      <TextObject Name="Text30" Left="651.05" Top="9.45" Width="37.8" Height="18.9" Visible="false" Text="Work Period" Font="Arial, 6pt"/>
+      <TextObject Name="Text32" Left="660.5" Top="9.45" Width="75.6" Height="18.9" Text="Job Title" Font="Arial, 6pt"/>
+      <TextObject Name="Text34" Left="736.1" Top="9.45" Width="47.25" Height="18.9" Text="Job Level" Font="Arial, 6pt"/>
+      <TextObject Name="Text36" Left="783.35" Top="9.45" Width="47.25" Height="18.9" Text="Emp Status" Font="Arial, 6pt"/>
+      <TextObject Name="Text38" Left="830.6" Top="9.45" Width="56.7" Height="18.9" Text="Work Place" Font="Arial, 6pt"/>
+      <TextObject Name="Text40" Left="887.3" Top="9.45" Width="66.15" Height="18.9" Text="Department" Font="Arial, 6pt"/>
+      <TextObject Name="Text42" Left="954.45" Top="9.45" Width="29.8" Height="18.9" Text="Active" Font="Arial, 6pt"/>
+      <LineObject Name="Line1" Left="3" Top="29.45" Width="977.91" Diagonal="true"/>
+      <LineObject Name="Line2" Left="3" Top="4.45" Width="977.91" Diagonal="true"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="122.63" Width="980.53" Height="18.9" CanGrow="true" Guides="0,18.9" DataSource="Table">
+      <TextObject Name="Text2" Width="66.15" Height="18.9" CanGrow="true" Text="[DS.Emp_No]" Font="Arial, 6pt"/>
+      <TextObject Name="Text4" Left="66.15" Width="75.6" Height="18.9" CanGrow="true" Text="[DS.Emp_Name]" Font="Arial, 6pt"/>
+      <TextObject Name="Text6" Left="141.75" Width="37.8" Height="18.9" CanGrow="true" Text="[DS.Gender]" Font="Arial, 6pt"/>
+      <TextObject Name="Text8" Left="179.55" Width="56.7" Height="18.9" CanGrow="true" Text="[DS.Hire_Date]" Format="Custom" Format.Format="dd MMM yyyy" Font="Arial, 6pt"/>
+      <TextObject Name="Text10" Left="236.25" Width="56.7" Height="18.9" CanGrow="true" Text="[DS.Birth_Date]" Format="Custom" Format.Format="dd MMM yyyy" Font="Arial, 6pt"/>
+      <TextObject Name="Text12" Left="285.39" Width="47.25" Height="18.9" CanGrow="true" Text="[DS.Birth_Place]" Font="Arial, 6pt"/>
+      <TextObject Name="Text13" Left="330.75" Width="56.7" Height="18.9" CanBreak="false" Text="[DS.End_Date]" Format="Custom" Format.Format="dd MMM yyyy" Font="Arial, 6pt"/>
+      <TextObject Name="Text15" Left="390.9" Width="37.8" Height="18.9" CanGrow="true" Text="[DS.ReligionName]" Font="Arial, 6pt"/>
+      <TextObject Name="Text17" Left="431.25" Width="37.8" Height="18.9" CanGrow="true" Text="[DS.Weight]" Format="Custom" Format.Format="##,###.##" HorzAlign="Right" WordWrap="false" Font="Arial, 6pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text20" Left="469.05" Width="37.8" Height="18.9" CanGrow="true" Text="[DS.Height]" Format="Custom" Format.Format="##,###.##" HorzAlign="Right" WordWrap="false" Font="Arial, 6pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text22" Left="507.85" Width="47.25" Height="18.9" CanGrow="true" Text="[DS.HandPhone]" Font="Arial, 6pt"/>
+      <TextObject Name="Text25" Left="557.55" Width="47.25" Height="18.9" CanGrow="true" Text="[DS.Email]" Font="Arial, 6pt"/>
+      <TextObject Name="Text27" Left="604.8" Width="47.25" Height="18.9" CanGrow="true" Text="[DS.MaritalSt]" Font="Arial, 6pt"/>
+      <TextObject Name="Text29" Left="654.05" Width="35.8" Height="18.9" Visible="false" CanGrow="true" Text="[DS.Work_Period]" Format="Currency" Format.UseLocale="true" HorzAlign="Right" WordWrap="false" Font="Arial, 6pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text31" Left="661.5" Width="75.6" Height="18.9" CanGrow="true" Text="[DS.Job_Title]" Font="Arial, 6pt"/>
+      <TextObject Name="Text33" Left="737.1" Width="47.25" Height="18.9" CanGrow="true" Text="[DS.Job_Level]" Font="Arial, 6pt"/>
+      <TextObject Name="Text35" Left="784.35" Width="47.25" Height="18.9" CanGrow="true" Text="[DS.Emp_Status_Name]" Font="Arial, 6pt"/>
+      <TextObject Name="Text37" Left="831.6" Width="56.7" Height="18.9" CanGrow="true" Text="[DS.Work_Place]" Font="Arial, 6pt"/>
+      <TextObject Name="Text39" Left="888.3" Width="66.15" Height="18.9" CanGrow="true" Text="[DS.Dept_Name]" Font="Arial, 6pt"/>
+      <TextObject Name="Text41" Left="963.9" Width="15.9" Height="18.9" CanGrow="true" Text="[DS.FgActive]" Font="Arial, 6pt"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="145.53" Width="980.53" Height="18.9">
+      <TextObject Name="Text59" Left="850.5" Width="132.3" Height="18.9" Text="[DS.UserID]" HorzAlign="Right" Font="Arial, 6pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

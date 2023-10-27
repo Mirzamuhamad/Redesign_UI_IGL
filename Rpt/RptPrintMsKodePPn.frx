@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="03/29/2011 16:25:53" ReportInfo.Modified="10/06/2015 11:49:15" ReportInfo.CreatorVersion="2015.3.12.0">
+  <ScriptText>
+Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+
+Namespace FastReport
+  Public Class ReportScript
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)       
+      Text14.Text = CType(Report.GetColumnValue(&quot;DS.Userid1&quot;), String)
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haoVXU/VHlNGvqxOsaRNNF0l">
+      <TableDataSource Name="Table3" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="exec S_FormMsKodePPn '',''">
+        <Column Name="PPnCode" DataType="System.String"/>
+        <Column Name="PPnName" DataType="System.String"/>
+        <Column Name="PPnPaid" DataType="System.String"/>
+        <Column Name="PPnCode1" DataType="System.String"/>
+        <Column Name="StartNominal1" DataType="System.Decimal"/>
+        <Column Name="EndNominal1" DataType="System.Decimal"/>
+        <Column Name="PPnCode2" DataType="System.String"/>
+        <Column Name="StartNominal2" DataType="System.Decimal"/>
+        <Column Name="EndNominal2" DataType="System.Decimal"/>
+        <Column Name="UserId" DataType="System.String"/>
+        <Column Name="UserDate" DataType="System.DateTime"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompanyAddr" DataType="System.String"/>
+        <Column Name="Userid1" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" RawPaperSize="1" FirstPageSource="15" OtherPagesSource="15" Guides="0,3,302.4,378,453.6,519.75,66.15,245.7,595.35,670.95,737.1">
+    <PageHeaderBand Name="PageHeader1" Width="740.5" Height="132.49" Guides="1,29.45,4.45,23.35,4,22.9">
+      <ShapeObject Name="Shape1" Left="1.15" Top="97.59" Width="739.55" Height="34.9"/>
+      <TextObject Name="Text3" Left="3" Top="101.13" Width="63.15" Height="28.35" Text="PPn Code" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text7" Left="66.15" Top="101.13" Width="179.55" Height="28.35" Text="PPn Name" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text18" Left="245.7" Top="101.13" Width="56.7" Height="28.35" Text="PPn Paid" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text20" Left="302.4" Top="101.13" Width="75.6" Height="28.35" Text="PPn Code 1" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text22" Left="453.6" Top="101.13" Width="66.15" Height="28.35" Text="End Nominal 1" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text24" Left="519.75" Top="101.13" Width="75.6" Height="28.35" Text="PPn Code 2" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text36" Left="378" Top="101.13" Width="75.6" Height="28.35" Text="Start Nominal 1" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text56" Top="2.75" Width="538.65" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text55" Top="28.1" Width="480.44" Height="18.9" Text="[DS.CompanyAddr]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text57" Left="548.2" Top="28.1" Width="179.55" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text15" Left="170.22" Top="51.45" Width="362.88" Height="28.35" Text="KODE PPn" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text35" Left="548.2" Top="74.45" Width="179.55" Height="11.34" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text58" Left="595.35" Top="101.13" Width="75.6" Height="28.35" Text="Start Nominal 2" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text59" Left="670.95" Top="101.13" Width="66.15" Height="28.35" Text="End Nominal 2" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="136.49" Width="740.5" Height="37.8" CanGrow="true" CanShrink="true" AfterDataEvent="Data1_AfterData" CanBreak="true" Guides="9.45" DataSource="Table3">
+      <TextObject Name="Text60" Left="3" Top="9.45" Width="63.15" Height="28.35" CanGrow="true" Text="[DS.PPnCode]" Font="Arial, 8pt"/>
+      <TextObject Name="Text61" Left="66.15" Top="9.45" Width="179.55" Height="28.35" CanGrow="true" Text="[DS.PPnName]" Font="Arial, 8pt"/>
+      <TextObject Name="Text62" Left="245.7" Top="9.45" Width="56.7" Height="28.35" CanGrow="true" Text="[DS.PPnPaid]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text63" Left="302.4" Top="9.45" Width="75.6" Height="28.35" CanGrow="true" Text="[DS.PPnCode1]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text64" Left="453.6" Top="9.45" Width="66.15" Height="28.35" CanGrow="true" Text="[DS.EndNominal1]" Format="Custom" Format.Format="#,##0" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text65" Left="519.75" Top="9.45" Width="75.6" Height="28.35" CanGrow="true" Text="[DS.PPnCode2]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text66" Left="378" Top="9.45" Width="75.6" Height="28.35" CanGrow="true" Text="[DS.StartNominal1]" Format="Custom" Format.Format="#,##0" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text67" Left="670.95" Top="9.45" Width="66.15" Height="28.35" CanGrow="true" Text="[DS.EndNominal2]" Format="Custom" Format.Format="#,##0" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text68" Left="595.35" Top="9.45" Width="75.6" Height="28.35" CanGrow="true" Text="[DS.StartNominal2]" Format="Custom" Format.Format="#,##0" HorzAlign="Center" Font="Arial, 8pt"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="178.29" Width="740.5" Height="28.35" Guides="9.45,13.45,27.35">
+      <LineObject Name="Line1" Width="730.3"/>
+      <TextObject Name="Text14" Left="595.35" Top="13.45" Width="139.85" Height="13.9" Text="[DS.Userid1]" HorzAlign="Right" Font="Arial, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ConvertNulls="false" TextQuality="ClearType" ReportInfo.Created="03/29/2011 16:25:53" ReportInfo.Modified="06/21/2019 17:27:11" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>
+Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+
+Namespace FastReport
+  Public Class ReportScript
+
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+      Text58.Text = CType(Report.GetColumnValue(&quot;DS.UserID&quot;), String) 
+    End Sub
+   End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLGyiz5qWMjsA99V/W+nNq1W3g2zii+WzFvwn5S/yO9ty4j5cNSou1n2RnV42VCogqvfmVTuPft9r+ml6D6Y85i88UYngIQ06zehBNgb2OTfaFNxAa36xloHJOigAkkfMB02vrxzaQ8grx0UVzQtpvQCAr3C3tFnxcJi0fwEjoXOd">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" PropName="MsProductType" Enabled="true" SelectCommand="exec S_FormPrintMasterBlockFile&#13;&#10;'V_MsBlockView','BlockCode','BlockName','ArealName','Area','QtyTanam','MaxCap','SPH','StatusTanam','EstStartPlant','StartPlant','BlockNo','LandTypeName','LandScapeName','KSUBlock',&#13;&#10;'Block File',&#13;&#10;'Code','Name','Areal','Luas','Qty Tanam','Max Capacity','SPH','Status Tanam','Est Start Tanam','Start Plant','Block No','Land Type','Lans Cape','KSU','','admin'&#13;&#10;">
+        <Column Name="Code" DataType="System.String"/>
+        <Column Name="Name" DataType="System.String"/>
+        <Column Name="Name2" DataType="System.String"/>
+        <Column Name="Name3" DataType="System.String"/>
+        <Column Name="Name4" DataType="System.String"/>
+        <Column Name="Title" DataType="System.String"/>
+        <Column Name="Column1" DataType="System.String"/>
+        <Column Name="Column2" DataType="System.String"/>
+        <Column Name="Column3" DataType="System.String"/>
+        <Column Name="Column4" DataType="System.String"/>
+        <Column Name="Column5" DataType="System.String"/>
+        <Column Name="UserId" DataType="System.String"/>
+        <Column Name="Company" DataType="System.String"/>
+        <Column Name="Address" DataType="System.String"/>
+        <Column Name="Name5" DataType="System.String"/>
+        <Column Name="Column6" DataType="System.String"/>
+        <Column Name="Column" Enabled="false" DataType="System.Int32" Calculated="true" Expression=""/>
+        <Column Name="Name7" DataType="System.Decimal"/>
+        <Column Name="Name8" DataType="System.String"/>
+        <Column Name="Name9" DataType="System.DateTime"/>
+        <Column Name="Name10" DataType="System.DateTime"/>
+        <Column Name="Name11" DataType="System.Int32"/>
+        <Column Name="Name12" DataType="System.String"/>
+        <Column Name="Name13" DataType="System.String"/>
+        <Column Name="Name14" DataType="System.String"/>
+        <Column Name="Column7" DataType="System.String"/>
+        <Column Name="Column8" DataType="System.String"/>
+        <Column Name="Column9" DataType="System.String"/>
+        <Column Name="Column10" DataType="System.String"/>
+        <Column Name="Column11" DataType="System.String"/>
+        <Column Name="Column12" DataType="System.String"/>
+        <Column Name="Column13" DataType="System.String"/>
+        <Column Name="Column14" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="279.4" PaperHeight="215.9" LeftMargin="2.5" TopMargin="2.5" RightMargin="2.5" BottomMargin="2.5" FirstPageSource="261" OtherPagesSource="261" Guides="0,709.75,3.02,146.66,284.83,189,551.88,1,1.13,382.91,262.25,415.34,419.21,578.84,704.71,529.2,708.75,3,146.64,262.33,509.92,513.74,573.46,578.73,704.74,706.3,578.72,704.73">
+    <PageHeaderBand Name="PageHeader1" Width="1037.23" Height="121.95" Guides="94.59,120.04,100.04,118.94,99.59,118.49,65.9,91.25,4,29.35,28.8,66.6,99.64,118.54,0,18.9,46.35,57.69">
+      <TextObject Name="Text3" Left="1.02" Top="91.14" Width="44.67" Height="28.35" Text="[DS.Column1]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text7" Left="46.69" Top="91.14" Width="58.59" Height="28.35" Text="[DS.Column2]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text15" Left="340.2" Top="56.45" Width="362.88" Height="25.35" Text="[DS.Title]" HorzAlign="Center" VertAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text16" Left="1" Top="2" Width="362.88" Height="25.35" Text="[DS.Company]" Font="Arial Narrow, 12pt, style=Bold"/>
+      <TextObject Name="Text18" Left="102.13" Top="91.14" Width="103.68" Height="28.35" Text="[DS.Column3]" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text20" Left="206.66" Top="91.14" Width="59.72" Height="28.35" Text="[DS.Column4]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text22" Left="259.6" Top="91.14" Width="50.27" Height="28.35" Text="[DS.Column5]" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text57" Left="856.6" Width="179.55" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text35" Left="856.6" Top="74.7" Width="179.55" Height="11.34" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text4" Left="320.3" Top="91.14" Width="56.7" Height="28.35" Text="[DS.Column6]" HorzAlign="Center" Font="Arial, 8.25pt, style=Bold"/>
+      <ShapeObject Name="Shape1" Left="2" Top="87.05" Width="1046.05" Height="34.9"/>
+      <TextObject Name="Text59" Left="395.9" Top="91.14" Width="56.7" Height="28.35" Text="[DS.Column7]" HorzAlign="Center" Font="Arial, 8.25pt, style=Bold"/>
+      <TextObject Name="Text60" Left="455.05" Top="91.14" Width="56.7" Height="28.35" Text="[DS.Column8]" HorzAlign="Center" Font="Arial, 8.25pt, style=Bold"/>
+      <TextObject Name="Text61" Left="520.2" Top="91.14" Width="85.05" Height="28.35" Text="[DS.Column9]" Font="Arial, 8.25pt, style=Bold"/>
+      <TextObject Name="Text62" Left="603.8" Top="91.14" Width="85.05" Height="28.35" Text="[DS.Column10]" Font="Arial, 8.25pt, style=Bold"/>
+      <TextObject Name="Text63" Left="688.85" Top="91.14" Width="47.25" Height="28.35" Text="[DS.Column11]" HorzAlign="Center" Font="Arial, 8.25pt, style=Bold"/>
+      <TextObject Name="Text64" Left="738.65" Top="91.14" Width="122.85" Height="28.35" Text="[DS.Column12]" Font="Arial, 8.25pt, style=Bold"/>
+      <TextObject Name="Text65" Left="863.85" Top="91.14" Width="88.5" Height="28.35" Text="[DS.Column13]" HorzAlign="Center" Font="Arial, 8.25pt, style=Bold"/>
+      <TextObject Name="Text67" Left="951.9" Top="91.14" Width="56.7" Height="28.35" Text="[DS.Column14]" Font="Arial, 8.25pt, style=Bold"/>
+      <TextObject Name="Text76" Left="1" Top="28.35" Width="253.48" Height="44.25" Text="[DS.Address]" Font="Arial Narrow, 9pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="126.39" Width="1037.23" Height="54.25" CanGrow="true" CanShrink="true" AfterDataEvent="Data1_AfterData" CanBreak="true" Guides="4,22.9,4.16,23.06" DataSource="Table">
+      <TextObject Name="Text2" Left="1" Top="4" Width="47.14" Height="21.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.Code]" Font="Arial, 8pt" Duplicates="Hide"/>
+      <TextObject Name="Text6" Left="46.69" Top="4" Width="58.59" Height="21.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.Name]" Font="Arial, 8pt"/>
+      <TextObject Name="Text19" Left="104.18" Top="4.16" Width="104.08" Height="21.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.Name2]" Font="Arial, 8pt"/>
+      <TextObject Name="Text21" Left="206.66" Top="4.16" Width="59.72" Height="21.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.Name3]" Font="Arial, 8pt"/>
+      <TextObject Name="Text23" Left="267.6" Top="4.16" Width="69.31" Height="21.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DS.Name4]" Format="Custom" Format.Format="##,#0.##" Font="Arial, 8pt"/>
+      <TextObject Name="Text1" Left="329.75" Top="4" Width="66.15" Height="21.9" Text="[DS.Name5]" Font="Arial, 8.25pt"/>
+      <TextObject Name="Text68" Left="395.9" Top="4" Width="56.7" Height="21.9" Text="[DS.Name7]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Center" Font="Arial, 8.25pt"/>
+      <TextObject Name="Text69" Left="453.05" Top="4" Width="66.15" Height="21.9" Text="[DS.Name8]" HorzAlign="Center" Font="Arial, 8.25pt"/>
+      <TextObject Name="Text70" Left="520.2" Top="4" Width="85.05" Height="21.9" Text="[DS.Name9]" Format="Custom" Format.Format="dd MMM yyyy" Font="Arial, 8.25pt"/>
+      <TextObject Name="Text71" Left="605.25" Top="4" Width="85.05" Height="21.9" Text="[DS.Name10]" HideZeros="true" Format="Custom" Format.Format="dd MMM yyyy" Font="Arial, 8.25pt"/>
+      <TextObject Name="Text72" Left="688.85" Top="4" Width="47.25" Height="21.9" Text="[DS.Name11]" HorzAlign="Center" Font="Arial, 8.25pt"/>
+      <TextObject Name="Text73" Left="740.65" Top="4" Width="141.75" Height="21.9" Text="[DS.Name12]" Font="Arial, 8.25pt"/>
+      <TextObject Name="Text74" Left="877.3" Top="4" Width="69.6" Height="21.9" Text="[DS.Name13]" HorzAlign="Center" Font="Arial, 8.25pt"/>
+      <TextObject Name="Text75" Left="951.9" Top="4" Width="85.05" Height="21.9" Text="[DS.Name14]" Font="Arial, 8.25pt"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="185.09" Width="1037.23" Height="34.9" BeforePrintEvent="PageFooter1_BeforePrint" Guides="0,18.9">
+      <LineObject Name="Line1" Width="1035.05"/>
+      <TextObject Name="Text58" Left="899.75" Top="1" Width="135.46" Height="18.9" CanBreak="false" Text="[DS.UserId]" HorzAlign="Right" VertAlign="Center" Font="Arial, 6.75pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

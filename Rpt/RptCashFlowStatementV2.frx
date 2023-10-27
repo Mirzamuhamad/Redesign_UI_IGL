@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="06/19/2015 13:16:03" ReportInfo.Modified="06/19/2015 15:14:22" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+  }
+}
+/*                                                                               
+
+
+
+
+procedure MasterData2OnBeforePrint(Sender: TfrxComponent);
+begin
+  Memo10.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 0;                                   
+  Memo11.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 1;           
+  Memo35.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 2;     
+  Memo19.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 3;       
+  Memo20.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 4;       
+  Memo5.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 5;       
+  Memo9.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 6;    
+  Memo12.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 7;    
+  Memo13.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 8;      
+  Memo14.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 9;      
+  Memo21.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 10;          
+  Memo38.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 11;          
+end;
+
+procedure GroupFooter2OnBeforePrint(Sender: TfrxComponent);
+begin
+  MemoSub1.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 0;                                   
+  MemoSub2.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 1;           
+  MemoSub3.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 2;     
+  MemoSub4.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 3;       
+  MemoSub5.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 4;       
+  MemoSub6.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 5;       
+  MemoSub7.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 6;    
+  MemoSub8.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 7;    
+  MemoSub9.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 8;      
+  MemoSub10.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 9;      
+  MemoSub11.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 10;          
+  MemoSub12.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 11;      
+end;
+
+procedure GroupFooter1OnBeforePrint(Sender: TfrxComponent);
+begin
+  MemoCat1.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 0;                                   
+  MemoCat2.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 1;           
+  MemoCat3.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 2;     
+  MemoCat4.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 3;       
+  MemoCat5.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 4;       
+  MemoCat6.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 5;       
+  MemoCat7.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 6;    
+  MemoCat8.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 7;    
+  MemoCat9.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 8;      
+  MemoCat10.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 9;      
+  MemoCat11.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 10;                      
+  MemoCat12.Visible := StrToInt(&lt;TotalMonth&gt;) &gt; 11;      
+end;
+
+Begin
+end.
+*/</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqxBq5Y2n/9yvTGKs7Jq1tsrcvuxX/gj/DXJiP9F59aPlpfLQJ8kPeYoA1Mj5vniNjZ9K0BQYWnHDlqs6AtBxL/2q9zsaE0g/sZc6cbFT71hI3QqsvxkX4k2Fi4uqqWp2SkTHTy6ptLVBojbA0XlkRuzFIpe6iMSues9KBMpwaeF8+DODAd/iPSQ6Y+EROjPBw">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_FNRptCashFlowActualV2 2015, 1, 2015, 6, '', '', '', '', ''">
+        <Column Name="Category" DataType="System.String"/>
+        <Column Name="CategoryName" DataType="System.String"/>
+        <Column Name="SubCategory" DataType="System.String"/>
+        <Column Name="SubCategoryName" DataType="System.String"/>
+        <Column Name="GroupCode" DataType="System.String"/>
+        <Column Name="GroupName" DataType="System.String"/>
+        <Column Name="FgValue" DataType="System.Int32"/>
+        <Column Name="GFCategoryName" DataType="System.String"/>
+        <Column Name="Period01" DataType="System.String"/>
+        <Column Name="Period02" DataType="System.String"/>
+        <Column Name="Period03" DataType="System.String"/>
+        <Column Name="Period04" DataType="System.String"/>
+        <Column Name="Period05" DataType="System.String"/>
+        <Column Name="Period06" DataType="System.String"/>
+        <Column Name="Period07" DataType="System.String"/>
+        <Column Name="Period08" DataType="System.String"/>
+        <Column Name="Period09" DataType="System.String"/>
+        <Column Name="Period10" DataType="System.String"/>
+        <Column Name="Period11" DataType="System.String"/>
+        <Column Name="Period12" DataType="System.String"/>
+        <Column Name="Total01" DataType="System.Double"/>
+        <Column Name="Total02" DataType="System.Double"/>
+        <Column Name="Total03" DataType="System.Double"/>
+        <Column Name="Total04" DataType="System.Double"/>
+        <Column Name="Total05" DataType="System.Double"/>
+        <Column Name="Total06" DataType="System.Double"/>
+        <Column Name="Total07" DataType="System.Double"/>
+        <Column Name="Total08" DataType="System.Double"/>
+        <Column Name="Total09" DataType="System.Double"/>
+        <Column Name="Total10" DataType="System.Double"/>
+        <Column Name="Total11" DataType="System.Double"/>
+        <Column Name="Total12" DataType="System.Double"/>
+        <Column Name="SubTotal01" DataType="System.Double"/>
+        <Column Name="SubTotal02" DataType="System.Double"/>
+        <Column Name="SubTotal03" DataType="System.Double"/>
+        <Column Name="SubTotal04" DataType="System.Double"/>
+        <Column Name="SubTotal05" DataType="System.Double"/>
+        <Column Name="SubTotal06" DataType="System.Double"/>
+        <Column Name="SubTotal07" DataType="System.Double"/>
+        <Column Name="SubTotal08" DataType="System.Double"/>
+        <Column Name="SubTotal09" DataType="System.Double"/>
+        <Column Name="SubTotal10" DataType="System.Double"/>
+        <Column Name="SubTotal11" DataType="System.Double"/>
+        <Column Name="SubTotal12" DataType="System.Double"/>
+        <Column Name="CatTotal01" DataType="System.Double"/>
+        <Column Name="CatTotal02" DataType="System.Double"/>
+        <Column Name="CatTotal03" DataType="System.Double"/>
+        <Column Name="CatTotal04" DataType="System.Double"/>
+        <Column Name="CatTotal05" DataType="System.Double"/>
+        <Column Name="CatTotal06" DataType="System.Double"/>
+        <Column Name="CatTotal07" DataType="System.Double"/>
+        <Column Name="CatTotal08" DataType="System.Double"/>
+        <Column Name="CatTotal09" DataType="System.Double"/>
+        <Column Name="CatTotal10" DataType="System.Double"/>
+        <Column Name="CatTotal11" DataType="System.Double"/>
+        <Column Name="CatTotal12" DataType="System.Double"/>
+        <Column Name="CompName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="DividerName" DataType="System.String"/>
+        <Column Name="Periode" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="UserId" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="Company" DataType="System.String"/>
+    <Parameter Name="Logo" DataType="System.String"/>
+    <Parameter Name="UserId" DataType="System.String"/>
+    <Parameter Name="FNP" DataType="System.String"/>
+    <Parameter Name="DivideBy" DataType="System.String"/>
+    <Parameter Name="StrDecimal" DataType="System.String"/>
+    <Parameter Name="Expand" DataType="System.String"/>
+    <Parameter Name="TotalMonth" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="420" LeftMargin="5.08" TopMargin="5.08" RightMargin="5.08" BottomMargin="5.08">
+    <PageHeaderBand Name="PageHeader1" Width="1549.2" Height="151.2">
+      <TextObject Name="Memo1" Top="29.61" Width="480" Height="24.99" Text="Cash Flow Statement" Padding="2, 1, 2, 1" VertAlign="Center" Font="Arial Narrow, 18pt, style=Bold"/>
+      <TextObject Name="SysMemo1" Left="1348.69" Top="90.1" Width="200.32" Height="19.2" Text="[Page#] of [TotalPages#]" Padding="2, 1, 2, 1" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Memo2" Left="246.2" Top="117.9" Width="105.6" Height="18.9" Text="[DS.Period01]" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo3" Left="355.6" Top="117.9" Width="105.6" Height="18.9" Text="[DS.Period02]" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <LineObject Name="Line6" Top="112.5" Width="1549"/>
+      <TextObject Name="Memo16" Left="575.2" Top="118.1" Width="105.6" Height="18.9" Text="[DS.Period04]" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo17" Left="683.9" Top="118.1" Width="115.2" Height="18.9" Text="[DS.Period05]" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo26" Left="2" Top="117.9" Width="233.3" Height="19.2" Text="Description" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo15" Left="794.06" Top="117.7" Width="105.6" Height="18.9" Text="[DS.Period06]" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo24" Left="901.81" Top="117.7" Width="105.6" Height="18.9" Text="[DS.Period07]" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo36" Left="465" Top="117.7" Width="105.6" Height="18.9" Text="[DS.Period03]" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo28" Left="1008.99" Top="117.8" Width="105.6" Height="18.9" Text="[DS.Period08]" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo29" Left="1116.74" Top="117.8" Width="105.6" Height="18.9" Text="[DS.Period09]" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo30" Left="1225.89" Top="117.8" Width="105.6" Height="18.9" Text="[DS.Period10]" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo33" Left="1333.64" Top="117.8" Width="105.6" Height="18.9" Text="[DS.Period11]" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Memo42" Left="1442.3" Top="117.8" Width="105.6" Height="18.9" Text="[DS.Period12]" Padding="2, 1, 2, 1" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Date" Left="1469.63" Top="0.7" Width="79.37" Height="18.9" Text="[Date]" Padding="2, 1, 2, 1" Format="Date" Format.Format="d" AutoWidth="true" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="frxDBDataset1DividerName" Top="62.7" Width="286.32" Height="19.2" Text="[DS.DividerName]" Padding="2, 1, 2, 1" Font="Arial, 9pt"/>
+      <TextObject Name="Text2" Width="453.6" Height="28.35" Text="[DS.CompanyName]" Font="Arial, 14pt, style=Bold"/>
+      <LineObject Name="Line4" Top="141.75" Width="1549"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="155.2" Width="1549.2" Height="22.08" CanGrow="true" CanShrink="true" Condition="[DS.Category]">
+      <TextObject Name="Memo18" Top="0.96" Width="351.88" Height="19.2" CanGrow="true" CanShrink="true" Text="[DS.CategoryName]" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+      <GroupHeaderBand Name="GroupHeader2" Top="181.28" Width="1549.2" Height="22.08" CanGrow="true" CanShrink="true" Condition="[DS.SubCategory]">
+        <TextObject Name="Memo22" Left="7.68" Top="0.96" Width="353.28" Height="19.2" GrowToBottom="true" Text="[DS.SubCategoryName]" Padding="2, 1, 2, 1" Font="Arial, 9pt"/>
+        <DataBand Name="MasterData2" Top="207.36" Width="1549.2" Height="22.08" CanGrow="true" CanShrink="true" DataSource="Table">
+          <TextObject Name="Memo10" Left="246.2" Top="0.96" Width="105.6" Height="19.2" CanGrow="true" CanShrink="true" Text="[DS.Total01]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 8pt"/>
+          <TextObject Name="Memo11" Left="355.6" Top="0.96" Width="105.6" Height="19.2" CanGrow="true" CanShrink="true" Text="[DS.Total02]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 8pt"/>
+          <TextObject Name="Memo19" Left="575.2" Top="0.96" Width="105.6" Height="19.2" CanGrow="true" CanShrink="true" Text="[DS.Total04]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 8pt"/>
+          <TextObject Name="Memo20" Left="683.9" Top="0.96" Width="105.6" Height="19.2" CanGrow="true" CanShrink="true" Text="[DS.Total05]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 8pt"/>
+          <TextObject Name="Memo5" Left="794.06" Top="0.96" Width="105.6" Height="19.2" CanGrow="true" CanShrink="true" Text="[DS.Total06]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 8pt"/>
+          <TextObject Name="Memo9" Left="901.81" Top="0.96" Width="105.6" Height="19.2" CanGrow="true" CanShrink="true" Text="[DS.Total07]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 8pt"/>
+          <TextObject Name="Memo35" Left="465" Top="0.96" Width="105.6" Height="19.2" CanGrow="true" CanShrink="true" Text="[DS.Total03]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 8pt"/>
+          <TextObject Name="Memo41" Left="11.52" Top="0.96" Width="233.3" Height="19.2" GrowToBottom="true" Text="[DS.GroupName]" Padding="2, 1, 2, 1" Font="Arial, 8pt"/>
+          <TextObject Name="Memo12" Left="1008.99" Top="0.96" Width="105.6" Height="19.2" CanGrow="true" CanShrink="true" Text="[DS.Total08]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 8pt"/>
+          <TextObject Name="Memo13" Left="1116.74" Top="0.96" Width="105.6" Height="19.2" CanGrow="true" CanShrink="true" Text="[DS.Total09]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 8pt"/>
+          <TextObject Name="Memo14" Left="1225.89" Top="0.96" Width="105.6" Height="19.2" CanGrow="true" CanShrink="true" Text="[DS.Total10]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 8pt"/>
+          <TextObject Name="Memo21" Left="1333.64" Top="0.96" Width="105.6" Height="19.2" CanGrow="true" CanShrink="true" Text="[DS.Total11]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 8pt"/>
+          <TextObject Name="Memo38" Left="1442.3" Top="0.96" Width="105.6" Height="19.2" CanGrow="true" CanShrink="true" Text="[DS.Total12]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 8pt"/>
+        </DataBand>
+        <GroupFooterBand Name="GroupFooter2" Top="233.44" Width="1549.2" Height="28.8" CanGrow="true" CanShrink="true">
+          <TextObject Name="MemoSub1" Left="246.2" Top="4.8" Width="105.6" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.SubTotal01]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 9pt"/>
+          <TextObject Name="MemoSub2" Left="355.6" Top="4.8" Width="105.6" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.SubTotal02]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 9pt"/>
+          <TextObject Name="Memo7" Left="0.16" Top="4.8" Width="241.87" Height="18.9" CanGrow="true" CanShrink="true" Text="TOTAL  - [DS.SubCategoryName]" Padding="2, 1, 2, 1" HorzAlign="Right" Font="Arial, 9pt"/>
+          <LineObject Name="Line13" Top="1.92" Width="1549"/>
+          <TextObject Name="MemoSub4" Left="575.2" Top="4.8" Width="105.6" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.SubTotal04]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 9pt"/>
+          <TextObject Name="MemoSub5" Left="683.9" Top="4.8" Width="105.6" Height="18.9" Text="[DS.SubTotal05]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 9pt"/>
+          <TextObject Name="MemoSub6" Left="794.06" Top="4.8" Width="105.6" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.SubTotal06]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 9pt"/>
+          <TextObject Name="MemoSub7" Left="901.81" Top="4.8" Width="105.6" Height="18.9" Text="[DS.SubTotal07]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 9pt"/>
+          <TextObject Name="MemoSub3" Left="465" Top="4.8" Width="105.6" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.SubTotal03]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 9pt"/>
+          <TextObject Name="MemoSub8" Left="1008.99" Top="4.8" Width="105.6" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.SubTotal08]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 9pt"/>
+          <TextObject Name="MemoSub9" Left="1116.74" Top="4.8" Width="105.6" Height="18.9" Text="[DS.SubTotal10]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 9pt"/>
+          <TextObject Name="MemoSub10" Left="1225.89" Top="4.8" Width="105.6" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.SubTotal10]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 9pt"/>
+          <TextObject Name="MemoSub11" Left="1333.64" Top="4.8" Width="105.6" Height="18.9" Text="[DS.SubTotal11]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 9pt"/>
+          <TextObject Name="MemoSub12" Left="1442.3" Top="4.8" Width="105.6" Height="18.9" Text="[DS.SubTotal12]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 9pt"/>
+        </GroupFooterBand>
+      </GroupHeaderBand>
+      <GroupFooterBand Name="GroupFooter1" Top="266.24" Width="1549.2" Height="24.76" CanGrow="true" CanShrink="true">
+        <TextObject Name="Memo43" Top="3.57" Width="242.82" Height="19.2" CanGrow="true" CanShrink="true" Text="[DS.GFCategoryName]" Padding="2, 1, 2, 1" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="MemoCat1" Left="246.2" Top="3.57" Width="105.6" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.CatTotal01]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="MemoCat2" Left="355.6" Top="3.57" Width="105.6" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.CatTotal02]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+        <LineObject Name="Line2" Top="0.69" Width="1549"/>
+        <TextObject Name="MemoCat4" Left="575.2" Top="3.57" Width="105.6" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.CatTotal04]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="MemoCat5" Left="685.13" Top="3.57" Width="105.6" Height="19.2" Text="[DS.CatTotal05]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="MemoCat6" Left="795.29" Top="3.57" Width="105.6" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.CatTotal07]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="MemoCat7" Left="903.04" Top="4.52" Width="105.6" Height="19.2" Text="[DS.CatTotal07]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="MemoCat3" Left="465" Top="3.57" Width="105.6" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.CatTotal03]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="MemoCat8" Left="1010.22" Top="3.64" Width="105.6" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.CatTotal08]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="MemoCat9" Left="1117.97" Top="3.64" Width="105.6" Height="19.2" Text="[DS.CatTotal10]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="MemoCat10" Left="1227.11" Top="3.64" Width="105.6" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.CatTotal10]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="MemoCat11" Left="1334.87" Top="3.64" Width="105.6" Height="19.2" Text="[DS.CatTotal11]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="MemoCat12" Left="1443.52" Top="3.69" Width="105.6" Height="19.2" Text="[DS.CatTotal12]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="295" Width="1549.2" Height="27.28">
+      <TextObject Name="Memo4" Left="2.12" Top="4.16" Width="182.4" Height="15.12" Text="Accounting" Padding="2, 1, 2, 1" Font="Arial, 8pt"/>
+      <LineObject Name="Line1" Top="1.4" Width="1549" Diagonal="true"/>
+      <TextObject Name="Text1" Left="1369.6" Top="4.16" Width="179.4" Height="18.9" Text="[DS.UserId]" HorzAlign="Right" Font="Arial, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

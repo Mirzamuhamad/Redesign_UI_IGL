@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="05/20/2011 08:38:19" ReportInfo.Modified="12/31/2014 14:58:57" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+   Public Class ReportScript
+    Dim No As Integer    
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)        
+    End Sub
+
+    Private Sub PageHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs) 
+    End Sub
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+
+    Private Sub Matrix1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+     
+    End Sub
+
+    Private Sub Cell1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+
+    Private Sub Matrix1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+
+    Private Sub Page1_StartPage(ByVal sender As object, ByVal e As EventArgs)
+        Cell1.Text = CType(Report.GetColumnValue(&quot;DS.GroupBy&quot;), String)
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haqzLnitSN5JuDBrINtpSTFv">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PYRptOverTimeRekap '20140101', '20140701', '', '', '', '', 0, 0, '', '', ''">
+        <Column Name="Column" Enabled="false" DataType="System.Int32" Calculated="true" Expression=""/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="GroupBy" DataType="System.String"/>
+        <Column Name="GroupCode" DataType="System.String"/>
+        <Column Name="GroupName" DataType="System.String"/>
+        <Column Name="EmpNumb" DataType="System.String"/>
+        <Column Name="EmpName" DataType="System.String"/>
+        <Column Name="TabName" DataType="System.String"/>
+        <Column Name="CompName" DataType="System.String"/>
+        <Column Name="StrPeriod" DataType="System.String"/>
+        <Column Name="TotalHour" DataType="System.Decimal"/>
+        <Column Name="TotalRp" DataType="System.Decimal"/>
+        <Column Name="TabGroupName" DataType="System.String"/>
+        <Column Name="Hours" DataType="System.Decimal"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="420.1" PaperHeight="296.9" Guides="0,623.7,500.85,283.5,745.27,745.42,888.3,1048.95,869.4,443.35,89.2,176.5,280.99,332.89,399.55,87.3,104.49,51.9,66.66,1048.57" StartPageEvent="Page1_StartPage">
+    <PageHeaderBand Name="PageHeader1" Top="20" Width="1512.38" Height="92.68" BeforePrintEvent="PageHeader1_BeforePrint" Guides="18.9,39.25,0,67.05,80.39,38.7,66.05,56.7,68.04">
+      <TextObject Name="Text5" Top="18.9" Width="623.7" Height="20.35" Text="[DS.CompAddr]" Font="Arial, 7pt"/>
+      <TextObject Name="Text3" Width="500.85" Height="18.9" Text="[DS.CompName]" Font="Arial, 11pt, style=Bold"/>
+      <TextObject Name="Text69" Top="67.05" Width="1501.27" Height="13.34" Text="[DS.StrPeriod]" Format="Date" Format.Format="d" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text1" Top="38.7" Width="1501.42" Height="27.35" Text="REKAPITULASI OVERTIME" HorzAlign="Center" Font="Arial, 16pt, style=Bold"/>
+      <TextObject Name="Text35" Left="1341.9" Top="56.7" Width="160.65" Height="11.34" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text2" Left="1323" Width="179.55" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="132.68" Width="1512.38" Height="52.07" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" AfterDataEvent="Data1_AfterData" Guides="0,52.07,35.82,17.91">
+      <MatrixObject Name="Matrix1" Width="462.25" Height="52.07" FixedRows="2" FixedColumns="5" AutoSize="false" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="[DS.TabGroupName]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.TabName]" Sort="None" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.GroupName]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.EmpNumb]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.EmpName]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.TotalHour]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.TotalRp]" Sort="None" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.Hours]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="89.2"/>
+        <TableColumn Name="Column2" Width="87.3"/>
+        <TableColumn Name="Column3" Width="104.49"/>
+        <TableColumn Name="Column4" Width="51.9"/>
+        <TableColumn Name="Column5" Width="85.56"/>
+        <TableColumn Name="Column6" Width="43.8"/>
+        <TableRow Name="Row1" Height="17.91" AutoSize="true">
+          <TableCell Name="Cell1" Border.Lines="All" Text="GroupName" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell2" Border.Lines="All" Text="NIK" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell7" Border.Lines="All" Text="EMPLOYEE NAME" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell13" Border.Lines="All" Text="TOTAL HOUR" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell21" Border.Lines="All" Text="TOTAL (Rp)" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell31" Border.Lines="All" Text="[TabGroupName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="17.91" AutoSize="true">
+          <TableCell Name="Cell3"/>
+          <TableCell Name="Cell4"/>
+          <TableCell Name="Cell8"/>
+          <TableCell Name="Cell14"/>
+          <TableCell Name="Cell22"/>
+          <TableCell Name="Cell32" Border.Lines="All" Text="[TabName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell5" Border.Lines="All" Text="[GroupName]" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell6" Border.Lines="All" Text="[EmpNumb]" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell9" Border.Lines="All" Text="[EmpName]" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell15" Border.Lines="All" Text="[TotalHour]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell23" Border.Lines="All" Text="[TotalRp]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+          <TableCell Name="Cell33" Border.Lines="All" Text="[Hours]" Format="Custom" Format.Format="###,##0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="204.75" Width="1512.38" Height="21.9" Guides="0">
+      <LineObject Name="Line1" Width="1502.17"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

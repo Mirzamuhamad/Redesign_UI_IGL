@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="05/27/2011 13:38:58" ReportInfo.Modified="01/20/2016 11:05:13" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    Dim Nomor As Integer = 0
+    Dim Count As Integer = 0
+    Dim TransNmbr As String = &quot;&quot;
+    
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Nomor = 0
+    End Sub
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      
+      Count = Count + 1
+      
+      'If CType(Report.GetColumnValue(&quot;DS.InvoiceNo&quot;), String) = TransNmbr Then
+      '  Text5.Visible = False
+      '  Text1.Visible = False
+      'Else 
+        Text5.Visible = True
+        Nomor = Nomor + 1
+        Text1.Text = Nomor.ToString
+        Text1.Visible = True
+      'End If
+      
+      Text3.Visible = Text5.Visible
+      Text7.Visible = Text5.Visible
+    End Sub
+
+    Private Sub GroupHeader2_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Count = 0
+      TransNmbr = &quot;&quot;
+    End Sub
+
+    'Private Sub GroupFooter2_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+     ' If Count = 1 Then
+        'GroupFooter2.Height = 0
+      '  Text21.Visible = False
+       ' Text22.Visible = False
+       ' Text34.Visible = False
+       ' Text35.Visible = False
+       ' Text38.Visible = False
+       ' Text10.Visible = False
+      'Else 
+        'GroupFooter2.Height = 0.5
+       ' Text21.Visible = True
+       ' Text22.Visible = True
+       ' Text34.Visible = True
+       ' Text35.Visible = True
+       ' Text38.Visible = True
+       '  Text10.Visible = True
+      'End If
+   ' End Sub
+
+    'Private Sub PageHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+     ' If CType(Report.GetColumnValue(&quot;DS.FgForce&quot;), Int32) = 0 Then
+      '  GroupHeader1.StartNewPage = False
+      'Else : GroupHeader1.StartNewPage = True
+      'End If
+    'End Sub
+
+    Private Sub Data1_AfterPrint(ByVal sender As object, ByVal e As EventArgs)
+      TransNmbr = CType(Report.GetColumnValue(&quot;DS.InvoiceNo&quot;), String)
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VZBd+MhtHnjm5PdZx4zPIHAn/FGcjh5MLQCJQwLtR6Q4">
+      <TableDataSource Name="Table1" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_FNRptPPnMasukan '20130101','20131231','','','','',0,0,'','','dataprima'  ">
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="PPn" DataType="System.Decimal"/>
+        <Column Name="Period" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompanyNPWP" DataType="System.String"/>
+        <Column Name="InvoiceNo" DataType="System.String"/>
+        <Column Name="PPNNo" DataType="System.String"/>
+        <Column Name="PPnDate" DataType="System.DateTime"/>
+        <Column Name="SuppInvoice" DataType="System.String"/>
+        <Column Name="Supplier" DataType="System.String"/>
+        <Column Name="SuppName" DataType="System.String"/>
+        <Column Name="NPWP" DataType="System.String"/>
+        <Column Name="DPP" DataType="System.Decimal"/>
+        <Column Name="Amount" DataType="System.Decimal"/>
+        <Column Name="DPPHome" DataType="System.Decimal"/>
+        <Column Name="PPNHome" DataType="System.Decimal"/>
+        <Column Name="AmountHome" DataType="System.Decimal"/>
+        <Column Name="InvoiceDate" DataType="System.DateTime"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="DPPPerNo" Expression="[DS.DPP]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="DPPPerCurr" Expression="[DS.DPP]" Evaluator="Data1" PrintOn="GroupFooter2" ResetOnReprint="true"/>
+    <Total Name="PPnPerNo" Expression="[DS.PPn]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="PPnPerCurr" Expression="[DS.PPn]" Evaluator="Data1" PrintOn="GroupFooter2" ResetOnReprint="true"/>
+    <Total Name="AmountPerNo" Expression="[DS.Amount]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="AmountPerCurr" Expression="[DS.Amount]" Evaluator="Data1" PrintOn="GroupFooter2" ResetOnReprint="true"/>
+    <Total Name="AmountHomePerNo" Expression="[DS.AmountHome]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="DPPHomePerNo" Expression="[DS.DPPHome]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="DDPHomePerCurrency" Expression="[DS.DPPHome]" Evaluator="Data1" PrintOn="GroupFooter2" ResetOnReprint="true"/>
+    <Total Name="PPNHomePerNo" Expression="[DS.PPNHome]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="PPNHomePerCurr" Expression="[DS.PPNHome]" Evaluator="Data1" PrintOn="GroupFooter2" ResetOnReprint="true"/>
+    <Total Name="AmountHomePerCurr" Expression="[DS.AmountHome]" Evaluator="Data1" PrintOn="GroupFooter2" ResetOnReprint="true"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="420" PaperHeight="210" LeftMargin="5" RightMargin="5" FirstPageSource="14" OtherPagesSource="14" StartPageEvent="Page1_StartPage">
+    <PageHeaderBand Name="PageHeader1" Width="1549.8" Height="127.18" BeforePrintEvent="PageHeader1_BeforePrint">
+      <TextObject Name="Text2" Left="3" Top="97.15" Width="32.13" Height="24.57" Text="No" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text4" Left="226.45" Top="97.61" Width="112.27" Height="24.57" Text="PPN No." HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text6" Left="113.95" Top="97.61" Width="102.82" Height="24.57" Text="Invoice No." HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text8" Left="346.8" Top="97.61" Width="64.26" Height="24.57" Text="PPN Date" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text12" Left="687.3" Top="106.61" Width="101.3" Height="15.12" Text="NPWP No." Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text18" Left="797.2" Top="106.61" Width="27.59" Height="15.12" Text="Curr" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text20" Left="835.9" Top="106.61" Width="107.73" Height="15.12" Text="DPP" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text24" Left="952.35" Top="106.61" Width="107.73" Height="15.12" Text="PPN" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text26" Left="1187.05" Top="107.61" Width="107.73" Height="15.12" Text="DPP " HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text29" Left="1429.85" Top="107.61" Width="107.73" Height="15.12" Text="Amount" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text30" Left="1308.81" Top="107.61" Width="107.73" Height="15.12" Text="PPN" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line1" Top="88.5" Width="1545.26"/>
+      <LineObject Name="Line2" Top="126.85" Width="1545.26"/>
+      <TextObject Name="Text13" Left="3.45" Top="25.35" Width="1530.9" Height="18.9" Text="PPN LISTING MASUKAN" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text14" Left="3.45" Top="51.8" Width="292.95" Height="18.9" Text="[DS.Period]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text31" Left="3.45" Width="292.95" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text40" Left="1320.89" Top="5.45" Width="217.35" Height="13.23" Text="Date/Time : [Date]" Format="Custom" Format.Format="dd/MM/yyyy hh:mm:ss" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text42" Left="1320.89" Top="67.6" Width="217.35" Height="13.23" Text="Page : [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text43" Left="418.75" Top="97.61" Width="117.18" Height="24.57" Text="Supplier Invoice" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text45" Left="555.55" Top="95.71" Width="122.85" Height="24.57" Text="Supplier" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line5" Left="680.4" Top="105.95" Width="864.86"/>
+      <LineObject Name="Line6" Left="681.21" Top="88.5" Height="37.8"/>
+      <TextObject Name="Text48" Left="688.4" Top="90.05" Width="493.29" Height="15.12" Text="ORIGINAL CURR" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line7" Left="1182.5" Top="89.05" Height="37.8"/>
+      <TextObject Name="Text49" Left="1186.7" Top="90.05" Width="351.54" Height="15.12" Text="CURR (IDR)" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text50" Left="1069.1" Top="106.95" Width="107.73" Height="15.12" Text="Amount" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line15" Left="791.64" Top="106.95" Height="18.9"/>
+      <LineObject Name="Line17" Left="830.84" Top="106.95" Height="18.9"/>
+      <LineObject Name="Line18" Left="948.24" Top="106.95" Height="18.9"/>
+      <LineObject Name="Line19" Left="1065.47" Top="106.95" Height="18.9"/>
+      <LineObject Name="Line20" Left="1301.85" Top="106.95" Height="18.9"/>
+      <LineObject Name="Line21" Left="1422.4" Top="107.95" Height="18.9"/>
+      <LineObject Name="Line31" Left="1544.57" Top="88.05" Height="37.8"/>
+      <LineObject Name="Line34" Top="88.05" Height="37.8"/>
+      <LineObject Name="Line36" Left="413.85" Top="88.05" Height="37.8"/>
+      <LineObject Name="Line37" Left="549.95" Top="88.05" Height="37.8"/>
+      <LineObject Name="Line38" Left="341.35" Top="88.05" Height="37.8"/>
+      <LineObject Name="Line39" Left="223.55" Top="88.05" Height="37.8"/>
+      <LineObject Name="Line40" Left="40.8" Top="88.05" Height="37.8"/>
+      <LineObject Name="Line53" Left="110.95" Top="88.05" Height="37.8"/>
+      <TextObject Name="Text65" Left="42.35" Top="97.15" Width="65.02" Height="24.57" Text="Invoice Date" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader2" Top="131.18" Width="1549.8" CanGrow="true" Condition="[DS.Currency]">
+      <DataBand Name="Data1" Top="135.18" Width="1549.8" Height="18.9" CanGrow="true" CanShrink="true" BeforePrintEvent="Data1_BeforePrint" AfterPrintEvent="Data1_AfterPrint" CanBreak="true" DataSource="Table1">
+        <TextObject Name="Text3" Left="226.45" Width="112.27" Height="15.12" CanGrow="true" GrowToBottom="true" Text="[DS.PPNNo]" Format="Custom" Format.Format="dd-MM-yy" VertAlign="Center" Font="Arial, 6.5pt"/>
+        <TextObject Name="Text5" Left="113.95" Width="102.82" Height="15.12" CanGrow="true" GrowToBottom="true" Text="[DS.InvoiceNo]" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text7" Left="346.8" Width="64.26" Height="15.12" CanGrow="true" GrowToBottom="true" Text="[DS.PPnDate]" Format="Custom" Format.Format="dd MMM yyyy" VertAlign="Center" Font="Arial, 6.5pt"/>
+        <TextObject Name="Text11" Left="687.3" Width="101.3" Height="15.12" CanGrow="true" GrowToBottom="true" Text="[DS.NPWP]" VertAlign="Center" Font="Arial, 6.5pt"/>
+        <TextObject Name="Text17" Left="797.2" Width="27.59" Height="15.12" CanGrow="true" GrowToBottom="true" Text="[DS.Currency]" Format="Custom" Format.Format="#,##0" VertAlign="Center" WordWrap="false" Font="Arial, 6.5pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text19" Left="952.35" Width="107.73" Height="15.12" CanGrow="true" GrowToBottom="true" Text="[DS.PPn]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 6.5pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text23" Left="1069.1" Width="107.73" Height="15.12" CanGrow="true" GrowToBottom="true" Text="[DS.Amount]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 6.5pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text25" Left="1187.05" Width="107.73" Height="15.12" CanGrow="true" GrowToBottom="true" Text="[DS.DPPHome]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 6.5pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text27" Left="1308.81" Width="107.73" Height="15.12" CanGrow="true" GrowToBottom="true" Text="[DS.PPNHome]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 6.5pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text28" Left="1429.85" Width="107.73" Height="15.12" CanGrow="true" GrowToBottom="true" Text="[DS.AmountHome]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 6.5pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text1" Left="3" Width="39.69" Height="15.12" CanGrow="true" GrowToBottom="true" Text="No." VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text44" Left="418.75" Width="117.18" Height="15.12" CanGrow="true" GrowToBottom="true" Text="[DS.SuppInvoice]" Format="Custom" Format.Format="dd MM yyyy" VertAlign="Center" Font="Arial, 6.5pt"/>
+        <TextObject Name="Text46" Left="555.55" Width="122.85" Height="15.12" CanGrow="true" GrowToBottom="true" Text="[DS.SuppName]" VertAlign="Center" Font="Arial, 6.5pt"/>
+        <TextObject Name="Text51" Left="835.9" Width="107.73" Height="15.12" CanGrow="true" GrowToBottom="true" Text="[DS.DPP]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 6.5pt" Trimming="EllipsisCharacter"/>
+        <LineObject Name="Line10" Left="1182.5" Top="-1" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line11" Left="1065.2" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line12" Left="948.25" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line13" Left="830.85" Top="-1" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line14" Left="791.6" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line16" Left="681.21" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line22" Left="1301.85" Top="-1" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line23" Left="1422.4" Top="-1" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line32" Left="1544.57" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line35" Top="-1" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line41" Left="549.95" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line42" Left="414.85" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line43" Left="341.35" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line44" Left="223.55" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line45" Left="40.8" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line54" Left="110.95" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <TextObject Name="Text66" Left="42.35" Width="65.02" Height="15.12" CanGrow="true" GrowToBottom="true" Text="[DS.InvoiceDate]" Format="Custom" Format.Format="dd MMM yyyy" VertAlign="Center" Font="Arial, 7pt"/>
+        <Sort>
+          <Sort Expression="[DS.InvoiceDate]"/>
+        </Sort>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter2" Top="158.08" Width="1549.8" Height="18.9" CanGrow="true" CanShrink="true" CanBreak="true">
+        <TextObject Name="Text52" Left="687.3" Top="1" Width="101.3" Height="15.12" Text="Total" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text53" Left="797.2" Width="27.59" Height="15.12" Text="[DS.Currency]" Format="Custom" Format.Format="#,##0" VertAlign="Center" WordWrap="false" Font="Arial, 6.5pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text54" Left="952.35" Width="107.73" Height="15.12" Text="[PPnPerCurr]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial, 6.5pt, style=Bold" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text55" Left="1069.1" Width="107.73" Height="15.12" Text="[AmountPerCurr]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial, 6.5pt, style=Bold" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text56" Left="835.9" Width="107.73" Height="15.12" Text="[DPPPerCurr]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial, 6.5pt, style=Bold" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text58" Left="1308.81" Width="107.73" Height="15.12" CanGrow="true" GrowToBottom="true" Text="[PPNHomePerCurr]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 6.5pt, style=Bold" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text59" Left="1429.85" Width="107.73" Height="15.12" CanGrow="true" GrowToBottom="true" Text="[AmountHomePerCurr]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 6.5pt, style=Bold" Trimming="EllipsisCharacter"/>
+        <LineObject Name="Line24" Left="791.64" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line25" Left="830.85" Top="-1" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line26" Left="948.25" Top="-1" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line27" Left="1065.35" Top="-1" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line28" Left="1182.38" Top="-2" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line29" Left="1302.03" Top="-1" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line30" Left="1422.28" Top="-1" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line33" Left="1544.57" Top="-1" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <TextObject Name="Text64" Left="1187.05" Width="107.73" Height="15.12" Text="[DDPHomePerCurrency]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial, 6.5pt, style=Bold" Trimming="EllipsisCharacter"/>
+        <LineObject Name="Line46" Top="-2" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+        <LineObject Name="Line8" Width="1545.26"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="180.98" Width="1549.8" Height="20.45" CanGrow="true">
+      <TextObject Name="Text60" Left="496.3" Top="1.45" Width="59.35" Height="15.12" Text="Total" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text61" Left="1187.05" Top="2" Width="107.73" Height="15.12" CanGrow="true" GrowToBottom="true" Text="[DPPHomePerNo]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial, 6.5pt, style=Bold" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text62" Left="1308.81" Top="2" Width="107.73" Height="15.12" CanGrow="true" GrowToBottom="true" Text="[PPNHomePerNo]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 6.5pt, style=Bold" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text63" Left="1429.85" Top="2" Width="107.73" Height="15.12" CanGrow="true" GrowToBottom="true" Text="[AmountHomePerNo]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Right" VertAlign="Center" Font="Arial, 6.5pt, style=Bold" Trimming="EllipsisCharacter"/>
+      <LineObject Name="Line48" Top="-2" Height="18.9" CanGrow="true" GrowToBottom="true"/>
+      <LineObject Name="Line49" Left="1544.55" Height="17.01" CanGrow="true" GrowToBottom="true"/>
+      <LineObject Name="Line50" Left="1301.88" Height="17.01" CanGrow="true" GrowToBottom="true"/>
+      <LineObject Name="Line51" Left="1422.4" Height="17.01" CanGrow="true" GrowToBottom="true"/>
+      <LineObject Name="Line52" Left="1182.38" Height="17.01" CanGrow="true" GrowToBottom="true"/>
+      <LineObject Name="Line9" Width="1545.26"/>
+      <LineObject Name="Line47" Top="18.9" Width="1545.26"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="205.43" Width="1549.8" Height="18.9"/>
+  </ReportPage>
+</Report>

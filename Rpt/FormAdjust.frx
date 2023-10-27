@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="04/13/2011 08:29:02" ReportInfo.Modified="05/24/2018 14:31:15" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+Namespace FastReport
+  
+  Public Class ReportScript
+    Dim No As Integer
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      No = No +1
+      txtNo.Text = No
+    End Sub
+
+    Private Sub ReportTitle1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+            
+    End Sub
+
+    Private Sub GroupHeader1_AfterPrint(ByVal sender As object, ByVal e As EventArgs)
+       No = 0 
+      if  CType(Report.GetColumnValue(&quot;DS.GroupByName&quot;), String) = &quot;&quot; then 
+        GroupFooter1.Visible = False
+      else 
+        GroupFooter1.Visible = True
+      end if 
+    End Sub
+
+    Private Sub GroupFooter1_AfterPrint(ByVal sender As object, ByVal e As EventArgs)
+     
+    End Sub
+  End Class
+ 
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8fp7Fs92NYSYurRXzDiDefjx0V0k7MT6DD2MCCaerGtPcZutdO8AaKqrMJ/d+rjTptcL4fm9gDFLl0E/yHYCVQiuJWc2OaIxedrflWfGQ5mLCBCqevpH3DGbjfFPE5Ap+mh3Q5grMTq3Rr4/3iHP6VTjVNW/xCv6cteNSyUc1NLm">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_STFormBegin '''AS/SAD/18/05/0003'''">
+        <Column Name="Status" DataType="System.String"/>
+        <Column Name="FgStatus" DataType="System.String"/>
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="Operator" DataType="System.String"/>
+        <Column Name="RemarkHd" DataType="System.String"/>
+        <Column Name="RemarkDt" DataType="System.String"/>
+        <Column Name="Warehouse" DataType="System.String"/>
+        <Column Name="WrhsFgSubled" DataType="System.String"/>
+        <Column Name="WrhsSubLed" DataType="System.String"/>
+        <Column Name="SubledCode" DataType="System.String"/>
+        <Column Name="SubledName" DataType="System.String"/>
+        <Column Name="ProductCode" DataType="System.String"/>
+        <Column Name="ProductName" DataType="System.String"/>
+        <Column Name="Specification" DataType="System.String"/>
+        <Column Name="LocationCode" DataType="System.String"/>
+        <Column Name="LocationName" DataType="System.String"/>
+        <Column Name="Unit" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="OpnameNo" DataType="System.String"/>
+        <Column Name="IncomeType" DataType="System.String"/>
+        <Column Name="IncomeTypeName" DataType="System.String"/>
+        <Column Name="ExpenseType" DataType="System.String"/>
+        <Column Name="ExpenseTypeName" DataType="System.String"/>
+        <Column Name="AdjustType" DataType="System.String"/>
+        <Column Name="Qty" DataType="System.Decimal"/>
+        <Column Name="FgOperator" DataType="System.String"/>
+        <Column Name="PriceCost" DataType="System.Decimal"/>
+        <Column Name="TotalCost" DataType="System.Decimal"/>
+        <Column Name="GroupBy" DataType="System.String"/>
+        <Column Name="GroupByName" DataType="System.String"/>
+        <Column Name="CompanyName1" DataType="System.String"/>
+        <Column Name="Address1" DataType="System.String"/>
+        <Column Name="Address2" DataType="System.String"/>
+        <Column Name="City" DataType="System.String"/>
+        <Column Name="UserSign" DataType="System.String"/>
+        <Column Name="Country" DataType="System.String"/>
+        <Column Name="zipcode" DataType="System.String"/>
+        <Column Name="phone" DataType="System.String"/>
+        <Column Name="fax" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="TotalQty" Expression="[DS.Qty]" Evaluator="Data1" PrintOn="GroupFooter1" ResetOnReprint="true"/>
+    <Total Name="TotalTotal" Expression="[DS.TotalCost]" Evaluator="Data1" PrintOn="GroupFooter1" ResetOnReprint="true"/>
+  </Dictionary>
+  <ReportPage Name="Page1" FirstPageSource="1" OtherPagesSource="1">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" BeforePrintEvent="ReportTitle1_BeforePrint"/>
+    <PageHeaderBand Name="PageHeader1" Top="4" Width="718.2" Height="167.04">
+      <TextObject Name="Text84" Left="28.35" Top="125.8" Width="425.25" Height="18.9" Text="Product" HorzAlign="Center" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text20" Left="28.35" Top="145.15" Width="85.05" Height="18.9" Text="Code" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text21" Left="174.1" Top="145.15" Width="283.5" Height="18.9" Text="Name / Specification" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <LineObject Name="Line9" Left="0.38" Top="166.05" Width="718.2" Diagonal="true"/>
+      <LineObject Name="Line8" Top="125.8" Width="718.2" Diagonal="true"/>
+      <TextObject Name="Text82" Top="135.25" Width="28.35" Height="18.9" Text="No" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text85" Left="463.05" Top="135.63" Width="66.15" Height="18.9" Text="Qty" HorzAlign="Right" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text86" Left="576.45" Top="134.25" Width="56.7" Height="18.9" Text="Price" HorzAlign="Center" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text87" Left="633.15" Top="133.25" Width="85.05" Height="18.9" Text="Amount" HorzAlign="Center" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text88" Left="539.65" Top="135.25" Width="30.24" Height="18.9" Text="Unit" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <LineObject Name="Line2" Left="28.35" Top="144.7" Width="425.25" Diagonal="true"/>
+      <TextObject Name="Text79" Top="105.6" Width="85.05" Height="18.9" Text="Remark" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text80" Left="86.4" Top="105.6" Width="9.45" Height="18.9" Text=":" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text81" Left="96" Top="105.6" Width="335.85" Height="18.9" Text="[DS.RemarkHd]" Font="Arial Narrow, 9.75pt"/>
+      <TextObject Name="Text93" Left="451.2" Top="105.6" Width="113.4" Height="18.9" Text="Opname No" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text94" Left="566.4" Top="105.6" Width="9.45" Height="18.9" Text=":" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text95" Left="576" Top="105.6" Width="132.3" Height="18.9" Text="[DS.OpnameNo]" Font="Arial Narrow, 9.75pt"/>
+      <TextObject Name="Text68" Top="86.4" Width="85.05" Height="18.9" Text="Date" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text70" Left="86.4" Top="86.4" Width="9.45" Height="18.9" Text=":" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text72" Left="96" Top="86.4" Width="226.8" Height="18.9" Text="[DS.TransDate]" Format="Custom" Format.Format="dd-MMM-yyyy" Font="Arial Narrow, 9.75pt"/>
+      <TextObject Name="Text74" Left="451.2" Top="86.4" Width="113.4" Height="18.9" Text="Operator" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text76" Left="566.4" Top="86.4" Width="9.45" Height="18.9" Text=":" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text78" Left="576" Top="86.4" Width="132.3" Height="18.9" Text="[DS.Operator]" Font="Arial Narrow, 9.75pt"/>
+      <TextObject Name="Text67" Top="67.2" Width="85.05" Height="18.9" Text="No" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text69" Left="86.4" Top="67.2" Width="9.45" Height="18.9" Text=":" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text71" Left="96" Top="67.2" Width="226.8" Height="18.9" Text="[DS.TransNmbr]" Font="Arial Narrow, 9.75pt"/>
+      <TextObject Name="Text73" Left="451.2" Top="67.2" Width="113.4" Height="18.9" Text="Warehouse Source" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text75" Left="566.4" Top="67.2" Width="9.45" Height="18.9" Text=":" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text77" Left="576" Top="67.2" Width="132.3" Height="18.9" Text="[DS.Warehouse]" Font="Arial Narrow, 9.75pt"/>
+      <TextObject Name="txtJudul" Top="38.4" Width="708.75" Height="18.9" Text="STOCK ADJUSTMENT" HorzAlign="Center" Font="Arial Narrow, 14.25pt, style=Bold"/>
+      <TextObject Name="Text47" Top="9.6" Width="453.6" Height="18.9" Text="[DS.CompanyName]" AutoWidth="true" Font="Arial Narrow, 12pt, style=Bold"/>
+      <LineObject Name="Line25" Height="73.71"/>
+      <LineObject Name="Line28" Width="718.2" Diagonal="true"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="175.04" Width="718.2" AfterPrintEvent="GroupHeader1_AfterPrint" StartNewPage="true" Condition="[DS.TransNmbr]" ResetPageNumber="true">
+      <DataBand Name="Data1" Top="179.04" Width="718.2" Height="18.9" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" DataSource="Table">
+        <LineObject Name="Line24" Left="718.2" Height="13.23"/>
+        <TextObject Name="Text27" Left="28.35" Width="132.3" Height="18.9" Text="[DS.ProductCode]" Font="Arial Narrow, 9.75pt"/>
+        <TextObject Name="Text28" Left="169.1" Width="283.5" Height="18.9" CanGrow="true" GrowToBottom="true" Text="[DS.ProductName] / [DS.Specification]" Font="Arial Narrow, 9.75pt"/>
+        <TextObject Name="Text29" Left="457.6" Width="75.6" Height="18.9" Text="[DS.Qty]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" Font="Arial Narrow, 9.75pt"/>
+        <LineObject Name="Line18" Left="164.65" Height="13.23"/>
+        <LineObject Name="Line20" Left="455.49" Height="13.23"/>
+        <TextObject Name="txtNo" Width="28.35" Height="18.9" Text="No" Font="Arial Narrow, 9.75pt"/>
+        <TextObject Name="Text90" Left="537.65" Width="44.44" Height="18.9" Text="[DS.Unit]" Font="Arial Narrow, 9.75pt"/>
+        <TextObject Name="Text91" Left="579" Width="54.15" Height="18.9" Text="[DS.PriceCost]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" Font="Arial Narrow, 9.75pt"/>
+        <TextObject Name="Text92" Left="633.15" Width="85.05" Height="18.9" Text="[DS.TotalCost]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" Font="Arial Narrow, 9.75pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="201.94" Width="718.2" Height="18.9" AfterPrintEvent="GroupFooter1_AfterPrint">
+        <TextObject Name="Text96" Left="154.98" Width="291.06" Height="18.9" Text="[DS.GroupByName]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" Font="Arial Narrow, 9.75pt, style=Bold"/>
+        <TextObject Name="Text2" Left="459.27" Width="73.71" Height="18.9" Text="[TotalQty]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" Font="Arial Narrow, 9.75pt, style=Bold"/>
+        <TextObject Name="Text3" Left="634.26" Width="83.16" Height="18.9" Text="[TotalTotal]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" Font="Arial Narrow, 9.75pt, style=Bold"/>
+        <LineObject Name="Line57" Width="718.2" Border.Style="Dash" Diagonal="true"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="224.84" Width="718.2"/>
+    <PageFooterBand Name="PageFooter1" Top="228.84" Width="718.2" Height="96.5" Guides="0">
+      <LineObject Name="Line36" Left="0.38" Width="718.2" Diagonal="true"/>
+      <TextObject Name="Text30" Left="94.5" Top="2" Width="85.05" Height="18.9" Text="Approved By, " HorzAlign="Center" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text31" Left="283.5" Width="85.05" Height="18.9" Text="Checked By, " HorzAlign="Center" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <LineObject Name="Line41" Left="164.65" Height="-805.7"/>
+      <LineObject Name="Line46" Left="718.2" Height="-950.75"/>
+      <TextObject Name="Text51" Left="264.6" Top="77.6" Width="122.85" Height="18.9" Text="( ................................ )" Font="Arial Narrow, 9.75pt"/>
+      <TextObject Name="Text52" Left="75.6" Top="77.6" Width="122.85" Height="18.9" Text="( ................................ )" Font="Arial Narrow, 9.75pt"/>
+      <TextObject Name="Text58" Left="472.5" Width="85.05" Height="18.9" Text="Prepared By, " HorzAlign="Center" Font="Arial Narrow, 9.75pt, style=Bold"/>
+      <TextObject Name="Text59" Left="453.6" Top="77.6" Width="122.85" Height="18.9" Text="( ................................ )" Font="Arial Narrow, 9.75pt"/>
+      <LineObject Name="Line48" Height="-898.75"/>
+      <LineObject Name="Line49" Left="455.6" Height="-824.6"/>
+      <LineObject Name="Line52" Left="536.2" Height="-824.6"/>
+      <LineObject Name="Line53" Left="576.45" Height="-824.6"/>
+      <LineObject Name="Line54" Left="633.15" Height="-824.6"/>
+      <LineObject Name="Line56" Left="28.35" Height="-824.6"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

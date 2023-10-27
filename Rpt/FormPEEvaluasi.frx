@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="05/05/2014 15:09:15" ReportInfo.Modified="05/05/2014 17:41:42" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+ 
+
+    Private Sub MasterData5_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      if CType(Report.GetColumnValue(&quot;DS1.FgSetuju&quot;), String) = &quot;Y&quot; then 
+        MTrue.Text = &quot;X&quot;
+        MFalse.Text = &quot;&quot;
+      end if 
+      if CType(Report.GetColumnValue(&quot;DS1.FgSetuju&quot;), String) = &quot;N&quot; then 
+        MTrue.Text = &quot;&quot;
+        MFalse.Text = &quot;X&quot;
+      end if 
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haoBla1W/8ay/vf/6FfmQF9B">
+      <TableDataSource Name="Table" Alias="DS1" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PEFormEvaluasi '', 0, 'admin'">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="Status" DataType="System.String"/>
+        <Column Name="Department" DataType="System.String"/>
+        <Column Name="CompetenceType" DataType="System.String"/>
+        <Column Name="EmpNumb" DataType="System.String"/>
+        <Column Name="EmpAppr1" DataType="System.String"/>
+        <Column Name="EmpAppr2" DataType="System.String"/>
+        <Column Name="ReviewPeriod" DataType="System.String"/>
+        <Column Name="ReviewReason" DataType="System.String"/>
+        <Column Name="Kekuatan" DataType="System.String"/>
+        <Column Name="Improvement" DataType="System.String"/>
+        <Column Name="Pencapaian" DataType="System.String"/>
+        <Column Name="KPINilai" DataType="System.Decimal"/>
+        <Column Name="UmumNilai" DataType="System.Decimal"/>
+        <Column Name="FungsionalNilai" DataType="System.Decimal"/>
+        <Column Name="ProjectNilai" DataType="System.Decimal"/>
+        <Column Name="TotalNilai" DataType="System.Decimal"/>
+        <Column Name="KPIBobot" DataType="System.Decimal"/>
+        <Column Name="UmumBobot" DataType="System.Decimal"/>
+        <Column Name="FungsionalBobot" DataType="System.Decimal"/>
+        <Column Name="ProjectBobot" DataType="System.Decimal"/>
+        <Column Name="TotalBobot" DataType="System.Decimal"/>
+        <Column Name="KPINilaiAkhir" DataType="System.Decimal"/>
+        <Column Name="UmumNilaiAkhir" DataType="System.Decimal"/>
+        <Column Name="FungsionalNilaiAkhir" DataType="System.Decimal"/>
+        <Column Name="ProjectNilaiAkhir" DataType="System.Decimal"/>
+        <Column Name="TotalNilaiAkhir" DataType="System.Decimal"/>
+        <Column Name="FgSetuju" DataType="System.String"/>
+        <Column Name="KomentarEmpAppr1" DataType="System.String"/>
+        <Column Name="KomentarEmp" DataType="System.String"/>
+        <Column Name="KomentarEmpAppr2" DataType="System.String"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="UserPrep" DataType="System.String"/>
+        <Column Name="DatePrep" DataType="System.DateTime"/>
+        <Column Name="UserAppr" DataType="System.String"/>
+        <Column Name="DateAppr" DataType="System.DateTime"/>
+        <Column Name="Emp_Name" DataType="System.String"/>
+        <Column Name="Job_Title" DataType="System.String"/>
+        <Column Name="Job_Level" DataType="System.String"/>
+        <Column Name="Department_Name" DataType="System.String"/>
+        <Column Name="EmpAppr1_Name" DataType="System.String"/>
+        <Column Name="Job_Title_EmpAppr1" DataType="System.String"/>
+        <Column Name="Job_Level_EmpAppr1" DataType="System.String"/>
+        <Column Name="Department_Name_EmpAppr1" DataType="System.String"/>
+        <Column Name="EmpAppr2_Name" DataType="System.String"/>
+        <Column Name="Job_Title_EmpAppr2" DataType="System.String"/>
+        <Column Name="Job_Level_EmpAppr2" DataType="System.String"/>
+        <Column Name="Department_Name_EmpAppr2" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="Table1" Alias="DS2" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PEFormEvaluasi '', 1, 'admin'">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="ItemNo" DataType="System.Int32"/>
+        <Column Name="Indikator" DataType="System.String"/>
+        <Column Name="Bobot" DataType="System.Decimal"/>
+        <Column Name="Realisasi" DataType="System.Decimal"/>
+        <Column Name="Target" DataType="System.Decimal"/>
+        <Column Name="Type" DataType="System.String"/>
+        <Column Name="Skor" DataType="System.Decimal"/>
+      </TableDataSource>
+      <TableDataSource Name="Table2" Alias="DS3" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PEFormEvaluasi '', 2, 'admin'">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="ItemNo" DataType="System.Int32"/>
+        <Column Name="CompetenceCode" DataType="System.String"/>
+        <Column Name="CompDesc" DataType="System.String"/>
+        <Column Name="DetailDesc" DataType="System.String"/>
+        <Column Name="Nilai" DataType="System.Decimal"/>
+        <Column Name="Type" DataType="System.String"/>
+        <Column Name="StrGroup" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="Table3" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PEFormEvaluasi '', 3, 'admin'">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="ItemNo" DataType="System.Int32"/>
+        <Column Name="ProjectName" DataType="System.String"/>
+        <Column Name="Pencapaian" DataType="System.String"/>
+        <Column Name="Nilai" DataType="System.Decimal"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="TotalSkor_KPI" Expression="[DS2.Skor]" Evaluator="MasterData1" PrintOn="GroupFooter1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" LeftMargin="15" TopMargin="15" RightMargin="15" BottomMargin="15">
+    <PageHeaderBand Name="PageHeader1" Width="680.4" Height="94.48">
+      <TextObject Name="Judul" Left="92.64" Top="35.9" Width="495.12" Height="22.68" Text="FORMULIR EVALUASI PERFORMA KARYAWAN" Padding="2, 1, 2, 1" AutoWidth="true" HorzAlign="Center" Font="Arial, 16pt, style=Bold"/>
+    </PageHeaderBand>
+    <ColumnHeaderBand Name="ColumnHeader1" Top="98.48" Width="680.4" Height="835.28">
+      <LineObject Name="Line2" Top="128.5" Width="680.32" Diagonal="true"/>
+      <LineObject Name="Line3" Top="188.97" Width="680.32" Diagonal="true"/>
+      <TextObject Name="Memo3" Left="3" Top="70.81" Width="64.25" Height="18.9" Text="Nama" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Memo4" Left="3" Top="132.28" Width="102.05" Height="18.9" Text="Periode Review" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Memo5" Left="3" Top="191.75" Width="257.02" Height="18.9" Text="Alasan Penilaian Performa" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Memo6" Left="221.99" Top="70.81" Width="132.28" Height="18.9" Text="Jabatan / Grade" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Memo7" Left="463.66" Top="70.81" Width="94.49" Height="18.9" Text="Department" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Memo8" Left="221.99" Top="132.28" Width="132.28" Height="18.9" Text="Nama Atasan" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Memo9" Left="463.66" Top="132.28" Width="170.08" Height="18.9" Text="Jabatan / Grade Atasan" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Memo10" Left="3" Top="90.71" Width="211.65" Height="34.02" CanGrow="true" CanShrink="true" Text="[DS1.Emp_Name]" Padding="2, 1, 2, 1"/>
+      <TextObject Name="Memo11" Left="221.99" Top="90.71" Width="238.11" Height="34.02" CanGrow="true" CanShrink="true" Text="[DS1.Job_Title]" Padding="2, 1, 2, 1"/>
+      <TextObject Name="Memo12" Left="463.66" Top="90.71" Width="215.43" Height="34.02" CanGrow="true" CanShrink="true" Text="[DS1.Department_Name]" Padding="2, 1, 2, 1"/>
+      <TextObject Name="Memo13" Left="3" Top="152.18" Width="211.65" Height="34.02" CanGrow="true" CanShrink="true" Text="[DS1.ReviewPeriod]" Padding="2, 1, 2, 1"/>
+      <TextObject Name="Memo14" Left="221.99" Top="152.18" Width="238.11" Height="30.24" CanGrow="true" CanShrink="true" Text="[DS1.EmpAppr1_Name]" Padding="2, 1, 2, 1"/>
+      <TextObject Name="Memo15" Left="463.66" Top="152.18" Width="215.43" Height="30.24" CanGrow="true" CanShrink="true" Text="[DS1.Job_Title_EmpAppr1]" Padding="2, 1, 2, 1"/>
+      <TextObject Name="Memo16" Left="3" Top="211.65" Width="672.76" Height="34.02" CanGrow="true" CanShrink="true" Text="[DS1.ReviewReason]" Padding="2, 1, 2, 1"/>
+      <TextObject Name="Memo17" Left="3" Top="283.46" Width="181.42" Height="18.9" Text="Petunjuk" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold"/>
+      <LineObject Name="Line9" Top="309.92" Width="680.32" Diagonal="true"/>
+      <LineObject Name="Line10" Top="816.38" Width="680.32" Diagonal="true"/>
+      <TextObject Name="Memo18" Left="34.02" Top="321.26" Width="563.15" Height="18.9" Text="1)   Karyawan dan atasan telah mendiskusikan dan sepakat tentang Goal/KPI dan kompetensi" Padding="2, 1, 2, 1" AutoWidth="true"/>
+      <TextObject Name="Memo19" Left="34.02" Top="339.93" Width="563.15" Height="18.9" Text="      diawal siklus." Padding="2, 1, 2, 1" AutoWidth="true"/>
+      <TextObject Name="Memo20" Left="34.02" Top="366.61" Width="563.15" Height="18.9" Text="2)   Evaluasi mencakup 1 tahun penuh. Kejadian yang terbaru harus diperkecil." Padding="2, 1, 2, 1" AutoWidth="true"/>
+      <TextObject Name="Memo21" Left="34.02" Top="393.07" Width="563.15" Height="18.9" Text="3)   Atasan dan Bawahan harus memahami Pekerjaan dan Hasil yang sedang dievaluasi." Padding="2, 1, 2, 1" AutoWidth="true"/>
+      <TextObject Name="Memo22" Left="34.02" Top="419.53" Width="563.15" Height="18.9" Text="4)   Harus ada komunikasi 2 arah antara Atasan dan Bawahan selama diskusi." Padding="2, 1, 2, 1" AutoWidth="true"/>
+      <TextObject Name="Memo23" Left="34.02" Top="445.98" Width="563.15" Height="18.9" Text="5)   Setelah selesai serahkan formulir ini ke Sr. Manager untuk disetujui dan diserahkan ke HR." Padding="2, 1, 2, 1" AutoWidth="true"/>
+      <TextObject Name="Memo24" Left="15.12" Top="506.45" Width="181.42" Height="18.9" Text="Skala Penilaian" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold, Underline"/>
+      <LineObject Name="Line11" Left="8" Top="540.47" Width="665.2" Diagonal="true"/>
+      <LineObject Name="Line12" Left="8" Top="789.92" Width="665.2" Diagonal="true"/>
+      <LineObject Name="Line13" Left="679.76" Top="309.92" Height="506.46"/>
+      <LineObject Name="Line14" Top="309.92" Height="506.46"/>
+      <LineObject Name="Line15" Left="7.56" Top="540.47" Height="249.45"/>
+      <LineObject Name="Line16" Left="672.76" Top="540.47" Height="249.45"/>
+      <LineObject Name="Line17" Left="35.9" Top="540.47" Height="249.45"/>
+      <LineObject Name="Line18" Left="7.56" Top="668.97" Width="665.2" Diagonal="true"/>
+      <LineObject Name="Line19" Left="7.56" Top="706.77" Width="665.2" Diagonal="true"/>
+      <LineObject Name="Line20" Left="7.56" Top="740.79" Width="665.2" Diagonal="true"/>
+      <LineObject Name="Line21" Left="7.56" Top="604.72" Width="665.2" Diagonal="true"/>
+      <TextObject Name="Memo25" Left="39.68" Top="544.25" Width="149.29" Height="18.9" Text="Tidak dapat diterima :" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Memo26" Left="11.34" Top="544.25" Width="18.9" Height="18.9" Text="1" Padding="2, 1, 2, 1" AutoWidth="true"/>
+      <TextObject Name="Memo27" Left="189.98" Top="544.25" Width="480" Height="18.9" Text="Performa dibawah standar; mendemonstrasikan sedikit atau bahkan tidak" Padding="2, 1, 2, 1" AutoWidth="true"/>
+      <TextObject Name="Memo28" Left="39.68" Top="563.15" Width="480" Height="18.9" Text="kompeten" Padding="2, 1, 2, 1" AutoWidth="true"/>
+      <TextObject Name="Memo29" Left="39.68" Top="608.5" Width="54.8" Height="18.9" Text="Dasar :" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Memo30" Left="11.34" Top="608.5" Width="18.9" Height="18.9" Text="2" Padding="2, 1, 2, 1" AutoWidth="true"/>
+      <TextObject Name="Memo31" Left="39.68" Top="627.4" Width="480" Height="18.9" Text="seksama dan terus menerus" Padding="2, 1, 2, 1" AutoWidth="true"/>
+      <TextObject Name="Memo32" Left="93.49" Top="608.5" Width="555.59" Height="18.9" Text="Mendemonstrasikan kompetensi secara sporadik; memerlukan bimbingan dan bantuan yang" Padding="2, 1, 2, 1" AutoWidth="true"/>
+      <TextObject Name="Memo33" Left="39.68" Top="671.97" Width="47.25" Height="18.9" Text="Baik :" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Memo34" Left="11.34" Top="671.97" Width="18.9" Height="18.9" Text="3" Padding="2, 1, 2, 1" AutoWidth="true"/>
+      <TextObject Name="Memo35" Left="86.71" Top="671.97" Width="578.27" Height="18.9" Text="Menunjukan perilaku/performa sesuai dengan standar minimal" Padding="2, 1, 2, 1" AutoWidth="true"/>
+      <TextObject Name="Memo36" Left="39.68" Top="710.55" Width="58.58" Height="18.9" Text="Cakap :" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Memo37" Left="11.34" Top="710.55" Width="18.9" Height="18.9" Text="4" Padding="2, 1, 2, 1" AutoWidth="true"/>
+      <TextObject Name="Memo38" Left="98.05" Top="710.55" Width="566.93" Height="18.9" Text="Menunjukan perilaku yang kompeten dan dilakukan secara konsisten; penuh dengan inisiatif" Padding="2, 1, 2, 1" AutoWidth="true"/>
+      <TextObject Name="Memo39" Left="39.68" Top="744.57" Width="88.82" Height="18.9" Text="Profesional :" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Memo40" Left="11.34" Top="744.57" Width="18.9" Height="18.9" Text="5" Padding="2, 1, 2, 1" AutoWidth="true"/>
+      <TextObject Name="Memo41" Left="130.5" Top="744.57" Width="536.69" Height="18.9" Text="Performa / perilaku mempertunjukan kreativitas, semangat dan dapat diandalkan /" Padding="2, 1, 2, 1" AutoWidth="true"/>
+      <TextObject Name="Memo42" Left="39.68" Top="763.46" Width="480" Height="18.9" Text="mandiri; melebihi dan harapan" Padding="2, 1, 2, 1" AutoWidth="true"/>
+      <TextObject Name="Text1" Left="179.55" Width="321.3" Height="18.9" Text="[DS1.Department_Name]" HorzAlign="Center" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text2" Left="179.55" Top="28.35" Width="321.3" Height="18.9" Text="[DS1.CompetenceType]" HorzAlign="Center" Font="Arial, 12pt, style=Bold"/>
+      <LineObject Name="Line90" Top="66.15" Width="680.32" Diagonal="true"/>
+      <LineObject Name="Line91" Top="248.7" Width="680.32" Diagonal="true"/>
+      <LineObject Name="Line1" Top="66.15" Height="140.62"/>
+      <LineObject Name="Line92" Left="219.35" Top="66.15" Height="94.5"/>
+      <LineObject Name="Line93" Left="680.4" Top="66.15" Height="140.62"/>
+      <LineObject Name="Line94" Left="462.05" Top="66.15" Height="94.5"/>
+    </ColumnHeaderBand>
+  </ReportPage>
+  <ReportPage Name="Page2" LeftMargin="15" TopMargin="15" RightMargin="15" BottomMargin="15">
+    <PageHeaderBand Name="PageHeader2" Width="680.4" Height="3.78"/>
+    <GroupHeaderBand Name="GroupHeader1" Top="7.78" Width="680.4" Height="86.93" Condition="[DS2.TransNmbr]">
+      <TextObject Name="Memo45" Left="18.9" Top="5" Width="279.69" Height="18.9" Text="Bagian 1 : Goal / KPI" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold, Underline"/>
+      <LineObject Name="Line22" Top="26.46" Width="680.32"/>
+      <LineObject Name="Line23" Top="52.35" Width="680.32"/>
+      <TextObject Name="Memo44" Left="36.8" Top="60.47" Width="317.48" Height="18.9" Text="Indikator" Padding="2, 1, 2, 1" AutoWidth="true" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Memo46" Left="3.78" Top="60.47" Width="30.24" Height="18.9" Text="No." Padding="2, 1, 2, 1" AutoWidth="true" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Memo47" Left="357.28" Top="60.47" Width="49.13" Height="18.9" Text="Bobot" Padding="2, 1, 2, 1" AutoWidth="true" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Memo48" Left="410.19" Top="60.47" Width="49.13" Height="18.9" Text="Target" Padding="2, 1, 2, 1" AutoWidth="true" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Memo49" Left="463.1" Top="60.47" Width="68.03" Height="18.9" Text="Min / Max" Padding="2, 1, 2, 1" AutoWidth="true" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Memo50" Left="534.91" Top="60.47" Width="83.15" Height="18.9" Text="Realisasi" Padding="2, 1, 2, 1" AutoWidth="true" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Memo51" Left="621.84" Top="60.47" Width="52.91" Height="18.9" Text="Skor" Padding="2, 1, 2, 1" AutoWidth="true" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <LineObject Name="Line27" Top="26.46" Height="60.47"/>
+      <LineObject Name="Line28" Left="680.32" Top="26.46" Height="60.47"/>
+      <LineObject Name="Line29" Left="35.02" Top="52.91" Height="34.02"/>
+      <LineObject Name="Line30" Left="356.28" Top="52.91" Height="34.02"/>
+      <LineObject Name="Line32" Left="461.1" Top="52.91" Height="34.02"/>
+      <LineObject Name="Line33" Left="532.91" Top="52.91" Height="34.02"/>
+      <LineObject Name="Line34" Left="619.84" Top="52.91" Height="34.02"/>
+      <LineObject Name="Line31" Left="408.19" Top="52.91" Height="34.02"/>
+      <TextObject Name="Memo43" Left="18.9" Top="30.24" Width="279.69" Height="18.9" Text="Key Performace Indikator / KPI" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold"/>
+      <DataBand Name="MasterData1" Top="98.71" Width="680.4" Height="22.68" CanGrow="true" CanShrink="true" DataSource="Table1">
+        <TextObject Name="Memo52" Left="36.8" Width="317.48" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS2.Indikator]" Padding="2, 1, 2, 1"/>
+        <TextObject Name="Memo53" Left="3.78" Width="30.24" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS2.ItemNo]" Padding="2, 1, 2, 1" AutoWidth="true"/>
+        <TextObject Name="Memo54" Left="357.28" Width="49.13" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS2.Bobot]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" AutoWidth="true" HorzAlign="Right"/>
+        <TextObject Name="Memo55" Left="410.19" Width="49.13" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS2.Target]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" AutoWidth="true" HorzAlign="Right"/>
+        <TextObject Name="Memo56" Left="463.1" Width="68.03" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS2.Type]" Padding="2, 1, 2, 1" AutoWidth="true" HorzAlign="Right"/>
+        <TextObject Name="Memo57" Left="534.91" Width="83.15" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS2.Realisasi]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" AutoWidth="true" HorzAlign="Right"/>
+        <TextObject Name="Memo58" Left="621.84" Width="52.91" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS2.Skor]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" AutoWidth="true" HorzAlign="Right"/>
+        <LineObject Name="Line44" Width="680.32"/>
+        <LineObject Name="Line24" Left="356.28" Height="22.68" CanGrow="true" CanShrink="true"/>
+        <LineObject Name="Line38" Left="408.19" Height="22.68" CanGrow="true" CanShrink="true"/>
+        <LineObject Name="Line39" Left="461.1" Height="22.68" CanGrow="true" CanShrink="true"/>
+        <LineObject Name="Line40" Left="532.91" Height="22.68" CanGrow="true" CanShrink="true"/>
+        <LineObject Name="Line41" Left="619.84" Height="22.68" CanGrow="true" CanShrink="true"/>
+        <LineObject Name="Line42" Left="680.32" Height="22.68" CanGrow="true" CanShrink="true"/>
+        <LineObject Name="Line43" Left="35.02" Height="22.68" CanGrow="true" CanShrink="true"/>
+        <LineObject Name="Line45" Height="22.68" CanGrow="true" CanShrink="true"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="125.39" Width="680.4" Height="49.13">
+        <TextObject Name="Memo59" Left="359.06" Top="1" Width="49.13" Height="18.9" Text="TOTAL" Padding="2, 1, 2, 1" AutoWidth="true"/>
+        <TextObject Name="SysMemo1" Left="623.62" Top="1" Width="49.13" Height="18.9" Text="[TotalSkor_KPI]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" HorzAlign="Right"/>
+        <LineObject Name="Line25" Width="680.32"/>
+        <LineObject Name="Line26" Top="19.9" Width="680.32"/>
+        <LineObject Name="Line35" Top="1" Height="18.9"/>
+        <LineObject Name="Line36" Left="680.32" Height="18.9"/>
+        <LineObject Name="Line37" Left="619.84" Height="18.9"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <GroupHeaderBand Name="GroupHeader2" Top="178.52" Width="680.4" Height="86.93" Condition="[DS3.TransNmbr]">
+      <TextObject Name="Memo67" Left="18.9" Top="5" Width="279.69" Height="18.9" Text="Bagian 2 : Kompetensi" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold, Underline"/>
+      <LineObject Name="Line56" Top="52.35" Width="680.32"/>
+      <TextObject Name="Memo68" Left="36.8" Top="60.47" Width="540.47" Height="18.9" Text="Core Values" Padding="2, 1, 2, 1" AutoWidth="true" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Memo69" Left="3.78" Top="60.47" Width="30.24" Height="18.9" Text="No." Padding="2, 1, 2, 1" AutoWidth="true" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Memo74" Left="580.27" Top="60.47" Width="94.49" Height="18.9" Text="Skor" Padding="2, 1, 2, 1" AutoWidth="true" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <LineObject Name="Line59" Left="35.02" Top="52.91" Height="34.02"/>
+      <TextObject Name="Memo75" Left="18.9" Top="30.24" Width="646.3" Height="18.9" Text="[DS3.StrGroup]" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold"/>
+      <LineObject Name="Line47" Top="52.91" Height="34.02"/>
+      <LineObject Name="Line48" Left="579.27" Top="52.91" Height="34.02"/>
+      <LineObject Name="Line49" Left="680.32" Top="52.91" Height="34.02"/>
+      <DataBand Name="MasterData2" Top="269.45" Width="680.4" Height="41.58" CanGrow="true" CanShrink="true" DataSource="Table2">
+        <TextObject Name="Memo60" Left="36.8" Width="540.47" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS3.CompetenceCode]" Padding="2, 1, 2, 1" Font="Arial, 10pt, style=Bold"/>
+        <LineObject Name="Line46" Width="680.32"/>
+        <LineObject Name="Line51" Left="579.27" Height="41.58" CanGrow="true" CanShrink="true" GrowToBottom="true"/>
+        <LineObject Name="Line52" Left="680.32" Height="41.58" CanGrow="true" CanShrink="true" GrowToBottom="true"/>
+        <LineObject Name="Line53" Left="35.02" Height="41.58" CanGrow="true" CanShrink="true" GrowToBottom="true"/>
+        <LineObject Name="Line54" Height="41.58" CanGrow="true" CanShrink="true" GrowToBottom="true"/>
+        <TextObject Name="Memo62" Left="36.8" Top="18.9" Width="540.47" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS3.CompDesc]&#13;&#10;[DS3.DetailDesc]" Padding="2, 1, 2, 1" HorzAlign="Justify"/>
+        <TextObject Name="SysMemo2" Left="3.78" Width="26.46" Height="18.9" CanGrow="true" CanShrink="true" Text="[Row#]" Padding="2, 1, 2, 1" HorzAlign="Right"/>
+        <TextObject Name="Memo61" Left="580.27" Width="94.49" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS3.Nilai]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" AutoWidth="true" HorzAlign="Right"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter2" Top="315.03" Width="680.4" Height="3.78">
+        <LineObject Name="Line65" Width="680.32"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+  </ReportPage>
+  <ReportPage Name="Page3" LeftMargin="15" TopMargin="15" RightMargin="15" BottomMargin="15">
+    <GroupHeaderBand Name="GroupHeader3" Width="680.4" Height="128.5" Condition="[DS.TransNmbr]" KeepTogether="true">
+      <TextObject Name="Memo66" Left="18.9" Top="5" Width="536.69" Height="18.9" Text="Bagian 3 : Tugas lain / Project Pengembangan (jika ada)" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold, Underline"/>
+      <LineObject Name="Line61" Top="63.69" Width="680.32"/>
+      <TextObject Name="Memo70" Left="36.8" Top="68.81" Width="207.87" Height="52.91" Text="NAMA PROJECT / TUGAS" Padding="2, 1, 2, 1" AutoWidth="true" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Memo71" Left="1.78" Top="68.81" Width="32.13" Height="52.91" Text="No." Padding="2, 1, 2, 1" AutoWidth="true" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Memo72" Left="614.28" Top="68.81" Width="60.47" Height="52.91" Text="Skor" Padding="2, 1, 2, 1" AutoWidth="true" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <LineObject Name="Line62" Left="35.02" Top="64.25" Height="64.25"/>
+      <TextObject Name="Memo73" Left="18.9" Top="26.24" Width="634.96" Height="34.02" Text="Review Tugas atau project lain yang diberikan diluar KPI selama satu tahun berjalan, berikan penilaian dari pencapaian tugas tersebut." Padding="2, 1, 2, 1"/>
+      <LineObject Name="Line63" Top="64.25" Height="64.25"/>
+      <LineObject Name="Line64" Left="609.72" Top="64.25" Height="64.25"/>
+      <LineObject Name="Line66" Left="680.32" Top="64.25" Height="64.25"/>
+      <TextObject Name="Memo76" Left="248.09" Top="70.13" Width="359.06" Height="52.91" Text="PENCAPAIAN&#13;&#10;(Dalam bentuk jumlah Kualitas, Proses, atau lainnya)" Padding="2, 1, 2, 1" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <LineObject Name="Line68" Left="246.33" Top="64.25" Height="64.25"/>
+      <DataBand Name="MasterData3" Top="132.5" Width="680.4" Height="22.68" CanGrow="true" CanShrink="true" DataSource="Table3">
+        <TextObject Name="Memo63" Left="36.8" Width="207.87" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.ProjectName]" Padding="2, 1, 2, 1"/>
+        <LineObject Name="Line50" Width="680.32"/>
+        <LineObject Name="Line55" Left="609.72" Height="22.68" CanGrow="true" CanShrink="true"/>
+        <LineObject Name="Line57" Left="680.32" Height="22.68" CanGrow="true" CanShrink="true"/>
+        <LineObject Name="Line58" Left="35.02" Height="22.68" CanGrow="true" CanShrink="true"/>
+        <LineObject Name="Line60" Height="22.68" CanGrow="true" CanShrink="true"/>
+        <TextObject Name="SysMemo3" Left="1.78" Width="32.13" Height="18.9" CanGrow="true" CanShrink="true" Text="[Row#]" Padding="2, 1, 2, 1" HorzAlign="Right"/>
+        <TextObject Name="Memo65" Left="614.28" Width="60.47" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.Nilai]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" AutoWidth="true" HorzAlign="Right"/>
+        <TextObject Name="Memo64" Left="248.09" Width="359.06" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS.Pencapaian]" Padding="2, 1, 2, 1"/>
+        <LineObject Name="Line69" Left="246.33" Height="22.68" CanGrow="true" CanShrink="true"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter3" Top="159.18" Width="680.4" Height="3.78">
+        <LineObject Name="Line67" Width="680.32"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <GroupHeaderBand Name="GroupHeader4" Top="166.96" Width="680.4" Height="79.37" Condition="[DS1.TransNmbr]" KeepTogether="true">
+      <TextObject Name="Memo80" Left="18.9" Top="50.35" Width="544.25" Height="18.9" Text="Bagian 4 : Ringkasan kekuatan dan area untuk perbaikan" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold, Underline"/>
+      <DataBand Name="MasterData4" Top="250.33" Width="680.4" Height="317.48" CanGrow="true" CanShrink="true" DataSource="Table">
+        <TextObject Name="Memo77" Left="18.9" Top="3.78" Width="147.4" Height="18.9" Text="Kekuatan / Strength :" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Memo78" Left="18.9" Top="26.46" Width="653.86" Height="71.81" Text="[DS1.Kekuatan]" Padding="2, 1, 2, 1" AutoWidth="true"/>
+        <TextObject Name="Memo79" Left="18.9" Top="102.05" Width="325.04" Height="18.9" Text="Area Perbaikan / Area(s) for improvement :" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Memo81" Left="18.9" Top="124.72" Width="653.86" Height="71.81" Text="[DS1.Improvement]" Padding="2, 1, 2, 1" AutoWidth="true"/>
+        <TextObject Name="Memo82" Left="18.9" Top="200.32" Width="325.04" Height="18.9" Text="Kehadiran dan atau SP :" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Memo83" Left="18.9" Top="222.99" Width="653.86" Height="71.81" Text="[DS1.Pencapaian]" Padding="2, 1, 2, 1" AutoWidth="true"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter4" Top="571.81" Width="680.4" Height="3.78">
+        <LineObject Name="Line82" Width="680.32"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+  </ReportPage>
+  <ReportPage Name="Page4" LeftMargin="15" TopMargin="15" RightMargin="15" BottomMargin="15">
+    <GroupHeaderBand Name="GroupHeader5" Width="680.4" Height="45.35" Condition="[DS1.TransNmbr]" KeepTogether="true">
+      <TextObject Name="Memo87" Left="18.9" Top="5" Width="536.69" Height="18.9" Text="Bagian 5 : PENILAIAN AKHIR" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold, Underline"/>
+      <DataBand Name="MasterData5" Top="49.35" Width="680.4" Height="895.75" CanGrow="true" CanShrink="true" BeforePrintEvent="MasterData5_BeforePrint" DataSource="Table">
+        <TextObject Name="Memo84" Left="2.78" Top="27.24" Width="340.16" Height="18.9" CanGrow="true" CanShrink="true" Text="Bagian 1 : KPI" Padding="2, 1, 2, 1"/>
+        <LineObject Name="Line70" Top="0.78" Width="680.32"/>
+        <LineObject Name="Line72" Left="679.54" Top="0.78" Height="143.62"/>
+        <LineObject Name="Line74" Top="0.78" Height="143.62"/>
+        <TextObject Name="Memo85" Left="562.37" Top="27.24" Width="113.39" Height="18.9" Text="[DS1.KPINilaiAkhir]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" AutoWidth="true" HorzAlign="Right"/>
+        <TextObject Name="Memo86" Left="351.14" Top="27.24" Width="117.17" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS1.KPINilai]" Padding="2, 1, 2, 1" HorzAlign="Right"/>
+        <TextObject Name="Memo88" Left="471.43" Top="27.24" Width="83.15" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS1.KPIBobot]" Padding="2, 1, 2, 1" HorzAlign="Right"/>
+        <LineObject Name="Line76" Top="47.91" Width="679.54"/>
+        <TextObject Name="Memo89" Left="2.78" Top="51.69" Width="340.16" Height="18.9" CanGrow="true" CanShrink="true" Text="Bagian 2.1 : Kompetensi Umum" Padding="2, 1, 2, 1"/>
+        <TextObject Name="Memo90" Left="562.37" Top="51.69" Width="113.39" Height="18.9" Text="[DS1.UmumNilaiAkhir]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" AutoWidth="true" HorzAlign="Right"/>
+        <TextObject Name="Memo91" Left="351.14" Top="51.69" Width="117.17" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS1.UmumNilai]" Padding="2, 1, 2, 1" HorzAlign="Right"/>
+        <TextObject Name="Memo92" Left="471.43" Top="51.69" Width="83.15" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS1.UmumBobot]" Padding="2, 1, 2, 1" HorzAlign="Right"/>
+        <LineObject Name="Line77" Top="72.37" Width="679.54"/>
+        <TextObject Name="Memo93" Left="2.78" Top="75.37" Width="340.16" Height="18.9" CanGrow="true" CanShrink="true" Text="Bagian 2.2 : Kompetensi Fungsional" Padding="2, 1, 2, 1"/>
+        <TextObject Name="Memo94" Left="562.37" Top="74.37" Width="113.39" Height="18.9" Text="[DS1.FungsionalNilaiAkhir]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" AutoWidth="true" HorzAlign="Right"/>
+        <TextObject Name="Memo95" Left="351.14" Top="75.37" Width="117.17" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS1.FungsionalNilai]" Padding="2, 1, 2, 1" HorzAlign="Right"/>
+        <TextObject Name="Memo96" Left="471.43" Top="75.37" Width="83.15" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS1.FungsionalBobot]" Padding="2, 1, 2, 1" HorzAlign="Right"/>
+        <LineObject Name="Line78" Top="96.05" Width="679.54"/>
+        <TextObject Name="Memo97" Left="2.78" Top="99.05" Width="340.16" Height="18.9" CanGrow="true" CanShrink="true" Text="Bagian 3 : Tugas Lain" Padding="2, 1, 2, 1"/>
+        <TextObject Name="Memo98" Left="562.37" Top="98.05" Width="113.39" Height="18.9" Text="[DS1.ProjectNilaiAkhir]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" AutoWidth="true" HorzAlign="Right"/>
+        <TextObject Name="Memo99" Left="351.14" Top="99.05" Width="117.17" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS1.ProjectNilai]" Padding="2, 1, 2, 1" HorzAlign="Right"/>
+        <TextObject Name="Memo100" Left="471.43" Top="99.05" Width="83.15" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS1.ProjectBobot]" Padding="2, 1, 2, 1" HorzAlign="Right"/>
+        <LineObject Name="Line79" Top="120.72" Width="679.54"/>
+        <TextObject Name="Memo101" Left="2.78" Top="123.5" Width="340.16" Height="18.9" CanGrow="true" CanShrink="true" Text="NILAI AKHIR KESELURUHAN" Padding="2, 1, 2, 1"/>
+        <TextObject Name="Memo102" Left="562.37" Top="122.5" Width="113.39" Height="18.9" Text="[DS1.TotalNilaiAkhir]" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" AutoWidth="true" HorzAlign="Right"/>
+        <TextObject Name="Memo103" Left="351.14" Top="123.5" Width="117.17" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS1.TotalNilai]" Padding="2, 1, 2, 1" HorzAlign="Right"/>
+        <TextObject Name="Memo104" Left="471.43" Top="123.5" Width="83.15" Height="18.9" CanGrow="true" CanShrink="true" Text="[DS1.TotalBobot]" Padding="2, 1, 2, 1" HorzAlign="Right"/>
+        <LineObject Name="Line80" Top="144.18" Width="680.32"/>
+        <TextObject Name="Memo105" Left="2.78" Top="2.78" Width="340.16" Height="18.9" CanGrow="true" CanShrink="true" Text="Rating Summary" Padding="2, 1, 2, 1" HorzAlign="Center"/>
+        <LineObject Name="Line81" Left="557.81" Top="0.78" Height="143.62"/>
+        <TextObject Name="Memo106" Left="562.37" Top="2.78" Width="113.39" Height="18.9" Text="Nilai Akhir" Padding="2, 1, 2, 1" Format="Number" Format.UseLocale="true" AutoWidth="true" HorzAlign="Center"/>
+        <TextObject Name="Memo107" Left="351.14" Top="2.78" Width="117.17" Height="18.9" CanGrow="true" CanShrink="true" Text="Nilai" Padding="2, 1, 2, 1" HorzAlign="Center"/>
+        <LineObject Name="Line84" Left="347.38" Top="0.78" Height="143.62"/>
+        <TextObject Name="Memo108" Left="471.43" Top="2.78" Width="83.15" Height="18.9" CanGrow="true" CanShrink="true" Text="Bobot (%)" Padding="2, 1, 2, 1" HorzAlign="Center"/>
+        <LineObject Name="Line85" Left="469.66" Top="0.78" Height="143.62"/>
+        <LineObject Name="Line86" Top="24.46" Width="679.54"/>
+        <TextObject Name="Memo109" Left="18.9" Top="162.52" Width="536.69" Height="18.9" Text="Bagian 6 : Tanda Tangan" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold, Underline"/>
+        <TextObject Name="Memo110" Left="18.9" Top="192.76" Width="536.69" Height="18.9" Text="BAGIAN A : Komentar Karyawan" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Memo111" Left="18.9" Top="222.99" Width="536.69" Height="18.9" Text="Atasan dan Saya telah bertemu dan berdiskusi tentang performa saya" Padding="2, 1, 2, 1" AutoWidth="true"/>
+        <TextObject Name="Memo112" Left="64.25" Top="249.45" Width="491.34" Height="18.9" Text="Saya setuju dengan hasil penilaian ini" Padding="2, 1, 2, 1" AutoWidth="true"/>
+        <TextObject Name="Memo113" Left="64.25" Top="272.13" Width="491.34" Height="18.9" Text="Saya tidak setuju dengan hasil penilaian ini" Padding="2, 1, 2, 1" AutoWidth="true"/>
+        <TextObject Name="Memo114" Left="18.9" Top="317.48" Width="536.69" Height="18.9" Text="Komentar (Jika ada) untuk penilai dan karyawan tentang evaluasi :" Padding="2, 1, 2, 1" AutoWidth="true"/>
+        <TextObject Name="Memo115" Left="18.9" Top="347.72" Width="536.69" Height="18.9" Text="Penilai : " Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Memo116" Left="18.9" Top="370.39" Width="650.08" Height="60.47" Text="[DS1.KomentarEmpAppr1]" Padding="2, 1, 2, 1" AutoWidth="true"/>
+        <TextObject Name="Memo117" Left="18.9" Top="434.87" Width="536.69" Height="18.9" Text="Karyawan : " Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Memo118" Left="18.9" Top="457.54" Width="650.08" Height="60.47" Text="[DS1.KomentarEmp]" Padding="2, 1, 2, 1" AutoWidth="true"/>
+        <TextObject Name="Memo119" Left="18.9" Top="593.39" Width="151.18" Height="18.9" Text="[DS1.Emp_Name]" Padding="2, 1, 2, 1" AutoWidth="true"/>
+        <LineObject Name="Line71" Left="15.12" Top="589.61" Width="211.65"/>
+        <TextObject Name="Memo120" Left="464.88" Top="593.39" Width="151.18" Height="18.9" Text="[DS1.TransDate]" Padding="2, 1, 2, 1" Format="Custom" Format.Format="dd MMMM yyyy" AutoWidth="true"/>
+        <LineObject Name="Line73" Left="461.1" Top="589.61" Width="211.65"/>
+        <TextObject Name="Memo121" Left="18.9" Top="676.76" Width="151.18" Height="18.9" Text="[DS1.EmpAppr1_Name]" Padding="2, 1, 2, 1" AutoWidth="true"/>
+        <LineObject Name="Line75" Left="15.12" Top="672.98" Width="211.65"/>
+        <TextObject Name="Memo122" Left="464.88" Top="676.76" Width="151.18" Height="18.9" Text="[DS1.TransDate]" Padding="2, 1, 2, 1" Format="Custom" Format.Format="dd MMMM yyyy" AutoWidth="true"/>
+        <LineObject Name="Line87" Left="461.1" Top="672.98" Width="211.65"/>
+        <TextObject Name="Memo123" Left="15.12" Top="718.11" Width="536.69" Height="18.9" Text="BAGIAN B : Review Atasan lebih tinggi / Manager" Padding="2, 1, 2, 1" AutoWidth="true" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Memo124" Left="15.12" Top="748.35" Width="536.69" Height="18.9" Text="Komentar Atasan lebih tinggi / Manager" Padding="2, 1, 2, 1" AutoWidth="true"/>
+        <TextObject Name="Memo125" Left="15.12" Top="771.02" Width="650.08" Height="60.47" Text="[DS1.KomentarEmpAppr2]" Padding="2, 1, 2, 1" AutoWidth="true"/>
+        <TextObject Name="Memo126" Left="18.9" Top="873.07" Width="151.18" Height="18.9" Text="[DS1.EmpAppr2_Name]" Padding="2, 1, 2, 1" AutoWidth="true"/>
+        <LineObject Name="Line88" Left="15.12" Top="869.29" Width="211.65"/>
+        <TextObject Name="Memo127" Left="464.88" Top="873.07" Width="151.18" Height="18.9" Text="[DS1.TransDate]" Padding="2, 1, 2, 1" Format="Custom" Format.Format="dd MMMM yyyy" AutoWidth="true"/>
+        <LineObject Name="Line89" Left="461.1" Top="869.29" Width="211.65"/>
+        <ShapeObject Name="Shape1" Left="18.9" Top="249.45" Width="18.9" Height="18.9"/>
+        <TextObject Name="MTrue" Left="20.68" Top="249.45" Width="17.01" Height="18.9" Text="X" Padding="2, 1, 2, 1"/>
+        <ShapeObject Name="Shape2" Left="18.9" Top="272.13" Width="18.9" Height="18.9"/>
+        <TextObject Name="MFalse" Left="20.68" Top="272.13" Width="17.01" Height="18.9" Text="X" Padding="2, 1, 2, 1"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter5" Top="949.1" Width="680.4" Height="3.78">
+        <LineObject Name="Line83" Width="680.32"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+  </ReportPage>
+</Report>

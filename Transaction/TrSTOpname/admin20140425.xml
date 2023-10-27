@@ -1,0 +1,16 @@
+<?xml version="1.0" standalone="yes"?>
+<DS>
+  <Opname>
+    <TransNmbr>SP/14-04/0001</TransNmbr>
+    <Product>P4</Product>
+    <Product_Name>P4 John</Product_Name>
+    <specification>Spec 1</specification>
+    <Location>A01</Location>
+    <Location_Name>A01</Location_Name>
+    <QtySystem>109,810</QtySystem>
+    <QtyActual>100,000</QtyActual>
+    <QtyOpname>-9,810</QtyOpname>
+    <Unit>Kg</Unit>
+    <Remark />
+  </Opname>
+</DS>

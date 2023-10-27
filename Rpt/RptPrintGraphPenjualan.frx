@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="07/03/2013 10:21:25" ReportInfo.Modified="12/23/2013 16:21:52" ReportInfo.CreatorVersion="1.2.47.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43hartgB44215kXF4quRQxVyk9">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_EXERptMNGSalesMonthly 'Report Penjualan Bulanan','',2013,01,2013,02,'','','',1,1,0,'dataprima'      ">
+        <Column Name="XColumn" DataType="System.String"/>
+        <Column Name="Total" DataType="System.Decimal"/>
+        <Column Name="Title" DataType="System.String"/>
+        <Column Name="XSubColumn" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="OrderBy" DataType="System.Int32"/>
+        <Column Name="XName" DataType="System.String"/>
+        <Column Name="YName" DataType="System.String"/>
+        <Column Name="Periode" DataType="System.String"/>
+        <Column Name="ReportType" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" FirstPageSource="15" OtherPagesSource="15">
+    <ReportTitleBand Name="ReportTitle1" Width="1047.06" Height="412.8" Guides="75.6">
+      <TextObject Name="Text15" Top="17.9" Width="1004.35" Height="18.9" Text="[DS.Title]" HorzAlign="Center" Font="Arial, 16pt, style=Bold"/>
+      <TextObject Name="Text1" Left="49.7" Top="53.25" Width="94.5" Height="18.9" Text="[DS.YName]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text16" Left="9.45" Width="353.43" Height="18.9" Text="[DS.CompanyName]" Font="Arial Narrow, 10pt, style=Bold"/>
+      <TextObject Name="Text17" Left="132.3" Top="41.25" Width="739.75" Height="18.9" Text="[DS.Periode]&#13;&#10;" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <MSChartObject Name="MSChart1" Left="18.9" Top="72.6" Width="963.1" Height="340.2" DataSource="Table" Filter="" AlignXValues="true" AutoSeriesColumn="[DS.XSubColumn]" AutoSeriesColor="" ChartData="PENoYXJ0IFBhbGV0dGU9Ik5vbmUiIFNpemU9IjI4OCwgMjMyIiBCYWNrR3JhZGllbnRTdHlsZT0iRGlhZ29uYWxMZWZ0IiBCYWNrU2Vjb25kYXJ5Q29sb3I9IkxhdmVuZGVyIiBCb3JkZXJsaW5lQ29sb3I9IlRyYW5zcGFyZW50IiBCb3JkZXJsaW5lRGFzaFN0eWxlPSJTb2xpZCI+DQogIDxTZXJpZXM+DQogICAgPFNlcmllcyBOYW1lPSJTZXJpZXMxIiBMZWdlbmQ9IkRlZmF1bHQiIFhWYWx1ZVR5cGU9IlN0cmluZyIgWVZhbHVlVHlwZT0iRG91YmxlIiBDaGFydEFyZWE9IkRlZmF1bHQiIEJvcmRlckNvbG9yPSJUcmFuc3BhcmVudCIgQ3VzdG9tUHJvcGVydGllcz0iRHJhd2luZ1N0eWxlPUN5bGluZGVyIj4NCiAgICAgIDxQb2ludHM+DQogICAgICAgIDxEYXRhUG9pbnQgWVZhbHVlcz0iMSIgQXhpc0xhYmVsPSJBIiAvPg0KICAgICAgICA8RGF0YVBvaW50IFlWYWx1ZXM9IjIiIEF4aXNMYWJlbD0iQiIgLz4NCiAgICAgIDwvUG9pbnRzPg0KICAgIDwvU2VyaWVzPg0KICA8L1Nlcmllcz4NCiAgPExlZ2VuZHM+DQogICAgPExlZ2VuZCBOYW1lPSJEZWZhdWx0IiBJc1RleHRBdXRvRml0PSJGYWxzZSIgSXNEb2NrZWRJbnNpZGVDaGFydEFyZWE9IkZhbHNlIiBCYWNrQ29sb3I9IjE1MCwgMjU1LCAyNTUsIDI1NSIgQm9yZGVyQ29sb3I9IkxpZ2h0U2xhdGVHcmF5IiBGb250PSJUYWhvbWEsIDhwdCIgQWxpZ25tZW50PSJDZW50ZXIiIERvY2tpbmc9IkJvdHRvbSI+DQogICAgPC9MZWdlbmQ+DQogIDwvTGVnZW5kcz4NCiAgPFRpdGxlcz4NCiAgICA8VGl0bGUgVmlzaWJsZT0iRmFsc2UiIEZvbnQ9IlRhaG9tYSwgMTBwdCwgc3R5bGU9Qm9sZCIgTmFtZT0iVGl0bGUxIj4NCiAgICA8L1RpdGxlPg0KICA8L1RpdGxlcz4NCiAgPENoYXJ0QXJlYXM+DQogICAgPENoYXJ0QXJlYSBOYW1lPSJEZWZhdWx0IiBCYWNrQ29sb3I9IldoaXRlIiBCYWNrU2Vjb25kYXJ5Q29sb3I9IldoaXRlIiBCb3JkZXJDb2xvcj0iTGlnaHRTbGF0ZUdyYXkiIEJvcmRlckRhc2hTdHlsZT0iU29saWQiPg0KICAgICAgPEF4aXNZIElzTGFiZWxBdXRvRml0PSJGYWxzZSI+DQogICAgICAgIDxNYWpvckdyaWQgTGluZUNvbG9yPSI2NSwgMCwgMCwgMCIgLz4NCiAgICAgICAgPE1pbm9yR3JpZCBMaW5lQ29sb3I9IjMwLCAwLCAwLCAwIiAvPg0KICAgICAgICA8TGFiZWxTdHlsZSBGb250PSJUYWhvbWEsIDhwdCIgRm9ybWF0PSIjIywjMCIgLz4NCiAgICAgIDwvQXhpc1k+DQogICAgICA8QXhpc1ggSXNMYWJlbEF1dG9GaXQ9IkZhbHNlIj4NCiAgICAgICAgPE1ham9yR3JpZCBMaW5lQ29sb3I9IjY1LCAwLCAwLCAwIiAvPg0KICAgICAgICA8TWlub3JHcmlkIExpbmVDb2xvcj0iMzAsIDAsIDAsIDAiIC8+DQogICAgICAgIDxMYWJlbFN0eWxlIEZvbnQ9IlRhaG9tYSwgOHB0IiAvPg0KICAgICAgPC9BeGlzWD4NCiAgICAgIDxBeGlzWDIgSXNMYWJlbEF1dG9GaXQ9IkZhbHNlIj4NCiAgICAgIDwvQXhpc1gyPg0KICAgICAgPEF4aXNZMiBJc0xhYmVsQXV0b0ZpdD0iRmFsc2UiPg0KICAgICAgPC9BeGlzWTI+DQogICAgPC9DaGFydEFyZWE+DQogIDwvQ2hhcnRBcmVhcz4NCiAgPEJvcmRlclNraW4gU2tpblN0eWxlPSJSYWlzZWQiIC8+DQo8L0NoYXJ0Pg==">
+        <MSChartSeries Name="Series1" XValue="[DS.XColumn]" YValue1="[DS.Total]"/>
+      </MSChartObject>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="416.8" Width="1047.06" Height="9.45"/>
+    <DataBand Name="Data1" Top="430.25" Width="1047.06" Height="48.75">
+      <MatrixObject Name="Matrix1" Left="18.9" Width="139.23" Height="32.5" FixedRows="1" FixedColumns="1" DataSource="Table" Style="White">
+        <MatrixColumns>
+          <Header Expression="[DS.XColumn]" Sort="None" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.XSubColumn]" Sort="None" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.Total]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="79.39" AutoSize="true"/>
+        <TableColumn Name="Column2" Width="59.84" AutoSize="true"/>
+        <TableRow Name="Row1" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell1" Border.Lines="Right, Bottom" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell2" Border.Lines="All" Text="[XColumn]" VertAlign="Center" WordWrap="false" Font="Arial, 8pt"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="16.25" AutoSize="true">
+          <TableCell Name="Cell3" Border.Lines="All" Text="[XSubColumn]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell4" Border.Lines="All" Text="[Total]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="483" Width="1047.06" Height="18.9"/>
+  </ReportPage>
+</Report>

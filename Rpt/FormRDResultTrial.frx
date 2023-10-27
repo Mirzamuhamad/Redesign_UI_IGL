@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="03/29/2011 16:25:53" ReportInfo.Modified="03/23/2015 15:36:38" ReportInfo.CreatorVersion="2013.3.5.0">
+  <ScriptText>
+Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+
+Namespace FastReport
+  Public Class ReportScript
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+      Text126.Text = CType(Report.GetColumnValue(&quot;DS.ISODocNo&quot;), String)
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43hap3KgOi7Il0u4tpokRUFVOQ">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_RDResultTrialForm '''IE/LHT/14/03/0001'''">
+        <Column Name="Company" DataType="System.String"/>
+        <Column Name="Address" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="TransNumb" DataType="System.String"/>
+        <Column Name="CustomerName" DataType="System.String"/>
+        <Column Name="ProductName" DataType="System.String"/>
+        <Column Name="TrialType" DataType="System.String"/>
+        <Column Name="Machine" DataType="System.String"/>
+        <Column Name="MachineName" DataType="System.String"/>
+        <Column Name="MaterialName" DataType="System.String"/>
+        <Column Name="SupplierName" DataType="System.String"/>
+        <Column Name="ResultObservationRD" DataType="System.String"/>
+        <Column Name="CommentProduction" DataType="System.String"/>
+        <Column Name="CommentME" DataType="System.String"/>
+        <Column Name="Note" DataType="System.String"/>
+        <Column Name="Conclusion" DataType="System.String"/>
+        <Column Name="TrialType1" DataType="System.String"/>
+        <Column Name="TrialType2" DataType="System.String"/>
+        <Column Name="TrialType3" DataType="System.String"/>
+        <Column Name="UserType" DataType="System.String"/>
+        <Column Name="ISODocNo" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" FirstPageSource="14" OtherPagesSource="14" Guides="292.95,0,738.1,3,208.9,217.35,311.85,321.3,510.3,510.3,576.45,576.45,633.15,718.2,737.1,207.9,736.1,93.5,567,406.35,415.8,415.8,415.8,415.8,415.8,415.8">
+    <PageHeaderBand Name="PageHeader1" Width="740.5" Height="311.84" Guides="1,29.45,4.45,23.35,4,22.9">
+      <TextObject Name="Text15" Left="119.07" Top="98.5" Width="476.28" Height="28.35" Text="LAPORAN HASIL TRIAL PRODUKSI" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text16" Left="1" Top="4" Width="302.4" Height="20.79" Text="[DS.Company]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text57" Left="510.3" Top="10.55" Width="226.8" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial, 6.75pt"/>
+      <TextObject Name="Text6" Left="122.85" Top="-85.05" Width="94.5" Height="18.9" Text="[DS.Address]" Font="Arial, 6pt"/>
+      <TextObject Name="Text7" Left="3" Top="29.45" Width="289.95" Height="21.8" Text="[DS.Address]" Font="Arial, 8pt"/>
+      <TextObject Name="Text59" Left="3" Top="141.75" Width="90.5" Height="18.9" Text="Tanggal Trial" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text60" Left="3" Top="160.65" Width="90.5" Height="18.9" Text="Nama Produk" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text62" Left="93.5" Top="141.75" Width="28.35" Height="18.9" Text=":" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text63" Left="93.5" Top="160.65" Width="28.8" Height="18.9" Text=":" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text73" Left="3" Top="179.55" Width="109.4" Height="18.9" Text="Nama Customer" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text75" Left="93.5" Top="226.8" Width="28.35" Height="18.9" Text=":" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text74" Left="3" Top="226.8" Width="90.5" Height="18.9" Text="Jenis Trial" Font="Arial, 8pt, style=Bold"/>
+      <TableObject Name="Table1" Left="3" Top="274.05" Width="718.17" Height="37.79" Border.Lines="All">
+        <TableColumn Name="Column1" Width="146.44"/>
+        <TableColumn Name="Column2" Width="153.71"/>
+        <TableColumn Name="Column3" Width="107.75"/>
+        <TableColumn Name="Column4" Width="113.61"/>
+        <TableColumn Name="Column5" Width="31.01"/>
+        <TableColumn Name="Column6" Width="8.17"/>
+        <TableColumn Name="Column7" Width="8.17"/>
+        <TableColumn Name="Column8" Width="149.31"/>
+        <TableRow Name="Row1" Height="23.63">
+          <TableCell Name="Cell1" Border.Lines="All" Text="Nama Item" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell2" Border.Lines="All" Text="Nama Supplier" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell3" Border.Lines="All" Text="Hasil Pengamatan Trial&#13;&#10;R&amp; D" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" ColSpan="6" RowSpan="2"/>
+          <TableCell Name="Cell4" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell5" Border.Lines="All" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell26" Border.Lines="All" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell27" Border.Lines="Left, Right, Top" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell28" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="14.16">
+          <TableCell Name="Cell6" Border.Lines="All" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell7" Border.Lines="All" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell8" Border.Lines="All" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell9" Border.Lines="All" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell10" Border.Lines="All" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell29" Border.Lines="All" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell30" Border.Lines="All" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell31" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        </TableRow>
+      </TableObject>
+      <TextObject Name="Text105" Left="93.5" Top="179.55" Width="28.35" Height="18.9" Text=":" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text112" Left="481.95" Top="141.75" Width="129.3" Height="18.9" Text="Mesin yang digunakan" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text113" Left="592.35" Top="141.75" Width="28.35" Height="18.9" Text=":" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text1" Left="3" Top="48.35" Width="132.3" Height="18.9" Text="R&amp;D Departement" VertAlign="Bottom" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text2" Left="122.85" Top="141.75" Width="170.1" Height="18.9" Text="[DS.TransDate]" Format="Date" Format.Format="d" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text3" Left="122.85" Top="160.65" Width="170.1" Height="18.9" Text="[DS.ProductName]" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text5" Left="122.85" Top="179.55" Width="170.1" Height="18.9" Text="[DS.CustomerName]" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text8" Left="151.2" Top="226.8" Width="56.7" Height="18.9" Text="Tissue" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text114" Left="245.7" Top="226.8" Width="75.6" Height="18.9" Text="Re-Formulasi" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text115" Left="349.65" Top="226.8" Width="94.5" Height="18.9" Text="Re-Packing" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text125" Left="321.3" Top="226.8" Width="27.35" Height="18.9" Border.Lines="All" Text="[DS.TrialType3]" HorzAlign="Center" VertAlign="Bottom"/>
+      <TextObject Name="Text17" Left="623.7" Top="141.75" Width="94.5" Height="18.9" Text="[DS.MachineName]" Font="Arial, 7pt"/>
+      <TextObject Name="Text14" Left="122.85" Top="226.8" Width="27.35" Height="18.9" Border.Lines="All" Text="[DS.TrialType1]" HorzAlign="Center" VertAlign="Bottom"/>
+      <TextObject Name="Text124" Left="217.35" Top="226.8" Width="27.35" Height="18.9" Border.Lines="All" Text="[DS.TrialType2]" HorzAlign="Center" VertAlign="Bottom"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="315.23" Width="740.5" BeforePrintEvent="GroupHeader1_BeforePrint" StartNewPage="true" Condition="[DS.TransNumb]">
+      <DataBand Name="Data1" Top="318.62" Width="740.5" Height="28.35" BeforePrintEvent="Data1_BeforePrint" AfterDataEvent="Data1_AfterData" DataSource="Table">
+        <TableObject Name="Table1" Left="3" Width="718.17" Height="28.35" Border.Lines="Left, Right">
+          <TableColumn Name="Column9" Width="146.32"/>
+          <TableColumn Name="Column10" Width="153.63"/>
+          <TableColumn Name="Column11" Width="105.61"/>
+          <TableColumn Name="Column12" Width="111.48"/>
+          <TableColumn Name="Column13" Width="28.88"/>
+          <TableColumn Name="Column14" Width="12.53"/>
+          <TableColumn Name="Column15" Width="12.53"/>
+          <TableColumn Name="Column16" Width="147.19"/>
+          <TableRow Name="Row3" Height="18.91">
+            <TableCell Name="Cell32" Border.Lines="Left, Right" Text="[DS.MaterialName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt" RowSpan="2"/>
+            <TableCell Name="Cell33" Border.Lines="Left, Right" Text="[DS.SupplierName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt" RowSpan="2"/>
+            <TableCell Name="Cell34" Text="[DS.ResultObservationRD]" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt" ColSpan="6" RowSpan="2"/>
+            <TableCell Name="Cell35" Font="Arial, 8pt, style=Bold"/>
+            <TableCell Name="Cell36" Border.Lines="All" Font="Arial, 8pt, style=Bold"/>
+            <TableCell Name="Cell37" Border.Lines="All" Font="Arial, 8pt, style=Bold"/>
+            <TableCell Name="Cell38" Border.Lines="Left, Right, Top" Font="Arial, 8pt, style=Bold"/>
+            <TableCell Name="Cell39" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          </TableRow>
+          <TableRow Name="Row4" Height="9.44">
+            <TableCell Name="Cell40" Border.Lines="All" Font="Arial, 8pt, style=Bold"/>
+            <TableCell Name="Cell41" Border.Lines="All" Font="Arial, 8pt, style=Bold"/>
+            <TableCell Name="Cell42" Border.Lines="All" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+            <TableCell Name="Cell43" Border.Lines="All" Font="Arial, 8pt, style=Bold"/>
+            <TableCell Name="Cell44" Border.Lines="All" Font="Arial, 8pt, style=Bold"/>
+            <TableCell Name="Cell45" Border.Lines="All" Font="Arial, 8pt, style=Bold"/>
+            <TableCell Name="Cell46" Border.Lines="All" Font="Arial, 8pt, style=Bold"/>
+            <TableCell Name="Cell47" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          </TableRow>
+        </TableObject>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="350.36" Width="740.5" Height="341.2">
+        <TextObject Name="Text70" Left="386.45" Top="237.25" Width="123.85" Height="18.9" Text="Diketahui Oleh," HorzAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text4" Left="36.8" Top="311.85" Width="133.3" Height="18.9" Text="R&amp;D" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text103" Left="3" Top="85.05" Width="90.5" Height="18.9" Text="Catatan" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text104" Left="64.7" Top="85.05" Width="28.8" Height="18.9" Text=":" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text69" Left="236.25" Top="312.85" Width="122.85" Height="18.9" Text="Produksi" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text71" Left="40.8" Top="236.25" Width="127.85" Height="18.9" Text="Dibuat Oleh," HorzAlign="Center" Font="Arial, 8pt"/>
+        <ShapeObject Name="Shape1" Left="3" Top="9.45" Width="382.45" Height="66.15"/>
+        <ShapeObject Name="Shape2" Left="410.8" Top="9.45" Width="307.4" Height="66.15"/>
+        <TextObject Name="Text106" Left="3" Top="141.75" Width="90.5" Height="18.9" Text="Kesimpulan" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text107" Left="64.7" Top="141.75" Width="28.8" Height="18.9" Text=":" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text108" Left="3" Top="9.45" Width="143.1" Height="18.9" Text="Komentar Produksi	 :" VertAlign="Bottom" Font="Arial, 8pt"/>
+        <LineObject Name="Line1" Left="3" Top="236.25" Width="715.2"/>
+        <LineObject Name="Line2" Left="3" Top="255.15" Width="715.2"/>
+        <LineObject Name="Line5" Left="207.9" Top="236.25" Height="94.5"/>
+        <LineObject Name="Line6" Left="3" Top="311.85" Width="715.2"/>
+        <LineObject Name="Line7" Left="3" Top="330.75" Width="715.2"/>
+        <TextObject Name="Text110" Left="387.45" Top="311.85" Width="122.85" Height="18.9" Text="ME" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text111" Left="538.65" Top="311.85" Width="141.75" Height="18.9" Text="Marketing" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <LineObject Name="Line3" Left="718.2" Top="236.25" Height="94.5" Diagonal="true"/>
+        <LineObject Name="Line4" Left="3" Top="236.25" Height="94.5" Diagonal="true"/>
+        <TextObject Name="Text9" Left="415.8" Top="28.35" Width="302.4" Height="47.25" Text="[DS.CommentME]" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text10" Left="3" Top="28.35" Width="375" Height="47.25" Text="[DS.CommentProduction]" HorzAlign="Justify" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text109" Left="418.8" Top="9.45" Width="91.5" Height="18.9" Text="Komentar ME   :" VertAlign="Center" Font="Arial, 8pt"/>
+        <LineObject Name="Line8" Left="3" Width="715.2" Diagonal="true"/>
+        <TextObject Name="Text11" Left="94.5" Top="85.05" Width="290.95" Height="56.7" Text="[DS.Note]" HorzAlign="Justify" Font="Arial, 7pt"/>
+        <TextObject Name="Text12" Left="93.5" Top="141.75" Width="293.95" Height="85.05" Text="[DS.Conclusion]" HorzAlign="Justify" Font="Arial, 7pt"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="694.95" Width="740.5" Height="19.05">
+      <TextObject Name="Text126" Left="580.45" Top="9.6" Width="155.65" Height="9.45" Text="[DS.ISODocNo]" HorzAlign="Right" Font="Arial, 6pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

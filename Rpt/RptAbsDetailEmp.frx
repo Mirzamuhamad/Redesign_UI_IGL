@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="05/10/2011 14:31:32" ReportInfo.Modified="08/06/2014 16:40:13" ReportInfo.CreatorVersion="2013.3.5.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+
+
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+       
+    End Sub
+
+    Private Sub Page1_StartPage(ByVal sender As object, ByVal e As EventArgs)
+       GroupHeader1.StartNewPage = (CType(Report.GetColumnValue(&quot;DS.FgForceNewPage&quot;), String)=&quot;Y&quot;)
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43hapSxwYgKs75Ie4NlkbqRDgD">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC  S_PYRptAbsRincian '20140501', '20140720', '', '', '', '', 0, 0, 'N', 'N', ''">
+        <Column Name="GroupCode" DataType="System.String"/>
+        <Column Name="GroupName" DataType="System.String"/>
+        <Column Name="EmpNumb" DataType="System.String"/>
+        <Column Name="EmpName" DataType="System.String"/>
+        <Column Name="ScheduleDate" DataType="System.DateTime"/>
+        <Column Name="Status" DataType="System.String"/>
+        <Column Name="Shift" DataType="System.String"/>
+        <Column Name="TimeIn" DataType="System.String"/>
+        <Column Name="TimeOut" DataType="System.String"/>
+        <Column Name="FgLateIn" DataType="System.String"/>
+        <Column Name="FgEarlyOut" DataType="System.String"/>
+        <Column Name="LateMinute" DataType="System.Int32"/>
+        <Column Name="EarlyOutMinute" DataType="System.Int32"/>
+        <Column Name="ShiftHour" DataType="System.Decimal"/>
+        <Column Name="AbsHour" DataType="System.Decimal"/>
+        <Column Name="CompName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="Periode" DataType="System.String"/>
+        <Column Name="FgForceNewPage" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="TLate" Expression="[DS.LateMinute]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TEO" Expression="[DS.EarlyOutMinute]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TShiftHour" Expression="[DS.ShiftHour]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TAbsHour" Expression="[DS.AbsHour]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" FirstPageSource="15" OtherPagesSource="15" Guides="0,1039.5,807.41,810.81,933.66,938.57,1029.67,818.15,1035.5,807.25,810.7,933.55,938.55,1029.5" StartPageEvent="Page1_StartPage">
+    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="122.19" Guides="119.74,115.29,115.31,0,86.4">
+      <TextObject Name="Text6" Left="103.95" Top="99.39" Width="85.8" Height="15.9" Text="Shift" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text7" Left="6.43" Top="99.39" Width="94.5" Height="15.9" Text="Date" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text12" Left="199.66" Top="99.41" Width="38.93" Height="15.9" Text="IN" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text13" Left="242" Top="99.41" Width="37.8" Height="15.9" Text="OUT" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text14" Left="288.56" Top="99.39" Width="142.95" Height="15.9" Text="Absence" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text15" Left="443.51" Top="89.96" Width="56.7" Height="15.9" Text="Late" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text16" Left="513.27" Top="89.96" Width="53.3" Height="15.9" Text="EO" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text1" Left="268.8" Top="41.58" Width="192" Height="18.9" Text="ABSENCE DETAIL" AutoWidth="true" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text17" Width="404.55" Height="18.9" Text="[DS.CompName]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text18" Top="18.9" Width="406.35" Height="28.35" Text="[DS.CompAddr]" Font="Arial, 8.25pt"/>
+      <TextObject Name="Text40" Left="818.15" Top="9.45" Width="217.35" Height="13.23" Text="Date/Time : [Date]" Format="Custom" Format.Format="dd/MM/yyyy hh:mm:ss" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text42" Left="818.15" Top="79.6" Width="217.35" Height="13.23" Text="Page : [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text43" Left="259.2" Top="64.04" Width="192" Height="18.9" Text="[DS.Periode]" HorzAlign="Center" Font="Arial, 8.25pt"/>
+      <TextObject Name="Text45" Left="444.4" Top="102.41" Width="56.7" Height="15.9" Text="(minute)" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text46" Left="511.25" Top="103.39" Width="56.7" Height="15.9" Text="(minute)" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <LineObject Name="Line2" Left="3.16" Top="89.94" Width="718.2" Diagonal="true"/>
+      <LineObject Name="Line3" Left="4.16" Top="120.31" Width="718.2" Diagonal="true"/>
+      <TextObject Name="Text47" Left="-9600" Top="-9600" Width="153.6" Height="19.2" Text="Date : [Date]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text48" Left="566.4" Width="153.6" Height="19.2" Text="Date : [Date]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text49" Left="567.25" Top="19.29" Width="153.6" Height="28.8" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text19" Left="576" Top="89.79" Width="67.05" Height="19.2" Text="Effective" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text50" Left="576" Top="100.24" Width="57.6" Height="19.2" Text="Hour" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text51" Left="643.2" Top="90.09" Width="57.6" Height="19.2" Text="Actual" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text52" Left="643.2" Top="100.54" Width="57.6" Height="19.2" Text="Hour" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="126.49" Width="718.2" Height="24.9" BeforePrintEvent="GroupHeader1_BeforePrint" Guides="0,18.9" RepeatOnEveryPage="true" Condition="[DS.EmpNumb]">
+      <TextObject Name="Text2" Top="4" Width="392.45" Height="18.9" Text="Employee : [DS.EmpNumb] [DS.EmpName]" AutoWidth="true" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text44" Left="415.8" Top="6" Width="297.95" Height="18.9" Text="Job Title : [DS.GroupName]" AutoWidth="true" Font="Arial, 8pt, style=Bold"/>
+      <DataBand Name="Data1" Top="155.69" Width="718.2" Height="19.2" Guides="0,18.9" DataSource="Table">
+        <TextObject Name="Text3" Left="6.43" Width="94.5" Height="18.9" Text="[DS.ScheduleDate]" Format="Custom" Format.Format="dd/MMM/yy" Font="Arial, 8pt"/>
+        <TextObject Name="Text5" Left="103.95" Width="85.8" Height="18.9" Text="[DS.Shift]" Font="Arial, 8pt"/>
+        <TextObject Name="Text4" Left="196.75" Width="38.8" Height="18.9" Text="[DS.TimeIn]" HorzAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text8" Left="240" Width="47.25" Height="18.9" Text="[DS.TimeOut]" HorzAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text9" Left="288.4" Width="142.95" Height="18.9" Text="[DS.Status]" Font="Arial, 8pt"/>
+        <TextObject Name="Text10" Left="444.4" Width="56.7" Height="18.9" Text="[DS.LateMinute]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 8pt"/>
+        <TextObject Name="Text11" Left="513.25" Width="53.15" Height="18.9" Text="[DS.EarlyOutMinute]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 8pt"/>
+        <TextObject Name="Text20" Left="576" Top="-0.3" Width="57.6" Height="19.2" Text="[DS.ShiftHour]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Center" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text22" Left="643.2" Top="-0.3" Width="57.6" Height="19.2" Text="[DS.AbsHour]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Center" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+        <Sort>
+          <Sort Expression="[DS.EmpNumb]"/>
+          <Sort Expression="[DS.ScheduleDate]"/>
+        </Sort>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="179.19" Width="718.2" Height="25.35" Guides="0">
+        <LineObject Name="Line1" Width="718.2" Diagonal="true"/>
+        <LineObject Name="Line4" Top="25.35" Width="718.2" Diagonal="true"/>
+        <TextObject Name="Text53" Left="287.5" Top="4" Width="142.95" Height="15.9" Text="Total :" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text54" Left="444.3" Top="2" Width="56.55" Height="18.9" Text="[TLate]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text55" Left="513.45" Top="2" Width="53" Height="18.9" Text="[TEO]" Format="Custom" Format.Format="#,##0" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text56" Left="576.6" Top="2" Width="57.45" Height="19.2" Text="[TShiftHour]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Center" WordWrap="false" Font="Arial, 8pt, style=Bold" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text57" Left="642.75" Top="2" Width="57.45" Height="19.2" Text="[TAbsHour]" Format="Custom" Format.Format="#,##0.00" HorzAlign="Center" WordWrap="false" Font="Arial, 8pt, style=Bold" Trimming="EllipsisCharacter"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="208.84" Width="718.2" Height="18.9"/>
+  </ReportPage>
+</Report>

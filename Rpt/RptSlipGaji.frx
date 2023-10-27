@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" DoublePass="true" ReportInfo.Created="12/05/2013 16:31:00" ReportInfo.Modified="08/23/2016 14:11:40" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)
+      
+    End Sub
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      If CType(Report.GetColumnValue(&quot;DS.PayrollName1&quot;), String) = &quot;&quot; Then
+         Text79.Visible = False
+         Text80.Visible = False
+         Text81.Visible = False
+      Else
+        Text79.Visible = True
+        Text80.Visible = True
+        Text81.Visible = True
+      End If  
+      
+      If CType(Report.GetColumnValue(&quot;DS.PayrollName2&quot;), String) = &quot;&quot; Then
+        Text55.Visible = False
+        Text57.Visible = False
+        Text58.Visible = False
+      Else
+        Text55.Visible = True
+        Text57.Visible = True
+        Text58.Visible = True
+      End If  
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWStE0aPOUlsWfwxUcDuebCT0Q4g5edtpWmvIJtXEnypu2O8Gk15WeYn1caHH8UEs87bei67IOav9Xg9JGCtvmp/5BoMUmsj5ilJmRxbfcevG">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PYRptSlipGaji 'PYP/16-01/0001','','',''">
+        <Column Name="EmpNumb" DataType="System.String"/>
+        <Column Name="EmpName" DataType="System.String"/>
+        <Column Name="JobTitle" DataType="System.String"/>
+        <Column Name="Period" DataType="System.DateTime"/>
+        <Column Name="Group0" DataType="System.String"/>
+        <Column Name="Group1" DataType="System.Int32"/>
+        <Column Name="Group2" DataType="System.String"/>
+        <Column Name="xKali" DataType="System.Decimal"/>
+        <Column Name="Rate" DataType="System.Decimal"/>
+        <Column Name="Curr" DataType="System.String"/>
+        <Column Name="SisaCuti" DataType="System.Decimal"/>
+        <Column Name="Prioritas" DataType="System.String"/>
+        <Column Name="CompName" DataType="System.String"/>
+        <Column Name="Department" DataType="System.String"/>
+        <Column Name="TakeHomePay1" DataType="System.Decimal"/>
+        <Column Name="TakeHomePay2" DataType="System.Decimal"/>
+        <Column Name="DayWork" DataType="System.Int32"/>
+        <Column Name="TotalKomponen" DataType="System.Decimal"/>
+        <Column Name="TotalPotongan" DataType="System.Decimal"/>
+        <Column Name="PayrollName1" DataType="System.String"/>
+        <Column Name="PayrollName2" DataType="System.String"/>
+        <Column Name="PayrollCode1" DataType="System.String"/>
+        <Column Name="PayrollCode2" DataType="System.String"/>
+        <Column Name="TakeHomePay3" DataType="System.Decimal"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="139.7" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5" FirstPageSource="15" OtherPagesSource="15">
+    <PageHeaderBand Name="PageHeader1" Width="778.3"/>
+    <GroupHeaderBand Name="GroupHeader3" Top="4" Width="778.3" Height="132.3" StartNewPage="true" Condition="[DS.EmpNumb]" SortOrder="None">
+      <ShapeObject Name="Shape1" Left="585.9" Width="160.65" Height="28.35"/>
+      <TextObject Name="Text32" Top="18.9" Width="160.65" Height="15.12" Text="SLIP GAJI KARYAWAN" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text45" Width="387.45" Height="18.9" Text="[DS.CompName]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text46" Top="37.8" Width="94.5" Height="15.12" Text="NAMA" Font="Arial, 8pt"/>
+      <TextObject Name="Text47" Top="56.7" Width="94.5" Height="15.12" Text="NOMOR INDUK" Font="Arial, 8pt"/>
+      <TextObject Name="Text48" Top="75.6" Width="94.5" Height="15.12" Text="DEPARTMENT" Font="Arial, 8pt"/>
+      <TextObject Name="Text49" Top="94.5" Width="94.5" Height="15.12" Text="JABATAN" Font="Arial, 8pt"/>
+      <TextObject Name="Text50" Left="94.5" Top="37.8" Width="9.45" Height="15.12" Text=":" Font="Arial, 8pt"/>
+      <TextObject Name="Text51" Left="94.5" Top="56.7" Width="9.45" Height="15.12" Text=":" Font="Arial, 8pt"/>
+      <TextObject Name="Text52" Left="94.5" Top="75.6" Width="9.45" Height="15.12" Text=":" Font="Arial, 8pt"/>
+      <TextObject Name="Text53" Left="94.5" Top="94.5" Width="9.45" Height="15.12" Text=":" Font="Arial, 8pt"/>
+      <LineObject Name="Line1" Top="112.95" Width="777.9"/>
+      <TextObject Name="Text64" Left="103.95" Top="37.8" Width="283.5" Height="15.12" Text="[DS.EmpName]" Font="Arial, 8pt"/>
+      <TextObject Name="Text65" Left="103.95" Top="56.7" Width="283.5" Height="15.12" Text="[DS.EmpNumb]" Font="Arial, 8pt"/>
+      <TextObject Name="Text66" Left="103.95" Top="94.5" Width="283.5" Height="15.12" Text="[DS.JobTitle]" Font="Arial, 8pt"/>
+      <TextObject Name="Text67" Left="406.35" Top="37.8" Width="100.95" Height="15.12" Text="BULAN" Font="Arial, 8pt"/>
+      <TextObject Name="Text68" Left="510.3" Top="37.8" Width="9.45" Height="15.12" Text=":" Font="Arial, 8pt"/>
+      <TextObject Name="Text69" Left="519.75" Top="37.8" Width="217.35" Height="15.12" Text="[DS.Period]" Format="Custom" Format.Format="dd MMM yyyy" Font="Arial, 8pt"/>
+      <TextObject Name="Text70" Left="406.35" Top="56.7" Width="100.95" Height="15.12" Text="JML. HARI KERJA" Font="Arial, 8pt"/>
+      <TextObject Name="Text71" Left="510.3" Top="56.7" Width="9.45" Height="15.12" Text=":" Font="Arial, 8pt"/>
+      <TextObject Name="Text72" Left="519.75" Top="56.7" Width="217.35" Height="15.12" Text="[DS.DayWork]" Format="Custom" Format.Format="###,##0" Font="Arial, 8pt"/>
+      <TextObject Name="Text73" Left="406.35" Top="75.6" Width="100.95" Height="15.12" Visible="false" Text="STATUS" Font="Arial, 8pt"/>
+      <TextObject Name="Text74" Left="510.3" Top="75.6" Width="9.45" Height="15.12" Visible="false" Text=":" Font="Arial, 8pt"/>
+      <TextObject Name="Text75" Left="103.95" Top="75.6" Width="283.5" Height="15.12" Text="[DS.Department]" Font="Arial, 8pt"/>
+      <TextObject Name="Text83" Left="519.75" Top="75.6" Width="217.35" Height="15.12" Visible="false" Format="Custom" Format.Format="dd MMM yyyy" Font="Arial, 8pt"/>
+      <TextObject Name="Text82" Top="116.4" Width="208.9" Height="15.12" CanGrow="true" Text="KOMPONEN" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text77" Left="387.45" Top="116.42" Width="208.9" Height="15.12" CanGrow="true" Text="POTONGAN" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text1" Left="585.9" Top="6" Width="160.65" Height="18.9" Text="PRIVATE &amp; CONFIDENTIAL" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <LineObject Name="Line5" Top="131.3" Width="777.9"/>
+      <DataBand Name="Data1" Top="140.3" Width="778.3" Height="18.9" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" AfterDataEvent="Data1_AfterData" DataSource="Table">
+        <TextObject Name="Text78" Top="1" Width="208.9" Height="15.12" CanGrow="true" Text="[DS.PayrollName1]" Font="Arial, 8pt"/>
+        <TextObject Name="Text79" Left="207.9" Top="1" Width="11.9" Height="15.12" CanGrow="true" Text=":" HorzAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text80" Left="220.8" Top="1" Width="47.25" Height="15.12" CanGrow="true" Text="[DS.Curr]" Font="Arial, 8pt"/>
+        <TextObject Name="Text81" Left="268.05" Top="1" Width="113.4" Height="15.12" CanGrow="true" Text="[DS.TotalKomponen]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 8pt"/>
+        <TextObject Name="Text17" Left="387.45" Top="1" Width="208.9" Height="15.12" CanGrow="true" Text="[DS.PayrollName2]" Font="Arial, 8pt"/>
+        <TextObject Name="Text55" Left="596.35" Top="1" Width="11.9" Height="15.12" CanGrow="true" Text=":" HorzAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text57" Left="609.25" Top="1" Width="47.25" Height="15.12" CanGrow="true" Text="[DS.Curr]" Font="Arial, 8pt"/>
+        <TextObject Name="Text58" Left="656.5" Top="1" Width="113.4" Height="15.12" CanGrow="true" Text="[DS.TotalPotongan]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 8pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter3" Top="163.2" Width="778.3" Height="160.65">
+        <ShapeObject Name="Shape2" Top="25.35" Width="387" Height="22.9"/>
+        <LineObject Name="Line2" Top="1" Width="777.92"/>
+        <TextObject Name="Text84" Top="3" Width="208.9" Height="15.12" CanGrow="true" Text="TOTAL PENERIMAAN" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text85" Left="207.9" Top="3" Width="11.9" Height="15.12" CanGrow="true" Text=":" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text86" Left="220.75" Top="3.02" Width="47.25" Height="15.12" CanGrow="true" Text="[DS.Curr]" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text87" Left="268" Top="3" Width="113.4" Height="15.12" Text="[DS.TakeHomePay1]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text88" Left="387.45" Top="3" Width="208.9" Height="15.12" CanGrow="true" Text="TOTAL POTONGAN" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text89" Left="596.48" Top="3" Width="11.9" Height="15.12" CanGrow="true" Text=":" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text90" Left="609.34" Top="3" Width="47.25" Height="15.12" CanGrow="true" Text="[DS.Curr]" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text91" Left="656.59" Top="3" Width="113.4" Height="15.12" Text="[DS.TakeHomePay2]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text2" Left="37.8" Top="52.25" Width="198.45" Height="18.9" Text="Penerima" HorzAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text92" Left="37.8" Top="102.5" Width="198.45" Height="15.12" Text="[DS.EmpName]" HorzAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text93" Left="519.75" Top="52.25" Width="198.45" Height="18.9" Text="Dibuat oleh," HorzAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text94" Left="519.75" Top="102.5" Width="198.45" Height="15.12" Text="Lina" HorzAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text3" Top="129.85" Width="56.7" Height="18.9" Text="Note :" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text4" Left="51.05" Top="129.85" Width="604.8" Height="28.35" Text="Slip gaji ini hanya berlaku untuk nama karyawan yang tercantum diatas, mohon tidak disalahgunakan" Font="Arial, 8pt, style=Bold"/>
+        <LineObject Name="Line3" Top="20.35" Width="777.92"/>
+        <LineObject Name="Line4" Top="22.35" Width="777.92"/>
+        <TextObject Name="Text95" Top="28.35" Width="208.9" Height="15.12" CanGrow="true" Text="TOTAL GAJI DITERIMA" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text96" Left="207.9" Top="28.19" Width="11.9" Height="15.12" CanGrow="true" Text=":" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text97" Left="220.75" Top="28.19" Width="47.25" Height="15.12" CanGrow="true" Text="[DS.Curr]" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text98" Left="268" Top="28.19" Width="113.4" Height="15.12" Text="[DS.TakeHomePay3]" Format="Custom" Format.Format="###,##0" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="327.85" Width="778.3" Height="9.45"/>
+  </ReportPage>
+</Report>

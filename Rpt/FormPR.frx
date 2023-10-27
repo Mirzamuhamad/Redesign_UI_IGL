@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="03/29/2011 16:25:53" ReportInfo.Modified="07/25/2019 11:32:36" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>
+Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+
+Namespace FastReport
+  Public Class ReportScript
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)        
+      Text69.Text = CType(Report.GetColumnValue(&quot;DS.ISODocNo&quot;), String)    
+      Text5.Text = CType(Report.GetColumnValue(&quot;DS.RequestBy&quot;), String)
+      Text79.Text = CType(Report.GetColumnValue(&quot;DS.Status&quot;), String)
+      Text88.Text = CType(Report.GetColumnValue(&quot;DS.UserId&quot;), String)
+      Text21.Text = CType(Report.GetColumnValue(&quot;DS.RemarkDt&quot;), String)
+      Text89.Text = CType(Report.GetColumnValue(&quot;DS.UserPrep&quot;), String)
+
+    
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLGyiz5qWMjsA99V/W+nNq1W3g2zii+WzFvwn5S/yO9ty4j5cNSou1n2RnV42VCogqhVjLYLL/ulmMo74CPm1phJxWogAEmuiuSbA7gREIy06rJNRKtTKNXGKulNy+C2B41rg4scwlTOw2U11SwskZsdIUl7qFVm7opJbUOv5k7+VJqfECeIZDRB/HbRi2gEDpg==">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PRFormPR '''IAL-MR/1907/0005''','UserId'">
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="Status" DataType="System.String"/>
+        <Column Name="RequestType" DataType="System.String"/>
+        <Column Name="RequestBy" DataType="System.String"/>
+        <Column Name="Department" DataType="System.String"/>
+        <Column Name="DepartmentName" DataType="System.String"/>
+        <Column Name="ReffNmbr" DataType="System.String"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="Product" DataType="System.String"/>
+        <Column Name="Specification" DataType="System.String"/>
+        <Column Name="RequireDate" DataType="System.DateTime"/>
+        <Column Name="Product_Name" DataType="System.String"/>
+        <Column Name="QtyOrder" DataType="System.Decimal"/>
+        <Column Name="UnitOrder" DataType="System.String"/>
+        <Column Name="RemarkDt" DataType="System.String"/>
+        <Column Name="CompanyAddress" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="ISODocNo" DataType="System.String"/>
+        <Column Name="SpecificationProduct" DataType="System.String"/>
+        <Column Name="Qty" DataType="System.Decimal"/>
+        <Column Name="Unit" DataType="System.String"/>
+        <Column Name="QtyM2" DataType="System.Decimal"/>
+        <Column Name="QtyRoll" DataType="System.Decimal"/>
+        <Column Name="UnitPack" DataType="System.String"/>
+        <Column Name="UnitM2" DataType="System.String"/>
+        <Column Name="DivisiName" DataType="System.String"/>
+        <Column Name="UserId" DataType="System.String"/>
+        <Column Name="UserPrep" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="218" PaperHeight="140" LeftMargin="5" TopMargin="3" RightMargin="5" BottomMargin="3" FirstPageSource="261" OtherPagesSource="261" Guides="211.68,555.66,646.38,657.72,752.22,767.34,948.78,0,11.34,120.96,124.74,359.1,362.88,366.66,491.4,495.18,642.6,1046.27,1046.28,1047.06,457.38,1035.72,41.58,162.54,170.1,395.01,707.86,745.66,831.6,400.68,703.08,7.56,34.02,835.38,1043.28,39.69,160.65,752.11,831.49,748.44,90.72,154.98,30.24,94.5,219.24,249.48,122.96,521.64,895.86,343.98,427.14,672.84,756,929.88,1013.04,381.78,721.98,37.02,166.32,397.9,705.08,749.44,832.6,1045.27">
+    <PageHeaderBand Name="PageHeader1" Width="786.24" Height="142.75" Guides="3.78,22.68,2,24.68">
+      <TextObject Name="Text23" Left="91.95" Top="121.38" Width="181.66" Height="18.9" CanGrow="true" Text="Description" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text24" Left="489.76" Top="121.38" Width="77.73" Height="18.9" CanGrow="true" Text="Qty" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text27" Left="7.56" Top="121.38" Width="35.91" Height="18.9" CanGrow="true" Text="No" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text28" Left="592.93" Top="121.38" Width="179.55" Height="18.9" CanGrow="true" Text="Remark" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <LineObject Name="Line28" Left="0.45" Top="118.6" Width="783.46"/>
+      <TextObject Name="Text36" Left="483.3" Top="73.02" Width="103.95" Height="18.9" Text="PR No." VertAlign="Center"/>
+      <TextObject Name="Text37" Left="483.3" Top="94.97" Width="103.95" Height="18.9" Text="Request Date" VertAlign="Center"/>
+      <TextObject Name="Text38" Left="598.15" Top="73.02" Width="181.44" Height="18.9" Text="[DS.TransNmbr]" VertAlign="Center"/>
+      <TextObject Name="Text39" Left="598.15" Top="95.97" Width="181.44" Height="18.9" Text="[DS.TransDate]" Format="Date" Format.Format="dd MMMM yyyy" VertAlign="Center"/>
+      <TextObject Name="Text56" Top="1.89" Width="294.84" Height="28.35" CanGrow="true" Text="[DS.CompanyName]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text57" Top="72.48" Width="81.27" Height="18.9" Text="Request By" VertAlign="Bottom"/>
+      <TextObject Name="Text58" Left="88.29" Top="72.8" Width="234.36" Height="18.9" Text="[DS.RequestBy]" VertAlign="Bottom"/>
+      <LineObject Name="Line29" Left="1" Top="142.28" Width="783.46"/>
+      <TextObject Name="Text68" Left="1" Top="21.68" Width="332.53" Height="47.25" Text="[DS.CompanyAddress]"/>
+      <TextObject Name="Text74" Top="95.95" Width="81.27" Height="18.9" Text="Department" VertAlign="Bottom"/>
+      <TextObject Name="Text75" Left="88.05" Top="95.95" Width="376.11" Height="18.9" Text="[DS.DepartmentName]" VertAlign="Bottom"/>
+      <TextObject Name="Text1" Left="529.2" Top="41.8" Width="255.15" Height="37.81" Anchor="Top, Bottom, Left, Right" Text="MATERIAL REQUEST" HorzAlign="Right" VertAlign="Center" Font="Arial, 15.75pt, style=Bold"/>
+      <TextObject Name="Text69" Left="722.2" Top="9.45" Width="54.33" Height="26.46" Border.Lines="All" Border.Width="2" CanGrow="true" Text="HF 023" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text83" Left="81.6" Top="73.48" Width="9.12" Height="18.9" Text=":" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text84" Left="81.6" Top="94.38" Width="9.12" Height="18.9" Text=":" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text85" Left="588.9" Top="72.48" Width="9.12" Height="18.9" Text=":" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text86" Left="588.9" Top="94.38" Width="9.12" Height="18.9" Text=":" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <LineObject Name="Line54" Left="784.35" Top="118.85" Height="206.9"/>
+      <LineObject Name="Line43" Left="585.9" Top="118.4" Height="206.9"/>
+      <LineObject Name="Line45" Left="453.6" Top="118.4" Height="206.9"/>
+      <LineObject Name="Line52" Left="45.25" Top="118.4" Height="206.45"/>
+      <LineObject Name="Line53" Left="0.45" Top="118.4" Width="0.45" Height="208.45"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="145.78" Width="786.24" Height="9.45" StartNewPage="true" Condition="[DS.TransNmbr]" SortOrder="None">
+      <DataBand Name="Data1" Top="158.26" Width="786.24" Height="30.35" CanGrow="true" AfterDataEvent="Data1_AfterData" CanBreak="true" Guides="0,18.9" DataSource="Table">
+        <TextObject Name="Text4" Left="40.69" Top="1.13" Width="130.41" Height="17.01" CanGrow="true" Text="[DS.Product]" HorzAlign="Right" VertAlign="Bottom" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Text8" Left="545.69" Top="1.89" Width="37.6" Height="17.01" CanGrow="true" Text="[DS.Unit]" HorzAlign="Right" VertAlign="Bottom"/>
+        <TextObject Name="Text10" Left="463.41" Top="1.89" Width="95.7" Height="17.01" CanGrow="true" Text="[DS.QtyOrder]" Format="Custom" Format.Format="##,#0.##" HorzAlign="Right" VertAlign="Bottom"/>
+        <TextObject Name="Text20" Left="7.56" Top="1.13" Width="26.46" Height="17.01" CanGrow="true" Text="[Row#]" VertAlign="Bottom"/>
+        <TextObject Name="Text70" Left="176.55" Top="1" Width="280.61" Height="17.01" CanGrow="true" Text="[DS.Product_Name]" VertAlign="Bottom" Font="Arial, 9pt, style=Bold"/>
+        <LineObject Name="Line51" Width="784.46"/>
+        <TextObject Name="Text87" Left="168.99" Top="1.13" Width="17.01" Height="17.01" CanGrow="true" Text="-" VertAlign="Center"/>
+        <TextObject Name="Text82" Left="585.9" Top="2" Width="196.56" Height="28.35" Text="[DS.Remark]"/>
+        <ChildBand Name="Child1" Top="191.64" Width="786.24" Height="14.9" CanGrow="true">
+          <TextObject Name="Text71" Left="170.8" Top="-3" Width="175.51" Height="17.01" CanGrow="true" GrowToBottom="true" Text="[DS.SpecificationProduct]" VertAlign="Bottom"/>
+        </ChildBand>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="209.57" Width="786.24"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="212.6" Width="786.24" Height="178.55" Guides="0,117.96,136.86,11.34,52.92,113.4,30.24,33.24,52.14,32.02,112.62,22.68,41.58,-423.36,37.8">
+      <TextObject Name="Text3" Left="329.75" Top="41.92" Width="158.76" Height="18.9" Text="Approved By," HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text51" Left="579.23" Top="40.14" Width="158.76" Height="18.9" Text="Prepared By," HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text53" Left="48.41" Top="41.59" Width="158.76" Height="18.9" Text="Requested By," HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <LineObject Name="Line26" Left="1047.27" Height="-578.36" Diagonal="true"/>
+      <TextObject Name="Text65" Left="327.64" Top="107.72" Width="158.76" Height="18.9" Text="(                           )" HorzAlign="Center"/>
+      <TextObject Name="Text66" Left="573.33" Top="107.72" Width="158.76" Height="18.9" Text="(                               )" HorzAlign="Center"/>
+      <TextObject Name="Text5" Left="52.7" Top="107.95" Width="151.2" Height="28.35" Text="[DS.RequestBy]" HorzAlign="Center"/>
+      <TextObject Name="Text76" Left="32.35" Top="107.95" Width="24.46" Height="18.9" Text="(" HorzAlign="Center"/>
+      <TextObject Name="Text77" Left="184" Top="108.4" Width="24.46" Height="18.9" Text=")" HorzAlign="Center"/>
+      <TextObject Name="Text35" Left="463.05" Top="142.75" Width="198.45" Height="20.79" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text67" Left="255.15" Top="142.75" Width="170.1" Height="18.9" GrowToBottom="true" Text="Date: [Date]" Format="Custom" Format.Format="dd/MM/yyyy" Font="Arial, 8pt"/>
+      <LineObject Name="Line32" Left="2" Top="28.35" Width="782.01"/>
+      <TextObject Name="Text78" Top="142.75" Width="37.8" Height="18.9" Text="User :" Font="Arial, 8pt"/>
+      <TextObject Name="Text79" Left="737.1" Top="141.75" Width="45.25" Height="18.9" Text="[DS.Status]" HorzAlign="Right" Font="Arial, 8pt"/>
+      <LineObject Name="Line31" Top="-2" Width="784.46"/>
+      <TextObject Name="Text80" Top="159.65" Width="517.75" Height="18.9" Text="1.Putih : Accounting Pusat   2.Merah : Purchasing   3.Kuning : Pemohon    4.Hijau : Administrasi" Font="Arial, 8pt"/>
+      <LineObject Name="Line55" Left="255.15" Top="28.35" Height="112.4"/>
+      <LineObject Name="Line56" Left="529.2" Top="28.35" Height="112.4"/>
+      <TextObject Name="Text81" Left="1.16" Top="-1.66" Width="136.86" Height="18.9" Text="Remarks / Catatan :" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text88" Left="35.8" Top="143.75" Width="170.1" Height="18.9" GrowToBottom="true" Text="[DS.UserId]" Format="Custom" Format.Format="dd mm yyyy" Font="Arial, 8pt"/>
+      <LineObject Name="Line57" Left="2" Top="140.75" Width="781.46"/>
+      <TextObject Name="Text21" Left="139.75" Width="643.6" Height="26.46" CanGrow="true" Text="[DS.RemarkDt]" HorzAlign="Justify"/>
+      <TextObject Name="Text89" Left="576.45" Top="108.4" Width="151.2" Height="28.35" Text="[DS.UserPrep]" HorzAlign="Center"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ReportInfo.Created="05/20/2011 01:10:18" ReportInfo.Modified="10/08/2015 14:26:57" ReportInfo.CreatorVersion="1.2.47.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haqLgm75Z0ibp1ep+8uNV1sv">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_FNRptGiroOutOut '2012-02-07','','','', 0,'admin' ">
+        <Column Name="GiroNo" DataType="System.String"/>
+        <Column Name="Status" DataType="System.String"/>
+        <Column Name="PaymentNo" DataType="System.String"/>
+        <Column Name="PaymentDate" DataType="System.DateTime"/>
+        <Column Name="UserType" DataType="System.String"/>
+        <Column Name="SuppCode" DataType="System.String"/>
+        <Column Name="SuppName" DataType="System.String"/>
+        <Column Name="BankGiro" DataType="System.String"/>
+        <Column Name="BankGiroName" DataType="System.String"/>
+        <Column Name="CurrCode" DataType="System.String"/>
+        <Column Name="DueDate" DataType="System.DateTime"/>
+        <Column Name="Amount" DataType="System.Decimal"/>
+        <Column Name="DateInput" DataType="System.DateTime"/>
+        <Column Name="UserId" DataType="System.String"/>
+        <Column Name="ReportType" DataType="System.String"/>
+        <Column Name="Supplier" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="Total" Expression="[DS.Amount]" Evaluator="Data1" PrintOn="ReportSummary1" ResetOnReprint="true"/>
+    <Total Name="TotalPerCurr" Expression="[DS.Amount]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" FirstPageSource="14" OtherPagesSource="14" Guides="103.95,9.45,113.4,217.35,226.8,396.9,406.35,500.85,510.3,746.55,907.2,756,916.65,954.45,963.9,1039.5,510.3">
+    <PageHeaderBand Name="PageHeader1" Width="1047.06" Height="88.83">
+      <ShapeObject Name="Shape1" Top="60.48" Width="1045.3" Height="19.9"/>
+      <TextObject Name="Text4" Left="9.45" Top="62.48" Width="94.5" Height="13.9" Text="Due Date" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text6" Left="108.4" Top="62.48" Width="141.75" Height="13.9" Text="Giro No" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text8" Left="255.6" Top="62.48" Width="132.3" Height="13.9" Text="Payment No" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text10" Left="394.35" Top="62.48" Width="94.5" Height="13.9" Text="Date" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text12" Left="496.3" Top="62.48" Width="207.9" Height="13.9" Text="Pay To" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text14" Left="712.2" Top="62.48" Width="151.2" Height="13.9" Text="Bank Payment" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text16" Left="869.4" Top="62.48" Width="37.8" Height="13.9" Text="Curr" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text20" Left="916.65" Top="62.48" Width="122.85" Height="13.9" Text="Amount" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text1" Left="376.11" Top="18.9" Width="367.1" Height="23.35" Text="Giro Payment Outstanding Report" Font="Arial, 16pt, style=Bold"/>
+      <TextObject Name="Text22" Left="376.11" Top="41.58" Width="368.55" Height="18.9" Text="Date : [DS.DateInput]" Format="Custom" Format.Format="dd MMM yyyy" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text2" Left="9.45" Width="302.4" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text23" Left="9.45" Top="18.9" Width="302.4" Height="28.35" Text="[DS.CompAddr]" Font="Arial, 8pt"/>
+      <TextObject Name="Text52" Left="869.4" Top="9.45" Width="170.1" Height="18.9" Text="Date/Time : [Date]" HorzAlign="Right" Font="Arial Narrow, 8.25pt"/>
+      <TextObject Name="Text51" Left="841.05" Top="37.8" Width="198.45" Height="13.23" Text="Hal [Page#] dari [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="92.83" Width="1047.06" Condition="[DS.CurrCode]">
+      <DataBand Name="Data1" Top="96.83" Width="1047.06" Height="18.9" DataSource="Table">
+        <TextObject Name="Text3" Left="9.45" Width="94.5" Height="14.9" Text="[DS.DueDate]" Format="Custom" Format.Format="dd MMM yyyy" Font="Arial, 8pt"/>
+        <TextObject Name="Text5" Left="108.4" Width="141.75" Height="14.9" Text="[DS.GiroNo]" Format="Date" Format.Format="d" Font="Arial, 8pt"/>
+        <TextObject Name="Text7" Left="255.6" Width="132.3" Height="14.9" Text="[DS.PaymentNo]" Font="Arial, 8pt"/>
+        <TextObject Name="Text9" Left="394.35" Width="94.5" Height="14.9" Text="[DS.PaymentDate]" Format="Custom" Format.Format="dd MMM yyyy" Font="Arial, 8pt"/>
+        <TextObject Name="Text11" Left="496.3" Width="207.9" Height="14.9" Text="[DS.Supplier]" Font="Arial, 8pt"/>
+        <TextObject Name="Text13" Left="712.2" Width="151.2" Height="14.9" Text="[DS.BankGiroName]" Font="Arial, 8pt"/>
+        <TextObject Name="Text15" Left="869.4" Width="37.8" Height="14.9" Text="[DS.CurrCode]" Font="Arial, 8pt"/>
+        <TextObject Name="Text19" Left="916.65" Width="122.85" Height="14.9" Text="[DS.Amount]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="119.73" Width="1047.06" Height="18.9" Guides="0">
+        <TextObject Name="Text18" Left="916.65" Width="122.85" Height="18.9" Text="[TotalPerCurr]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <LineObject Name="Line4" Width="1041.95" Border.Style="Dash"/>
+        <TextObject Name="Text42" Left="756" Top="1" Width="151.2" Height="14.9" Text="Total Per [DS.CurrCode] :" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+        <LineObject Name="Line2" Top="16.9" Width="1041.95"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="142.63" Width="1047.06" Height="16.9">
+      <TextObject Name="Text17" Left="916.65" Top="2" Width="122.85" Height="13.9" Text="[Total]" Format="Custom" Format.Format="###,##0.00" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text39" Left="756" Top="2" Width="151.2" Height="14.9" Text="Grand Total :&#13;&#10;" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="163.53" Width="1047.06" Height="18.9">
+      <TextObject Name="Text41" Left="378" Width="368.55" Height="18.9" Text="[DS.ReportType]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text38" Left="2.35" Top="2" Width="91.5" Height="14.12" Text="Finance" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text21" Left="907.2" Width="132.3" Height="14.9" Text="[DS.UserId]" HorzAlign="Right" Font="Arial, 8pt"/>
+      <LineObject Name="Line3" Left="-2.45" Width="1041.95"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

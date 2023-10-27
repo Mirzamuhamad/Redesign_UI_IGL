@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" SmoothGraphics="true" ReportInfo.Created="03/29/2011 16:25:53" ReportInfo.Modified="09/22/2014 12:04:00" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>
+Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+
+Namespace FastReport
+  Public Class ReportScript
+
+    Private Sub Data1_AfterData(ByVal sender As object, ByVal e As EventArgs)        
+     ' Text69.Text = CType(Report.GetColumnValue(&quot;DS.ISODocNo&quot;), String)    
+     
+    
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGsQc5o0UVUqRy3qepdpzqbWSDVXYrtceT8G5Li2+sXK8qO1XoJkL07UGlCt+gDkslMbH9uw3dB2Aad22pA87J2VeVZCfrop1ZCi93PVN43haqnNNFfOsKJSOhK3GRrEyK6">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PRFormPRSchedule 'PR/14-05/12/0001'">
+        <Column Name="Product" DataType="System.String"/>
+        <Column Name="RequireDate" DataType="System.DateTime"/>
+        <Column Name="QtyOrder" DataType="System.Decimal"/>
+        <Column Name="CompanyAddress" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="ProductName" DataType="System.String"/>
+        <Column Name="Unit" DataType="System.String"/>
+        <Column Name="Qty" DataType="System.Double"/>
+        <Column Name="MGG" DataType="System.Int32"/>
+        <Column Name="Thn" DataType="System.Int32"/>
+        <Column Name="Bln" DataType="System.Int32"/>
+        <Column Name="MonthName" DataType="System.String"/>
+        <Column Name="ThnBln" DataType="System.String"/>
+        <Column Name="TransNmbr" DataType="System.String"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="RequestBy" DataType="System.String"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="RemarkDt2" DataType="System.String"/>
+        <Column Name="ISODOcNo" DataType="System.String"/>
+        <Column Name="Tgl" DataType="System.Int32"/>
+        <Column Name="Specification" DataType="System.String"/>
+        <Column Name="CompanyPost" DataType="System.String"/>
+        <Column Name="CompanyPhone" DataType="System.String"/>
+        <Column Name="Minggu" DataType="System.String"/>
+        <Column Name="FgPartial" DataType="System.String"/>
+        <Column Name="RequestTo" DataType="System.String"/>
+        <Column Name="QtyRoll" DataType="System.Double"/>
+        <Column Name="QtyM2" DataType="System.Double"/>
+        <Column Name="DepartmentCode" DataType="System.String"/>
+        <Column Name="DepartmentName" DataType="System.String"/>
+        <Column Name="UnitP" DataType="System.String"/>
+        <Column Name="UnitM" DataType="System.String"/>
+        <Column Name="Divisiname" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5" FirstPageSource="1" OtherPagesSource="1" Guides="211.68,555.66,646.38,657.72,752.22,767.34,948.78,0,11.34,120.96,124.74,359.1,362.88,366.66,491.4,495.18,642.6,1046.27,1046.28,1047.06,457.38,1035.72,41.58,162.54,170.1,395.01,707.86,745.66,831.6,400.68,703.08,7.56,34.02,835.38,1043.28,39.69,160.65,752.11,831.49,748.44,90.72,154.98,30.24,94.5,219.24,249.48,122.96,521.64,895.86,343.98,427.14,672.84,756,929.88,1013.04,381.78,721.98,37.02,166.32,397.9,705.08,749.44,832.6,1045.27">
+    <PageHeaderBand Name="PageHeader1" Width="778.3" Height="200.45" CanGrow="true" Guides="3.78,22.68,2,24.68,226.8,217.35,217.35,198.45,217.35,0,0,0,0,0">
+      <TextObject Name="Text56" Width="285.39" Height="28.35" CanGrow="true" Text="[DS.CompanyName]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text67" Left="542.33" Top="3.89" Width="226.8" Height="24.9" Text="Date/Time : [Date]" HorzAlign="Right"/>
+      <TextObject Name="Text35" Left="546.33" Top="20.9" Width="226.8" Height="17.34" Text="Page [Page#] of [TotalPages#]" HorzAlign="Right"/>
+      <TextObject Name="Text68" Top="18.34" Width="306.18" Height="75.6" Text="[DS.CompanyAddress]&#13;&#10;[DS.CompanyPost]&#13;&#10;Phone : [DS.CompanyPhone]" Font="Arial, 9pt"/>
+      <TextObject Name="Text1" Left="230.58" Top="73.49" Width="306.56" Height="89.49" Anchor="Top, Bottom, Left, Right" Text="PURCHASE REQUEST FORM" HorzAlign="Center" Font="Arial, 14pt, style=Bold, Underline"/>
+      <TextObject Name="Text45" Left="496.51" Top="177.79" Width="81.27" Height="18.9" Text="To"/>
+      <TextObject Name="Text36" Left="495.86" Top="126.96" Width="103.95" Height="18.9" Text="PR No."/>
+      <TextObject Name="Text37" Left="495.86" Top="138.91" Width="103.95" Height="18.9" Text="Request Date"/>
+      <TextObject Name="Text38" Left="605.26" Top="120.96" Width="153.09" Height="18.9" Text=": [DS.TransNmbr]"/>
+      <TextObject Name="Text39" Left="605.26" Top="139.91" Width="153.09" Height="18.9" Text=": [DS.TransDate]" Format="Date" Format.Format="dd MMMM yyyy"/>
+      <TextObject Name="Text57" Left="3.11" Top="120.42" Width="81.27" Height="18.9" Text="Request By"/>
+      <TextObject Name="Text58" Left="91.4" Top="120.74" Width="234.36" Height="18.9" Text=": [DS.RequestBy]"/>
+      <TextObject Name="Text61" Left="495.53" Top="158.99" Width="103.95" Height="18.9" Text="Reference No."/>
+      <TextObject Name="Text62" Left="605.15" Top="158.99" Width="153.09" Height="18.9" Text=":" Format="Date" Format.Format="dd MMMM yyyy"/>
+      <TextObject Name="Text76" Left="3.11" Top="139.89" Width="81.27" Height="18.9" Text="Department"/>
+      <TextObject Name="Text77" Left="91.16" Top="139.89" Width="234.36" Height="18.9" Text=": [DS.DepartmentName]"/>
+      <TextObject Name="Text2" Left="603.91" Top="178.69" Width="122.85" Height="18.9" Text=": [DS.RequestTo]"/>
+      <TextObject Name="Text63" Left="217.35" Top="93.61" Width="328.86" Height="50.79" Anchor="Top, Bottom, Left, Right" Text="PERMINTAAN PEMBELIAN" HorzAlign="Center" Font="Arial, 14.25pt, style=Bold"/>
+      <TextObject Name="Text59" Left="3" Top="175.55" Width="81.27" Height="18.9" Text="Remark"/>
+      <TextObject Name="Text60" Left="91.5" Top="175.55" Width="376.11" Height="18.9" CanGrow="true" Text=": [DS.Remark]"/>
+      <TextObject Name="Text78" Left="3" Top="157.65" Width="81.27" Height="18.9" Text="Division"/>
+      <TextObject Name="Text79" Left="90.5" Top="157.65" Width="234.36" Height="18.9" Text=": [DS.Divisiname]"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="204.45" Width="778.3" Height="147.42" CanGrow="true" AfterDataEvent="Data1_AfterData" Guides="0,18.9,0,0">
+      <MatrixObject Name="Matrix1" Left="4.92" Width="654.49" Height="73.29" FixedRows="3" FixedColumns="9" AutoSize="false" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="[DS.ThnBln]" Sort="None" Totals="false"/>
+          <Header Expression="[DS.Minggu]" Totals="false"/>
+          <Header Expression="[DS.Tgl]" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.Product]" Totals="false"/>
+          <Header Expression="[DS.ProductName]" Totals="false"/>
+          <Header Expression="[DS.QtyOrder]" Totals="false"/>
+          <Header Expression="[DS.Unit]" Totals="false"/>
+          <Header Expression="[DS.QtyRoll]" Totals="false"/>
+          <Header Expression="[DS.UnitP]" Totals="false"/>
+          <Header Expression="[DS.QtyM2]" Totals="false"/>
+          <Header Expression="[DS.UnitM]" Totals="false"/>
+          <Header Expression="[DS.RemarkDt2]" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.Qty]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="90.04"/>
+        <TableColumn Name="Column2" Width="92.79"/>
+        <TableColumn Name="Column3" Width="66.69"/>
+        <TableColumn Name="Column4" Width="53.19"/>
+        <TableColumn Name="Column5" Width="56.39"/>
+        <TableColumn Name="Column6" Width="50.66"/>
+        <TableColumn Name="Column7" Width="52.27"/>
+        <TableColumn Name="Column8" Width="52.93"/>
+        <TableColumn Name="Column9" Width="78.36"/>
+        <TableColumn Name="Column10" Width="61.17"/>
+        <TableRow Name="Row1" Height="17.91">
+          <TableCell Name="Cell1" Border.Lines="All" Text="Product Code" VertAlign="Center" Font="Arial, 9pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell2" Border.Lines="Top" Text="Product Name" VertAlign="Center" Font="Arial, 9pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell7" Border.Lines="Left, Top, Bottom" Text="Qty 1" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell13" Border.Lines="Top, Bottom" VertAlign="Center" Font="Arial, 9pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell16" Border.Lines="Left, Top, Bottom" Text="Qty 2" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell19" Border.Lines="Right, Top, Bottom" HorzAlign="Center" VertAlign="Center" RowSpan="3"/>
+          <TableCell Name="Cell42" Border.Lines="Left, Top, Bottom" Text="Qty 3" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell46" Border.Lines="Right, Top, Bottom" HorzAlign="Center" VertAlign="Center" RowSpan="3"/>
+          <TableCell Name="Cell50" Border.Lines="All" Text="Remark" VertAlign="Center" Font="Arial, 9pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell54" Border.Lines="All" Text="[ThnBln]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="17.91">
+          <TableCell Name="Cell3"/>
+          <TableCell Name="Cell4"/>
+          <TableCell Name="Cell8"/>
+          <TableCell Name="Cell14"/>
+          <TableCell Name="Cell17"/>
+          <TableCell Name="Cell20"/>
+          <TableCell Name="Cell43"/>
+          <TableCell Name="Cell47"/>
+          <TableCell Name="Cell51"/>
+          <TableCell Name="Cell55" Border.Lines="All" Text="[Minggu]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="17.91">
+          <TableCell Name="Cell25"/>
+          <TableCell Name="Cell26"/>
+          <TableCell Name="Cell27"/>
+          <TableCell Name="Cell28"/>
+          <TableCell Name="Cell29"/>
+          <TableCell Name="Cell30"/>
+          <TableCell Name="Cell44"/>
+          <TableCell Name="Cell48"/>
+          <TableCell Name="Cell52"/>
+          <TableCell Name="Cell56" Border.Lines="All" Text="[Tgl]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row4" Height="19.56" AutoSize="true">
+          <TableCell Name="Cell36" Border.Lines="All" Text="[Product]" VertAlign="Center" Font="Arial, 9pt"/>
+          <TableCell Name="Cell37" Border.Lines="All" Text="[ProductName]" VertAlign="Center" Font="Arial, 9pt"/>
+          <TableCell Name="Cell38" Border.Lines="Bottom" Text="[QtyOrder]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+          <TableCell Name="Cell39" Border.Lines="Top, Bottom" Text="[Unit]" VertAlign="Center" Font="Arial, 9pt"/>
+          <TableCell Name="Cell40" Border.Lines="Left, Top, Bottom" Text="[QtyRoll]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt"/>
+          <TableCell Name="Cell41" Border.Lines="Right, Top, Bottom" Text="[UnitP]" HorzAlign="Center" VertAlign="Center"/>
+          <TableCell Name="Cell45" Border.Lines="Left, Top, Bottom" Text="[QtyM2]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt"/>
+          <TableCell Name="Cell49" Border.Lines="Right, Top, Bottom" Text="[UnitM]" HorzAlign="Center" VertAlign="Center"/>
+          <TableCell Name="Cell53" Border.Lines="All" Text="[RemarkDt2]" VertAlign="Center" Font="Arial, 9pt"/>
+          <TableCell Name="Cell57" Border.Lines="All" Text="[Qty]" Format="Custom" Format.Format="#,##0.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="355.87" Width="778.3" Height="147.04" Guides="117.96,136.86,52.92,113.4,52.14,112.62,-423.36">
+      <TextObject Name="Text3" Left="360.1" Top="27.47" Width="158.76" Height="18.9" Text="Approved By," HorzAlign="Center"/>
+      <TextObject Name="Text51" Left="561.33" Top="26.69" Width="158.76" Height="18.9" Text="Acknowledge By," HorzAlign="Center"/>
+      <TextObject Name="Text53" Left="4.16" Top="26.69" Width="158.76" Height="18.9" Text="Requested By," HorzAlign="Center"/>
+      <LineObject Name="Line26" Left="1047.27" Top="9.45" Height="-578.36" Diagonal="true"/>
+      <TextObject Name="Text64" Left="0.12" Top="88.82" Width="158.76" Height="18.9" Text="(         [DS.RequestBy]        )" HorzAlign="Center"/>
+      <TextObject Name="Text65" Left="353.44" Top="88.82" Width="158.76" Height="18.9" Text="(                                    )" HorzAlign="Center"/>
+      <TextObject Name="Text66" Left="561.88" Top="88.82" Width="158.76" Height="18.9" Text="(                                    )" HorzAlign="Center"/>
+      <TextObject Name="Text69" Left="565.91" Top="122.4" Width="164.28" Height="17.01" CanGrow="true" Text="[DS.ISODOcNo]" HorzAlign="Right" VertAlign="Bottom" Font="Arial, 9pt"/>
+      <TextObject Name="Text74" Left="169.99" Top="27.68" Width="158.76" Height="18.9" Text="Checked By," HorzAlign="Center"/>
+      <TextObject Name="Text75" Left="163.77" Top="89.72" Width="158.76" Height="18.9" Text="(                                    )" HorzAlign="Center"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

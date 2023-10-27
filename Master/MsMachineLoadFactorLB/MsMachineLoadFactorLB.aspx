@@ -1,0 +1,211 @@
+﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="MsMachineLoadFactorLB.aspx.vb" Inherits="MsMachineLoadFactorLB_MsMachineLoadFactorLB" %>
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc1" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Machine Load Factor Labor File</title>
+    <script src="../../Function/Function.JS" type="text/javascript"></script>
+    <script src="../../Function/OpenDlg.JS" type="text/javascript"></script>            
+    <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+    <div class="Content">
+     <div class="H1">Machine Load Factor Labor File</div>
+     <hr style="color:Blue" />
+        <table>
+        <tr>
+            <td style="width:100px;text-align:right" >Quick Search :</td>
+            <td><asp:TextBox runat="server" ID ="tbFilter" CssClass="TextBox" /> 
+                <asp:DropDownList runat="server" ID="ddlField" CssClass="DropDownList" >
+                  <asp:ListItem Selected="true" Text="Machine Code" Value="Machine_Code"></asp:ListItem>
+                  <asp:ListItem Text="Machine Name" Value = "Machine_Name"></asp:ListItem>        
+                  <asp:ListItem Text="Machine Group Code" Value = "MachineGroup_Code"></asp:ListItem>        
+                  <asp:ListItem Text="Machine Group Name" Value = "MachineGroup_Name"></asp:ListItem>        
+                  <asp:ListItem Text="Specification" Value = "Specification"></asp:ListItem>        
+                  <asp:ListItem Text="Unit" Value = "Unit"></asp:ListItem>     
+                  <asp:ListItem Text="Man Power" Value = "ManPower"></asp:ListItem>   
+                  <asp:ListItem Text="Load Factor LB" Value = "LoadFactorLB"></asp:ListItem>                          
+                </asp:DropDownList>     
+                <asp:Button class="bitbtn btnsearch" runat="server" ID="btnSearch" Text="Search" />
+                <asp:Button class="btngo" runat="server" ID="btnExpand" Text="..."/>
+                <asp:Button class="bitbtn btnprint" runat="server" ID="btnPrint" Text="Print"/>
+                &nbsp &nbsp &nbsp &nbsp
+               
+                
+            </td>
+        </tr>
+        </table>
+        </br>
+        <table bgcolor=silver >
+          <tr>
+                <td><b><asp:Label ID="lb1" runat="server" Text = "Setting in selected row " /></b> </td>
+          </tr>
+          <tr>
+                <td><asp:Label ID="Label2" runat="server" Text = "Man Power : " /> </td>                
+                <td><asp:TextBox ID="tbManPower" runat="server" CssClass="TextBox" MaxLength="15" Width="50px" /> 
+                <asp:Button class="bitbtn btngo" runat="server" ID="btnApply2" Text="G"/></td>
+           </tr>
+          <tr>
+                <td><asp:Label ID="Label1" runat="server" Text = "Load Factor LB : " /> </td>                
+                <td><asp:TextBox ID="tbLoadFactor" runat="server" CssClass="TextBox" MaxLength="15" Width="50px" /> 
+                <asp:Button class="bitbtn btngo" runat="server" ID="btnApply" Text="G"/></td>
+           </tr>           
+        </table>
+     <asp:Panel runat="server" ID="pnlSearch" Visible="false">
+     <table>   
+        <tr>
+            <td style="width:100px;text-align:right"><asp:DropDownList CssClass="DropDownList" runat="server" ID="ddlNotasi" >
+                    <asp:ListItem Selected="true" Text="OR" Value="OR"></asp:ListItem>
+                    <asp:ListItem Text="AND" Value="AND"></asp:ListItem>         
+                </asp:DropDownList>
+            </td>
+            <td><asp:TextBox runat="server" ID ="tbfilter2" CssClass="TextBox"/> 
+                  <asp:DropDownList runat="server" ID="ddlField2" CssClass="DropDownList" >
+                  <asp:ListItem Selected="true" Text="Machine Code" Value="Machine_Code"></asp:ListItem>
+                  <asp:ListItem Text="Machine Name" Value = "Machine_Name"></asp:ListItem>        
+                  <asp:ListItem Text="Machine Group Code" Value = "MachineGroup_Code"></asp:ListItem>        
+                  <asp:ListItem Text="Machine Group Name" Value = "MachineGroup_Name"></asp:ListItem>        
+                  <asp:ListItem Text="Specification" Value = "Specification"></asp:ListItem>        
+                  <asp:ListItem Text="Unit" Value = "Unit"></asp:ListItem>        
+                  <asp:ListItem Text="Man Power" Value = "ManPower"></asp:ListItem>
+                  <asp:ListItem Text="Load Factor LB" Value = "LoadFactorLB"></asp:ListItem>
+                  </asp:DropDownList>                
+            </td>
+        </tr>
+     </table>
+     </asp:Panel>
+      <br />
+      <asp:GridView id="DataGrid" runat="server" ShowFooter="True" AllowSorting="True" 
+            AutoGenerateColumns="False" AllowPaging="True" CssClass="Grid">
+						<HeaderStyle CssClass="GridHeader"></HeaderStyle>
+						<RowStyle CssClass="GridItem" Wrap="false"/>
+						<AlternatingRowStyle CssClass="GridAltItem"/>
+						<FooterStyle CssClass="GridFooter" />
+						<PagerStyle CssClass="GridPager" />
+				      <Columns>
+				            <asp:TemplateField>
+                                <HeaderTemplate>
+                                    <asp:CheckBox ID="cbSelectHd" runat="server" AutoPostBack="true" 
+                                        oncheckedchanged="cbSelectHd_CheckedChanged1" />
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <asp:CheckBox ID="cbSelect" runat="server" />
+                                </ItemTemplate>
+                            </asp:TemplateField>  
+				      
+							<asp:TemplateField HeaderText="Machine Code" HeaderStyle-Width="100" SortExpression="Machine_Code">
+								<Itemtemplate>
+									<asp:Label Runat="server" ID="MachineCode" text='<%# DataBinder.Eval(Container.DataItem, "Machine_Code") %>'>
+									</asp:Label>
+								</Itemtemplate>
+								<EditItemTemplate>
+									<asp:Label Runat="server" ID="MachineCodeEdit"  Text='<%# DataBinder.Eval(Container.DataItem, "Machine_Code") %>'>
+									</asp:Label>
+								</EditItemTemplate>
+							</asp:TemplateField>
+							
+							<asp:TemplateField HeaderText="Machine Name" HeaderStyle-Width="200" SortExpression="Machine_Name">
+								<Itemtemplate>
+									<asp:Label Runat="server" ID="MachineName" text='<%# DataBinder.Eval(Container.DataItem, "Machine_Name") %>'>
+									</asp:Label>
+								</Itemtemplate>
+								<EditItemTemplate>
+									<asp:Label Runat="server" ID="MachineNameEdit" text='<%# DataBinder.Eval(Container.DataItem, "Machine_Name") %>'>
+									</asp:Label>
+								</EditItemTemplate>
+							</asp:TemplateField>		
+							
+							<asp:TemplateField HeaderText="Machine Group" HeaderStyle-Width="200" SortExpression="MachineGroup_Code">
+								<Itemtemplate>
+									<asp:Label Runat="server" ID="MachineGroupCode" text='<%# DataBinder.Eval(Container.DataItem, "MachineGroup_Code") %>'>
+									</asp:Label>
+								</Itemtemplate>	
+								<EditItemTemplate>
+									<asp:Label Runat="server" ID="MachineGroupCodeEdit" text='<%# DataBinder.Eval(Container.DataItem, "MachineGroup_Code") %>'>
+									</asp:Label>								
+								</EditItemTemplate>								
+							</asp:TemplateField>							  			
+							
+							<asp:TemplateField HeaderText="Machine Group Name" HeaderStyle-Width="200" SortExpression="MachineGroup_Name">
+								<Itemtemplate>
+									<asp:Label Runat="server" ID="MachineGroupName" text='<%# DataBinder.Eval(Container.DataItem, "MachineGroup_Name") %>'>
+									</asp:Label>
+								</Itemtemplate>	
+								<EditItemTemplate>
+									<asp:Label Runat="server" ID="MachineGroupNameEdit" Text='<%# DataBinder.Eval(Container.DataItem, "MachineGroup_Name") %>'>
+									</asp:Label>
+								</EditItemTemplate>
+							</asp:TemplateField>
+							
+        					<asp:TemplateField HeaderText="Specification" HeaderStyle-Width="200" SortExpression="Specification">
+								<Itemtemplate>
+									<asp:Label Runat="server" ID="Specification" text='<%# DataBinder.Eval(Container.DataItem, "Specification") %>'>
+									</asp:Label>
+								</Itemtemplate>
+								<EditItemTemplate>
+    								<asp:Label Runat="server" ID="SpecificationEdit" text='<%# DataBinder.Eval(Container.DataItem, "Specification") %>'>
+									</asp:Label>
+								</EditItemTemplate>
+							</asp:TemplateField>	
+							
+						     <asp:TemplateField HeaderText="Unit" HeaderStyle-Width="50" SortExpression="Unit">
+								<Itemtemplate>
+									<asp:Label Runat="server" ID="Unit" text='<%# DataBinder.Eval(Container.DataItem, "Unit_Name") %>'>
+									</asp:Label>
+								</Itemtemplate>
+								<EditItemTemplate>														
+									<asp:Label Runat="server" ID="UnitEdit" text='<%# DataBinder.Eval(Container.DataItem, "Unit_Name") %>'>
+									</asp:Label>								
+								</EditItemTemplate>
+							</asp:TemplateField>
+							
+							<asp:TemplateField HeaderText="Man Power" HeaderStyle-Width="100" SortExpression="ManPower">
+								<Itemtemplate>
+									<asp:Label Runat="server" ID="ManPower" text='<%# DataBinder.Eval(Container.DataItem, "ManPower") %>'>
+									</asp:Label>
+								</Itemtemplate>
+								<EditItemTemplate>
+									<asp:TextBox Runat="server" CssClass="TextBox" ID="ManPowerEdit" MaxLength="9" Width="80" Text='<%# DataBinder.Eval(Container.DataItem, "ManPower") %>'>
+									</asp:TextBox>									
+								</EditItemTemplate>
+							</asp:TemplateField>	
+							
+							<asp:TemplateField HeaderText="Load Factor Labor (LB)" HeaderStyle-Width="100" SortExpression="LoadFactorLB">
+								<Itemtemplate>
+									<asp:Label Runat="server" ID="LoadFactor" text='<%# DataBinder.Eval(Container.DataItem, "LoadFactorLB") %>'>
+									</asp:Label>
+								</Itemtemplate>
+								<EditItemTemplate>
+									<asp:TextBox Runat="server" CssClass="TextBox" ID="LoadFactorEdit" MaxLength="9" Width="80" Text='<%# DataBinder.Eval(Container.DataItem, "LoadFactorLB") %>'>
+									</asp:TextBox>									
+								</EditItemTemplate>
+							</asp:TemplateField>			
+
+							
+							<asp:TemplateField HeaderText="Action" headerstyle-width="126" >
+								<ItemTemplate>
+								    <asp:Button ID="btnEdit" runat="server" class="bitbtndt btnedit" Text="Edit" CommandName="Edit"/>									
+								</ItemTemplate>
+								<EditItemTemplate>
+									<asp:Button ID="btnUpdate" runat="server" class="bitbtndt btnsave" Text="Save" CommandName="Update"/>									
+                                    <asp:Button ID="btnCancel" runat="server" class="bitbtndt btncancel" Text="Cancel" CommandName="Cancel"/>									
+								</EditItemTemplate>
+							</asp:TemplateField>
+							
+    					</Columns>
+        </asp:GridView>
+        
+        <asp:SqlDataSource ID="dsUnit" runat="server"                                                                                 
+               SelectCommand="EXEC S_GetUnit">                                        
+        </asp:SqlDataSource>
+
+        
+     <asp:Label ID="lstatus" ForeColor="red" runat="server"></asp:Label>
+    </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="07/04/2011 15:39:43" ReportInfo.Modified="02/11/2019 11:24:27" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+      dim Dept as String
+      dim Req as String
+
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+       if Dept &lt;&gt; Report.GetColumnValue(&quot;DS.Department&quot;) then
+        'Text1.Visible = true              
+        Dept = Report.GetColumnValue(&quot;DS.Department&quot;) 
+       else
+        'Text1.Visible = false             
+       End If      
+      
+       if Req &lt;&gt; Report.GetColumnValue(&quot;DS.TransNmbr&quot;) then
+        'Text3.Visible = true
+        'Text5.Visible = true
+        'Text7.Visible = true 
+        'Text9.Visible = true 
+        Req = Report.GetColumnValue(&quot;DS.TransNmbr&quot;) 
+       else
+        'Text3.Visible = false
+       ' Text5.Visible = false
+        'Text7.Visible = false 
+        'Text9.Visible = false 
+       End if
+    End Sub       
+
+    Private Sub ReportTitle1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Dept = &quot;&quot;
+      Req = &quot;&quot;
+    End Sub
+
+    Private Sub GroupHeader1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      Dept = &quot;&quot;
+      Req = &quot;&quot;
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLGyiz5qWMjsA99V/W+nNq1W3g2zii+WzFvwn5S/yO9ty4j5cNSou1n2RnV42VCogqhWDGBfTi9Ny1OneZGYjfinOHGpdCxzvpie7qu5vUxEx4MCFZZfHfGnHRCgUFUBKbmMlG5NqLQAbah7tE2SUt7SgFbtJcADlnP72vL8l8vB6">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PLRptAbsenceHKPayment  '20180220', '20180221', '', '', '', '','0','0','','', 'Admin'">
+        <Column Name="CompanyNPWP" DataType="System.String"/>
+        <Column Name="Period" DataType="System.String"/>
+        <Column Name="UserId" DataType="System.String"/>
+        <Column Name="CompanyName" DataType="System.String"/>
+        <Column Name="Division" DataType="System.String"/>
+        <Column Name="ItemNo" DataType="System.Int32"/>
+        <Column Name="EmpType" DataType="System.String"/>
+        <Column Name="EmpTypeName" DataType="System.String"/>
+        <Column Name="EmpNumb" DataType="System.String"/>
+        <Column Name="EmpName" DataType="System.String"/>
+        <Column Name="Job" DataType="System.String"/>
+        <Column Name="JobName" DataType="System.String"/>
+        <Column Name="HK" DataType="System.Decimal"/>
+        <Column Name="TransDate" DataType="System.DateTime"/>
+        <Column Name="WeekNo" DataType="System.String"/>
+        <Column Name="SortBy" DataType="System.Int32"/>
+        <Column Name="Year" DataType="System.Int32"/>
+        <Column Name="week" DataType="System.Int32"/>
+        <Column Name="Month" DataType="System.Int32"/>
+        <Column Name="Day" DataType="System.String"/>
+        <Column Name="EmpManager" DataType="System.String"/>
+        <Column Name="EmpKTU" DataType="System.String"/>
+        <Column Name="EmpAsisten" DataType="System.String"/>
+        <Column Name="EmpKrani" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" FirstPageSource="14" OtherPagesSource="14" Guides="321.3,737.1,400.68,621.81,0,538.65,793.8,1039.5,1047.28,7.56,128.52,129.3,250.14,251.26,335.76,340.2,427.14,430.92,529.2,532.98,669.06,672.84,895.86,793.69,882.63,884.41,958.23,963.79,1041.5,362.88,3.78,355.2,37.8" Fill.Color="White">
+    <ReportTitleBand Name="ReportTitle1" Width="1047.06" BeforePrintEvent="ReportTitle1_BeforePrint" Guides="60.48,79.38,87.16,102.28,0,18.9,20.9,58.7,9.45,22.68,79.6,92.83"/>
+    <PageHeaderBand Name="PageHeader1" Top="4" Width="1047.06" Height="217.5" Guides="0,26.46,4,22.9,3.78,22.68,189,151.2">
+      <TextObject Name="Text40" Left="793.8" Top="9.45" Width="245.7" Height="13.23" Text="Date/Time : [Date]" Format="Custom" Format.Format="dd/MM/yyyy hh:mm:ss" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text11" Left="340.2" Top="26.46" Width="398.11" Height="52.99" Text="Absensi Pekerja Harian / Bulanan (APHB)" HorzAlign="Center" VertAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text25" Left="7.56" Top="7.56" Width="332.64" Height="18.9" Text="[DS.CompanyName]" VertAlign="Center" Font="Arial, 16pt, style=Bold"/>
+      <TextObject Name="Text21" Left="9.56" Top="25.91" Width="291.84" Height="58.7" Text="[DS.Division]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text1" Left="340.2" Top="75.6" Width="396.9" Height="18.9" Text="[DS.Period]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <MatrixObject Name="Matrix1" Left="8.55" Top="103.3" Width="501.45" Height="114.2" FixedRows="2" FixedColumns="2" RepeatHeaders="false" AutoSize="false" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="[DS.WeekNo]"/>
+          <Header Expression="[DS.Day]" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.EmpName]"/>
+          <Header Expression="[DS.JobName]" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[Row#]"/>
+        </MatrixCells>
+        <TableColumn Name="Column6" Width="119.73"/>
+        <TableColumn Name="Column7" Width="280.95"/>
+        <TableColumn Name="Column8" Width="47.25"/>
+        <TableColumn Name="Column9" Width="53.52"/>
+        <TableRow Name="Row6" Height="21.92">
+          <TableCell Name="Cell26" Border.Lines="All" Text="Nama Pekerja / Grub" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell27" Border.Lines="All" Text="Pekerjaan" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell32" Border.Lines="All" Text="[WeekNo]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell35" Border.Lines="All" Text="Jumlah Hari" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold" RowSpan="2"/>
+        </TableRow>
+        <TableRow Name="Row7" Height="40.16">
+          <TableCell Name="Cell28" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell29" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell33" Border.Lines="All" Text="[Day]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          <TableCell Name="Cell36" Font="Arial, 10pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row8" Height="30.86">
+          <TableCell Name="Cell30" Border.Lines="All" Text="[EmpName]" VertAlign="Center"/>
+          <TableCell Name="Cell31" Border.Lines="All" Text="[JobName]" VertAlign="Center"/>
+          <TableCell Name="Cell34" Border.Lines="All" Text="[Row#]" HorzAlign="Center" VertAlign="Center"/>
+          <TableCell Name="Cell37" Border.Lines="All" HorzAlign="Right" VertAlign="Center"/>
+        </TableRow>
+        <TableRow Name="Row9" Height="21.26">
+          <TableCell Name="Cell41" Border.Lines="All" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold" ColSpan="2"/>
+          <TableCell Name="Cell42"/>
+          <TableCell Name="Cell43" Border.Lines="All" HorzAlign="Center" VertAlign="Center"/>
+          <TableCell Name="Cell44" Border.Lines="All" HorzAlign="Right" VertAlign="Center"/>
+        </TableRow>
+      </MatrixObject>
+    </PageHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="225.5" Width="1047.06" Height="207.45">
+      <TextObject Name="Text2" Left="9.71" Top="9" Width="94.5" Height="18.9" Text="Keterangan" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text3" Left="19.16" Top="27.9" Width="538.65" Height="37.8" Text="Pekerja wajib menandatangani Form Absensi setiap hari pada kolom hari yang bersangkutan.&#13;&#10;Bila pekerja tidak hadir, PIC wajib memberi tanda X pada kolom hari yang bersangkutan" Font="Arial, 9pt"/>
+      <TextObject Name="Text4" Left="66.41" Top="65.7" Width="122.85" Height="18.9" Text="Disetujui Oleh." Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text5" Left="312.11" Top="65.7" Width="139.74" Height="18.9" Text="Diperiksa Oleh," Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text6" Left="567.26" Top="65.7" Width="126.63" Height="18.9" Text="Diketahui Oleh," Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text7" Left="803.51" Top="65.7" Width="94.5" Height="18.9" Text="Dibuat Oleh." Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text8" Left="66.41" Top="160.2" Width="117.28" Height="18.9" Text="[DS.EmpManager]" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text9" Left="321.56" Top="160.2" Width="88.27" Height="18.9" Text="[DS.EmpKTU]" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text10" Left="576.71" Top="160.2" Width="95.83" Height="18.9" Text="[DS.EmpAsisten]" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text12" Left="803.51" Top="160.2" Width="101.5" Height="18.9" Text="[DS.EmpKrani]" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text13" Left="66.41" Top="188.55" Width="110.4" Height="18.9" Border.Lines="Top" Border.TopLine.Style="Dash" Text="Estate Manager" AutoWidth="true" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text14" Left="302.66" Top="188.55" Width="136.08" Height="18.9" Border.Lines="Top" Border.TopLine.Style="Dash" Text="Kepala Tata Usaha" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text15" Left="576.71" Top="188.55" Width="101.5" Height="18.9" Border.Lines="Top" Border.TopLine.Style="Dash" Border.BottomLine.Style="Dash" Text="Asisten Divisi" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text62" Left="803.51" Top="188.55" Width="94.5" Height="18.9" Border.Lines="Top" Border.TopLine.Style="Dash" Border.BottomLine.Style="Dash" Text="Krani Divisi" Font="Arial, 10pt, style=Bold"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="436.95" Width="1047.06" Height="47.25" Guides="0,18.9,9.45,9.45,18.9,9.45,9.45"/>
+  </ReportPage>
+</Report>

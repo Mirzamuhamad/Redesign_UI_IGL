@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="Vb" ReportInfo.Created="07/04/2011 15:39:43" ReportInfo.Modified="04/02/2019 15:16:09" ReportInfo.CreatorVersion="1.2.47.0">
+  <ScriptText>Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Windows.Forms
+Imports System.Drawing
+Imports Microsoft.VisualBasic
+Imports FastReport
+Imports FastReport.Data
+Imports FastReport.Dialog
+Imports FastReport.Table
+Imports FastReport.Barcode
+Imports FastReport.Utils
+
+Namespace FastReport
+  Public Class ReportScript
+    Dim No As Integer    
+  
+    Private Sub Data1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+
+    Private Sub Data1_AfterPrint(ByVal sender As object, ByVal e As EventArgs)
+    End Sub
+    
+    Private Sub PageFooter1_BeforePrint(ByVal sender As object, ByVal e As EventArgs)      
+    End Sub
+
+    Private Sub Matrix2_BeforePrint(ByVal sender As object, ByVal e As EventArgs)
+      
+    End Sub
+  End Class
+End Namespace
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLGyiz5qWMjsA99V/W+nNq1W3g2zii+WzFvwn5S/yO9ty4j5cNSou1n2RnV42VCogqhWDGBfTi9Ny1OneZGYjfinOHGpdCxzvpie7qu5vUxEx4MCFZZfHfGnHRCgUFUBKbmMlG5NqLQAbah7tE2SUt7RSIIcgDjC9cWhA7cqz9TWF">
+      <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PLRptRekapSPTBS '2018', '7', '2018', '8','','','','','0', '0','','','Admin'">
+        <Column Name="Column" Enabled="false" DataType="System.Int32" Calculated="true" Expression=""/>
+        <Column Name="CompanyNPWP" DataType="System.String"/>
+        <Column Name="Period" DataType="System.String"/>
+        <Column Name="CompanyAddress" DataType="System.String"/>
+        <Column Name="UserId" DataType="System.String"/>
+        <Column Name="Company" DataType="System.String"/>
+        <Column Name="CompAddr" DataType="System.String"/>
+        <Column Name="PeriodName" DataType="System.String"/>
+        <Column Name="Year" DataType="System.Int32"/>
+        <Column Name="Period1" DataType="System.Int32"/>
+        <Column Name="Blok" DataType="System.String"/>
+        <Column Name="TBS" DataType="System.Int32"/>
+        <Column Name="Abnormal" DataType="System.Int32"/>
+        <Column Name="StatusTanam" DataType="System.String"/>
+        <Column Name="WeekNo" DataType="System.String"/>
+        <Column Name="Week" DataType="System.Int32"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" FirstPageSource="14" OtherPagesSource="14" Guides="321.3,737.1,400.68,621.81,0,538.65,793.8,1039.5,1047.28,7.56,128.52,129.3,250.14,251.26,335.76,340.2,427.14,430.92,529.2,532.98,669.06,672.84,895.86,793.69,882.63,884.41,958.23,963.79,1041.5,362.88,3.78,355.2,37.8" Fill.Color="White">
+    <ReportTitleBand Name="ReportTitle1" Width="1047.06" BeforePrintEvent="ReportTitle1_BeforePrint" Guides="60.48,79.38,87.16,102.28,0,18.9,20.9,58.7,9.45,22.68,79.6,92.83"/>
+    <PageHeaderBand Name="PageHeader1" Top="4" Width="1047.06" Height="126.62" Guides="0,26.46,4,22.9,3.78,22.68,189,151.2">
+      <TextObject Name="Text42" Left="795.25" Top="23.33" Width="245.7" Height="13.23" Text="Page : [Page#] of [TotalPages#]" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text40" Left="793.8" Top="9.45" Width="245.7" Height="13.23" Text="Date/Time : [Date]" Format="Custom" Format.Format="dd/MM/yyyy hh:mm:ss" HorzAlign="Right" Font="Arial, 7pt"/>
+      <TextObject Name="Text11" Left="283.82" Top="69.7" Width="540.54" Height="19.2" Text="REKAP QTY JENJANG PANEN PERBLOK PERWEEK" HorzAlign="Center" VertAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text25" Left="7.56" Top="7.56" Width="332.64" Height="18.9" Text="[DS.Company]" VertAlign="Center" Font="Arial, 16pt, style=Bold"/>
+      <TextObject Name="Text21" Left="9.56" Top="25.91" Width="291.84" Height="58.7" Text="[DS.CompanyAddress]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text1" Left="497.51" Top="94.5" Width="345.87" Height="18.9" Text="[DS.Period1]"/>
+      <TextObject Name="Text45" Left="435.15" Top="94.5" Width="77.49" Height="18.9" Text="Periode :" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="134.62" Width="1047.06" Height="79.37" CanGrow="true" BeforePrintEvent="Data1_BeforePrint" Guides="3.78,22.68,47.25,47.25,47.25,47.25">
+      <MatrixObject Name="Matrix1" Width="234.77" Height="79.37" FixedRows="2" FixedColumns="3" AutoSize="false" CellsSideBySide="true" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="[DS.Year]" Totals="false"/>
+          <Header Expression="[DS.Week]" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[DS.StatusTanam]" Totals="false"/>
+          <Header Expression="[DS.Blok]" Totals="false"/>
+          <Header Expression="[DS.TBS]" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[DS.Column]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="60.48"/>
+        <TableColumn Name="Column2" Width="52.09"/>
+        <TableColumn Name="Column3" Width="49.96"/>
+        <TableColumn Name="Column4" Width="72.24"/>
+        <TableRow Name="Row1" Height="25.51">
+          <TableCell Name="Cell1" Border.Lines="Left, Top, Bottom" VertAlign="Center" Font="Arial, 10pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell2" Border.Lines="Top, Bottom" HorzAlign="Center" VertAlign="Center" RowSpan="2">
+            <TextObject Name="Text62" Left="7" Top="13.45" Width="37.8" Height="18.9" Text="Blok" HorzAlign="Center"/>
+          </TableCell>
+          <TableCell Name="Cell18" Border.Lines="Right, Top, Bottom" HorzAlign="Center" VertAlign="Center" RowSpan="2"/>
+          <TableCell Name="Cell21" Border.Lines="All" Text="[Year]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="25.51">
+          <TableCell Name="Cell3"/>
+          <TableCell Name="Cell4"/>
+          <TableCell Name="Cell19"/>
+          <TableCell Name="Cell22" Border.Lines="All" Text="[Week]" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="28.35">
+          <TableCell Name="Cell5" Border.Lines="All" Text="[StatusTanam]" VertAlign="Center" Font="Arial, 8pt"/>
+          <TableCell Name="Cell6" Border.Lines="All" Text="[Blok]" HorzAlign="Center" VertAlign="Center"/>
+          <TableCell Name="Cell20" Border.Lines="All" Text="[TBS]" HorzAlign="Center" VertAlign="Center"/>
+          <TableCell Name="Cell23" Border.Lines="All" Text="[Column]" HorzAlign="Right" VertAlign="Center"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="217.99" Width="1047.06" Height="28.35" Guides="0,18.9,9.45,9.45,18.9,9.45,9.45"/>
+  </ReportPage>
+</Report>

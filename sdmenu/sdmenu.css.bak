@@ -1,0 +1,117 @@
+div.sdmenu {
+	width: 200px;
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	padding-bottom: 10px;
+	background: url(bottom.gif) no-repeat  right bottom;
+	
+}
+
+div.sdmenu div.dmenu {
+	/*background: url(title.gif) repeat-x; */
+	background:brown;
+	border-bottom: 1px solid #ddd;
+	overflow: hidden;
+	color: #fff;
+}
+/*
+div.sdmenu div.dmenu:first-child {
+	background:brown;
+	border-bottom: 1px solid #ddd;
+	overflow: hidden;
+	color: #fff;
+}*/
+
+div.sdmenu div.dmenu:hover {
+	background : red; /* url(linkarrow.gif) no-repeat right center;*/
+	color: #fff;
+	text-decoration: none;
+}
+
+div.sdmenu div.collapsed {
+	/*background:brown;
+	border-bottom: 1px solid #ddd;*/
+	overflow: hidden;
+	height: 25px;
+}
+
+div.sdmenu div.subcollapsed {
+	/*background:brown;
+	border-bottom: 1px solid #ddd;*/
+	overflow: hidden;
+	height: 25px;
+}
+
+div.sdmenu div.sub {
+	background: #eee;
+	border-bottom: 1px solid #ddd;
+	overflow: hidden;
+}
+
+div.sdmenu div.dmenu span {
+	display: block;
+	padding: 5px 25px;
+	font-weight: bold;
+	color: white;
+	background: url(expanded.gif) no-repeat 10px center;
+	cursor: default;
+	border-bottom: 1px solid #ddd;
+}
+
+div.sdmenu div.sub span {
+	background: #eee;
+	background: url(expanded2.gif) no-repeat 180px center;
+	overflow: hidden;
+	padding: 5px 10px;
+	color: #066;
+}
+
+div.sdmenu div.collapsed span {
+	display: block;
+	padding: 5px 25px;
+	font-weight: bold;
+	color: white;
+	background:brown url(collapsed.gif) no-repeat 10px center;
+	cursor: default;
+	border-bottom: 1px solid #ddd;	
+}
+
+div.sdmenu div.subcollapsed span {
+	/*background-image: url(collapsed.gif);
+	*/
+	display: block;
+	padding: 5px 10px;
+	font-weight: bold;
+	background:#eee url(collapsed2.gif) no-repeat 180px center;
+	cursor: default;
+	border-bottom: 1px solid #ddd;	
+	color: #066;
+}
+
+div.sdmenu div a {
+	padding: 5px 10px;
+	font-size: 11px;
+	background: #eee;
+	display: block;
+	border-bottom: 1px solid #ddd;
+	color: #066;
+}
+
+div.sdmenu div a.submn {
+	padding: 5px 25px;
+	background: #eee;
+	display: block;
+	border-bottom: 1px solid #ddd;
+	color: #066;
+}
+
+div.sdmenu div a.current {
+	background : #ccc;
+}
+
+div.sdmenu div a:hover {
+	background : #066 url(linkarrow.gif) no-repeat right center;
+	color: #fff;
+	text-decoration: none;
+}
+
