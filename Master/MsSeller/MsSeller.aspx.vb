@@ -15,6 +15,10 @@ Partial Class MsSeller_MsSeller
 
             'tbKepadatan.Attributes.Add("OnKeyDown", "return PressNumeric();")
 
+            ViewState("MenuLevel") = SetMenuLevel(Request.QueryString("ContainerId").ToString, ViewState("UserId").ToString, ViewState("DBConnection").ToString)
+            btnAdd.Visible = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
+            btnAdd2.Visible = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
+
         End If
         If Not Session("Result") Is Nothing Then
 

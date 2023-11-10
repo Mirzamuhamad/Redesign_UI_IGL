@@ -12,6 +12,10 @@ Partial Class Master_MsAccount_MsAccount
             GridView1.ShowFooter = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
             btnPrint.Visible = ViewState("MenuLevel").rows(0)("FgPrint") = "Y"
 
+            ViewState("MenuLevel") = SetMenuLevel(Request.QueryString("ContainerId").ToString, ViewState("UserId").ToString, ViewState("DBConnection").ToString)
+            btnAdd.Visible = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
+            btnAdd2.Visible = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
+
         End If
         If Not Session("Result") Is Nothing Then
             If ViewState("Sender") = "btnAccClass" Then
@@ -60,6 +64,13 @@ Partial Class Master_MsAccount_MsAccount
             End If
 
             If CommandName = "Delete" Then
+                If ViewState("MenuLevel").Rows(0)("FgDelete") = "N" Then
+                    lstatus.Text = "<script language='javascript'> {alert('You are not authorized to delete record. Please contact administrator')}</script>"
+                    Return False
+                End If
+            End If
+
+            If CommandName = "Insert" Then
                 If ViewState("MenuLevel").Rows(0)("FgDelete") = "N" Then
                     lstatus.Text = "<script language='javascript'> {alert('You are not authorized to delete record. Please contact administrator')}</script>"
                     Return False
@@ -323,6 +334,9 @@ Partial Class Master_MsAccount_MsAccount
 
     Protected Sub btnAdd_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnAdd.Click
         Try
+            If CheckMenuLevel("Insert") = False Then
+                Exit Sub
+            End If
             ViewState("State") = "Insert"
             PnlMain.Visible = False
             pnlInput.Visible = True
@@ -347,6 +361,8 @@ Partial Class Master_MsAccount_MsAccount
             btnCancel.Visible = True
             btnReset.Visible = True
             btnHome.Visible = False
+
+
         Catch ex As Exception
             lstatus.Text = "btn add Error : " + ex.ToString
         End Try

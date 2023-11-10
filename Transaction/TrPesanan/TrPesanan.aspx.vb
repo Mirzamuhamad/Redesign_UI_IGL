@@ -991,6 +991,8 @@ Partial Class TrPemesanan
             pnlNav.Visible = True
             'ddlCommand.Visible = True
             'BtnGo.Visible = True
+            FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
+
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try
@@ -2062,6 +2064,11 @@ Partial Class TrPemesanan
                     End If
 
                 ElseIf DDL.SelectedValue = "Cancel" Then
+                    CekMenu = CheckMenuLevel("Edit", ViewState("MenuLevel").Rows(0))
+                    If CekMenu <> "" Then
+                        lbStatus.Text = CekMenu
+                        Exit Sub
+                    End If
 
                     If GVR.Cells(3).Text = "H" Then
                         lbStatus.Text = MessageDlg("Status Surat Pesanan Is not H or G, cannot Cancel Pesanan")

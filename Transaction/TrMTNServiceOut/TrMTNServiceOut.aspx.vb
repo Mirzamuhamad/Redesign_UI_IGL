@@ -277,6 +277,9 @@ Partial Class TrMTNServiceOut
             pnlNav.Visible = True
             'ddlCommand.Visible = True
             'BtnGo.Visible = True
+            FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
+
+
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try

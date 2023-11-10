@@ -486,6 +486,8 @@ Partial Class Transaction_TrLandPurchaseAgremt_TrLandPurchaseAgremt
             GridView1.PageIndex = 0
             BindData(Session("AdvanceFilter"))
             pnlNav.Visible = True
+            FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
+
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try

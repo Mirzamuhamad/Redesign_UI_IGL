@@ -18,6 +18,10 @@ Partial Class MsWarehouse_MsWarehouse
             btnPrint.Visible = ViewState("MenuLevel").rows(0)("FgPrint") = "Y"
             Session("SelectWrhsCondition") = "SELECT WrhsCondition, FgSubled FROM MsWrhsCondition"
             'bindDataGrid()
+
+            ViewState("MenuLevel") = SetMenuLevel(Request.QueryString("ContainerId").ToString, ViewState("UserId").ToString, ViewState("DBConnection").ToString)
+            btnAdd.Visible = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
+            btnAdd2.Visible = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
         End If
 
         lstatus.Text = ""

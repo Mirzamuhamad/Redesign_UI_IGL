@@ -450,6 +450,8 @@ Partial Class Transaction_TrCIPLicenAdmInv_TrCIPLicenAdmInv
             pnlNav.Visible = True
             'ddlCommand.Visible = True
             'BtnGo.Visible = True
+            FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
+
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try
@@ -1265,8 +1267,14 @@ Partial Class Transaction_TrCIPLicenAdmInv_TrCIPLicenAdmInv
     Private Sub SaveAll()
         Dim SQLString As String
         Dim I As Integer
+        Dim CekMenu As String
         Try
-            System.Threading.Thread.Sleep(7000)
+
+            CekMenu = CheckMenuLevel("Insert", ViewState("MenuLevel").Rows(0))
+            If CekMenu <> "" Then
+                lbStatus.Text = CekMenu
+                Exit Sub
+            End If
             'If CFloat(tbDisc.Text) <= 0 Then
             '    lbStatus.Text = MessageDlg("Payment Notaris must have value")
             '    tbPPn.Focus()

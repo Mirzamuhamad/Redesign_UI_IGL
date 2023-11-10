@@ -131,7 +131,9 @@ Partial Class BAPSerahTerimaLK
                 GridDt.Columns(0).Visible = True
             End If
         End If
+        
         If Menu2.Items.Item(1).Selected = True Then
+
             If ViewState("StateHd") = "Insert" Or ViewState("StateHd") = "Edit" Then
                 GridDt.Columns(0).Visible = False
             End If
@@ -271,6 +273,9 @@ Partial Class BAPSerahTerimaLK
             pnlNav.Visible = True
             'ddlCommand.Visible = True
             'BtnGo.Visible = True
+
+            FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
+
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try

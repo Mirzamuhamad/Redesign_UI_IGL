@@ -14,6 +14,10 @@ Partial Class Master_MsWrhsArea_MsWrhsArea
                 DataGrid.ShowFooter = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
                 btnPrint.Visible = ViewState("MenuLevel").rows(0)("FgPrint") = "Y"
                 'bindDataGrid()
+                ViewState("MenuLevel") = SetMenuLevel(Request.QueryString("ContainerId").ToString, ViewState("UserId").ToString, ViewState("DBConnection").ToString)
+                btnAdd.Visible = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
+                btnAdd2.Visible = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
+
             End If
             If Not Session("Result") Is Nothing Then
                 If ViewState("Sender") = "btnCluster" Then

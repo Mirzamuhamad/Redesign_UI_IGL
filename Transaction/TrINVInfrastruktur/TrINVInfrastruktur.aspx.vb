@@ -627,6 +627,8 @@ Partial Class INVInfrastruktur
             pnlNav.Visible = True
             'ddlCommand.Visible = True
             'BtnGo.Visible = True
+            FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
+
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try
@@ -928,7 +930,15 @@ Partial Class INVInfrastruktur
     Private Sub SaveAll()
         Dim SQLString, Path1, Path2, Path3, Path4, namafile1, namafile2, namafile3, namafile4 As String
         Dim I As Integer
+        Dim CekMenu As String
         Try
+
+            CekMenu = CheckMenuLevel("Insert", ViewState("MenuLevel").Rows(0))
+            If CekMenu <> "" Then
+                lbStatus.Text = CekMenu
+                Exit Sub
+            End If
+
             If Not (ViewState("StateHd") = "Insert" Or ViewState("StateHd") = "Edit") Then
                 Exit Sub
             Else

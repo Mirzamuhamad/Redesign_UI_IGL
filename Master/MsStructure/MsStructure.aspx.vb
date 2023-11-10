@@ -20,6 +20,12 @@ Partial Class MsStructure_MsStructureNew
             DataGrid.PageSize = CInt(ViewState("PageSizeGrid"))
             ViewState("MenuLevel") = SetMenuLevel(Request.QueryString("ContainerId").ToString, ViewState("UserId").ToString, ViewState("DBConnection").ToString)
             DataGrid.ShowFooter = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
+            btnAdd.Visible = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
+            btnAdd2.Visible = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
+            fuLocation.Visible = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
+            btnUpload.Visible = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
+            btnImportDB.Visible = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
+            ddlSheets.Visible = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
             'btnPrint.Visible = ViewState("MenuLevel").rows(0)("FgPrint") = "Y"
             'bindDataGrid()
             'tbMaxCap.Attributes.Add("OnKeyDown ", "return PressNumeric();")
@@ -196,7 +202,7 @@ Partial Class MsStructure_MsStructureNew
                 btnAdd2.Visible = False
             Else
                 DataGrid.Visible = True
-                btnAdd2.Visible = True
+                btnAdd2.Visible = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
             End If
         Catch ex As Exception
             lstatus.Text = lstatus.Text + "BindDataGrid Error: " & ex.ToString

@@ -283,6 +283,8 @@ Partial Class PenunjukanPemenang
             pnlNav.Visible = True
             'ddlCommand.Visible = True
             'BtnGo.Visible = True
+            FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
+
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try
@@ -489,7 +491,15 @@ Partial Class PenunjukanPemenang
     Private Sub SaveAll()
         Dim SQLString As String
         Dim I As Integer
+        Dim CekMenu As String
         Try
+
+            CekMenu = CheckMenuLevel("Insert", ViewState("MenuLevel").Rows(0))
+            If CekMenu <> "" Then
+                lbStatus.Text = CekMenu
+                Exit Sub
+            End If
+
             If pnlDt.Visible = False Then
                 lbStatus.Text = "Detail Data must be saved first"
                 Exit Sub
@@ -795,7 +805,15 @@ Partial Class PenunjukanPemenang
 
     Protected Sub lbCount_Click(ByVal sender As Object, ByVal e As EventArgs) Handles lbCount.Click
         Dim ResultField, CriteriaField, sqlstring As String
+        Dim CekMenu As String
         Try
+
+            CekMenu = CheckMenuLevel("Insert", ViewState("MenuLevel").Rows(0))
+            If CekMenu <> "" Then
+                lbStatus.Text = CekMenu
+                Exit Sub
+            End If
+
             sqlstring = "EXEC S_GetPenerimaan 1 "
             Session("DBConnection") = ViewState("DBConnection")
             Session("filter") = sqlstring

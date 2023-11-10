@@ -456,6 +456,9 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
             GridView1.PageIndex = 0
             BindData(Session("AdvanceFilter"))
             pnlNav.Visible = True
+
+            FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
+
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try
@@ -1219,6 +1222,11 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
                         btnDeleteDoc.Visible = True
                         EnableHd(GetCountRecord(ViewState("Dt")) = 0)
                     ElseIf GVR.Cells(3).Text = "P" Then
+                        CekMenu = CheckMenuLevel("Edit", ViewState("MenuLevel").Rows(0))
+                        If CekMenu <> "" Then
+                            lbStatus.Text = CekMenu
+                            Exit Sub
+                        End If
                         MovePanel(PnlHd, pnlInput)
                         ViewState("TransNmbr") = GVR.Cells(2).Text
                         GridDt.PageIndex = 0

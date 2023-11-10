@@ -592,6 +592,9 @@ Partial Class Transaction_TrCIPLicenAdmInv_TrCIPLicenAdmInv
             pnlNav.Visible = True
             'ddlCommand.Visible = True
             'BtnGo.Visible = True
+            FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
+
+
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try
@@ -1879,6 +1882,11 @@ Partial Class Transaction_TrCIPLicenAdmInv_TrCIPLicenAdmInv
                         EnableHd(GetCountRecord(ViewState("Dt")) = 0) 'And GetCountRecord(ViewState("Dt2")) = 0)
                         'FillCombo(ddlPayTypeDt2, "EXEC S_GetPayTypeUser " + QuotedStr("PaymentNT" + "Y") + ", " + QuotedStr(ViewState("UserId").ToString), True, "Payment_Code", "Payment_Name", ViewState("DBConnection")) 'ddlReport.SelectedValue
                     ElseIf GVR.Cells(3).Text = "P" Then
+                        CekMenu = CheckMenuLevel("Edit", ViewState("MenuLevel").Rows(0))
+                        If CekMenu <> "" Then
+                            lbStatus.Text = CekMenu
+                            Exit Sub
+                        End If
                         MovePanel(PnlHd, pnlInput)
                         ViewState("TransNmbr") = GVR.Cells(2).Text
                         GridDt.PageIndex = 0

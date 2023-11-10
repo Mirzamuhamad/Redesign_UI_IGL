@@ -423,6 +423,9 @@ Partial Class Transaction_TrPOGoods_TrPOGoods
             ViewState("AdvanceFilter") = ""
             BindData(ViewState("AdvanceFilter"))
             pnlNav.Visible = True
+
+            FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
+
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try
@@ -1596,10 +1599,10 @@ Partial Class Transaction_TrPOGoods_TrPOGoods
                     ddlField.SelectedValue = Value
                 ElseIf DDL.SelectedValue = "Print" Or DDL.SelectedValue = "Print 2" Then
                     CekMenu = CheckMenuLevel("Print", ViewState("MenuLevel").Rows(0))
-                    'If CekMenu <> "" Then
-                    '    lbStatus.Text = CekMenu
-                    '    Exit Sub
-                    'End If
+                    If CekMenu <> "" Then
+                        lbStatus.Text = CekMenu
+                        Exit Sub
+                    End If
                     index = Convert.ToInt32(e.CommandArgument)
                     GVR = GridView1.Rows(index)
 
@@ -1617,10 +1620,10 @@ Partial Class Transaction_TrPOGoods_TrPOGoods
                     AttachScript("openprintdlg();", Page, Me.GetType)
                 ElseIf DDL.SelectedValue = "Print Delivery" Then
                     CekMenu = CheckMenuLevel("Print", ViewState("MenuLevel").Rows(0))
-                    'If CekMenu <> "" Then
-                    '    lbStatus.Text = CekMenu
-                    '    Exit Sub
-                    'End If
+                    If CekMenu <> "" Then
+                        lbStatus.Text = CekMenu
+                        Exit Sub
+                    End If
                     'If Not GVR.Cells(4).Text = "P" Then
                     '    lbStatus.Text = MessageDlg("Cannot Print Must Post")
                     '    Exit Sub
@@ -2068,15 +2071,22 @@ Partial Class Transaction_TrPOGoods_TrPOGoods
 
     Protected Sub lbCount_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lbCount.Click
         Dim ResultField, CriteriaField As String
+        Dim CekMenu As String
         Try
-          
+
+            CekMenu = CheckMenuLevel("Insert", ViewState("MenuLevel").Rows(0))
+            If CekMenu <> "" Then
+                lbStatus.Text = CekMenu
+                Exit Sub
+            End If
+
             Session("filter") = "EXEC S_PRPOReff '','',0, '20500101',1 "
 
             ResultField = "DeliveryDate, Product_Group, Product_Group_Name, QtySchedule, PR_No, Product, Product_Name, Specification, Qty, Unit, QtyPROri, RequestTo, Department"
             CriteriaField = "DeliveryDate, Product_Group, Product_Group_Name, PR_No, DeliveryDate, QtySchedule, Product, Product_Name, Specification, Unit, QtyPROri, RequestTo, Department"
             ViewState("CriteriaField") = CriteriaField.Split(",")
             Session("Column") = ResultField.Split(",")
-            
+
             ViewState("Sender") = "btnOut"
             Session("DBConnection") = ViewState("DBConnection")
             AttachScript("OpenSearchMultiDlg();", Page, Me.GetType())

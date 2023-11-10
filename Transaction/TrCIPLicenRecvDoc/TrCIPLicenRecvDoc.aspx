@@ -455,7 +455,7 @@
           <br />
            <asp:Button ID="BtnAdd" runat="server" class="bitbtn btnadd" Text="Add"/>
           <%--  <br/>&nbsp;	 OnClientClick="ProgressCircle(this);"--%>
-           &nbsp &nbsp &nbsp   
+           &nbsp; 
             <asp:DropDownList CssClass="DropDownList" ID="ddlCommand" runat="server" Visible="false"/>
             <asp:Button class="btngo" runat="server" ID="BtnGo" Text="G" Visible="False"/>
           <br/>&nbsp;
@@ -502,10 +502,10 @@
               </Columns>
             </asp:GridView>
           </div>
-            <br/>&nbsp;
+            <br/>
             <asp:Panel runat="server" ID ="pnlNav" Visible="false">
             <asp:Button ID="btnAdd2" runat="server" class="bitbtn btnadd" Text="Add"/>	
-            &nbsp &nbsp &nbsp
+            &nbsp;
             <asp:DropDownList ID="ddlCommand2" runat="server" CssClass="DropDownList"/>
             <asp:Button class="btngo" runat="server" ID="btnGo2" Text="G"/>                
             </asp:Panel>          
@@ -781,7 +781,7 @@
     <input type="range" value="100" min="0" max="100" step="1" style="display:none;" />
     
     <div class="loading" align="center">
-      Loading. Please wait.<br />
+    
       <br />
        <img src="../../Image/loader.gif" alt="" />
     </div>
