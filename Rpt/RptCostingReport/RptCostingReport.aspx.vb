@@ -131,6 +131,7 @@ Partial Class Rpt_RptCostingReport_RptCostingReport
         Response.Write(stw.ToString())
         Response.End()
     End Sub
+    
     Protected Sub btnExport_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnExport.Click
         Dim Result As String
         Dim dt As DataTable

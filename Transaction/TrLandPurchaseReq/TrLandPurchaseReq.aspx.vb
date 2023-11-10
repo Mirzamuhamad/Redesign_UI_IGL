@@ -1679,6 +1679,7 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
             ViewState("SortExpressionOut") = Nothing
             ViewState("SortExpressionUse") = Nothing
             ViewState("MenuLevel") = SetMenuLevel(Request.QueryString("ContainerId").ToString, ViewState("UserId").ToString, ViewState("DBConnection").ToString)
+            
             FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
             'If ViewState("MenuLevel").Rows(0)("FgPrint") = "Y" Then
             '    'ddlCommand.Items.Add("Print")
@@ -1750,13 +1751,13 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
                 lbStatus.Text = "No Data"
                 pnlNav.Visible = False
                 'ddlCommand.Visible = False
-                'BtnGo.Visible = False
+                BtnGo.Visible = False
             End If
             ddlCommand.Visible = DT.Rows.Count > 0
             BtnGo.Visible = DT.Rows.Count > 0
             ddlCommand2.Visible = ddlCommand.Visible
             btnGo2.Visible = BtnGo.Visible
-            btnAdd2.Visible = BtnGo.Visible
+            ' btnAdd2.Visible = BtnGo.Visible
             DV = DT.DefaultView
 
             If ViewState("SortExpression") = Nothing Then
@@ -1798,6 +1799,7 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try
     End Sub
+
     Protected Sub BtnGo_Click(ByVal sender As Object, ByVal e As EventArgs) Handles BtnGo.Click, btnGo2.Click
         Dim Status As String
         Dim Result, ListSelectNmbr, ActionValue As String
