@@ -193,6 +193,7 @@ Partial Class Rpt_RptDlgDateSumDetail_ReportTemplate
         Response.Write(stw.ToString())
         Response.End()
     End Sub
+    
 
     Protected Sub btnExport_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnExport.Click
         Dim dt As DataTable
@@ -225,6 +226,7 @@ Partial Class Rpt_RptDlgDateSumDetail_ReportTemplate
             Else
                 FgPrintValue = "N"
             End If
+
             'If cbForceNewPage.Visible = True Then
             '    If cbForceNewPage.Checked Then
             '        FgForceNewPage = "Y"
@@ -232,6 +234,7 @@ Partial Class Rpt_RptDlgDateSumDetail_ReportTemplate
             '        FgForceNewPage = "N"
             '    End If
             'Else
+
             FgForceNewPage = "X"
             'End If
             'SQLString = ViewState("ExeSP") + " '" + Format(tbStartDate.SelectedDate, "yyyy-MM-dd") + "','" + Format(tbEndDate.SelectedDate, "yyyy-MM-dd") + "', '" + Result + "', " + QuotedStr(ViewState("MenuParam").ToString) + ", " + FgReport.ToString + ", " + FgReport2.ToString + ", " + QuotedStr(FgForceNewPage) + ", " + QuotedStr(FgPrintValue) + ", " + QuotedStr(ViewState("UserId").ToString)
