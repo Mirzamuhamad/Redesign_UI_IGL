@@ -3468,6 +3468,8 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
 
         Try
 
+        
+
             If Not (ViewState("StateHd") = "Insert" Or ViewState("StateHd") = "Edit") Then
                 Exit Sub
             Else
