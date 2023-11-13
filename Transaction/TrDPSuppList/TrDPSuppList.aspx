@@ -193,10 +193,10 @@
       </asp:Panel>
           <br />
             <asp:Button class="bitbtn btnadd" runat="server" ID="BtnAdd" Text="Add" />  
-            &nbsp &nbsp &nbsp   
+            &nbsp; 
             <asp:DropDownList CssClass="DropDownList" ID="ddlCommand" runat="server" Visible="false"/>
             <asp:Button class="btngo" runat="server" ID="BtnGo" visible=false Text="G"/>
-          <br />
+          <br />&nbsp;
           <div style="border:0px  solid; width:100%; height:100%; overflow:auto;">
           </div>
           <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True"
@@ -249,9 +249,10 @@
                     <asp:BoundField DataField="Remark" HeaderStyle-Width="200px" HeaderText="Remark" SortExpression="Remark" ></asp:BoundField>
               </Columns>
           </asp:GridView>
+          <br />
             <asp:Panel runat="server" ID ="pnlNav" Visible="false">
             <asp:Button class="bitbtn btnadd" runat="server" ID="btnAdd2" Text="Add" />
-            &nbsp &nbsp &nbsp
+            &nbsp;
             <asp:DropDownList ID="ddlCommand2" CssClass="DropDownList" runat="server"/>
             <asp:Button class="btngo" runat="server" ID="btnGo2" Text="G"/>     
             </asp:Panel>

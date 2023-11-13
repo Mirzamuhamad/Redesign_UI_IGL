@@ -392,7 +392,15 @@ Partial Class Transaction_TrGiroIn_TrGiroIn
         Dim j As Integer
         Dim Nmbr(100) As String
         Dim FirstTime As Boolean
+        Dim CekMenu As String
         Try
+
+            CekMenu = CheckMenuLevel("Insert", ViewState("MenuLevel").Rows(0))
+            If CekMenu <> "" Then
+                lbStatus.Text = CekMenu
+                Exit Sub
+            End If
+
             If sender.ID.ToString = "BtnGo" Then
                 ActionValue = ddlCommand.SelectedValue
             Else

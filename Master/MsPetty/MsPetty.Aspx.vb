@@ -69,13 +69,14 @@ Partial Class Master_MsPetty_MsPetty
                     Exit Function
                 End If
             End If
-            'If CommandName = "Insert" Then
-            '    If ViewState("FgInsert") = "N" Then
-            '        lstatus.Text = "<script language='javascript'> {alert('You are not authorized to insert record. Please contact administrator')}</script>"
-            '        Return False
-            '        Exit Function
-            '    End If
-            'End If
+
+            If CommandName = "Insert" Then
+                If ViewState("FgInsert") = "N" Then
+                    lstatus.Text = "<script language='javascript'> {alert('You are not authorized to insert record. Please contact administrator')}</script>"
+                    Return False
+                    Exit Function
+                End If
+            End If
 
             If CommandName = "Delete" Then
                 If ViewState("MenuLevel").Rows(0)("FgDelete") = "N" Then
@@ -279,6 +280,9 @@ Partial Class Master_MsPetty_MsPetty
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "tes", "OpenPopup();", True)
                 End If
             ElseIf e.CommandName = "Detail" Then
+                If CheckMenuLevel("Edit") = False Then
+                    Exit Sub
+                End If
                 Session("DBConnection") = ViewState("DBConnection")
                 Dim gvr As GridViewRow
                 Dim lbCode As Label
