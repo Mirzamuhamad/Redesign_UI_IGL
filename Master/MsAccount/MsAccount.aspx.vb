@@ -320,6 +320,7 @@ Partial Class Master_MsAccount_MsAccount
                 ", CurrCode = " + QuotedStr(ddlCurr.SelectedValue) + ", FgSubled = " + QuotedStr(ddlSubled.SelectedValue) + _
                 ", FgNormal = " + QuotedStr(ddlNormal.SelectedValue) + _
                 ", UserDate = getDate() " + _
+                ", UserId = " + QuotedStr(ViewState("UserId").ToString) + _
                 " where Account = " & QuotedStr(tbCode.Text)
             End If
             SQLExecuteNonQuery(SQLString, ViewState("DBConnection").ToString)

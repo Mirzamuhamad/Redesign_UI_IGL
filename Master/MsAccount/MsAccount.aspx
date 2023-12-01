@@ -97,7 +97,9 @@
 				            <asp:BoundField DataField="CurrCode" SortExpression="CurrCode" HeaderText="Currency" />
 				            <asp:BoundField DataField="FgSubled" SortExpression="FgSubled" HeaderText="Subled" />
 				            <asp:BoundField DataField="FgNormal" SortExpression="FgNormal" HeaderText="Normal" />
-				            <asp:BoundField DataField="FgActive" SortExpression="FgActive" HeaderText="Active" />							
+				            <asp:BoundField DataField="FgActive" SortExpression="FgActive" HeaderText="Active" />
+				            <asp:BoundField DataField="UserDate" dataformatstring="{0:dd MMM yyyy H:m:s}" SortExpression="UserDate" HeaderText="Last Update" />
+				            <asp:BoundField DataField="User_Name" SortExpression="UserId" HeaderText="Update By" />						
 							<%--<asp:TemplateField HeaderText="Action">
 							    <ItemTemplate>
 								    <asp:Button ID="btnEdit" runat="server" class="bitbtndt btnedit" Text="Edit" CommandName="Edit" CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>" />
