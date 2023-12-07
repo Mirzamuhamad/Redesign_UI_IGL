@@ -335,7 +335,7 @@ padding-bottom: 16px;
         <td width="8px"></td> -->
         <td>
         <asp:DropDownList  ID="ddlServer" runat="server" class="field required" >
-                            <asp:ListItem Selected="True">IALWeb</asp:ListItem>                            
+                            <asp:ListItem Selected="True">IGL</asp:ListItem>                            
                         </asp:DropDownList>
                         
         <%--<asp:TextBox placeholder="Company" CssClass="TextBox" runat="server" ID="ddlServer"  

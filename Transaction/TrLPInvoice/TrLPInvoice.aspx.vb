@@ -160,7 +160,7 @@ Partial Class TrLpInvoice
                 Exit Sub
             End If
 
-            If FubFaktur.FileBytes.Length > 3500000 Then
+            If FubInv.FileBytes.Length > 3500000 Then
                 lbStatus.Text = MessageDlg("Ukuran File Terlalu Besar. !! Max Upload 3.5Mb")
                 Exit Sub
             End If

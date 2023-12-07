@@ -291,7 +291,8 @@
                 </td>                
             </tr>
             <tr>
-                <td>Nama Supplier</td>
+                <%--<td>Nama Supplier</td>--%>
+                <td><asp:LinkButton ID="lbsupplier" ValidationGroup="Input" runat="server" Text="Nama Supplier"/></td>
                 <td>:</td>
                 <td>
                    <asp:TextBox ID="tbSupplierCode" runat="server" CssClass="TextBox" ValidationGroup="Input" Width="60px" />

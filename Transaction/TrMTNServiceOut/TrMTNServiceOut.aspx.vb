@@ -1180,4 +1180,13 @@ Partial Class TrMTNServiceOut
             lbStatus.Text = "btnDepartment_Click Error : " + ex.ToString
         End Try
     End Sub
+
+    Protected Sub lbsupplier_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lbsupplier.Click
+        Try
+            AttachScript("OpenMaster('" + Request.QueryString("KeyId") + "','MsSupplier')();", Page, Me.GetType())
+        Catch ex As Exception
+            lbStatus.Text = "lbsupplier_Click Error : " + ex.ToString
+        End Try
+    End Sub
+
 End Class
