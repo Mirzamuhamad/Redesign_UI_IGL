@@ -379,6 +379,15 @@
 
 
     <div class="Content">
+
+        <!-- embed hiper kompress pdf -->
+        <!-- <div id="avepdf-container-id">
+            <script type="text/javascript" src="https://avepdf.com/api/js/embedwidgets.js"></script>
+                <script type="text/javascript">
+                    loadAvePDFWidget('692b96ed-b91c-4a1d-bf53-ba8cf411e8a0', 'auto', 'hyper-compress-pdf', 'avepdf-container-id');
+                </script>
+            </div> -->
+            
         <div class="H1">Land Survey</div>
         <hr style="color: Blue" />
         <asp:Panel runat="server" ID="PnlHd">

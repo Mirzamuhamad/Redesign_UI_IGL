@@ -2590,7 +2590,6 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
             End If
 
 
-
             If ddlHitungTotal.SelectedValue = "SPPT" Then
                 If tbTotal.Text.Replace(",", "") <> Val(tbSPPT.Text.Replace(",", "") * Val(tbNilai.Text.Replace(",", ""))) Then
                     lbStatus.Text = MessageDlg("Total must be the same from (Nilai * SPPT) Value")
@@ -2616,9 +2615,6 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
                 End If
             End If
 
-
-            
-           
 
             'If Right(FupMain.FileName, 4) <> ".pdf" Then
             '    lbStatus.Text = MessageDlg("Upload File PDF only .!!")

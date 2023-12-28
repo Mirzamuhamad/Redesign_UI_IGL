@@ -1035,22 +1035,7 @@ Partial Class TrMTNServiceRequest
             BindToText(tbRequestBy, Dt.Rows(0)("RequestBy").ToString)
             BindToText(tbContactNo, Dt.Rows(0)("ContactNo").ToString)
             BindToText(tbEmail, Dt.Rows(0)("Email").ToString)
-            'BindToDate(tbTimeJobDate, Dt.Rows(0)("TimeJobDate").ToString)
-            'BindToDate(tbStartJobDate, Dt.Rows(0)("StartJobDate").ToString)
-            'BindToDate(tbFinishJobDate, Dt.Rows(0)("FinishJobDate").ToString)
-            'BindToText(tbDurasi, Dt.Rows(0)("Durasi").ToString)
-            'ViewState("DigitCurr") = SQLExecuteScalar("SELECT Digit FROM VMsCurrency WHERE Currency = " + QuotedStr(Dt.Rows(0)("Currency").ToString), ViewState("DBConnection"))
-            'If ViewState("DigitCurr") = Nothing Then
-            '    ViewState("DigitCurr") = 0
-            'End If
-            'BindToText(tbBaseForex, Dt.Rows(0)("BaseForex").ToString, ViewState("DigitHome"))
-            'BindToText(tbDisc, Dt.Rows(0)("DiscForex").ToString, ViewState("DigitHome"))
-            'BindToText(tbDPP, Dt.Rows(0)("DPPForex").ToString, ViewState("DigitHome"))
-            'BindToText(tbPPn, Dt.Rows(0)("PPn").ToString, CInt(ViewState("DigitCurr")))
-            'BindToText(tbPPnValue, Dt.Rows(0)("PPnForex").ToString, ViewState("DigitHome"))
-            'BindToText(tbPPh, Dt.Rows(0)("PPh").ToString, ViewState("DigitHome"))
-            'BindToText(tbPPhValue, Dt.Rows(0)("PPhForex").ToString, ViewState("DigitHome"))
-            'BindToText(tbTotalAmount, Dt.Rows(0)("TotalForex").ToString, ViewState("DigitHome"))
+
             BindToText(tbRemark, Dt.Rows(0)("Remark").ToString)
 
             If Dt.Rows(0)("FileSrvReq").ToString = "" Then
@@ -1628,22 +1613,22 @@ Partial Class TrMTNServiceRequest
         End Try
     End Sub
 
-    'Protected Sub LbAdvSearch_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles LbAdvSearch.Click
-    '    Dim FDateName, FDateValue, FilterName, FilterValue As String
-    '    Try
-    '        FDateName = "Payment Date"
-    '        FDateValue = "TransDate"
-    '        FilterName = "Payment No, Payment Date, User Type, User Payment, Attn, DP No, Voucher No, Remark, Account, Account Name"
-    '        FilterValue = "TransNmbr, dbo.FormatDate(TransDate), UserType, UserPayment, Attn, DPNo, Voucher_No, Remark, Account, Accountname"
-    '        Session("DateFieldName") = FDateName.Split(",")
-    '        Session("DateFieldValue") = FDateValue.Split(",")
-    '        Session("FieldName") = FilterName.Split(",")
-    '        Session("FieldValue") = FilterValue.Split(",")
-    '        AttachScript("OpenFilterCriteria();", Page, Me.GetType())
-    '    Catch ex As Exception
-    '        lbStatus.Text = "Advanced Search Click Error : " + ex.ToString
-    '    End Try
-    'End Sub
+    Protected Sub LbAdvSearch_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles LbAdvSearch.Click
+        Dim FDateName, FDateValue, FilterName, FilterValue As String
+        Try
+            FDateName = "Request Date"
+            FDateValue = "TransDate"
+            FilterName = "Request No, Payment Date"
+            FilterValue = "TransNmbr, dbo.FormatDate(TransDate)"
+            Session("DateFieldName") = FDateName.Split(",")
+            Session("DateFieldValue") = FDateValue.Split(",")
+            Session("FieldName") = FilterName.Split(",")
+            Session("FieldValue") = FilterValue.Split(",")
+            AttachScript("OpenFilterCriteria();", Page, Me.GetType())
+        Catch ex As Exception
+            lbStatus.Text = "Advanced Search Click Error : " + ex.ToString
+        End Try
+    End Sub
 
     Protected Sub GridView1_PageIndexChanging(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewPageEventArgs) Handles GridView1.PageIndexChanging
         GridView1.PageIndex = e.NewPageIndex

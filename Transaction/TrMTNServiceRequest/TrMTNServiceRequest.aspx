@@ -424,7 +424,7 @@ EnableEventValidation="false" %>
                   <asp:Button class="bitbtn btngo" runat="server" ID="btnExpand" Text="..." />																						 											  
             </td>
             <td>
-                <%--<asp:LinkButton ID="LbAdvSearch" runat="server" Text="Advanced Search" />--%>
+                <asp:LinkButton ID="LbAdvSearch" runat="server" Text="Advanced Search" />
             </td>
         </tr>
       </table>
