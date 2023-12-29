@@ -8,6 +8,11 @@ Partial Class Transaction_TrPayTrade_TrPayTrade
     Protected GetStringHd As String = "Select distinct TransNmbr, Nmbr, TransDate, Status, FgReport, SupplierCode, SupplierName, Supplier, Attn, Currency, TotalPayForex, TotalPayment, TotalOthers, TotalInvoice, TotalPPh, TotalCharge, TotalKurs, TotalSelisih, Remark From V_FNPayTradeHd "
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Try
             If Not IsPostBack Then
                 InitProperty()

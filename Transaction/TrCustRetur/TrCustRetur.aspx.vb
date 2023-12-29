@@ -18,6 +18,11 @@ Partial Class CustRetur
     Protected GetStringHd As String = "Select distinct TransNmbr, Nmbr, TransDate, Trans_Date, Status, FgReport, FgPriceTax, Customer, Customer_Name, BillTo, Bill_To_Name, Attn, Term, Term_Name, DueDate, Due_Date, PPnNo, PPnDate, PPn_Date, PPnRate, Currency, ForexRate, BaseForex, DiscForex, PPn, PPnForex, TotalForex, Remark, UserPrep, DatePrep, UserAppr, DateAppr From V_FNCustReturHd "
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Try
             If Not IsPostBack Then
                 InitProperty()

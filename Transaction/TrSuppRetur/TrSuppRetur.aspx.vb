@@ -19,6 +19,11 @@ Partial Class SuppRetur
     Protected GetStringHd As String = "Select Distinct TransNmbr, Nmbr, Status, TransDate, Trans_Date, FgReport, Supplier_Code, Supplier_Name, Supplier, Attn, PurchaseReject, Term, Term_Name, DueDate, Due_Date, PPnNo, PPndate, PPn_Date, PPnRate, Remark, Currency, Forexrate, BaseForex, PPn, PPnForex, TotalForex From V_FNSuppReturHd "
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Try
             If Not IsPostBack Then
                 InitProperty()
