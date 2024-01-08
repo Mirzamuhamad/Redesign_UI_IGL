@@ -11,6 +11,7 @@
     <link href="Styles/Style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+    
     <form id="form1" runat="server">
     <div style=" margin:auto;    width: 50%;    padding-top: 70px; padding-left: 130px; " class="Content">
         <div style="padding-left: 70px;">
@@ -25,5 +26,6 @@
         </div>
     </div>
     </form>
+</div>
 </body>
 </html>

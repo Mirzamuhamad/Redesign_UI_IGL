@@ -20,10 +20,6 @@ Partial Class Rpt_PrintForm3
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        If Session(Request.QueryString("KeyId")) Is Nothing Then
-        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
-            Response.Redirect("~\Sesi.aspx")
-        End If
         Try
             If Not Me.IsPostBack Then
                 ViewState("SelectCommand") = Session("SelectCommand")

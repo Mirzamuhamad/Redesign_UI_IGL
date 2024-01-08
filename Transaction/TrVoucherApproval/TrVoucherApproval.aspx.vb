@@ -20,6 +20,7 @@ Partial Class ApprovalVoucher
         ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
             Response.Redirect("~\Sesi.aspx")
         End If
+
         Try
             If Not IsPostBack Then
                 InitProperty()
@@ -28,7 +29,7 @@ Partial Class ApprovalVoucher
                 'FillCombo(ddlCostCenter, "EXEC S_GetCostCtr", True, "Cost_Ctr_Code", "Cost_Ctr_Name", ViewState("DBConnection"))
                 'FillCombo(ddlUnit, "EXEC S_GetUnit", False, "Unit_Code", "Unit_Name", ViewState("DBConnection"))
                 'FillCombo(ddlCostCtr, "EXEC S_GetCostCtr", True, "Cost_Ctr_Code", "Cost_Ctr_Name", ViewState("DBConnection"))
-                ''FillCombo(ddlPType, "EXEC S_GetProductType", False, "Type_Code", "Type_Name", ViewState("DBConnection"))
+                'FillCombo(ddlPType, "EXEC S_GetProductType", False, "Type_Code", "Type_Name", ViewState("DBConnection"))
                 SetInit()
                 Session("AdvanceFilter") = ""
                 lbCount.Text = SQLExecuteScalar("SELECT COUNT(Invoice_No) FROM V_GetInvPosting WHERE TotalAmount>=0 ", ViewState("DBConnection").ToString)
