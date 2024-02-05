@@ -378,7 +378,7 @@ Partial Class AlokasiKawasan
                 ViewState("Dt").Rows.Add(dr)
             End If
             MovePanel(pnlEditDt, pnlDt)
-            EnableHd(GetCountRecord(ViewState("Dt")) = 0)
+           ' EnableHd(GetCountRecord(ViewState("Dt")) = 0)
             BindGridDt(ViewState("Dt"), GridDt)
             StatusButtonSave(True)
 
@@ -822,7 +822,7 @@ Partial Class AlokasiKawasan
             ddlTypeALokasi.Text = "ADM"
             ViewState("StateDt") = "Insert"
             MovePanel(pnlDt, pnlEditDt)
-            EnableHd(False)
+            EnableHd(True)
             StatusButtonSave(False)
             lbItemNo.Text = GetNewItemNo(ViewState("Dt"))
             'btnAccount.Focus()

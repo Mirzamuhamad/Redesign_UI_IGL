@@ -31,7 +31,7 @@ Partial Class TrPembelian
 
     'Protected GetStringHd As String = "Select * From V_PLSPTBSHD WHERE UserPrep = " + ViewState("UserId") + ""
 
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         If Session(Request.QueryString("KeyId")) Is Nothing Then
         ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
@@ -276,8 +276,6 @@ Partial Class TrPembelian
             pnlNav.Visible = True
             'ddlCommand.Visible = True
             'BtnGo.Visible = True
-            FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
-
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try
@@ -856,6 +854,13 @@ Partial Class TrPembelian
 
             If tbBiayaLainLian.Text = 0 Then
                 lbStatus.Text = MessageDlg("Biaya Lain Lain must have value")
+                tbBiayaLainLian.Focus()
+                Return False
+            End If
+
+
+            If tbBiayaNotaris.Text >= tbHrgPerm2.text Then
+                lbStatus.Text = MessageDlg("Biaya Notaris tidak boleh sama dengan harga tanah, mohon cek kembali !!")
                 tbBiayaLainLian.Focus()
                 Return False
             End If

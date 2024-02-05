@@ -1026,6 +1026,7 @@ Partial Class INVInfrastruktur
 
             SQLExecuteNonQuery(SQLString, ViewState("DBConnection").ToString)
 
+
             'update Primary Key on Dt
             Dim Row As DataRow()
 
@@ -1076,6 +1077,7 @@ Partial Class INVInfrastruktur
             da.Update(Dt2)
             Dt2.AcceptChanges()
             ViewState("Dt2") = Dt2
+                
         Catch ex As Exception
             Throw New Exception("Save All Data Error : " + ex.ToString)
         End Try

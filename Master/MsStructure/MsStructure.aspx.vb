@@ -3,6 +3,7 @@ Imports System.Data.SqlClient
 Imports System.Data.OleDb
 Imports System.IO
 Imports System.Configuration
+ Imports System.Drawing
 
 Partial Class MsStructure_MsStructureNew
     Inherits System.Web.UI.Page
@@ -147,6 +148,7 @@ Partial Class MsStructure_MsStructureNew
             BindToText(tbLuasBangunan, DT.Rows(0)("BuildingArea").ToString)
             BindToText(tbAccount, DT.Rows(0)("Account").ToString)
             BindToText(tbAccountName, DT.Rows(0)("AccountName").ToString)
+            BindToText(tbOriginalArea, DT.Rows(0)("OriginalArea").ToString)
             'BindToDate(tbEstStartPlant, DT.Rows(0)("EstStartPlant").ToString)
             'BindToDate(tbStartPlant, DT.Rows(0)("StartPlant").ToString)
             'BindToDropList(ddlLandType, DT.Rows(0)("LandType").ToString)
@@ -190,9 +192,9 @@ Partial Class MsStructure_MsStructureNew
         Dim StrFilter, SqlString As String
         Try
             StrFilter = GenerateFilterMs(ddlField.SelectedValue, ddlField2.SelectedValue, tbFilter.Text, tbfilter2.Text, ddlNotasi.SelectedValue)
-            SqlString = "SELECT * FROM V_MsStructure " + StrFilter + " ORDER BY ID "
+            SqlString = "SELECT * FROM V_MsStructure " + StrFilter + " ORDER BY StartDate, StructureCode"
             If ViewState("SortExpression") = Nothing Then
-                ViewState("SortExpression") = "ID ASC"
+                ViewState("SortExpression") = "StartDate, StructureCode ASC"
                 ViewState("SortOrder") = "ASC"
             End If
 
@@ -213,7 +215,6 @@ Partial Class MsStructure_MsStructureNew
             lstatus.Text = lstatus.Text + "BindDataGrid Error: " & ex.ToString
         Finally
         End Try
-
     End Sub
 
     Protected Sub btnPrint_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnPrint.Click
@@ -268,6 +269,7 @@ Partial Class MsStructure_MsStructureNew
                 index = Convert.ToInt32(e.CommandArgument)
                 GVR = DataGrid.Rows(index)
             End If
+            
             If e.CommandName = "Go" Then
                 DDL = DataGrid.Rows(index).FindControl("ddl")
                 If DDL.SelectedValue = "View" Then
@@ -425,18 +427,21 @@ Partial Class MsStructure_MsStructureNew
                 End If
 
 
-                SQLString = "INSERT INTO MsStructure (ID,ParentID,StructureCode,StructureName,LevelCode,LandArea,BuildingArea,FgActive,Account,UserId,UserDate ) " + _
+                SQLString = "INSERT INTO MsStructure (ID,ParentID,StructureCode,StructureName,LevelCode,LandArea,OriginalArea,BuildingArea,FgActive,Account,UserId,UserDate, StartDate ) " + _
                 "SELECT " + QuotedStr(tbCode.Text) + ", " + QuotedStr(tbParentID.Text) + ", " + QuotedStr(tbStructureCode.Text) + ", " + QuotedStr(tbStructureName.Text) + ", " + _
-                QuotedStr(ddlLevel.SelectedValue) + "," + QuotedStr(tbLuasLahan.Text) + "," + QuotedStr(tbLuasBangunan.Text) + "," + "'Y'" + "," + QuotedStr(tbAccount.Text) + ", " + _
-                QuotedStr(ViewState("UserId").ToString) + ", GetDate()"
+                QuotedStr(ddlLevel.SelectedValue) + "," + QuotedStr(tbLuasLahan.Text) + "," + QuotedStr(tbOriginalArea.Text) + "," + QuotedStr(tbLuasBangunan.Text) + "," + "'Y'" + "," + QuotedStr(tbAccount.Text) + ", " + _
+                QuotedStr(ViewState("UserId").ToString) + ", GetDate(), GetDate()"
 
             ElseIf ViewState("State") = "Edit" Then
-                SQLString = "UPDATE MsStructure SET StructureCode = " + QuotedStr(tbStructureCode.Text) + ", ParentID = " + QuotedStr(tbParentID.Text) + _
+                SQLString = "UPDATE MsStructure SET StructureCode = " + QuotedStr(tbStructureCode.Text) + ", UserDate = GetDate(), ParentID = " + QuotedStr(tbParentID.Text) + _
                 ", StructureName = " + QuotedStr(tbStructureName.Text) + ", LevelCode = " + QuotedStr(ddlLevel.SelectedValue) + _
                 ", LandArea = " + QuotedStr(tbLuasLahan.Text) + ", BuildingArea = " + QuotedStr(tbLuasBangunan.Text) + _
                 ",  Account = " + QuotedStr(tbAccount.Text) + _
+                ",  OriginalArea = " + QuotedStr(tbOriginalArea.Text) + _
+                ",  UserId = " + QuotedStr(ViewState("UserId").ToString) + _
                 " WHERE ID = " + QuotedStr(tbCode.Text)
             End If
+
             SQLExecuteNonQuery(SqlString, ViewState("DBConnection").ToString)
             BindDataGrid()
             pnlInput.Visible = False
@@ -623,6 +628,7 @@ Partial Class MsStructure_MsStructureNew
                 'lstatus.Text = MessageDlg("Another ID or Structure Already exist!!")
                 Exit Sub
             End If
+
 
             'ddlSheets.Items.Clear()
             lstatus.Text = MessageDlg("Records inserted successfully")
