@@ -223,6 +223,8 @@ Partial Class Master_MsCustGroup_MsCustGroup
             bindDataGrid()
             tbName = DataGrid.Rows(e.NewEditIndex).FindControl("CustGroupNameEdit")
             tbName.Focus()
+
+            
         Catch ex As Exception
             lstatus.Text = "DataGrid_Edit exception : " + ex.ToString
         End Try
@@ -505,7 +507,7 @@ Partial Class Master_MsCustGroup_MsCustGroup
         Dim SQLString As String
         Try
             If ddlCurrency.SelectedValue = ViewState("Currency") Then
-                SQLString = "Select * FROM VMsAccount Where Currency =" + QuotedStr(ddlCurrency.SelectedValue) + " AND FgActive = 'Y' AND FgNormal = 'D' and FgSubled IN ('N','C') AND Account = " + QuotedStr(tbAccAR.Text)
+                SQLString = "Select * FROM VMsAccount Where Currency =" + QuotedStr(ddlCurrency.SelectedValue) + " AND FgActive = 'Y' AND FgNormal = 'C' and FgSubled IN ('N','C') AND Account = " + QuotedStr(tbAccAR.Text)
             Else
                 SQLString = "Select * FROM VMsAccount Where Currency =" + QuotedStr(ddlCurrency.SelectedValue) + " AND FgActive = 'Y' AND FGType = 'BS' AND FgNormal = 'D' and FgSubled IN ('N','C') AND Account = " + QuotedStr(tbAccAR.Text)
             End If
@@ -952,7 +954,7 @@ Partial Class Master_MsCustGroup_MsCustGroup
         Dim FieldResult As String
         Try
             If ddlCurrency.SelectedValue = ViewState("Currency") Then
-                Session("filter") = "Select * FROM VMsAccount Where Currency =" + QuotedStr(ddlCurrency.SelectedValue) + " AND FgActive = 'Y' AND FgNormal = 'D' and FgSubled IN ('N','C')"
+                Session("filter") = "Select * FROM VMsAccount Where Currency =" + QuotedStr(ddlCurrency.SelectedValue) + " AND FgActive = 'Y' AND FgNormal = 'C' and FgSubled IN ('N','C')"
             Else
                 Session("filter") = "Select * FROM VMsAccount Where Currency =" + QuotedStr(ddlCurrency.SelectedValue) + " AND FgActive = 'Y' AND FGType = 'BS' AND FgNormal = 'D' and FgSubled IN ('N','C')"
             End If
