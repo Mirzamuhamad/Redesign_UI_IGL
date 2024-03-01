@@ -186,7 +186,7 @@
                       <asp:ListItem Value="dbo.FormatDate(TransDate)">Date</asp:ListItem>
                       <asp:ListItem Value="Supplier_Code">Supplier</asp:ListItem>
                       <asp:ListItem Value="SuppName">Supplier Name</asp:ListItem>
-                      <asp:ListItem Value="TypeInvoice">Invoice Type</asp:ListItem>
+                      <asp:ListItem Value="InvoiceType">Invoice Type</asp:ListItem>
                       <asp:ListItem Value="ExpenseType">Expense Type</asp:ListItem> 
                       <asp:ListItem>Remark</asp:ListItem>
                   </asp:DropDownList>
@@ -229,7 +229,7 @@
                       <asp:ListItem Value="dbo.FormatDate(TransDate)">Date</asp:ListItem>
                       <asp:ListItem Value="Supplier_Code">Supplier</asp:ListItem>
                       <asp:ListItem Value="SupplierName">Supplier Name</asp:ListItem>
-                      <asp:ListItem Value="TypeInvoice">Invoice Type</asp:ListItem>
+                      <asp:ListItem Value="InvoiceType">Invoice Type</asp:ListItem>
                       <asp:ListItem Value="ExpenseType">Expense Type</asp:ListItem> 
                       <asp:ListItem>Remark</asp:ListItem>
               </asp:DropDownList>
