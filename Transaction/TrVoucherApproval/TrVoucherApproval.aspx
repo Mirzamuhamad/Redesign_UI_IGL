@@ -184,10 +184,11 @@
                       <asp:ListItem Value="TransNmbr" Selected="True">Reference</asp:ListItem>
                       <asp:ListItem>Status</asp:ListItem>
                       <asp:ListItem Value="dbo.FormatDate(TransDate)">Date</asp:ListItem>
-                      <asp:ListItem Value="Supplier_Code">Supplier</asp:ListItem>
+                      <asp:ListItem Value="SuppCode">Supplier</asp:ListItem>
                       <asp:ListItem Value="SuppName">Supplier Name</asp:ListItem>
                       <asp:ListItem Value="InvoiceType">Invoice Type</asp:ListItem>
                       <asp:ListItem Value="ExpenseType">Expense Type</asp:ListItem> 
+                      <asp:ListItem Value="NamaPenerima">Penerima</asp:ListItem> 
                       <asp:ListItem>Remark</asp:ListItem>
                   </asp:DropDownList>
                   <asp:DropDownList CssClass="DropDownList" runat="server" ID="ddlRange"></asp:DropDownList>
@@ -227,10 +228,11 @@
                       <asp:ListItem Value="TransNmbr" Selected="True">Reference</asp:ListItem>
                       <asp:ListItem>Status</asp:ListItem>
                       <asp:ListItem Value="dbo.FormatDate(TransDate)">Date</asp:ListItem>
-                      <asp:ListItem Value="Supplier_Code">Supplier</asp:ListItem>
+                      <asp:ListItem Value="SuppCode">Supplier</asp:ListItem>
                       <asp:ListItem Value="SupplierName">Supplier Name</asp:ListItem>
                       <asp:ListItem Value="InvoiceType">Invoice Type</asp:ListItem>
                       <asp:ListItem Value="ExpenseType">Expense Type</asp:ListItem> 
+                      <asp:ListItem Value="NamaPenerima">Penerima</asp:ListItem> 
                       <asp:ListItem>Remark</asp:ListItem>
               </asp:DropDownList>
           </td>              
@@ -281,7 +283,6 @@
                   <asp:BoundField DataField="SuppName" HeaderStyle-Width="150px" SortExpression="SuppName" HeaderText="Supplier"></asp:BoundField>
                   <asp:BoundField DataField="Attn" HeaderStyle-Width="100px" SortExpression="Attn" HeaderText="Attn"></asp:BoundField>
                   <asp:BoundField DataField="InvoiceType" HeaderStyle-Width="120px" SortExpression="InvoiceType" HeaderText="Invoice Type"></asp:BoundField>
-                  
                   <asp:BoundField DataField="BankPenerima" HeaderStyle-Width="150px" SortExpression="BankPenerima" HeaderText="Bank Penerima"></asp:BoundField>
                   <asp:BoundField DataField="NamaPenerima" HeaderStyle-Width="100px" SortExpression="NamaPenerima" HeaderText="Nama Penerima"></asp:BoundField>
                   <asp:BoundField DataField="AccNmbr" HeaderStyle-Width="120px" SortExpression="AccNmbr" HeaderText="Account"></asp:BoundField>

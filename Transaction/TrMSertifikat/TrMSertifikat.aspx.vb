@@ -937,14 +937,14 @@ Partial Class TrMSertifikat
             ViewState("Dt") = Dt
 
             'save dt2
-            cmdSql = New SqlCommand("SELECT TransNmbr,NoDokumen,NoDokDt2,JenisDokDt2,Unit,Luas,Nama,Remark FROM PRCMTSertifikatDt2 WHERE TransNmbr = " + QuotedStr(ViewState("TransNmbr")), con)
+            cmdSql = New SqlCommand("SELECT TransNmbr, Product, NoSerial, Qty, UserId FROM STCRRPOProductSerialNo WHERE TransNmbr  = '" & ViewState("TransNmbr") & "'", con)
             da = New SqlDataAdapter(cmdSql)
             dbcommandBuilder = New SqlCommandBuilder(da)
             da.InsertCommand = dbcommandBuilder.GetInsertCommand
             da.DeleteCommand = dbcommandBuilder.GetDeleteCommand
             da.UpdateCommand = dbcommandBuilder.GetUpdateCommand
 
-            Dim Dt2 As New DataTable("PRCMTSertifikatDt2")
+            Dim Dt2 As New DataTable("STCRRPOProductSerialNo")
 
             Dt2 = ViewState("Dt2")
             da.Update(Dt2)
@@ -1305,6 +1305,7 @@ Partial Class TrMSertifikat
                 Else
                     ModifyInput2(True, pnlInput, pnlDt2, GridDt2)
                 End If
+
                 GridDt2.Columns(0).Visible = Not ViewState("StateHd") = "View"
                 If ViewState("Dt2") Is Nothing Then
                     BindDataDt2(ViewState("TransNmbr"))

@@ -1448,10 +1448,48 @@ Partial Class SuppInv
                     AttachScript("setformat();", Page, Me.GetType())
                 End If
             End If
+
+            'CountTotalDt()
         Catch ex As Exception
             lbStatus.Text = "Grid Dt Row Data Bound Error : " + ex.ToString
         End Try
     End Sub
+
+
+     Private Sub CountTotalDt()
+  
+         Dim BaseForex As Double = 0
+    Dim DiscForex As Double = 0
+    Dim PPhForex As Double = 0
+
+        Dim Dr As DataRow
+        Try
+            BaseForex = 0
+            DiscForex = 0
+            PPhForex = 0
+            For Each Dr In ViewState("Dt").Rows
+                If Not Dr.RowState = DataRowState.Deleted Then
+                    BaseForex = BaseForex + CFloat(Dr("BrutoForex").ToString)
+                    DiscForex = DiscForex + CFloat(Dr("DiscForex").ToString)
+                    PPhForex = PPhForex + CFloat(Dr("PPhForex").ToString)
+                   
+                End If
+            Next
+
+
+            tbBaseForex.Text = FormatNumber(BaseForex, ViewState("DigitHome"))
+            tbDiscForex.Text = FormatNumber(DiscForex, ViewState("DigitHome"))
+            tbPPhForex.Text = FormatNumber(PPhForex, ViewState("DigitHome"))
+
+
+           tbTotalForex.Text = FormatNumber((CFloat(tbBaseForex.Text) + CFloat(tbPPNForex.Text) - CFloat(tbPPHForex.Text)) - CFloat(tbDiscForex.Text) + CFloat(tbOtherForex.Text) , ViewState("DigitHome"))
+
+        Catch ex As Exception
+            Throw New Exception("Count Total Dt Error : " + ex.ToString)
+        End Try
+    End Sub
+
+
 
     Protected Sub FillTextBoxHd(ByVal Nmbr As String)
         Dim Dt As DataTable

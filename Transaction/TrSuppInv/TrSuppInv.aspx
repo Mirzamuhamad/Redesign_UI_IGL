@@ -104,9 +104,11 @@
         {
         try
          {          
+
+           
         var Rate = document.getElementById("tbRate").value.replace(/\$|\,/g,"");
         var PPn = document.getElementById("tbPPN").value.replace(/\$|\,/g,"");        
-        var BaseForex = document.getElementById("tbBaseForex").value.replace(/\$|\,/g,"");        
+       var BaseForex = document.getElementById("tbBaseForex").value.replace(/\$|\,/g, "");        
         var DiscForex = document.getElementById("tbDiscForex").value.replace(/\$|\,/g,"");
         var PPnForex = document.getElementById("tbPPNForex").value.replace(/\$|\,/g,"");
         var PPhForex = document.getElementById("tbPPhForex").value.replace(/\$|\,/g,"");
@@ -129,16 +131,16 @@
 
             
                 
-//        document.getElementById("tbRate").value = setdigit(Rate,'<%=VIEWSTATE("DigitRate")%>');
-        document.getElementById("tbRate").value = setdigit(Rate,'<%=VIEWSTATE("DigitCurr")%>');
-        document.getElementById("tbPPN").value = setdigit(PPn, '<%=VIEWSTATE("DigitCurr")%>');
-        document.getElementById("tbBaseForex").value = setdigit(BaseForex,'<%=VIEWSTATE("DigitCurr")%>');        
-        document.getElementById("tbDiscForex").value = setdigit(DiscForex,'<%=VIEWSTATE("DigitCurr")%>');
-        document.getElementById("tbPPNForex").value = setdigit(PPnForex,'<%=VIEWSTATE("DigitCurr")%>');
-        document.getElementById("tbPPhForex").value = setdigit(PPhForex,'<%=VIEWSTATE("DigitCurr")%>');
-        document.getElementById("tbOtherForex").value = setdigit(OtherForex,'<%=VIEWSTATE("DigitCurr")%>');
-        document.getElementById("tbTotalForex").value = setdigit(TotalForex,'<%=VIEWSTATE("DigitCurr")%>');
-        document.getElementById("tbDPForex").value = setdigit(DPForex,'<%=VIEWSTATE("DigitCurr")%>');
+       document.getElementById("tbRate").value = setdigit(Rate,'<%=VIEWSTATE("DigitHome")%>');
+        document.getElementById("tbRate").value = setdigit(Rate,'<%=VIEWSTATE("DigitHome")%>');
+        document.getElementById("tbPPN").value = setdigit(PPn, '<%=VIEWSTATE("DigitHome")%>');
+        document.getElementById("tbBaseForex").value = setdigit(BaseForex,'<%=VIEWSTATE("DigitHome")%>');        
+        document.getElementById("tbDiscForex").value = setdigit(DiscForex,'<%=VIEWSTATE("DigitHome")%>');
+        document.getElementById("tbPPNForex").value = setdigit(PPnForex,'<%=VIEWSTATE("DigitHome")%>');
+        document.getElementById("tbPPhForex").value = setdigit(PPhForex,'<%=VIEWSTATE("DigitHome")%>');
+        document.getElementById("tbOtherForex").value = setdigit(OtherForex,'<%=VIEWSTATE("DigitHome")%>');
+        document.getElementById("tbTotalForex").value = setdigit(TotalForex,'<%=VIEWSTATE("DigitHome")%>');
+        document.getElementById("tbDPForex").value = setdigit(DPForex,'<%=VIEWSTATE("DigitHome")%>');
         }catch (err){
             alert(err.description);
           }      

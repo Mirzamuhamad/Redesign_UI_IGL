@@ -859,7 +859,7 @@ Partial Class TrPembelian
             End If
 
 
-            If tbBiayaNotaris.Text >= tbHrgPerm2.text Then
+            If tbJumlah.Text >= tbTotalHarga.text Then
                 lbStatus.Text = MessageDlg("Biaya Notaris tidak boleh sama dengan harga tanah, mohon cek kembali !!")
                 tbBiayaLainLian.Focus()
                 Return False

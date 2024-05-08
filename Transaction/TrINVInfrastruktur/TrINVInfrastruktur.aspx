@@ -563,6 +563,7 @@
         </asp:Menu>
         <br />
         <asp:MultiView 
+        
         ID="MultiView1"
         runat="server"
         ActiveViewIndex="0">
@@ -664,7 +665,8 @@
                    <asp:Button class="bitbtndt btnsave" runat="server" ID="btnSaveDt"  Text="Save" ValidationGroup="Input" />
                    <asp:Button class="bitbtndt btncancel" runat="server" ID="btnCancelDt" Text="Cancel" ValidationGroup="Input" />
                </asp:Panel>
-       </asp:View>           
+       </asp:View>      
+
             <asp:View ID="Tab2" runat="server">     
                 <table>
                  <tr>
