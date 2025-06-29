@@ -83,6 +83,16 @@ Partial Class PenunjukanPemenang
                     tbEndDate.SelectedDate = Session("Result")(7).ToString
                     tbDurasi.Text = Session("Result")(8).ToString
 
+                    Dim FgPpn As String
+                    FgPpn = SQLExecuteScalar("SELECT FgPpn FROM MsSupplier WHERE SuppCode = " + QuotedStr(tbSuppCode.Text), ViewState("DBConnection"))
+                    ' lbStatus.text = FgPpn
+                    ' Exit Sub
+                    If FgPpn = "N" Then
+                    tbppn.text = 0
+                    Else
+                    tbppn.text = 11
+                    End If
+                    
                     'Insert To Detail
                     SQLString = "SELECT * FROM V_GetDetailPekerjaan WHERE TransNmbr = " + QuotedStr(tbPenawaranNo.Text)
                     DtPekerjaan = SQLExecuteQuery(SQLString, ViewState("DBConnection")).Tables(0)
@@ -127,6 +137,16 @@ Partial Class PenunjukanPemenang
                     tbStartDate.SelectedDate = Session("Result")(6).ToString
                     tbEndDate.SelectedDate = Session("Result")(7).ToString
                     tbDurasi.Text = Session("Result")(8).ToString
+                    Dim FgPpn As String
+                    FgPpn = SQLExecuteScalar("SELECT FgPpn FROM MsSupplier WHERE SuppCode = " + QuotedStr(tbSuppCode.Text), ViewState("DBConnection"))
+                    ' lbStatus.text = FgPpn
+                    ' Exit Sub
+                    If FgPpn = "N" Then
+                    tbppn.text = 0
+                    Else
+                    tbppn.text = 11
+                    End If
+
 
                     'Insert To Detail
                     SQLString = "SELECT * FROM V_GetDetailPekerjaan WHERE TransNmbr = " + QuotedStr(tbPenawaranNo.Text)

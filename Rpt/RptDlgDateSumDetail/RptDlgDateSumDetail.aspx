@@ -138,5 +138,53 @@
     <asp:Label ID="lbStatus" runat="server" ForeColor="Red" />    
     
     </form>
+	
+<script type="text/javascript">
+(function () {
+    function makeTrialTextLookLikeBackground() {
+        var divs = document.getElementsByTagName("div");
+        for (var i = 0; i < divs.length; i++) {
+            var div = divs[i];
+            var content = div.innerText || div.textContent || "";
+            if (content.indexOf("This application was created using the TRIAL version of DevExpress") !== -1) {
+                // Buat tampil seperti background (tidak terlihat)
+                div.style.color = "#ffffff"; // warna putih
+                div.style.fontSize = "1px";  // sangat kecil
+                div.style.opacity = "0.01";  // hampir tidak terlihat
+                div.style.position = "absolute";
+                div.style.top = "0";
+                div.style.left = "0";
+                div.style.zIndex = "0"; // dorong ke belakang
+                div.style.pointerEvents = "none"; // tidak bisa diklik
+                var links = div.getElementsByTagName("a");
+                for (var j = 0; j < links.length; j++) {
+                    links[j].style.color = "#ffffff";
+                }
+            }
+        }
+    }
+
+    // Jalankan pertama kali
+    makeTrialTextLookLikeBackground();
+
+    // Pantau jika muncul belakangan
+    if (window.MutationObserver) {
+        var observer = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+                if (mutation.addedNodes.length > 0) {
+                    makeTrialTextLookLikeBackground();
+                }
+            });
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+})();
+</script>
+
+
     </body>
 </html>

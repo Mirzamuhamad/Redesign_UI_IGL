@@ -4,12 +4,34 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head id="Head1" runat="server">
-   <title>Login to Irama Gemilang Lestari</title>     
+   <title>Login to Irama Gemilang Lestari</title>   
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
   <script language="javascript" type="text/javascript">
   if (top.location != self.location) {
     top.location.replace(self.location);
   }
   </script>  
+
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+      var passwordInput = document.getElementById('<%= dbPassword.ClientID %>');
+      var toggleIcon = document.getElementById('togglePassword');
+
+      toggleIcon.addEventListener('click', function () {
+          if (passwordInput.type === "password") {
+              passwordInput.type = "text";
+              toggleIcon.classList.remove("fa-eye");
+              toggleIcon.classList.add("fa-eye-slash");
+          } else {
+              passwordInput.type = "password";
+              toggleIcon.classList.remove("fa-eye-slash");
+              toggleIcon.classList.add("fa-eye");
+          }
+      });
+  });
+</script>
+
     <style>
         /* HTML elements  *//*h1, h2, h3, h4, h5, h6*/
         /*{
@@ -296,12 +318,12 @@ padding-bottom: 16px;
     <input type="hidden" id = "hdpinstance" runat="server" value="default" />    	
     <h1 class="active">
         <!-- <asp:Image id="imgLogin" runat="server" Height="55px" 
-                ImageUrl="~/Image/login_icon.gif" Width="55px" /> &nbsp  -->
+                ImageUrl="~/Image/login_i       con.gif" Width="55px" /> &nbsp  -->
         <!-- <span>Log in access...</span> -->
         SIGN IN
     </h1> 
    <div class="formInput">    
-    <div class="form">
+    <div class="form">  
         <table>
             <tr>
                
@@ -320,10 +342,12 @@ padding-bottom: 16px;
             
                 <!-- <td class="label" width="100px" align="left">Password</td>
         <td width="8px"></td> -->
+        
+
         <td>
-        <asp:TextBox placeholder="Password" CssClass="TextBox" runat="server" ID="dbPassword" TextMode="Password" 
-                ></asp:TextBox>
-        </td>
+          <asp:TextBox placeholder="Password" CssClass="TextBox" runat="server" ID="dbPassword" TextMode="Password"></asp:TextBox>
+          <i class="fa fa-eye" id="togglePassword" style="cursor: pointer; margin-left: -35px; color: #888;"></i>
+      </td>
         </tr>
         </table>  
     </div>    

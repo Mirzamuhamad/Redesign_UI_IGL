@@ -1784,7 +1784,7 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
         End Try
     End Sub
     Private Function GetStringDt(ByVal Nmbr As String) As String
-        Return "SELECT * From V_GLLandPurchaseReqDt WHERE TransNmbr = " + QuotedStr(Nmbr)
+        Return "SELECT * From V_GLLandPurchaseReqDt WHERE TransNmbr = " + QuotedStr(Nmbr) + " ORDER BY ItemNo ASC"
     End Function
     Private Function GetStringDt2(ByVal Nmbr As String) As String
         Return "SELECT * From V_PLPlanLandDt WHERE TransNmbr = " + QuotedStr(Nmbr)
@@ -3341,6 +3341,7 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
             EnableHd(GetCountRecord(ViewState("Dt")) = 0 And GetCountRecord(ViewState("Dt4")) = 0)
             BindGridDt(ViewState("Dt"), GridDt)
             StatusButtonSave(True)
+            btnSaveTrans.Focus()
 
         Catch ex As Exception
             lbStatus.Text = "btn save Dt Error : " + ex.ToString

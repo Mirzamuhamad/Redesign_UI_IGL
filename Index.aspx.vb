@@ -50,7 +50,7 @@ Partial Class Index
     Private Sub SetInit()
         Try
             ViewState("SortExpression") = Nothing
-            ViewState("MenuLevel") = SetMenuLevel(Request.QueryString("ContainerId").ToString, ViewState("UserId").ToString, ViewState("DBConnection").ToString)
+            ' ViewState("MenuLevel") = SetMenuLevel(Request.QueryString("ContainerId").ToString, ViewState("UserId").ToString, ViewState("DBConnection").ToString)
             FillCombo(ddlYear, "EXEC S_GetYear", False, "Year", "Year", ViewState("DBConnection"))
             ddlYear.SelectedValue = Year(ViewState("ServerDate"))
             lbYearAfter.Text = " Beginning, " + (ddlYear.SelectedValue + 1).ToString
@@ -64,6 +64,8 @@ Partial Class Index
         'Dim param As String
         Try
             If Not IsPostBack Then
+                ViewState("KeyId") = Request.QueryString("KeyId") ' contoh
+                HiddenKeyId.Value = ViewState("KeyId")
 
                 If Request.QueryString("KeyId") Is Nothing Then
                     'Session.Clear()
@@ -78,7 +80,7 @@ Partial Class Index
                 End If
 
 
-
+                InitProperty()
                 'lStatus.Text = Request.QueryString("ContainerId")
 
                 'lStatus.Text = Right(Request.Url.ToString(), 6)
@@ -94,7 +96,7 @@ Partial Class Index
                     PnlTransfer.Visible = False
                     pnlSearch.Visible = False
                 End If
-                InitProperty()
+                
 
                 Dim SQL As String
                 Dim lastMenuId As String = ""
@@ -115,20 +117,20 @@ Partial Class Index
                 lbUser.Text = ViewState("UserName").ToString
                 DataModule()
 
-            End If
+     
 
-            If Not IsPostBack Then
-                bindDataGrid()
+                 bindDataGrid()
                 SetInit()
-                'untuk Get Ip dan nama komputer
-                'Dim IPAdd As String = String.Empty
-                'Dim IPName As String = String.Empty
-                'IPAdd = Request.ServerVariables("HTTP_X_FORWARDED_FOR")
-                'If String.IsNullOrEmpty(IPAdd) Then
-                '    IPAdd = Request.ServerVariables("REMOTE_ADDR")
-                '    IPName = System.Net.Dns.GetHostName()
-                'End If
-                'lStatus.Text = MessageDlg("Your IP" + IPAdd)
+
+                 ' Tambahkan ini untuk generate MobileMenuHtml
+    Dim sqlString As String = "EXEC S_SAUserMenu " + QuotedStr(ViewState("UserId")) + ", ''"
+    Dim dtMenu As DataTable = SQLExecuteQuery(sqlString, ViewState("DBConnection").ToString).Tables(0)
+    Dim menu = dtMenu.Select("ISNULL(MenuLevel, 0) = 0")
+    Dim sb As New StringBuilder()
+    GenerateMyMenu(menu, dtMenu, sb)
+    ViewState("MobileMenuHtml") = sb.ToString()
+
+                       
             End If
 
         Catch ex As Exception
@@ -253,54 +255,87 @@ Partial Class Index
         End Try
     End Sub
 
-    Protected Sub DataModule()
-    
-        Dim ContainerId As String
-
-        If Not Request.QueryString("ContainerId") Is Nothing Then
-            ContainerId = Request.QueryString("ContainerId").ToString
-        Else
-            ContainerId = ""
-        End If
 
 
+' Private Sub DataModule()
+'     Dim SQLString As String = "EXEC S_SAUserMenu " + QuotedStr(ViewState("UserId")) + ", ''"
+'     Dim dtMenu As DataTable = SQLExecuteQuery(SQLString, ViewState("DBConnection").ToString).Tables(0)
+
+'     menuTop.Items.Clear()
+
+'     ' Ambil menu level 0 (menu utama)
+'     Dim rootMenus = dtMenu.Select("ISNULL(MenuLevel, 0) = 0")
+'     For Each dr As DataRow In rootMenus
+'         Dim menuItem As New MenuItem(dr("MenuName").ToString(), dr("MenuId").ToString())
+'         If dr("MenuUrl").ToString().Length > 3 Then
+'         '     menuItem.NavigateUrl = dr("MenuUrl").ToString() + "?KeyId=" + ViewState("KeyId").ToString() + "&ContainerId=" + dr("MenuId").ToString()
+'         ' menuItem.Target = "MainFrame"
+
+'         menuItem.NavigateUrl = "javascript:loadMenu('" & dr("MenuId").ToString() & "')"
+
+'         End If
+'         AddChildItems(menuItem, dtMenu)
+'         menuTop.Items.Add(menuItem)
+'     Next
+' End Sub
+
+Private Sub DataModule()
+    Dim SQLString As String = "EXEC S_SAUserMenu " + QuotedStr(ViewState("UserId")) + ", ''"
+    Dim dtMenu As DataTable = SQLExecuteQuery(SQLString, ViewState("DBConnection").ToString).Tables(0)
+
+    menuTop.Items.Clear()
+
+    ' Ambil menu level 0 (menu utama)
+    Dim rootMenus = dtMenu.Select("ISNULL(MenuLevel, 0) = 0")
+    For Each dr As DataRow In rootMenus
+        Dim menuItem As New MenuItem(dr("MenuName").ToString(), dr("MenuId").ToString())
+
+        ' Ganti NavigateUrl menjadi javascript
+        If dr("MenuUrl").ToString().Length > 3 Then
+    Dim url As String = dr("MenuUrl").ToString() + "?KeyId=" + ViewState("KeyId").ToString() + "&ContainerId=" + dr("MenuId").ToString()
+    menuItem.NavigateUrl = "javascript:window.open('" & url & "', 'InFrame');"
+Else
+    menuItem.NavigateUrl = "javascript:loadMenu('" & dr("MenuId").ToString() & "')"
+End If
 
 
-        Dim Dt As DataTable
-        Dim Index As Integer
-        Dim SQLString As String
+        AddChildItems(menuItem, dtMenu)
+        menuTop.Items.Add(menuItem)
+    Next
+End Sub
 
-        SQLString = "EXEC S_SAUserMenu " + QuotedStr(ViewState("UserId")) + ", '' "
-        Dt = SQLExecuteQuery(SQLString, ViewState("DBConnection").ToString).Tables(0)
-        
-        Index = 1
-        For Each row As DataRow In Dt.Rows
-            Dim MenuHd As MenuItem
-            MenuHd = New MenuItem(row("MenuName").ToString, row("MenuId").ToString) ' CStr(Index).Trim)
 
-            MenuHd.NavigateUrl = row("MenuUrl").ToString + "?KeyId=" + ViewState("KeyId".ToString) + "&ContainerId=" + row("menuid").ToString '+ "&ModuleId=" + CStr(Index).Trim
-            menuTop.Items.Add(MenuHd)
-            If Index = 1 And ContainerId = "" Then
-                ContainerId = row("MenuId").ToString
 
-            End If
-            Index = Index + 1
-        Next
-        menuTop.FindItem(ContainerId).Selected = True
-        'menuTop.FindItem(ModuleId).Selected = True
+Private Sub AddChildItems(ByVal parentItem As MenuItem, ByVal table As DataTable)
+    Dim childRows = table.Select("MenuParent = '" + parentItem.Value + "'", "OrderBy ASC")
 
-        SQLString = "EXEC S_SAUserMenu " + QuotedStr(ViewState("UserId")) + ", '" + ContainerId.ToString + "' "
-        Dt = SQLExecuteQuery(SQLString, ViewState("DBConnection").ToString).Tables(0)
-        Dim drparent As DataRow()
-        drparent = Dt.Select("MenuParent = '" + ContainerId.ToString + "'")
-        Dim sbmy As StringBuilder = New StringBuilder()
-        Dim unorderedListmy As String = GenerateMyMenu(drparent, Dt, sbmy)
+    ' Ambil ClientID dari panel-panel untuk dipakai di JavaScript
+    Dim pnlSearchId As String = pnlSearch.ClientID
+    Dim pnlTransferId As String = PnlTransfer.ClientID
 
-        'lStatus.Text = SQLString
-        my_menu.InnerHtml = unorderedListmy
+    For Each dr As DataRow In childRows
+        Dim childItem As New MenuItem(dr("MenuName").ToString(), dr("MenuId").ToString())
+If dr("MenuUrl").ToString().Length > 3 Then
+   ' Ambil ClientID dari panel-panel
 
-        AttachScript("var myMenu; myMenu = new SDMenu(""my_menu""); myMenu.init(); myMenu.collapseAll();", Page, Me.GetType)
-    End Sub
+Dim url As String = dr("MenuUrl").ToString() + "?KeyId=" + ViewState("KeyId").ToString() + "&ContainerId=" + dr("MenuId").ToString()
+
+If TrimStr(dr("MenuParam").ToString()) <> "" Then
+    url &= "&MenuParam=" + dr("MenuParam").ToString()
+End If
+
+' Gunakan JavaScript custom function
+childItem.NavigateUrl = "javascript:hidePanelsAndLoadInFrame('" & url & "');"
+
+End If
+
+
+        AddChildItems(childItem, table) ' Untuk cucu menu
+        parentItem.ChildItems.Add(childItem)
+    Next
+End Sub
+
+
 
     'Public Sub GetMenuData(ByVal ContainerId As String)
     '    Dim Dt As DataTable
@@ -352,81 +387,49 @@ Partial Class Index
     '    Next
     'End Sub
 
-    Public Function GenerateMyMenu(ByVal menu As DataRow(), ByVal table As DataTable, ByVal sb As StringBuilder) As String
-        If (menu.Length > 0) Then
-            For Each dr As DataRow In menu
-                Dim pid As String = dr("MenuId").ToString()
-                Dim handler As String = dr("MenuUrl").ToString()
-                Dim menuText As String = dr("MenuName").ToString()
-                sb.AppendLine("<div class=""dmenu"">")
-                sb.AppendLine("<span class=""mn""> " + menuText + "</span>")
+   Public Function GenerateMyMenu(ByVal menu As DataRow(), ByVal table As DataTable, ByVal sb As StringBuilder) As String
+    sb.AppendLine("<ul class='mobile-menu'>")
+    For Each dr As DataRow In menu
+        GenerateMenuItem(dr, table, sb)
+    Next
+    sb.AppendLine("</ul>")
+    Return sb.ToString()
+End Function
 
-                Dim subMenu As DataRow() = table.Select("MenuParent = '" + pid + "'")
-                If (subMenu.Length > 0) Then
-                    For Each Subdr As DataRow In subMenu
-                        Dim subhandler As String = Subdr("MenuUrl").ToString() + "?KeyId=" + ViewState("KeyId").ToString + "&ContainerId=" + Subdr("MenuId").ToString()
+Private Sub GenerateMenuItem(ByVal dr As DataRow, ByVal table As DataTable, ByVal sb As StringBuilder)
+    Dim pid As String = dr("MenuId").ToString()
+    Dim menuText As String = dr("MenuName").ToString()
+    Dim url As String = dr("MenuUrl").ToString()
+    Dim hasUrl As Boolean = (url.Length > 3)
 
-                        If TrimStr(Subdr("MenuParam")).ToString <> "" Then
-                            subhandler = subhandler + "&MenuParam=" + Subdr("MenuParam").ToString
-                        End If
-
-
-                        Dim submenuText As String = Subdr("MenuName").ToString()
-                        Dim submenuId As String = Subdr("MenuId").ToString()
-
-
-
-
-
-                        If Subdr("MenuUrl").ToString().Length > 5 Then
-
-                            Dim line As String = String.Format("<a href=""{0}"" Target='MainFrame'>{1}</a>", subhandler, submenuText)
-                            sb.Append(line)
-
-
-                        Else
-                            pnlSearch.Visible = False
-                            PnlTransfer.Visible = False
-                            Dim sb2 As StringBuilder = New StringBuilder()
-                            GenerateMySubMenu(Subdr, table, sb2)
-                            sb.Append(sb2)
-
-                        End If
-                    Next
-                End If
-                sb.Append("</div>")
-            Next
+    Dim fullUrl As String = url
+    If hasUrl Then
+        fullUrl &= "?KeyId=" + ViewState("KeyId").ToString() + "&ContainerId=" + pid
+        If TrimStr(dr("MenuParam").ToString()) <> "" Then
+            fullUrl &= "&MenuParam=" + dr("MenuParam").ToString()
         End If
-        Return sb.ToString()
-    End Function
+    End If
 
+    Dim childRows As DataRow() = table.Select("MenuParent = '" + pid + "'")
 
-    Public Function GenerateMySubMenu(ByVal dr As DataRow, ByVal table As DataTable, ByVal sb As StringBuilder) As String
-        Dim pid As String = dr("MenuId").ToString()
-        Dim handler As String = dr("MenuUrl").ToString()
-        Dim menuText As String = dr("MenuName").ToString()
-        sb.AppendLine("<div class=""sub"">")
-        sb.AppendLine("<span class=""submn"" id=""sub" + pid.Trim + """ >" + menuText + "</span>")
-        Dim subMenu As DataRow() = table.Select("MenuParent = '" + pid + "'")
-        If (subMenu.Length > 0) Then
-            For Each Subdr As DataRow In subMenu
-                Dim subhandler As String = Subdr("MenuUrl").ToString() + "?KeyId=" + ViewState("KeyId").ToString + "&ContainerId=" + Subdr("MenuId").ToString()
-
-                'lStatus.Text = subhandler
-                If TrimStr(Subdr("MenuParam")).ToString <> "" Then
-                    subhandler = subhandler + "&MenuParam=" + Subdr("MenuParam").ToString
-                End If
-                Dim submenuText As String = Subdr("MenuName").ToString()
-                Dim submenuId As String = Subdr("MenuId").ToString()
-                Dim line As String = String.Format("<a class=""submn"" href=""{0}"" Target='MainFrame'>{1}</a>", subhandler, submenuText)
-                sb.Append(line)
-
-                'lStatus.Text = line
-            Next
+    If childRows.Length > 0 Then
+        sb.AppendLine("<li class='has-submenu'>")
+        sb.AppendLine("<span onclick='toggleSubmenu(this)'>" + menuText + " ▸</span>")
+        sb.AppendLine("<ul class='submenu'>")
+        For Each child In childRows
+            GenerateMenuItem(child, table, sb)
+        Next
+        sb.AppendLine("</ul>")
+        sb.AppendLine("</li>")
+    Else
+        If hasUrl Then
+            sb.AppendLine("<li><a href='" + fullUrl + "' target='InFrame'>" + menuText + "</a></li>")
+        Else
+            sb.AppendLine("<li><span>" + menuText + "</span></li>")
         End If
-        sb.Append("</div>")
-        Return sb.ToString()
-    End Function
+    End If
+End Sub
+
 
 
 End Class

@@ -142,7 +142,11 @@ Partial Class ApprovalVoucher
                 ViewState("Sender") = Nothing
                 'Session("filter") = Nothing
                 'Session("Column") = Nothing
-            End If            
+            End If
+
+
+            FubInv.Attributes("onchange") = "UploadInvoice(this)"
+
         Catch ex As Exception
             lbStatus.Text = "Page Load Error : " + ex.ToString
         End Try
@@ -553,7 +557,7 @@ Partial Class ApprovalVoucher
                     Exit Sub
                 End If
                 CountTotalDt()
-                SQLString = "UPDATE FINAPApprovalHd SET SuppCode = " + QuotedStr(tbSuppCode.Text) + ", Attn = " + QuotedStr(tbAttn.Text) + _
+                SQLString = "UPDATE FINAPApprovalHd SET SuppCode = " + QuotedStr(tbSuppCode.Text) + ", FgChecker = 'N', Attn = " + QuotedStr(tbAttn.Text) + _
                 ", InvoiceType = " + QuotedStr(ddlInvoiceType.SelectedValue) + _
                 ", ExpenseType = " + QuotedStr(tbExpense.Text) + _
                 ", BankPenerima = " + QuotedStr(tbBankPenerima.Text) + _
@@ -651,6 +655,33 @@ Partial Class ApprovalVoucher
     Protected Sub btnSaveTrans_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSaveTrans.Click
         Dim CurrFilter, Value As String
         Try
+        Dim confirmValue As String = Request.Form("confirm_value")
+            If confirmValue = "Yes" Then
+
+            If CekHd() = False Then
+                Exit Sub
+            End If
+            If GetCountRecord(ViewState("Dt")) = 0 Then
+                lbStatus.Text = MessageDlg("Detail must have at least 1 record")
+                Exit Sub
+            End If
+            For Each dr In ViewState("Dt").Rows
+                If CekDt(dr) = False Then
+                    Exit Sub
+                End If
+            Next
+
+             SaveAll()
+                ModifyInput2(False, pnlInput, pnlDt, GridDt)
+                btnGoEdit.Visible = True
+                Menu2.Items.Item(1).Enabled = True
+                MultiView2.ActiveViewIndex = 1
+                Menu2.Items.Item(1).Selected = True
+                'btnGoEdit.Visible = True
+                ' btnGetBAP.Visible = False
+                GridDt.Columns(0).Visible = False
+
+            Else
             If CekHd() = False Then
                 Exit Sub
             End If
@@ -673,8 +704,26 @@ Partial Class ApprovalVoucher
             btnSearch_Click(Nothing, Nothing)
             tbFilter.Text = CurrFilter
             ddlField.SelectedValue = Value
+            End If
         Catch ex As Exception
             lbStatus.Text = "Save All Dt Error : " + ex.ToString
+        End Try
+    End Sub
+
+        Protected Sub btnGoEdit_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnGoEdit.Click
+        Dim CurrFilter, Value As String
+        Try
+            MovePanel(pnlInput, PnlHd)
+            CurrFilter = tbFilter.Text
+            Value = ddlField.SelectedValue
+            tbFilter.Text = tbRef.Text
+            ddlField.SelectedValue = "TransNmbr"
+            btnSearch_Click(Nothing, Nothing)
+            tbFilter.Text = CurrFilter
+            ddlField.SelectedValue = Value
+            btnGoEdit.Visible = False
+        Catch ex As Exception
+            lbStatus.Text = "Btn Add Error : " + ex.ToString
         End Try
     End Sub
 
@@ -683,6 +732,8 @@ Partial Class ApprovalVoucher
             MovePanel(PnlHd, pnlInput)
             ModifyInput2(True, pnlInput, pnlDt, GridDt)
             newTrans()
+             MultiView2.ActiveViewIndex = 0
+            Menu2.Items.Item(0).Selected = True
             If ddlInvoiceType.SelectedValue = "Invoice" Then
                 ddlExpenseType.Enabled = "False"
                 btnExpense.Enabled = "False"
@@ -701,6 +752,26 @@ Partial Class ApprovalVoucher
         Catch ex As Exception
             lbStatus.Text = "Btn Add Error : " + ex.ToString
         End Try
+    End Sub
+
+    
+    Protected Sub Menu2_MenuItemClick(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.MenuEventArgs) Handles Menu2.MenuItemClick
+        MultiView2.ActiveViewIndex = Int32.Parse(e.Item.Value)
+        If Menu2.Items.Item(0).Selected = True Then
+            If ViewState("StateHd") = "Insert" Or ViewState("StateHd") = "Edit" Then
+                'btnGoEdit.Visible = False
+                'btnGetBAP.Visible = True
+                GridDt.Columns(0).Visible = True
+            End If
+        End If
+        If Menu2.Items.Item(1).Selected = True Then
+            If ViewState("StateHd") = "Insert" Or ViewState("StateHd") = "Edit" Then
+                'btnGoEdit.Visible = True
+                'btnGetBAP.Visible = False
+                GridDt.Columns(0).Visible = False
+            End If
+
+        End If
     End Sub
 
     Private Sub newTrans()
@@ -1196,6 +1267,22 @@ Partial Class ApprovalVoucher
                     ViewState("StateHd") = "View"
                     ModifyInput2(False, pnlInput, pnlDt, GridDt)
                     btnHome.Visible = True
+                    MultiView2.ActiveViewIndex = 0
+                    Menu2.Items.Item(0).Selected = True
+                    If GVR.Cells(3).Text = "D" Then
+                        Menu2.Items.Item(1).Enabled = False
+                    Else
+                        Menu2.Items.Item(1).Enabled = True
+                    End If
+                    btnGeapprPost.Visible   = True
+                    If GVR.Cells(3).Text = "H" Then
+                    btnGeapprPost.text = "Get Approval"
+                    ElseIf GVR.Cells(3).Text = "G" Then
+                    btnGeapprPost.text = "Post"
+                    ElseIf GVR.Cells(3).Text = "P" Then
+                    btnGeapprPost.text = "Un-Post"                    
+                    End If
+                    ViewState("Status")  = GVR.Cells(3).Text
                 ElseIf DDL.SelectedValue = "Edit" Then
                     If GVR.Cells(3).Text = "H" Or GVR.Cells(3).Text = "G" Then
                         CekMenu = CheckMenuLevel("Edit", ViewState("MenuLevel").Rows(0))
@@ -1226,11 +1313,14 @@ Partial Class ApprovalVoucher
                             btnAddDt.Visible = True
                             btnAddDt2.Visible = True
                         End If
+                         btnHome.Visible = True
+                    MultiView2.ActiveViewIndex = 0
                        
                     Else
                         lbStatus.Text = MessageDlg("Data must Hold or Get Approval to edit")
                         Exit Sub
                     End If
+                    btnGeapprPost.Visible = False
                 ElseIf DDL.SelectedValue = "Print" Then
                     Try
                         CekMenu = CheckMenuLevel("Print", ViewState("MenuLevel").Rows(0))
@@ -1251,11 +1341,214 @@ Partial Class ApprovalVoucher
                     Catch ex As Exception
                         lbStatus.Text = "btn print Error = " + ex.ToString
                     End Try
+
+                ElseIf DDL.SelectedValue = "Upload Dokumen" Then
+                 If GVR.Cells(3).Text <> "D" Then                    
+                        ViewState("Reference") = GVR.Cells(2).Text
+                        ViewState("namaFile") = Nothing
+                        PnlHd.Visible = False
+                        pnlPDF.Visible = True
+                        tbRef.Text = ViewState("Reference") 
+
+                          Dim dr As DataTable
+                        Dim filePath As String
+                        dr = BindDataTransaction(GetStringHd, "TransNmbr = " + QuotedStr(tbRef.Text), ViewState("DBConnection").ToString)
+
+                        If dr.Rows.Count > 0 Then
+                            filePath = dr.Rows(0)("DokVoucher").ToString()
+
+                            ' Pastikan filePath tidak kosong
+                            If Not String.IsNullOrEmpty(filePath) Then
+                                Dim fullPath As String = Server.MapPath(System.IO.Path.Combine("~/DokumenVoucher/", filePath))
+
+                                ' Cek apakah file ADA atau TIDAK
+                                If Not System.IO.File.Exists(fullPath) Then
+                                    lbDokInv.Text = "Not yet uploaded"
+                                    FubInv.Visible = True
+                                    btnClearInv.Visible = False
+                                Else
+                                    lbDokInv.Text = filePath
+                                    FubInv.Visible = False
+                                    btnClearInv.Visible = True
+                                End If
+                            Else
+                                lbDokInv.Text = "No file path available"
+                                FubInv.Visible = True
+                                btnClearInv.Visible = False
+                            End If
+                        Else
+                            lbDokInv.Text = "Transaction not found"
+                            FubInv.Visible = False
+                            btnClearInv.Visible = False
+                        End If
+
+
+                        
+                        
+                        'btnViewPDF.Enabled = False
+                        'btnViewPDF.Disabled = True  
+                        Else
+                        lbStatus.Text = MessageDlg("Data cannot status D to Upload Dokumen!")
+                        Exit Sub
+                    End If 
+
+                ElseIf DDL.SelectedValue = "View Dokumen Pendukung" Then
+                 tbRef.text = GVR.Cells(2).Text
+                 lbDokInv_Click(Nothing, Nothing)
+                
+                    
                 End If
             End If
 
         Catch ex As Exception
             lbStatus.Text = "Item Command Error : " + ex.ToString
+        End Try
+    End Sub
+
+    
+
+    Protected Sub btnGeapprPost_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnGeapprPost.Click
+       Dim Result As String
+       Dim CurrFilter, Value As String
+
+       'lbStatus.text = ViewState("Status") 
+       'exit sub
+
+       If ViewState("Status") = "H" Then
+        Result = ExecSPCommandGo("Get Approval", "S_FNApprovalVoucher", (tbRef.text), CInt(Session(Request.QueryString("KeyId"))("Year")), CInt(Session(Request.QueryString("KeyId"))("Period")), ViewState("UserId").ToString, ViewState("DBConnection").ToString)
+       If Trim(Result) <> "" Then
+            lbStatus.Text = lbStatus.Text + Result + " <br/>"
+            Else
+            ViewState("Status")  = "G"
+            btnGeapprPost.text = "Post"
+        End If
+       ElseIf ViewState("Status") = "G" Then
+        Result = ExecSPCommandGo("Post", "S_FNApprovalVoucher", (tbRef.text), CInt(Session(Request.QueryString("KeyId"))("Year")), CInt(Session(Request.QueryString("KeyId"))("Period")), ViewState("UserId").ToString, ViewState("DBConnection").ToString)
+        If Trim(Result) <> "" Then
+            lbStatus.Text = lbStatus.Text + Result + " <br/>"
+            Else
+            ViewState("Status")  = "P"
+            btnGeapprPost.text = "Un-Post"
+        End If 
+        ElseIf ViewState("Status") = "P" Then 
+    Result = ExecSPCommandGo("Un-Post", "S_FNApprovalVoucher", (tbRef.text), CInt(Session(Request.QueryString("KeyId"))("Year")), CInt(Session(Request.QueryString("KeyId"))("Period")), ViewState("UserId").ToString, ViewState("DBConnection").ToString)
+        If Trim(Result) <> "" Then
+            lbStatus.Text = lbStatus.Text + Result + " <br/>"
+            Else
+            ViewState("Status")  = "G"
+            btnGeapprPost.text = "Post"
+        End If
+        End If
+        MovePanel(pnlInput, PnlHd)
+            CurrFilter = tbFilter.Text
+            Value = ddlField.SelectedValue
+            tbFilter.Text = tbRef.Text
+            ddlField.SelectedValue = "TransNmbr"
+            btnSearch_Click(Nothing, Nothing)
+            tbFilter.Text = CurrFilter
+            ddlField.SelectedValue = Value
+            btnGoEdit.Visible = False
+       
+        
+    End Sub
+
+
+    '   Protected Sub btnCancel_ServerClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancel.ServerClick
+    '     PnlHd.Visible = True
+    '     pnlPDF.Visible = False
+
+    '         BindData(Session("AdvanceFilter"))
+        
+    ' End Sub
+
+     Protected Sub btnsaveINV_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnsaveINV.Click
+        Try
+
+            Dim dr As DataTable
+            dr = BindDataTransaction(GetStringHd, "TransNmbr = " + QuotedStr(tbRef.Text), ViewState("DBConnection").ToString)
+
+            If dr.Rows.Count = 0 Then
+                lbStatus.Text = MessageDlg("save this transaction first, to upload the dokumen")
+                Exit Sub
+            End If
+
+            If FubInv.FileBytes.Length > 10000000 Then
+                lbStatus.Text = MessageDlg("Ukuran File Terlalu Besar. !! Max Upload 10Mb")
+                Exit Sub
+            End If
+
+            If Right(FubInv.FileName, 4) <> ".pdf" Then
+                lbStatus.Text = MessageDlg("Upload Pdf File Only !")
+                Exit Sub
+            End If
+            Dim path2, namafile2, SQLString1 As String
+            Dim dt As DataTable
+            path2 = Server.MapPath("~/DokumenVoucher/") + tbRef.Text.Trim.Replace("/", "") + Format(Now, "-yyMMddHHmmss-") + FubInv.FileName
+            namafile2 = tbRef.Text.Trim.Replace("/", "") + Format(Now, "-yyMMddHHmmss-") + FubInv.FileName
+
+            SQLString1 = "UPDATE FINAPApprovalHd SET DokVoucher = " + QuotedStr(namafile2) + _
+            " WHERE TransNmbr = " + QuotedStr(tbRef.Text)
+            FubInv.SaveAs(path2)
+            SQLExecuteNonQuery(SQLString1, ViewState("DBConnection").ToString)
+
+            dt = BindDataTransaction(GetStringHd, "TransNmbr = " + QuotedStr(tbRef.Text), ViewState("DBConnection").ToString)
+            lbDokInv.Text = dt.Rows(0)("DokVoucher").ToString
+            'lblmassageKTP.Visible = True
+            FubInv.Visible = False
+            btnClearInv.Visible = True
+
+        Catch ex As Exception
+            lbStatus.Text = "Menu Item Click Error : " + ex.ToString
+        End Try
+    End Sub
+
+    Protected Sub lbDokInv_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lbDokInv.Click
+        Try
+            Dim dr As DataTable
+            Dim filePath, URL As String
+            dr = BindDataTransaction(GetStringHd, "TransNmbr = " + QuotedStr(tbRef.Text), ViewState("DBConnection").ToString)
+
+            If dr.Rows.Count = 0 Then
+                lbStatus.Text = MessageDlg("Belum ada dokumen yang di upload")
+                Exit Sub
+            End If
+
+            If dr.Rows(0)("DokVoucher").ToString = "" Then
+                lbStatus.Text = MessageDlg("Belum ada dokumen yang di upload")
+                Exit Sub
+            End If
+
+            filePath = dr.Rows(0)("DokVoucher").ToString
+            URL = ResolveUrl("~/DokumenVoucher/" + filePath)
+            Dim s As String = "window.open('" & URL & "', '_blank');"
+            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alertscript", s, True)
+
+        Catch ex As Exception
+            lbStatus.Text = "lbModerator_Click Error : " + ex.ToString
+        End Try
+    End Sub
+
+    Protected Sub btnClearInv_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnClearInv.Click
+        Try
+            Dim dr As DataTable
+            Dim filePath As String
+            dr = BindDataTransaction(GetStringHd, "TransNmbr = " + QuotedStr(tbRef.Text), ViewState("DBConnection").ToString)
+            filePath = dr.Rows(0)("DokVoucher").ToString
+
+
+            If File.Exists(Server.MapPath("~/DokumenVoucher/" + filePath)) = True Then
+                File.Delete(Server.MapPath("~/DokumenVoucher/" + filePath))
+                SQLExecuteNonQuery("UPDATE FINAPApprovalHd Set DokVoucher = '' WHERE TransNmbr = '" + tbRef.Text + "' ", ViewState("DBConnection").ToString)
+
+                lbDokInv.Text = "Not yet uploaded"
+                FubInv.Visible = True
+                btnClearInv.Visible = False
+            End If
+
+           
+
+        Catch ex As Exception
+            lbStatus.Text = "lbBAP_Click Error : " + ex.ToString
         End Try
     End Sub
 
@@ -1379,6 +1672,23 @@ Partial Class ApprovalVoucher
     '    End Try
     'End Sub
 
+
+      Protected Sub GridView1_RowDataBound(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewRowEventArgs) Handles GridView1.RowDataBound
+       Try
+           If e.Row.RowType = DataControlRowType.DataRow Then
+        ' Ambil nilai Status
+        Dim status As String = DataBinder.Eval(e.Row.DataItem, "FgChecker").ToString()
+
+        ' Jika Status = "D", ubah warna latar belakang menjadi merah
+        If status = "Y" Then
+            e.Row.BackColor = System.Drawing.Color.FromArgb(227, 110, 110) ' #e36e6e
+        End If
+    End If
+       Catch ex As Exception
+           lbStatus.Text = "Grid Dt Row Data Bound Error : " + ex.ToString
+       End Try
+    End Sub
+
     Protected Sub FillTextBoxHd(ByVal Nmbr As String)
         Dim Dt As DataTable
         Try
@@ -1409,6 +1719,20 @@ Partial Class ApprovalVoucher
             Else
                 lblExpense.Text = "PB"
             End If
+
+            If Dt.Rows(0)("DokVoucher").ToString = "" Then
+                'cbKtp.Checked = False
+                lbDokInv.Text = "Not Yet Uploaded - Max Upload 10Mb"
+                FubInv.Visible = True
+            Else
+                lbDokInv.Text = Dt.Rows(0)("DokVoucher").ToString
+                'cbKtp.Checked = True
+                 FubInv.Visible = False
+            End If
+
+            tbRemarkRevisi.text = SQLExecuteScalar("SELECT TOP 1 RemarkRevisi  FROM FINAPApprovalRev WHERE TransNmbr = " + QuotedStr(tbRef.text) + "  ORDER BY TableId DESC", ViewState("DBConnection"))
+
+
 
         Catch ex As Exception
             Throw New Exception("fill text box header error : " + ex.ToString)
@@ -1466,6 +1790,71 @@ Partial Class ApprovalVoucher
             lbStatus.Text = "btn Search Cust Error : " + ex.ToString
         End Try
     End Sub
+
+
+    
+    Protected Sub btnRevisi_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnRevisi.Click
+        Dim ResultField, SqlString, CurrFilter, Value  As String
+        Try
+
+            ResultField = SQLExecuteScalar("SELECT TOP 1 RemarkRevisi  FROM FINAPApprovalRev WHERE TransNmbr = " + QuotedStr(tbRef.text) + "  ORDER BY TableId DESC", ViewState("DBConnection"))
+
+            If tbRemarkRevisi.Text = "" Then
+                lbStatus.text  = MessageDlg("Remark revisi must have value !")
+                exit Sub
+            End If
+
+            
+                If tbRemarkRevisi.Text = ResultField Then
+                lbStatus.text  = MessageDlg("Remark revisi cannot same with remark before!")
+                exit Sub
+                
+            Else
+                SQLString = "INSERT INTO FINAPApprovalRev (TransNmbr,RemarkRevisi,LastStatus,UserId, CreateDate) " + _
+                "SELECT " + QuotedStr(tbRef.Text) + ", " + QuotedStr(tbRemarkRevisi.Text) + ", " + QuotedStr(Viewstate("Status")) + ", " + QuotedStr(ViewState("UserId")) + ",Getdate() " 
+                 SQLExecuteNonQuery(SQLString, ViewState("DBConnection").ToString)
+
+
+                SQLString = "UPDATE FINAPApprovalHd SET Status = 'H', FgChecker = 'Y' WHERE TransNmbr = " + QuotedStr(tbRef.Text) + " "
+          
+                SQLExecuteNonQuery(SQLString, ViewState("DBConnection").ToString)
+
+            
+
+            MovePanel(pnlInput, PnlHd)
+            CurrFilter = tbFilter.Text
+            Value = ddlField.SelectedValue
+            tbFilter.Text = tbRef.Text
+            ddlField.SelectedValue = "TransNmbr"
+            btnSearch_Click(Nothing, Nothing)
+            tbFilter.Text = CurrFilter
+            ddlField.SelectedValue = Value
+            btnGoEdit.Visible = False
+
+            lbStatus.text = MessageDlg("Create Revisi Sukses")
+
+            End If
+
+           
+        Catch ex As Exception
+            lbStatus.Text = "btn Revisi Error : " + ex.ToString
+        End Try
+    End Sub
+
+
+     Protected Sub btnViewallrevisi_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnViewallrevisi.Click
+        Session("Result") = Nothing
+    Session("Filter") = "SELECT * FROM V_FINAPApprovalRev WHERE TransNmbr = " + QuotedStr(tbRef.text)
+            'ResultField = "Invoice_No,Invoicetype,Invoice_Date,Supplier,SupplierName,Rfference_No,Invoice,Potongan,DPP,PPn,PPn_Invoice,PPh,PPh_Invoice,TotalAmount,SupplierType,Remark"
+            ' Session("Column") = ResultField.Split(",")
+            ' ResultSame = "Supplier, SupplierType, Invoicetype"
+            ' Session("ResultSame") = ResultSame.Split(",")
+            ' ViewState("Sender") = "btnGetInv"
+            Session("DBConnection") = ViewState("DBConnection")
+            'AttachScript("OpenSearchMultiDlg();", Page, Me.GetType())
+            AttachScript("OpenPopupRev();", Page, Me.GetType())
+    End Sub
+
 
 
 End Class

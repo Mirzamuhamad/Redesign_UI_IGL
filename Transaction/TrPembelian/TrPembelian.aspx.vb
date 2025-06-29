@@ -812,20 +812,23 @@ Partial Class TrPembelian
 
             Dim TJNo, Revisi As String
             TJNo = SQLExecuteScalar("SELECT TJNo FROM V_GetLos WHERE TJNo = " + QuotedStr(tbTjNo.Text), ViewState("DBConnection").ToString)
-            Revisi = SQLExecuteScalar("SELECT Revisi FROM V_GetLos WHERE Revisi = " + QuotedStr(tbRev.Text), ViewState("DBConnection").ToString)
+            Revisi = SQLExecuteScalar("SELECT Revisi FROM V_GetLos WHERE Revisi = " + QuotedStr(tbRev.Text) + " AND TJNo = " + QuotedStr(tbTjNo.Text), ViewState("DBConnection").ToString)
 
-            ' If (TJNo + "|" + Revisi) <> (tbTjNo.Text + "|" + tbRev.Text) Then
-            '     lbStatus.Text = MessageDlg("There is already TJ revision created, Please select new TJ to created land porchase order ")
-            '     btnTJ_Click(Nothing, Nothing)
-            '     Return False
-            ' End If
+            
 
-
-            If (TJNo + "|" + Revisi) <> "|" Then
+            If (TJNo + "|" + Revisi) <> (tbTjNo.Text + "|" + tbRev.Text) Then
                 lbStatus.Text = MessageDlg("There is already TJ revision created, Please select new TJ to created land porchase order ")
                 btnTJ_Click(Nothing, Nothing)
                 Return False
             End If
+
+
+
+            ' If (TJNo + "|" + Revisi) <> "|" Then
+            '     lbStatus.Text = MessageDlg("There is already TJ revision created, Please select new TJ to created land porchase order ")
+            '     btnTJ_Click(Nothing, Nothing)
+            '     Return False
+            ' End If
 
 
             If tbTjNo.Text = "" Then
