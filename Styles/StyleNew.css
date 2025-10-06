@@ -1,0 +1,332 @@
+
+/*@font-face 
+
+        {
+            font-family: 'Roboto'; 
+            font-style: normal;
+   			 font-weight: normal;
+            src: url('../Roboto/Roboto-Condensed.ttf');
+        }
+*/
+FileUpload
+{
+	color:White;
+	}
+
+
+	
+
+
+  /* Styling pager GridView pakai Bootstrap pagination */
+  .pagination-container table {
+	margin: 0 auto;
+}
+
+.pagination-container td {
+	padding: 0.3rem;
+}
+
+.pagination-container a,
+.pagination-container span {
+	display: inline-block;
+	padding: 0.4rem 0.75rem;
+	margin: 0 2px;
+	border-radius: 0.25rem;
+	border: 1px solid #dee2e6;
+	color: #0d6efd;
+	text-decoration: none;
+}
+
+.pagination-container a:hover {
+	background-color: #e9ecef;
+}
+
+.pagination-container span {
+	background-color: #0d6efd;
+	color: #fff;
+	font-weight: bold;
+}
+
+/* Header GridView putih tanpa underline */
+.table-soft-dark th a {
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
+/* Hover biar tetap elegan */
+.table-soft-dark th a:hover {
+    color: #efefef !important; /* kuning saat hover */
+}
+
+.sticky-top {
+    z-index: 1030; /* lebih tinggi dari tabel */
+}
+
+
+
+.grid-pager {
+    position: sticky;
+    bottom: 0;
+    z-index: 0;
+    background: #f8f9fa;
+    padding: 8px 0; 
+    /* /* border-top: 1px solid #dee2e6; */
+}
+
+/* .grid-pager table {
+    margin: 0 auto;
+} */
+ 
+.grid-pager td {
+    padding: 0px;
+}
+.grid-pager a, 
+.grid-pager span {
+    display: inline-block;
+    padding: 1px 8px;
+    margin: 0 2px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    text-decoration: none !important;
+    color: #6b6b6b;
+    background-color: #fff;
+}
+.grid-pager span {
+    background-color: #357ce6;
+    color: #fff;
+    font-weight: bold;
+}
+.grid-pager a:hover {
+    background-color: #e9ecef;
+}
+
+
+ /* target khusus header GridView */
+ .table thead th,
+ .table-soft-dark th {
+	 background-color: #777777 !important; 
+	 color: #ffffff !important;             /* teks putih */
+	 font-weight: normal !important;        /* hilangkan bold */
+ }
+
+
+    /* Untuk browser berbasis WebKit (Chrome, Edge, Safari, Opera) */
+    div.table-responsive[style]::-webkit-scrollbar {
+        width: 8px !important;   /* scrollbar vertikal */
+        height: 8px !important;  /* scrollbar horizontal */
+    }
+
+    div.table-responsive[style]::-webkit-scrollbar-track {
+        background: #ffffff !important;  /* track abu */
+    }
+
+    div.table-responsive[style]::-webkit-scrollbar-thumb {
+        background-color: #a1a1a1 !important; /* hitam soft */
+        border-radius: 4px;
+    }
+
+    div.table-responsive[style]::-webkit-scrollbar-thumb:hover {
+        background-color: #5f5f5f !important; /* lebih gelap saat hover */
+    }
+
+    /* Untuk Firefox */
+    div.table-responsive[style] {
+        scrollbar-width: thin;              /* kecil */
+        scrollbar-color: #5f5f5f #e0e0e0;   /* thumb | track */
+		border-radius: 4px;
+    }
+
+
+    .table-soft-text td
+ {
+    color: #6b6b6b !important;  /* hitam soft */
+}
+
+/* font */
+
+/* === FONT GLOBAL UNTUK SEMUA === */
+body, 
+.table, 
+.table td, 
+.table th,
+.form-control,
+.form-select,
+.btn {
+    font-family: 'Muli', Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    color: #5f5f5f !important;   /* soft black */
+    font-weight: 400 !important;
+    vertical-align: middle !important;
+    font-size: 14px;
+}
+
+/* Header GridView */
+.table th {
+    color: #fff !important;   /* tetap putih */
+    font-weight: 400 !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+
+
+/* Button style */
+.btn {
+    font-family: 'Muli', sans-serif !important;
+    font-weight: 500 !important;
+    color: #fff !important;       /* default text putih */
+}
+
+/* Form input placeholder */
+.form-control::placeholder {
+    color: #777 !important;   /* abu soft */
+    font-family: 'Muli', sans-serif !important;
+}
+
+
+.form-label {
+    margin-bottom: 0.1rem !important; /* lebih rapat dari default */
+    font-size: 0.85rem !important;    /* lebih kecil */
+}
+
+
+
+
+.menu-tabs-wrapper {
+    border-bottom: 0px solid #bcbcbc;
+    width: 100%;
+}
+/* Untuk Tab */
+/* Default tab item */
+.MenuItem {
+    display: inline-block;
+    margin-right: 2px;
+}
+
+.MenuItem a {
+    display: block;
+    padding: 5px 12px;
+    border: 1px solid #507090;
+    border-bottom: none;
+    background: #bcbcbc;
+    color: #777777;
+    text-decoration: none;
+    border-radius: 0.25rem 0.25rem 0 0;
+}
+
+/* Hover effect */
+.MenuItem a:hover {
+    background: #777777;
+    color: #dcdcdc;
+}
+
+/* Tab aktif */
+.MenuSelect a {
+    background: #777777;
+    border: 1px solid #dcdcdc;
+    border-bottom: 2px solid #0d6efd;  /* Border bawah biru */
+    color: #fff;
+    font-weight: 500;
+}
+
+
+/* 🔹 Responsif untuk layar kecil */
+@media (max-width: 768px) {
+    .MenuItem a {
+        padding: 4px 8px;     /* lebih kecil */
+        font-size: 12px;      /* font kecil */
+    }
+}
+
+@media (max-width: 576px) {
+    .MenuItem {
+        display: block;       /* tiap tab turun ke bawah */
+        margin-bottom: 2px;
+    }
+    .MenuItem a {
+        width: 100%;          /* full width */
+        text-align: center;   /* rata tengah */
+    }
+}
+
+
+
+
+.footer-action {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1050; /* lebih tinggi dari modal backdrop, dll */
+    background: #fff;
+    /* border-top: 1px solid #dee2e6; */
+    padding-top: 5px;
+    padding-bottom: 20px;
+}
+
+
+
+
+
+
+
+/* Base style untuk tombol dengan icon */
+.btn-icon {
+    position: relative;
+    padding-left: 2rem; /* beri ruang icon di kiri */
+    /* color: red; */
+}
+
+/* Default posisi icon */
+.btn-icon::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Variasi icon */
+.btn-icon-add::before {
+    content: "\f067"; /* plus icon */
+}
+
+.btn-icon-save::before {
+    content: "\f0c7"; /* save (disk) */
+}
+
+.btn-icon-edit::before {
+    content: "\f044"; /* edit (pencil) */
+}
+
+.btn-icon-delete::before {
+    content: "\f1f8"; /* trash */
+}
+
+/* Reset (fa-undo) */
+.btn-icon-reset::before {
+    content: "\f2f9"; /* undo-alt */
+}
+
+/* Back (fa-arrow-left) */
+.btn-icon-back::before {
+    content: "\f060"; /* arrow-left */
+}
+
+/* Cancel (fa-times) */
+.btn-icon-cancel::before {
+    content: "\f00d"; /* times (X) */
+}
+
+
+
+
+
+
+
+
+
+ 
+ 
+
+

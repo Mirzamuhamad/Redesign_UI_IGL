@@ -114,7 +114,7 @@ Partial Class PenunjukanPemenang
                         End If
                     Next
                     BindGridDt(ViewState("Dt"), GridDt)
-                    EnableHd(GetCountRecord(ViewState("Dt")) = 0)
+                    'EnableHd(GetCountRecord(ViewState("Dt")) = 0)
                     CountTotalDt()
                 End If
 
@@ -169,7 +169,7 @@ Partial Class PenunjukanPemenang
                         End If
                     Next
                     BindGridDt(ViewState("Dt"), GridDt)
-                    EnableHd(GetCountRecord(ViewState("Dt")) = 0)
+                    'EnableHd(GetCountRecord(ViewState("Dt")) = 0)
                     CountTotalDt()
                 End If
 

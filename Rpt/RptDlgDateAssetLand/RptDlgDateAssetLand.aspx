@@ -10,7 +10,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Untitled Page</title>
-    <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />    
+    <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />
+ <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">    
     <style type="text/css">
         .style1
         {
@@ -113,7 +114,7 @@
         <%--<asp:UpdatePanel ID="UpdatePanel2" runat="server">        
           <ContentTemplate>                                      --%>
         <asp:Button class="bitbtn btnpreview" runat="server" ID="btnPreview" Visible="false" Text="Preview"/>
-        <asp:Button class="bitbtn btnprint" runat="server" ID="btnPrint" Visible ="false"  Text="Print"/>
+        <asp:Button class="bitbtn btnprint" runat="server" ID="btnPrint" Visible =  Text="Print"/>
         <asp:Button class="bitbtn btnexcel" runat="server" ID="btnExport" Text="Export"/>        
         <br />
         <br />  

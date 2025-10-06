@@ -609,6 +609,7 @@ EnableEventValidation="false" %>
                   <asp:BoundField DataField="PPhForex" DataFormatString="{0:#,##0.00}" ItemStyle-HorizontalAlign="Right" HeaderStyle-Width="80px" HeaderText="PPh Value"></asp:BoundField>
                   <asp:BoundField DataField="TotalForex" DataFormatString="{0:#,##0.00}" ItemStyle-HorizontalAlign="Right" HeaderStyle-Width="80px" HeaderText="Total Amount"></asp:BoundField>
                   <asp:BoundField DataField="PPHName" HeaderStyle-Width="100px" SortExpression="Remark" HeaderText="PPH Name"></asp:BoundField>                  
+                  <asp:BoundField DataField="CIPAdm" HeaderStyle-Width="100px" SortExpression="CIPAdm" HeaderText="Adm Type"></asp:BoundField>
                   <asp:BoundField DataField="Remark" HeaderStyle-Width="250px" SortExpression="Remark" HeaderText="Remark"></asp:BoundField>
               </Columns>
           </asp:GridView>
@@ -631,11 +632,14 @@ EnableEventValidation="false" %>
                   <td>CIP</td>
                   <td>:</td>
                   <td>
-                      <asp:DropDownList ID="ddlCIP" runat="server" CssClass="DropDownList" ValidationGroup="Input"> <%--AutoPostBack="true"--%>
+                      <asp:DropDownList ID="ddlCIP" runat="server" CssClass="DropDownList" AutoPostBack="true" ValidationGroup="Input" > <%--AutoPostBack="true"--%>
                           <asp:ListItem Selected="True">Izin</asp:ListItem>
                           <asp:ListItem>Administrasi</asp:ListItem>
+                          <asp:ListItem>Tanah</asp:ListItem>
                       </asp:DropDownList>
                   </td>
+
+                  
               </tr>                  
           <tr>
               <td>Invoice Date</td>                  
@@ -649,7 +653,25 @@ EnableEventValidation="false" %>
                       <TextBoxStyle CssClass="TextDate" />
                   </BDP:BasicDatePicker>
               </td>
-              <td>SPS Date</td>                  
+
+              <td>Subled</td>
+                        <td>:</td>
+                        <td>
+                            <asp:TextBox runat="server" ValidationGroup="Input" ID="tbArea" CssClass="TextBox" Visible="false" Width="225px"/>
+                        <asp:TextBox runat="server" ValidationGroup="Input" ID="tbAreaName" CssClass="TextBox" Enabled="false"  Width="192px"/>
+                         <asp:Button ID="btnArea" runat="server" Class="btngo" visible = True Text="v" />
+                        </td>
+          </tr>
+        <tr>
+            <td><asp:LinkButton ID="lbSupplier" runat="server" ValidationGroup="Input" Text="Supplier/Instansi"/></td>
+            <td>:</td>  
+            <td>
+              <asp:TextBox ID="tbSuppCode" runat="server" CssClass="TextBox" Width="80px" ValidationGroup="Input" /> <%--Enabled="false"--%>
+              <asp:TextBox ID="tbSuppName" runat="server" CssClass="TextBox" Width="200px" ValidationGroup="Input" />
+              <asp:Button ID="btnSupplier" runat="server" Class="btngo" Text="v" ValidationGroup="Input" />
+            </td> 
+            
+            <td>SPS Date</td>                  
               <%--<td class="style2"> --%>
               <td>:</td>                  
               <td>
@@ -660,15 +682,6 @@ EnableEventValidation="false" %>
                       <TextBoxStyle CssClass="TextDate" />
                   </BDP:BasicDatePicker>
               </td>
-          </tr>
-        <tr>
-            <td><asp:LinkButton ID="lbSupplier" runat="server" ValidationGroup="Input" Text="Supplier/Instansi"/></td>
-            <td>:</td>  
-            <td>
-              <asp:TextBox ID="tbSuppCode" runat="server" CssClass="TextBox" Width="80px" ValidationGroup="Input" /> <%--Enabled="false"--%>
-              <asp:TextBox ID="tbSuppName" runat="server" CssClass="TextBox" Width="200px" ValidationGroup="Input" />
-              <asp:Button ID="btnSupplier" runat="server" Class="btngo" Text="v" ValidationGroup="Input" />
-            </td>                                                    
         </tr>         
         <tr>
             <td>No Terima Dokumen</td>

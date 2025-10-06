@@ -647,7 +647,7 @@ Partial Class AlokasiKawasan
             ElseIf ddlTypeALokasi.SelectedValue = "INF" Then
                 Session("filter") = "select * from V_GetVoucherPayment WHERE InvoiceType = 'CIF'"
             Else
-                Session("filter") = "select * from V_GetVoucherPayment WHERE InvoiceType = 'LPO'"
+                Session("filter") = "select * from V_GetVoucherPayment WHERE InvoiceType IN ('LPO','CAT')"
             End If
             ResultField = "PaymentNo, PaymentDate, Status, TotalPayment, PercenAlokasi"
 

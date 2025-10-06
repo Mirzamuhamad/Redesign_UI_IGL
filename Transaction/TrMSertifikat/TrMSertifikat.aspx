@@ -10,10 +10,9 @@
     <script src="../../Function/OpenDlg.js" type="text/javascript"></script>
     <script src="../../Function/Function.JS" type="text/javascript"></script>
     <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />
+ <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">
        <link type="text/css" rel="stylesheet" href="../../Styles/circularprogress.css" />
     <script type="text/javascript" src="../../JQuery/jquery.min.js"></script>
-
-
 
     <script type="text/javascript">
 
@@ -134,11 +133,19 @@
           Opener.Location.reload(false);
           return false;
       }  
+
+      function OpenPopupRef() {
+                        var left = (screen.width - 700) / 2; //370
+                        var top = (screen.height - 700) / 2;
+                        window.open("../../earchDlgV.Aspx", "", 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=no, width=' + 800 + ', height=' + 600 + ', top=' + top + ', left=' + left);
+                        return false;
+                    }
                
         
     </script>
 
  <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />
+ <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <form id="form1" runat="server">
@@ -228,7 +235,7 @@
                             </ItemTemplate>
                             <HeaderStyle Width="100px" />
                         </asp:TemplateField>
-                        <asp:BoundField DataField="TransNmbr" HeaderStyle-Width="120px" SortExpression="Nmbr"
+                        <asp:BoundField DataField="TransNmbr" HeaderStyle-Width="120px" SortExpression="TransNmbr"
                             HeaderText="No Mutasi"></asp:BoundField>
                         <asp:BoundField DataField="Status" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="60px" HeaderText="Status"></asp:BoundField>
                         <asp:BoundField DataField="TransDate" DataFormatString="{0:dd MMM yyyy}" HtmlEncode="true"
@@ -294,7 +301,7 @@
                 <Items>
                     <asp:MenuItem Text="Detail Transaction" Value="0"></asp:MenuItem>
                     <%--<asp:MenuItem Text="Detail No Payment" Value="1"></asp:MenuItem>--%>
-                    <asp:MenuItem Text="Detail No Payment" Value="2"></asp:MenuItem>
+                    <%-- <asp:MenuItem Text="Detail No Payment"  Value="2"></asp:MenuItem>--%>
                 </Items>
             </asp:Menu>
              <hr />
@@ -322,7 +329,8 @@
                                                 CommandName="View" CommandArgument='<%# Container.DataItemIndex %>' />
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:BoundField DataField="ItemNo" HeaderStyle-Width="100px" HeaderText="No Item" />                                    
+                                    <asp:BoundField DataField="ItemNo" HeaderStyle-Width="100px" HeaderText="No Item" />          
+                                    <asp:BoundField DataField="Reference" HeaderStyle-Width="120px" HeaderText="Reference" />                                  
                                     <asp:BoundField DataField="JenisMutasi" HeaderStyle-Width="120px" HeaderText="Jenis Mutasi" />
                                     <asp:BoundField DataField="JenisDokumen" HeaderStyle-Width="100px" HeaderText="Jenis Dokumen" />
                                     <asp:BoundField DataField="NoDokumen" HeaderStyle-Width="100px" HeaderText="No Dokumen" />
@@ -330,6 +338,12 @@
                                    
                                     <asp:BoundField DataField="Luas" HeaderStyle-Width="100px" ItemStyle-HorizontalAlign="Right"
                                         HeaderText="Luas" />
+                                        <asp:BoundField DataField="Nilai" HeaderStyle-Width="100px" ItemStyle-HorizontalAlign="Right"
+                                        HeaderText="Nilai" />
+                                        <asp:BoundField DataField="Seller" HeaderStyle-Width="100px" ItemStyle-HorizontalAlign="Right"
+                                        HeaderText="Seller" Visible = "false"/>
+                                        <asp:BoundField DataField="SellerName" HeaderStyle-Width="100px" ItemStyle-HorizontalAlign="Right"
+                                        HeaderText="SellerName" />
                                     <asp:BoundField DataField="UnitName" HeaderStyle-Width="150px" HeaderText="Object" />    
                                     <asp:BoundField DataField="SisaLuas" HeaderStyle-Width="100px" ItemStyle-HorizontalAlign="Right"
                                         HeaderText="Sisa Luas" />
@@ -358,6 +372,18 @@
                                     <asp:TextBox CssClass="TextBox" runat="server" ID="tbPaymentNo"  Visible ="false" Width="225px"/> 
                                      <asp:TextBox runat="server" ID="tbFgValueDt2" Visible="false" />
                                        <%-- <asp:Label ID="lbItemNo5" runat="server" Text="*" />   --%>                             
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Reference</td>
+                                <td>:</td>
+                                <td>
+
+                                    <asp:TextBox ID="tbReference" runat="server" CssClass="TextBox"
+                                        ValidationGroup="Input" Width="190px" AutoPostBack="false" />
+                                    <asp:Button ID="btnReference" runat="server" Class="btngo" Text="v"
+                                        ValidationGroup="Input" />
                                 </td>
                             </tr>
                     
@@ -406,9 +432,22 @@
                                         Width="225px" />
                                 </td>
                             </tr>
+
+                            <tr>
+                                <td>Nilai</td>
+                                <td>:</td>
+                                <td><asp:TextBox CssClass="TextBox" Width = 225 runat="server" ID="tbNilai" /></td>
+                            </tr>
+                            <tr>
+                                <td>Seller</td>
+                                <td>:</td>
+                                <td><asp:TextBox CssClass="TextBox" Width = 225 runat="server" ID="tbsellerName" /></td>
+                                <td><asp:TextBox CssClass="TextBox" Width = 225 runat="server" ID="tbSeller" Visible = "false"/></td>
+                                
+                            </tr>
                             
                             <tr>
-                                <td>Objcet</td>
+                                <td>Object</td>
                                 <td>:</td>
                                 <td>
                                     <asp:TextBox CssClass="TextBox" ValidationGroup="Input" Width="50px" runat="server" ID="tbObject"
@@ -450,6 +489,16 @@
                                         Width="400px" />
                                 </td>
                             </tr>
+
+                            <tr>
+                                <td>
+                                    <asp:TextBox runat="server" ID="tbSumberObject" CssClass="TextBox" Visible = "False" 
+                                        />
+                                        <asp:TextBox runat="server" ID="tbNoSppt" CssClass="TextBox" Visible = "False" 
+                                        />
+                                </td>
+                            </tr>
+
                           
                         </table>                        
                        
@@ -483,6 +532,11 @@
                             <td>
                                 <asp:Label ID="lbNoDokumen" runat="server" />
                             </td>
+                            <td>&nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; Reference</td>
+                            <td>:</td>
+                            <td>
+                                <asp:Label ID="lbReference" runat="server" Text="Reference" />
+                            </td>
                             
                         </tr>
                         <tr>
@@ -494,11 +548,14 @@
                         </tr>
                     </table>
                     
-                    <hr style="color: Blue" />
+                    <hr style="color: rgb(183, 183, 183)" />
+                    <asp:Button Class="bitbtndt btnsearch" ID="btnGetreference" Text="Get Data" runat="server" Visible="false" ValidationGroup="Input" />                                 	
+             
                     <asp:Panel ID="pnlDt2" runat="server">
                         <br />
                         <asp:Button class="bitbtndt btnadd" runat="server" ID="btnAddDt2" Text="Add" ValidationGroup="Input" />
                         <asp:Button class="bitbtndt btnback" runat="server" ID="btnBackDt2ke1" Text="Back" /> <br/>&nbsp;
+
                         <div style="border: 0px  solid; width: 100%; height: 100%; overflow: auto;">
                             <asp:GridView ID="GridDt2" runat="server" AutoGenerateColumns="false" ShowFooter="False">
                                 <HeaderStyle CssClass="GridHeader" />
@@ -522,7 +579,7 @@
                                     <asp:BoundField DataField="NoDokDt2" HeaderStyle-Width="150px" HeaderText="No Dokumen" />
                                     <asp:BoundField DataField="JenisDokDt2" HeaderStyle-Width="90px" HeaderText="Jenis Dokumen" />
                                     <asp:BoundField DataField="UnitName" HeaderStyle-Width="150px" HeaderText="Object" />
-                                    <asp:BoundField DataField="Luas" DataFormatString="{0:#,##0.00}" HeaderStyle-Width="80px" ItemStyle-HorizontalAlign="Right" HeaderText="Qty" />
+                                    <asp:BoundField DataField="Luas" DataFormatString="{0:#,##0.00}" HeaderStyle-Width="80px" ItemStyle-HorizontalAlign="Right" HeaderText="Luas" />
                                     <asp:BoundField DataField="Nama" HeaderStyle-Width="150px" HeaderText="Nama Awal" />
                                     <asp:BoundField DataField="Remark" HeaderStyle-Width="150px" HeaderText="Remark" />
                                 </Columns>
@@ -561,8 +618,9 @@
                             </tr>
                             
                             
+                            
                             <tr>
-                                <td>Objcet</td>
+                                <td>Object</td>
                                 <td>:</td>
                                 <td>
                                     <asp:TextBox CssClass="TextBox" ValidationGroup="Input" Width="50px" runat="server" ID="tbUnit"
@@ -587,6 +645,9 @@
                                         TextMode="MultiLine" />
                                 </td>
                             </tr>
+
+                            
+
                         </table>
                         <br />
                         <asp:Button class="bitbtndt btnsave" runat="server" ID="btnSaveDt2" Text="Save" />

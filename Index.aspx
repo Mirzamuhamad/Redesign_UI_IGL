@@ -10,12 +10,16 @@
             <head runat="server">
 
                 <title>Irama Gemilang Lestari</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"> -->
+                <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">
                 <link href="Styles/MenuTemplates.css" rel="stylesheet" type="text/css" />
                 <link href="Styles/Style.css" rel="stylesheet" type="text/css" />
                 <link rel="stylesheet" type="text/css" href="sdmenu/sdmenu.css" />
                 <link type="text/css" rel="stylesheet" href="Styles/circularprogress.css" />
                 <script type="text/javascript" src="JQuery/jquery.min.js"></script>
                 <script type="text/javascript" src="sdmenu/sdmenu.js">
+
 
                     /***********************************************
                     * Slashdot Menu script- By DimX
@@ -70,10 +74,26 @@
                 </script>
 
                 <style type="text/css">
+                    body {
+                        /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'Roboto'; */
+                        font-family: 'Muli', Roboto, "Helvetica Neue", Arial, sans-serif !important;
+                    }
+
+                    .AspNet-Menu,
+                    .aspNetMenuHorizontal,
+                    table td,
+                    label,
+                    .form-control {
+                        /* font-family: 'Inter', 'Segoe UI', sans-serif !important; */
+                        font-family: 'Muli', Roboto, "Helvetica Neue", Arial, sans-serif !important;
+                    }
+
+
                     /* Tampilan menu utama */
                     .MenuBar {
                         background-color: #097dbc;
-                        font-family: 'Segoe UI', sans-serif;
+                        /* font-family: 'Segoe UI', sans-serif; */
+                        font-family: 'Muli', Roboto, "Helvetica Neue", Arial, sans-serif !important;
                         font-size: 14px;
                         height: auto;
                         padding: 0;
@@ -267,69 +287,46 @@
                     }
 
                     /* Tombol menu untuk layar kecil */
-.menu-toggle {
-    display: none;
-    font-size: 24px;
-    padding: 10px;
-    color: white;
-    background-color: #003c58;
-    cursor: pointer;
-}
+                    .menu-toggle {
+                        display: none;
+                        font-size: 24px;
+                        padding: 10px;
+                        color: white;
+                        background-color: #003c58;
+                        cursor: pointer;
+                    }
 
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
+                    @media (max-width: 768px) {
+                        .menu-toggle {
+                            display: block;
+                        }
 
-    .responsiveMenu ul {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background-color: #003c58;
-    }
+                        .responsiveMenu ul {
+                            display: none;
+                            flex-direction: column;
+                            width: 100%;
+                            background-color: #003c58;
+                        }
 
-    .responsiveMenu.show ul {
-        display: flex !important;
-    }
+                        .responsiveMenu.show ul {
+                            display: flex !important;
+                        }
 
-    .responsiveMenu li {
-        width: 100%;
-        border-bottom: 1px solid #0077b6;
-    }
+                        .responsiveMenu li {
+                            width: 100%;
+                            border-bottom: 1px solid #0077b6;
+                        }
 
-    .responsiveMenu a {
-        display: block;
-        padding: 12px;
-        color: white;
-        text-align: left;
-    }
-}
-
+                        .responsiveMenu a {
+                            display: block;
+                            padding: 12px;
+                            color: white;
+                            text-align: left;
+                        }
+                    }
                 </style>
 
 
-
-
-
-
-
-
-                <script type="text/javascript">
-                    /*function resizeImg(width) {
-                        document.getElementById("menuTop").style.height = 30;
-                        document.getElementById("menuTop").style.width = width;    
-                    }
-                    window.onresize = resizeImg(document.body.clientWidth);     */
-
-                    // <![CDATA[
-                    var myMenu;
-                    window.onload = function () {
-                        myMenu = new SDMenu("my_menu");
-                        myMenu.init();
-                    };
-                    // ]]>
-
-                </script>
 
                 <script>
                     window.addEventListener('mouseover', function (e) {
@@ -338,7 +335,7 @@
                         }
                     });
                 </script>
-              
+
 
                 <script type="text/javascript">
                     function hidePanelsAndLoadInFrame(url) {
@@ -374,148 +371,171 @@
                         }
                     }
                 </script>
-<style>
-    /* Toggle Button */
-    #mobileMenuToggle {
-      display: none;
-      background-color: #333;
-      color: white;
-      padding: 12px 16px;
-      font-size: 20px;
-      cursor: pointer;
-      border-radius: 4px;
-      margin: 10px;
-    }
-    
-    /* Sidebar */
-    #mobileSidebar {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 280px;
-      height: 100%;
-      background-color: #1e1e1e;
-      color: white;
-      padding: 20px;
-      z-index: 10000;
-      overflow-y: auto;
-      box-shadow: 2px 0 8px rgba(0,0,0,0.5);
-    }
-    
-    #mobileSidebarClose {
-      font-size: 28px;
-      cursor: pointer;
-      margin-bottom: 20px;
-      text-align: right;
-      display: block;
-    }
-    
-    #mobileSidebar.active {
-      display: block;
-    }
-    
-    @media (max-width: 768px) {
-      #mobileMenuToggle {
-        display: block;
-      }
-      #menuTop {
-        display: none !important;
-      }
-    }
-    
-    /* Menu List Style */
-    .mobile-menu, .submenu {
-      list-style-type: none;
-      padding-left: 0;
-      margin: 0;
-    }
-    
-    .mobile-menu li {
-      margin-bottom: 8px;
-    }
-    
-    .mobile-menu a, .mobile-menu span {
-      color: white;
-      text-decoration: none;
-      display: block;
-      padding: 10px 12px;
-      border-radius: 6px;
-      background-color: #2d2d2d;
-      transition: background-color 0.2s;
-    }
-    
-    .mobile-menu a:hover, .mobile-menu span:hover {
-      background-color: #444;
-    }
-    
-    .has-submenu > span {
-      cursor: pointer;
-      font-weight: 600;
-      position: relative;
-    }
-    
-    .has-submenu > span::after {
-      float: right;
-      margin-left: 10px;
-      transition: transform 0.2s;
-    }
-    
-    .submenu {
-      display: none;
-      padding-left: 15px;
-      margin-top: 6px;
-      border-left: 2px solid #444;
-      margin-left: 10px;
-    }
-    
-    .submenu a {
-      background-color: #3a3a3a;
-      padding-left: 18px;
-      margin-bottom: 6px;
-    }
-    </style>
-    
-    
-    <!-- Script di bawah </form> -->
-    
 
-    <script>
-        function toggleSidebar() {
-          const sidebar = document.getElementById("mobileSidebar");
-          sidebar.classList.toggle("active");
-        }
-        
-        function toggleSubmenu(el) {
-          const submenu = el.nextElementSibling;
-          if (submenu && submenu.classList.contains("submenu")) {
-            const isOpen = submenu.style.display === "block";
-            submenu.style.display = isOpen ? "none" : "block";
-            el.innerHTML = el.innerHTML.replace(isOpen ? "▾" : "▸", isOpen ? "▸" : "▾");
-          }
-        }
-        
-        function handleMenuClick(event) {
-          var pnlSearch = document.getElementById('<%= pnlSearch.ClientID %>');
-          var pnlTransfer = document.getElementById('<%= PnlTransfer.ClientID %>');
-          var sidebar = document.getElementById("mobileSidebar");
-        
-          if (pnlSearch) pnlSearch.style.display = "none";
-          if (pnlTransfer) pnlTransfer.style.display = "none";
-          if (sidebar) sidebar.classList.remove("active");
-        }
-        
-        // Pasang event listener saat dokumen siap
-        window.addEventListener('DOMContentLoaded', function () {
-          document.querySelectorAll('#mobileSidebar a').forEach(function (a) {
-            a.addEventListener('click', handleMenuClick);
-          });
-        });
-        </script>
-        
+                
+                <style>
+                    /* Toggle Button */
+                    #mobileMenuToggle {
+                        display: none;
+                        background-color: #333;
+                        color: white;
+                        padding: 12px 16px;
+                        font-size: 20px;
+                        cursor: pointer;
+                        border-radius: 4px;
+                        margin: 10px;
+                    }
+
+                    /* Sidebar */
+                    #mobileSidebar {
+                        display: none;
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 280px;
+                        height: 100%;
+                        background-color: #1e1e1e;
+                        color: white;
+                        padding: 20px;
+                        z-index: 10000;
+                        overflow-y: auto;
+                        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.5);
+                    }
+
+                    #mobileSidebarClose {
+                        font-size: 28px;
+                        cursor: pointer;
+                        margin-bottom: 20px;
+                        text-align: right;
+                        display: block;
+                    }
+
+                    #mobileSidebar.active {
+                        display: block;
+                    }
+
+                    @media (max-width: 768px) {
+                        #mobileMenuToggle {
+                            display: block;
+                        }
+
+                        #menuTop {
+                            display: none !important;
+                        }
+                    }
+
+                    @media (max-width: 768px) {
+
+                        #menuTop,
+                        .AspNet-Menu,
+                        .AspNet-Menu-Horizontal,
+                        .menu-horizontal,
+                        .menu-container,
+                        table[id*="menuTop"],
+                        table.AspNet-Menu,
+                        table.AspNet-Menu-Horizontal {
+                            display: none !important;
+                            visibility: hidden !important;
+                            height: 0 !important;
+                            overflow: hidden !important;
+                            position: absolute !important;
+                            z-index: -1 !important;
+                        }
+                    }
 
 
 
+                    /* Menu List Style */
+                    .mobile-menu,
+                    .submenu {
+                        list-style-type: none;
+                        padding-left: 0;
+                        margin: 0;
+                    }
+
+                    .mobile-menu li {
+                        margin-bottom: 8px;
+                    }
+
+                    .mobile-menu a,
+                    .mobile-menu span {
+                        color: white;
+                        text-decoration: none;
+                        display: block;
+                        padding: 10px 12px;
+                        border-radius: 6px;
+                        background-color: #2d2d2d;
+                        transition: background-color 0.2s;
+                    }
+
+                    .mobile-menu a:hover,
+                    .mobile-menu span:hover {
+                        background-color: #444;
+                    }
+
+                    .has-submenu>span {
+                        cursor: pointer;
+                        font-weight: 600;
+                        position: relative;
+                    }
+
+                    .has-submenu>span::after {
+                        float: right;
+                        margin-left: 10px;
+                        transition: transform 0.2s;
+                    }
+
+                    .submenu {
+                        display: none;
+                        padding-left: 15px;
+                        margin-top: 6px;
+                        border-left: 2px solid #444;
+                        margin-left: 10px;
+                    }
+
+                    .submenu a {
+                        background-color: #3a3a3a;
+                        padding-left: 18px;
+                        margin-bottom: 6px;
+                    }
+                </style>
+
+
+                <!-- Script di bawah </form> -->
+
+
+                <script>
+                    function toggleSidebar() {
+                        const sidebar = document.getElementById("mobileSidebar");
+                        sidebar.classList.toggle("active");
+                    }
+
+                    function toggleSubmenu(el) {
+                        const submenu = el.nextElementSibling;
+                        if (submenu && submenu.classList.contains("submenu")) {
+                            const isOpen = submenu.style.display === "block";
+                            submenu.style.display = isOpen ? "none" : "block";
+                            el.innerHTML = el.innerHTML.replace(isOpen ? "▾" : "▸", isOpen ? "▸" : "▾");
+                        }
+                    }
+
+                    function handleMenuClick(event) {
+                        var pnlSearch = document.getElementById('<%= pnlSearch.ClientID %>');
+                        var pnlTransfer = document.getElementById('<%= PnlTransfer.ClientID %>');
+                        var sidebar = document.getElementById("mobileSidebar");
+
+                        if (pnlSearch) pnlSearch.style.display = "none";
+                        if (pnlTransfer) pnlTransfer.style.display = "none";
+                        if (sidebar) sidebar.classList.remove("active");
+                    }
+
+                    // Pasang event listener saat dokumen siap
+                    window.addEventListener('DOMContentLoaded', function () {
+                        document.querySelectorAll('#mobileSidebar a').forEach(function (a) {
+                            a.addEventListener('click', handleMenuClick);
+                        });
+                    });
+                </script>
 
 
 
@@ -526,7 +546,34 @@
 
 
 
+
+
+
+
+
+                
+                <style>
+                    body,
+                    input,
+                    button,
+                    select,
+                    textarea {
+                        /* font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+                        font-family: 'Muli', Roboto, "Helvetica Neue", Arial, sans-serif !important;
+                        font-size: 14px;
+                    }
+
+                    .AspNet-Menu,
+                    .aspNetMenuHorizontal,
+                    table td,
+                    label,
+                    .form-control {
+                        /* font-family: 'Inter', 'Segoe UI', sans-serif !important; */
+                        font-family: 'Muli', Roboto, "Helvetica Neue", Arial, sans-serif !important;
+                    }
+                </style>
             </head>
+
 
             <body style="margin: 0px; overflow: visible;">
 
@@ -544,22 +591,22 @@
                                         <tr>
 
                                             <td>
-                                                <asp:Label ForeColor="#eeeeee" ID="lbCompany" Font-Names="Arial"
+                                                <asp:Label ForeColor="#eeeeee" ID="lbCompany"
                                                     Font-Size="16" Font-Bold="true" runat="server" />
                                             </td>
 
                                             <td style="width:40%; text-align:right">
                                                 <!-- <asp:image CssClass="" id="imgUpload" bordercolor="Black" 
                                                 runat="server" width="150px"  /> -->
-                                                <asp:Label ID="Label1" Font-Names="Arial" Font-Size="13pt"
+                                                <asp:Label ID="Label1" Font-Size="13pt"
                                                     ForeColor="#eeeeee" runat="server" Text="Hi,  " />
-                                                <asp:Label ID="lbUser" Font-Names="Arial" Font-Size="11pt"
+                                                <asp:Label ID="lbUser" Font-Size="11pt"
                                                     ForeColor="#eeeeee" Font-Bold="true" runat="server" Text="HI" />
                                                 &nbsp &nbsp
                                                 <asp:LinkButton CssClass="Home" ID="lkbHome" runat="server"
-                                                    Font-Names="Roboto"> &nbsp <span>Home</span> </asp:LinkButton> &nbsp
+                                                    > &nbsp <span>Home</span> </asp:LinkButton> &nbsp
                                                 <asp:LinkButton CssClass="Log-Out" ID="LinkButton1" runat="server"
-                                                    Font-Names="Roboto"> <span>LogOut</span> </asp:LinkButton>
+                                                    > <span>LogOut</span> </asp:LinkButton>
                                             </td>
                                         </tr>
                                     </table>
@@ -570,37 +617,35 @@
                         <div class="Period">
                             <%--<a style="color:blue; font-family:Arial; font-size:8pt"
                                 onclick="OpenAcc(); return false;" id="someID" href="">Period</a>--%>
-                                <asp:Label Text="Period" Onclick="OpenAcc(); return false;" id="someID"
+
+                                <asp:Label style="font-family: 'Muli', Roboto, Arial, sans-serif !important;" Text="Period" Onclick="OpenAcc(); return false;" id="someID"
                                     runat="server" />
-                                <asp:Label ID="lbYear" runat="server" />
+                                <asp:Label style="font-family: 'Muli', Roboto, Arial, sans-serif !important;"  ID="lbYear" runat="server" />
                         </div>
 
                     </div>
 
                     <div id="mobileMenuToggle" onclick="toggleSidebar()">Menu</div>
-                        <div id="mobileSidebar">
-                          <div id="mobileSidebarClose" onclick="toggleSidebar()">x</div>
-                          <div id="mobileMenuContainer"><%= ViewState("MobileMenuHtml") %></div>
+                    <div id="mobileSidebar">
+                        <div id="mobileSidebarClose" onclick="toggleSidebar()">x</div>
+                        <div id="mobileMenuContainer">
+                            <%= ViewState("MobileMenuHtml") %>
                         </div>
- 
+                    </div>
+
 
                     <div id="topContent2">
-                       
+
                         <div id="myMenuContainer" runat="server"></div>
-                        
 
 
-                        <asp:Menu ID="menuTop" runat="server"
-    Orientation="Horizontal"
-    RenderingMode="List"
-    StaticDisplayLevels="1"
-    MaximumDynamicDisplayLevels="3"
-    StaticMenuItemStyle-CssClass="staticMenu"
-    StaticHoverStyle-CssClass="staticHover"
-    DynamicMenuItemStyle-CssClass="dynamicMenu"
-    DynamicHoverStyle-CssClass="dynamicHover"
-    CssClass="MenuBar menu-container responsiveMenu">
-</asp:Menu>
+
+                        <asp:Menu ID="menuTop" runat="server" Orientation="Horizontal" RenderingMode="List"
+                            StaticDisplayLevels="1" MaximumDynamicDisplayLevels="3"
+                            StaticMenuItemStyle-CssClass="staticMenu" StaticHoverStyle-CssClass="staticHover"
+                            DynamicMenuItemStyle-CssClass="dynamicMenu" DynamicHoverStyle-CssClass="dynamicHover"
+                            CssClass="MenuBar menu-container responsiveMenu">
+                        </asp:Menu>
 
 
                     </div>
@@ -616,7 +661,7 @@
                             <tr>
                                 <td
                                     style=" text-align: center; background-color:#fcfcfc;border-radius: 5px; box-shadow: 0 1px 5px rgb(0 0 0 / 0.2);">
-                                    <asp:Label style="padding:5px;" Height="40" ForeColor="#4a4a4a" Font-Names="Arial"
+                                    <asp:Label style="padding:5px;" Height="40" ForeColor="#4a4a4a"
                                         Font-Size="21.5" Font-Bold="true" Text="Approval Dashboard" runat="server" />
                                 </td>
 
@@ -633,7 +678,7 @@
                                     style="border: 0px solid #8b8c8c;background-color:#fcfcfc; border-radius:5px; box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); padding:5px;">
                                     <asp:GridView id="DataGrid" runat="server" AllowPaging="True" CssClass="Grid"
                                         AutoGenerateColumns="false">
-                                        <HeaderStyle CssClass="GridHeader" Font-Names="Arial" Font-Size="11.5"
+                                        <HeaderStyle CssClass="GridHeader" Font-Size="11.5"
                                             Font-Bold="true" Wrap="false"></HeaderStyle>
                                         <RowStyle CssClass="GridItem" Wrap="false" />
                                         <AlternatingRowStyle CssClass="GridAltItem" />
@@ -742,7 +787,7 @@
                                 <td
                                     style=" text-align: center; background-color:#fcfcfc;border-radius: 5px; box-shadow: 0 1px 5px rgb(0 0 0 / 0.2);">
                                     <asp:Label ID="Label2" style="padding:5px;" Height="30" Width="355"
-                                        ForeColor="#4a4a4a" Font-Names="Arial" Font-Size="20" Font-Bold="true"
+                                        ForeColor="#4a4a4a" Font-Size="20" Font-Bold="true"
                                         Text="Transfer Ending Balance" runat="server" />
                                 </td>
 

@@ -193,8 +193,8 @@ Partial Class ApprovalVoucher
         Me.tbTotalAmount.Attributes.Add("ReadOnly", "True")
         Me.TbTotalInvoiceHd.Attributes.Add("ReadOnly", "True")
         Me.tbPotongan.Attributes.Add("ReadOnly", "False")
-        ' Me.tbpph.Attributes.Add("ReadOnly", "True")
-        Me.tbPphValue.Attributes.Add("ReadOnly", "True")
+        ' Me.tbpph.Attributes.Add("ReadOnly", "True")   
+        'Me.tbPphValue.Attributes.Add("ReadOnly", "True")
         Me.tbppnValue.Attributes.Add("ReadOnly", "True")
 
         Me.tbInvoice.Attributes.Add("OnKeyDown", "return PressNumeric();")
@@ -445,7 +445,12 @@ Partial Class ApprovalVoucher
                 Row("Ppn") = tbppn.Text
                 Row("PPnInvoice") = Math.Round(CFloat(tbdpp.Text) * CFloat(tbppn.Text) / 100, 2)
                 Row("Pph") = tbpph.Text
+                If tbpph.text = 0 Then
+                Row("PPhInvoice") = tbPphValue.Text
+                Else
                 Row("PPhInvoice") = Math.Round(CFloat(tbdpp.Text) * CFloat(tbpph.Text) / 100, 2) 'tbPphValue.Text
+                End If
+                
                 Row("TotalAmount") = (CFloat(tbdpp.Text) + Row("PPnInvoice").ToString) - Row("PPhInvoice").ToString 'tbTotalAmount.Text
                 Row("Remark") = tbRemarkDt.Text
                 Row.EndEdit()
@@ -1619,6 +1624,7 @@ Partial Class ApprovalVoucher
                 EnableDt(True)
             End If
             StatusButtonSave(False)
+            btnHome.Visible = False
             'CountTotalDt()
         Catch ex As Exception
             lbStatus.Text = "Grid Dt Row Editing Error : " + ex.ToString

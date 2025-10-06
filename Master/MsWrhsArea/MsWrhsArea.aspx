@@ -6,6 +6,7 @@
 <head runat="server">
     <title>Warehouse Area File</title>
     <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />
+ <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="../../Function/OpenDlg.JS" type="text/javascript"></script>
 </head>
 <body>

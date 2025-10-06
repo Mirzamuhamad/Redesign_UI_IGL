@@ -19,7 +19,7 @@ Partial Class Transaction_TrCIPLicenAdmInv_TrCIPLicenAdmInv
     Protected da As New SqlDataAdapter
     Protected GetStringHd As String = "SELECT DISTINCT * FROM V_PRCIPLicenAdmInvHd"
     Public strTransNmbr As String
-    '  Public Nilai, sTermCode As String
+    '  Public Nilai, sTermCode As Stzring
     Private Shared PageSize As Integer = 5
     Dim tb As TextBox
 
@@ -52,6 +52,12 @@ Partial Class Transaction_TrCIPLicenAdmInv_TrCIPLicenAdmInv
                 Session("FgAdvanceFilter") = Nothing
             End If
             If Not Session("Result") Is Nothing Then
+
+                If ViewState("Sender") = "btnArea" Then
+                    BindToText(tbArea, Session("Result")(0).ToString)
+                    BindToText(tbAreaName, Session("Result")(1).ToString)
+                End If
+
                 If ViewState("Sender") = "btnGetNoLP" Then
                     'tbApplfileNo.Text = Session("Result")(0).ToString
                     'BindToText(tbPPn, Session("Result")(1).ToString, ViewState("DigitCurr"))
@@ -84,6 +90,8 @@ Partial Class Transaction_TrCIPLicenAdmInv_TrCIPLicenAdmInv
                     'tbFgType.Text = Session("Result")(4).ToString.ToUpper
                     tbHGBNo.Text = Session("Result")(4).ToString
                     tbRemark.Text = Session("Result")(8).ToString
+                    ddlCIP.SelectedItem.text = Session("Result")(9).ToString
+                    ddlCIP_SelectedIndexChanged(Nothing, Nothing)
                     'ddlCurrDt.Enabled = (tbFgType.Text = "PL")
                     'tbSubledDt.Enabled = tbFgSubledDt.Text <> "N"
                     'btnSubled.Visible = tbSubledDt.Enabled
@@ -605,6 +613,42 @@ Partial Class Transaction_TrCIPLicenAdmInv_TrCIPLicenAdmInv
         End Try
     End Sub
 
+    Protected Sub btnArea_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnArea.Click
+        Dim ResultField As String
+        Try
+            Session("filter") = "SELECT subled_No, subled_Name FROM VMsSubled Where FgActive = '' AND FgSubled = 'A' "
+            ResultField = "subled_No, subled_Name"
+            ViewState("Sender") = "btnArea"
+            Session("Column") = ResultField.Split(",")
+            Session("DBConnection") = ViewState("DBConnection")
+            'AttachScript("myPopup();", Page, Me.GetType())
+             AttachScript("OpenPopup();", Page, Me.GetType())
+        Catch ex As Exception
+            lbStatus.Text = "btn Search Cust Error : " + ex.ToString
+        End Try
+    End Sub
+
+    
+    Protected Sub ddlCIP_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles ddlCIP.SelectedIndexChanged
+        Dim ResultField As String
+        Try
+
+           tbarea.text = ""
+           tbAreaName.text = "" 
+           if ddlCIP.SelectedItem.text = "Tanah" Then
+           btnArea.Visible = True
+           tbAreaName.Enabled = True
+           Else
+            btnArea.Visible = False
+           tbAreaName.Enabled = False
+           End if
+
+        Catch ex As Exception
+            lbStatus.Text = "btn Search Cust Error : " + ex.ToString
+        End Try
+    End Sub
+
+
     Protected Sub BtnGo_Click(ByVal sender As Object, ByVal e As EventArgs) Handles BtnGo.Click, btnGo2.Click
         Dim Status As String
         Dim Result, ListSelectNmbr, ActionValue As String
@@ -825,6 +869,9 @@ Partial Class Transaction_TrCIPLicenAdmInv_TrCIPLicenAdmInv
             tbRemark.Text = ""
             lbRecvFile.Text = ""
             lbApplFile.Text = ""
+            tbArea.text = ""
+            tbAreaName.text = ""
+
             'FillCombo(ddlPayTypeDt2, "EXEC S_GetPayTypeUser " + QuotedStr("PaymentNT" + "Y") + ", " + QuotedStr(ViewState("UserId").ToString), True, "Payment_Code", "Payment_Name", ViewState("DBConnection")) 'ddlReport.SelectedValue            
             'FillCombo(ddlBankPaymentDt2, "EXEC S_GetBankPaymentTrade " + QuotedStr(ddlCurrDt2.SelectedValue), True, "Bank_Code", "Bank_Name", ViewState("DBConnection"))
         Catch ex As Exception
@@ -933,6 +980,15 @@ Partial Class Transaction_TrCIPLicenAdmInv_TrCIPLicenAdmInv
                 lbStatus.Text = MessageDlg("Remark must have value")
                 tbRemark.Focus()
                 Return False
+            End If
+
+            If ddlCIP.SelectedItem.Text = "Tanah" Then
+
+                 If tbArea.Text = "" Then
+                    lbStatus.Text = MessageDlg("Subled must have value")
+                    btnArea_Click(Nothing, Nothing)
+                    Return False
+                End If
             End If
 
             'If CFloat(tbDisc.Text) <= 0 Then
@@ -1187,6 +1243,10 @@ Partial Class Transaction_TrCIPLicenAdmInv_TrCIPLicenAdmInv
             BindToText(tbPPhValue, Dt.Rows(0)("PPhForex").ToString, ViewState("DigitHome"))
             BindToText(tbTotalAmount, Dt.Rows(0)("TotalForex").ToString, ViewState("DigitHome"))
             BindToText(tbRemark, Dt.Rows(0)("Remark").ToString)
+            BindToText(tbArea, Dt.Rows(0)("subled").ToString)
+            BindToText(tbAreaName, Dt.Rows(0)("subled_Name").ToString)
+            BindToDropList(ddlCIP, Dt.Rows(0)("CIPAdm").ToString)
+            
         Catch ex As Exception
             Throw New Exception("fill text box header error : " + ex.ToString)
         End Try
@@ -1503,7 +1563,7 @@ Partial Class Transaction_TrCIPLicenAdmInv_TrCIPLicenAdmInv
                 namafileAppl = tbCode.Text.Trim.Replace("/", "") + Format(Now, "-yyMMddHHmmss-") + fupApplFile.FileName
 
                 SQLString = "INSERT INTO PRCIPLicenAdmInvHd(TransNmbr,TransDate,Status,SuppCode,RecvDocNo,ApplfileNo,ApplfileDate,HGBNo,CIPAdm,SPSDate,DocNo1,DocNo2,RecvFile,ApplFile,Term," + _
-                "TermPayment,DueDate,Currency,ForexRate,BaseForex,Disc,DiscForex,DPPForex,PPn,PPnForex,PPh,PPhForex,TotalForex,PPHCode,Type,Remark,FgReport,FgActive,UserPrep,DatePrep) " + _
+                "TermPayment,DueDate,Currency,ForexRate,BaseForex,Disc,DiscForex,DPPForex,PPn,PPnForex,PPh,PPhForex,TotalForex,PPHCode,Type,Remark,FgReport,FgActive,subled,UserPrep,DatePrep) " + _
                 "SELECT " + QuotedStr(tbCode.Text) + ", " + QuotedStr(Format(tbDate.SelectedValue, "yyyy-MM-dd")) + ", 'H', " + QuotedStr(tbSuppCode.Text) + ", " + _
                 QuotedStr(tbRecvDoc.Text) + ", " + QuotedStr(tbApplfileNo.Text) + ", " + QuotedStr(Format(tbApplfileDate.SelectedValue, "yyyy-MM-dd")) + ", " + _
                 QuotedStr(tbHGBNo.Text) + ", " + QuotedStr(ddlCIP.SelectedValue) + ", " + QuotedStr(Format(tbSPSDate.SelectedValue, "yyyy-MM-dd")) + ", " + _
@@ -1514,7 +1574,7 @@ Partial Class Transaction_TrCIPLicenAdmInv_TrCIPLicenAdmInv
                 QuotedStr(tbDPP.Text.Replace(",", "")) + ", " + QuotedStr(tbPPn.Text.Replace(",", "")) + ", " + QuotedStr(tbPPnValue.Text.Replace(",", "")) + ", " + _
                 QuotedStr(tbPPh.Text.Replace(",", "")) + ", " + QuotedStr(tbPPhValue.Text.Replace(",", "")) + ", " + QuotedStr(tbTotalAmount.Text.Replace(",", "")) + ", " + _
                 QuotedStr(ddlPPh.SelectedValue) + "," + QuotedStr(tbType.Text) + ", " + QuotedStr(tbRemark.Text) + ", " + _
-                QuotedStr("Y") + ", " + QuotedStr("Y") + "," + QuotedStr(ViewState("UserId").ToString) + ", GetDate()"
+                QuotedStr("Y") + ", " + QuotedStr("Y") + "," + QuotedStr(tbarea.Text)+ "," + QuotedStr(ViewState("UserId").ToString) + ", GetDate()"
                 ViewState("TransNmbr") = tbCode.Text 'tbTotalSelisih.Text.Replace(",", "")
                 fupRecvFile.SaveAs(pathRecv)
                 fupApplFile.SaveAs(pathAppl)
@@ -1544,7 +1604,7 @@ Partial Class Transaction_TrCIPLicenAdmInv_TrCIPLicenAdmInv
                 ", PPnForex = " + QuotedStr(tbPPnValue.Text.Replace(",", "")) + ", PPh = " + QuotedStr(tbPPh.Text.Replace(",", "")) + _
                 ", PPhForex = " + QuotedStr(tbPPhValue.Text.Replace(",", "")) + ", TotalForex = " + QuotedStr(tbTotalAmount.Text.Replace(",", "")) + _
                 ", PPHCode = " + QuotedStr(ddlPPh.SelectedValue) + ", Type = " + QuotedStr(tbType.Text) + _
-                ", Remark = " + QuotedStr(tbRemark.Text) + ", UserPrep= " + QuotedStr(ViewState("UserId").ToString) + ", DatePrep = GetDate()" + _
+                ", Remark = " + QuotedStr(tbRemark.Text) + ", Subled = " + QuotedStr(tbarea.Text)+ ", UserPrep= " + QuotedStr(ViewState("UserId").ToString) + ", DatePrep = GetDate()" + _
                 " WHERE TransNmbr = " + QuotedStr(tbCode.Text) 'ddlUserType.SelectedValue, tbAttn.Text, tbTotalSelisih.Text.Replace(",", "")
                 fupRecvFile.SaveAs(pathRecv)
                 fupApplFile.SaveAs(pathAppl)
@@ -1712,14 +1772,16 @@ Partial Class Transaction_TrCIPLicenAdmInv_TrCIPLicenAdmInv
             ModifyInput2(True, pnlInput, PnlDt, GridDt)
             ModifyInput2(True, pnlInput, pnlDt2, GridDt2)
             newTrans()
+
             btnHome.Visible = False
-            fupRecvFile.Visible = True
-            fupApplFile.Visible = True
+            fupRecvFile.Visible = False
+            fupApplFile.Visible = False
             'Session.Remove("FileUpload1")
             'Session.Remove("FileUpload2")
             MultiView1.ActiveViewIndex = 0
             'Menu1.Items.Item(0).Selected = True
             tbCode.Focus()
+            ddlCIP_SelectedIndexChanged(Nothing,Nothing)
         Catch ex As Exception
             lbStatus.Text = "Btn Add Error : " + ex.ToString
         End Try
@@ -2303,10 +2365,10 @@ Partial Class Transaction_TrCIPLicenAdmInv_TrCIPLicenAdmInv
     Protected Sub btnRecvDoc_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnRecvDoc.Click
         Dim ResultField, CriteriaField As String
         Try
-            Session("filter") = "SELECT TransNmbr,TransDate,ApplfileNo,ApplfileDate,HGBNo,PICName,BrokerName,RelatedOffcName,Remark FROM PRCIPRecvDocHd WHERE Status<>'D' " 'WHERE User_Type = " + QuotedStr(ddlUserType.SelectedValue)
+            Session("filter") = "SELECT TransNmbr,TransDate,ApplfileNo,ApplfileDate,HGBNo,PICName,BrokerName,RelatedOffcName,Remark,TypeCIP FROM PRCIPRecvDocHd WHERE Status<>'D' " 'WHERE User_Type = " + QuotedStr(ddlUserType.SelectedValue)
             'Session("filter") = "EXEC S_PRCFindCIPRecvDoc"
-            ResultField = "TransNmbr,TransDate,ApplfileNo,ApplfileDate,HGBNo,PICName,BrokerName,RelatedOffcName,Remark"
-            CriteriaField = "TransNmbr,TransDate,ApplfileNo,ApplfileDate,HGBNo,PICName,BrokerName,RelatedOffcName,Remark"
+            ResultField = "TransNmbr,TransDate,ApplfileNo,ApplfileDate,HGBNo,PICName,BrokerName,RelatedOffcName,Remark,TypeCIP"
+            CriteriaField = "TransNmbr,TransDate,ApplfileNo,ApplfileDate,HGBNo,PICName,BrokerName,RelatedOffcName,Remark,TypeCIP"
             ViewState("CriteriaField") = CriteriaField.Split(",")
             Session("Column") = ResultField.Split(",")
             ViewState("Sender") = "btnRecvDoc"
@@ -2813,4 +2875,8 @@ Partial Class Transaction_TrCIPLicenAdmInv_TrCIPLicenAdmInv
         btnHome.Visible = True
         btnSaveTrans.Visible = True
     End Sub
+
+
+    
+
 End Class

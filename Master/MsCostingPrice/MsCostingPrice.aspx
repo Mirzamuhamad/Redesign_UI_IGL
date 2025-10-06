@@ -7,7 +7,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Costing Price List</title>
-    <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />   
+    <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />
+ <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">   
     <script src="../../Function/Function.JS" type="text/javascript"></script>
     <script src="../../Function/OpenDlg.JS" type="text/javascript"></script>
     
