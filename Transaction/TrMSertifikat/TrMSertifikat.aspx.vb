@@ -1168,6 +1168,9 @@ Partial Class TrMSertifikat
             btnHome.Visible = False
             MultiView1.ActiveViewIndex = 0
             Menu1.Items.Item(0).Selected = True
+            GridDt.Columns(7).Visible = False
+            GridDt.Columns(8).Visible = False
+            pnlNilaiLuas.Visible = False
 
             tbCode.Focus()
         Catch ex As Exception
@@ -1284,6 +1287,19 @@ Partial Class TrMSertifikat
                     MultiView1.ActiveViewIndex = 0
                     Menu1.Items.Item(0).Selected = True
                     btnHome.Visible = True
+
+
+                    If GridDt.Rows(0).Cells(4).Text = "Pemecahan" Then
+                        GridDt.Columns(7).Visible = True
+                        GridDt.Columns(8).Visible = True
+                        pnlNilaiLuas.Visible = True
+                    Else
+                        GridDt.Columns(7).Visible = False
+                        GridDt.Columns(8).Visible = False
+                        pnlNilaiLuas.Visible = False
+                    End If
+
+
                 ElseIf DDL.SelectedValue = "Edit" Then
                     If GVR.Cells(3).Text = "H" Or GVR.Cells(3).Text = "G" Then
                         CekMenu = CheckMenuLevel("Edit", ViewState("MenuLevel").Rows(0))
@@ -1688,7 +1704,8 @@ Partial Class TrMSertifikat
                 ds = SQLExecuteQuery("SELECT TOP 1 * FROM V_GetAdmDokumenForDetail WHERE TransNmbr = " & QuotedStr(tbReference.Text), ViewState("DBConnection").ToString)
                 If Ds.Tables(0).Rows.Count = 1 Then
                     Dr = Ds.Tables(0).Rows(0)
-                    ' lbstatus.text = dr("NoDokumen")
+                    'lbStatus.Text = dr("SumberObject").ToString
+                    'Exit Sub
                     tbNoDok.Text = dr("NoDokumen").ToString
                     ddlJenisDokumen.SelectedValue = dr("JenisDoc").ToString
                     tbLuas.Text = dr("Luas").ToString
@@ -1711,6 +1728,10 @@ Partial Class TrMSertifikat
                     tbSumberObject.Text = "-"
                     tbNoSppt.Text = "-"
                 End If
+
+                GridDt.Columns(7).Visible = True
+                GridDt.Columns(8).Visible = True
+                pnlNilaiLuas.Visible = True
             Else
 
                 If ddlJenisMutasi.SelectedValue = "Penggabungan" Then
@@ -1724,8 +1745,8 @@ Partial Class TrMSertifikat
                 End If
                 tbNoDok.Text = ""
                 ddlJenisDokumen.SelectedIndex = 0
-                tbLuas.Text = ""
-                tbNilai.Text = ""
+                tbLuas.Text = 0
+                tbNilai.Text = 0
                 tbSeller.Text = ""
                 tbsellerName.Text = ""
                 tbRemarkDt.Text = ""
@@ -1733,6 +1754,9 @@ Partial Class TrMSertifikat
                 tbNoSppt.Text = ""
                 tbSumberObject.Text = "-"
                 tbNoSppt.Text = "-"
+                GridDt.Columns(7).Visible = False
+                GridDt.Columns(8).Visible = False
+                pnlNilaiLuas.Visible = False
             End If
 
             

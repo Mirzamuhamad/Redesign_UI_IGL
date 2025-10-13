@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="Vb" ReportInfo.Created="04/07/2011 11:14:44" ReportInfo.Modified="10/06/2025 08:48:17" ReportInfo.CreatorVersion="1.2.47.0">
+<Report ScriptLanguage="Vb" ReportInfo.Created="04/07/2011 11:14:44" ReportInfo.Modified="10/07/2025 08:44:11" ReportInfo.CreatorVersion="1.2.47.0">
   <ScriptText>Imports System
 Imports System.Collections
 Imports System.Collections.Generic
@@ -89,7 +89,11 @@ Namespace FastReport
           Text419.Text = &quot;&quot;
           Text420.Text = &quot;&quot;
           Text421.Text = &quot;&quot;
-          Text422.Text = &quot;&quot;      
+          Text422.Text = &quot;&quot;
+          Line2.Visible = false
+          Line193.Visible = false
+          Line194.Visible = false
+          
           
         Else
           ' Isi hanya kalau beda
@@ -119,7 +123,10 @@ Namespace FastReport
           Text411.Text = &quot;&quot;
           Text412.Text = &quot;&quot;
           Text413.Text = &quot;&quot;
-          Text414.Text = &quot;&quot;  
+          Text414.Text = &quot;&quot;
+          Line2.Visible = false
+          Line193.Visible = false
+          Line194.Visible = false
           
           
         Else
@@ -146,7 +153,7 @@ Namespace FastReport
 End Namespace
 </ScriptText>
   <Dictionary>
-    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqM7gJFg/iaLrqMhRfGy5lGs/twJ38sQg4JEYH26jnwPta4IweY4Ghhi+FXvXEqeY9bLMp5747AX1MCRLuKfEz1bQ6+n2exdYGWMKz2SW1w+tPVBG6XEp5p62ux7y6TyxfkinO6ZFGAq1wiJoGdPQZ11ck3aUJwmlNR6VE/unKUcQc3MXxDyaSOiMSML/VS7tvpZQb7SBgviH/JoE/3MvBlw==">
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqM7gJFg/iaLrqMhRfGy5lGs/twJ38sQg4JEYH26jnwPta4IweY4Ghhi+FXvXEqeY9bLMp5747AX1MCRLuKfEz1bQ6+n2exdYGWMKz2SW1w+tPVBG6XEp5p62ux7y6TyxfkinO6ZFGAq1wiJoGdPQZ11ck3aUJwmlNR6VE/unKUcQc3MXxDyaSOiMSML/VS7tvryWSXim2jYK1vOTo4Bfgwg==">
       <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_PRptMutasiSertifikat  'IGL/LP/2206/0005','Admin'">
         <Column Name="TransNmbr" DataType="System.String"/>
         <Column Name="TransDate" DataType="System.DateTime"/>
@@ -261,7 +268,7 @@ End Namespace
       <TextObject Name="Text379" Left="599.35" Top="72.6" Width="46.02" Height="16.45" Text="Luas" VertAlign="Center" Font="Arial Narrow, 8pt, style=Bold"/>
       <TextObject Name="Text380" Left="646.6" Top="72.6" Width="112.17" Height="16.45" Text="NOP" VertAlign="Center" Font="Arial Narrow, 8pt, style=Bold"/>
       <TextObject Name="Text381" Left="760" Top="72.6" Width="55.47" Height="16.45" Text="Nama" VertAlign="Center" Font="Arial Narrow, 8pt, style=Bold"/>
-      <TextObject Name="Text382" Left="816.7" Top="72.6" Width="55.47" Height="16.45" Text="Luas" VertAlign="Center" Font="Arial Narrow, 8pt, style=Bold"/>
+      <TextObject Name="Text382" Left="826.15" Top="72.6" Width="46.02" Height="16.45" Text="Luas" VertAlign="Center" Font="Arial Narrow, 8pt, style=Bold"/>
       <LineObject Name="Line178" Left="9.45" Top="30.8" Width="359.1"/>
       <TextObject Name="Text390" Left="931.55" Top="53.7" Width="121.62" Height="16.45" Text="Dokumen Sertifikat" VertAlign="Center" Font="Arial Narrow, 8pt, style=Bold"/>
       <TextObject Name="Text391" Left="1196.15" Top="53.7" Width="121.62" Height="16.45" Text="Dokuman SPPT" VertAlign="Center" Font="Arial Narrow, 8pt, style=Bold"/>
@@ -294,7 +301,7 @@ End Namespace
       <LineObject Name="Line191" Left="382" Top="91.5" Width="491.4"/>
       <LineObject Name="Line192" Left="381.45" Top="91.5" Height="-60.15"/>
       <GroupHeaderBand Name="GroupHeader2" Top="210.78" Width="1398.6" CanShrink="true" Condition="[DS.SumberObject]">
-        <DataBand Name="Data1" Top="214.95" Width="1398.6" Height="27.9" CanGrow="true" AfterDataEvent="Data1_AfterData" Guides="-2,11.23,13.12,1,14.23,16.9,-1,12.23" DataSource="Table">
+        <DataBand Name="Data1" Top="214.95" Width="1398.6" Height="28.35" CanGrow="true" AfterDataEvent="Data1_AfterData" Guides="-2,11.23,13.12,1,14.23,16.9,-1,12.23" DataSource="Table">
           <TextObject Name="Text422" Left="172.1" Width="93.27" Height="25.9" CanGrow="true" GrowToBottom="true" Text="[DS.TransNmbrSertifikat]" VertAlign="Center" Font="Arial Narrow, 8pt"/>
           <TextObject Name="Text423" Left="103.95" Width="64.92" Height="25.9" CanGrow="true" GrowToBottom="true" Text="[DS.TransDateSertifikat]" Format="Custom" Format.Format="dd MMM yyyy" VertAlign="Center" Font="Arial Narrow, 8pt"/>
           <TextObject Name="Text424" Left="270.05" Width="102.72" Height="25.9" CanGrow="true" GrowToBottom="true" BeforePrintEvent="Data1_BeforePrint" Text="[DS.No_Penyerahan_Dok]" VertAlign="Center" Font="Arial Narrow, 8pt"/>
@@ -313,16 +320,19 @@ End Namespace
           <TextObject Name="Text412" Left="1149.9" Width="112.17" Height="25.9" CanGrow="true" GrowToBottom="true" CanBreak="false" Text="[DS.NoSPPT_Baru]" VertAlign="Center" Font="Arial Narrow, 8pt"/>
           <TextObject Name="Text413" Left="1263.3" Width="64.92" Height="25.9" CanGrow="true" GrowToBottom="true" CanBreak="false" Text="[DS.Nama_Sppt_Baru]" VertAlign="Center" Font="Arial Narrow, 8pt"/>
           <TextObject Name="Text414" Left="1329.45" Width="46.02" Height="25.9" CanGrow="true" GrowToBottom="true" CanBreak="false" Text="[DS.LuasBaru]" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+          <LineObject Name="Line2" Left="9.45" Top="28.35" Width="359.1" Diagonal="true"/>
+          <LineObject Name="Line193" Left="383" Top="28.35" Width="491.4" Diagonal="true"/>
+          <LineObject Name="Line194" Left="886.3" Top="28.35" Width="491.4" Diagonal="true"/>
           <Sort>
             <Sort Expression="[DS.No_Penyerahan_Dok]"/>
             <Sort Expression="[DS.NoDokumen_Baru]"/>
           </Sort>
         </DataBand>
-        <GroupFooterBand Name="GroupFooter2" Top="247.02" Width="1398.6"/>
+        <GroupFooterBand Name="GroupFooter2" Top="247.47" Width="1398.6"/>
       </GroupHeaderBand>
-      <GroupFooterBand Name="GroupFooter1" Top="251.18" Width="1398.6"/>
+      <GroupFooterBand Name="GroupFooter1" Top="251.63" Width="1398.6"/>
     </GroupHeaderBand>
-    <PageFooterBand Name="PageFooter1" Top="255.35" Width="1398.6" Height="13.23" Guides="278.05,306.4,149.75,162.98,244.25,257.48,274.05,-566.4,273.84,-566.61,306.64,-566.16,176.1,270.6,286.5,305.4,149.2,168.1,309.85,328.75,306.85,142.8,0,141.75,170.1,125.85,139.08,122.85,103.95,106.95,120.18,85.05,98.28,81.05,43.25,56.48,37.8,23.35,36.58,18.9,4.45,17.68,-567.4,64.15,77.38,58.7,-565.4">
+    <PageFooterBand Name="PageFooter1" Top="255.8" Width="1398.6" Height="13.23" Guides="278.05,306.4,149.75,162.98,244.25,257.48,274.05,-566.4,273.84,-566.61,306.64,-566.16,176.1,270.6,286.5,305.4,149.2,168.1,309.85,328.75,306.85,142.8,0,141.75,170.1,125.85,139.08,122.85,103.95,106.95,120.18,85.05,98.28,81.05,43.25,56.48,37.8,23.35,36.58,18.9,4.45,17.68,-567.4,64.15,77.38,58.7,-565.4">
       <TextObject Name="Text40" Left="9.45" Width="283.5" Height="13.23" Text="Date/Time : [Date]" Format="Custom" Format.Format="dd/MM/yyyy hh:mm:ss" Font="Arial, 7pt"/>
       <TextObject Name="Text371" Left="1092.2" Width="283.5" Height="13.23" BeforePrintEvent="Data1_AfterData" AfterDataEvent="Data1_AfterData" Text="[DS.UserId]" HorzAlign="Right" Font="Arial, 7pt"/>
     </PageFooterBand>

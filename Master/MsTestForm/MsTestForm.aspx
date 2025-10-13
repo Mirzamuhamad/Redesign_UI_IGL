@@ -42,6 +42,26 @@
                         </div>
                     </div>
 
+
+                    <!-- <div style="width:400px; margin:20px auto; border:1px solid #ccc; padding:15px;">
+                        <h3>Kirim Email via Gmail</h3>
+            
+                        <asp:Label ID="Label1" runat="server" Text="Kepada:" /><br />
+                        <asp:TextBox ID="txtTo" runat="server" Width="100%" /><br /><br />
+            
+                        <asp:Label ID="Label2" runat="server" Text="Subject:" /><br />
+                        <asp:TextBox ID="txtSubject" runat="server" Width="100%" /><br /><br />
+            
+                        <asp:Label ID="Label3" runat="server" Text="Isi Pesan:" /><br />
+                        <asp:TextBox ID="txtBody" runat="server" TextMode="MultiLine" Rows="5" Width="100%" /><br /><br />
+            
+                        <asp:Button ID="btnSend" runat="server" Text="Kirim Email"  /><br /><br />
+            
+                        <asp:Label ID="lblStatus" runat="server" ForeColor="Red" />
+                    </div> -->
+
+
+
                     <!-- <hr class="my-4 border-primary" /> -->
                     <asp:Panel runat="server" ID="pnlHd">
                         <div class="container-fluid mt-3">

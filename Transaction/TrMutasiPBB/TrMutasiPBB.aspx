@@ -447,7 +447,7 @@
                                         </tr>
 
                                         <tr>
-                                            <td>No Dokumen</td>
+                                            <td>No Dokumen SPPT</td>
                                             <td>:</td>
                                             <td>
                                                 <asp:TextBox ID="tbNoDok" runat="server" CssClass="TextBox"
@@ -552,7 +552,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td>No Dokumen</td>
+                                        <td>No Dokumen SPPT</td>
                                         <td>:</td>
                                         <td>
                                             <asp:Label ID="lbNoDokumen" runat="server" />
@@ -609,7 +609,7 @@
                                                 </asp:TemplateField>
                                                 
                                                 <asp:BoundField DataField="NoDokDt2" HeaderStyle-Width="150px"
-                                                    HeaderText="No Dokumen" />
+                                                    HeaderText="No Dokumen SPPT" />
                                                 <asp:BoundField DataField="JenisDokDt2" HeaderStyle-Width="90px"
                                                     HeaderText="Jenis Dokumen" />
                                                 <asp:BoundField DataField="UnitName" HeaderStyle-Width="150px"
@@ -632,7 +632,7 @@
                                 <asp:Panel runat="server" ID="pnlEditDt2" Visible="false">
                                     <table>
                                         <tr>
-                                            <td>No Dokumen</td>
+                                            <td>No Dokumen SPPT</td>
                                             <td>:</td>
                                             <td>
                                                 <asp:TextBox CssClass="TextBox" Width=225 runat="server"

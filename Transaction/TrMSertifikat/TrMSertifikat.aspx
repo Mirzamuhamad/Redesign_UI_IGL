@@ -333,7 +333,7 @@
                                     <asp:BoundField DataField="Reference" HeaderStyle-Width="120px" HeaderText="Reference" />                                  
                                     <asp:BoundField DataField="JenisMutasi" HeaderStyle-Width="120px" HeaderText="Jenis Mutasi" />
                                     <asp:BoundField DataField="JenisDokumen" HeaderStyle-Width="100px" HeaderText="Jenis Dokumen" />
-                                    <asp:BoundField DataField="NoDokumen" HeaderStyle-Width="100px" HeaderText="No Dokumen" />
+                                    <asp:BoundField DataField="NoDokumen" HeaderStyle-Width="100px" HeaderText="No Dokumen Sertifikat" />
                                     <%--<asp:BoundField DataField="NoPayment" HeaderStyle-Width="120px" HeaderText="No Payment" />--%>
                                    
                                     <asp:BoundField DataField="Luas" HeaderStyle-Width="100px" ItemStyle-HorizontalAlign="Right"
@@ -416,7 +416,7 @@
                             </tr>
 
                             <tr>
-                                <td >No Dokumen</td>
+                                <td >No Dokumen Sertifikat</td>
                                 <td>:</td>
                                 <td>
                                     <asp:TextBox ID="tbNoDok" runat="server" CssClass="TextBox" MaxLength="255" 
@@ -424,6 +424,7 @@
                                 </td>
                             </tr>
                             
+                            <asp:Panel ID="pnlNilaiLuas" runat="server">
                             <tr>
                                 <td >Luas</td>
                                 <td>:</td>
@@ -438,6 +439,7 @@
                                 <td>:</td>
                                 <td><asp:TextBox CssClass="TextBox" Width = 225 runat="server" ID="tbNilai" /></td>
                             </tr>
+                            </asp:Panel>
                             <tr>
                                 <td>Seller</td>
                                 <td>:</td>
@@ -527,7 +529,7 @@
                         </tr>
                         
                         <tr>
-                            <td>No Dokumen</td>
+                            <td>No Dokumen Sertifikat</td>
                             <td>:</td>
                             <td>
                                 <asp:Label ID="lbNoDokumen" runat="server" />
@@ -576,7 +578,7 @@
                                                 CommandName="Cancel" />
                                         </EditItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:BoundField DataField="NoDokDt2" HeaderStyle-Width="150px" HeaderText="No Dokumen" />
+                                    <asp:BoundField DataField="NoDokDt2" HeaderStyle-Width="150px" HeaderText="No Dokumen Sertifikat" />
                                     <asp:BoundField DataField="JenisDokDt2" HeaderStyle-Width="90px" HeaderText="Jenis Dokumen" />
                                     <asp:BoundField DataField="UnitName" HeaderStyle-Width="150px" HeaderText="Object" />
                                     <asp:BoundField DataField="Luas" DataFormatString="{0:#,##0.00}" HeaderStyle-Width="80px" ItemStyle-HorizontalAlign="Right" HeaderText="Luas" />
@@ -591,7 +593,7 @@
                     <asp:Panel runat="server" ID="pnlEditDt2" Visible="false">
                         <table>
                             <tr>
-                                <td>No Dokumen</td>
+                                <td>No Dokumen Sertifikat</td>
                                 <td>:</td>
                                 <td><asp:TextBox CssClass="TextBox" Width = 225 runat="server" ID="tbDokumenDt" /></td>
                             </tr>

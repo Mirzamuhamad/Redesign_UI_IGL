@@ -1,4 +1,6 @@
 ﻿Imports System.Data
+Imports System.Net.Mail
+Imports System.Net
 Partial Class MsForm
     Inherits System.Web.UI.Page
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -511,5 +513,33 @@ Partial Class MsForm
     DataGrid.PageIndex = 0
     bindDataGrid
 End Sub
+
+' Protected Sub btnSend_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSend.Click
+'         Try
+'             Dim fromAddress As String = "mirzamuhamad.dash@gmail.com" ' email pengirim
+'             Dim password As String = "dvqazqjbbyrnovny"            ' password/aplikasi password gmail
+
+'             Dim msg As New MailMessage()
+'             msg.From = New MailAddress(fromAddress)
+'             msg.To.Add(txtTo.Text.Trim())
+'             msg.Subject = txtSubject.Text.Trim()
+'             msg.Body = txtBody.Text.Trim()
+'             msg.IsBodyHtml = True
+
+'             Dim smtp As New SmtpClient("smtp.gmail.com", 587)
+'             smtp.Credentials = New NetworkCredential(fromAddress, password)
+'             smtp.EnableSsl = True
+
+'             smtp.Send(msg)
+'             lblStatus.ForeColor = Drawing.Color.Green
+'             lblStatus.Text = "Email berhasil dikirim!"
+
+'         Catch ex As Exception
+'             lblStatus.ForeColor = Drawing.Color.Red
+'             lblStatus.Text = "Gagal mengirim email: " & ex.Message
+'         End Try
+'     End Sub
+
+
 
 End Class

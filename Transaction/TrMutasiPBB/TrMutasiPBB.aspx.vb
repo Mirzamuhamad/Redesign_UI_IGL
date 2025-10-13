@@ -118,8 +118,8 @@ Partial Class TrMutasiPBB
                             dr("JenisMutasi") = drResult("JenisMutasi").ToString
                             dr("JenisDokumen") = drResult("JenisDokumen").ToString
                             dr("Info") = drResult("Info").ToString.Replace("Sumber","Hasil")
-                            dr("Luas") = drResult("Luas").ToString
-                            dr("UnitCode") = drResult("UnitCode")
+                            dr("Luas") = drResult("Luas").ToString.Replace("&nbsp;", "")
+                            dr("UnitCode") = drResult("UnitCode").ToString.Replace("&nbsp;", "")
                             dr("UnitName") = drResult("UnitName").ToString.Replace("&nbsp;", "")
                             dr("Nama") = drResult("Nama").ToString.Replace("&nbsp;", "")
                             dr("NoSertifikat") = drResult("NoDokumen").ToString.Replace("&nbsp;", "")
