@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ReportInfo.Created="02/20/2012 14:46:34" ReportInfo.Modified="09/09/2022 10:49:07" ReportInfo.CreatorVersion="1.2.47.0">
+<Report ReportInfo.Created="02/20/2012 14:46:34" ReportInfo.Modified="03/11/2025 22:05:19" ReportInfo.CreatorVersion="1.2.47.0">
   <Dictionary>
-    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGs4venj70BSybBNwjC9vq8mA+gBRIOgdRqwK8irIASGbfMoVDu5dOW5Z7ySwSa+hO25c1iTiWhA0xCuNNzNL1MtX9X1ENG+SX04Ci99kyFzwumEHbIbMkeuAyHqVgDv6TT">
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlquQ+MGUuFmwCkhAb0ntbeLO+1a3NkrClX2w6wJwyUhinLczli6VlN9d7ceeYldEGs4venj70BSybBNwjC9vq8mA+gBRIOgdRqwK8irIASGbfMoVDu5dOW5Z7ySwSa+hO25c1iTiWhA0xCuNNzNL1MtX9X1ENG+SX04Ci99kyFzwu0NIU5eKEqs1NlZdMPZ7w4">
       <TableDataSource Name="Table" Alias="DS" DataType="System.Int32" Enabled="true" SelectCommand="EXEC S_GLRptJournal '', 0, 2013, 5, 2013, 5, ''">
         <Column Name="CurrCode" DataType="System.String"/>
         <Column Name="Column" Enabled="false" DataType="System.Int32" Calculated="true" Expression=""/>
@@ -41,13 +41,13 @@
   <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" Guides="0,1048.95,831.6,1045.95,888.3,7,299.95,1046.5,61,171.5,173.4,232.45,233.45,389,389.37,561.57,561.9,715.1,716.1,781.8,780.6,875.3,874.65,958.35,959.9,1044.6,2.4,61.45,642.6,172.95,174.4,233.38,388.88,389.45,560.95,562,714.5,715.75,781.25,876.85,959.35,957.9,1048.4,60.45,565,829.6,960.45,880.4,1046.05,966.0001,866.4,960.9,961.9,1050.4,1049.71,960.5,880.45,1045.93,965.8801,1047.52,94.5,793.8">
     <PageHeaderBand Name="PageHeader1" Width="1047.06" Height="84.25" Guides="42.9,61.8,0,18.9,28.35,47.25,65.35,84.25,4,22.9,24.9,43.8">
       <TextObject Name="Text1" Top="42.9" Width="1048.95" Height="18.9" Text="Journal Transaction Report" HorzAlign="Center" Font="Arial, 12pt, style=Bold"/>
-      <TextObject Name="Text2" Left="831.6" Width="214.35" Height="18.9" Text="Date / Time : [Date]" HorzAlign="Right" Font="Arial Narrow, 8pt"/>
-      <TextObject Name="Text28" Left="888.3" Top="28.35" Width="160.65" Height="18.9" Text="Page [Page#] Of [TotalPages#]" HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text2" Left="831.6" Width="214.35" Height="18.9" Text="Date / Time : [Date]" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text28" Left="888.3" Top="28.35" Width="160.65" Height="18.9" Text="Page [Page#] Of [TotalPages#]" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
       <TextObject Name="Text36" Top="65.35" Width="1048.95" Height="18.9" Text="[DS.Periode]" HorzAlign="Center"/>
       <TextObject Name="Text37" Left="7" Top="4" Width="292.95" Height="18.9" Text="[DS.CompanyName]" Font="Arial, 11pt, style=Bold"/>
       <TextObject Name="Text38" Left="7" Top="24.9" Width="707.5" Height="18.9" Text="[DS.Address]" Font="Arial, 8pt, style=Bold"/>
     </PageHeaderBand>
-    <ColumnHeaderBand Name="ColumnHeader1" Top="86.58" Width="1047.06" Height="18.9" Guides="0,18.9">
+    <ColumnHeaderBand Name="ColumnHeader1" Top="87.11" Width="1047.06" Height="18.9" Guides="0,18.9">
       <LineObject Name="Line1" Width="1046.5"/>
       <TextObject Name="Text3" Left="70.45" Width="110.5" Height="18.9" Text="TRANSACTION NO" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
       <LineObject Name="Line2" Top="18.9" Width="1046.5"/>
@@ -61,53 +61,53 @@
       <TextObject Name="Text12" Left="959.9" Width="84.7" Height="18.9" Text="CREDIT (Rp)" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
       <TextObject Name="Text39" Left="2.4" Width="59.05" Height="18.9" Text="DATE" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
     </ColumnHeaderBand>
-    <GroupHeaderBand Name="GroupHeader1" Top="107.8" Width="1047.06" Height="17.9" Guides="0,16.9" Condition="[DS.TransClass]" SortOrder="None">
-      <TextObject Name="Text13" Width="642.6" Height="16.9" Text="JOURNAL TYPE : [DS.TransName]" Font="Arial Narrow, 7pt, style=Bold"/>
-      <GroupHeaderBand Name="GroupHeader2" Top="128.03" Width="1047.06" Condition="[DS.Reference]" SortOrder="None">
-        <DataBand Name="Data1" Top="130.35" Width="1047.06" Height="18.9" CanGrow="true" Guides="0,18.9" DataSource="Table">
-          <TextObject Name="Text14" Left="70.45" Width="111.95" Height="18.9" CanGrow="true" Text="[DS.Ref]" Font="Arial Narrow, 7pt"/>
-          <TextObject Name="Text15" Left="176.85" Width="67.5" Height="18.9" CanGrow="true" Text="[DS.Account]" Font="Arial Narrow, 7pt"/>
-          <TextObject Name="Text17" Left="242.83" Width="155.5" Height="18.9" CanGrow="true" Text="[DS.AccName]" Font="Arial Narrow, 7pt"/>
-          <TextObject Name="Text16" Left="398.9" Width="162.05" Height="18.9" CanGrow="true" Text="[DS.SubLed]" Font="Arial Narrow, 7pt"/>
-          <TextObject Name="Text18" Left="562" Width="152.5" Height="18.9" CanGrow="true" Text="[DS.Remark]" Font="Arial Narrow, 7pt"/>
-          <TextObject Name="Text19" Left="715.75" Width="65.5" Height="18.9" CanGrow="true" Text="[DS.CurrCode] / [DS.ForexRate]" Font="Arial Narrow, 7pt">
+    <GroupHeaderBand Name="GroupHeader1" Top="108.86" Width="1047.06" Height="17.9" Guides="0,16.9" Condition="[DS.TransClass]" SortOrder="None">
+      <TextObject Name="Text13" Width="642.6" Height="16.9" Text="JOURNAL TYPE : [DS.TransName]" Font="Arial, 7pt, style=Bold"/>
+      <GroupHeaderBand Name="GroupHeader2" Top="129.62" Width="1047.06" Condition="[DS.Reference]" SortOrder="None">
+        <DataBand Name="Data1" Top="132.48" Width="1047.06" Height="18.9" CanGrow="true" Guides="0,18.9" DataSource="Table">
+          <TextObject Name="Text14" Left="70.45" Width="111.95" Height="18.9" CanGrow="true" Text="[DS.Ref]" Font="Arial, 7pt"/>
+          <TextObject Name="Text15" Left="176.85" Width="67.5" Height="18.9" CanGrow="true" Text="[DS.Account]" Font="Arial, 7pt"/>
+          <TextObject Name="Text17" Left="242.83" Width="155.5" Height="18.9" CanGrow="true" Text="[DS.AccName]" Font="Arial, 7pt"/>
+          <TextObject Name="Text16" Left="398.9" Width="162.05" Height="18.9" CanGrow="true" Text="[DS.SubLed]" Font="Arial, 7pt"/>
+          <TextObject Name="Text18" Left="562" Width="152.5" Height="18.9" CanGrow="true" Text="[DS.Remark]" Font="Arial, 7pt"/>
+          <TextObject Name="Text19" Left="715.75" Width="65.5" Height="18.9" CanGrow="true" Text="[DS.CurrCode] / [DS.ForexRate]" Font="Arial, 7pt">
             <Formats>
               <CustomFormat/>
               <CustomFormat Format="###,###"/>
             </Formats>
           </TextObject>
-          <TextObject Name="Text22" Left="781.8" Width="93.5" Height="18.9" CanGrow="true" Text="[DS.AmountForex]" Format="Custom" Format.Format="###,###.##" HorzAlign="Right" WordWrap="false" Font="Arial Narrow, 7pt" Trimming="EllipsisCharacter"/>
-          <TextObject Name="Text21" Left="876.85" Width="82.5" Height="18.9" CanGrow="true" Text="[DS.DebitHome]" Format="Custom" Format.Format="###,###.##" HorzAlign="Right" WordWrap="false" Font="Arial Narrow, 7pt" Trimming="EllipsisCharacter"/>
-          <TextObject Name="Text23" Left="957.9" Width="90.5" Height="18.9" CanGrow="true" Text="[DS.CreditHome]" Format="Custom" Format.Format="###,###.##" HorzAlign="Right" WordWrap="false" Font="Arial Narrow, 7pt" Trimming="EllipsisCharacter"/>
-          <TextObject Name="Text40" Left="2.4" Width="67.5" Height="18.9" CanGrow="true" Text="[DS.TransDate]" Format="Custom" Format.Format="dd MMM yyyy" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text22" Left="781.8" Width="93.5" Height="18.9" CanGrow="true" Text="[DS.AmountForex]" Format="Custom" Format.Format="###,###.##" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text21" Left="876.85" Width="82.5" Height="18.9" CanGrow="true" Text="[DS.DebitHome]" Format="Custom" Format.Format="###,###.##" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text23" Left="957.9" Width="90.5" Height="18.9" CanGrow="true" Text="[DS.CreditHome]" Format="Custom" Format.Format="###,###.##" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text40" Left="2.4" Width="67.5" Height="18.9" CanGrow="true" Text="[DS.TransDate]" Format="Custom" Format.Format="dd MMM yyyy" Font="Arial, 7pt"/>
         </DataBand>
-        <GroupFooterBand Name="GroupFooter2" Top="151.58" Width="1047.06" Height="18.9" CanGrow="true" Guides="0,18.9">
-          <TextObject Name="Text24" Left="565" Width="264.6" Height="18.9" Text="Total - [DS.Reference]" HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+        <GroupFooterBand Name="GroupFooter2" Top="154.24" Width="1047.06" Height="18.9" CanGrow="true" Guides="0,18.9">
+          <TextObject Name="Text24" Left="565" Width="264.6" Height="18.9" Text="Total - [DS.Reference]" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
           <LineObject Name="Line3" Left="960.45" Width="-80.05"/>
           <LineObject Name="Line4" Left="1046.05" Width="-80.05"/>
-          <TextObject Name="Text25" Left="864.85" Width="94.5" Height="18.9" Text="[TotalDebitHome]" Format="Custom" Format.Format="###,###.##" HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 7pt"/>
-          <TextObject Name="Text26" Left="959.9" Width="88.5" Height="18.9" Text="[TotalCredithome]" Format="Custom" Format.Format="###,###.##" HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+          <TextObject Name="Text25" Left="864.85" Width="94.5" Height="18.9" Text="[TotalDebitHome]" Format="Custom" Format.Format="###,###.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+          <TextObject Name="Text26" Left="959.9" Width="88.5" Height="18.9" Text="[TotalCredithome]" Format="Custom" Format.Format="###,###.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
         </GroupFooterBand>
       </GroupHeaderBand>
-      <GroupFooterBand Name="GroupFooter1" Top="172.8" Width="1047.06" Height="18.9" CanGrow="true" Guides="0,18.9">
-        <TextObject Name="Text29" Left="565" Width="264.6" Height="18.9" Text="Total - [DS.TransName]" HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 7pt"/>
-        <TextObject Name="Text30" Left="864.85" Width="94.5" Height="18.9" CanGrow="true" Text="[TotalDebit]" Format="Custom" Format.Format="###,###.##" HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 7pt"/>
-        <TextObject Name="Text31" Left="958.59" Width="89.81" Height="18.9" CanGrow="true" Text="[TotalCredit]" Format="Custom" Format.Format="###,###.##" HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 7pt"/>
+      <GroupFooterBand Name="GroupFooter1" Top="175.99" Width="1047.06" Height="18.9" CanGrow="true" Guides="0,18.9">
+        <TextObject Name="Text29" Left="565" Width="264.6" Height="18.9" Text="Total - [DS.TransName]" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text30" Left="864.85" Width="94.5" Height="18.9" CanGrow="true" Text="[TotalDebit]" Format="Custom" Format.Format="###,###.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
+        <TextObject Name="Text31" Left="958.59" Width="89.81" Height="18.9" CanGrow="true" Text="[TotalCredit]" Format="Custom" Format.Format="###,###.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt"/>
         <LineObject Name="Line6" Left="960.5" Width="-80.05"/>
         <LineObject Name="Line7" Left="1045.93" Width="-80.05"/>
       </GroupFooterBand>
     </GroupHeaderBand>
-    <ReportSummaryBand Name="ReportSummary1" Top="194.03" Width="1047.06" Height="18.9" CanGrow="true" Guides="0,18.9">
-      <TextObject Name="Text32" Left="565" Width="264.6" Height="18.9" Text="Grand Total" HorzAlign="Right" Font="Arial Narrow, 7pt, style=Bold"/>
-      <TextObject Name="Text33" Left="858.85" Width="94.5" Height="18.9" CanGrow="true" Text="[GrandTotalDebit]" Format="Custom" Format.Format="###,###.##" HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 7pt, style=Bold"/>
-      <TextObject Name="Text34" Left="953.9" Width="94.5" Height="18.9" CanGrow="true" Text="[GrandTotalCrdit]" Format="Custom" Format.Format="###,###.##" HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 7pt, style=Bold"/>
+    <ReportSummaryBand Name="ReportSummary1" Top="197.75" Width="1047.06" Height="18.9" CanGrow="true" Guides="0,18.9">
+      <TextObject Name="Text32" Left="565" Width="264.6" Height="18.9" Text="Grand Total" HorzAlign="Right" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text33" Left="858.85" Width="94.5" Height="18.9" CanGrow="true" Text="[GrandTotalDebit]" Format="Custom" Format.Format="###,###.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text34" Left="953.9" Width="94.5" Height="18.9" CanGrow="true" Text="[GrandTotalCrdit]" Format="Custom" Format.Format="###,###.##" HorzAlign="Right" VertAlign="Center" Font="Arial, 7pt, style=Bold"/>
       <LineObject Name="Line8" Left="960.5" Width="-80.05"/>
       <LineObject Name="Line9" Left="1045.93" Width="-80.05"/>
     </ReportSummaryBand>
-    <PageFooterBand Name="PageFooter1" Top="215.25" Width="1047.06" Height="18.9" Guides="0,18.9">
-      <TextObject Name="Text27" Width="94.5" Height="18.9" Text="Accounting" Font="Arial Narrow, 8pt"/>
+    <PageFooterBand Name="PageFooter1" Top="219.51" Width="1047.06" Height="18.9" Guides="0,18.9">
+      <TextObject Name="Text27" Width="94.5" Height="18.9" Text="Accounting" Font="Arial, 8pt"/>
       <LineObject Name="Line5" Width="1046.5"/>
-      <TextObject Name="Text35" Left="793.8" Width="255.15" Height="18.9" CanBreak="false" Text="[DS.UserId]" HorzAlign="Right" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+      <TextObject Name="Text35" Left="793.8" Width="255.15" Height="18.9" CanBreak="false" Text="[DS.UserId]" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt"/>
     </PageFooterBand>
   </ReportPage>
 </Report>

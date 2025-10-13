@@ -9,7 +9,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>WO Priority</title>
-    <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />   
+    <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />
+ <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">   
     <script type="text/javascript">
         function OpenPopup() {
             window.open("../../SeaDlg.Aspx", "List", "scrollbars=yes,resizable=no,width=500,height=400");

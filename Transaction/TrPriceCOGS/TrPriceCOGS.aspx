@@ -8,6 +8,7 @@
 <head runat="server">
     <title runat="server" id="Title1"></title>
     <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />
+ <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="../../Function/Function.JS" type="text/javascript"></script>
     <script src="../../Function/OpenDlg.JS" type="text/javascript"></script>
     

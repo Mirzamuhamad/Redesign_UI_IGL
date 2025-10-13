@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="RangeControl.ascx.vb" Inherits="UserControl_RangeControl" %>
 <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />
+ <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">
 <script src="../../Function/Function.js" type="text/javascript"></script>
 
         <fieldset style="width:260px">

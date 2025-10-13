@@ -15,6 +15,7 @@
     <title>Upload Image</title>
     <script src="../../Function/OpenDlg.JS" type="text/javascript"></script>         
 	<link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />
+ <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 <form id="form1" runat="server">    

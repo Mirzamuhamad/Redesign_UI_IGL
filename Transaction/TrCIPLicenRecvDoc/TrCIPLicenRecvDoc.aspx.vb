@@ -15,6 +15,10 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
         Return "SELECT * FROM V_PRCIPRecvDocDt WHERE TransNmbr = " + QuotedStr(Nmbr)
     End Function
 
+    Private Function GetStringDt3(ByVal Nmbr As String) As String
+        Return "SELECT * From V_PRCIPRecvDocDt2 WHERE TransNmbr = " + QuotedStr(Nmbr)
+    End Function
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         If Session(Request.QueryString("KeyId")) Is Nothing Then
@@ -41,29 +45,8 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
             End If
 
             If Not Session("Result") Is Nothing Then
-                'If ViewState("Sender") = "btnProject" Then
-                '    'tbProjectCode.Text = Session("Result")(0).ToString
-                '    'tbProjectName.Text = Session("Result")(1).ToString
-                '    'CekProductExists()
-                'End If
-                'If ViewState("Sender") = "btnDocument" Then
-                '    tbDocCode.Text = Session("Result")(0).ToString
-                '    tbDocName.Text = Session("Result")(1).ToString
-                '    'BindToDropList(ddlUnit, Session("Result")(2).ToString)
-                '    'tbSpecification.Text = Session("Result")(3).ToString
-                'End If
-                'If ViewState("Sender") = "btnMaterial" Then
-                '    'ddlDetailType.SelectedValue = Session("Result")(0).ToString
-                '    'tbItemCode.Text = Session("Result")(1).ToString
-                '    'tbItemName.Text = Session("Result")(2).ToString
-                '    'ddlUnitDt.SelectedValue = TrimStr(Session("Result")(2).ToString)
-                '    'ddlUnit.SelectedValue = Session("Result")(3).ToString
-                '    'tbPriceDt.Text = Session("Result")(4).ToString
-                'End If
-                'If ViewState("Sender") = "btnSubcontractor" Then
-                '    'tbSubcontCode.Text = Session("Result")(0).ToString
-                '    'tbSubcontName.Text = Session("Result")(1).ToString
-                'End If
+                 
+
                 If ViewState("Sender") = "btnGetData" Then
                     Dim drResult, dr As DataRow
                     Dim Row As DataRow()
@@ -103,47 +86,33 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
                     'EnableHd(GetCountRecord(ViewState("Dt")) <> 0)
                 'ModifyDt()   'dr("SubCategoryCode") = TrimStr(drResult("SubCategoryCode"))
                 End If
+
+                If ViewState("Sender") = "btnReference" Then
+                    Dim drResult As DataRow
+                    Dim ExistRow As DataRow()
+                    For Each drResult In Session("Result").Rows
+                        ExistRow = ViewState("Dt3").Select("Reference = " + QuotedStr(drResult("Reference").ToString))
+                        If ExistRow.Count = 0 Then
+                            'insert
+                            Dim dr As DataRow
+                            dr = ViewState("Dt3").NewRow
+                            dr("ItemNo") = ViewState("Dt3").Rows.Count + 1
+                            dr("Reference") = drResult("Reference")
+                            ViewState("Dt3").Rows.Add(dr)
+                        End If
+                    Next
+                    BindGridDt(ViewState("Dt3"), GridDt3)                    
+                    EnableHd(GetCountRecord(ViewState("Dt3")) = 0)
+                End If
+
             Session("Result") = Nothing
             ViewState("Sender") = Nothing
             Session("filter") = Nothing
             Session("Column") = Nothing
             End If
 
-            'fupSignRecv.Attributes("onchange") = "fileUploadSignRecv(this)"
-            'If Not ViewState("ProductClose") Is Nothing Then
-            '    If HiddenRemarkClose.Value <> "False Value" Then
-            '        Dim sqlstring, result As String
-            '        '                    sqlstring = "Declare @A VarChar(255) EXEC S_CNTRABClosing " + QuotedStr(tbCode.Text) + "," + QuotedStr(ViewState("ProductClose").ToString) + "," + QuotedStr(HiddenRemarkClose.Value) + "," + QuotedStr(ViewState("UserId")) + ", @A OUT SELECT @A"
-            '        sqlstring = "DECLARE @A VarChar(255) EXEC S_CNTRABClosing " + QuotedStr(tbCode.Text) + "," + QuotedStr(HiddenRemarkClose.Value) + "," + QuotedStr(ViewState("UserId")) + ", @A OUT SELECT @A"
-            '        result = SQLExecuteScalar(sqlstring, ViewState("DBConnection"))
-            '        If result.Length > 2 Then
-            '            lbStatus.Text = MessageDlg(result)
-            '            Exit Sub
-            '        Else
-            '            BindDataDt(ViewState("TransNmbr"))
-            '        End If
-            '    End If
-            '    ViewState("ProductClose") = Nothing
-            '    HiddenRemarkClose.Value = ""
-            '    'GridDt.Columns(0).Visible = False
-            'End If
+        FubInv.Attributes("onchange") = "UploadInvoice(this)"
 
-            'If Session("FileUpload1") Is Nothing AndAlso fupSignRecv.HasFile Then
-            '    Session("FileUpload1") = fupSignRecv
-            '    'lbSignRecv.Text = fupSignRecv.FileName
-            '    tbApplfileNo.Text = fupSignRecv.FileName
-            'ElseIf Session("FileUpload1") IsNot Nothing AndAlso (Not fupSignRecv.HasFile) Then
-            '    fupSignRecv = DirectCast(Session("FileUpload1"), FileUpload)
-            '    'lbSignRecv.Text = fupSignRecv.FileName
-            '    tbApplfileNo.Text = fupSignRecv.FileName
-            'ElseIf fupSignRecv.HasFile Then
-            '    Session("FileUpload1") = fupSignRecv
-            '    'lbSignRecv.Text = fupSignRecv.FileName
-            '    tbApplfileNo.Text = fupSignRecv.FileName                
-            'End If
-            'fupSignRecv.Attributes.Add("onload", "document.getElementById('" + fupSignRecv.ClientID + "').value = document.getElementById('" + tbApplfileNo.ClientID + "').value")
-            'fupSignRecv.Attributes.Add("Value", fupSignRecv.FileName)
-            'Response.Redirect(Request.Url.AbsoluteUri)
         Catch ex As Exception
             lbStatus.Text = "Page Load Error : " + ex.ToString
         End Try
@@ -192,6 +161,133 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
             'tbQty.Attributes.Add("OnKeyDown", "return PressNumeric();")
         Catch ex As Exception
             Throw New Exception("Set Init Error : " + ex.ToString)
+        End Try
+    End Sub
+
+
+
+    Protected Sub btnsaveINV_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnsaveINV.Click
+        Try
+
+            Dim dr As DataTable
+            dr = BindDataTransaction(GetStringHd, "TransNmbr = " + QuotedStr(tbCode.Text), ViewState("DBConnection").ToString)
+
+            If dr.Rows.Count = 0 Then
+                lbStatus.Text = MessageDlg("save this transaction first, to upload the dokumen")
+                Exit Sub
+            End If
+
+            If FubInv.FileBytes.Length > 10000000 Then
+                lbStatus.Text = MessageDlg("Ukuran File Terlalu Besar. !! Max Upload 10Mb")
+                Exit Sub
+            End If
+
+            If Right(FubInv.FileName, 4) <> ".pdf" Then
+                lbStatus.Text = MessageDlg("Upload Pdf File Only !")
+                Exit Sub
+            End If
+            Dim path2, namafile2, SQLString1 As String
+            Dim dt As DataTable
+            path2 = Server.MapPath("~/Dokumen/") + tbCode.Text.Trim.Replace("/", "") + Format(Now, "-yyMMddHHmmss-") + FubInv.FileName
+            namafile2 = tbCode.Text.Trim.Replace("/", "") + Format(Now, "-yyMMddHHmmss-") + FubInv.FileName
+
+            SQLString1 = "UPDATE PRCIPRecvDocHd SET SignRecv = " + QuotedStr(namafile2) + _
+            " WHERE TransNmbr = " + QuotedStr(tbCode.Text)
+            FubInv.SaveAs(path2)
+            SQLExecuteNonQuery(SQLString1, ViewState("DBConnection").ToString)
+
+            dt = BindDataTransaction(GetStringHd, "TransNmbr = " + QuotedStr(tbCode.Text), ViewState("DBConnection").ToString)
+            lbDokInv.Text = dt.Rows(0)("SignRecv").ToString
+            'lblmassageKTP.Visible = True
+            FubInv.Visible = False
+            btnClearInv.Visible = True
+
+        Catch ex As Exception
+            lbStatus.Text = "Menu Item Click Error : " + ex.ToString
+        End Try
+    End Sub
+
+    Protected Sub lbDokInv_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lbDokInv.Click
+        Try
+            Dim dr As DataTable
+            Dim filePath, URL As String
+            dr = BindDataTransaction(GetStringHd, "TransNmbr = " + QuotedStr(tbCode.Text), ViewState("DBConnection").ToString)
+
+            If dr.Rows.Count = 0 Then
+                lbStatus.Text = MessageDlg("Belum ada dokumen yang di upload")
+                Exit Sub
+            End If
+
+            If dr.Rows(0)("SignRecv").ToString = "" Then
+                lbStatus.Text = MessageDlg("Belum ada dokumen yang di upload")
+                Exit Sub
+            End If
+
+            filePath = dr.Rows(0)("SignRecv").ToString
+            URL = ResolveUrl("~/Dokumen/" + filePath)
+            Dim s As String = "window.open('" & URL & "', '_blank');"
+            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alertscript", s, True)
+
+        Catch ex As Exception
+            lbStatus.Text = "lbModerator_Click Error : " + ex.ToString
+        End Try
+    End Sub
+
+    Protected Sub btnClearInv_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnClearInv.Click
+        Try
+            Dim dr As DataTable
+            Dim filePath As String
+            dr = BindDataTransaction(GetStringHd, "TransNmbr = " + QuotedStr(tbCode.Text), ViewState("DBConnection").ToString)
+            filePath = dr.Rows(0)("SignRecv").ToString
+
+
+            If File.Exists(Server.MapPath("~/Dokumen/" + filePath)) = True Then
+                File.Delete(Server.MapPath("~/Dokumen/" + filePath))
+                SQLExecuteNonQuery("UPDATE PRCIPRecvDocHd Set SignRecv = '' WHERE TransNmbr = '" + tbCode.Text + "' ", ViewState("DBConnection").ToString)
+
+                lbDokInv.Text = "Not yet uploaded"
+                FubInv.Visible = True
+                btnClearInv.Visible = False
+            End If
+
+           
+
+        Catch ex As Exception
+            lbStatus.Text = "lbBAP_Click Error : " + ex.ToString
+        End Try
+    End Sub
+
+
+    Protected Sub Menu1_MenuItemClick(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.MenuEventArgs) Handles Menu1.MenuItemClick
+        Dim index As Integer
+        Try
+            index = Int32.Parse(e.Item.Value)
+            MultiView1.ActiveViewIndex = index
+            btnSaveTrans.Focus()
+
+            
+
+            If MultiView1.ActiveViewIndex = 2 Then
+
+                lbStatus.Text = ViewState("StateHD") 
+                pnlDt3.Visible = True
+                pnlEditDt3.Visible = False
+                BindDataDt3(ViewState("TransNmbr"))
+                If ViewState("StateHd")  = "Edit" OR ViewState("StateHd")  = "Insert" Then
+                   GridDt3.Columns(0).Visible = True
+                   btnGetReference.Visible = True
+                   Else
+                   GridDt3.Columns(0).Visible = False
+                    btnGetReference.Visible = False
+                End If
+
+                'If lbStatus.Text = "False" Then
+                '    GridDt3.Columns(0).Visible = False
+                'End If
+            End If
+
+        Catch ex As Exception
+            lbStatus.Text = "Menu Item Click Error : " + ex.ToString
         End Try
     End Sub
 
@@ -350,11 +446,11 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
         Dim StrFilter As String
         Try
             StrFilter = GenerateFilterDlg(ddlField.SelectedValue, ddlField2.SelectedValue, tbFilter.Text, tbfilter2.Text, ddlNotasi.SelectedValue, ddlRange.SelectedValue)
-            'If AdvanceFilter.Length > 1 And StrFilter.Length > 1 Then
-            '    StrFilter = StrFilter + " And " + AdvanceFilter
-            'ElseIf AdvanceFilter.Length > 1 And StrFilter.Length <= 1 Then
-            '    StrFilter = AdvanceFilter
-            'End If
+            If AdvanceFilter.Length > 1 And StrFilter.Length > 1 Then
+                StrFilter = StrFilter + " And " + AdvanceFilter
+            ElseIf AdvanceFilter.Length > 1 And StrFilter.Length <= 1 Then
+                StrFilter = AdvanceFilter
+            End If
             DT = BindDataTransaction(GetStringHd, StrFilter, ViewState("DBConnection").ToString)
             If DT.Rows.Count = 0 Then
                 lbStatus.Text = "No Data"
@@ -374,6 +470,19 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
             GridView1.DataBind()
         Catch ex As Exception
             Throw New Exception("Bind Data Error : " + ex.ToString)
+        End Try
+    End Sub
+
+     Private Sub BindDataDt3(ByVal Nmbr As String)
+        Dim Drow As DataRow()
+        Try
+            Dim dt As New DataTable
+            ViewState("Dt3") = Nothing
+            dt = SQLExecuteQuery(GetStringDt3(Nmbr), ViewState("DBConnection").ToString).Tables(0)
+            ViewState("Dt3") = dt
+            BindGridDt(dt, GridDt3)
+        Catch ex As Exception
+            Throw New Exception("Bind Data Dt3 Error : " + ex.ToString)
         End Try
     End Sub
 
@@ -640,6 +749,8 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
             'tbTotalSelisih.Text = "0"
             tbRemark.Text = ""
             lbSignRecv.Text = ""
+            tbReference.text = ""
+            ddlTypeCIP.SelectedIndex = 2
         Catch ex As Exception
             Throw New Exception("Clear Hd Error " + ex.ToString)
         End Try
@@ -719,11 +830,11 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
                 tbAlasHak.Focus()
                 Return False
             End If
-            If tbRemark.Text.Trim = "" Then
-                lbStatus.Text = MessageDlg("Remark must have value")
-                tbRemark.Focus()
-                Return False
-            End If
+            ' If tbRemark.Text.Trim = "" Then
+            '     lbStatus.Text = MessageDlg("Remark must have value")
+            '     tbRemark.Focus()
+            '     Return False
+            ' End If
             'If tbEndDate.SelectedDate < tbStartDate.SelectedDate Then
             '    lbStatus.Text = MessageDlg("End Date must greater than Start Date")
             '    tbEndDate.Focus()
@@ -788,7 +899,21 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
             BindToText(tbRelatedOffcName, Dt.Rows(0)("RelatedOffcName").ToString)
             BindToText(tbRelatedOffcPhone, Dt.Rows(0)("RelatedOffcPhone").ToString)
             BindToText(tbRemark, Dt.Rows(0)("Remark").ToString)
-            lbSignRecv.Text = Dt.Rows(0)("SignRecv").ToString
+            BindToText(tbReference, Dt.Rows(0)("Reference").ToString)
+            BindToDropList(ddlTypeCIP, Dt.Rows(0)("TypeCIP").ToString)
+            ' lbSignRecv.Text = Dt.Rows(0)("SignRecv").ToString
+
+            
+            If Dt.Rows(0)("SignRecv").ToString = "" Then
+                'cbKtp.Checked = False
+                lbDokInv.Text = "Not Yet Uploaded - Max Upload 10Mb"
+                FubInv.Visible = True
+            Else
+                lbDokInv.Text = Dt.Rows(0)("SignRecv").ToString
+                'cbKtp.Checked = True
+                 FubInv.Visible = False
+            End If
+
             'fupSignRecv.Visible = False
         Catch ex As Exception
             Throw New Exception("fill text box header error : " + ex.ToString)
@@ -884,41 +1009,11 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
                 If CekDt() = False Then
                     Exit Sub
                 End If
-                'SqlString = "SELECT CategoryName FROM V_MsCategory WHERE CategoryCode = " + QuotedStr(ddlCategory.SelectedValue)
-                'strCategory = SQLExecuteScalar(SqlString, ViewState("DBConnection").ToString)
-
-                'SqlString = "SELECT SubCategoryName FROM GetMsSubCategory WHERE SubCategoryCode = " + QuotedStr(ddlSubCategory.SelectedValue)
-                'strSubCategory = SQLExecuteScalar(SqlString, ViewState("DBConnection").ToString)   'V_MsSubCategory
-
-                'SqlString = "SELECT UnitName FROM V_MsUnit WHERE UnitCode = " + QuotedStr(ddlUnit.SelectedValue)
-                'strUnit = SQLExecuteScalar(SqlString, ViewState("DBConnection").ToString)
-
-                'If CekExistData(ViewState("Dt"), "ProductCode", tbProductCode.Text) = True Then
-
-                'If CekExistData(ViewState("Dt"), "CategoryCode,SubCategoryCode,JobCode,MaterialCode", ddlCategory.SelectedValue + "|" + ddlSubCategory.SelectedValue + "|" + tbProductCode.Text + "|" + tbItemCode.Text) = True Then
-                '    lbStatus.Text = "Category (" + strCategory + "), Sub Category (" + strSubCategory + "), Job Name (" + tbProductName.Text + ") and Item Name (" + tbItemName.Text + ") has been already exist"
-                '    Exit Sub
-                'End If
+                
                 Dim dr As DataRow
-                dr = ViewState("Dt").NewRow
-                'dr("CategoryCode") = ddlCategory.SelectedValue
-                'dr("CategoryName") = strCategory
-                'dr("SubCategoryCode") = ddlSubCategory.SelectedValue
-                'dr("SubCategoryName") = strSubCategory
-                'dr("ItemNo") = GetNewItemNo(ViewState("Dt"))
+                dr = ViewState("Dt").NewRow               
                 dr("DokCode") = tbDocCode.Text
-                dr("DokName") = tbDocName.Text
-                'dr("DetailType") = ddlDetailType.SelectedValue
-                'dr("MaterialCode") = tbItemCode.Text
-                'dr("Description") = tbItemName.Text
-                'dr("SubcontCode") = tbSubcontCode.Text
-                'dr("SubcontName") = tbSubcontName.Text
-                'dr("LaborName") = UCase(tbLaborName.Text)
-                'dr("Qty") = tbQty.Text
-                'dr("Unit") = ddlUnit.SelectedValue
-                'dr("UnitName") = strUnit
-                'dr("Price") = tbPriceDt.Text
-                'dr("Amount") = tbQty.Text * tbPriceDt.Text
+                dr("DokName") = tbDocName.Text             
                 dr("Remark") = tbRemarkDt.Text
                 dr("FgActive") = "Y"
                 'dr("DoneClosing") = "N"
@@ -940,7 +1035,7 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
         Dim SQLString As String
         Dim I As Integer
         Try
-            System.Threading.Thread.Sleep(7000)
+            ' System.Threading.Thread.Sleep(7000)
             If Not (ViewState("StateHd") = "Insert" Or ViewState("StateHd") = "Edit") Then
                 Exit Sub
             Else
@@ -957,20 +1052,21 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
                 'ddlReport.SelectedValue
                 tbCode.Text = GetAutoNmbr("CTD", "Y", Year(tbDate.SelectedValue), Month(tbDate.SelectedValue), "", ViewState("DBConnection").ToString)
 
-                Dim path, namafile As String
-                path = Server.MapPath("~/Dokumen/") + tbCode.Text.Trim.Replace("/", "") + Format(Now, "-yyMMddHHmmss-") + fupSignRecv.FileName
-                namafile = tbCode.Text.Trim.Replace("/", "") + Format(Now, "-yyMMddHHmmss-") + fupSignRecv.FileName
+                ' Dim path, namafile As String
+                ' path = Server.MapPath("~/Dokumen/") + tbCode.Text.Trim.Replace("/", "") + Format(Now, "-yyMMddHHmmss-") + fupSignRecv.FileName
+                ' namafile = tbCode.Text.Trim.Replace("/", "") + Format(Now, "-yyMMddHHmmss-") + fupSignRecv.FileName
 
                 SQLString = "INSERT INTO PRCIPRecvDocHd(TransNmbr,TransDate,Status,ApplfileNo,ApplfileDate,HGBNo,KegiatanCode,AreaCode,PICName,BrokerName, " + _
-                "BrokerPhone,RelatedOffcName,RelatedOffcPhone,SignRecv,Remark,UserPrep,DatePrep,FgReport,FgActive) " + _
+                "BrokerPhone,RelatedOffcName,RelatedOffcPhone,Remark,UserPrep,DatePrep,FgReport,FgActive, Reference, TypeCIP) " + _
                 "SELECT " + QuotedStr(tbCode.Text) + ", " + QuotedStr(Format(tbDate.SelectedValue, "yyyy-MM-dd")) + ", 'H', " + _
                 QuotedStr(tbApplfileNo.Text) + ", " + QuotedStr(Format(tbApplfileDate.SelectedValue, "yyyy-MM-dd")) + ", " + _
                 QuotedStr(tbAlasHak.Text) + ", " + QuotedStr(tbKegiatanCode.Text) + ", " + QuotedStr(tbAreaCode.Text) + ", " + _
                 QuotedStr(tbPICName.Text) + ", " + QuotedStr(tbBrokerName.Text) + ", " + QuotedStr(tbBrokerPhone.Text) + ", " + _
-                QuotedStr(tbRelatedOffcName.Text) + ", " + QuotedStr(tbRelatedOffcPhone.Text) + ", " + QuotedStr(namafile) + ", " + _
-                QuotedStr(tbRemark.Text) + ", " + QuotedStr(ViewState("UserId").ToString) + ", GetDate()," + QuotedStr("0") + ", " + QuotedStr("Y")
+                QuotedStr(tbRelatedOffcName.Text) + ", " + QuotedStr(tbRelatedOffcPhone.Text) + ", " + _
+                QuotedStr(tbRemark.Text) + ", " + QuotedStr(ViewState("UserId").ToString) + ", GetDate()," + QuotedStr("0") + ", " + QuotedStr("Y") + ", " + _
+                QuotedStr(tbReference.Text) + ", " + QuotedStr(ddlTypeCIP.SelectedValue)
                 ViewState("TransNmbr") = tbCode.Text 'ddlUserType.SelectedValue, tbAttn.Text, tbTotalSelisih.Text.Replace(",", "")
-                fupSignRecv.SaveAs(path)
+                ' fupSignRecv.SaveAs(path)
             Else
                 ''ElseIf ViewState("StateHd") = "Edit" Then
                 'Dim cekStatus As String
@@ -980,18 +1076,19 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
                 '    Exit Sub
                 'End If
 
-                Dim path, namafile As String
-                path = Server.MapPath("~/Dokumen/") + tbCode.Text.Trim.Replace("/", "") + Format(Now, "-yyMMddHHmmss-") + fupSignRecv.FileName
-                namafile = tbCode.Text.Trim.Replace("/", "") + Format(Now, "-yyMMddHHmmss-") + fupSignRecv.FileName
+                ' Dim path, namafile As String
+                ' path = Server.MapPath("~/Dokumen/") + tbCode.Text.Trim.Replace("/", "") + Format(Now, "-yyMMddHHmmss-") + fupSignRecv.FileName
+                ' namafile = tbCode.Text.Trim.Replace("/", "") + Format(Now, "-yyMMddHHmmss-") + fupSignRecv.FileName
 
                 SQLString = "UPDATE PRCIPRecvDocHd SET TransDate = " + QuotedStr(Format(tbDate.SelectedValue, "yyyy-MM-dd")) + _
                 ", ApplfileNo =" + QuotedStr(tbApplfileNo.Text) + ", ApplfileDate = " + QuotedStr(Format(tbApplfileDate.SelectedValue, "yyyy-MM-dd")) + _
                 ", HGBNo = " + QuotedStr(tbAlasHak.Text) + ", KegiatanCode = " + QuotedStr(tbKegiatanCode.Text) + ", AreaCode = " + QuotedStr(tbAreaCode.Text) + _
                 ", PICName = " + QuotedStr(tbPICName.Text) + ", BrokerName = " + QuotedStr(tbBrokerName.Text) + ", BrokerPhone = " + QuotedStr(tbBrokerPhone.Text) + _
                 ", RelatedOffcName = " + QuotedStr(tbRelatedOffcName.Text) + ", RelatedOffcPhone = " + QuotedStr(tbRelatedOffcPhone.Text) + _
-                ", SignRecv = " + QuotedStr(namafile) + ", Remark = " + QuotedStr(tbRemark.Text) + ", UserPrep= " + QuotedStr(ViewState("UserId").ToString) + ", DatePrep = GetDate()" + _
+                ", Remark = " + QuotedStr(tbRemark.Text) + ", UserPrep= " + QuotedStr(ViewState("UserId").ToString) + ", DatePrep = GetDate()" + _
+                ", Reference = " + QuotedStr(tbReference.text) + ", TypeCIP = " + QuotedStr(ddlTypeCIP.SelectedValue) + _
                 " WHERE TransNmbr = " + QuotedStr(tbCode.Text) 'ddlUserType.SelectedValue, tbAttn.Text, tbTotalSelisih.Text.Replace(",", "")
-                fupSignRecv.SaveAs(path)
+                ' fupSignRecv.SaveAs(path)
             End If
             SQLString = ChangeQuoteNull(SQLString)
             SQLString = SQLString.Replace("'1900-01-01'", "NULL")
@@ -1007,6 +1104,14 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
                 Row(I)("TransNmbr") = tbCode.Text
                 Row(I).EndEdit()
             Next
+
+            Row = ViewState("Dt3").Select("TransNmbr IS NULL")
+            For I = 0 To Row.Length - 1
+                Row(I).BeginEdit()
+                Row(I)("TransNmbr") = tbCode.Text
+                Row(I).EndEdit()
+            Next
+
 
             'save dt
             'SQLString = "DELETE FROM CNTCostPlanDt WHERE TransNmbr = " + QuotedStr(tbProjectCode.Text) + " AND JobCode = " + QuotedStr(tbProductCode.Text) + _
@@ -1025,12 +1130,6 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
             'da.DeleteCommand = dbcommandBuilder.GetDeleteCommand
             'da.UpdateCommand = dbcommandBuilder.GetUpdateCommand
 
-            'SQLString = "INSERT INTO CNTCostPlanDt(TransNmbr,ItemNo,JobCode,Qty,Unit,Price,Amount,Remark,FgActive)" + _
-            '"SELECT " + QuotedStr(tbCode.Text) + ", " + QuotedStr(I) + "," + QuotedStr(tbProductCode.Text) + ", " + QuotedStr(tbQty.Text) + "," + QuotedStr(ddlUnit.SelectedValue) + ", " + _
-            'QuotedStr(tbPriceDt.Text) + "," + QuotedStr(tbQty.Text * tbPriceDt.Text) + ", " + QuotedStr(tbRemarkDt.Text) + "," + QuotedStr("Y")
-            'ViewState("TransNmbr") = tbCode.Text
-
-            'Dim param As SqlParameter
             '' Create the UpdateCommand.
             SQLString = "UPDATE PRCIPRecvDocDt SET DokCode = @DokCode, Remark = @Remark " + _
             " FROM PRCIPRecvDocDt WHERE TransNmbr = '" & ViewState("TransNmbr") & "'"
@@ -1039,24 +1138,13 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
             ' Define output parameters.
             Update_Command.Parameters.Add("@DokCode", SqlDbType.VarChar, 12, "DokCode")
             Update_Command.Parameters.Add("@Remark", SqlDbType.VarChar, 255, "Remark")
-            ' Define intput (WHERE) parameters.
-            'param = Update_Command.Parameters.Add("@OldJobCode", SqlDbType.VarChar, 5, "JobCode")
-            'param.SourceVersion = DataRowVersion.Original
-            'param = Update_Command.Parameters.Add("@OldMaterialCode", SqlDbType.VarChar, 30, "MaterialCode")
-            'param.SourceVersion = DataRowVersion.Original
-            ' Attach the update command to the DataAdapter.
+            '
             da.UpdateCommand = Update_Command
 
             '' Create the DeleteCommand.
             SQLString = "DELETE FROM PRCIPRecvDocDt WHERE TransNmbr = '" & ViewState("TransNmbr") & "'"
             Dim Delete_Command = New SqlCommand(SQLString, con) 'ViewState("Reference")
-            ' Add the parameters for the DeleteCommand.
-            'param = Delete_Command.Parameters.Add("@TransNmbr", SqlDbType.VarChar, 20, "TransNmbr")
-            'param.SourceVersion = DataRowVersion.Original
-            'param = Delete_Command.Parameters.Add("@JobCode", SqlDbType.VarChar, 5, "JobCode")
-            'param.SourceVersion = DataRowVersion.Original
-            'param = Delete_Command.Parameters.Add("@MaterialCode", SqlDbType.VarChar, 30, "MaterialCode")
-            'param.SourceVersion = DataRowVersion.Original
+          
             da.DeleteCommand = Delete_Command
 
             Dim Dt As New DataTable("PRCIPRecvDocDt")
@@ -1064,6 +1152,25 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
             da.Update(Dt)
             Dt.AcceptChanges()
             ViewState("Dt") = Dt
+
+            'save dt3
+            cmdSql = New SqlCommand("SELECT TransNmbr, ItemNo, Reference FROM PRCIPRecvDocDt2 WHERE TransNmbr = " + QuotedStr(ViewState("TransNmbr")), con)
+            da = New SqlDataAdapter(cmdSql)
+            dbcommandBuilder = New SqlCommandBuilder(da)
+            da.InsertCommand = dbcommandBuilder.GetInsertCommand
+            da.DeleteCommand = dbcommandBuilder.GetDeleteCommand
+            da.UpdateCommand = dbcommandBuilder.GetUpdateCommand
+
+           
+
+            Dim Dt3 As New DataTable("PRCIPRecvDocDt2")
+
+            Dt3 = ViewState("Dt3")
+            da.Update(Dt3)
+            Dt3.AcceptChanges()
+            ViewState("Dt3") = Dt3
+
+            
         Catch ex As Exception
             Throw New Exception("Save All Data Error : " + ex.ToString)
         End Try
@@ -1072,13 +1179,46 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
     Protected Sub btnSaveTrans_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSaveTrans.Click
         Dim CurrFilter, Value As String
         Try
+
+        Dim confirmValue As String = Request.Form("confirm_value")
+            If confirmValue = "Yes" Then
+
             If CekHd() = False Then
                 Exit Sub
             End If
-            'If GetCountRecord(ViewState("Dt")) = 0 Then
-            '    lbStatus.Text = MessageDlg("Detail must have at least 1 record")
-            '    Exit Sub
-            'End If
+            If GetCountRecord(ViewState("Dt")) = 0 Then
+                lbStatus.Text = MessageDlg("Detail must have at least 1 record")
+                Exit Sub
+            End If
+            For Each dr In ViewState("Dt").Rows
+                If CekDt(dr) = False Then
+                    Exit Sub
+                End If
+            Next
+
+             SaveAll()
+                ModifyInput2(False, pnlInput, pnlDt, GridDt)
+                btnGoEdit.Visible = True
+                Menu2.Items.Item(1).Enabled = True
+                MultiView2.ActiveViewIndex = 1
+                Menu2.Items.Item(1).Selected = True
+                'btnGoEdit.Visible = True
+                ' btnGetBAP.Visible = False
+                GridDt.Columns(0).Visible = False
+
+            Else
+            If CekHd() = False Then
+                Exit Sub
+            End If
+            If GetCountRecord(ViewState("Dt")) = 0 Then
+                lbStatus.Text = MessageDlg("Detail must have at least 1 record")
+                Exit Sub
+            End If
+            For Each dr In ViewState("Dt").Rows
+                If CekDt(dr) = False Then
+                    Exit Sub
+                End If
+            Next
 
             SaveAll()
             MovePanel(pnlInput, PnlHd)
@@ -1089,10 +1229,67 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
             btnSearch_Click(Nothing, Nothing)
             tbFilter.Text = CurrFilter
             ddlField.SelectedValue = Value
+            End If
+            ' If CekHd() = False Then
+            '     Exit Sub
+            ' End If
+            ' 'If GetCountRecord(ViewState("Dt")) = 0 Then
+            ' '    lbStatus.Text = MessageDlg("Detail must have at least 1 record")
+            ' '    Exit Sub
+            ' 'End If
+
+            ' SaveAll()
+            ' MovePanel(pnlInput, PnlHd)
+            ' CurrFilter = tbFilter.Text
+            ' Value = ddlField.SelectedValue
+            ' tbFilter.Text = tbCode.Text
+            ' ddlField.SelectedValue = "TransNmbr"
+            ' btnSearch_Click(Nothing, Nothing)
+            ' tbFilter.Text = CurrFilter
+            ' ddlField.SelectedValue = Value
         Catch ex As Exception
             lbStatus.Text = "btnSaveTrans Error : " + ex.ToString
         End Try
     End Sub
+    
+
+    
+        Protected Sub btnGoEdit_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnGoEdit.Click
+        Dim CurrFilter, Value As String
+        Try
+            MovePanel(pnlInput, PnlHd)
+            CurrFilter = tbFilter.Text
+            Value = ddlField.SelectedValue
+            tbFilter.Text = tbCode.Text
+            ddlField.SelectedValue = "TransNmbr"
+            btnSearch_Click(Nothing, Nothing)
+            tbFilter.Text = CurrFilter
+            ddlField.SelectedValue = Value
+            btnGoEdit.Visible = False
+        Catch ex As Exception
+            lbStatus.Text = "Btn Add Error : " + ex.ToString
+        End Try
+    End Sub
+    
+    Protected Sub Menu2_MenuItemClick(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.MenuEventArgs) Handles Menu2.MenuItemClick
+        MultiView2.ActiveViewIndex = Int32.Parse(e.Item.Value)
+        If Menu2.Items.Item(0).Selected = True Then
+            If ViewState("StateHd") = "Insert" Or ViewState("StateHd") = "Edit" Then
+                'btnGoEdit.Visible = False
+                'btnGetBAP.Visible = True
+                GridDt.Columns(0).Visible = True
+            End If
+        End If
+        If Menu2.Items.Item(1).Selected = True Then
+            If ViewState("StateHd") = "Insert" Or ViewState("StateHd") = "Edit" Then
+                'btnGoEdit.Visible = True
+                'btnGetBAP.Visible = False
+                GridDt.Columns(0).Visible = False
+            End If
+
+        End If
+    End Sub
+
 
     Protected Sub BtnAdd_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles BtnAdd.Click, btnAdd2.Click
         Try
@@ -1100,6 +1297,8 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
             MovePanel(PnlHd, pnlInput)
             ModifyInput2(True, pnlInput, PnlDt, GridDt)
             newTrans()
+            MultiView2.ActiveViewIndex = 0
+            Menu2.Items.Item(0).Selected = True
             btnHome.Visible = False
             fupSignRecv.Visible = True
             'lbSignRecv.Visible = False
@@ -1144,6 +1343,7 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
             PnlDt.Visible = True
             btnDeleteDoc.Visible = False
             BindDataDt("")
+            BindDataDt3("")
         Catch ex As Exception
             Throw New Exception("new Record Error " + ex.ToString)
         End Try
@@ -1197,16 +1397,30 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
                     GridDt.PageIndex = 0
                     FillTextBoxHd(ViewState("TransNmbr"))
                     BindDataDt(ViewState("TransNmbr"))
-                    ViewState("StateHd") = "View"
+                    BindDataDt3(ViewState("TransNmbr"))                    
+                    ViewState("StateHd")   = "View"
                     ModifyInput2(False, pnlInput, PnlDt, GridDt)
+                    ModifyInput2(False, pnlInput, pnlDt3, GridDt3)                   
+
+                    MultiView1.ActiveViewIndex = 0
+                    Menu1.Items.Item(0).Selected = True
                     btnHome.Visible = True
+                     MultiView2.ActiveViewIndex = 0
+                    Menu2.Items.Item(0).Selected = True
+                    If GVR.Cells(3).Text = "D" Then
+                        Menu2.Items.Item(1).Enabled = False
+                    Else
+                        Menu2.Items.Item(1).Enabled = True
+                    End If
                     ViewState("Status") = GVR.Cells(3).Text
-                    fupSignRecv.Visible = True
-                    fupSignRecv.Enabled = True
-                    lbSignRecv.Visible = True
-                    lbSignRecv.Enabled = True
-                    btnDeleteDoc.Visible = True
-                    btnSaveTrans.Visible = True
+                    fupSignRecv.Visible = False
+                    fupSignRecv.Enabled = False
+                    lbSignRecv.Visible = False
+                    lbSignRecv.Enabled = False
+                    btnDeleteDoc.Visible = False
+                    btnSaveTrans.Visible = False
+
+
                 ElseIf DDL.SelectedValue = "Edit" Then
                     If GVR.Cells(3).Text = "H" Or GVR.Cells(3).Text = "G" Then
                         CekMenu = CheckMenuLevel("Edit", ViewState("MenuLevel").Rows(0))
@@ -1219,12 +1433,20 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
                         GridDt.PageIndex = 0
                         BindDataDt(ViewState("TransNmbr"))
                         FillTextBoxHd(ViewState("TransNmbr"))
+                        BindDataDt3(ViewState("TransNmbr"))
                         ViewState("StateHd") = "Edit"
                         ModifyInput2(True, pnlInput, PnlDt, GridDt)
-                        btnHome.Visible = False
-                        fupSignRecv.Visible = True
-                        lbSignRecv.Visible = True
-                        btnDeleteDoc.Visible = True
+                         ModifyInput2(True, pnlInput, pnlDt3, GridDt3)
+                         btnAddDt3ke2.Visible = False
+                         btnAddDt3.Visible  = False
+                        MultiView1.ActiveViewIndex = 0
+                        Menu1.Items.Item(0).Selected = True
+                        btnHome.Visible = True
+                        
+                        fupSignRecv.Visible = False
+                        lbSignRecv.Visible = False
+                        btnDeleteDoc.Visible = False
+                        btnSaveTrans.Visible = True
                         EnableHd(GetCountRecord(ViewState("Dt")) = 0)
                     ElseIf GVR.Cells(3).Text = "P" Then
                         CekMenu = CheckMenuLevel("Edit", ViewState("MenuLevel").Rows(0))
@@ -1236,16 +1458,18 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
                         ViewState("TransNmbr") = GVR.Cells(2).Text
                         GridDt.PageIndex = 0
                         BindDataDt(ViewState("TransNmbr"))
+                        BindDataDt3(ViewState("TransNmbr"))
                         FillTextBoxHd(ViewState("TransNmbr"))
                         ViewState("StateHd") = "Edit"
                         ModifyInput2(False, pnlInput, PnlDt, GridDt)
+                         ModifyInput2(False, pnlInput, pnlDt3, GridDt3)
                         btnHome.Visible = True
                         btnSaveTrans.Visible = True
                         'btnSaveAll.Visible = True
-                        fupSignRecv.Visible = True
-                        lbSignRecv.Visible = True
-                        lbSignRecv.Enabled = True
-                        btnDeleteDoc.Visible = True
+                        fupSignRecv.Visible = False
+                        lbSignRecv.Visible = False
+                        lbSignRecv.Enabled = False
+                        btnDeleteDoc.Visible = False
                         EnableHd(GetCountRecord(ViewState("Dt")) = 0)
                         'Else
                         '    lbStatus.Text = MessageDlg("Data must be Hold or Get Approval to edit")
@@ -1326,6 +1550,19 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
             EnableHd(GetCountRecord(ViewState("Dt")) = 0)
         Catch ex As Exception
             lbStatus.Text = "Grid Dt Row Deleting Error : " + ex.ToString
+        End Try
+    End Sub
+
+     Protected Sub GridDt3_RowDeleting(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewDeleteEventArgs) Handles GridDt3.RowDeleting
+        Try
+            Dim dr() As DataRow
+            Dim GVR As GridViewRow
+            GVR = GridDt3.Rows(e.RowIndex)
+            dr = ViewState("Dt3").Select("Reference = " + QuotedStr(GVR.Cells(2).Text))
+            dr(0).Delete()
+            BindGridDt(ViewState("Dt3"), GridDt3)
+        Catch ex As Exception
+            lbStatus.Text = "Grid Dt 3 Row Deleting Error : " + ex.ToString
         End Try
     End Sub
 
@@ -1542,66 +1779,7 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
         End Try
     End Sub
 
-    'Protected Sub btnMaterial_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnMaterial.Click
-    '    Dim ResultField As String
-    '    Try
-    '        Session("filter") = "SELECT DetailType, ItemCode, ItemName, Unit, Price FROM V_CNTMsMaterialCost WHERE DetailType = " + QuotedStr(ddlDetailType.SelectedValue)
-    '        'Fg_Active = 'Y' AND ProductCategory = 'Material' "
-    '        ResultField = "DetailType, ItemCode, ItemName, Unit, Price"
-    '        ViewState("Sender") = "btnMaterial"
-    '        Session("Column") = ResultField.Split(",")
-    '        Session("DBConnection") = ViewState("DBConnection")
-    '        AttachScript("OpenSearchDlg();", Page, Me.GetType())
-    '    Catch ex As Exception
-    '        lbStatus.Text = "btnMaterial_Click Error : " + ex.ToString
-    '    End Try
-    'End Sub
-
-    'Protected Sub btnSubcontractor_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSubcontractor.Click
-    '    Dim ResultField As String
-    '    Try
-    '        Session("filter") = "SELECT SubcontCode, SubcontName FROM MsSubcontractor WHERE FgActive = 'Y' "
-    '        ResultField = "SubcontCode, SubcontName"
-    '        ViewState("Sender") = "btnSubcontractor"
-    '        Session("Column") = ResultField.Split(",")
-    '        Session("DBConnection") = ViewState("DBConnection")
-    '        AttachScript("OpenSearchDlg();", Page, Me.GetType())
-    '    Catch ex As Exception
-    '        lbStatus.Text = "btnSubcontractor_Click Error : " + ex.ToString
-    '    End Try
-    'End Sub
-
-    'Protected Sub ddlCategory_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ddlCategory.SelectedIndexChanged
-    '    'Dim SQLString, strCode As String
-    '    Try
-    '        'SQLString = "SELECT CategoryCode FROM V_MsCategory WHERE CategoryCode = " + QuotedStr(ddlCategory.SelectedValue)
-    '        'strCode = SQLExecuteScalar(SQLString, ViewState("DBConnection").ToString)
-    '        'lbGetCategoryCode.Text = strCode 'ddlCategory.SelectedItem.Value
-    '        '--------------------------------------------------------------------------------------'
-    '        'Dim dt As DataTable
-    '        'Dim ConStr As String = System.ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString
-    '        'Dim conStr As String = "Data Source=" + System.Configuration.ConfigurationManager.AppSettings.Get("ServerIP") + ";Initial Catalog=Contractor;User ID=sa"
-    '        Dim strSQL = "S_GetMsSubCategory"
-    '        Dim conStr As String = ViewState("DBConnection").ToString
-    '        Using con As New SqlConnection(conStr)
-    '            con.Open()
-    '            Using cmd As New SqlCommand(strSQL, con)
-    '                cmd.Connection = con
-    '                cmd.CommandType = CommandType.StoredProcedure
-    '                'cmd.Parameters.AddWithValue("@CategoryCode", ddlCategory.SelectedValue)
-    '                cmd.ExecuteNonQuery()
-    '                'ddlSubCategory.DataSource = cmd.ExecuteReader()
-    '                'ddlSubCategory.DataTextField = "SubCategoryName"
-    '                'ddlSubCategory.DataValueField = "SubCategoryCode"
-    '                'ddlSubCategory.DataBind()
-    '                con.Close()
-    '            End Using
-    '        End Using
-    '        '--------------------------------------------------------------------------------------'
-    '    Catch ex As Exception
-    '        lbStatus.Text = "ddlCategory_SelectedIndexChanged Error : " + ex.ToString
-    '    End Try
-    'End Sub
+    
 
     Private Sub BindGridDetilDocument()
         'Dim dt As New DataTable()
@@ -1629,44 +1807,6 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
         End Using
     End Sub
 
-    'Protected Sub GetSelectedRecords(ByVal sender As Object, ByVal e As EventArgs) Handles btnApply.Click
-    'Dim dt As New DataTable()
-    'Dim dr As DataRow
-    'Dim RowData As DataRow()
-    ''dt.Columns.AddRange(New DataColumn(1) {New DataColumn("DokCode"), New DataColumn("DokName")})
-    'For Each Row As GridViewRow In GVDocument.Rows
-    '    If Row.RowType = DataControlRowType.DataRow Then
-    '        Dim chkRow As CheckBox = TryCast(Row.Cells(0).FindControl("chkRow"), CheckBox)
-    '        If chkRow.Checked Then
-    '            'Dim sCode As String = row.Cells(1).Text  'row.Cells(2).Text '
-    '            'Dim sName As String = TryCast(row.Cells(2).FindControl("lblDokCode"), Label).Text
-    '            'dt.Rows.Add(sCode, sName)
-    '            'dt.Rows.Add("D0002", "Kartu Keluarga (KK)")
-    '            'MessageDlg("Code : " + row.Cells(1).Text)
-
-    '            'For Each RowData As GridViewRow In GridDt.Rows
-    '            'RowData.Cells(2).Text = row.Cells(1).Text
-    '            'RowData.Cells(3).Text = row.Cells(2).Text
-    '            'Next
-    '            'GridDt.SelectedRow.Cells(1).Text = row.Cells(1).Text
-    '            'GridDt.SelectedRow.Cells(3).Text = row.Cells(2).Text
-    '            RowData = ViewState("Dt").Select("TransNmbr = " + QuotedStr(tbCode.Text))
-    '            dr = ViewState("Dt").NewRow
-    '            dr("ItemNo") = 1 'drResult("ItemNo")
-    '            dr("DokCode") = Row.Cells(1).Text
-    '            dr("DocName") = Row.Cells(2).Text
-    '            dr("Remark") = "" 'drResult("Remark")
-    '            dr("FgActive") = "Y"
-    '            ViewState("Dt").Rows.Add(dr)
-    '        End If
-    '    End If
-    '    'GridDt.DataSource = dt
-    '    'GridDt.DataBind()
-    'Next
-    'BindGridDt(ViewState("Dt"), GridDt)
-    'GridDt.DataSource = dt
-    'GridDt.DataBind()
-    'End Sub
 
     Protected Sub GVDocument_RowDataBound(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewRowEventArgs) Handles GVDocument.RowDataBound
         If e.Row.RowType = DataControlRowType.DataRow Then
@@ -1726,57 +1866,6 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
         End Try
     End Sub
 
-    'Protected Sub btnSignRecv_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSignRecv.Click
-    '    Try
-    '        Dim dr As DataTable
-    '        dr = BindDataTransaction(GetStringHd, "TransNmbr = " + QuotedStr(tbCode.Text), ViewState("DBConnection").ToString)
-
-    '        If dr.Rows.Count = 0 Then
-    '            lbStatus.Text = MessageDlg("save this transaction first, to upload the dokumen")
-    '            Exit Sub
-    '        End If
-
-    '        If fupSignRecv.FileBytes.Length > 3500000 Then
-    '            lbStatus.Text = MessageDlg("Ukuran File Terlalu Besar. !! Max Upload 3.5Mb")
-    '            Exit Sub
-    '        End If
-
-    '        If Right(fupSignRecv.FileName, 4) <> ".pdf" Then
-    '            lbStatus.Text = MessageDlg("Upload Pdf File Only !")
-    '            Exit Sub
-    '        End If
-
-    '        Dim path2, namafile2, SQLString1 As String
-    '        Dim dt As DataTable
-
-    '        path2 = Server.MapPath("~/ImportExcel/") + tbCode.Text.Trim.Replace("/", "") + Format(Now, "-yyMMddHHmmss-") + fupSignRecv.FileName
-    '        namafile2 = tbCode.Text.Trim.Replace("/", "") + Format(Now, "-yyMMddHHmmss-") + fupSignRecv.FileName
-
-    '        SQLString1 = "UPDATE PRCIPRecvDocHd SET SignRecv = " + QuotedStr(namafile2) + " WHERE TransNmbr = " + QuotedStr(tbCode.Text)
-    '        fupSignRecv.SaveAs(path2)
-    '        SQLExecuteNonQuery(SQLString1, ViewState("DBConnection").ToString)
-
-    '        dt = BindDataTransaction(GetStringHd, "TransNmbr = " + QuotedStr(tbCode.Text), ViewState("DBConnection").ToString)
-    '        lbSignRecv.Text = dt.Rows(0)("SignRecv").ToString
-    '        lblmsgSignRecv.Visible = True
-    '        fupSignRecv.Visible = False
-
-    '    Catch ex As Exception
-    '        lbStatus.Text = "Menu Item Click Error : " + ex.ToString
-    '    End Try
-    'End Sub
-
-    'Protected Sub btnDeleteAll_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDeleteAll.Click
-    '    Try
-    '        Dim dr() As DataRow
-    '        dr = ViewState("Dt").Select()
-    '        dr(0).Delete()
-    '        BindGridDt(ViewState("Dt"), GridDt)
-    '        EnableHd(GetCountRecord(ViewState("Dt")) = 0)
-    '    Catch ex As Exception
-    '        lbStatus.Text = "Deleting All Item Error : " + ex.ToString
-    '    End Try
-    'End Sub
 
     Protected Sub lbKegiatan_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lbKegiatan.Click
         Try
@@ -1803,5 +1892,23 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
         ModifyInput2(False, pnlInput, PnlDt, GridDt)
         btnHome.Visible = True
         btnSaveTrans.Visible = True
+    End Sub
+
+    Protected Sub btnGetReference_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnGetReference.Click
+        Dim ResultField, CriteriaField As String
+        Try
+            Session("filter") = "SELECT DISTINCT Reference,TransDate,NoDokumen,JenisDoc,Luas,SellCode,SellName,Nilai,PBBNo,Remark FROM S_GetReferenceALL" 'WHERE User_Type = " + QuotedStr(ddlUserType.SelectedValue)
+           ' Session("filter") = "EXEC S_GetReferenceALL"
+            ResultField = "Reference, TransDate, PBBNo, JenisDoc, Luas, Remark"
+            CriteriaField = "Reference, TransDate, PBBNo, JenisDoc, Luas, Remark"
+            ViewState("CriteriaField") = CriteriaField.Split(",")
+            Session("Column") = ResultField.Split(",")
+            ViewState("Sender") = "btnReference"
+            Session("DBConnection") = ViewState("DBConnection")
+            'AttachScript("SearchMultiDlg();", Page, Me.GetType())
+            AttachScript("OpenSearchMultiDlg();", Page, Me.GetType())
+        Catch ex As Exception
+            lbStatus.Text = "BtnRecvDoc Click Error : " + ex.ToString
+        End Try
     End Sub
 End Class

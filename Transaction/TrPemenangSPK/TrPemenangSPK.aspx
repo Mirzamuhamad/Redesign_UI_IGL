@@ -154,6 +154,7 @@
     </script>
     
     <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />
+ <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>     
     <form id="form1" runat="server">    
@@ -572,8 +573,8 @@
     <asp:Label runat ="server" ID="lbStatus" ForeColor="Red"/>
     
     <div class="loading" align="center">
-      Loading. Please wait.<br />
-      <br />
+      <!-- Loading. Please wait.<br />
+      <br /> -->
        <img src="../../Image/loader.gif" alt="" />
     </div>
    

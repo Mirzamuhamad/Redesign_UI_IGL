@@ -5,6 +5,9 @@ Partial Class _Default
     Inherits System.Web.UI.Page
     Dim ConnString As String = System.Configuration.ConfigurationManager.AppSettings.Get("DBConnection") + ";User ID=userlicense;Password=2580456;Connection Timeout=600"
 
+    'Server Live
+    'Dim ConnString As String = System.Configuration.ConfigurationManager.AppSettings.Get("DBConnection") + ";User ID=DB9758_userlicense;Password=XEyb*sT3Ek;Connection Timeout=600"
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             If Not IsPostBack Then
@@ -88,8 +91,9 @@ Partial Class _Default
                     ServerIP = System.Configuration.ConfigurationManager.AppSettings.Get("ServerIP")
 
                     'UserProperti = SQLExecuteQuery("EXEC S_SAUserProperti '" + dbUser.Text.Trim + "', '" + ServerIP.Trim + "', '" + ddlServer.Text + "'", ConnString).Tables(0).Rows(0)
-                    UserProperti = SQLExecuteQuery("EXEC S_SAUserProperti '" + dbUser.Text.Trim + "', '" + ServerIP.Trim + "', '" + ddlServer.SelectedValue + "'", ConnString).Tables(0).Rows(0)
+                    UserProperti = SQLExecuteQuery("EXEC S_SAUserProperti '" + dbUser.Text.Trim + "', '" + ServerIP.Trim + "', '" + ddlServer.SelectedItem.Text + "'", ConnString).Tables(0).Rows(0)
                     Session(KeyID) = UserProperti
+                    
 
                     ExpireDb = TrimStr(Session(KeyID)("CompanyDB").ToString)
                     If ExpireDb = "" Then

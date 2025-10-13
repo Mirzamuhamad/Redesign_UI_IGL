@@ -13,12 +13,19 @@ Partial Class SuppInv
 
     Protected con As New SqlConnection
     Protected da As New SqlDataAdapter
-    Protected GetStringHd As String = "Select DISTINCT TransNmbr, Nmbr, Status, TransDate, FgReport, Supplier_Code, Supplier_Name, Supplier, Attn, PONo, Term, Term_Name, DueDate, SuppInvNo, ContraBonNo, ContraBonDate, PPnNo, PPnDate, PriceIncludePPn, PPnRate, Remark, Currency,ForexRate, BaseForex, DiscForex, PPn, PPnForex, PPhForex, OtherForex, TotalForex, DPForex, PPNHome From V_FNSuppInvHd WHERE SUBSTRING (TransNmbr,5,3)='SI/' "
+    Protected GetStringHd As String = "SELECT DISTINCT TransNmbr, Nmbr, Status, TransDate, FgReport, Supplier_Code, Supplier_Name, Supplier, Attn, PONo, Term, Term_Name, DueDate, SuppInvNo, ContraBonNo, ContraBonDate, PPnNo, PPnDate, PriceIncludePPn, PPnRate, Remark, Currency,ForexRate, BaseForex, DiscForex, PPn, PPnForex, PPhForex, OtherForex, TotalForex, DPForex, PPNHome FROM V_FNSuppInvHd WHERE SUBSTRING (TransNmbr,5,3)='SI/' "
+
+    Private Function GetStringDt(ByVal Nmbr As String) As String
+        Return "SELECT * FROM V_FNSuppInvDt WHERE TransNmbr = " + QuotedStr(Nmbr)
+    End Function
+
+    Private Function GetStringDP(ByVal Nmbr As String) As String
+        Return "SELECT * FROM V_FNSuppInvDP WHERE TransNmbr = " + QuotedStr(Nmbr)
+    End Function
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
         If Session(Request.QueryString("KeyId")) Is Nothing Then
-        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
             Response.Redirect("~\Sesi.aspx")
         End If
         Dim CurrFilter, Value As String
@@ -47,7 +54,6 @@ Partial Class SuppInv
                         ddlField.SelectedValue = Value
                     End If
                 End If
-
             End If
             lbStatus.Text = ""
             If Not Session("FgAdvanceFilter") Is Nothing Then
@@ -63,6 +69,17 @@ Partial Class SuppInv
                     BindToDropList(ddlCurr, Session("Result")(2).ToString)
                     BindToText(tbAttn, Session("Result")(3).ToString)
                     BindToDropList(ddlTerm, Session("Result")(4).ToString)
+                    If Session("Result")(5).ToString = "Y" Then
+                        Dim sql As String = "EXEC S_FindPPnValue '" + Format(tbDate.SelectedValue, "yyyy") + Format(tbDate.SelectedValue, "MM") + Format(tbDate.SelectedValue, "dd") + "'"
+                        Dim cPPN As String = SQLExecuteScalar(sql, ViewState("DBConnection").ToString)
+                        If (Year(tbDate.Text) <= 2022) And (Month(tbDate.Text) <= 3) Then
+                            tbPPN.Text = "10"
+                        Else
+                            tbPPN.Text = cPPN
+                        End If
+                    Else
+                        tbPPN.Text = "0"
+                    End If
                     ' If rbAgingDate.SelectedIndex = 0 Then
                     tbDueDate.SelectedDate = FindDueDate(ddlTerm.SelectedValue, tbDate.SelectedDate, ViewState("DBConnection").ToString)
                     ' Else
@@ -76,8 +93,6 @@ Partial Class SuppInv
                     'Else
                     '    tbPPN.Text = "0"
                     'End If
-
-
                 End If
 
                 If ViewState("Sender") = "btnDPNo" Then
@@ -172,7 +187,6 @@ Partial Class SuppInv
                     For Each drResult In Session("Result").Rows
                         'insert
                         If FirstTime Then
-
                             BindToText(tbSuppCode, drResult("Supplier_Code").ToString)
                             BindToText(tbSuppName, drResult("Supplier_Name").ToString)
                             tbSuppCode_TextChanged(Nothing, Nothing)
@@ -180,8 +194,6 @@ Partial Class SuppInv
                             BindToDropList(ddlFgPriceInclude, drResult("FgPriceIncludePPN"))
                             BindToText(tbPPN, drResult("PPn"))
                             BindToText(tbRemark, drResult("RemarkHd"))
-
-
                         End If
 
                         If CekExistData(ViewState("Dt"), "ReffType,ReffNmbr,Product,CostCtr", drResult("RR_Type") + "|" + drResult("RR_No") + "|" + drResult("Product_Code") + "|" + drResult("Cost_Ctr")) = False Then
@@ -238,6 +250,7 @@ Partial Class SuppInv
             lbStatus.Text = "Page Load Error : " + ex.ToString
         End Try
     End Sub
+
     Protected Sub InitProperty()
         ViewState("DBConnection") = Session(Request.QueryString("KeyId"))("DBConnection")
         ViewState("UserId") = Session(Request.QueryString("KeyId"))("UserId")
@@ -257,7 +270,9 @@ Partial Class SuppInv
         ViewState("DigitHome") = Session(Request.QueryString("KeyId"))("DigitHome")
         ViewState("DigitPercent") = Session(Request.QueryString("KeyId"))("DigitPercent")
         ViewState("ServerDate") = Session(Request.QueryString("KeyId"))("ServerDate")
+        ViewState("PPN") = SQLExecuteScalar("SELECT PPN FROM MsPPN WHERE FgActive='Y'", ViewState("DBConnection").ToString)
     End Sub
+
     Private Sub SetInit()
         FillRange(ddlRange)
         ViewState("SortExpression") = Nothing
@@ -373,6 +388,7 @@ Partial Class SuppInv
             Throw New Exception("GenerateDP Error : " + ex.ToString)
         End Try
     End Sub
+
     Private Sub BindData(Optional ByVal AdvanceFilter As String = "")
         Dim DT As DataTable
         Dim DV As DataView
@@ -414,14 +430,6 @@ Partial Class SuppInv
             Throw New Exception("Bind Data Error : " + ex.ToString)
         End Try
     End Sub
-
-    Private Function GetStringDt(ByVal Nmbr As String) As String
-        Return "SELECT * From V_FNSuppInvDt WHERE TransNmbr = " + QuotedStr(Nmbr)
-    End Function
-
-    Private Function GetStringDP(ByVal Nmbr As String) As String
-        Return "SELECT * From V_FNSuppInvDP WHERE TransNmbr = " + QuotedStr(Nmbr)
-    End Function
 
     Protected Sub btnSearch_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSearch.Click
         Try
@@ -483,6 +491,7 @@ Partial Class SuppInv
             'ddlGrossUpPPh.Enabled = State
             'tbPONo.Enabled = State
             ddlCurr.Enabled = State
+            tbPPN.Enabled = False
         Catch ex As Exception
             Throw New Exception("Enable Hd Error " + ex.ToString)
         End Try
@@ -846,7 +855,6 @@ Partial Class SuppInv
             Next
 
             SaveAll()
-
             MovePanel(pnlInput, PnlHd)
             CurrFilter = tbFilter.Text
             Value = ddlField.SelectedValue
@@ -920,7 +928,7 @@ Partial Class SuppInv
             tbBaseForex.Text = "0"
             'tbDisc.Text = "0"
             tbDiscForex.Text = "0"
-            tbPPN.Text = "11"
+            tbPPN.Text = ViewState("PPN") '"11"
             tbPPNForex.Text = "0"
             tbOtherForex.Text = "0"
             tbTotalForex.Text = "0"
@@ -932,6 +940,7 @@ Partial Class SuppInv
             Throw New Exception("Clear Hd Error " + ex.ToString)
         End Try
     End Sub
+
     Private Sub Cleardt()
         Try
             tbProductCode.Text = ""
@@ -1041,13 +1050,18 @@ Partial Class SuppInv
                 BindToText(tbAttn, Dr("Contact_Person"))
                 BindToDropList(ddlTerm, Dr("Term"))
                 tbDueDate.SelectedDate = FindDueDate(ddlTerm.SelectedValue, tbDate.SelectedDate, ViewState("DBConnection").ToString)
-
-                'If Dr("Reported") = "Y" Then
-                '    tbPPN.Text = "10"
-                'Else
-                '    tbPPN.Text = "0"
-                'End If
-
+                If Dr("Reported") = "Y" Then
+                    'tbPPN.Text = "10"
+                    Dim sql As String = "EXEC S_FindPPnValue '" + Format(tbDate.SelectedValue, "yyyy") + Format(tbDate.SelectedValue, "MM") + Format(tbDate.SelectedValue, "dd") + "'"
+                    Dim cPPN As String = SQLExecuteScalar(sql, ViewState("DBConnection").ToString)
+                    If (Year(tbDate.Text) <= 2022) And (Month(tbDate.Text) <= 3) Then
+                        tbPPN.Text = "10"
+                    Else
+                        tbPPN.Text = cPPN
+                    End If
+                Else
+                    tbPPN.Text = "0"
+                End If
             Else
                 tbSuppCode.Text = ""
                 tbSuppName.Text = ""
@@ -1078,7 +1092,6 @@ Partial Class SuppInv
                 tbPpnRate.Text = FormatNumber(FindTaxRate(ddlCurr.SelectedValue, tbPPndate.SelectedValue, ViewState("DBConnection").ToString), ViewState("DigitCurr"))
             End If
         End If
-
         AttachScript("setformat();", Page, Me.GetType())
         tbRate.Focus()
     End Sub
@@ -1411,6 +1424,7 @@ Partial Class SuppInv
             lbStatus.Text = "lb Supplier Error : " + ex.ToString
         End Try
     End Sub
+
     Protected Sub lbTerm_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lbTerm.Click
         Try
             AttachScript("OpenMaster('" + Request.QueryString("KeyId") + "','MsTerm')();", Page, Me.GetType())
@@ -1455,12 +1469,10 @@ Partial Class SuppInv
         End Try
     End Sub
 
-
-     Private Sub CountTotalDt()
-  
-         Dim BaseForex As Double = 0
-    Dim DiscForex As Double = 0
-    Dim PPhForex As Double = 0
+    Private Sub CountTotalDt()
+        Dim BaseForex As Double = 0
+        Dim DiscForex As Double = 0
+        Dim PPhForex As Double = 0
 
         Dim Dr As DataRow
         Try
@@ -1472,24 +1484,17 @@ Partial Class SuppInv
                     BaseForex = BaseForex + CFloat(Dr("BrutoForex").ToString)
                     DiscForex = DiscForex + CFloat(Dr("DiscForex").ToString)
                     PPhForex = PPhForex + CFloat(Dr("PPhForex").ToString)
-                   
+
                 End If
             Next
-
-
             tbBaseForex.Text = FormatNumber(BaseForex, ViewState("DigitHome"))
             tbDiscForex.Text = FormatNumber(DiscForex, ViewState("DigitHome"))
             tbPPhForex.Text = FormatNumber(PPhForex, ViewState("DigitHome"))
-
-
-           tbTotalForex.Text = FormatNumber((CFloat(tbBaseForex.Text) + CFloat(tbPPNForex.Text) - CFloat(tbPPHForex.Text)) - CFloat(tbDiscForex.Text) + CFloat(tbOtherForex.Text) , ViewState("DigitHome"))
-
+            tbTotalForex.Text = FormatNumber((CFloat(tbBaseForex.Text) + CFloat(tbPPNForex.Text) - CFloat(tbPPhForex.Text)) - CFloat(tbDiscForex.Text) + CFloat(tbOtherForex.Text), ViewState("DigitHome"))
         Catch ex As Exception
             Throw New Exception("Count Total Dt Error : " + ex.ToString)
         End Try
     End Sub
-
-
 
     Protected Sub FillTextBoxHd(ByVal Nmbr As String)
         Dim Dt As DataTable
@@ -1633,14 +1638,27 @@ Partial Class SuppInv
     End Sub
 
     Protected Sub ddlTerm_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ddlTerm.SelectedIndexChanged
-        tbDueDate.SelectedDate = FindDueDate(ddlTerm.SelectedValue, tbDate.SelectedDate, ViewState("DBConnection").ToString)
-
+        Try
+            tbDueDate.SelectedDate = FindDueDate(ddlTerm.SelectedValue, tbDate.SelectedDate, ViewState("DBConnection").ToString)
+        Catch ex As Exception
+            Throw New Exception("ddlTerm_SelectedIndexChanged Error : " + ex.ToString)
+        End Try
     End Sub
 
     Protected Sub tbDate_SelectionChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles tbDate.SelectionChanged
-
-        tbDueDate.SelectedDate = FindDueDate(ddlTerm.SelectedValue, tbDate.SelectedDate, ViewState("DBConnection").ToString)
-
+        Try
+            tbDueDate.SelectedDate = FindDueDate(ddlTerm.SelectedValue, tbDate.SelectedDate, ViewState("DBConnection").ToString)
+            Dim sql As String = "EXEC S_FindPPnValue '" + Format(tbDate.SelectedValue, "yyyy") + Format(tbDate.SelectedValue, "MM") + Format(tbDate.SelectedValue, "dd") + "'"
+            Dim cPPN As String = SQLExecuteScalar(sql, ViewState("DBConnection").ToString)
+            If (Year(tbDate.Text) <= 2022) And (Month(tbDate.Text) <= 3) Then
+                tbPPN.Text = "10"
+            Else
+                tbPPN.Text = cPPN
+            End If
+            CountTotalDt()
+        Catch ex As Exception
+            Throw New Exception("tbDate_SelectionChanged Error : " + ex.ToString)
+        End Try
     End Sub
 
     Protected Sub Menu1_MenuItemClick(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.MenuEventArgs) Handles Menu1.MenuItemClick
@@ -1807,7 +1825,6 @@ Partial Class SuppInv
         End Try
     End Sub
 
-    
     Protected Sub tbPPndate_SelectionChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles tbPPndate.SelectionChanged
         Try
             tbPPnNo.Enabled = CFloat(tbPPN.Text) > 0
@@ -1837,13 +1854,11 @@ Partial Class SuppInv
 
         Dim CekMenu As String
         Try
-
             CekMenu = CheckMenuLevel("Insert", ViewState("MenuLevel").Rows(0))
             If CekMenu <> "" Then
                 lbStatus.Text = CekMenu
                 Exit Sub
             End If
-
 
             Session("Result") = Nothing
             Filter = ""

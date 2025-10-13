@@ -255,6 +255,7 @@
     </script>
     
     <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />
+ <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>     
     <form id="form1" runat="server">    
@@ -367,7 +368,7 @@
 						<AlternatingRowStyle CssClass="GridAltItem"/>
 						<PagerStyle CssClass="GridPager" />
               <Columns>              
-                  <asp:TemplateField>
+                  <asp:TemplateField HeaderStyle-Width="110px" HeaderText="Action">
                       <HeaderTemplate>
                           <asp:CheckBox ID="cbSelectHd" runat="server" AutoPostBack="true"
                           oncheckedchanged="cbSelectHd_CheckedChanged" />
@@ -376,7 +377,7 @@
                           <asp:CheckBox ID="cbSelect" runat="server" />
                       </ItemTemplate>
                   </asp:TemplateField>
-                  <asp:TemplateField HeaderStyle-Width="110">
+                  <asp:TemplateField HeaderStyle-Width="110px" HeaderText="Action">
                       <ItemTemplate>
                           <asp:DropDownList CssClass="DropDownList" ID="ddl" runat="server">
                               <asp:ListItem Selected="True" Text="View" />
@@ -388,15 +389,15 @@
                       <HeaderStyle Width="110px" />
                   </asp:TemplateField>
                   <asp:BoundField DataField="TransNmbr" HeaderStyle-Width="120px" SortExpression="Nmbr" HeaderText="Reference"></asp:BoundField>                  
-                  <asp:BoundField DataField="Status" HeaderText="Status"></asp:BoundField>                  
-                  <asp:BoundField DataField="TransDate" dataformatstring="{0:dd MMM yyyy}" htmlencode="true" HeaderStyle-Width="80px" SortExpression="TransDate" HeaderText="Date"></asp:BoundField>
+                  <asp:BoundField DataField="Status" HeaderText="Status" ItemStyle-HorizontalAlign="Center"></asp:BoundField>                  
+                  <asp:BoundField DataField="TransDate" dataformatstring="{0:dd MMM yyyy}" htmlencode="true" HeaderStyle-Width="80px" SortExpression="TransDate" HeaderText="Date" ItemStyle-HorizontalAlign="Right"></asp:BoundField>
                   <asp:BoundField DataField="Supplier" HeaderStyle-Width="200px" SortExpression="Supplier" HeaderText="Supplier"></asp:BoundField>                  
                   <asp:BoundField DataField="Supplier" HeaderStyle-Width="200px" SortExpression="Supplier" HeaderText="Supplier"></asp:BoundField>
                   <asp:BoundField DataField="PONo" HeaderStyle-Width="120px" SortExpression="PONo" HeaderText="PO No"></asp:BoundField>
                   <asp:BoundField DataField="Term_Name" HeaderStyle-Width="150px" SortExpression="Term_Name" HeaderText="Term"></asp:BoundField>
                   <asp:BoundField DataField="SuppInvNo" HeaderStyle-Width="120px" SortExpression="SuppInvNo" HeaderText="Supp Invoice"></asp:BoundField>
-                  <asp:BoundField DataField="Currency" HeaderStyle-Width="50px" SortExpression="Currency" HeaderText="Currency"></asp:BoundField>
-                  <asp:BoundField DataField="PriceIncludePPN" HeaderStyle-Width="50px" SortExpression="PriceIncludePPN" HeaderText="Price Include"></asp:BoundField>                  
+                  <asp:BoundField DataField="Currency" HeaderStyle-Width="50px" SortExpression="Currency" HeaderText="Currency" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
+                  <asp:BoundField DataField="PriceIncludePPN" HeaderStyle-Width="50px" SortExpression="PriceIncludePPN" HeaderText="Price Include" ItemStyle-HorizontalAlign="Center"></asp:BoundField>                  
                   <asp:BoundField DataField="BaseForex" DataFormatString="{0:#,##0.00}" HeaderStyle-Width="80px" ItemStyle-HorizontalAlign="Right" SortExpression="BaseForex" HeaderText="Base Forex"></asp:BoundField>
                   <asp:BoundField DataField="DiscForex" DataFormatString="{0:#,##0.00}" HeaderStyle-Width="80px" ItemStyle-HorizontalAlign="Right" SortExpression="DiscForex" HeaderText="Disc Forex"></asp:BoundField>
                   <asp:BoundField DataField="DPForex" DataFormatString="{0:#,##0.00}" HeaderStyle-Width="80px" ItemStyle-HorizontalAlign="Right" SortExpression="DPForex" HeaderText="DP Forex"></asp:BoundField>                  
