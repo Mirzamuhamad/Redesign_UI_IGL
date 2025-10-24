@@ -1521,6 +1521,10 @@ Partial Class TrReceiptTrade
             MultiView1.ActiveViewIndex = 0
             Menu1.Items.Item(0).Selected = True
             tbCode.Focus()
+            btnAddDt2Ke2.Visible = False
+            btnBackDt2Ke2.Visible = False
+            btnBackDt2.Visible = False
+            btnAddDtke2.Visible = False
         Catch ex As Exception
             lbStatus.Text = "Btn Add Error : " + ex.ToString
         End Try
@@ -1622,6 +1626,10 @@ Partial Class TrReceiptTrade
                         lbStatus.Text = MessageDlg("Data must be Hold or Get Approval to edit")
                         Exit Sub
                     End If
+                    btnAddDt2Ke2.Visible = False
+                    btnBackDt2Ke2.Visible = False
+                    btnBackDt2.Visible = False
+                    btnAddDtke2.Visible = False
                 ElseIf DDL.SelectedValue = "Print Full" Then
                     Try
                         CekMenu = CheckMenuLevel("Print", ViewState("MenuLevel").Rows(0))

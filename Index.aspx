@@ -10,23 +10,17 @@
             <head runat="server">
 
                 <title>Irama Gemilang Lestari</title>
+                <link rel="icon" type="image/png" href="Image/LogoDP.jpg">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"> -->
-                <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">
+                <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap"
+                    rel="stylesheet">
                 <link href="Styles/MenuTemplates.css" rel="stylesheet" type="text/css" />
                 <link href="Styles/Style.css" rel="stylesheet" type="text/css" />
                 <link rel="stylesheet" type="text/css" href="sdmenu/sdmenu.css" />
                 <link type="text/css" rel="stylesheet" href="Styles/circularprogress.css" />
                 <script type="text/javascript" src="JQuery/jquery.min.js"></script>
-                <script type="text/javascript" src="sdmenu/sdmenu.js">
 
-
-                    /***********************************************
-                    * Slashdot Menu script- By DimX
-                    * Submitted to Dynamic Drive DHTML code library: http://www.dynamicdrive.com
-                    * Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
-                    ***********************************************/
-                </script>
                 <script type="text/javascript">
                     function OpenAcc() {
                         var _Value = document.getElementById('someID').innerHTML; //innerHTML; //innerText;
@@ -37,7 +31,18 @@
                         //if (_Value == "Change Period :")
                         if (Iindex >= 0) {
                             var keyId = document.getElementById('<%= HiddenKeyId.ClientID %>').value;
-                            window.open("AccountingPeriod.aspx?KeyId=" + keyId, "List", "scrollbars=yes,resizable=no,width=200,height=150");
+                            var width = 200;
+                            var height = 150;
+                            var left = (screen.width / 2) - (width / 2);
+                            var top = (screen.height / 4) - (height / 2);
+
+                            window.open(
+                                "AccountingPeriod.aspx?KeyId=" + keyId,
+                                "List",
+                                "scrollbars=yes,resizable=no,width=" + width + ",height=" + height +
+                                ",top=" + top + ",left=" + left
+                            );
+                            // window.open("AccountingPeriod.aspx?KeyId=" + keyId, "List", "scrollbars=yes,resizable=no,width=200,height=150");
                             return false;
                         }
                     }
@@ -91,16 +96,24 @@
 
                     /* Tampilan menu utama */
                     .MenuBar {
-                        background-color: #097dbc;
-                        /* font-family: 'Segoe UI', sans-serif; */
+                        background-color: #1e51dc;
                         font-family: 'Muli', Roboto, "Helvetica Neue", Arial, sans-serif !important;
-                        font-size: 14px;
-                        height: auto;
-                        padding: 0;
-                        border-bottom: 3px solid #0077b6;
+                        font-size: 11pt;
+                        height: 35px;
+                        /* 🔹 tinggi background menu */
+                        line-height: 60px;
+                        /* 🔹 biar teks rata vertikal */
+                        padding: 0 20px;
+                        border-bottom: 3px solid #1e51dc;
                         position: relative;
                         z-index: 10;
+                        top: -40px;
+                        /* margin-top: 0px; */
+                        /* jika mau sedikit turun */
                     }
+
+
+
 
                     /* Efek klik */
                     .MenuBar a:active {
@@ -117,11 +130,12 @@
                         text-decoration: none;
                         display: inline-block;
                         transition: background-color 0.5s ease, transform 0.5s ease;
+
                     }
 
                     /* Hover efek */
                     .StaticHoverStyleMB {
-                        background-color: #0077b6;
+                        background-color: #1e51dc;
                         color: white !important;
                         transform: translateY(-2px);
                         cursor: pointer;
@@ -146,7 +160,10 @@
                         transition: all 0.3s ease;
                         z-index: 999;
                         pointer-events: none;
+
                     }
+
+
 
                     /* Hover submenu */
                     .DynamicHoverStyleMB {
@@ -161,7 +178,12 @@
                         opacity: 1 !important;
                         transform: translateY(0) !important;
                         pointer-events: auto;
+
                     }
+
+                    /* .MenuBar .aspNet-Menu-Horizontal ul  {
+                        display: none !important;
+                    } */
 
                     .StaticMenuItemStyleMB:active,
                     .DynamicMenuItemStyleMB:active {
@@ -177,32 +199,67 @@
 
                     /* Opsional tambahan */
                     .staticMenu {
-                        background-color: #097dbc;
+                        /* 0077b6 color sebelumnya */
+                        background-color: #1e51dc;
                         color: white;
-                        padding: 10px;
+                        padding: 3px 12px;
                         font-weight: bold;
+                        font-size: 10pt;
                         text-decoration: none;
+                        display: inline-block;
+                        transition: background-color 0.3s ease, color 0.3s ease;
+                        /* animasi halus */
                     }
 
+                    .staticMenu:hover,
                     .staticHover {
-                        background-color: #2391cb;
+                        background-color: #5a8bff;
+                        /* 🔹 warna hover */
                         color: white;
+                        border-radius: 5px;
                     }
 
                     .dynamicMenu {
                         background-color: rgb(70, 70, 70);
-                        border: 1px solid rgb(70, 70, 70);
-                        z-index: 9999;
+                        /* border: 1px solid rgb(70, 70, 70); */
+                        /* z-index: 9999; */
                         min-width: 160px;
-                        padding: 5px;
-                        animation: fadeInSlide 0.5s ease;
+                        /* padding: 8px 10px; */
+                        /* 🔹 beris jarak dalam menu */
+                        animation: fadeInSlide 0.7s ease;
                         color: #ebebeb;
-
+                        /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);  */
+                        /* 🔹 efek melayang */
+                        font-size: 10pt;
                     }
 
-                    .dynamicHover {
-                        background-color: #6d6d6d;
+                    
+
+
+
+                    /* 🔹 Jika item di dalamnya pakai <a> atau <div> */
+                    .dynamicMenu a,
+                    .dynamicMenu div {
+                        display: block;
+                        padding: 6px 10px;
+                        color: #ebebeb;
+                        text-decoration: none;
+                        transition: background 0.2s;
                     }
+
+                    /* untuk menghilangkan tanda segitiga */
+                    /* .dynamicMenu img {
+                        display: none;
+                    } */
+
+
+
+                    .dynamicMenu a:hover,
+                    .dynamicMenu div:hover {
+                        background-color: rgba(255, 255, 255, 0.1);
+                        border-radius: 6px;
+                    }
+
 
 
 
@@ -218,6 +275,46 @@
                             transform: translateY(0);
                         }
                     }
+
+                    /* Hapus sisa padding dari icon bawaan ASP.NET */
+                    /* Hilangkan gambar bawaan ASP.NET */
+                    .MenuBar img {
+                        display: none !important;
+                    }
+
+                    /* Atur link menu utama agar pakai flex dan spasi antara teks & icon */
+                    /* .MenuBar td[style*="white-space:nowrap"] > a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+} */
+
+                    /* Caret putih dari gambar */
+                    .MenuBar td[style*="white-space:nowrap"]>a::after {
+                        content: "";
+                        display: inline-block;
+                        width: 10px;
+                        height: 10px;
+                        background-image: url('Image/right-arrow-white.png');
+                        /* ubah path sesuai lokasi */
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        background-position: center right;
+                        margin-left: 20px;
+                        transition: transform 0.8s ease;
+                    }
+
+                    /* Efek hover untuk caret */
+                    .MenuBar td[style*="white-space:nowrap"]:hover>a::after {
+                        transform: rotate(180deg);
+                    }
+
+
+
+
+
+
+
 
                     /* Style iframe dan layout */
                     html,
@@ -269,7 +366,7 @@
                     /* Spinner */
                     .spinner {
                         border: 6px solid #f3f3f3;
-                        border-top: 6px solid #0077b6;
+                        border-top: 6px solid #1e51dc;
                         border-radius: 50%;
                         width: 50px;
                         height: 50px;
@@ -296,7 +393,7 @@
                         cursor: pointer;
                     }
 
-                    @media (max-width: 768px) {
+                    @media (max-width: 1024px) {
                         .menu-toggle {
                             display: block;
                         }
@@ -314,7 +411,7 @@
 
                         .responsiveMenu li {
                             width: 100%;
-                            border-bottom: 1px solid #0077b6;
+                            border-bottom: 1px solid #1e51dc;
                         }
 
                         .responsiveMenu a {
@@ -372,18 +469,41 @@
                     }
                 </script>
 
-                
+
                 <style>
                     /* Toggle Button */
-                    #mobileMenuToggle {
+                    /* #mobileMenuToggle {
                         display: none;
+                        position: absolute;
+                        
+                        top: 60px;
+                       
+                        right: 324px;
+                        
                         background-color: #333;
                         color: white;
-                        padding: 12px 16px;
-                        font-size: 20px;
+                        padding: 7px 12px;
+                        font-size: 14px;
+                        cursor: pointer;
+                        border-radius: 6px;
+                        z-index: 10000;
+                       
+                        transition: all 0.3s ease;
+                        
+                    } */
+                    #mobileMenuToggle {
+                        position: absolute;
+                        display: none;
+                        /* top:7px; */
+                        right: 20px;
+                        /* background-color: #333; */
+                        color: white;
+                        /* font-size: 18px; */
                         cursor: pointer;
                         border-radius: 4px;
-                        margin: 10px;
+                        /* padding: 7px 10px; */
+                        z-index: 9999;
+                        transition: all 1s ease;
                     }
 
                     /* Sidebar */
@@ -396,10 +516,15 @@
                         height: 100%;
                         background-color: #1e1e1e;
                         color: white;
-                        padding: 20px;
+                        padding-left: 5px;
+                        padding-right: 5px;
                         z-index: 10000;
                         overflow-y: auto;
+                        font-size: 8pt;
+                        border-top-right-radius: 25px;
+                        border-bottom-right-radius: 25px;
                         box-shadow: 2px 0 8px rgba(0, 0, 0, 0.5);
+
                     }
 
                     #mobileSidebarClose {
@@ -408,15 +533,28 @@
                         margin-bottom: 20px;
                         text-align: right;
                         display: block;
+                        padding-top: 9px;
+                        padding-right: 5px;
+                        color: #fff;
+                        /* sesuaikan warna */
+                        transition: transform 0.8s ease;
                     }
+
+
 
                     #mobileSidebar.active {
                         display: block;
                     }
 
-                    @media (max-width: 768px) {
+                    @media (max-width: 1024px) {
                         #mobileMenuToggle {
                             display: block;
+                        }
+
+                        #mobileMenuToggle {
+                            left: 5px;
+                            right: auto;
+                            top: 7px;
                         }
 
                         #menuTop {
@@ -424,7 +562,7 @@
                         }
                     }
 
-                    @media (max-width: 768px) {
+                    @media (max-width: 1024px) {
 
                         #menuTop,
                         .AspNet-Menu,
@@ -454,7 +592,7 @@
                     }
 
                     .mobile-menu li {
-                        margin-bottom: 8px;
+                        margin-bottom: 4px;
                     }
 
                     .mobile-menu a,
@@ -462,7 +600,7 @@
                         color: white;
                         text-decoration: none;
                         display: block;
-                        padding: 10px 12px;
+                        padding: 5px 12px;
                         border-radius: 6px;
                         background-color: #2d2d2d;
                         transition: background-color 0.2s;
@@ -503,8 +641,8 @@
 
                 <!-- Script di bawah </form> -->
 
-
-                <script>
+                <!-- menu mobile sebelum ada tambahan loading -->
+                <!-- <script>
                     function toggleSidebar() {
                         const sidebar = document.getElementById("mobileSidebar");
                         sidebar.classList.toggle("active");
@@ -535,23 +673,75 @@
                             a.addEventListener('click', handleMenuClick);
                         });
                     });
+                </script> -->
+
+                <!-- menu mobile dengan tambahn loading spinner -->
+                <script>
+                    // === Fungsi Loading Spinner ===
+                    function showLoading() {
+                        const spinner = document.getElementById('loadingSpinner');
+                        if (spinner) spinner.style.display = 'flex';
+                    }
+
+                    function hideLoading() {
+                        const spinner = document.getElementById('loadingSpinner');
+                        if (spinner) spinner.style.display = 'none';
+                    }
+
+                    // === Toggle Sidebar (mobile) ===
+                    function toggleSidebar() {
+                        const sidebar = document.getElementById("mobileSidebar");
+                        sidebar.classList.toggle("active");
+                    }
+
+                    // === Toggle Submenu ===
+                    function toggleSubmenu(el) {
+                        const submenu = el.nextElementSibling;
+                        if (submenu && submenu.classList.contains("submenu")) {
+                            const isOpen = submenu.style.display === "block";
+                            submenu.style.display = isOpen ? "none" : "block";
+                            el.innerHTML = el.innerHTML.replace(isOpen ? "▾" : "▸", isOpen ? "▸" : "▾");
+                        }
+                    }
+
+                    // === Klik Menu ===
+                    function handleMenuClick(event) {
+                        // Jangan ganggu toggle submenu
+                        const el = event.target;
+                        if (el && el.classList.contains('has-submenu')) {
+                            return; // biarkan toggleSubmenu yang jalan
+                        }
+
+                        // Sembunyikan panel search dan transfer
+                        var pnlSearch = document.getElementById('<%= pnlSearch.ClientID %>');
+                        var pnlTransfer = document.getElementById('<%= PnlTransfer.ClientID %>');
+                        var sidebar = document.getElementById("mobileSidebar");
+
+                        if (pnlSearch) pnlSearch.style.display = "none";
+                        if (pnlTransfer) pnlTransfer.style.display = "none";
+                        if (sidebar) sidebar.classList.remove("active");
+
+                        // Tampilkan spinner
+                        showLoading();
+                    }
+
+                    // === Saat dokumen siap ===
+                    window.addEventListener('DOMContentLoaded', function () {
+                        // Pasang event click ke semua link menu sidebar
+                        document.querySelectorAll('#mobileSidebar a').forEach(function (a) {
+                            a.addEventListener('click', handleMenuClick);
+                        });
+
+                        // Sembunyikan loading setelah iframe selesai load
+                        const iframe = document.getElementById('InFrame');
+                        if (iframe) {
+                            iframe.addEventListener('load', hideLoading);
+                        }
+                    });
                 </script>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-                
                 <style>
                     body,
                     input,
@@ -571,63 +761,396 @@
                         /* font-family: 'Inter', 'Segoe UI', sans-serif !important; */
                         font-family: 'Muli', Roboto, "Helvetica Neue", Arial, sans-serif !important;
                     }
+
+                    /* === Segitiga Dropdown Putih di Menu ASP.NET === */
+                    .MenuBar>li>a {
+                        position: relative;
+                    }
+
+                    /* Tambahkan segitiga putih hanya di menu yang punya submenu */
+                    .MenuBar>li>ul {
+                        display: none;
+                    }
+
+                    .MenuBar>li:hover>ul {
+                        display: block;
+                    }
+
+                    /* Gunakan !important agar menang dari CSS ASP.NET default */
+                    .MenuBar>li>a::after {
+                        content: "\25BE";
+                        /* ▼ Segitiga bawah */
+                        font-size: 11px;
+                        color: #ffffff !important;
+                        /* Putih pakai !important */
+                        margin-left: 6px;
+                        vertical-align: middle;
+                        transition: transform 0.3s ease;
+                    }
+
+                    /* Muncul hanya di menu yang punya submenu */
+                    .MenuBar>li:not(:has(ul))>a::after {
+                        content: none !important;
+                    }
+
+                    /* Saat hover, segitiga berputar ke atas */
+                    .MenuBar>li:hover>a::after {
+                        transform: rotate(180deg);
+                    }
                 </style>
+
+
+                <style>
+                    /* ===== HEADER CONTAINER ===== */
+                    #topContent {
+                        position: relative;
+                        background-color: #444444;
+                        color: #f8f9fa;
+                        font-family: 'Muli', Roboto, Arial, sans-serif !important;
+                    }
+
+                    /* Struktur lama tetap dipakai tapi dirapikan */
+                    #topContent table {
+                        width: 99.4%;
+                        border-collapse: collapse;
+                    }
+
+                    #topContent tr {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                    }
+
+                    #ImgCompanyLogo {
+                        border-radius: 50%;
+                        object-fit: cover;
+                        height: 23px;
+                        width: 23px;
+                        display: flex;
+                        border: solid 5px #fff;
+                    }
+
+                    /* ===== LOGO + COMPANY ===== */
+                    #lbCompany {
+                        display: flex;
+                        align-items: center;
+                        gap: 4px;
+                        font-size: 14px;
+                        font-weight: 500;
+                        color: #fff !important;
+                    }
+
+                    /* #lbCompany::before {
+                        content: "IGL";
+                        background-color: #097DBC;
+                        border: solid 2px #fff;
+                        color: #fff;
+                        border-radius: 50%;
+                        width: 26px;
+                        height: 26px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 11px;
+                        font-weight: 600;
+                    } */
+
+                    /* ===== PERIOD SECTION (tengah atas) ===== */
+                    .Period {
+                        position: absolute;
+                        top: 0;
+                        left: 50%;
+                        transform: translate(-50%, 0);
+                        background-color: #ffffff;
+                        color: #777777;
+                        padding: 3px 30px;
+                        font-size: 13px;
+                        font-weight: 1500;
+                        border-bottom-left-radius: 10px;
+                        border-bottom-right-radius: 10px;
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+                        z-index: 100;
+                    }
+
+                    /* ===== RIGHT SECTION (Hi, Admin + Button) ===== */
+                    #topContent td:last-child {
+                        text-align: right;
+                        white-space: nowrap;
+                    }
+
+                    #Label1,
+                    #lkbHome,
+                    #LinkButton1 {
+                        font-size: 10pt !important;
+                        color: #777777;
+                        font-family: 'Muli', Roboto, Arial, sans-serif !important;
+                    }
+
+                    #lbUser {
+                        font-size: 10pt !important;
+                        font-weight: 600;
+                        color: #777777 !important;
+                    }
+
+                    /* Tombol lama tapi lebih rapat dan sejajar kanan */
+                    #topContent .Home,
+                    #topContent .Log-Out {
+                        display: inline-block;
+                        /* margin-left: 6px; */
+                        padding: 5px 0px;
+                        font-size: 12px;
+                        font-weight: 500;
+                        color: #fff;
+                        border-radius: 4px;
+                    }
+
+                    /* #topContent .Home {
+    background-color: #0d6efd;
+}
+
+#topContent .Log-Out {
+    background-color: #dc3545;
+} */
+
+                    /* ===== RESPONSIVE ===== */
+                    @media (max-width: 1024px) {
+                        #topContent {
+                            height: 45px;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            /* posisi vertikal tengah */
+                            align-items: center;
+                            /* posisi horizontal tengah */
+                            text-align: center;
+                            padding-bottom: 40px;
+                        }
+
+                        #topContent tr {
+                            flex-direction: column;
+                            align-items: center;
+                        }
+
+                        #lbCompany {
+                            justify-content: center;
+                        }
+
+                        #lbCompany::before {
+                            width: 0px;
+                            height: 0px;
+                        }
+
+                        .Period {
+                            position: static;
+                            transform: none;
+                            padding-top: 30px;
+                            padding-bottom: 5px;
+                            margin-bottom: 6px;
+                            border-radius: 10px;
+                            font-size: 9pt;
+                            z-index: 200;
+                            /* width: 235px; */
+                        }
+
+                        #topContent td:last-child {
+                            text-align: center;
+                        }
+                    }
+
+                    /* 🔹 Bungkus utama bisa diatur posisinya */
+                    .user-menu-container {
+                        width: 100%;
+                        padding-top: 5px;
+                        padding-right: 5px;
+                        position: relative;
+                        z-index: 25;
+                        /* pastikan di atas object lain */
+                    }
+
+                    /* 🔹 Dropdown responsif & fleksibel */
+                    .user-dropdown {
+                        position: relative;
+                    }
+
+                    /* Dropdown tetap di atas semua elemen */
+                    .dropdown-menu {
+                        z-index: 999999 !important;
+                    }
+
+                    /* 🔹 Mobile responsive (atur posisi center / kiri di layar kecil) */
+                    @media (max-width: 1024px) {
+                        .user-menu-container {
+                            justify-content: center !important;
+                            /* padding: 8px; */
+                        }
+
+                        .user-dropdown button {
+                            width: 100%;
+                            text-align: center;
+                        }
+
+
+                        /* untuk usuan userdropdowndi Hp */
+                        .dropdown-menu {
+                            /* left: 0 !important;
+                            right: 0 !important;
+                            margin: 0 auto; */
+                            text-align: center;
+                            /* transform: translateX(-100%) !important; */
+                        }
+                    }
+
+                    /* Hilangkan margin global bawaan halaman ASP.NET */
+                    html,
+                    body,
+                    form {
+                        margin: 0 !important;
+                        padding: 0 !important;
+                        border: none !important;
+                    }
+
+                    /* Pastikan area di bawah menu menempel langsung */
+                    #ForInFrame {
+                        margin-top: 0 !important;
+                        padding-top: 0 !important;
+                        border: none !important;
+                    }
+
+                    /* Geser iframe lebih atas */
+                    #InFrame {
+                        margin: 0 !important;
+                        padding: 0 !important;
+                        border: none !important;
+                        display: block;
+                        width: 100%;
+                        height: calc(100vh);
+                        position: relative;
+                        top: -42px;
+                        /* geser sedikit ke atas */
+                        z-index: 0;
+                    }
+
+
+
+                    /* #ForInFrame, #InFrame {
+    outline: 1px solid red; 
+} */
+                </style>
+
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+                    rel="stylesheet">
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+                <script type="text/javascript">
+                    // Fungsi untuk menampilkan spinner
+                    function showLoading() {
+                        document.getElementById("loadingSpinner").style.display = "flex";
+                    }
+
+                    // Jalankan fungsi ini saat LinkButton diklik
+                    window.addEventListener("load", function () {
+                        var homeBtn = document.getElementById("<%= lkbHome.ClientID %>");
+                        var logoutBtn = document.getElementById("<%= LinkButton1.ClientID %>");
+
+                        var logoutbutton = document.getElementById("<%= Linkbutton1.ClientID %>")
+
+                        if (homeBtn) {
+                            homeBtn.addEventListener("click", function () {
+                                showLoading();
+                            });
+                        }
+
+                        if (logoutBtn) {
+                            logoutBtn.addEventListener("click", function () {
+                                showLoading();
+                            });
+                        }
+                    });
+                </script>
+
+
             </head>
 
 
             <body style="margin: 0px; overflow: visible;">
 
                 <form id="form" runat="server">
+                    <!-- Container pembungkus fleksibel -->
+                    <div class="user-menu-container d-flex justify-content-end align-items-center flex-wrap">
 
-                    <div id="topContent">
+                        <div class="dropdown user-dropdown">
+                            <button class="btn btn-dark btn-sm dropdown-toggle" type="button" id="userMenuButton"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-gear-fill"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenuButton">
+                                <li class="dropdown-item text-center text-info fw-bold">
+                                    <i class="bi bi-person-circle"></i>
+                                    <asp:Label ID="Label1" runat="server" Text="Hi, " />
+                                    <asp:Label ID="lbUser" runat="server" Text="Administrator" />
+                                </li>
+                                <hr class="dropdown-divider">
+                                <li>
+                                    <asp:LinkButton CssClass="dropdown-item" ID="lkbHome" runat="server">
+                                        <i class="bi bi-house-door-fill"></i> Home
+                                    </asp:LinkButton>
+                                </li>
 
-                        <table style="width:100%; padding:0,0,0,0; margin:0,0,0,0; background-image:url('Image/.gif')">
-                            <tr></tr>
-
-                            <tr>
-
-                                <td style="width:92%">
-                                    <table width="100%">
-                                        <tr>
-
-                                            <td>
-                                                <asp:Label ForeColor="#eeeeee" ID="lbCompany"
-                                                    Font-Size="16" Font-Bold="true" runat="server" />
-                                            </td>
-
-                                            <td style="width:40%; text-align:right">
-                                                <!-- <asp:image CssClass="" id="imgUpload" bordercolor="Black" 
-                                                runat="server" width="150px"  /> -->
-                                                <asp:Label ID="Label1" Font-Size="13pt"
-                                                    ForeColor="#eeeeee" runat="server" Text="Hi,  " />
-                                                <asp:Label ID="lbUser" Font-Size="11pt"
-                                                    ForeColor="#eeeeee" Font-Bold="true" runat="server" Text="HI" />
-                                                &nbsp &nbsp
-                                                <asp:LinkButton CssClass="Home" ID="lkbHome" runat="server"
-                                                    > &nbsp <span>Home</span> </asp:LinkButton> &nbsp
-                                                <asp:LinkButton CssClass="Log-Out" ID="LinkButton1" runat="server"
-                                                    > <span>LogOut</span> </asp:LinkButton>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
-
-                        <div class="Period">
-                            <%--<a style="color:blue; font-family:Arial; font-size:8pt"
-                                onclick="OpenAcc(); return false;" id="someID" href="">Period</a>--%>
-
-                                <asp:Label style="font-family: 'Muli', Roboto, Arial, sans-serif !important;" Text="Period" Onclick="OpenAcc(); return false;" id="someID"
-                                    runat="server" />
-                                <asp:Label style="font-family: 'Muli', Roboto, Arial, sans-serif !important;"  ID="lbYear" runat="server" />
+                                <li>
+                                    <asp:LinkButton CssClass="dropdown-item text-danger" ID="LinkButton1"
+                                        runat="server">
+                                        <i class="bi bi-box-arrow-right"></i> Log Out
+                                    </asp:LinkButton>
+                                </li>
+                            </ul>
                         </div>
 
                     </div>
 
-                    <div id="mobileMenuToggle" onclick="toggleSidebar()">Menu</div>
+
+                    <div id="topContent">
+
+                        <div class="offcanvas-body p-10 pt-1 p-lg-10">
+                            <hr class="d-lg-none text-white-50">
+                            <ul class="navbar-nav flex-row flex-wrap bd-navbar-nav">
+                                <li class="nav-item col-6 col-lg-auto"> <a class="nav-link py-2 px-0 px-lg-1"
+                                        href="/docs/5.3/getting-started/introduction/">
+                                        <asp:Image ID="imgCompanyLogo" runat="server" Style="border:2px solid #ffffff;"
+                                            ImageUrl="Image/LogoDP.jpg" />
+
+                                    </a> </li>
+                                <li class="nav-item col-6 col-lg-auto"> <a aria-current="true"
+                                        class="nav-link py-2 px-0 px-lg-1 active" href="#">
+                                        <asp:Label ID="lbCompany" runat="server" />
+                                    </a> </li>
+                            </ul>
+
+                        </div>
+
+                        <div class="Period">
+                            <asp:Label style="font-family: 'Muli', Roboto, Arial, sans-serif !important;" Text="Period"
+                                Onclick="OpenAcc(); return false;" id="someID" runat="server" />
+
+                            <asp:Label style="font-family: 'Muli', Roboto, Arial, sans-serif !important;" ID="lbYear"
+                                runat="server" />
+
+                        </div>
+
+
+
+
+                        <div id="mobileMenuToggle" class="btn btn-dark" onclick="toggleSidebar()">
+                            <i class="bi bi-list"></i>
+                        </div>
+
+
+                    </div>
+
+
                     <div id="mobileSidebar">
-                        <div id="mobileSidebarClose" onclick="toggleSidebar()">x</div>
+                        <div id="mobileSidebarClose" onclick="toggleSidebar()"><i class="bi bi-x-circle"></i></div>
                         <div id="mobileMenuContainer">
                             <%= ViewState("MobileMenuHtml") %>
                         </div>
@@ -637,8 +1160,6 @@
                     <div id="topContent2">
 
                         <div id="myMenuContainer" runat="server"></div>
-
-
 
                         <asp:Menu ID="menuTop" runat="server" Orientation="Horizontal" RenderingMode="List"
                             StaticDisplayLevels="1" MaximumDynamicDisplayLevels="3"
@@ -650,19 +1171,15 @@
 
                     </div>
 
-
-
-
-
                     <asp:Panel runat="server" ID="pnlSearch" Visible="True"
-                        style="padding-top: 60px;padding-left: 30px;">
+                        style="top: -25px; position: relative; padding-left: 30px;">
                         <table>
 
                             <tr>
                                 <td
-                                    style=" text-align: center; background-color:#fcfcfc;border-radius: 5px; box-shadow: 0 1px 5px rgb(0 0 0 / 0.2);">
-                                    <asp:Label style="padding:5px;" Height="40" ForeColor="#4a4a4a"
-                                        Font-Size="21.5" Font-Bold="true" Text="Approval Dashboard" runat="server" />
+                                    style=" text-align: center; background-color:#fcfcfc;border-radius: 5px; box-shadow: 0 1px 5px rgba(104, 104, 104, 0.2);">
+                                    <asp:Label style="padding:0px;" Height="40" ForeColor="#4a4a4a" Font-Size="21.5"
+                                        Font-Bold="true" Text="Approval Dashboard" runat="server" />
                                 </td>
 
                             </tr>
@@ -678,8 +1195,8 @@
                                     style="border: 0px solid #8b8c8c;background-color:#fcfcfc; border-radius:5px; box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); padding:5px;">
                                     <asp:GridView id="DataGrid" runat="server" AllowPaging="True" CssClass="Grid"
                                         AutoGenerateColumns="false">
-                                        <HeaderStyle CssClass="GridHeader" Font-Size="11.5"
-                                            Font-Bold="true" Wrap="false"></HeaderStyle>
+                                        <HeaderStyle CssClass="GridHeader" Font-Size="11.5" Font-Bold="true"
+                                            Wrap="false"></HeaderStyle>
                                         <RowStyle CssClass="GridItem" Wrap="false" />
                                         <AlternatingRowStyle CssClass="GridAltItem" />
                                         <PagerStyle CssClass="GridPager" />
@@ -710,11 +1227,13 @@
                                             <asp:TemplateField HeaderText="To be Approve" HeaderStyle-Width="200"
                                                 ItemStyle-HorizontalAlign="Center">
                                                 <Itemtemplate>
-                                                    <asp:LinkButton style="font-size: 14px;" ID="btnLink" runat="server"
-                                                        Visible="true" CommandName="View"
-                                                        text='<%# DataBinder.Eval(Container.DataItem, "Outstanding") %>'
-                                                        CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>">
+                                                    <asp:LinkButton ID="btnLink" runat="server" Visible="true"
+                                                        CommandName="View"
+                                                        Text='<%# DataBinder.Eval(Container.DataItem, "Outstanding") %>'
+                                                        CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"
+                                                        Style="font-size:11pt; text-decoration: none; color: #1e51dc; font-weight: 800; ">
                                                     </asp:LinkButton>
+
                                                     <%-- <asp:Label Runat="server" ID="Outstanding"
                                                         text='<%# DataBinder.Eval(Container.DataItem, "Outstanding") %>'>--%>
                                                         </asp:Label>
@@ -818,10 +1337,9 @@
                         </table>
                     </asp:Panel>
 
-                    <asp:Panel runat="server" ID="ForInFrame" Visible="True"
-                        style="padding-top: 0px;padding-left: 0px;">
+                    <asp:Panel runat="server" ID="ForInFrame" Visible="True">
                         <iframe name="InFrame" id="InFrame"
-                            style="width:100%;height:88%;  border: none; padding-top"></iframe>
+                            style="width:100%;height:89%; border: none; "></iframe>
                     </asp:Panel>
 
 
@@ -866,7 +1384,7 @@
                     <div id="loadingSpinner"
                         style="display:none; position:fixed; z-index:9999; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.3); justify-content:center; align-items:center;">
                         <div
-                            style="border:6px solid #f3f3f3; border-top:6px solid #0077b6; border-radius:50%; width:50px; height:50px; animation:spin 0.8s linear infinite;">
+                            style="border:6px solid #f3f3f3; border-top:6px solid #1e51dc; border-radius:50%; width:50px; height:50px; animation:spin 0.8s linear infinite;">
                         </div>
                     </div>
                     <style>

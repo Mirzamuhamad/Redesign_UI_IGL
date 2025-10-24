@@ -1855,7 +1855,11 @@ Partial Class Transaction_TrBeginLandPurchaseReq
                 If Nmbr(j) = "" Then
                     Exit For
                 Else
-                    Result = ExecSPCommandGo(ActionValue, "S_PLGLBeginLandPurchaseReq", Nmbr(j), CInt(Session(Request.QueryString("KeyId"))("Year")), CInt(Session(Request.QueryString("KeyId"))("Period")), ViewState("UserId").ToString, ViewState("DBConnection").ToString)
+                    'lbStatus.Text = Session(Request.QueryString("KeyId"))("Period")
+                    'Exit Sub
+                    Dim periodValue As Date = CDate(Session(Request.QueryString("KeyId"))("Period"))
+                    Dim monthNumber As Integer = periodValue.Month
+                    Result = ExecSPCommandGo(ActionValue, "S_PLGLBeginLandPurchaseReq", Nmbr(j), CInt(Session(Request.QueryString("KeyId"))("Year")), monthNumber, ViewState("UserId").ToString, ViewState("DBConnection").ToString)
                     If Trim(Result) <> "" Then
                         lbStatus.Text = lbStatus.Text + Result + " <br/>"
                     End If
@@ -2387,6 +2391,7 @@ Partial Class Transaction_TrBeginLandPurchaseReq
             tbArea.Text = ""
             tbAreaName.Text = ""
             tbRemark.Text = ""
+            tbAtasNamaSppt.Text = ""
 
             tbwakilCode.Text = ""
             tbWakilName.Text = ""
@@ -2995,6 +3000,7 @@ Partial Class Transaction_TrBeginLandPurchaseReq
             BindToText(tbNoDocHD, Dt.Rows(0)("NoDocHd").ToString)
             BindToText(tbRemark, Dt.Rows(0)("Remark").ToString)
             BindToText(tbRemarkReject, Dt.Rows(0)("RemarkReject").ToString)
+            BindToText(tbRemarkReject, Dt.Rows(0)("AtasNamaSPPT").ToString)
 
             BindToText(tbSeller, Dt.Rows(0)("SellCode").ToString)
             BindToText(tbSellerName, Dt.Rows(0)("SellName").ToString)
@@ -3004,6 +3010,7 @@ Partial Class Transaction_TrBeginLandPurchaseReq
 
             BindToText(tbModerator, Dt.Rows(0)("ModCode").ToString)
             BindToText(tbModeratorName, Dt.Rows(0)("ModName").ToString)
+            BindToText(tbAtasNamaSppt, Dt.Rows(0)("AtasNamaSPPT").ToString)
 
 
             BindToText(tbDokumen, Dt.Rows(0)("P_Dokumen").ToString)
@@ -3680,6 +3687,7 @@ Partial Class Transaction_TrBeginLandPurchaseReq
                 "B_LainLain, " + _
                 "OriginalAmount, " + _
                 "UnAllocAmount, " + _
+                "AtasNamaSPPT, " + _
                 "UserPrep, DatePrep ) " + _
                 "SELECT " + QuotedStr(tbCode.Text) + ", " + QuotedStr(Format(tbDate.SelectedValue, "yyyy-MM-dd")) + ", 'H', " + _
                 QuotedStr(tbBlok.Text) + "," + QuotedStr(tbKohir.Text) + ", " + QuotedStr(tbPercil.Text) + ", " + _
@@ -3716,6 +3724,7 @@ Partial Class Transaction_TrBeginLandPurchaseReq
                 QuotedStr(tbBiayaLainLain.Text.Replace(",", "")) + "," + _
                 QuotedStr(tbOriginalAmount.Text.Replace(",", "")) + "," + _
                 QuotedStr(tbAmountAlocation.Text.Replace(",", "")) + "," + _
+                 QuotedStr(tbAtasNamaSppt.Text) + "," + _
                 QuotedStr(ViewState("UserId").ToString) + ", GetDate()"
                 ViewState("TransNmbr") = tbCode.Text
             Else
@@ -3784,6 +3793,7 @@ Partial Class Transaction_TrBeginLandPurchaseReq
                 ", B_LainLain= " + QuotedStr(tbBiayaLainLain.Text.Replace(",", "")) + _
                 ", OriginalAmount= " + QuotedStr(tbOriginalAmount.Text.Replace(",", "")) + _
                 ", UnAllocAmount= " + QuotedStr(tbAmountAlocation.Text.Replace(",", "")) + _
+                ", AtasNamaSPPT= " + QuotedStr(tbAtasNamaSppt.Text) + _
                 ",DatePrep = GetDate()" + _
                 " WHERE TransNmbr = " + QuotedStr(tbCode.Text)
 

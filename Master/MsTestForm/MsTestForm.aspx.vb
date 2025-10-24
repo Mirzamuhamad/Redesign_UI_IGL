@@ -4,11 +4,11 @@ Imports System.Net
 Partial Class MsForm
     Inherits System.Web.UI.Page
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
         If Session(Request.QueryString("KeyId")) Is Nothing Then
         ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
             Response.Redirect("~\Sesi.aspx")
         End If
+
         If Not IsPostBack Then
             InitProperty()
             ViewState("SortExpression") = Nothing
@@ -331,69 +331,79 @@ Partial Class MsForm
     Private Function cekInput() As Boolean
         Try
             If tbCode.Text.Trim.Length = 0 Then
-                lstatus.Text = MessageDlg("ID Code must be filled.")
+                'lstatus.Text = MessageDlg("ID Code must be filled.")
+                SetStatus(Me,lstatus,"Code must be filled","Warning")
                 tbCode.Focus()
                 Return False
             End If
             If tbName.Text.Trim.Length = 0 Then
-                lstatus.Text = MessageDlg("ID Name must be filled.")
+                'lstatus.Text = MessageDlg("ID Name must be filled.")
+                SetStatus(Me,lstatus,"ID No must be filled","Warning")
                 tbName.Focus()
                 Return False
             End If
 
             If TbKk.Text.Trim.Length = 0 Then
-                lstatus.Text = MessageDlg("KK No must be filled.")
+                ' lstatus.Text = MessageDlg("KK No must be filled.")
+                SetStatus(Me,lstatus,"KK No must be filled","Warning")
                 tbName.Focus()
                 Return False
             End If
 
             If tbSellerID.Text.Trim.Length = 0 Then
-                lstatus.Text = MessageDlg("ID No must be filled.")
+                ' lstatus.Text = MessageDlg("ID No must be filled.")
+                SetStatus(Me,lstatus,"Seller must be filled","Warning")
                 tbSellerID.Focus()
                 Return False
             End If
 
             If tbPhone.Text.Trim.Length = 0 Then
-                lstatus.Text = MessageDlg("Phone must be filled.")
+                'lstatus.Text = MessageDlg("Phone must be filled.")
+                SetStatus(Me,lstatus,"Phone must be filled","Warning")
                 tbPhone.Focus()
                 Return False
-            End If
-
-
+            End If            
+     
             If tbAddress.Text.Trim.Length = 0 Then
-                lstatus.Text = MessageDlg("Address must be filled.")
+                'lstatus.Text = MessageDlg("Address must be filled.")
+                SetStatus(Me,lstatus,"Address must be filled","Warning")
                 tbAddress.Focus()
                 Return False
             End If
 
             If tbAddress.Text.Trim.Length = 0 Then
-                lstatus.Text = MessageDlg("Address must be filled.")
+                'lstatus.Text = MessageDlg("Address must be filled.")
+                SetStatus(Me,lstatus,"Address must be filled","Warning")
                 tbAddress.Focus()
                 Return False
             End If
 
 
             If tbKec.Text.Trim.Length = 0 Then
-                lstatus.Text = MessageDlg("Kecamatan must be filled.")
+                'lstatus.Text = MessageDlg("Kecamatan must be filled.")
+                SetStatus(Me,lstatus,"Kecamatan must be filled","Warning")
                 tbKec.Focus()
                 Return False
             End If
 
 
             If TbKab.Text.Trim.Length = 0 Then
-                lstatus.Text = MessageDlg("Kabupaten must be filled.")
+                'lstatus.Text = MessageDlg("Kabupaten must be filled.")
+                SetStatus(Me,lstatus,"Kabupaten must be filled","Warning")
                 TbKab.Focus()
                 Return False
             End If
 
             If tbCity.Text.Trim.Length = 0 Then
-                lstatus.Text = MessageDlg("Kabupaten must be filled.")
+                'lstatus.Text = MessageDlg("Kabupaten must be filled.")
+                SetStatus(Me,lstatus,"Kabupaten must be filled","Warning")
                 tbCity.Focus()
                 Return False
             End If
 
             If tbCity.Text.Trim.Length = 0 Then
-                lstatus.Text = MessageDlg("City must be filled.")
+                'lstatus.Text = MessageDlg("City must be filled.")
+                SetStatus(Me,lstatus,"City must be filled","Warning")
                 tbCity.Focus()
                 Return False
             End If
@@ -410,6 +420,9 @@ Partial Class MsForm
     Protected Sub BtnSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles BtnSave.Click
         Dim SqlString As String
         Try
+        
+        ' lStatus.text = MessageDlg(Format(CDate(tbDatePO.Text), "dd/MM/yyyy") +"|"+ tbdate.SelectedDate )
+        ' Exit sub
             If cekInput() = False Then
                 Exit Sub
             End If

@@ -123,12 +123,12 @@ Partial Class Index
                 SetInit()
 
                  ' Tambahkan ini untuk generate MobileMenuHtml
-    Dim sqlString As String = "EXEC S_SAUserMenu " + QuotedStr(ViewState("UserId")) + ", ''"
-    Dim dtMenu As DataTable = SQLExecuteQuery(sqlString, ViewState("DBConnection").ToString).Tables(0)
-    Dim menu = dtMenu.Select("ISNULL(MenuLevel, 0) = 0")
-    Dim sb As New StringBuilder()
-    GenerateMyMenu(menu, dtMenu, sb)
-    ViewState("MobileMenuHtml") = sb.ToString()
+                Dim sqlString As String = "EXEC S_SAUserMenu " + QuotedStr(ViewState("UserId")) + ", ''"
+                Dim dtMenu As DataTable = SQLExecuteQuery(sqlString, ViewState("DBConnection").ToString).Tables(0)
+                Dim menu = dtMenu.Select("ISNULL(MenuLevel, 0) = 0")
+                Dim sb As New StringBuilder()
+                GenerateMyMenu(menu, dtMenu, sb)
+                ViewState("MobileMenuHtml") = sb.ToString()
 
                        
             End If

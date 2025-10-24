@@ -1,9 +1,10 @@
 body {
     /*background-image:url(../image/backgroundlog.png);*/
+    font-family: 'Muli', Roboto, Arial, sans-serif !important;
 }
 
 .MenuBar {
-    /*font-family: "Trebuchet MS", Roboto, Helvetica, sans-serif;*/
+    /*font-family: 'Muli', Roboto, Arial, sans-serif !important;*/
     margin:0,0,0,0;       
     width:100%;
     float:left;
@@ -14,7 +15,7 @@ body {
 }
 
 .StaticMenuItemMB {
-    /*font-family: "Trebuchet MS", Roboto, Helvetica, sans-serif;*/
+    /*font-family: 'Muli', Roboto, Arial, sans-serif !important;*/
     /*background-color: #1999cf;    */
     background-color: #3c8bc3;
     font: 8pt Roboto;    
@@ -102,11 +103,11 @@ body {
 }
 
 .MenuBar2 {
-    font-family: "Trebuchet MS", Roboto, Helvetica, sans-serif;
+    font-family: 'Muli', Roboto, Arial, sans-serif !important;
 }
 
 .StaticMenuItemMB2 {
-    font-family: "Trebuchet MS", Roboto, Helvetica, sans-serif;
+    font-family: 'Muli', Roboto, Arial, sans-serif !important;
     /*background-color: #1999cf;    */
     background-color: #bdeafe;
     font: 9pt Roboto;    
@@ -181,14 +182,15 @@ body {
     font-size: x-large;
     text-decoration: none;
     font-weight: bold;
-    padding: 0px;
-    height: 69px;    
-    position: relative;
+    /* margin-top: -50px; */
+    /* padding: 10px; */
+    height: 45px;    
+    position: fixed;
     overflow: hidden;    
     width:100%;
-    top: 0px;
+    top: -38px;
     left: 0px;
-    min-width: 1000px;
+    /* min-width: 1000px; */
 	width:expression(document.body.clientWidth < 1000? "1000px": "auto" );
 }
 

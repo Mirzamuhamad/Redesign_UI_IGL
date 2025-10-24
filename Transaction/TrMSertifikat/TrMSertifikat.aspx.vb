@@ -79,16 +79,18 @@ Partial Class TrMSertifikat
                             tbSeller.Text = dr("SellCode").ToString()
                             tbsellerName.Text = dr("SellName").ToString()
                             tbRemarkDt.Text = dr("Remark").ToString()
+                            tbNamaAkhir.Text = dr("Nama").ToString()
                         End If
 
                     Else
                         tbNoDok.Text = ""
                         ddlJenisDokumen.SelectedValue = ""
-                        tbLuas.Text = ""
-                        tbNilai.Text = ""
+                        tbLuas.Text = 0
+                        tbNilai.Text = 0
                         tbSeller.Text = ""
                         tbsellerName.Text = ""
                         tbRemarkDt.Text = ""
+                        tbNamaAkhir.Text = ""
 
                     End If
 
@@ -435,6 +437,7 @@ Partial Class TrMSertifikat
             tbSellerName.Text = ""
             tbNilai.Text = 0
             tbReference.Text = ""
+            tbNamaAkhir.Text = ""
             
         Catch ex As Exception
             Throw New Exception("Clear Dt Error " + ex.ToString)
@@ -1407,7 +1410,7 @@ Partial Class TrMSertifikat
                 End If
 
                 if lbMutasi.Text <> "Pemecahan" Then
-                    If ViewState("StateHd") = "Insert" Then
+                    If ViewState("StateHd") = "Insert" Or ViewState("StateHd") = "Edit" Then
                         btnGetreference_Click(Nothing, Nothing)
                     End If
 
@@ -1465,6 +1468,7 @@ Partial Class TrMSertifikat
                     Dtdr("No_Sumber_Sppt") = drDtResult("PbbNo").ToString
                     Dtdr("Nilai") = drDtResult("Nilai").ToString
                     Dtdr("Seller") = drDtResult("SellCode").ToString
+                    Dtdr("Nama") = drDtResult("Nama").ToString
                     ViewState("Dt2").Rows.Add(Dtdr)
                 Else
                     'Update jika sudah ada
@@ -1480,6 +1484,7 @@ Partial Class TrMSertifikat
                     Row("No_Sumber_Sppt") = drDtResult("PbbNo").ToString
                     Row("Nilai") = drDtResult("Nilai").ToString
                     Row("Seller") = drDtResult("SellCode").ToString
+                    Row("Nama") = drDtResult("Nama").ToString
                     Row.EndEdit()
                 End If
 
@@ -1715,6 +1720,7 @@ Partial Class TrMSertifikat
                     tbSumberObject.Text = dr("SumberObject").ToString
                     tbNoSppt.Text = dr("PbbNo").ToString
                     tbRemarkDt.Text = dr("Remark").ToString
+                    tbNamaAkhir.Text = dr("Nama").ToString
                 Else
                     tbNoDok.Text = ""
                     ddlJenisDokumen.SelectedIndex = 0
@@ -1727,6 +1733,7 @@ Partial Class TrMSertifikat
                     tbNoSppt.Text = ""
                     tbSumberObject.Text = "-"
                     tbNoSppt.Text = "-"
+                    tbNamaAkhir.Text = ""
                 End If
 
                 GridDt.Columns(7).Visible = True
@@ -1754,6 +1761,7 @@ Partial Class TrMSertifikat
                 tbNoSppt.Text = ""
                 tbSumberObject.Text = "-"
                 tbNoSppt.Text = "-"
+                tbNamaAkhir.Text = ""
                 GridDt.Columns(7).Visible = False
                 GridDt.Columns(8).Visible = False
                 pnlNilaiLuas.Visible = False

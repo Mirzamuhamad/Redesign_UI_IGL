@@ -16,13 +16,6 @@
          window.open("../../SeaDlg.Aspx", "List", "scrollbars=yes,resizable=no,width=500,height=400");
          return false;
      }
-     function openprintdlg() {
-         var wOpens;
-         wOpens = window.open("../../Rpt/PrintForm.Aspx", "List", "scrollbars=yes,resizable=yes,width=500,height=400");
-         wOpens.moveTo(0, 0);
-         wOpens.resizeTo(screen.width, screen.height);
-     }
-
 
 
      function OpenPopup() {
@@ -714,14 +707,16 @@
                             <td colspan="7">
                                 <table>
                                     <tr style="background-color:Silver;text-align:center; border-radius:30px;">
-                                        <td>SPPT</td>
+                                        <td>SPPT</td>                                        
                                         <td>AJB/SPH/SHM</td>
                                         <td>Luas Ukur</td>
+                                        <td>Atas Nama SPPT</td>
                                     </tr>
                                     <tr>
-                                        <td><asp:TextBox ID="tbSPPT" runat="server" CssClass="TextBox" Width="100px" AutoPostBack="true"/></td>
+                                        <td><asp:TextBox ID="tbSPPT" runat="server" CssClass="TextBox" Width="100px" AutoPostBack="true"/></td>                                        
                                         <td><asp:TextBox ID="tbAjbSphShm" ValidationGroup="Input" runat="server" CssClass="TextBox" width="100px" AutoPostBack="true"/></td>
-                                        <td><asp:TextBox ID="tbLuasUkur" runat="server" CssClass="TextBox" Width="100px" AutoPostBack="true"/></td>                          
+                                        <td><asp:TextBox ID="tbLuasUkur" runat="server" CssClass="TextBox" Width="100px" AutoPostBack="true"/></td> 
+                                        <td><asp:TextBox ID="tbAtasNamaSppt" runat="server" CssClass="TextBox" Width="320px" AutoPostBack="False"/></td>                         
                                     </tr>
                                 </table>
                             </td>                

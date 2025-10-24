@@ -2,6 +2,7 @@
     Inherits="Transaction_TrLandPurchaseReq_TrLandPurchaseReq" %>
 
     <%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls" TagPrefix="BDP" %>
+
         <!DOCTYPE html
             PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
         <html xmlns="http://www.w3.org/1999/xhtml">
@@ -9,10 +10,19 @@
         <head runat="server">
             <title>Land Survey</title>
 
-            <script src="../../Function/OpenDlg.js" type="text/javascript"></script>
+             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+            <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
+            <!-- <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" /> -->
+            <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+            <link href="../../Styles/StyleNew.css" rel="stylesheet" type="text/css" />
 
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script src="../../Function/Function.JS" type="text/javascript"></script>
-
+            
+            <script src="../../Function/OpenDlg.js" type="text/javascript"></script>
+            
 
             <script type="text/javascript">
 
@@ -20,13 +30,6 @@
                     window.open("../../SeaDlg.Aspx", "List", "scrollbars=yes,resizable=no,width=500,height=400");
                     return false;
                 }
-                function openprintdlg() {
-                    var wOpens;
-                    wOpens = window.open("../../Rpt/PrintForm.Aspx", "List", "scrollbars=yes,resizable=yes,width=500,height=400");
-                    wOpens.moveTo(0, 0);
-                    wOpens.resizeTo(screen.width, screen.height);
-                }
-
 
 
                 function OpenPopup() {
@@ -328,9 +331,6 @@
                     }
                 }
 
-
-
-
                 function UploadLainLain2(fileUploadLainLain2) {
                     if (fileUploadLainLain2.value != '') {
                         document.getElementById("<%=btnSaveLainLain2.ClientID %>").click();
@@ -366,35 +366,30 @@
 
             </script>
 
-            <!-- <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" /> -->
-            <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-            <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" /> -->
-            <link href="../../Styles/StyleNew.css" rel="stylesheet" type="text/css" />
+           
+
+
         </head>
 
         <body>
-
-
             <form id="form1" runat="server">
-
-
+                <asp:ScriptManager ID="ScriptManager1" runat="server">
+                </asp:ScriptManager>
                 <div class="Content">
 
                     <!-- embed hiper kompress pdf -->
                     <!-- <div id="avepdf-container-id">
-            <script type="text/javascript" src="https://avepdf.com/api/js/embedwidgets.js"></script>
-                <script type="text/javascript">
-                    loadAvePDFWidget('692b96ed-b91c-4a1d-bf53-ba8cf411e8a0', 'auto', 'hyper-compress-pdf', 'avepdf-container-id');
-                </script>
-            </div> -->
+                        <script type="text/javascript" src="https://avepdf.com/api/js/embedwidgets.js"></script>
+                            <script type="text/javascript">
+                                loadAvePDFWidget('692b96ed-b91c-4a1d-bf53-ba8cf411e8a0', 'auto', 'hyper-compress-pdf', 'avepdf-container-id');
+                            </script>
+                        </div> -->
 
-                    <div class="card bg-White text-Black sticky-top shadow-sm">
-                        <div class="card-body py-2">
-                            <h5 class="mb-0">Sample Trans Form Input</h5>
+                    <div class="card bg-white sticky-top shadow-sm border-0 rounded-0">
+                            <div class="card-body py-2">
+                                <h6 class="mb-0">Sample Form Transaksi Boostrap</h6>
+                            </div>
                         </div>
-                    </div>
                     <!-- <hr style="color: Blue" /> -->
                     <asp:Panel runat="server" ID="PnlHd">
                         <div class="container-fluid mt-1">
@@ -404,10 +399,9 @@
 
                                     <asp:DropDownList CssClass="form-select form-select-sm w-auto" ID="ddlCommand"
                                         runat="server" Visible="false" />
-                                    <asp:LinkButton ID="BtnGo" runat="server" CssClass="btn btn-success btn-sm"
-                                        Visible="false">
-                                        <i class="fa fa-check-circle"></i> Go
-                                    </asp:LinkButton>
+                                    <button id="BtnGo" runat="server"
+                                        class="btn btn-success btn-sm icon-btn btn-icon-check" Visible="false">Go
+                                    </button>
 
 
                                     <!-- Textbox dengan placeholder -->
@@ -425,15 +419,17 @@
                                         <asp:ListItem Value="NoDocSertifikat">Nomor Dokumen</asp:ListItem>
                                         <asp:ListItem Value="FgImport">Data Import</asp:ListItem>
                                         <asp:ListItem>Remark</asp:ListItem>
-
                                     </asp:DropDownList>
+
                                     <asp:DropDownList CssClass="form-select form-select-sm w-auto" runat="server"
                                         ID="ddlRange">
                                     </asp:DropDownList>
+
                                     <!-- Tombol dengan ikon -->
-                                    <asp:LinkButton runat="server" ID="btnSearch" CssClass="btn btn-primary btn-sm">
-                                        <i class="fa fa-search"></i> Search
-                                    </asp:LinkButton>
+                                    <button runat="server" id="btnSearch"
+                                        class="btn btn-primary btn-sm icon-btn btn-icon-search">
+                                        Search
+                                    </button>
 
                                     <asp:LinkButton runat="server" ID="btnExpand" CssClass="btn btn-secondary btn-sm">
                                         <i class="fa fa-ellipsis-h"></i>
@@ -541,7 +537,13 @@
                                                     SortExpression="TransNmbr" HeaderText="Request No">
                                                     <HeaderStyle Width="120px" />
                                                 </asp:BoundField>
-                                                <asp:BoundField DataField="Status" HeaderText="Status"></asp:BoundField>
+
+                                                <asp:TemplateField HeaderText="Status">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblStatus" runat="server"
+                                                            Text='<%# Eval("Status") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                                 <asp:BoundField DataField="TransDate" DataFormatString="{0:dd MMM yyyy}"
                                                     HtmlEncode="true" HeaderStyle-Width="80px"
                                                     SortExpression="TransDate" HeaderText="Date">
@@ -638,8 +640,8 @@
                                     </asp:Menu>
                                 </div>
                                 <div class="col-md-4 text-end">
-                                    <asp:Button CssClass="btn btn-primary btn-sm" runat="server" ID="btnGoEdit"
-                                        Text="Edit Data" />
+                                    <asp:Button CssClass="btn btn-primary btn-sm btn-icon btnedit" runat="server"
+                                        ID="btnGoEdit" Text="Edit Data" />
                                 </div>
 
                                 <div class="container-fluid mt-0">
@@ -649,7 +651,7 @@
                                 <asp:MultiView ID="MultiView2" runat="server" ActiveViewIndex="0">
                                     <asp:View ID="Tab0" runat="server">
                                         <div class="container-fluid mt-2">
-                                            <div class="row mb-2">
+                                            <div class="row mb-1">
                                                 <!-- Offering Survey No -->
                                                 <div class="col-md-3">
                                                     <label class="form-label">Offering Survey No</label>
@@ -716,7 +718,7 @@
                                             </div>
 
 
-                                            <div class="row mb-2">
+                                            <div class="row mb-1">
                                                 <!-- Offering Survey No -->
                                                 <div class="col-md-4">
                                                     <label class="form-label">Nama Pembeli</label>
@@ -758,7 +760,7 @@
                                             </div>
 
 
-                                            <div class="row mb-2">
+                                            <div class="row mb-1">
                                                 <div class="col-md-3">
                                                     <label class="form-label">Jenis Dokumen</label>
                                                     <asp:DropDownList ID="ddlJenisDokumen" runat="server"
@@ -803,7 +805,7 @@
                                             </div>
 
 
-                                            <div class="row mb-2">
+                                            <div class="row mb-1">
 
 
                                                 <div class="col-md-2">
@@ -856,7 +858,7 @@
 
                                             </div>
 
-                                            <div class="row mb-2">
+                                            <div class="row mb-1">
                                                 <div class="col-md-2">
                                                     <label class="form-label">Provinsi</label>
                                                     <asp:TextBox ID="tbProvinsi" runat="server"
@@ -891,7 +893,7 @@
 
 
 
-                                            <div class="row mb-2">
+                                            <div class="row mb-1">
                                                 <div class="col-md-3">
                                                     <label class="form-label">No Sppt/Pbb</label>
                                                     <asp:TextBox ID="tbSptPbb" runat="server"
@@ -919,7 +921,7 @@
 
                                             </div>
 
-                                            <div class="row mb-2">
+                                            <div class="row mb-1">
                                                 <div class="col-md-3">
                                                     <label class="form-label">No Girik Kohir</label>
                                                     <asp:TextBox ID="tbKohir" runat="server"
@@ -947,7 +949,7 @@
 
                                             </div>
 
-                                            <div class="row mb-2">
+                                            <div class="row mb-1">
                                                 <div class="col-md-6">
                                                     <label class="form-label">Remark Reject</label>
                                                     <asp:TextBox ID="tbRemarkReject" enabled="false" runat="server"
@@ -1051,9 +1053,9 @@
                                                 <asp:FileUpload style="color: White;" runat="server"
                                                     accept="application/pdf" ID="FupMain" />
                                                 <!--  <asp:RegularExpressionValidator ID="FileUpLoadValidator" runat="server" ErrorMessage="Upload PDF files only .!!!"
-                            ValidationExpression="^(([a-zA-Z]:)|(\\{2}\w+)\$?)(\\(\w[\w].*))(.pdf|.PDF)$" 
-                           ControlToValidate="FupMain"> 
-                        </asp:RegularExpressionValidator>  -->
+                                                    ValidationExpression="^(([a-zA-Z]:)|(\\{2}\w+)\$?)(\\(\w[\w].*))(.pdf|.PDF)$" 
+                                                ControlToValidate="FupMain"> 
+                                                </asp:RegularExpressionValidator>  -->
                                                 <asp:Label ID="lblmassageKTP" runat="server" CssClass="labelMassage"
                                                     Visible="false" Text="File uploaded successfully"></asp:Label>
                                             </td>
@@ -1104,7 +1106,7 @@
                                                 <asp:LinkButton ID="lbBPJS" ValidationGroup="Input" runat="server"
                                                     Text="Not Yet Uploaded" />
                                                 <!-- <asp:Button ID="btnsaveKtp" CssClass="bitbtndt btnadd" runat="server"  OnClientClick = "SetTarget();" Text="View" /> 
- -->
+                                                                        -->
                                             </td>
                                         </tr>
 
@@ -1941,6 +1943,10 @@
                                                         --%>
                                             </Items>
                                         </asp:Menu>
+
+
+
+
                                     </div>
                                 </div>
                             </div>
@@ -1955,8 +1961,8 @@
                                                 <div class="row mb-0">
                                                     <div class="col-md-12 mb-1 text-end">
                                                         <asp:Button ID="BtnAddDt" runat="server"
-                                                            text="Add Riwayat Tanah" ValidationGroup="Input"
-                                                            CssClass="btn btn-primary btn-sm px-10 btn-icon btn-icon-add w-100">
+                                                            text="Tambah Data Riwayat Tanah" ValidationGroup="Input"
+                                                            CssClass="btn btn-primary btn-sm w-100 btn-icon btnadd">
 
                                                         </asp:Button>
                                                     </div>
@@ -2041,104 +2047,84 @@
                                     <asp:Panel runat="server" ID="pnlEditDt" Visible="false">
                                         <div class="card shadow-sm">
                                             <div class="card-body p-1">
-                                                <table>
-                                                    <tr>
-                                                        <td>
-                                                            Item No</td>
-                                                        <td>:</td>
-                                                        <td colspan="4">
-                                                            <asp:Label ID="lbItemNo" runat="server" Text="" />
-                                                        </td>
-                                                    </tr>
 
-                                                    <tr>
-                                                        <td>Ket Kegiatan</td>
-                                                        <td>:</td>
-                                                        <td>
-                                                            <asp:TextBox runat="server" ValidationGroup="Input"
-                                                                ID="tbKetKegiatan" CssClass="TextBox" Width="225px" />
-                                                        </td>
-                                                    </tr>
+                                                <div class="container-fluid mt-2">
+                                                    <div class="row mb-1">
+                                                        <!-- Offering Survey No -->
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Keterangan Kegiatan Item No :
+                                                                <asp:Label class="form-label" ID="lbItemNo"
+                                                                    runat="server" Text="" />
+                                                            </label>
+                                                            <asp:TextBox ID="tbKetKegiatan" runat="server"
+                                                                CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
 
-                                                    <tr>
-                                                        <td>No Surat</td>
-                                                        <td>:</td>
-                                                        <td>
-                                                            <asp:TextBox runat="server" ValidationGroup="Input"
-                                                                MaxLength="30" ID="tbNoSurat" CssClass="TextBox"
-                                                                Width="225px" />
-                                                        </td>
-                                                    </tr>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">No Surat</label>
+                                                            <asp:TextBox ID="tbNoSurat" runat="server"
+                                                                CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
 
-                                                    <tr>
-                                                        <td>Tgl Surat</td>
-                                                        <td>:</td>
-                                                        <td>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Tanggal Surat</label>
                                                             <BDP:BasicDatePicker ID="tbDateSurat" runat="server"
-                                                                DateFormat="dd MMM yyyy" ReadOnly="False"
-                                                                ValidationGroup="Input" Width="225px"
-                                                                ButtonImageHeight="19px" ButtonImageWidth="20px"
-                                                                DisplayType="TextBoxAndImage"
-                                                                TextBoxStyle-CssClass="TextDate" AutoPostBack="false"
-                                                                ShowNoneButton="False">
-                                                                <TextBoxStyle CssClass="TextDate" />
+                                                                DateFormat="dd MMM yyyy" ReadOnly="True"
+                                                                ValidationGroup="Input" ButtonImageHeight="19px"
+                                                                ButtonImageWidth="20px" DisplayType="TextBox"
+                                                                AutoPostBack="True" ShowNoneButton="False">
+                                                                <TextBoxStyle CssClass="form-control form-control-sm" />
                                                             </BDP:BasicDatePicker>
-                                                        </td>
-                                                    </tr>
+                                                        </div>
 
-                                                    <tr>
-                                                        <td>Luas</td>
-                                                        <td>:</td>
-                                                        <td>
-                                                            <asp:TextBox runat="server" ValidationGroup="Input"
-                                                                ID="tbLuasDt" CssClass="TextBox" Width="225px" />
-                                                        </td>
-                                                    </tr>
 
-                                                    <tr>
-                                                        <td>Nama Pemilik</td>
-                                                        <td>:</td>
-                                                        <td colspan="7">
-                                                            <table>
-                                                                <tr
-                                                                    style="background-color:Silver;text-align:center; border-radius:30px;">
-                                                                    <td>Awal</td>
-                                                                    <td>Akhir</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <asp:TextBox runat="server"
-                                                                            ValidationGroup="Input" ID="tbPemilikAwal"
-                                                                            CssClass="TextBox" Width="225px" />
-                                                                    </td>
-                                                                    <td>
-                                                                        <asp:TextBox runat="server"
-                                                                            ValidationGroup="Input" ID="tbPemilikAkhir"
-                                                                            CssClass="TextBox" Width="225px" />
-                                                                    </td>
-                                                                </tr>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Luas</label>
+                                                            <asp:TextBox ID="tbLuasDt" runat="server"
+                                                                CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
+                                                    </div>
 
-                                                    <tr>
-                                                        <td>
-                                                            Remark</td>
-                                                        <td>
-                                                            :</td>
-                                                        <td colspan="4">
+                                                    <div class="row mb-1">
+                                                        <!-- Offering Survey No -->
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Nama Pemilik Awal</label>
+                                                            <asp:TextBox ID="tbPemilikAwal" runat="server"
+                                                                CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
+
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Nama Pemilik Akhir</label>
+                                                            <asp:TextBox ID="tbPemilikAkhir" runat="server"
+                                                                CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Remark</label>
                                                             <asp:TextBox ID="tbRemarkDt" runat="server"
-                                                                CssClass="TextBox" MaxLength="255" TextMode="MultiLine"
-                                                                Width="365px" />
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                                <br />
-                                                <asp:Button ID="btnSaveDt" runat="server" class="bitbtndt btnsave"
-                                                    Text="Save" />
-                                                <asp:Button ID="btnCancelDt" runat="server" class="bitbtndt btncancel"
-                                                    Text="Cancel" />
+                                                                CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                    <br>
 
+                                                    <div class="row-mb-1">
+
+                                                        <div class="col-md-12 text-end">
+                                                            <asp:LinkButton ID="btnSaveDt" runat="server"
+                                                                CssClass="btn btn-primary btn-sm">
+                                                                <i class="fa fa-edit me-1"></i> Save
+                                                            </asp:LinkButton>
+
+                                                            <asp:LinkButton ID="btnCancelDt" runat="server"
+                                                                CssClass="btn btn-danger btn-sm">
+                                                                <i class="fa fa-arrow-left me-1"></i> Cancel
+                                                            </asp:LinkButton>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                                <br>
                                             </div>
                                         </div>
                                     </asp:Panel>
@@ -2270,8 +2256,8 @@
                                                 <div class="row mb-0">
                                                     <div class="col-md-12 mb-1 text-end">
                                                         <asp:Button ID="BtnAddDt3" runat="server"
-                                                            text="Add Detail Monitoring" ValidationGroup="Input"
-                                                            CssClass="btn btn-primary btn-sm px-10 btn-icon btn-icon-add w-100">
+                                                            text="Tambah Data Detail Monitoring" ValidationGroup="Input"
+                                                            CssClass="btn btn-primary btn-sm px-10 btn-icon btnadd w-100">
 
                                                         </asp:Button>
                                                     </div>
@@ -2289,9 +2275,9 @@
                                                             HorizontalAlign="Left" />
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="Action">
-                                                                <ItemTemplate>                                                                   
+                                                                <ItemTemplate>
 
-                                                                        <asp:LinkButton ID="btnEdit" runat="server"
+                                                                    <asp:LinkButton ID="btnEdit" runat="server"
                                                                         CssClass="btn btn-primary btn-sm "
                                                                         CommandName="Edit">
                                                                         <i class="fa fa-edit me-1"></i> Edit
@@ -2317,11 +2303,12 @@
 
                                                             <asp:TemplateField HeaderText="Detail">
                                                                 <ItemTemplate>
-                                                                        <asp:LinkButton ID="btnDetailMaterial" runat="server"
-                                                                        CssClass="btn btn-info btn-sm "
+                                                                    <asp:LinkButton ID="btnDetailMaterial"
+                                                                        runat="server" CssClass="btn btn-info btn-sm "
                                                                         CommandArgument="<%# Container.DataItemIndex %>"
                                                                         CommandName="DetailMaterial">
-                                                                        <i class="fa fa-circle me-1"></i> Detail Letter C
+                                                                        <i class="fa fa-circle me-1"></i> Detail Letter
+                                                                        C C
                                                                     </asp:LinkButton>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
@@ -2427,212 +2414,150 @@
                                     <asp:Panel runat="server" ID="pnlEditDt3" Visible="false">
                                         <div class="card shadow-sm">
                                             <div class="card-body p-1">
-                                                <table>
 
-                                                    <tr>
-                                                        <td>No Wl</td>
-                                                        <td>:</td>
-                                                        <td>
-                                                            <asp:TextBox runat="server" MaxLength="20"
-                                                                ValidationGroup="Input" ID="tbWlNo" CssClass="TextBox"
-                                                                Width="225px" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>No Percil</td>
-                                                        <td>:</td>
-                                                        <td>
-                                                            <asp:TextBox runat="server" MaxLength="20"
-                                                                ValidationGroup="Input" ID="tbPercilNoDt"
-                                                                CssClass="TextBox" Width="225px" />
-                                                        </td>
-                                                    </tr>
+                                                <div class="container-fluid mt-2">
+                                                    <div class="row mb-1">
+                                                        <!-- Offering Survey No -->
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">No Wl
+                                                            </label>
+                                                            <asp:TextBox ID="tbWlNo" runat="server"
+                                                                CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
 
-                                                    <tr>
-                                                        <td>No Waris Level</td>
-                                                        <td>:</td>
-                                                        <td>
-                                                            <asp:TextBox runat="server" MaxLength="20"
-                                                                ValidationGroup="Input" ID="tbWarisLevelNo"
-                                                                CssClass="TextBox" Width="225px" />
-                                                        </td>
-                                                    </tr>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">No Percil
+                                                            </label>
+                                                            <asp:TextBox ID="tbPercilNoDt" runat="server"
+                                                                CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
 
-                                                    <tr>
-                                                        <td>Pemilik Awal</td>
-                                                        <td>:</td>
-                                                        <td colspan="7">
-                                                            <table>
-                                                                <tr
-                                                                    style="background-color:Silver;text-align:center; border-radius:30px;">
-                                                                    <td>Nama Awal</td>
-                                                                    <td>Luas Awal</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <asp:TextBox runat="server"
-                                                                            ValidationGroup="Input" ID="tbNameAwal"
-                                                                            CssClass="TextBox" Width="225px" />
-                                                                    </td>
-                                                                    <td>
-                                                                        <asp:TextBox runat="server"
-                                                                            ValidationGroup="Input" ID="tbLuasAwal"
-                                                                            CssClass="TextBox" Width="225px" />
-                                                                    </td>
-                                                                </tr>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">No Waris Level
+                                                            </label>
+                                                            <asp:TextBox ID="tbWarisLevelNo" runat="server"
+                                                                CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
+                                                    </div>
 
 
+                                                    <!-- Nama Section -->
+                                                    <div class="row mb-1">
+                                                        <div class="col-md-2">
+                                                            <label class="form-label">Nama Pemilik Awal
+                                                            </label>
+                                                            <asp:TextBox ID="tbNameAwal" runat="server"
+                                                                CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
 
-                                                    <tr>
-                                                        <td>Nama &amp; Luas 1</td>
-                                                        <td>:</td>
-                                                        <td colspan="7">
-                                                            <table>
-                                                                <tr
-                                                                    style="background-color:Silver;text-align:center; border-radius:30px;">
-                                                                    <td>Name 1</td>
-                                                                    <td>Luas 1</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <asp:TextBox runat="server"
-                                                                            ValidationGroup="Input" ID="tbNamelvl1"
-                                                                            CssClass="TextBox" Width="225px" />
-                                                                    </td>
-                                                                    <td>
-                                                                        <asp:TextBox runat="server"
-                                                                            ValidationGroup="Input" ID="tbLuaslvl1"
-                                                                            CssClass="TextBox" Width="225px" />
-                                                                    </td>
-                                                                </tr>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
+                                                        <div class="col-md-2">
+                                                            <label class="form-label">Nama 1
+                                                            </label>
+                                                            <asp:TextBox ID="tbNamelvl1" runat="server"
+                                                                CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
 
-                                                    <tr>
-                                                        <td>&nbsp;Nama &amp; Luas 2</td>
-                                                        <td>:</td>
-                                                        <td colspan="7">
-                                                            <table>
-                                                                <tr
-                                                                    style="background-color:Silver;text-align:center; border-radius:30px;">
-                                                                    <td>Name 2</td>
-                                                                    <td>Luas 2</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <asp:TextBox runat="server"
-                                                                            ValidationGroup="Input" ID="tbNamelvl2"
-                                                                            CssClass="TextBox" Width="225px" />
-                                                                    </td>
-                                                                    <td>
-                                                                        <asp:TextBox runat="server"
-                                                                            ValidationGroup="Input" ID="tbLuaslvl2"
-                                                                            CssClass="TextBox" Width="225px" />
-                                                                    </td>
-                                                                </tr>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
+                                                        <div class="col-md-2">
+                                                            <label class="form-label">Nama 2
+                                                            </label>
+                                                            <asp:TextBox ID="tbNamelvl2" runat="server"
+                                                                CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
 
-                                                    <tr>
-                                                        <td>Nama &amp; Luas 3</td>
-                                                        <td>:</td>
-                                                        <td colspan="7">
-                                                            <table>
-                                                                <tr
-                                                                    style="background-color:Silver;text-align:center; border-radius:30px;">
-                                                                    <td>Name 3</td>
-                                                                    <td>Luas 3</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <asp:TextBox runat="server"
-                                                                            ValidationGroup="Input" ID="tbNamelvl3"
-                                                                            CssClass="TextBox" Width="225px" />
-                                                                    </td>
-                                                                    <td>
-                                                                        <asp:TextBox runat="server"
-                                                                            ValidationGroup="Input" ID="tbLuaslvl3"
-                                                                            CssClass="TextBox" Width="225px" />
-                                                                    </td>
-                                                                </tr>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
+                                                        <div class="col-md-2">
+                                                            <label class="form-label">Nama 3
+                                                            </label>
+                                                            <asp:TextBox ID="tbNamelvl3" runat="server"
+                                                                CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
 
-                                                    <tr>
-                                                        <td>Nama &amp; Luas 4</td>
-                                                        <td>:</td>
-                                                        <td colspan="7">
-                                                            <table>
-                                                                <tr
-                                                                    style="background-color:Silver;text-align:center; border-radius:30px;">
-                                                                    <td>Name 1</td>
-                                                                    <td>Luas 1</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <asp:TextBox runat="server"
-                                                                            ValidationGroup="Input" ID="tbNamelvl4"
-                                                                            CssClass="TextBox" Width="225px" />
-                                                                    </td>
-                                                                    <td>
-                                                                        <asp:TextBox runat="server"
-                                                                            ValidationGroup="Input" ID="tbLuaslvl4"
-                                                                            CssClass="TextBox" Width="225px" />
-                                                                    </td>
-                                                                </tr>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
+                                                        <div class="col-md-2">
+                                                            <label class="form-label">Nama 4
+                                                            </label>
+                                                            <asp:TextBox ID="tbNamelvl4" runat="server"
+                                                                CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
 
-                                                    <tr>
-                                                        <td>&nbsp;Nama &amp; Luas 5</td>
-                                                        <td>:</td>
-                                                        <td colspan="7">
-                                                            <table>
-                                                                <tr
-                                                                    style="background-color:Silver;text-align:center; border-radius:30px;">
-                                                                    <td>Name 5</td>
-                                                                    <td>Luas 5</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <asp:TextBox runat="server"
-                                                                            ValidationGroup="Input" ID="tbNamelvl5"
-                                                                            CssClass="TextBox" Width="225px" />
-                                                                    </td>
-                                                                    <td>
-                                                                        <asp:TextBox runat="server"
-                                                                            ValidationGroup="Input" ID="tbLuaslvl5"
-                                                                            CssClass="TextBox" Width="225px" />
-                                                                    </td>
-                                                                </tr>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
+                                                        <div class="col-md-2">
+                                                            <label class="form-label">Nama 5
+                                                            </label>
+                                                            <asp:TextBox ID="tbNamelvl5" runat="server"
+                                                                CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
+                                                    </div>
 
-                                                    <tr>
-                                                        <td class="style1">
-                                                            Remark</td>
-                                                        <td class="style2">
-                                                            :</td>
-                                                        <td>
+                                                    <!-- Luas Section -->
+
+                                                    <div class="row mb-1">
+                                                        <div class="col-md-2">
+                                                            <label class="form-label">Luas Pemilik Awal
+                                                            </label>
+                                                            <asp:TextBox ID="tbLuasAwal" runat="server"
+                                                                CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
+
+                                                        <div class="col-md-2">
+                                                            <label class="form-label">Luas 1
+                                                            </label>
+                                                            <asp:TextBox ID="tbLuaslvl1" runat="server"
+                                                                CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
+
+                                                        <div class="col-md-2">
+                                                            <label class="form-label">Luas 2
+                                                            </label>
+                                                            <asp:TextBox ID="tbLuaslvl2" runat="server"
+                                                                CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
+
+                                                        <div class="col-md-2">
+                                                            <label class="form-label">Luas 3
+                                                            </label>
+                                                            <asp:TextBox ID="tbLuaslvl3" runat="server"
+                                                                CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
+
+                                                        <div class="col-md-2">
+                                                            <label class="form-label">Luas 4
+                                                            </label>
+                                                            <asp:TextBox ID="tbLuaslvl4" runat="server"
+                                                                CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
+
+                                                        <div class="col-md-2">
+                                                            <label class="form-label">Luas 5
+                                                            </label>
+                                                            <asp:TextBox ID="tbLuaslvl5" runat="server"
+                                                                CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                        <div class="col-md-12">
+                                                            <label class="form-label">Remark
+                                                            </label>
                                                             <asp:TextBox ID="tbRemarkdt2" runat="server"
-                                                                CssClass="TextBox" Enabled="True" Height="38px"
-                                                                TextMode="MultiLine" Width="450px" />
-                                                        </td>
-                                                    </tr>
-                                                </table>
+                                                                CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
+                                                    </div>
 
-                                                <asp:Button ID="btnSaveDt3" runat="server" class="bitbtndt btnsave"
-                                                    Text="Save" />
-                                                <asp:Button ID="btnCancelDt3" runat="server" class="bitbtndt btncancel"
-                                                    Text="Cancel" />
+                                                    <div class="row mb-1 text-end">
+                                                        <div class="col-md-12">
+                                                            <asp:LinkButton ID="btnSaveDt3" runat="server"
+                                                                CssClass="btn btn-primary btn-sm ">
+                                                                <i class="fa fa-edit me-1"></i> Save
+                                                            </asp:LinkButton>
+
+                                                            <asp:LinkButton ID="btnCancelDt3" runat="server"
+                                                                CssClass="btn btn-danger btn-sm ">
+                                                                <i class="fa fa-arrow-left me-1"></i> Cancel
+                                                            </asp:LinkButton>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
                                                 <br />
                                             </div>
                                         </div>
@@ -2642,499 +2567,541 @@
 
 
                                 <asp:View ID="Tab5" runat="server">
+                                    <div class="card shadow-sm">
+                                        <div class="card-body p-1">
+                                            <asp:Panel ID="pnlInfoDt" runat="server">
 
-                                    <asp:Panel ID="pnlInfoDt" runat="server">
-                                        <table>
-                                            <tr>
+                                                <div class="row mb-1">
+                                                    <div class="col-md-2">
+                                                        <asp:Label ID="lblItem" class="form-label" runat="server"
+                                                            Text="No WL " />
+                                                        <asp:Label ID="lbNoWl"
+                                                            class="form-control form-control-sm border-primary rounded"
+                                                            runat="server" Font-Bold="False" ForeColor="#0092C8"
+                                                            Text="No Wl" />
+                                                    </div>
 
-                                                <td>
-                                                    <asp:Label ID="lblItem" runat="server" Text="No WL " />
-                                                </td>
-                                                <td>: </td>
-                                                <td>
-                                                    <asp:Label ID="lbNoWl" runat="server" Font-Bold="False"
-                                                        ForeColor="#0092C8" Text="No Wl" />
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>Waris Level No</td>
-                                                <td>:</td>
-                                                <td colspan="7">
-                                                    <table>
-                                                        <tr
-                                                            style="background-color:Silver;text-align:center; border-radius :50px;">
-
-                                                            <td>1</td>
-                                                            <td>2</td>
-                                                            <td>3</td>
-                                                            <td>4</td>
-                                                            <td>5</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
+                                                    <div class="col-md-2">
+                                                        <asp:Label class="form-label" runat="server"
+                                                            Text="Waris Level No 1" />
+                                                        <div class="input-group input-group-sm mb-2">
+                                                            <span class="input-group-text">
                                                                 <asp:Label ID="lbwaris1" runat="server"
-                                                                    Font-Bold="False" ForeColor="#0092C8"
-                                                                    Text="Waris Name 1" />
-                                                            </td>
-                                                            <td>
+                                                                    Font-Bold="False" Text="Waris Name 5" />
+                                                            </span>
+                                                            <asp:TextBox runat="server" ValidationGroup="Input"
+                                                                ID="tbLuas1" Enabled="False"
+                                                                CssClass="form-control form-control-sm border" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-2">
+                                                        <asp:Label class="form-label" runat="server"
+                                                            Text="Waris Level No 2" />
+                                                        <div class="input-group input-group-sm mb-2">
+                                                            <span class="input-group-text">
                                                                 <asp:Label ID="lbwaris2" runat="server"
-                                                                    Font-Bold="False" ForeColor="#0092C8"
-                                                                    Text="Waris Name 2" />
-                                                            </td>
-                                                            <td>
+                                                                    Font-Bold="False" Text="Waris Name 5" />
+                                                            </span>
+                                                            <asp:TextBox runat="server" ValidationGroup="Input"
+                                                                ID="tbLuas2" Enabled="False"
+                                                                CssClass="form-control form-control-sm border" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-2">
+                                                        <asp:Label class="form-label" runat="server"
+                                                            Text="Waris Level No 3" />
+                                                        <div class="input-group input-group-sm mb-2">
+                                                            <span class="input-group-text">
                                                                 <asp:Label ID="lbwaris3" runat="server"
-                                                                    Font-Bold="False" ForeColor="#0092C8"
-                                                                    Text="Waris Name 3" />
-                                                            </td>
-                                                            <td>
+                                                                    Font-Bold="False" Text="Waris Name 5" />
+                                                            </span>
+                                                            <asp:TextBox runat="server" ValidationGroup="Input"
+                                                                ID="tbLuas3" Enabled="False"
+                                                                CssClass="form-control form-control-sm border" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-2">
+                                                        <asp:Label class="form-label" runat="server"
+                                                            Text="Waris Level No 4" />
+                                                        <div class="input-group input-group-sm mb-2">
+                                                            <span class="input-group-text">
                                                                 <asp:Label ID="lbwaris4" runat="server"
-                                                                    Font-Bold="False" ForeColor="#0092C8"
-                                                                    Text="Waris Name 4" />
-                                                            </td>
-                                                            <td>
+                                                                    Font-Bold="False" Text="Waris Name 5" />
+                                                            </span>
+                                                            <asp:TextBox runat="server" ValidationGroup="Input"
+                                                                ID="tbLuas4" Enabled="False"
+                                                                CssClass="form-control form-control-sm border" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-2">
+                                                        <asp:Label class="form-label" runat="server"
+                                                            Text="Waris Level No 5" />
+                                                        <div class="input-group input-group-sm mb-2">
+                                                            <span class="input-group-text">
                                                                 <asp:Label ID="lbwaris5" runat="server"
-                                                                    Font-Bold="False" ForeColor="#0092C8"
-                                                                    Text="Waris Name 5" />
-                                                            </td>
-                                                        </tr>
+                                                                    Font-Bold="False" Text="Waris Name 5" />
+                                                            </span>
+                                                            <asp:TextBox runat="server" ValidationGroup="Input"
+                                                                ID="tbLuas5" Enabled="False"
+                                                                CssClass="form-control form-control-sm border" />
+                                                        </div>
 
-                                                        <tr>
-                                                            <td>
-                                                                <asp:TextBox runat="server" ValidationGroup="Input"
-                                                                    ID="tbLuas1" Enabled="False" CssClass="TextBox"
-                                                                    Width="120px" />
-                                                            </td>
-                                                            <td>
-                                                                <asp:TextBox runat="server" ValidationGroup="Input"
-                                                                    ID="tbLuas2" Enabled="False" CssClass="TextBox"
-                                                                    Width="120px" />
-                                                            </td>
-                                                            <td>
-                                                                <asp:TextBox runat="server" ValidationGroup="Input"
-                                                                    ID="tbLuas3" Enabled="False" CssClass="TextBox"
-                                                                    Width="120px" />
-                                                            </td>
-                                                            <td>
-                                                                <asp:TextBox runat="server" ValidationGroup="Input"
-                                                                    ID="tbLuas4" Enabled="False" CssClass="TextBox"
-                                                                    Width="120px" />
-                                                            </td>
-                                                            <td>
-                                                                <asp:TextBox runat="server" ValidationGroup="Input"
-                                                                    ID="tbLuas5" Enabled="False" CssClass="TextBox"
-                                                                    Width="120px" />
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                        </table>
+                                                    </div>
+                                                </div>
 
-
-
-                                    </asp:Panel>
-                                    <br />
-                                    <asp:Panel runat="server" ID="PnlDt4">
-
-                                        <asp:Button class="bitbtn btnadd" runat="server" ID="btnAdddt4" Text="Add"
-                                            Visible="false" ValidationGroup="Input" />
-
-
-                                        &nbsp;
-                                        <asp:Button ID="btnBackDt" runat="server" class="bitbtndt btnback" Text="Back"
-                                            Width="60" />
-                                        <br />
-                                        <br />
-                                        <div style="border: 0px  solid; width: 100%; height: 100%; overflow: auto;">
-                                            <asp:GridView ID="GridDt4" runat="server" AutoGenerateColumns="False"
-                                                ShowFooter="False">
-                                                <HeaderStyle CssClass="GridHeader" />
-                                                <RowStyle CssClass="GridItem" Wrap="false" />
-                                                <AlternatingRowStyle CssClass="GridAltItem" />
-                                                <PagerStyle CssClass="GridPager" />
-                                                <Columns>
-                                                    <asp:TemplateField HeaderText="Action">
-                                                        <ItemTemplate>
-                                                            <asp:Button ID="btnEdit" runat="server"
-                                                                class="bitbtndt btnedit" CommandName="Edit"
-                                                                Text="Edit" />
-                                                            <asp:Button ID="btnDelete" runat="server"
-                                                                class="bitbtndt btndelete" CommandName="Delete"
-                                                                OnClientClick="return confirm('Sure to delete this data?');"
-                                                                Text="Delete" />
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-
-
-                                                    <asp:BoundField DataField="NoDok" HeaderStyle-Width="100px"
-                                                        HeaderText="No Dokumen" SortExpression="NoDok">
-                                                        <HeaderStyle Width="100px" />
-                                                    </asp:BoundField>
-
-                                                    <asp:BoundField DataField="Descript" HeaderStyle-Width="100px"
-                                                        HeaderText="Description" SortExpression="Descript">
-                                                        <HeaderStyle Width="100px" />
-                                                    </asp:BoundField>
-
-                                                    <asp:BoundField DataField="DocDate"
-                                                        DataFormatString="{0:dd MMM yyyy}" HtmlEncode="true"
-                                                        HeaderStyle-Width="80px" SortExpression="TransDate"
-                                                        HeaderText="Dokumen Date">
-                                                        <HeaderStyle Width="80px" />
-                                                    </asp:BoundField>
-
-
-                                                    <asp:BoundField DataField="NoAJB" HeaderStyle-Width="50px"
-                                                        HeaderText="NoAJB" SortExpression="NoAJB">
-                                                        <HeaderStyle Width="50px" />
-                                                    </asp:BoundField>
-
-                                                    <asp:BoundField DataField="Name" HeaderStyle-Width="50px"
-                                                        HeaderText="Name" SortExpression="Name">
-                                                        <HeaderStyle Width="50px" />
-                                                    </asp:BoundField>
-
-                                                    <asp:BoundField DataField="Luas" HeaderStyle-Width="80px"
-                                                        HeaderText="Luas" SortExpression="Luas"
-                                                        DataFormatString="{0:#,##0.##}">
-                                                        <HeaderStyle Width="40px" />
-                                                    </asp:BoundField>
-
-                                                    <asp:BoundField DataField="Sisa" HeaderStyle-Width="80px"
-                                                        HeaderText="Sisa" SortExpression="Sisa"
-                                                        DataFormatString="{0:#,##0.##}">
-                                                        <HeaderStyle Width="40px" />
-                                                    </asp:BoundField>
-
-                                                    <asp:BoundField DataField="NoAJB2" HeaderStyle-Width="50px"
-                                                        HeaderText="NoAJB2" SortExpression="NoAJB2">
-                                                        <HeaderStyle Width="50px" />
-                                                    </asp:BoundField>
-
-                                                    <asp:BoundField DataField="Name2" HeaderStyle-Width="50px"
-                                                        HeaderText="Name2" SortExpression="Name2">
-                                                        <HeaderStyle Width="50px" />
-                                                    </asp:BoundField>
-
-                                                    <asp:BoundField DataField="Luas2" HeaderStyle-Width="80px"
-                                                        HeaderText="Luas2" SortExpression="Luas2"
-                                                        DataFormatString="{0:#,##0.##}">
-                                                        <HeaderStyle Width="40px" />
-                                                    </asp:BoundField>
-
-                                                    <asp:BoundField DataField="Sisa2" HeaderStyle-Width="80px"
-                                                        HeaderText="Sisa2" SortExpression="Sisa2"
-                                                        DataFormatString="{0:#,##0.##}">
-                                                        <HeaderStyle Width="40px" />
-                                                    </asp:BoundField>
-
-                                                    <asp:BoundField DataField="NoAJB3" HeaderStyle-Width="50px"
-                                                        HeaderText="NoAJB3" SortExpression="NoAJB3">
-                                                        <HeaderStyle Width="50px" />
-                                                    </asp:BoundField>
-
-                                                    <asp:BoundField DataField="Name3" HeaderStyle-Width="50px"
-                                                        HeaderText="Name3" SortExpression="Name3">
-                                                        <HeaderStyle Width="50px" />
-                                                    </asp:BoundField>
-
-                                                    <asp:BoundField DataField="Luas3" HeaderStyle-Width="80px"
-                                                        HeaderText="Luas3" SortExpression="Luas3"
-                                                        DataFormatString="{0:#,##0.##}">
-                                                        <HeaderStyle Width="40px" />
-                                                    </asp:BoundField>
-
-                                                    <asp:BoundField DataField="Sisa3" HeaderStyle-Width="80px"
-                                                        HeaderText="Sisa3" SortExpression="Sisa3"
-                                                        DataFormatString="{0:#,##0.##}">
-                                                        <HeaderStyle Width="40px" />
-                                                    </asp:BoundField>
-
-                                                    <asp:BoundField DataField="NoAJB4" HeaderStyle-Width="50px"
-                                                        HeaderText="NoAJB4" SortExpression="NoAJB4">
-                                                        <HeaderStyle Width="50px" />
-                                                    </asp:BoundField>
-
-                                                    <asp:BoundField DataField="Name4" HeaderStyle-Width="50px"
-                                                        HeaderText="Name4" SortExpression="Name4">
-                                                        <HeaderStyle Width="50px" />
-                                                    </asp:BoundField>
-
-                                                    <asp:BoundField DataField="Luas4" HeaderStyle-Width="80px"
-                                                        HeaderText="Luas4" SortExpression="Luas4"
-                                                        DataFormatString="{0:#,##0.##}">
-                                                        <HeaderStyle Width="40px" />
-                                                    </asp:BoundField>
-
-                                                    <asp:BoundField DataField="Sisa4" HeaderStyle-Width="80px"
-                                                        HeaderText="Sisa4" SortExpression="Sisa4"
-                                                        DataFormatString="{0:#,##0.##}">
-                                                        <HeaderStyle Width="40px" />
-                                                    </asp:BoundField>
-
-                                                    <asp:BoundField DataField="NoAJB5" HeaderStyle-Width="50px"
-                                                        HeaderText="NoAJB5" SortExpression="NoAJB5">
-                                                        <HeaderStyle Width="50px" />
-                                                    </asp:BoundField>
-
-                                                    <asp:BoundField DataField="Name5" HeaderStyle-Width="50px"
-                                                        HeaderText="Name5" SortExpression="Name5">
-                                                        <HeaderStyle Width="50px" />
-                                                    </asp:BoundField>
-
-                                                    <asp:BoundField DataField="Luas5" HeaderStyle-Width="80px"
-                                                        HeaderText="Luas5" SortExpression="Luas5"
-                                                        DataFormatString="{0:#,##0.##}">
-                                                        <HeaderStyle Width="40px" />
-                                                    </asp:BoundField>
-
-                                                    <asp:BoundField DataField="Sisa5" HeaderStyle-Width="80px"
-                                                        HeaderText="Sisa5" SortExpression="Sisa5"
-                                                        DataFormatString="{0:#,##0.##}">
-                                                        <HeaderStyle Width="40px" />
-                                                    </asp:BoundField>
-
-                                                    <asp:BoundField DataField="Remark" HeaderStyle-Width="50px"
-                                                        HeaderText="Remark" SortExpression="Remark">
-                                                        <HeaderStyle Width="50px" />
-                                                    </asp:BoundField>
-
-                                                </Columns>
-                                            </asp:GridView>
-                                            <br />
+                                            </asp:Panel>
                                         </div>
-                                        <asp:Button class="bitbtn btnadd" runat="server" ID="btnAddDt4ke2" Text="Add"
-                                            Visible="false" ValidationGroup="Input" />
-
-                                        &nbsp;
-                                        <asp:Button ID="btnBackDt2" runat="server" class="bitbtndt btnback" Text="Back"
-                                            Width="60" />
-
-                                    </asp:Panel>
-                                    <br />
-                                    <asp:Panel runat="server" ID="pnlEditDt4" Visible="false">
-                                        <table>
+                                    </div>
+                                    <br>
+                                    <div class="card shadow-sm">
+                                        <div class="card-body p-1">
+                                            <asp:Panel runat="server" ID="PnlDt4">
 
 
+                                                <div class="row mb-1">
+                                                    <div class="col-md-8 mb-0 text-end">
+                                                        <asp:Button ID="btnAdddt4" runat="server"
+                                                            text="Tambah Data Detail Monitoring Letter C"
+                                                            ValidationGroup="Input"
+                                                            CssClass="btn btn-primary btn-sm px-10 btn-icon btnadd w-100">
+
+                                                        </asp:Button>
+                                                    </div>
+                                                    <div class="col-md-4 mb-0 text-end">
+                                                        <asp:Button ID="btnBackDt" runat="server" text="Back"
+                                                            ValidationGroup="Input"
+                                                            CssClass="btn btn-secondary btn-sm px-10 btn-icon btnback w-100">
+
+                                                        </asp:Button>
+                                                    </div>
+                                                </div>
 
 
-                                            <tr>
-                                                <td>Description</td>
-                                                <td>:</td>
-                                                <td colspan="7">
-                                                    <table>
+                                                <div class="table-responsive"
+                                                    style="max-height:600px; overflow-y:auto;">
+                                                    <asp:GridView ID="GridDt4" runat="server" ShowFooter="false"
+                                                        AllowSorting="True" AutoGenerateColumns="False"
+                                                        AllowPaging="True" PageSize="10"
+                                                        CssClass="table table-striped table-bordered table-hover table-sm  text-nowrap table-soft-text">
+                                                        <HeaderStyle CssClass="table-soft-dark text-white sticky-top" />
+                                                        <FooterStyle CssClass="table-light" />
+                                                        <PagerStyle CssClass="grid-pager text-center bg-light"
+                                                            HorizontalAlign="Left" />
+                                                        <Columns>
+                                                            <asp:TemplateField HeaderText="Action">
+                                                                <ItemTemplate>
+                                                                    <asp:LinkButton ID="btnEdit" runat="server"
+                                                                        CssClass="btn btn-primary btn-sm "
+                                                                        CommandName="Edit">
+                                                                        <i class="fa fa-edit me-1"></i> Edit
+                                                                    </asp:LinkButton>
 
-                                                        <tr>
-                                                            <td>
-                                                                <asp:TextBox runat="server" ValidationGroup="Input"
-                                                                    ID="tbDescriptiondt2" CssClass="TextBox"
-                                                                    Width="130px" />
-                                                            </td>
-
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
-
-
-
-                                            <tr>
-                                                <td>No Dokumen</td>
-                                                <td>:</td>
-                                                <td colspan="7">
-                                                    <table>
-
-                                                        <tr>
-                                                            <td>
-                                                                <asp:TextBox runat="server" MaxLength="30"
-                                                                    ValidationGroup="Input" ID="tbNoDok"
-                                                                    CssClass="TextBox" Width="130px" />
-                                                            </td>
-                                                            <td></td>
-
-                                                            <td>Dokumen Date</td>
-                                                            <td>:</td>
-
-                                                            <td>
-                                                                <BDP:BasicDatePicker ID="tbDatedt2" runat="server"
-                                                                    Width="130px" DateFormat="dd MMM yyyy"
-                                                                    ReadOnly="False" ValidationGroup="Input"
-                                                                    ButtonImageHeight="19px" ButtonImageWidth="20px"
-                                                                    DisplayType="TextBoxAndImage"
-                                                                    TextBoxStyle-CssClass="TextDate"
-                                                                    AutoPostBack="False" ShowNoneButton="False">
-                                                                    <TextBoxStyle CssClass="TextDate" />
-                                                                </BDP:BasicDatePicker>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
+                                                                    <asp:LinkButton ID="btnDelete" runat="server"
+                                                                        CssClass="btn btn-danger btn-sm "
+                                                                        CommandName="delete"
+                                                                        OnClientClick="return confirm('Sure to delete this data?');">
+                                                                        <i class="fa fa-trash me-1"></i> Delete
+                                                                    </asp:LinkButton>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
 
 
+                                                            <asp:BoundField DataField="NoDok" HeaderStyle-Width="100px"
+                                                                HeaderText="No Dokumen" SortExpression="NoDok">
+                                                                <HeaderStyle Width="100px" />
+                                                            </asp:BoundField>
 
-                                            <tr>
-                                                <td>Name</td>
-                                                <td>:</td>
-                                                <td colspan="7">
-                                                    <table>
+                                                            <asp:BoundField DataField="Descript"
+                                                                HeaderStyle-Width="100px" HeaderText="Description"
+                                                                SortExpression="Descript">
+                                                                <HeaderStyle Width="100px" />
+                                                            </asp:BoundField>
 
-                                                        <tr>
-                                                            <td>
-                                                                <asp:TextBox runat="server" ValidationGroup="Input"
-                                                                    ID="tbNameSubDt" CssClass="TextBox" Width="130px" />
-                                                            </td>
-                                                            <td>
-                                                                <asp:TextBox runat="server" ValidationGroup="Input"
-                                                                    ID="tbNameSubDt2" CssClass="TextBox"
-                                                                    Width="130px" />
-                                                            </td>
-                                                            <td>
-                                                                <asp:TextBox runat="server" ValidationGroup="Input"
-                                                                    ID="tbNameSubDt3" CssClass="TextBox"
-                                                                    Width="130px" />
-                                                            </td>
-                                                            <td>
-                                                                <asp:TextBox runat="server" ValidationGroup="Input"
-                                                                    ID="tbNameSubDt4" CssClass="TextBox"
-                                                                    Width="130px" />
-                                                            </td>
-                                                            <td>
-                                                                <asp:TextBox runat="server" ValidationGroup="Input"
-                                                                    ID="tbNameSubDt5" CssClass="TextBox"
-                                                                    Width="130px" />
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>No AJB</td>
-                                                <td>:</td>
-                                                <td colspan="7">
-                                                    <table>
-
-                                                        <tr>
-                                                            <td>
-                                                                <asp:TextBox runat="server" MaxLength="50"
-                                                                    ValidationGroup="Input" ID="tbAJBSubDt"
-                                                                    CssClass="TextBox" Width="130px" />
-                                                            </td>
-                                                            <td>
-                                                                <asp:TextBox runat="server" MaxLength="50"
-                                                                    ValidationGroup="Input" ID="tbAJBSubDt2"
-                                                                    CssClass="TextBox" Width="130px" />
-                                                            </td>
-                                                            <td>
-                                                                <asp:TextBox runat="server" MaxLength="50"
-                                                                    ValidationGroup="Input" ID="tbAJBSubDt3"
-                                                                    CssClass="TextBox" Width="130px" />
-                                                            </td>
-                                                            <td>
-                                                                <asp:TextBox runat="server" MaxLength="50"
-                                                                    ValidationGroup="Input" ID="tbAJBSubDt4"
-                                                                    CssClass="TextBox" Width="130px" />
-                                                            </td>
-                                                            <td>
-                                                                <asp:TextBox runat="server" MaxLength="50"
-                                                                    ValidationGroup="Input" ID="tbAJBSubDt5"
-                                                                    CssClass="TextBox" Width="130px" />
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
+                                                            <asp:BoundField DataField="DocDate"
+                                                                DataFormatString="{0:dd MMM yyyy}" HtmlEncode="true"
+                                                                HeaderStyle-Width="80px" SortExpression="TransDate"
+                                                                HeaderText="Dokumen Date">
+                                                                <HeaderStyle Width="80px" />
+                                                            </asp:BoundField>
 
 
-                                            <tr>
-                                                <td>Luas Ukur m<sup>2</sup></td>
-                                                <td>:</td>
-                                                <td colspan="7">
-                                                    <table>
+                                                            <asp:BoundField DataField="NoAJB" HeaderStyle-Width="50px"
+                                                                HeaderText="NoAJB" SortExpression="NoAJB">
+                                                                <HeaderStyle Width="50px" />
+                                                            </asp:BoundField>
 
-                                                        <tr>
-                                                            <td>
-                                                                <asp:TextBox runat="server" ValidationGroup="Input"
-                                                                    ID="tbLuasSubDt" CssClass="TextBox" Width="130px" />
-                                                            </td>
-                                                            <td>
-                                                                <asp:TextBox runat="server" ValidationGroup="Input"
-                                                                    ID="tbLuasSubDt2" CssClass="TextBox"
-                                                                    Width="130px" />
-                                                            </td>
-                                                            <td>
-                                                                <asp:TextBox runat="server" ValidationGroup="Input"
-                                                                    ID="tbLuasSubDt3" CssClass="TextBox"
-                                                                    Width="130px" />
-                                                            </td>
-                                                            <td>
-                                                                <asp:TextBox runat="server" ValidationGroup="Input"
-                                                                    ID="tbLuasSubDt4" CssClass="TextBox"
-                                                                    Width="130px" />
-                                                            </td>
-                                                            <td>
-                                                                <asp:TextBox runat="server" ValidationGroup="Input"
-                                                                    ID="tbLuasSubDt5" CssClass="TextBox"
-                                                                    Width="130px" />
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
+                                                            <asp:BoundField DataField="Name" HeaderStyle-Width="50px"
+                                                                HeaderText="Name" SortExpression="Name">
+                                                                <HeaderStyle Width="50px" />
+                                                            </asp:BoundField>
+
+                                                            <asp:BoundField DataField="Luas" HeaderStyle-Width="80px"
+                                                                HeaderText="Luas" SortExpression="Luas"
+                                                                DataFormatString="{0:#,##0.##}">
+                                                                <HeaderStyle Width="40px" />
+                                                            </asp:BoundField>
+
+                                                            <asp:BoundField DataField="Sisa" HeaderStyle-Width="80px"
+                                                                HeaderText="Sisa" SortExpression="Sisa"
+                                                                DataFormatString="{0:#,##0.##}">
+                                                                <HeaderStyle Width="40px" />
+                                                            </asp:BoundField>
+
+                                                            <asp:BoundField DataField="NoAJB2" HeaderStyle-Width="50px"
+                                                                HeaderText="NoAJB2" SortExpression="NoAJB2">
+                                                                <HeaderStyle Width="50px" />
+                                                            </asp:BoundField>
+
+                                                            <asp:BoundField DataField="Name2" HeaderStyle-Width="50px"
+                                                                HeaderText="Name2" SortExpression="Name2">
+                                                                <HeaderStyle Width="50px" />
+                                                            </asp:BoundField>
+
+                                                            <asp:BoundField DataField="Luas2" HeaderStyle-Width="80px"
+                                                                HeaderText="Luas2" SortExpression="Luas2"
+                                                                DataFormatString="{0:#,##0.##}">
+                                                                <HeaderStyle Width="40px" />
+                                                            </asp:BoundField>
+
+                                                            <asp:BoundField DataField="Sisa2" HeaderStyle-Width="80px"
+                                                                HeaderText="Sisa2" SortExpression="Sisa2"
+                                                                DataFormatString="{0:#,##0.##}">
+                                                                <HeaderStyle Width="40px" />
+                                                            </asp:BoundField>
+
+                                                            <asp:BoundField DataField="NoAJB3" HeaderStyle-Width="50px"
+                                                                HeaderText="NoAJB3" SortExpression="NoAJB3">
+                                                                <HeaderStyle Width="50px" />
+                                                            </asp:BoundField>
+
+                                                            <asp:BoundField DataField="Name3" HeaderStyle-Width="50px"
+                                                                HeaderText="Name3" SortExpression="Name3">
+                                                                <HeaderStyle Width="50px" />
+                                                            </asp:BoundField>
+
+                                                            <asp:BoundField DataField="Luas3" HeaderStyle-Width="80px"
+                                                                HeaderText="Luas3" SortExpression="Luas3"
+                                                                DataFormatString="{0:#,##0.##}">
+                                                                <HeaderStyle Width="40px" />
+                                                            </asp:BoundField>
+
+                                                            <asp:BoundField DataField="Sisa3" HeaderStyle-Width="80px"
+                                                                HeaderText="Sisa3" SortExpression="Sisa3"
+                                                                DataFormatString="{0:#,##0.##}">
+                                                                <HeaderStyle Width="40px" />
+                                                            </asp:BoundField>
+
+                                                            <asp:BoundField DataField="NoAJB4" HeaderStyle-Width="50px"
+                                                                HeaderText="NoAJB4" SortExpression="NoAJB4">
+                                                                <HeaderStyle Width="50px" />
+                                                            </asp:BoundField>
+
+                                                            <asp:BoundField DataField="Name4" HeaderStyle-Width="50px"
+                                                                HeaderText="Name4" SortExpression="Name4">
+                                                                <HeaderStyle Width="50px" />
+                                                            </asp:BoundField>
+
+                                                            <asp:BoundField DataField="Luas4" HeaderStyle-Width="80px"
+                                                                HeaderText="Luas4" SortExpression="Luas4"
+                                                                DataFormatString="{0:#,##0.##}">
+                                                                <HeaderStyle Width="40px" />
+                                                            </asp:BoundField>
+
+                                                            <asp:BoundField DataField="Sisa4" HeaderStyle-Width="80px"
+                                                                HeaderText="Sisa4" SortExpression="Sisa4"
+                                                                DataFormatString="{0:#,##0.##}">
+                                                                <HeaderStyle Width="40px" />
+                                                            </asp:BoundField>
+
+                                                            <asp:BoundField DataField="NoAJB5" HeaderStyle-Width="50px"
+                                                                HeaderText="NoAJB5" SortExpression="NoAJB5">
+                                                                <HeaderStyle Width="50px" />
+                                                            </asp:BoundField>
+
+                                                            <asp:BoundField DataField="Name5" HeaderStyle-Width="50px"
+                                                                HeaderText="Name5" SortExpression="Name5">
+                                                                <HeaderStyle Width="50px" />
+                                                            </asp:BoundField>
+
+                                                            <asp:BoundField DataField="Luas5" HeaderStyle-Width="80px"
+                                                                HeaderText="Luas5" SortExpression="Luas5"
+                                                                DataFormatString="{0:#,##0.##}">
+                                                                <HeaderStyle Width="40px" />
+                                                            </asp:BoundField>
+
+                                                            <asp:BoundField DataField="Sisa5" HeaderStyle-Width="80px"
+                                                                HeaderText="Sisa5" SortExpression="Sisa5"
+                                                                DataFormatString="{0:#,##0.##}">
+                                                                <HeaderStyle Width="40px" />
+                                                            </asp:BoundField>
+
+                                                            <asp:BoundField DataField="Remark" HeaderStyle-Width="50px"
+                                                                HeaderText="Remark" SortExpression="Remark">
+                                                                <HeaderStyle Width="50px" />
+                                                            </asp:BoundField>
+
+                                                        </Columns>
+                                                    </asp:GridView>
+                                                </div>
+                                                <br>
+                                                <div class="row mb-0">
+                                                    <div class="col-md-8 mb-0 text-end">
+                                                        <asp:Button ID="btnAddDt4ke2" runat="server"
+                                                            text="Tambah Data Detail Monitoring Letter C"
+                                                            ValidationGroup="Input"
+                                                            CssClass="btn btn-primary btn-sm px-10 btn-icon btnadd w-100">
+
+                                                        </asp:Button>
+                                                    </div>
+                                                    <div class="col-md-4 mb-0 text-end">
+                                                        <asp:Button ID="btnBackDt2" runat="server" text="Back"
+                                                            ValidationGroup="Input"
+                                                            CssClass="btn btn-secondary btn-sm px-10 btn-icon btnback w-100">
+
+                                                        </asp:Button>
+                                                    </div>
+                                                </div>
 
 
-                                            <tr>
-                                                <td>Sisa M<sub>2</sub></td>
-                                                <td>:</td>
-                                                <td colspan="7">
-                                                    <table>
-
-                                                        <tr>
-                                                            <td>
-                                                                <asp:TextBox ID="tbSisaSubDt" ValidationGroup="Input"
-                                                                    runat="server" CssClass="TextBox" width="130px" />
-                                                            </td>
-                                                            <td>
-                                                                <asp:TextBox ID="tbSisaSubDt2" ValidationGroup="Input"
-                                                                    runat="server" CssClass="TextBox" width="130px" />
-                                                            </td>
-                                                            <td>
-                                                                <asp:TextBox ID="tbSisaSubDt3" ValidationGroup="Input"
-                                                                    runat="server" CssClass="TextBox" width="130px" />
-                                                            </td>
-                                                            <td>
-                                                                <asp:TextBox ID="tbSisaSubDt4" ValidationGroup="Input"
-                                                                    runat="server" CssClass="TextBox" width="130px" />
-                                                            </td>
-                                                            <td>
-                                                                <asp:TextBox ID="tbSisaSubDt5" ValidationGroup="Input"
-                                                                    runat="server" CssClass="TextBox" width="130px" />
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
+                                            </asp:Panel>
+                                            <asp:Panel runat="server" ID="pnlEditDt4" Visible="false">
+                                                <table>
 
 
 
-                                            <tr>
-                                                <td>Remark</td>
-                                                <td>:</td>
-                                                <td>
-                                                    <asp:TextBox runat="server" ValidationGroup="Input"
-                                                        ID="tbremarkSubDt" CssClass="TextBox" Width="695px" />
-                                                </td>
-                                            </tr>
 
-                                        </table>
-                                        <br />
-                                        <asp:Button ID="btnSaveDt4" runat="server" class="bitbtndt btnsave"
-                                            Text="Save" />
-                                        <asp:Button ID="btnCancelDt4" runat="server" class="bitbtndt btncancel"
-                                            Text="Cancel" />
-                                    </asp:Panel>
+                                                    <tr>
+                                                        <td>Description</td>
+                                                        <td>:</td>
+                                                        <td colspan="7">
+                                                            <table>
+
+                                                                <tr>
+                                                                    <td>
+                                                                        <asp:TextBox runat="server"
+                                                                            ValidationGroup="Input"
+                                                                            ID="tbDescriptiondt2" CssClass="TextBox"
+                                                                            Width="130px" />
+                                                                    </td>
+
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+
+
+
+                                                    <tr>
+                                                        <td>No Dokumen</td>
+                                                        <td>:</td>
+                                                        <td colspan="7">
+                                                            <table>
+
+                                                                <tr>
+                                                                    <td>
+                                                                        <asp:TextBox runat="server" MaxLength="30"
+                                                                            ValidationGroup="Input" ID="tbNoDok"
+                                                                            CssClass="TextBox" Width="130px" />
+                                                                    </td>
+                                                                    <td></td>
+
+                                                                    <td>Dokumen Date</td>
+                                                                    <td>:</td>
+
+                                                                    <td>
+                                                                        <BDP:BasicDatePicker ID="tbDatedt2"
+                                                                            runat="server" Width="130px"
+                                                                            DateFormat="dd MMM yyyy" ReadOnly="False"
+                                                                            ValidationGroup="Input"
+                                                                            ButtonImageHeight="19px"
+                                                                            ButtonImageWidth="20px"
+                                                                            DisplayType="TextBoxAndImage"
+                                                                            TextBoxStyle-CssClass="TextDate"
+                                                                            AutoPostBack="False" ShowNoneButton="False">
+                                                                            <TextBoxStyle CssClass="TextDate" />
+                                                                        </BDP:BasicDatePicker>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+
+
+
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>:</td>
+                                                        <td colspan="7">
+                                                            <table>
+
+                                                                <tr>
+                                                                    <td>
+                                                                        <asp:TextBox runat="server"
+                                                                            ValidationGroup="Input" ID="tbNameSubDt"
+                                                                            CssClass="TextBox" Width="130px" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:TextBox runat="server"
+                                                                            ValidationGroup="Input" ID="tbNameSubDt2"
+                                                                            CssClass="TextBox" Width="130px" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:TextBox runat="server"
+                                                                            ValidationGroup="Input" ID="tbNameSubDt3"
+                                                                            CssClass="TextBox" Width="130px" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:TextBox runat="server"
+                                                                            ValidationGroup="Input" ID="tbNameSubDt4"
+                                                                            CssClass="TextBox" Width="130px" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:TextBox runat="server"
+                                                                            ValidationGroup="Input" ID="tbNameSubDt5"
+                                                                            CssClass="TextBox" Width="130px" />
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>No AJB</td>
+                                                        <td>:</td>
+                                                        <td colspan="7">
+                                                            <table>
+
+                                                                <tr>
+                                                                    <td>
+                                                                        <asp:TextBox runat="server" MaxLength="50"
+                                                                            ValidationGroup="Input" ID="tbAJBSubDt"
+                                                                            CssClass="TextBox" Width="130px" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:TextBox runat="server" MaxLength="50"
+                                                                            ValidationGroup="Input" ID="tbAJBSubDt2"
+                                                                            CssClass="TextBox" Width="130px" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:TextBox runat="server" MaxLength="50"
+                                                                            ValidationGroup="Input" ID="tbAJBSubDt3"
+                                                                            CssClass="TextBox" Width="130px" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:TextBox runat="server" MaxLength="50"
+                                                                            ValidationGroup="Input" ID="tbAJBSubDt4"
+                                                                            CssClass="TextBox" Width="130px" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:TextBox runat="server" MaxLength="50"
+                                                                            ValidationGroup="Input" ID="tbAJBSubDt5"
+                                                                            CssClass="TextBox" Width="130px" />
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td>Luas Ukur m<sup>2</sup></td>
+                                                        <td>:</td>
+                                                        <td colspan="7">
+                                                            <table>
+
+                                                                <tr>
+                                                                    <td>
+                                                                        <asp:TextBox runat="server"
+                                                                            ValidationGroup="Input" ID="tbLuasSubDt"
+                                                                            CssClass="TextBox" Width="130px" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:TextBox runat="server"
+                                                                            ValidationGroup="Input" ID="tbLuasSubDt2"
+                                                                            CssClass="TextBox" Width="130px" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:TextBox runat="server"
+                                                                            ValidationGroup="Input" ID="tbLuasSubDt3"
+                                                                            CssClass="TextBox" Width="130px" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:TextBox runat="server"
+                                                                            ValidationGroup="Input" ID="tbLuasSubDt4"
+                                                                            CssClass="TextBox" Width="130px" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:TextBox runat="server"
+                                                                            ValidationGroup="Input" ID="tbLuasSubDt5"
+                                                                            CssClass="TextBox" Width="130px" />
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td>Sisa M<sub>2</sub></td>
+                                                        <td>:</td>
+                                                        <td colspan="7">
+                                                            <table>
+
+                                                                <tr>
+                                                                    <td>
+                                                                        <asp:TextBox ID="tbSisaSubDt"
+                                                                            ValidationGroup="Input" runat="server"
+                                                                            CssClass="TextBox" width="130px" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:TextBox ID="tbSisaSubDt2"
+                                                                            ValidationGroup="Input" runat="server"
+                                                                            CssClass="TextBox" width="130px" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:TextBox ID="tbSisaSubDt3"
+                                                                            ValidationGroup="Input" runat="server"
+                                                                            CssClass="TextBox" width="130px" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:TextBox ID="tbSisaSubDt4"
+                                                                            ValidationGroup="Input" runat="server"
+                                                                            CssClass="TextBox" width="130px" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:TextBox ID="tbSisaSubDt5"
+                                                                            ValidationGroup="Input" runat="server"
+                                                                            CssClass="TextBox" width="130px" />
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+
+
+
+                                                    <tr>
+                                                        <td>Remark</td>
+                                                        <td>:</td>
+                                                        <td>
+                                                            <asp:TextBox runat="server" ValidationGroup="Input"
+                                                                ID="tbremarkSubDt" CssClass="TextBox" Width="695px" />
+                                                        </td>
+                                                    </tr>
+
+                                                </table>
+                                                <br />
+                                                <asp:Button ID="btnSaveDt4" runat="server" class="bitbtndt btnsave"
+                                                    Text="Save" />
+                                                <asp:Button ID="btnCancelDt4" runat="server" class="bitbtndt btncancel"
+                                                    Text="Cancel" />
+                                            </asp:Panel>
+                                        </div>
+                                    </div>
                                 </asp:View>
 
                             </asp:MultiView>
@@ -3146,31 +3113,72 @@
                         <!-- <div class="footer-action text-center"> -->
                         <div class="container-fluid mt-1">
 
-
                             <asp:Button ID="btnSaveAll" runat="server"
-                                class="btn btn-success btn-sm btn-icon btn-icon-save " Text="Save & New"
+                                class="btn btn-success btn-sm btn-icon btnsavenew m-1" Text="Save & New"
                                 ValidationGroup="Input" />
+
                             <asp:Button ID="btnSaveTrans" runat="server"
-                                class="btn btn-primary btn-sm btn-icon btn-icon-save" Text="Save"
+                                class="btn btn-primary btn-sm btn-icon btnsave m-1" Text="Save"
                                 ValidationGroup="Input" />
+
                             <asp:Button ID="btnBack" runat="server"
-                                class="btn btn-danger btn-sm btn-icon btn-icon-back" Text="Cancel"
+                                class="btn btn-secondary btn-sm btn-icon btncancel m-1" Text="Cancel"
                                 ValidationGroup="Input" />
-                            <asp:Button ID="btnHome" runat="server"
-                                class="btn btn-secondary btn-sm btn-icon btn-icon-back" Text="Home" />
-                            <!-- </div> -->
+
+                            <asp:Button ID="btnHome" runat="server" ValidationGroup="Input"
+                                class="btn btn-info btn-sm btn-icon btnhome m-1" Text="Home" />
+
                         </div>
+
+                        <!-- </div> -->
                     </asp:Panel>
 
-                </div>
-                
-                <div class="container-fluid">
-                    <asp:Label runat="server" ID="lbStatus" CssClass="badge d-block text-center fs-6 p-2"
-                        EnableViewState="false" />
+
+
+
                 </div>
 
+
+
+                <!-- Modal Popup Status -->
+                <div class="modal fade" id="statusModal" tabindex="-1" aria-labelledby="statusModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content border-0 shadow">
+                            <!-- <div class="modal-header  py-2">
+                                <h6 class="modal-title mb-0" id="statusModalLabel">
+                                    <i class="fa fa-info-circle me-2"></i>Alert Status
+                                </h6>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div> -->
+
+                            <div class="modal-body text-center" id="statusModalBody">
+                                <div class="container-fluid">
+                                    <asp:Label runat="server" ID="lbStatus"
+                                        CssClass="badge d-block text-center fs-6 p-2" EnableViewState="false" />
+                                </div>
+
+                            </div>
+
+                            <!-- <div class="modal-footer justify-content-center py-2">
+                                <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">OK</button>
+                            </div> -->
+
+                        </div>
+                    </div>
+                </div>
 
                 <asp:HiddenField ID="HiddenRemarkReject" runat="server" />
+
+                <div class="loading-form">
+                    <div class="spinner-border text-primary spinner-style" role="status">
+                        <!-- <span class="visually-hidden">Loading...</span> -->
+                    </div>
+                </div>
+
+
+
             </form>
         </body>
 

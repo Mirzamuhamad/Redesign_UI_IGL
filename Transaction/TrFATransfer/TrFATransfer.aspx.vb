@@ -19,7 +19,7 @@ Partial Class Transaction_TrFATransfer_TrFATransfer
         Return "SELECT * From V_GLFATransferDt2 WHERE TransNmbr = " + QuotedStr(Nmbr)
     End Function
 
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         If Session(Request.QueryString("KeyId")) Is Nothing Then
         ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
@@ -291,8 +291,6 @@ Partial Class Transaction_TrFATransfer_TrFATransfer
             pnlNav.Visible = True
             'ddlCommand.Visible = True
             'BtnGo.Visible = True
-            FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
-
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try
@@ -792,10 +790,15 @@ Partial Class Transaction_TrFATransfer_TrFATransfer
                 btnSaveDt.Focus()
                 Exit Sub
             End If
-            If tbPriceForex.Text.Replace(",", "") = 0 Then
-                lbStatus.Text = MessageDlg(" Price Forex must have value")
-                tbPriceForex.Focus()
-                Exit Sub
+
+            If Left(tbRRNo.Text, 7) <> "IGL/LAP" Then
+
+                If tbPriceForex.Text.Replace(",", "") = 0 Then
+                    lbStatus.Text = MessageDlg(" Price Forex must have value")
+                    tbPriceForex.Focus()
+                    Exit Sub
+                End If
+
             End If
 
             If Request.QueryString("ContainerId").ToString = "TrFATransferID" Then
@@ -1615,8 +1618,8 @@ Partial Class Transaction_TrFATransfer_TrFATransfer
         Dim ResultField As String
         Try
             Session("filter") = "SELECT RR_No, RR_Date, Currency, dbo.FormatFloat(ForexRate," + ViewState("DigitRate").ToString + ") AS ForexRate, " + _
-            "Product, Product_Name, Specification, Qty,Unit, dbo.FormatFloat(PriceForex,2) AS PriceForex " + _
-            "FROM V_STRRForFARegistration WHERE FgExpendable = " + QuotedStr(ViewState("FgExpendable").ToString)  ''N'
+            "Product, Product_Name, Specification, Qty,Unit, PriceForex " + _
+            "FROM V_GetRRCIP WHERE FgExpendable = " + QuotedStr(ViewState("FgExpendable").ToString)  ''N'
             ResultField = "RR_No, RR_Date, Currency, ForexRate, Product, Product_Name, Qty, Unit, PriceForex, Specification"
             ViewState("Sender") = "btnRRNo"
             Session("Column") = ResultField.Split(",")

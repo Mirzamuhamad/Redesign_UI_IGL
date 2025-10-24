@@ -1554,6 +1554,8 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
         Try
             dt = BindDataTransaction(GetStringHd, "TransNmbr = " + QuotedStr(tbCode.Text), ViewState("DBConnection").ToString)
 
+            
+
             If dt.Rows(0)("Status").ToString = "H" Or dt.Rows(0)("Status").ToString = "G" Or dt.Rows(0)("Status").ToString = "I" Then
                 CekMenu = CheckMenuLevel("Edit", ViewState("MenuLevel").Rows(0))
                 If CekMenu <> "" Then
@@ -1765,7 +1767,7 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
             DT = BindDataTransaction(GetStringHd, StrFilter, ViewState("DBConnection").ToString)
             'DT = BindDataTransaction(GetStringHd(), StrFilter, ViewState("DBConnection").ToString)
             If DT.Rows.Count = 0 Then
-                SetStatus("No Data","Warning")
+                SetStatus(Me, lbStatus, "No Data", "Warning")
                 pnlNav.Visible = False
                 'ddlCommand.Visible = False
                 BtnGo.Visible = False
@@ -1792,25 +1794,25 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
     End Sub
 
 
-    Private Sub SetStatus(message As String, statusType As String)
-    Select Case statusType.ToLower()
-        Case "success"
-            lbStatus.Text = "<i class='fa fa-check-circle me-2'></i>" & message
-            lbStatus.CssClass = "badge bg-success text-white fs-6 d-block text-center p-2"
+'     Private Sub SetStatus(message As String, statusType As String)
+'     Select Case statusType.ToLower()
+'         Case "success"
+'             lbStatus.Text = "<i class='fa fa-check-circle me-2'></i>" & message
+'             lbStatus.CssClass = "badge bg-success text-white fs-6 d-block text-center p-2"
 
-        Case "warning"
-            lbStatus.Text = "<i class='fa fa-exclamation-triangle me-2'></i>" & message
-            lbStatus.CssClass = "badge bg-warning text-dark fs-6 d-block text-center p-2"
+'         Case "warning"
+'             lbStatus.Text = "<i class='fa fa-exclamation-triangle me-2'></i>" & message
+'             lbStatus.CssClass = "badge bg-warning text-dark fs-6 d-block text-center p-2"
 
-        Case "error"
-            lbStatus.Text = "<i class='fa fa-times-circle me-2'></i>" & message
-            lbStatus.CssClass = "badge bg-danger text-white fs-6 d-block text-center p-2"
+'         Case "error"
+'             lbStatus.Text = "<i class='fa fa-times-circle me-2'></i>" & message
+'             lbStatus.CssClass = "badge bg-danger text-white fs-6 d-block text-center p-2"
 
-        Case Else
-            lbStatus.Text = "<i class='fa fa-info-circle me-2'></i>" & message
-            lbStatus.CssClass = "badge bg-secondary text-white fs-6 d-block text-center p-2"
-    End Select
-End Sub
+'         Case Else
+'             lbStatus.Text = "<i class='fa fa-info-circle me-2'></i>" & message
+'             lbStatus.CssClass = "badge bg-secondary text-white fs-6 d-block text-center p-2"
+'     End Select
+' End Sub
 
     Private Function GetStringDt(ByVal Nmbr As String) As String
         Return "SELECT * From V_GLLandPurchaseReqDt WHERE TransNmbr = " + QuotedStr(Nmbr) + " ORDER BY ItemNo ASC"
@@ -1827,7 +1829,7 @@ End Sub
         Return "SELECT * From V_GLLandPurchaseReqSubDt2 WHERE TransNmbr = " + QuotedStr(Nmbr) + " ORDER BY DocDate ASC "
     End Function
 
-    Protected Sub btnSearch_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSearch.Click
+    Protected Sub btnSearch_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSearch.ServerClick
         Try
             GridView1.PageIndex = 0
             Session("AdvanceFilter") = ""
@@ -1841,11 +1843,12 @@ End Sub
         End Try
     End Sub
 
-    Protected Sub BtnGo_Click(ByVal sender As Object, ByVal e As EventArgs) Handles BtnGo.Click, btnGo2.Click
+    Protected Sub BtnGo_Click(ByVal sender As Object, ByVal e As EventArgs) Handles BtnGo.ServerClick, btnGo2.Click
         Dim Status As String
         Dim Result, ListSelectNmbr, ActionValue As String
         Dim Nmbr(100) As String
         Dim j As Integer
+        Dim allMessage As String = ""
         Try
             If sender.ID.ToString = "BtnGo" Then
                 ActionValue = ddlCommand.SelectedValue
@@ -1864,10 +1867,16 @@ End Sub
                 Else
                     Result = ExecSPCommandGo(ActionValue, "S_PLGLLandPurchaseReq", Nmbr(j), CInt(Session(Request.QueryString("KeyId"))("Year")), CInt(Session(Request.QueryString("KeyId"))("Period")), ViewState("UserId").ToString, ViewState("DBConnection").ToString)
                     If Trim(Result) <> "" Then
-                        lbStatus.Text = lbStatus.Text + Result + " <br/>"
+                        'lbStatus.Text = lbStatus.Text + Result + " <br/>"
+                        'SetStatus(lbStatus.Text + Result + " <br/>", "Warning")
+                        allMessage &= Result & "<br/>"
                     End If
                 End If
             Next
+            If allMessage <> "" Then
+                SetStatus(Me, lbStatus, allMessage, "warning")
+
+            End If
             BindData("TransNmbr in (" + ListSelectNmbr + ")")
 
         Catch ex As Exception
@@ -4052,6 +4061,8 @@ End Sub
                         btnAdddt4.Visible = Not ViewState("StateHd") = "View"
                         btnAddDt4ke2.Visible = Not ViewState("StateHd") = "View"
                     End If
+                    btnAdddt4.Visible = False
+                    btnBackDt.Visible = False
 
                     btnSaveAll.Visible = False
                     btnSaveTrans.Visible = False
@@ -4118,7 +4129,10 @@ End Sub
                 GVR = GridView1.Rows(index)
             End If
             If e.CommandName = "Go" Then
-                DDL = GridView1.Rows(index).FindControl("ddl")
+                DDL = GridView1.Rows(index).FindControl("ddl")                
+                Dim lblStatus As Label = GridView1.Rows(index).FindControl("lblStatus") 
+                
+                 
                 If DDL.SelectedValue = "View" Then
                     MovePanel(PnlHd, pnlInput)
                     ViewState("TransNmbr") = GVR.Cells(2).Text
@@ -4147,7 +4161,8 @@ End Sub
                     btnAddDt3ke2.Visible = False
 
                 ElseIf DDL.SelectedValue = "Edit" Then
-                    If GVR.Cells(3).Text = "H" Or GVR.Cells(3).Text = "G" Or GVR.Cells(3).Text = "I" Then
+                    
+                    If lblStatus.Text = "H" Or lblStatus.Text = "G" Or lblStatus.Text = "I" Then
                         CekMenu = CheckMenuLevel("Edit", ViewState("MenuLevel").Rows(0))
                         If CekMenu <> "" Then
                             lbStatus.Text = CekMenu
@@ -4187,12 +4202,12 @@ End Sub
 
                 ElseIf DDL.SelectedValue = "Reject" Then
 
-                    If GVR.Cells(3).Text = "P" Then
+                    If lblStatus.Text = "P" Then
                         lbStatus.Text = MessageDlg("Status Land Survey Is not H or G, cannot Reject Survey")
                         Exit Sub
                     End If
 
-                    If GVR.Cells(3).Text = "R" Then
+                    If lblStatus.Text = "R" Then
                         lbStatus.Text = MessageDlg("Land Survey Reject Already")
                         Exit Sub
                     End If
@@ -4457,6 +4472,31 @@ End Sub
             lbStatus.Text = "Grid Dt Row Deleting Error : " + ex.ToString
         End Try
     End Sub
+
+    Protected Sub GridView1_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles GridView1.RowDataBound
+    If e.Row.RowType = DataControlRowType.DataRow Then
+        Dim lblStatus As Label = CType(e.Row.FindControl("lblStatus"), Label)
+        If lblStatus IsNot Nothing Then
+            Select Case lblStatus.Text
+                Case "H"
+                    lblStatus.CssClass = "badge rounded-pill bg-secondary px-4 py-1" 'Px untuk atur panjang, py untuk atur tinggi
+                    lblStatus.Text = "H"
+                Case "G"
+                    lblStatus.CssClass = "badge rounded-pill bg-primary px-4 py-1"
+                    lblStatus.Text = "G"
+                Case "P"
+                    lblStatus.CssClass = "badge rounded-pill bg-success px-4 py-1"
+                    lblStatus.Text = "P"
+                Case "D"
+                    lblStatus.CssClass = "badge rounded-pill bg-danger px-4 py-1"
+                    lblStatus.Text = "D"
+                Case Else
+                    lblStatus.CssClass = "badge rounded-pill bg-danger px-4 py-1"
+            End Select
+        End If
+    End If
+End Sub
+
 
     Dim TQty As Double = 0
     Protected Sub GridDt2_RowDataBound(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewRowEventArgs) Handles GridDt2.RowDataBound

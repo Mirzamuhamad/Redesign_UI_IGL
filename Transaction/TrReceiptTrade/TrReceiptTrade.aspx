@@ -588,10 +588,12 @@
                         <asp:Button ID="btnBackDt2" runat="server" class="bitbtndt btncancel" Text="Back"
                             ValidationGroup="Input" />
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Button ID="btnGetInv" runat="server" class="bitbtndt btngetitem" Text="Get Data"
-                            Width="65" ValidationGroup="Input" />
+                        <asp:Button ID="btnGetInv" runat="server" class="bitbtndt btnsearch" Text="Get Data"
+                            Width="120" ValidationGroup="Input" />
+                            <br/>
+                            <br/>
                         <div style="border: 0px  solid; width: 100%; height: 100%; overflow: auto;">
-                            <asp:GridView ID="GridDt2" runat="server" AutoGenerateColumns="false" ShowFooter="True">
+                            <asp:GridView ID="GridDt2" runat="server" AutoGenerateColumns="false" ShowFooter="false">
                                 <HeaderStyle CssClass="GridHeader" />
                                 <RowStyle CssClass="GridItem" Wrap="false" />
                                 <AlternatingRowStyle CssClass="GridAltItem" />
@@ -807,8 +809,10 @@
                 <asp:View ID="Tab1" runat="server">
                     <asp:Panel runat="server" ID="PnlDt">
                         <asp:Button class="bitbtn btnadd" runat="server" ID="btnAdddt" Text="Add" ValidationGroup="Input" />
+                       <br/>
+                       <br/>
                         <div style="border: 0px  solid; width: 100%; height: 100%; overflow: auto;">
-                            <asp:GridView ID="GridDt" runat="server" AutoGenerateColumns="false" ShowFooter="True">
+                            <asp:GridView ID="GridDt" runat="server" AutoGenerateColumns="false" ShowFooter="false">
                                 <HeaderStyle CssClass="GridHeader" />
                                 <RowStyle CssClass="GridItem" Wrap="false" />
                                 <AlternatingRowStyle CssClass="GridAltItem" />

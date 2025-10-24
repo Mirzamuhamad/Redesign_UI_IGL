@@ -424,7 +424,7 @@
                                 </td>
                             </tr>
                             
-                            <asp:Panel ID="pnlNilaiLuas" runat="server">
+                            
                             <tr>
                                 <td >Luas</td>
                                 <td>:</td>
@@ -433,13 +433,13 @@
                                         Width="225px" />
                                 </td>
                             </tr>
-
+                            <asp:Panel ID="pnlNilaiLuas" runat="server">
                             <tr>
                                 <td>Nilai</td>
                                 <td>:</td>
                                 <td><asp:TextBox CssClass="TextBox" Width = 225 runat="server" ID="tbNilai" /></td>
                             </tr>
-                            </asp:Panel>
+                            
                             <tr>
                                 <td>Seller</td>
                                 <td>:</td>
@@ -447,7 +447,7 @@
                                 <td><asp:TextBox CssClass="TextBox" Width = 225 runat="server" ID="tbSeller" Visible = "false"/></td>
                                 
                             </tr>
-                            
+                            </asp:Panel>
                             <tr>
                                 <td>Object</td>
                                 <td>:</td>

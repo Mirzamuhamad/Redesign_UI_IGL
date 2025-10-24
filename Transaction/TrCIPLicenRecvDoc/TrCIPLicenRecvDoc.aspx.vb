@@ -142,18 +142,13 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
     Private Sub SetInit()
         Try
             FillRange(ddlRange)
-            'FillCombo(ddlUnit, "SELECT Unit_Code, Unit_Name FROM VMsUnit", True, "Unit_Code", "Unit_Code", ViewState("DBConnection"))
-            'FillCombo(ddlCategory, "SELECT CategoryCode, CategoryName FROM V_MsCategory ORDER BY CategoryName", True, "CategoryCode", "CategoryName", ViewState("DBConnection"))
-            'FillCombo(ddlSubCategory, "SELECT SubCategoryCode, SubCategoryName FROM V_MsSubCategory ORDER BY SubCategoryName", True, "SubCategoryCode", "SubCategoryName", ViewState("DBConnection"))
-            'FillCombo(ddlSubCategory, "SELECT SubCategoryCode, SubCategoryName FROM GetMsSubCategory", True, "SubCategoryCode", "SubCategoryName", ViewState("DBConnection"))
-            'FillCombo(ddlProjectType, "SELECT ProjectType, ProjectTypeName FROM MsProjectType WHERE UserId = " + QuotedStr(ViewState("UserId").ToString) + " ORDER BY ProjectTypeName", True, "ProjectType", "ProjectTypeName", ViewState("DBConnection"))
             ViewState("SortExpression") = Nothing
-            ViewState("DigitCurr") = 0
+            ViewState("DigitCurr") = 2
             ViewState("MenuLevel") = SetMenuLevel(Request.QueryString("ContainerId").ToString, ViewState("UserId").ToString, ViewState("DBConnection").ToString)
             FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
             If ViewState("MenuLevel").Rows(0)("FgPrint") = "Y" Then
-                ddlCommand.Items.Add("Print")
-                ddlCommand2.Items.Add("Print")
+                'ddlCommand.Items.Add("Print")
+                'ddlCommand2.Items.Add("Print")
             End If
             'tbRequestByName.Attributes.Add("ReadOnly", "True")
             tbDocName.Attributes.Add("ReadOnly", "True")
@@ -570,8 +565,7 @@ Partial Class Transaction_TrCIPLicenRecvDoc_TrCIPLicenRecvDoc
             GridView1.PageIndex = 0
             BindData(Session("AdvanceFilter"))
             pnlNav.Visible = True
-
-            FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
+            'FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
 
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString

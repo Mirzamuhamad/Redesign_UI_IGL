@@ -2279,6 +2279,7 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
             tbArea.Text = ""
             tbAreaName.Text = ""
             tbRemark.Text = ""
+            tbAtasNamaSppt.Text = ""
 
             cbKtp.Checked = False
             cbKk.Checked = False
@@ -2866,6 +2867,7 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
 
             BindToText(tbModerator, Dt.Rows(0)("ModCode").ToString)
             BindToText(tbModeratorName, Dt.Rows(0)("ModName").ToString)
+            BindToText(tbAtasNamaSppt, Dt.Rows(0)("AtasNamaSPPT").ToString)
 
 
             If Dt.Rows(0)("LainLain").ToString = "" Then
@@ -3496,7 +3498,7 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
 
                 SQLString = "INSERT INTO GLLandPurchaseReqHd (TransNmbr,	TransDate,	Status,	Block,	Kohir ,	Persil , AJBNo, SPHNo, SHMNo, SellCode, ModCode,  " + _
                 "SPPT, AjbSphShm, LuasUkur, PBBNo,HrgFix, HrgTanah, TtlHrgTanah, Address, Provinsi, Kab, Kec, Desa, PetaPercik, JenisDoc, Pembeli, NoDocHd, " + _
-                "Remark,AreaCode, LuasFrom, LandType, JnsDocSertifikat, NoDocSertifikat,TglTerbit, MasaBerlaku,NoBNIB,NoSuratUkur, NoLainLain, UserPrep, DatePrep ) " + _
+                "Remark,AreaCode, LuasFrom, LandType, JnsDocSertifikat, NoDocSertifikat,TglTerbit, MasaBerlaku,NoBNIB,NoSuratUkur, NoLainLain,AtasNamSPPT, UserPrep, DatePrep ) " + _
                 "SELECT " + QuotedStr(tbCode.Text) + ", " + QuotedStr(Format(tbDate.SelectedValue, "yyyy-MM-dd")) + ", 'H', " + _
                 QuotedStr(tbBlok.Text) + "," + QuotedStr(tbKohir.Text) + ", " + QuotedStr(tbPercil.Text) + ", " + _
                 QuotedStr(tbAJB.Text) + "," + QuotedStr(tbSPH.Text) + ", " + QuotedStr(tbSHM.Text) + ", " + _
@@ -3507,7 +3509,7 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
                 QuotedStr(tbPetaRincikNo.Text) + ", " + QuotedStr(ddlJenisDok.SelectedValue) + "," + QuotedStr(tbNamaPembeli.Text) + "," + QuotedStr(tbNoDocHD.Text) + ", " + _
                 QuotedStr(tbRemark.Text) + "," + QuotedStr(tbArea.Text) + "," + QuotedStr(ddlHitungTotal.SelectedValue) + "," + QuotedStr(ddlLandType.SelectedValue) + "," + _
                 QuotedStr(ddlJenisDokumen.SelectedValue) + "," + QuotedStr(tbNoDokumen.Text) + "," + QuotedStr(Format(tbTglTerbit.SelectedValue, "yyyy-MM-dd")) + "," + QuotedStr(Format(tbMasaBerlaku.SelectedValue, "yyyy-MM-dd")) + "," + _
-                QuotedStr(tbBNIB.Text) + "," + QuotedStr(tbNoSuratUkur.Text) + "," + QuotedStr(tbNoLainLian.Text) + "," + _
+                QuotedStr(tbBNIB.Text) + "," + QuotedStr(tbNoSuratUkur.Text) + "," + QuotedStr(tbNoLainLian.Text) + ", " + QuotedStr(tbAtasNamaSppt.Text) + "," + _
                 QuotedStr(ViewState("UserId").ToString) + ", GetDate()"
                 ViewState("TransNmbr") = tbCode.Text
 
@@ -3554,6 +3556,7 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
                 ", Pembeli = " + QuotedStr(tbNamaPembeli.Text) + _
                 ", NoDocHD = " + QuotedStr(tbNoDocHD.Text) + _
                 ", Remark = " + QuotedStr(tbRemark.Text) + _
+                ", AtasNamaSPPT = " + QuotedStr(tbAtasNamaSppt.Text) + _
                 ", LuasFrom = " + QuotedStr(ddlHitungTotal.SelectedValue) + _
                 ", DatePrep = GetDate()" + _
                 " WHERE TransNmbr = " + QuotedStr(tbCode.Text)
@@ -5924,5 +5927,4 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
  
 
 End Class
-
 

@@ -208,22 +208,31 @@ Partial Class TrMutasiPBB
                     Dtdr("Unit") = drDtResult("UnitCode")
                     Dtdr("UnitName") = drDtResult("UnitName")
                     Dtdr("Remark") = drDtResult("Remark")
-                    Dtdr("Nama") = drDtResult("Nama")
+
+                    Dim namaSppt As String
+                    'lbStatus.Text = SQLExecuteScalar("EXEC S_GetNamaSppt " + QuotedStr(drDtResult("NoSppt").ToString), ViewState("DBConnection").ToString)
+                    'Exit Sub
+                    namaSppt = SQLExecuteScalar("EXEC S_GetNamaSppt " + QuotedStr(drDtResult("NoSppt").ToString), ViewState("DBConnection").ToString)
+                    Dtdr("Nama") = namaSppt
                     ViewState("Dt2").Rows.Add(Dtdr)
+                    
                 Else
                     'Update jika sudah ada
                     Dim Row As DataRow
                     Row = ViewState("Dt2").Select("NoDokDt2+'|'+ItemDt2= " + QuotedStr(drDtResult("NoSppt".ToString) + "|" + drDtResult("ItemNo").ToString))(0)
                     Row.BeginEdit()
-                    Row("Itemdt2") = lbItemNo.text
-                    Row("NoDokumen") = tbNoDok.text
+                    Row("Itemdt2") = lbItemNo.Text
+                    Row("NoDokumen") = tbNoDok.Text
                     Row("NoDokDt2") = drDtResult("NoSppt")
                     Row("JenisDokDt2") = drDtResult("JenisDokumen")
                     Row("Luas") = drDtResult("Luas")
                     Row("Unit") = drDtResult("UnitCode")
                     Row("UnitName") = drDtResult("UnitName")
                     Row("Remark") = drDtResult("Remark")
-                    Row("Nama") = drDtResult("Nama")
+
+                    Dim namaSppt As String
+                    namaSppt = SQLExecuteScalar("EXEC S_GetNamaSppt " + QuotedStr(drDtResult("NoSppt").ToString), ViewState("DBConnection").ToString)
+                    Row("Nama") = namaSppt
                     Row.EndEdit()
                 End If
                 
@@ -690,7 +699,7 @@ Partial Class TrMutasiPBB
                 BindToText(tbInfo, Dr(0)("Info").ToString)
                 BindToText(tbRemarkDt, Dr(0)("Remark").ToString)
                 BindToText(tbObject, Dr(0)("UnitCode").ToString)
-                BindToText(tbNamaAwal, Dr(0)("Nama").ToString)
+                BindToText(tbNamaAkhir, Dr(0)("Nama").ToString)
                 BindToText(tbPaymentNo, Dr(0)("NoPayment").ToString)
                 BindToText(tbObjectName, Dr(0)("UnitName").ToString)
                 BindToText(tbReference, Dr(0)("Reference").ToString)
@@ -712,7 +721,7 @@ Partial Class TrMutasiPBB
                 BindToText(tbUnit, Dr(0)("Unit").ToString)
                 BindToText(tbUnitName, Dr(0)("UnitName").ToString)
                 BindToText(tbLuasDt2, Dr(0)("Luas").ToString)
-                BindToText(tbNamaAkhir, Dr(0)("Nama").ToString)
+                BindToText(tbNamaAwal, Dr(0)("Nama").ToString)
                 BindToText(tbRemarkDt2, Dr(0)("Remark").ToString)
             End If
         Catch ex As Exception
@@ -1586,7 +1595,7 @@ Partial Class TrMutasiPBB
             Dim dr() As DataRow
             Dim GVR As GridViewRow
             GVR = GridDt2.Rows(e.RowIndex)
-            dr = ViewState("Dt2").Select("NoDokumen+'|'+NoDokDt2 = " + QuotedStr(lbNoDokumen.Text + "|" + GVR.Cells(5).Text))
+            dr = ViewState("Dt2").Select("NoDokumen+'|'+NoDokDt2 = " + QuotedStr(lbNoDokumen.Text + "|" + GVR.Cells(1).Text))
             dr(0).Delete()
 
             Dim drow As DataRow()

@@ -746,7 +746,16 @@
                                         <td><asp:TextBox ID="tbHrgPerm2Akta" ValidationGroup="Input" AutoPostBack = "true" runat="server" CssClass="TextBox" width="125px"/></td>
                                         <td><asp:TextBox ID="tbTotalHrgAkta" runat="server" CssClass="TextBox" Width="170px"/></td>
                                     </tr>
+                                    
                                 </table>
+                                <table>
+                                <tr style="background-color:Silver;text-align:center; border-radius:30px;">
+                                        <td>Atas Nama SPPT</td>
+                                    </tr>
+                                    <tr>
+                                        <td><asp:TextBox ID="tbAtasNamaSppt" runat="server" CssClass="TextBox" Width="400px" AutoPostBack="False"/></td>   
+                                    </tr>
+                                    </table>
                             </td>                
                     </tr>
 
