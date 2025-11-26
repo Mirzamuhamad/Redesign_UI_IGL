@@ -227,6 +227,8 @@ Partial Class TrFASales
             pnlNav.Visible = True
             'ddlCommand.Visible = True
             'BtnGo.Visible = True
+            'btnAdd2.Visible = False
+            btnAddDt2.Visible = False
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try
@@ -658,6 +660,8 @@ Partial Class TrFASales
 
             tbCode.Focus()
             ddlUserType.Enabled = True
+
+            btnAddDt2.Visible = False
         Catch ex As Exception
             lbStatus.Text = "Btn Add Error : " + ex.ToString
         End Try

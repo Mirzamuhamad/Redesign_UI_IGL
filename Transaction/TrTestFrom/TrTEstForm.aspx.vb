@@ -1591,12 +1591,10 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
                 lbStatus.Text = MessageDlg("Data must be Hold or Get Approval to edit")
                 Exit Sub
             End If
-
-
-            
-            
-           
-            
+            btnAddDt3ke2.Visible = "false"
+            btnAddDt2ke2.Visible = "false"
+            btnAddDtKe2.Visible = "false"
+            btnGoEdit.Visible = "false"
 
         Catch ex As Exception
             lbStatus.Text = "btnGoEdit_Click Error : " + ex.ToString

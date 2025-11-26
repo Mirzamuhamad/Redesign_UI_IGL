@@ -1,6 +1,7 @@
 <%@ Page Language="VB" AutoEventWireup="false" CodeFile="Index.aspx.vb" Inherits="Index" %>
 
     <%--<%@ Register Assembly="obout_EasyMenu_Pro" Namespace="OboutInc.EasyMenu_Pro" TagPrefix="oem" %>--%>
+    <%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls" TagPrefix="BDP" %>
 
         <%--<!DOCTYPE html
             PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">--%>
@@ -13,12 +14,12 @@
                 <link rel="icon" type="image/png" href="Image/LogoDP.jpg">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"> -->
-                <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap"
-                    rel="stylesheet">
+                <!-- <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap"                    rel="stylesheet"> -->
                 <link href="Styles/MenuTemplates.css" rel="stylesheet" type="text/css" />
                 <link href="Styles/Style.css" rel="stylesheet" type="text/css" />
                 <link rel="stylesheet" type="text/css" href="sdmenu/sdmenu.css" />
                 <link type="text/css" rel="stylesheet" href="Styles/circularprogress.css" />
+                <link href="Styles/StyleNew.css" rel="stylesheet" type="text/css" />
                 <script type="text/javascript" src="JQuery/jquery.min.js"></script>
 
                 <script type="text/javascript">
@@ -84,6 +85,7 @@
                         font-family: 'Muli', Roboto, "Helvetica Neue", Arial, sans-serif !important;
                     }
 
+
                     .AspNet-Menu,
                     .aspNetMenuHorizontal,
                     table td,
@@ -92,7 +94,6 @@
                         /* font-family: 'Inter', 'Segoe UI', sans-serif !important; */
                         font-family: 'Muli', Roboto, "Helvetica Neue", Arial, sans-serif !important;
                     }
-
 
                     /* Tampilan menu utama */
                     .MenuBar {
@@ -111,9 +112,6 @@
                         /* margin-top: 0px; */
                         /* jika mau sedikit turun */
                     }
-
-
-
 
                     /* Efek klik */
                     .MenuBar a:active {
@@ -233,7 +231,7 @@
                         font-size: 10pt;
                     }
 
-                    
+
 
 
 
@@ -437,11 +435,14 @@
                 <script type="text/javascript">
                     function hidePanelsAndLoadInFrame(url) {
                         try {
+
+                            var pnlDashboard = document.getElementById('<%= pnlDashboard.ClientID %>');
                             var pnlSearch = document.getElementById('<%= pnlSearch.ClientID %>');
                             var pnlTransfer = document.getElementById('<%= PnlTransfer.ClientID %>');
                             var iframe = document.getElementById('InFrame');
                             var spinner = document.getElementById('loadingSpinner');
 
+                            if (pnlDashboard) pnlDashboard.style.display = 'none';
                             if (pnlSearch) pnlSearch.style.display = 'none';
                             if (pnlTransfer) pnlTransfer.style.display = 'none';
                             if (spinner) spinner.style.display = 'flex';
@@ -713,10 +714,12 @@
                         }
 
                         // Sembunyikan panel search dan transfer
+                        var pnlDashboard = document.getElementById('<%= pnlDashboard.ClientID %>');
                         var pnlSearch = document.getElementById('<%= pnlSearch.ClientID %>');
                         var pnlTransfer = document.getElementById('<%= PnlTransfer.ClientID %>');
                         var sidebar = document.getElementById("mobileSidebar");
 
+                        if (pnlDashboard) pnlDashboard.style.display = "none";
                         if (pnlSearch) pnlSearch.style.display = "none";
                         if (pnlTransfer) pnlTransfer.style.display = "none";
                         if (sidebar) sidebar.classList.remove("active");
@@ -1042,6 +1045,8 @@
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+                <!-- <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet"> -->
+
 
                 <script type="text/javascript">
                     // Fungsi untuk menampilkan spinner
@@ -1071,12 +1076,114 @@
                 </script>
 
 
+                <!-- Style pembungkus untuk panel dashboard -->
+                <style>
+                    .scroll-container {
+                        position: relative;
+                        top: -40px;
+                        /* tambahkan satuan px di sini */
+                        width: 100%;
+                        height: calc(100vh - 60px);
+                        overflow-y: auto;
+                        overflow-x: auto;
+                        background-color: #fff;
+
+                        /* Scrollbar untuk browser modern (Chrome, Edge, Safari) */
+                        scrollbar-width: thin;
+                        /* Firefox: scrollbar tipis */
+                        scrollbar-color: #bdbdbd #f1f1f1;
+                        /* Firefox: warna thumb & track */
+                    }
+
+                    /* Scrollbar untuk WebKit (Chrome, Edge, Safari) */
+                    .scroll-container::-webkit-scrollbar {
+                        width: 3px;
+                        /* ketebalan scrollbar */
+                    }
+
+                    .scroll-container::-webkit-scrollbar-track {
+                        background: #f1f1f1;
+                        /* warna latar belakang track */
+                    }
+
+                    .scroll-container::-webkit-scrollbar-thumb {
+                        background-color: #bdbdbd;
+                        /* warna thumb */
+                        border-radius: 10px;
+                        /* biar lembut ujungnya */
+                    }
+
+                    .scroll-container::-webkit-scrollbar-thumb:hover {
+                        background-color: #9e9e9e;
+                        /* sedikit lebih gelap saat hover */
+                    }
+
+
+                    .dashboard-container {
+                        display: flex;
+                        /* justify-content: space-between; */
+                        /* beri jarak di antara dua panel */
+                        align-items: flex-start;
+                        /* biar sejajar atas */
+                        gap: 0px;
+                        padding-bottom: 20px;
+                        /* jarak antar panel */
+                        /* margin-top: 10px; */
+                    }
+
+                    /* Biar masing-masing panel punya ukuran proporsional */
+                    #pnlSearch,
+                    #pnlDateExpired {
+                        flex: 1;
+                        /* dua-duanya ambil lebar seimbang */
+
+                    }
+
+                    #pnlSearch {
+                        /* left: -150px; */
+                        max-width: 30%;
+
+                    }
+
+                    #pnlDateExpired {
+                        /* left: -150px; */
+                        max-width: 50%;
+                    }
+
+
+
+                    /* Responsif: tumpuk ke bawah jika layar kecil */
+                    @media (max-width: 992px) {
+                        .dashboard-container {
+                            flex-direction: column;
+                        }
+
+                        #pnlSearch,
+                        #pnlDateExpired,
+                        #pnlCIPAdministrasi {
+                            max-width: 100%;
+
+                        }
+
+                        #pnlSearch,
+                        #pnlDateExpired {
+                            padding-top: 20px;
+                        }
+                    }
+                </style>
+
+                <!-- End Style pembungkus untuk panel dashboard------------------------ -->
+
+
             </head>
 
 
             <body style="margin: 0px; overflow: visible;">
 
+                
+    
                 <form id="form" runat="server">
+                    <asp:ScriptManager ID="ScriptManager1" runat="server" />
                     <!-- Container pembungkus fleksibel -->
                     <div class="user-menu-container d-flex justify-content-end align-items-center flex-wrap">
 
@@ -1158,9 +1265,7 @@
 
 
                     <div id="topContent2">
-
                         <div id="myMenuContainer" runat="server"></div>
-
                         <asp:Menu ID="menuTop" runat="server" Orientation="Horizontal" RenderingMode="List"
                             StaticDisplayLevels="1" MaximumDynamicDisplayLevels="3"
                             StaticMenuItemStyle-CssClass="staticMenu" StaticHoverStyle-CssClass="staticHover"
@@ -1168,178 +1273,653 @@
                             CssClass="MenuBar menu-container responsiveMenu">
                         </asp:Menu>
 
-
                     </div>
+                    
+                        
+                    <asp:Panel runat="server" ID="pnlDashboard" CssClass="scroll-container">
 
-                    <asp:Panel runat="server" ID="pnlSearch" Visible="True"
-                        style="top: -25px; position: relative; padding-left: 30px;">
-                        <table>
+                       <asp:Panel ID="pnlCard" runat="server" visible="True" CssClass="container-fluid mt-3">
 
-                            <tr>
-                                <td
-                                    style=" text-align: center; background-color:#fcfcfc;border-radius: 5px; box-shadow: 0 1px 5px rgba(104, 104, 104, 0.2);">
-                                    <asp:Label style="padding:0px;" Height="40" ForeColor="#4a4a4a" Font-Size="21.5"
-                                        Font-Bold="true" Text="Approval Dashboard" runat="server" />
-                                </td>
+                                <!--  Card animation -->
+                            <style>
 
-                            </tr>
+                                /* Hidden default */
+                                .card-animate {
+                                    opacity: 0;
+                                    transform: translateY(-20px);
+                                    transition: all 0.8s ease;
+                                }
 
-                            <tr>
-                                <td>
+                                /* After animation */
+                                .card-animate.show {
+                                    opacity: 1;
+                                    transform: translateY(0);
+                                }
 
-                                </td>
-                            </tr>
-                            <tr>
+                            </style>
 
-                                <td
-                                    style="border: 0px solid #8b8c8c;background-color:#fcfcfc; border-radius:5px; box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); padding:5px;">
-                                    <asp:GridView id="DataGrid" runat="server" AllowPaging="True" CssClass="Grid"
-                                        AutoGenerateColumns="false">
-                                        <HeaderStyle CssClass="GridHeader" Font-Size="11.5" Font-Bold="true"
-                                            Wrap="false"></HeaderStyle>
-                                        <RowStyle CssClass="GridItem" Wrap="false" />
-                                        <AlternatingRowStyle CssClass="GridAltItem" />
-                                        <PagerStyle CssClass="GridPager" />
-                                        <EmptyDataTemplate>
+                            <script>
+                                function openMenu(url, menuId) {
+                                    var finalUrl = url + "?KeyId=" + '<%= ViewState("KeyId") %>' + "&ContainerId=" + menuId;
 
-                                        </EmptyDataTemplate>
-                                        <Columns>
-                                            <asp:TemplateField HeaderText="Menu Name" HeaderStyle-Width="300"
-                                                Visible="false">
-                                                <Itemtemplate>
-                                                    <asp:Label Runat="server" ID="MenuId"
-                                                        text='<%# DataBinder.Eval(Container.DataItem, "MenuId") %>'>
-                                                    </asp:Label>
-                                                </Itemtemplate>
+                                    // ⬅ langsung panggil fungsi loading + load iframe
+                                    hidePanelsAndLoadInFrame(finalUrl);
+                                }
 
-                                            </asp:TemplateField>
+                                // Card animation
+                                document.addEventListener("DOMContentLoaded", function () {
 
-                                            <asp:TemplateField HeaderStyle-HorizontalAlign="Left" HeaderText="Menu Name"
-                                                HeaderStyle-Width="300">
-                                                <Itemtemplate>
-                                                    <asp:Label style="font-size: 14px;" Runat="server" ID="MenuName"
-                                                        text='<%# DataBinder.Eval(Container.DataItem, "MenuName") %>'>
-                                                    </asp:Label>
-                                                </Itemtemplate>
+                                    const cards = document.querySelectorAll(".card-animate");
+                                    let delay = 100;
 
-                                            </asp:TemplateField>
+                                    cards.forEach(card => {
+                                        setTimeout(() => {
+                                            card.classList.add("show");
+                                        }, delay);
 
-                                            <asp:TemplateField HeaderText="To be Approve" HeaderStyle-Width="200"
-                                                ItemStyle-HorizontalAlign="Center">
-                                                <Itemtemplate>
-                                                    <asp:LinkButton ID="btnLink" runat="server" Visible="true"
-                                                        CommandName="View"
-                                                        Text='<%# DataBinder.Eval(Container.DataItem, "Outstanding") %>'
-                                                        CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"
-                                                        Style="font-size:11pt; text-decoration: none; color: #1e51dc; font-weight: 800; ">
-                                                    </asp:LinkButton>
+                                        delay += 150; // Delay antar card (biar muncul satu-satu)
+                                    });
 
-                                                    <%-- <asp:Label Runat="server" ID="Outstanding"
-                                                        text='<%# DataBinder.Eval(Container.DataItem, "Outstanding") %>'>--%>
+                                });
+                            </script>
+
+                            <!-- Row Utama -->
+                            <div class="row">
+
+                                <!-- === Sidebar kiri (Fast Menu) === -->
+                                <div class="col-md-3 col-lg-2 mb-3">
+                                    <div class="card shadow-sm border-0 card-animate">
+                                        <div
+                                            class="card-header bg-light d-flex justify-content-between align-items-center py-2">
+                                            <strong>Fast Menu To Be Approve</strong>
+                                            <i class="fa fa-bars"></i>
+                                        </div>
+
+                                        <style>
+                                            .list-group-item:hover {
+                                                background:#f0f0f0;
+                                                border-radius: 5px;
+                                            }
+                                        </style>
+
+                                        <div class="card-body p-0 ">
+                                            <ul id="ulDashboard" runat="server" class="list-group list-group-flush small"></ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- === Area kanan (card summary + konten utama) === -->
+                                <div class="col-md-9 col-lg-10">
+
+                                    <!-- === Card Summary Row === -->
+                                    <div class="row g-3">
+
+                                        <div class="col-sm-6 col-md-3">
+                                            <div class="card shadow-sm border-0 card-animate">
+                                                <div class="card-body p-2">
+                                                    <!-- Judul Atas -->
+                                                    <h6>Pending Voucher Approval</h6>
+
+                                                    <!-- Teks Info (Kanan Tengah, lebih besar) -->
+                                                    <div class="position-absolute card-rubik text-primary">
+                                                        /100
+                                                    </div>
+
+                                                    <!-- Tombol Bawah -->
+                                                    <div class="text-left mt-5">
+                                                        <button class="btn btn-Primary btn-sm rounded-pill px-2">Lihat
+                                                            Transaksi</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-sm-6 col-md-3">
+                                            <div class="card shadow-sm border-0 card-animate">
+                                                <div class="card-body p-2">
+                                                    <!-- Judul Atas -->
+                                                    <h6>Pending AR Receive</h6>
+
+                                                    <!-- Teks Info (Kanan Tengah, lebih besar) -->
+                                                    <div class="position-absolute card-rubik text-danger">
+                                                        /100
+                                                    </div>
+
+                                                    <!-- Tombol Bawah -->
+                                                    <div class="text-left mt-5">
+                                                        <button class="btn btn-danger btn-sm rounded-pill px-2">Lihat
+                                                            Transaksi</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6 col-md-3">
+                                            <div class="card shadow-sm border-0 card-animate">
+                                                <div class="card-body p-2">
+                                                    <!-- Judul Atas -->
+                                                    <h6>Pending Purchase Order</h6>
+
+                                                    <!-- Teks Info (Kanan Tengah, lebih besar) -->
+                                                    <div class="position-absolute card-rubik text-warning">
+                                                        /100
+                                                    </div>
+
+                                                    <!-- Tombol Bawah -->
+                                                    <div class="text-left mt-5">
+                                                        <button class="btn btn-warning btn-sm rounded-pill px-2">Lihat
+                                                            Transaksi</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                         <div class="col-sm-6 col-md-3">
+                                            <div class="card shadow-sm border-0 card-animate">
+                                                <div class="card-body p-2">
+                                                    <!-- Judul Atas -->
+                                                    <h6>Pending Supplier Invoice</h6>
+
+                                                    <!-- Teks Info (Kanan Tengah, lebih besar) -->
+                                                    <div class="position-absolute card-rubik text-success">
+                                                        /100
+                                                    </div>
+
+                                                    <!-- Tombol Bawah -->
+                                                    <div class="text-left mt-5">
+                                                        <button class="btn btn-success btn-sm rounded-pill px-2">Lihat
+                                                            Transaksi</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <!-- === Area konten utama di bawah === -->
+                                    <div class="card shadow-sm border-0 mt-3 card-animate">
+                                        <div class="card-body" style="height: 350px;">
+                                            <!-- Konten dashboard, grafik, atau iframe bisa diletakkan di sini -->
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                       </asp:Panel>
+
+
+                        <!-- Bungkus dua panel dalam 1 container -->
+                        <div class="dashboard-container">
+                            <asp:Panel runat="server" ID="pnlSearch" Visible="True"
+                                style="top: 10px; position: relative; padding-left: 10px; padding-right: 10px;">
+                                <table>
+
+                                    <tr>
+                                        <td
+                                            style=" text-align: center; background-color:#fcfcfc;border-radius: 5px; box-shadow: 0 1px 5px rgba(104, 104, 104, 0.2);">
+                                            <asp:Label style="padding:0px;" Height="40" ForeColor="#4a4a4a"
+                                                Font-Size="21.5" Font-Bold="true" Text="Approval Dashboard"
+                                                runat="server" />
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td style="padding: 3px;">
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            style="border: 0px solid #8b8c8c;background-color:#fcfcfc; border-radius:5px; box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); padding:5px;">
+                                            <asp:GridView id="DataGrid" runat="server" AllowPaging="True"
+                                                CssClass="Grid" AutoGenerateColumns="false" PageSize="5">
+                                                <HeaderStyle CssClass="GridHeader" Font-Size="11.5" Font-Bold="true"
+                                                    Wrap="false"></HeaderStyle>
+                                                <RowStyle CssClass="GridItem" Wrap="false" />
+                                                <AlternatingRowStyle CssClass="GridAltItem" />
+                                                <PagerStyle CssClass="GridPager" />
+                                                <EmptyDataTemplate>
+
+                                                </EmptyDataTemplate>
+                                                <Columns>
+                                                    <asp:TemplateField HeaderText="Menu Name" HeaderStyle-Width="300"
+                                                        Visible="false">
+                                                        <Itemtemplate>
+                                                            <asp:Label Runat="server" ID="MenuId"
+                                                                text='<%# DataBinder.Eval(Container.DataItem, "MenuId") %>'>
+                                                            </asp:Label>
+                                                        </Itemtemplate>
+
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderStyle-HorizontalAlign="Left"
+                                                        HeaderText="Menu Name" HeaderStyle-Width="300">
+                                                        <Itemtemplate>
+                                                            <asp:Label style="font-size: 14px;" Runat="server"
+                                                                ID="MenuName"
+                                                                text='<%# DataBinder.Eval(Container.DataItem, "MenuName") %>'>
+                                                            </asp:Label>
+                                                        </Itemtemplate>
+
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="To be Approve"
+                                                        HeaderStyle-Width="200" ItemStyle-HorizontalAlign="Center">
+                                                        <Itemtemplate>
+                                                            <asp:LinkButton ID="btnLink" runat="server" Visible="true"
+                                                                CommandName="View"
+                                                                Text='<%# DataBinder.Eval(Container.DataItem, "Outstanding") %>'
+                                                                CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"
+                                                                Style="font-size:11pt; text-decoration: none; color: #1e51dc; font-weight: 800; ">
+                                                            </asp:LinkButton>
+
+                                                            <%-- <asp:Label Runat="server" ID="Outstanding"
+                                                                text='<%# DataBinder.Eval(Container.DataItem, "Outstanding") %>'>--%>
+                                                                </asp:Label>
+                                                        </Itemtemplate>
+
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="To be Approve"
+                                                        HeaderStyle-Width="200" Visible="false">
+                                                        <Itemtemplate>
+                                                            <asp:Label Runat="server" ID="MenuUrl"
+                                                                text='<%# DataBinder.Eval(Container.DataItem, "MenuUrl") %>'>
+                                                            </asp:Label>
+                                                        </Itemtemplate>
+
+                                                    </asp:TemplateField>
+
+                                                    <%-- <asp:TemplateField HeaderText="Value" HeaderStyle-Width="150">
+                                                        <Itemtemplate>
+                                                            <asp:Label Runat="server" ID="Url">
+                                                                <a target='_blank'
+                                                                    href='<%# DataBinder.Eval(Container.DataItem, "MenuUrl") %>'>
+                                                                    <%# DataBinder.Eval(Container.DataItem, "MenuUrl" )
+                                                                        %>
+                                                                </a>
+                                                            </asp:Label>
+                                                        </Itemtemplate>
+
+                                                        </asp:TemplateField>--%>
+
+
+
+
+                                                        <%--<asp:TemplateField HeaderText="Action"
+                                                            headerstyle-width="126">
+                                                            <ItemTemplate>
+                                                                <asp:Button class="bitbtn btnedit" Width="150Px"
+                                                                    runat="server" ID="btnLink" Text="Go to Approve"
+                                                                    CommandName="View"
+                                                                    CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>" />
+
+
+                                                            </ItemTemplate>
+
+                                                            </asp:TemplateField>--%>
+
+                                                </Columns>
+                                            </asp:GridView>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <%--<table>
+                                    <tr>
+                                        <td>
+                                            <asp:DropDownList CssClass="DropDownList" runat="server" ID="ddlNotasi">
+                                                <asp:ListItem Selected="true" Text="OR" Value="OR"></asp:ListItem>
+                                                <asp:ListItem Text="AND" Value="AND"></asp:ListItem>
+                                            </asp:DropDownList>
+                                        </td>
+                                        <td>
+                                            <asp:TextBox runat="server" CssClass="TextBox" ID="tbfilter2" />
+
+                                        </td>
+                                    </tr>
+                                    </table> --%>
+                            </asp:Panel>
+
+                            
+                            <asp:Panel runat="server" ID="pnlDateExpired" Visible="True"
+                                style="top: 10px; position: relative; padding-left: 10px; padding-right: 10px;">                                
+                                <asp:UpdatePanel ID="updExpired" runat="server" UpdateMode="Conditional">
+                                    <ContentTemplate>
+                                        <!-- Auto refresh setiap 10 detik , di tutup dahulu karena kalau di hp jadi flicker-->
+                                        <!-- <asp:Timer ID="tmExpired" runat="server" Interval="5000" /> -->
+
+                                            <table>
+
+                                                <tr>
+                                                    <td
+                                                        style=" text-align: center; background-color:#fcfcfc;border-radius: 5px; box-shadow: 0 1px 5px rgba(104, 104, 104, 0.2);">
+                                                        <asp:Label style="padding:0px;" Height="40" ForeColor="#4a4a4a"
+                                                            Font-Size="21.5" Font-Bold="true" Text="Licence & Administration Expiration Date" runat="server" />
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="padding: 3px;">
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td
+                                                        style="border: 0px solid #8b8c8c;background-color:#fcfcfc; border-radius:5px; box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); padding:5px;">
+                                                        <asp:GridView id="DataGridDateExpired" runat="server" AllowPaging="True"
+                                                            CssClass="Grid" AutoGenerateColumns="false" PageSize="5">
+                                                            <HeaderStyle CssClass="GridHeader" Font-Size="11.5" Font-Bold="true"
+                                                                Wrap="false"></HeaderStyle>
+                                                            <RowStyle CssClass="GridItem" Wrap="false" />
+                                                            <AlternatingRowStyle CssClass="GridAltItem" />
+                                                            <PagerStyle CssClass="GridPager" />
+                                                            <EmptyDataTemplate>
+
+                                                            </EmptyDataTemplate>
+                                                            <Columns>
+
+                                                                <asp:TemplateField HeaderStyle-HorizontalAlign="Left"
+                                                                    HeaderText="Kegiatan" HeaderStyle-Width="330">
+                                                                    <Itemtemplate>
+                                                                        <asp:Label style="font-size: 14px;" Runat="server"
+                                                                            ID="lbKegiatanName"
+                                                                            text='<%# DataBinder.Eval(Container.DataItem, "KegiatanName") %>'>
+                                                                        </asp:Label>
+                                                                    </Itemtemplate>
+                                                                </asp:TemplateField>
+
+                                                                <asp:TemplateField HeaderStyle-HorizontalAlign="Left"
+                                                                    HeaderText="No Dokumen" HeaderStyle-Width="220">
+                                                                    <Itemtemplate>
+                                                                        <asp:Label style="font-size: 14px;" Runat="server"
+                                                                            ID="lbNoDokumen"
+                                                                            text='<%# DataBinder.Eval(Container.DataItem, "NoDokumen") %>'>
+                                                                        </asp:Label>
+                                                                    </Itemtemplate>
+                                                                </asp:TemplateField>
+
+                                                                <asp:TemplateField HeaderStyle-HorizontalAlign="Left"
+                                                                    HeaderText="Date" HeaderStyle-Width="100">
+                                                                    <Itemtemplate>
+                                                                        <asp:Label style="font-size: 14px;" Runat="server"
+                                                                            ID="lbEndDate"
+                                                                            text='<%# DataBinder.Eval(Container.DataItem, "EndDate") %>'>
+                                                                        </asp:Label>
+                                                                    </Itemtemplate>
+                                                                </asp:TemplateField>
+
+
+                                                            </Columns>
+                                                        </asp:GridView>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        <%--<table>
+                                            <tr>
+                                                <td>
+                                                    <asp:DropDownList CssClass="DropDownList" runat="server" ID="ddlNotasi">
+                                                        <asp:ListItem Selected="true" Text="OR" Value="OR"></asp:ListItem>
+                                                        <asp:ListItem Text="AND" Value="AND"></asp:ListItem>
+                                                    </asp:DropDownList>
+                                                </td>
+                                                <td>
+                                                    <asp:TextBox runat="server" CssClass="TextBox" ID="tbfilter2" />
+
+                                                </td>
+                                            </tr>
+                                            </table> --%>
+                                         </ContentTemplate>
+                                    </asp:UpdatePanel> 
+                           
+                            </asp:Panel>
+                           
+                        </div>
+
+                        <asp:Panel runat="server" ID="pnlCIPAdministrasi" Visible="True"
+                            style="top: 10px; position: relative; padding-left: 10px; padding-right: 10px">
+                            <table>
+
+                                <tr>
+                                    <td
+                                        style=" text-align: center; background-color:#fcfcfc;border-radius: 5px; box-shadow: 0 1px 5px rgba(104, 104, 104, 0.2);">
+                                        <asp:Label style="padding:0px;" Height="40" ForeColor="#4a4a4a" Font-Size="21.5"
+                                            Font-Bold="true" Text="License & Administration Monitoring" runat="server" />
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td style="padding: 3px;">
+
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td
+                                        style="border: 0px solid #8b8c8c;background-color:#fcfcfc; border-radius:5px; box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); padding:5px;">
+                                        <asp:GridView id="DataGridCIP" runat="server" AllowPaging="True" CssClass="Grid"
+                                            AutoGenerateColumns="false" PageSize="5">
+                                            <HeaderStyle CssClass="GridHeader" Font-Size="11.5" Font-Bold="true"
+                                                Wrap="false"></HeaderStyle>
+                                            <RowStyle CssClass="GridItem" Wrap="false" />
+                                            <AlternatingRowStyle CssClass="GridAltItem" />
+                                            <PagerStyle CssClass="GridPager" />
+                                            <EmptyDataTemplate>
+
+                                            </EmptyDataTemplate>
+                                            <Columns>
+
+                                                <asp:TemplateField HeaderText="No Transaksi" HeaderStyle-Width="110"
+                                                    Visible="true">
+                                                    <Itemtemplate>
+                                                        <asp:Label style="font-size: 14px;" Runat="server"
+                                                            ID="NoPenyerahanID"
+                                                            text='<%# DataBinder.Eval(Container.DataItem, "TransNmbr") %>'>
                                                         </asp:Label>
-                                                </Itemtemplate>
+                                                    </Itemtemplate>
 
-                                            </asp:TemplateField>
+                                                </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="To be Approve" HeaderStyle-Width="200"
-                                                Visible="false">
-                                                <Itemtemplate>
-                                                    <asp:Label Runat="server" ID="MenuUrl"
-                                                        text='<%# DataBinder.Eval(Container.DataItem, "MenuUrl") %>'>
-                                                    </asp:Label>
-                                                </Itemtemplate>
+                                                <asp:TemplateField HeaderStyle-HorizontalAlign="Center"
+                                                    HeaderText="Kegiatan" HeaderStyle-Width="340">
+                                                    <Itemtemplate>
+                                                        <asp:Label style="font-size: 14px;" Runat="server" ID="Kegiatan"
+                                                            text='<%# DataBinder.Eval(Container.DataItem, "KegiatanName") %>'>
+                                                        </asp:Label>
+                                                    </Itemtemplate>
+                                                </asp:TemplateField>
 
-                                            </asp:TemplateField>
+                                                <asp:TemplateField HeaderStyle-HorizontalAlign="Center"
+                                                    HeaderText="Nama Step" HeaderStyle-Width="300">
+                                                    <Itemtemplate>
+                                                        <asp:Label style="font-size: 14px;" Runat="server" ID="Step"
+                                                            text='<%# DataBinder.Eval(Container.DataItem, "TahapanProses") %>'>
+                                                        </asp:Label>
+                                                    </Itemtemplate>
+                                                </asp:TemplateField>
 
-                                            <%-- <asp:TemplateField HeaderText="Value" HeaderStyle-Width="150">
-                                                <Itemtemplate>
-                                                    <asp:Label Runat="server" ID="Url">
-                                                        <a target='_blank'
-                                                            href='<%# DataBinder.Eval(Container.DataItem, "MenuUrl") %>'>
-                                                            <%# DataBinder.Eval(Container.DataItem, "MenuUrl" ) %>
-                                                        </a>
-                                                    </asp:Label>
-                                                </Itemtemplate>
+                                                <asp:TemplateField HeaderText="Progress (%)" HeaderStyle-Width="200"
+                                                    Visible="True">
+                                                    <Itemtemplate>
+                                                        <asp:Label style="font-size: 14px;" Runat="server"
+                                                            ID="ProgressPercen"
+                                                            text='<%# DataBinder.Eval(Container.DataItem, "ProgressPercen") %>'>
+                                                        </asp:Label>
+                                                    </Itemtemplate>
+                                                </asp:TemplateField>
 
-                                                </asp:TemplateField>--%>
+                                                <asp:TemplateField HeaderText="PIC" HeaderStyle-Width="200"
+                                                    Visible="True">
+                                                    <Itemtemplate>
+                                                        <asp:Label style="font-size: 14px;" Runat="server" ID="PIC"
+                                                            text='<%# DataBinder.Eval(Container.DataItem, "PICName") %>'>
+                                                        </asp:Label>
+                                                    </Itemtemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Date Transaksi" HeaderStyle-Width="200"
+                                                    Visible="False">
+                                                    <Itemtemplate>
+                                                        <asp:Label style="font-size: 14px;" Runat="server"
+                                                            ID="lbTransDate"
+                                                            text='<%# DataBinder.Eval(Container.DataItem, "TransDate") %>'>
+                                                        </asp:Label>
+                                                    </Itemtemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Total Hari" HeaderStyle-Width="200"
+                                                    Visible="False">
+                                                    <Itemtemplate>
+                                                        <asp:Label style="font-size: 14px;" Runat="server"
+                                                            ID="lbTotalHari"
+                                                            text='<%# DataBinder.Eval(Container.DataItem, "TotalHari") %>'>
+                                                        </asp:Label>
+                                                    </Itemtemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Tanggal Hari Ini" HeaderStyle-Width="200"
+                                                    Visible="False">
+                                                    <Itemtemplate>
+                                                        <asp:Label style="font-size: 14px;" Runat="server" ID="lbharini"
+                                                            text='<%# DataBinder.Eval(Container.DataItem, "TanggalHariIni") %>'>
+                                                        </asp:Label>
+                                                    </Itemtemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Tanggal Hari Ini" HeaderStyle-Width="200"
+                                                    Visible="False">
+                                                    <Itemtemplate>
+                                                        <asp:Label style="font-size: 14px;" Runat="server" ID="ItemNo"
+                                                            text='<%# DataBinder.Eval(Container.DataItem, "ItemNo") %>'>
+                                                        </asp:Label>
+                                                    </Itemtemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Tanggal Hari Ini" HeaderStyle-Width="200"
+                                                    Visible="False">
+                                                    <Itemtemplate>
+                                                        <asp:Label style="font-size: 14px;" Runat="server" ID="ItemNoDt"
+                                                            text='<%# DataBinder.Eval(Container.DataItem, "ItemNoDt2") %>'>
+                                                        </asp:Label>
+                                                    </Itemtemplate>
+                                                </asp:TemplateField>
 
 
+                                                <asp:TemplateField HeaderText="Keterangan Keterlambatan" HeaderStyle-Width="200"
+                                                    Visible="false">
+                                                    <Itemtemplate>
+                                                        <asp:Label style="font-size: 14px;" Runat="server" ID="lbKeterlambatan"
+                                                            text='<%# DataBinder.Eval(Container.DataItem, "AlasanKeterlambatan") %>'>
+                                                        </asp:Label>
+                                                    </Itemtemplate>
+                                                </asp:TemplateField>
 
 
-                                                <%--<asp:TemplateField HeaderText="Action" headerstyle-width="126">
+                                                <asp:TemplateField HeaderText="Fg Permanent" 
+                                                    Visible="False">
+                                                    <Itemtemplate>
+                                                        <asp:Label style="font-size: 14px;" Runat="server" ID="lbfgPermanent"
+                                                            text='<%# DataBinder.Eval(Container.DataItem, "FgPermanent") %>'>
+                                                        </asp:Label>
+                                                    </Itemtemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Action" headerstyle-width="126">
                                                     <ItemTemplate>
-                                                        <asp:Button class="bitbtn btnedit" Width="150Px" runat="server"
-                                                            ID="btnLink" Text="Go to Approve" CommandName="View"
-                                                            CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>" />
+                                                        <asp:Button class="bitbtn btnedit" runat="server" ID="btnUpdate"
+                                                            Text="Update" CommandName="ViewUpdate"
+                                                            CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"
+                                                            CausesValidation="false" UseSubmitBehavior="false" />
 
+                                                        <asp:Button class="bitbtn btnedit" runat="server" ID="btnFinish"
+                                                            Text="finish" CommandName="ViewFinish"
+                                                            CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"
+                                                            />
 
+                                                        <asp:Button class="bitbtn btnedit" runat="server" ID="btnDetail"
+                                                            Text="Detail" CommandName="ViewDetail"
+                                                            CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"
+                                                            CausesValidation="false" UseSubmitBehavior="false" />
+
+                                                        <asp:Button class="bitbtn btnedit" runat="server"
+                                                            ID="btnVerified" Text="Verified" CommandName="ViewVerified"
+                                                            CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"
+                                                            OnClientClick="return confirm('apakah anda yakin akan verified step ini ?');"
+                                                            />
                                                     </ItemTemplate>
 
-                                                    </asp:TemplateField>--%>
+                                                </asp:TemplateField>
 
-                                        </Columns>
-                                    </asp:GridView>
-                                </td>
-                            </tr>
-                        </table>
-                        <%--<table>
-                            <tr>
-                                <td>
-                                    <asp:DropDownList CssClass="DropDownList" runat="server" ID="ddlNotasi">
-                                        <asp:ListItem Selected="true" Text="OR" Value="OR"></asp:ListItem>
-                                        <asp:ListItem Text="AND" Value="AND"></asp:ListItem>
-                                    </asp:DropDownList>
-                                </td>
-                                <td>
-                                    <asp:TextBox runat="server" CssClass="TextBox" ID="tbfilter2" />
+                                            </Columns>
+                                        </asp:GridView>
+                                    </td>
+                                </tr>
+                            </table>
+                            <%--<table>
+                                <tr>
+                                    <td>
+                                        <asp:DropDownList CssClass="DropDownList" runat="server" ID="ddlNotasi">
+                                            <asp:ListItem Selected="true" Text="OR" Value="OR"></asp:ListItem>
+                                            <asp:ListItem Text="AND" Value="AND"></asp:ListItem>
+                                        </asp:DropDownList>
+                                    </td>
+                                    <td>
+                                        <asp:TextBox runat="server" CssClass="TextBox" ID="tbfilter2" />
 
-                                </td>
-                            </tr>
-                            </table> --%>
-                    </asp:Panel>
+                                    </td>
+                                </tr>
+                                </table> --%>
+                        </asp:Panel>
 
-                    <asp:Panel runat="server" ID="PnlTransfer" Visible="False"
-                        style="padding-top: 30px;padding-left: 30px;">
-                        <table>
+                        <asp:Panel runat="server" ID="PnlTransfer" Visible="False"
+                            style="padding-top: 30px;padding-left: 30px;">
+                            <table>
 
-                            <tr>
-                                <td
-                                    style=" text-align: center; background-color:#fcfcfc;border-radius: 5px; box-shadow: 0 1px 5px rgb(0 0 0 / 0.2);">
-                                    <asp:Label ID="Label2" style="padding:5px;" Height="30" Width="355"
-                                        ForeColor="#4a4a4a" Font-Size="20" Font-Bold="true"
-                                        Text="Transfer Ending Balance" runat="server" />
-                                </td>
+                                <tr>
+                                    <td
+                                        style=" text-align: center; background-color:#fcfcfc;border-radius: 5px; box-shadow: 0 1px 5px rgb(0 0 0 / 0.2);">
+                                        <asp:Label ID="Label2" style="padding:5px;" Height="30" Width="355"
+                                            ForeColor="#4a4a4a" Font-Size="20" Font-Bold="true"
+                                            Text="Transfer Ending Balance" runat="server" />
+                                    </td>
 
-                            </tr>
+                                </tr>
 
-                            <tr>
-                                <td>
+                                <tr>
+                                    <td>
 
-                                </td>
-                            </tr>
-                            <tr>
+                                    </td>
+                                </tr>
+                                <tr>
 
-                                <td
-                                    style="border: 0px solid #8b8c8c;background-color:#fcfcfc; border-radius:5px; box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); padding:5px;">
+                                    <td
+                                        style="border: 0px solid #8b8c8c;background-color:#fcfcfc; border-radius:5px; box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); padding:5px;">
 
 
-                                    <asp:Label ID="label3" runat="server" Text="From This Year : " />
-                                    <asp:DropDownList ID="ddlYear" Width="100" ValidationGroup="Input"
-                                        AutoPostBack="true" runat="server" CssClass="DropDownList" /> to
-                                    <asp:Label ID="lbYearAfter" runat="server" Text="2020" />
-                                    </br>
-                                    </br>
-                                    <asp:Button style=" text-align: center;" class="bitbtn btnapply" runat="server"
-                                        Width="348" ID="btnProcess" Text="Process" />
+                                        <asp:Label ID="label3" runat="server" Text="From This Year : " />
+                                        <asp:DropDownList ID="ddlYear" Width="100" ValidationGroup="Input"
+                                            AutoPostBack="true" runat="server" CssClass="DropDownList" /> to
+                                        <asp:Label ID="lbYearAfter" runat="server" Text="2020" />
+                                        </br>
+                                        </br>
+                                        <asp:Button style=" text-align: center;" class="bitbtn btnapply" runat="server"
+                                            Width="348" ID="btnProcess" Text="Process" />
 
-                                </td>
-                            </tr>
-                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </asp:Panel>
+
                     </asp:Panel>
 
                     <asp:Panel runat="server" ID="ForInFrame" Visible="True">
-                        <iframe name="InFrame" id="InFrame"
-                            style="width:100%;height:89%; border: none; "></iframe>
+                        <iframe name="InFrame" id="InFrame" style="width:100%;height:89%; border: none; "></iframe>
                     </asp:Panel>
 
 
@@ -1378,7 +1958,7 @@
                     <div class="loading" align="center">
 
                         <br />
-                        <img src="../../Image/loader.gif" alt="" />
+                        <img src="Image/loader.gif" alt="" />
                     </div>
 
                     <div id="loadingSpinner"
@@ -1403,6 +1983,555 @@
                     <%--<div style="color:Red; text-align:center">
                         <asp:Label runat="server" ID="lStatus"></asp:Label>
                         </div>--%>
+
+
+
+                        <div class="untukModalCIPAdministrasi">
+                            <!--------------------------- untuk modal pnlCIP ---------------------------------- -->
+                            <style>
+                                /* ===== Modal Wrapper ===== */
+                                .custom-modal {
+                                    display: none;
+                                    /* hidden default */
+                                    position: fixed;
+                                    z-index: 9999;
+                                    left: 0;
+                                    top: 0;
+                                    width: 100%;
+                                    height: 100%;
+                                    background-color: rgba(6, 6, 6, 0.2);
+                                    /* backdrop putih lembut */
+                                    justify-content: center;
+                                    align-items: center;
+                                    overflow: hidden;
+                                }
+
+                                /* ===== Modal Box ===== */
+                                .custom-modal-content {
+                                    background-color: #fff;
+                                    border-radius: 8px;
+                                    width: 100%;
+                                    /* modal lebih lebar */
+                                    max-width: 1200px;
+                                    /* batas maksimum lebar */
+                                    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.25);
+                                    animation: fadeIn 0.25s ease-in;
+                                    display: flex;
+                                    flex-direction: column;
+                                }
+
+                                /* ===== Header ===== */
+                                .custom-modal-header {
+                                    background-color: #ffffff;
+                                    color: white;
+                                    border-bottom:1px solid #e5e5e5;
+                                    padding: 1px 10px;
+                                    border-radius: 8px 8px 0 0;
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                }
+
+                                /* ===== Body ===== */
+                                .custom-modal-body {
+                                    padding: 5px;
+                                    max-height: 70vh;
+                                    /* lebih fleksibel terhadap layar */
+                                    overflow-y: auto;
+                                    scrollbar-width: thin;
+                                    /* Firefox */
+                                    scrollbar-color: #bcbcbc transparent;
+                                }
+
+                                .custom-modal-body td,
+                                Label {
+                                    font-size: 9pt;
+                                    font-weight: 800;
+                                }
+
+                                /* ===== Footer ===== */
+                                .custom-modal-footer {
+                                    padding: 10px 15px;
+                                    text-align: right;
+                                    border-top: 1px solid #ddd;
+                                }
+
+                                /* ===== Tombol Close ===== */
+                                .close-btn {
+                                    font-size: 22px;
+                                    cursor: pointer;
+                                    color: rgb(52, 52, 52);
+                                    background: none;
+                                    border: none;
+                                    padding-bottom: 5px;
+                                }
+
+                                #customModalUpdate .custom-modal-content,
+                                #customModalFinish .custom-modal-content {
+                                    max-width: 500px !important;
+                                    /* Lebar khusus */
+                                    width: 90%;
+                                    /* Responsif di layar kecil */
+                                }
+    
+
+                                /* ===== Animasi Muncul ===== */
+                                @keyframes fadeIn {
+                                    from {
+                                        opacity: 0;
+                                        transform: scale(0.95);
+                                    }
+
+                                    to {
+                                        opacity: 1;
+                                        transform: scale(1);
+                                    }
+                                }
+
+                                /* ===== Scrollbar (Chrome, Edge, Safari) ===== */
+                                .custom-modal-body::-webkit-scrollbar {
+                                    width: 2px;
+                                    /* lebih tipis */
+                                }
+
+                                .custom-modal-body::-webkit-scrollbar-track {
+                                    background: transparent;
+                                }
+
+                                .custom-modal-body::-webkit-scrollbar-thumb {
+                                    background-color: #bcbcbc;
+                                    border-radius: 3px;
+                                }
+
+                                .custom-modal-body::-webkit-scrollbar-thumb:hover {
+                                    background-color: #a0a0a0;
+                                }
+
+
+                                .menu-tooltip {
+                                    position: absolute;
+                                    background: rgba(51, 51, 51, 0.95);
+                                    color: #fff;
+                                    padding: 6px 10px;
+                                    border-radius: 6px;
+                                    font-size: 12px;
+                                    display: none;
+                                    white-space: nowrap;
+                                    z-index: 9999999999999999999;
+                                    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+                                    transition: opacity 0.15s ease-in-out;
+                                    opacity: 0;
+                                }
+
+                                .menu-tooltip.show {
+                                    display: block;
+                                    opacity: 1;
+                                }
+                            </style>
+
+                            <!-- === Modal Custom Detail === -->
+                            <div id="customModal" class="custom-modal">
+                                <div class="custom-modal-content">
+                                    <div class="custom-modal-header">
+                                        <h6>Detail Tahapan</h6>
+                                        <span class="close-btn" onclick="closeCustomModal()">&times;</span>
+                                    </div>
+                                    <div class="custom-modal-body">
+                                        <table>
+                                            <tr>
+                                                <td>Tanggal Hari Ini</td>
+                                                <td>:</td>
+                                                <td>
+                                                    <asp:Label ID="lbtglHariIni" runat="server" Text="No penyerahan" />
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>Detail Transaksi</td>
+                                                <td>:</td>
+                                                <td>
+                                                    <asp:Label ID="lbNopenyerahan" runat="server"
+                                                        Text="No penyerahan" />
+                                                </td>
+
+                                                <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Kegiatan</td>
+                                                <td>:</td>
+                                                <td>
+                                                    <asp:Label ID="lbKegiatan" runat="server" Text="Kegiatan" />
+                                                </td>
+
+                                                <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="lbLamaProsesBerlangsung" runat="server"
+                                                        Text="Lama Proses Berlangsung" />
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                            </tr>
+                                        </table>
+                                        <asp:GridView ID="GridDetail" runat="server" CssClass="Grid"
+                                            AutoGenerateColumns="false" AllowPaging="false">
+                                            <HeaderStyle CssClass="GridHeader" />
+                                            <RowStyle CssClass="GridItem" Wrap="false" />
+                                            <AlternatingRowStyle CssClass="GridAltItem" />
+                                            <Columns>
+                                                <asp:BoundField DataField="StepProsess" HeaderText="Step" />
+                                                <asp:TemplateField HeaderStyle-HorizontalAlign="Center"
+                                                    HeaderText="Nama Step" HeaderStyle-Width="400">
+                                                    <Itemtemplate>
+                                                        <asp:LinkButton ID="btnLinkComment" runat="server"
+                                                            Visible="true" CommandName="ViewLogComment"
+                                                            Text='<%# DataBinder.Eval(Container.DataItem, "Tahapan") %>'
+                                                            CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"
+                                                            Style="font-size:9pt; text-decoration: none; color: #1e51dc; font-weight: 800; ">
+                                                        </asp:LinkButton>
+                                                    </Itemtemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Nama Menu" Visible="False">
+                                                    <ItemTemplate>
+                                                        <a href="javascript:void(0) "
+                                                            onmouseover='<%# "showMenuTooltip(this, &quot;" & Eval("Tahapan").ToString().Replace("""", "&quot;") & "&quot;, &quot;" & Eval("AlasanKeterlambatan").ToString().Replace("""", "&quot;") & "&quot;)" %>'
+                                                            onmouseout="hideMenuTooltip()"
+                                                            style="font-size:11pt; text-decoration:none; color:#1e51dc; font-weight:800;">
+                                                            <%# Eval("Tahapan") %>
+                                                        </a>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:BoundField DataField="Percen" HeaderText="%" />
+                                                <asp:BoundField DataField="Biaya1" HeaderStyle-Width="100px"
+                                                    ItemStyle-HorizontalAlign="Right" HeaderText="Biaya (A)"
+                                                    DataFormatString="{0:#,##0.00}" />
+                                                <asp:BoundField DataField="Biaya2" HeaderStyle-Width="100px"
+                                                    ItemStyle-HorizontalAlign="Right" HeaderText="Biaya (B)"
+                                                    DataFormatString="{0:#,##0.00}" />
+                                                <asp:BoundField DataField="TargetWaktu" HeaderStyle-Width="80px"
+                                                    ItemStyle-HorizontalAlign="Center" HeaderText="Target Waktu (Hari)"
+                                                    DataFormatString="{0:#,##0}" />
+
+                                                <asp:BoundField DataField="TargetTanggal"
+                                                    HeaderStyle-HorizontalAlign="Center"
+                                                    ItemStyle-HorizontalAlign="Center"
+                                                    DataFormatString="{0:dd MMM yyyy}" HtmlEncode="true"
+                                                    HeaderStyle-Width="85px" HeaderText="Target Tanggal">
+                                                </asp:BoundField>
+
+                                                <asp:BoundField DataField="Realisasi" DataFormatString="{0:dd MMM yyyy}"
+                                                    ItemStyle-HorizontalAlign="Center" HtmlEncode="true"
+                                                    HeaderStyle-Width="80px" HeaderText="Realisasi">
+                                                </asp:BoundField>
+
+                                                <asp:BoundField DataField="SelisihHari" HeaderStyle-Width="80px"
+                                                    ItemStyle-HorizontalAlign="Center"
+                                                    HeaderText="Variance Thd Target (Hari)"
+                                                    DataFormatString="{0:#,##0}" />
+
+                                                <asp:BoundField DataField="TargetTanggalBaru2"
+                                                    HeaderStyle-HorizontalAlign="Center"
+                                                    ItemStyle-HorizontalAlign="Center"
+                                                    DataFormatString="{0:dd MMM yyyy}" HtmlEncode="true"
+                                                    HeaderStyle-Width="85px" HeaderText="Target Tanggal Baru">
+                                                </asp:BoundField>
+
+                                                <asp:BoundField DataField="QCVerifiedByName" HeaderText="Verified By" />
+
+                                                <asp:BoundField DataField="QcVerifiedDate"
+                                                    DataFormatString="{0:dd MMM yyyy - HH:mm}" HtmlEncode="true"
+                                                    HeaderStyle-Width="80px" HeaderText="Verified Date">
+                                                </asp:BoundField>
+
+                                                <asp:TemplateField HeaderStyle-HorizontalAlign="Center" Visible="False"
+                                                    HeaderText="Nama Step" HeaderStyle-Width="300">
+                                                    <Itemtemplate>
+                                                        <asp:Label ID="lbLog" runat="server"
+                                                            Text='<%# DataBinder.Eval(Container.DataItem, "AlasanKeterlambatan") %>'>
+                                                        </asp:Label>
+                                                    </Itemtemplate>
+                                                </asp:TemplateField>
+
+                                            </Columns>
+                                        </asp:GridView>
+                                        <!-- TextBox untuk menampilkan ID -->
+                                        <asp:TextBox ID="txtComment" runat="server" CssClass="TextBox"
+                                            Textmode="MultiLine" Width="500px" height="150" Visible="False"
+                                            ReadOnly="True" placeholder="Komentar / ID akan tampil di sini">
+                                        </asp:TextBox>
+                                    </div>
+                                    <!-- <div class="custom-modal-footer">
+                                    <button type="button" onclick="closeCustomModal()">Tutup</button>
+                                </div> -->
+                                </div>
+                            </div>
+
+                            <div id="menuTooltip" class="menu-tooltip"></div>
+                            <script>
+                                // === JS Control ===
+                                function showCustomModal() {
+                                    document.getElementById("customModal").style.display = "flex";
+                                }
+                                function closeCustomModal() {
+                                    document.getElementById("customModal").style.display = "none";
+                                }
+
+                                // Klik di luar modal untuk menutup
+                                window.onclick = function (event) {
+                                    const modal = document.getElementById("customModal");
+                                    if (event.target === modal) {
+                                        closeCustomModal();
+                                    }
+
+                                    const modal2Update = document.getElementById("customModalUpdate");
+                                    if (event.target === modal2Update) {
+                                        closeCustomModalUpdate();
+                                    }
+
+                                    const modal3Update = document.getElementById("customModalFinish");
+                                    if (event.target === modal3Update) {
+                                        closeCustomModalFinish();
+                                    }
+
+                                    const modal4Update = document.getElementById("customModalFlagY");
+                                    if (event.target === modal4Update) {
+                                        closeCustomModalFlagY();
+                                    }
+                                    
+                                };
+                            </script>
+
+                            <script type="text/javascript">
+                                function showMenuTooltip(el, Tahapan, AlasanKeterlambatan) {
+                                    console.log("Hover:", Tahapan, AlasanKeterlambatan);
+                                    var tooltip = document.getElementById("menuTooltip");
+                                    if (!tooltip) {
+                                        console.errsor("menuTooltip div not found!");
+                                        return;
+                                    }
+                                    tooltip.innerHTML = "<b>" + Tahapan + "</b><br> " + AlasanKeterlambatan; //Ambil dari alasan keterlambatan dari link grid tahapan yang sekarang di hide
+
+                                    var rect = el.getBoundingClientRect();
+                                    tooltip.style.left = (rect.left + window.scrollX + 20) + "px";
+                                    tooltip.style.top = (rect.top + window.scrollY - 10) + "px";
+
+                                    tooltip.classList.add("show");
+                                }
+
+
+                                function hideMenuTooltip() {
+                                    var tooltip = document.getElementById("menuTooltip");
+                                    tooltip.classList.remove("show");
+                                }
+
+                            </script>
+                            <!--------------------- end modal CIP Detail ------------------------------->
+
+                        </div>
+
+
+                        <div class="UntukModalUpdate">
+                            <!--------------------- Start modal CIP Update ------------------------------->
+                            <!-- === Modal Custom Update === -->
+                            <div id="customModalUpdate" class="custom-modal">
+                                <div class="custom-modal-content">
+                                    <div class="custom-modal-header">
+                                        <h6>Update Tahapan</h6>
+                                        <span class="close-btn" onclick="closeCustomModalUpdate()">&times;</span>
+                                    </div>
+                                    <div class="custom-modal-body">
+                                        <asp:TextBox ID="tbLog" runat="server" Enabled = "False" CssClass="TextBoxR"
+                                            TextMode="MultiLine" Width="490px" Height="150px"
+                                            placeholder="Masukkan keterangan di sini..." />
+                                            <br>
+                                            <br>
+                                        <asp:TextBox ID="tbKeterangan" MaxLength="500" runat="server" CssClass="TextBox"
+                                            Width="490px"
+                                            placeholder="Masukkan keterangan di sini..." />
+                                    </div>
+                                    <div class="custom-modal-footer">
+                                        <asp:Button ID="btnUpdateTahapan" runat="server" class="bitbtndt btnsave"
+                                            Text="Update Keterangan" width="200" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script type="text/javascript">
+                                function showCustomModalUpdate() {
+                                    document.getElementById('customModalUpdate').style.display = 'flex';
+                                }
+
+                                function closeCustomModalUpdate() {
+                                    document.getElementById('customModalUpdate').style.display = 'none';
+                                }
+
+                                // Klik di luar modal untuk menutup
+                                // window.onclick = function (event) {
+                                    
+                                // };
+                            </script>
+                            <!--------------------- End modal CIP Update ------------------------------->
+                        </div>
+
+
+
+                         <div class="UntukModalFinish">
+                            <!--------------------- Start modal CIP Finish Flag N ------------------------------->
+                            <!-- === Modal Custom Update === -->
+                            <div id="customModalFinish" class="custom-modal">
+                                <div class="custom-modal-content">
+
+                                    <!-- <div class="custom-modal-header">
+                                        <h6>Update Tahapan</h6>
+                                        <span class="close-btn" onclick="closeCustomModalFinish()">&times;</span>
+                                    </div> -->
+
+                                    <div class="custom-modal-body">
+                                        <asp:Label ID="lbNotifFInish" runat="server" style="text-align: center; font-size: 11pt; padding: 0px;" Text="finish" />
+                                    </div>
+
+                                    <div class="custom-modal-footer">
+                                        <asp:Button ID="btnCancelFinish" style="background-color: rgb(165, 35, 61);" OnClientClick="closeCustomModalFinish()" runat="server" class="bitbtndt btncancel"
+                                            Text="Cancel" width="100" />
+                                        <asp:Button ID="btnConfirmVerify" runat="server" class="bitbtndt btnsave"
+                                            Text="Ok" width="100" />
+                                            
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <script type="text/javascript">
+                                function showCustomModalFinish() {
+                                    document.getElementById('customModalFinish').style.display = 'flex';
+                                }
+
+                                function closeCustomModalFinish() {
+                                    document.getElementById('customModalFinish').style.display = 'none';
+                                }
+
+                                // Klik di luar modal untuk menutup
+                                // window.onclick = function (event) {
+                                    
+                                // };
+                            </script>
+                            <!--------------------- End modal CIP Finish Flag N ------------------------------->
+                        </div>
+
+
+                        <div class="UntukModalFlagY">
+                            <!--------------------- Start modal CIP FlagY FLag Y ------------------------------->
+                            <!-- === Modal Custom Update === -->
+                            <div id="customModalFlagY" class="custom-modal">
+                                <div class="custom-modal-content">
+                                    <div class="custom-modal-header">
+                                        <h6>Finish Step</h6>
+                                        <span class="close-btn" onclick="closeCustomModalFlagY()">&times;</span>
+                                    </div>
+                                    
+                                    <div class="custom-modal-body">
+                                        <asp:GridView ID="GridDetailFinish" runat="server" CssClass="Grid"
+                                            AutoGenerateColumns="false" AllowPaging="false">
+                                            <HeaderStyle CssClass="GridHeader" />
+                                            <RowStyle CssClass="GridItem" Wrap="false" />
+                                            <AlternatingRowStyle CssClass="GridAltItem" />
+                                            <Columns>
+                                               <asp:TemplateField HeaderText="No"  HeaderStyle-Width="50" >
+                                                    <ItemTemplate>                                                       
+                                                        <asp:Label Runat="server" Width="20px" ID="lbNo"
+										                text='<%# Container.DataItemIndex + 1 %>'>
+									                    </asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                                
+                                                <asp:TemplateField HeaderText="Type Ijin">
+                                                    <ItemTemplate>
+                                                       <asp:DropDownList ID="ddlKegiatan" Runat="Server" Width="220px" height = "23px" CssClass="DropDownList" 								    
+                                                            DataSourceID="dsKegiatan" DataTextField="KegiatanName" 
+                                                            DataValueField="KegiatanCode" 	>
+                                                        </asp:DropDownList>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                               
+                                                <asp:TemplateField HeaderText="No Dokumen">
+                                                    <ItemTemplate>
+                                                        <asp:TextBox ID="tbNoDok" runat="server" CssClass="TextBox" Width="220px"/>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Perihal">
+                                                    <ItemTemplate>
+                                                        <asp:TextBox ID="tbPerihal" runat="server" CssClass="TextBox" Width="225px" />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Instansi">
+                                                    <ItemTemplate>
+                                                        <asp:TextBox ID="tbInstansi" runat="server" CssClass="TextBox" Width="225px" />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Tanggal Terbit">
+                                                    <ItemTemplate>
+                                                         <BDP:BasicDatePicker ID="tbTglTerbit" runat="server" DateFormat="dd MMM yyyy" ReadOnly="true"
+                                                            ValidationGroup="Input" ButtonImageHeight="19px" ButtonImageWidth="20px" DisplayType="TextBox"
+                                                            TextBoxStyle-CssClass="TextDate" ShowNoneButton="False">
+                                                            <TextBoxStyle CssClass="TextDate" Width="110px" height="23px"/>
+                                                        </BDP:BasicDatePicker>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Tanggal Berlaku s/d">
+                                                    <ItemTemplate>
+                                                       <BDP:BasicDatePicker ID="tbTglExpired" runat="server" DateFormat="dd MMM yyyy" ReadOnly="true"
+                                                            ValidationGroup="Input" ButtonImageHeight="19px" ButtonImageWidth="20px" DisplayType="TextBox"
+                                                            TextBoxStyle-CssClass="TextDate" ShowNoneButton="False">
+                                                            <TextBoxStyle CssClass="TextDate" Width="110px" height="23px"/>
+                                                        </BDP:BasicDatePicker>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                            </Columns>
+                                        </asp:GridView>
+                                    </div>
+
+                                    <div class="custom-modal-footer">
+                                        <asp:Button ID="btnCancelFlagY" style="background-color: rgb(165, 35, 61);" OnClientClick="closeCustomModalFlagY()" runat="server" class="bitbtndt btncancel"
+                                            Text="Cancel" width="100" />
+
+                                        <asp:Button ID="btnFinishFlagY" runat="server" class="bitbtndt btnsave"
+                                            Text="Ok" width="100" />                                            
+                                    </div>
+                                </div>
+                            </div>
+
+                             <asp:SqlDataSource ID="dsKegiatan" runat="server" SelectCommand="SELECT * FROM VMsKegiatan">
+
+                        </asp:SqlDataSource>
+                            
+                            <script type="text/javascript">
+                                function showCustomModalFlagY() {
+                                    document.getElementById('customModalFlagY').style.display = 'flex';
+                                }
+
+                                function closeCustomModalFlagY() {
+                                    document.getElementById('customModalFlagY').style.display = 'none';
+                                }
+
+                                // Klik di luar modal untuk menutup
+                                // window.onclick = function (event) {                                    
+                                // };
+                                
+                            </script>
+                            <!--------------------- End modal CIP Finish Flag Y ------------------------------->
+                        </div>
+
+
                 </form>
             </body>
 

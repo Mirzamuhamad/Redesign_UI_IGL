@@ -862,6 +862,8 @@ Partial Class TrReceiptTrade
         End Try
     End Function
 
+
+
     Protected Sub btnSaveDt_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSaveDt.Click
         Try
             If CekDt() = False Then

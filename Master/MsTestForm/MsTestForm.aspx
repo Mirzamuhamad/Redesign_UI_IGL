@@ -56,7 +56,7 @@
 
                         <!-- <hr class="my-4 border-primary" /> -->
                         <asp:Panel runat="server" ID="pnlHd">
-                            <div class="container-fluid mt-1">
+                            <div class="container-fluid mt-2">
                                 <div class="row mb-2 align-items-center">
                                     <!-- Kolom kiri: filter & tombol -->
                                     <div class="col d-flex gap-2 flex-wrap">
@@ -146,22 +146,23 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </asp:Panel>
-                            <div class="container-fluid mt-3">
+
+
+                            <div class="container-fluid mt-0">
                                 <div class="card shadow-sm">
                                     <div class="card-body p-2">
-
                                         <!-- wrapper biar tabel bisa scroll kanan & vertikal -->
-                                        <div class="table-responsive" style="max-height:600px; overflow-y:auto;">
-                                            <asp:GridView ID="DataGrid" runat="server" ShowFooter="false"
-                                                AllowSorting="True" AutoGenerateColumns="False" AllowPaging="True"
-                                                PageSize="10"
-                                                CssClass="table table-striped table-bordered table-hover table-sm  text-nowrap table-soft-text">
-                                                <HeaderStyle CssClass="table-soft-dark text-white sticky-top" />
-                                                <FooterStyle CssClass="table-light" />
-                                                <PagerStyle CssClass="grid-pager text-center bg-light"
-                                                    HorizontalAlign="Left" />
+                                        <div class="table-responsive" style="max-height:100vh; overflow-y:auto;">
+                                        <asp:GridView ID="DataGrid" runat="server" ShowFooter="false"
+                                            AllowSorting="True" AutoGenerateColumns="False" AllowPaging="True"
+                                            PageSize="10"
+                                            CssClass="table table-striped table-bordered table-hover table-sm  text-nowrap table-soft-text">
+                                            <HeaderStyle CssClass="table-soft-dark text-white sticky-top" />
+                                            <FooterStyle CssClass="table-light" />
+                                            <PagerStyle CssClass="grid-pager text-center bg-light"
+                                                HorizontalAlign="Left" />
+
 
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="Action">

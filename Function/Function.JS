@@ -527,6 +527,34 @@ $(document).ready(function () {
       $(".loading-form").fadeIn(10);
    });
 
+   // Tangkap perubahan pada dropdown ASP.NET (misalnya autopostback)
+$(document).on("change", "select", function () {
+    // Deteksi hanya dropdown yang punya autopostback (optional)
+    if (this.onchange && this.onchange.toString().includes("__doPostBack")) {
+        console.log("ASP.NET Dropdown Change Detected");
+        $(".loading-form").fadeIn(10);
+    }
+});
+
+// Deteksi checkbox ASP.NET yang AutoPostBack
+$(document).on("change", "input[type='checkbox']", function () {
+    if (this.onchange && this.onchange.toString().includes("__doPostBack")) {
+        console.log("ASP.NET Checkbox Change Detected");
+        $(".loading-form").fadeIn(10);
+    }
+});
+
+// ✅ Checkbox AutoPostBack (termasuk yang pakai setTimeout)
+$(document).on("click", "input[type='checkbox']", function () {
+    const hasPostback =
+        (this.onclick && this.onclick.toString().includes("__doPostBack")) ||
+        (this.onclick && this.onclick.toString().includes("setTimeout('__doPostBack"));
+    if (hasPostback) {
+        console.log("ASP.NET Checkbox AutoPostBack Detected");
+        $(".loading-form").fadeIn(10);
+    }
+});
+
    // Tangkap semua postback ASP.NET (termasuk UpdatePanel)
    if (typeof (Sys) !== "undefined" && Sys.WebForms) {
       var prm = Sys.WebForms.PageRequestManager.getInstance();

@@ -388,12 +388,13 @@
                     <div class="card bg-white sticky-top shadow-sm border-0 rounded-0">
                             <div class="card-body py-2">
                                 <h6 class="mb-0">Sample Form Transaksi Boostrap</h6>
+                                <!-- <label class="form-label">Sample Form Transaksi Boostrap</label> -->
                             </div>
                         </div>
                     <!-- <hr style="color: Blue" /> -->
                     <asp:Panel runat="server" ID="PnlHd">
-                        <div class="container-fluid mt-1">
-                            <div class="row mb-3 align-items-center">
+                        <div class="container-fluid mt-2">
+                            <div class="row mb-2 align-items-center">
                                 <!-- Kolom kiri: filter & tombol -->
                                 <div class="col d-flex gap-2 flex-wrap">
 
@@ -454,7 +455,7 @@
 
                         <asp:Panel runat="server" ID="pnlSearch" Visible="false">
                             <div class="container-fluid">
-                                <div class="row mb-3">
+                                <div class="row mb-2">
                                     <div class="col d-flex gap-2 flex-wrap">
                                         <!-- Dropdown Notasi -->
                                         <asp:DropDownList CssClass="form-select form-select-sm w-auto" runat="server"
@@ -486,12 +487,11 @@
                         </asp:Panel>
 
 
-                        <div class="container-fluid mt-1">
+                        <div class="container-fluid mt-0">
                             <div class="card shadow-sm">
                                 <div class="card-body p-2">
-
                                     <!-- wrapper biar tabel bisa scroll kanan & vertikal -->
-                                    <div class="table-responsive" style="max-height:600px; overflow-y:auto;">
+                                    <div class="table-responsive" style="max-height:100vh; overflow-y:auto;">
                                         <asp:GridView ID="GridView1" runat="server" ShowFooter="false"
                                             AllowSorting="True" AutoGenerateColumns="False" AllowPaging="True"
                                             PageSize="10"

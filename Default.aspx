@@ -9,6 +9,7 @@
     <!-- Bootstrap 5 -->
             <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
             <link href="Styles/StyleNew.css" rel="stylesheet" type="text/css" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -146,6 +147,45 @@
 
     </style>
 
+    <style>
+  .position-relative .toggle-eye {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      color: #888;
+      cursor: pointer;
+  }
+  .position-relative .toggle-eye:hover {
+      color: #0d6efd;
+  }
+</style>
+
+<!-- Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      const togglePassword = document.getElementById("togglePassword");
+      const passwordField = document.getElementById("<%= dbPassword.ClientID %>");
+      const loginButton = document.getElementById("<%= bSubmit.ClientID %>");
+
+      // 👁️ Show/Hide Password
+      togglePassword.addEventListener("click", function () {
+          const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+          passwordField.setAttribute("type", type);
+          this.classList.toggle("fa-eye");
+          this.classList.toggle("fa-eye-slash");
+      });
+
+      // ⏎ Tekan Enter = Klik Login
+      passwordField.addEventListener("keypress", function (event) {
+          if (event.key === "Enter") {
+              event.preventDefault();
+              loginButton.click();
+          }
+      });
+  });
+</script>
+
 <script>
   function showLoading(btn) {
       // Dapatkan elemen-elemen tombol
@@ -178,7 +218,7 @@
 
         <!-- Kiri -->
         <div class="login-left">
-          <img src="https://www.pngall.com/wp-content/uploads/12/Illustration-PNG.png" width="200" class="mb-0" />
+          <img src="Image/Illustration-PNG-compressed.png" width="200" class="mb-0" />
           <!-- <h3>Be Verifiedsnced designers on this platform.</p> -->
         </div>
 
@@ -186,7 +226,6 @@
         <div class="login-right">
           <h3>Sign-in</h3>
           <br>
-          
 
           <div class="mb-3">
             <asp:TextBox ID="dbUser" runat="server" CssClass="form-control form-control-sm" placeholder="User ID">
