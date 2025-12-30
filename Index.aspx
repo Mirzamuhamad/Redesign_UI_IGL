@@ -200,7 +200,8 @@
                         /* 0077b6 color sebelumnya */
                         background-color: #1e51dc;
                         color: white;
-                        padding: 3px 12px;
+                         padding: 3px;
+                        /* padding: 2px 12px; */
                         font-weight: bold;
                         font-size: 10pt;
                         text-decoration: none;
@@ -1917,10 +1918,11 @@
                         </asp:Panel>
 
                     </asp:Panel>
-
+                    
                     <asp:Panel runat="server" ID="ForInFrame" Visible="True">
                         <iframe name="InFrame" id="InFrame" style="width:100%;height:89%; border: none; "></iframe>
                     </asp:Panel>
+                  
 
 
 

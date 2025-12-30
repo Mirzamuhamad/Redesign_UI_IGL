@@ -42,7 +42,7 @@
 
             </head>
 
-            <body>
+            <body class="no-scrollbar">
                 <form id="form1" runat="server">
                     <asp:ScriptManager ID="ScriptManager1" runat="server">
                     </asp:ScriptManager>
