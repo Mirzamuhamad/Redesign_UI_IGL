@@ -16,6 +16,11 @@ Partial Class SuppInv
     Protected GetStringHd As String = "Select DISTINCT TransNmbr, Nmbr, Status, TransDate, FgReport, Supplier_Code, Supplier_Name, Supplier, Attn, PONo, Term, Term_Name, DueDate, SuppInvNo, ContraBonNo, ContraBonDate, PPnNo, PPnDate, PriceIncludePPn, PPnRate, Remark, Currency,ForexRate, BaseForex, DiscForex, PPn, PPnForex, PPhForex, OtherForex, TotalForex, DPForex, PPNHome From V_FNSuppInvPKSHd"
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Dim CurrFilter, Value As String
         Try
             If Not IsPostBack Then

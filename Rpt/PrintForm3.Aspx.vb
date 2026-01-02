@@ -19,6 +19,7 @@ Partial Class Rpt_PrintForm3
     End Sub
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
         Try
             If Not Me.IsPostBack Then
                 ViewState("SelectCommand") = Session("SelectCommand")

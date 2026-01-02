@@ -13,6 +13,7 @@
    </script>
    <script src="../../Function/OpenDlg.JS" type="text/javascript"></script>
     <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />
+ <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <form id="form1" runat="server">
@@ -97,7 +98,9 @@
 				            <asp:BoundField DataField="CurrCode" SortExpression="CurrCode" HeaderText="Currency" />
 				            <asp:BoundField DataField="FgSubled" SortExpression="FgSubled" HeaderText="Subled" />
 				            <asp:BoundField DataField="FgNormal" SortExpression="FgNormal" HeaderText="Normal" />
-				            <asp:BoundField DataField="FgActive" SortExpression="FgActive" HeaderText="Active" />							
+				            <asp:BoundField DataField="FgActive" SortExpression="FgActive" HeaderText="Active" />
+				            <asp:BoundField DataField="UserDate" dataformatstring="{0:dd MMM yyyy H:m:s}" SortExpression="UserDate" HeaderText="Last Update" />
+				            <asp:BoundField DataField="User_Name" SortExpression="UserId" HeaderText="Update By" />						
 							<%--<asp:TemplateField HeaderText="Action">
 							    <ItemTemplate>
 								    <asp:Button ID="btnEdit" runat="server" class="bitbtndt btnedit" Text="Edit" CommandName="Edit" CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>" />

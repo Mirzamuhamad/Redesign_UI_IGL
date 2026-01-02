@@ -10,6 +10,7 @@ Partial Class AccountingPeriod
                         InitProperty()
                     End If
                 End If
+
                 'If Session("GLYear") Is Nothing Then
                 '    Session("GLYear") = SQLExecuteScalar("SELECT Year FROM GLYear WHERE CurrentYear='Y'")
                 '    Session("GLPeriod") = SQLExecuteScalar("SELECT Period FROM GLPeriod WHERE DefaultPeriod='Y'")
@@ -65,6 +66,7 @@ Partial Class AccountingPeriod
             'Session("GLYear") = ddlYear.SelectedValue
             'Session("GLPeriod") = ddlMonth.SelectedValue
             Response.Write("<script language='javascript'> {window.opener.updateAcc(" + QuotedStr(ddlYear.SelectedValue) + ", " + QuotedStr(ddlMonth.SelectedItem.Text) + "); window.close();}</script>")
+
         Catch ex As Exception
             lbStatus.Text = "btn OK Error : " + ex.ToString
         End Try

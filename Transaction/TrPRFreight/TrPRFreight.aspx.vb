@@ -9,6 +9,11 @@ Partial Class Transaction_TrPRFreight_TrPRFreight
     Protected GetStringHd As String = "SELECT DISTINCT TransNmbr, Nmbr, TransDate, Status, PONo, Supplier, Supplier_Name, BLNo, AJUNo, ContainerNo, Remark, UserPrep, DatePrep, UserAppr, DateAppr FROM V_PRFreightHd"
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Try
             If Not IsPostBack Then
                 InitProperty()

@@ -17,6 +17,11 @@ Partial Class Transaction_TrSTRRPO_TrSTRRPO
     End Function
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Dim CurrFilter, Value As String
         Try
             If Not IsPostBack Then
@@ -349,6 +354,9 @@ Partial Class Transaction_TrSTRRPO_TrSTRRPO
             pnlNav.Visible = True
             'ddlCommand.Visible = True
             'BtnGo.Visible = True
+            FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
+
+
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try
@@ -1375,7 +1383,15 @@ Partial Class Transaction_TrSTRRPO_TrSTRRPO
 
     Protected Sub lbCount_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lbCount.Click
         Dim ResultField, CriteriaField, ResultSame As String
-        Try 'SELECT PO_No, PO_Date, Report, Supplier, Supplier_Name, Attn, Delivery, Delivery_Name, Product, Product_Name, Specification, dbo.FormatFloat(Qty_PO,dbo.DigitQty()) As Qty_PO, dbo.FormatFloat(Qty_Packing,dbo.DigitQty()) As Qty_Packing, Unit_Packing, dbo.FormatFloat(Qty,dbo.DigitQty()) As Qty, Unit FROM V_PRPOPendingDt 
+        Dim CekMenu As String
+        Try
+
+            CekMenu = CheckMenuLevel("Insert", ViewState("MenuLevel").Rows(0))
+            If CekMenu <> "" Then
+                lbStatus.Text = CekMenu
+                Exit Sub
+            End If
+            'SELECT PO_No, PO_Date, Report, Supplier, Supplier_Name, Attn, Delivery, Delivery_Name, Product, Product_Name, Specification, dbo.FormatFloat(Qty_PO,dbo.DigitQty()) As Qty_PO, dbo.FormatFloat(Qty_Packing,dbo.DigitQty()) As Qty_Packing, Unit_Packing, dbo.FormatFloat(Qty,dbo.DigitQty()) As Qty, Unit FROM V_PRPOPendingDt 
             Session("filter") = "EXEC S_STRRPOReff '',''"
             ResultField = "PO_No, FgReport, Supplier_Code, Supplier_Name, FgHome, Ship_to, Ship_to_Name, WrhsCode, Product_Code, Product_Name, Specification, Product_Part, Product_Part_Name, Have_Part, FgPackages, QtyWrhsTotal, UnitWrhs, QtyPack, QtyOrder, UnitOrder, Remark, Fg_QC"
             CriteriaField = "PO_No, FgReport, Supplier_Code, Supplier_Name, FgHome, Ship_to, Ship_to_Name, WrhsCode, Product_Code, Product_Name, Specification, Product_Part, Product_Part_Name, Have_Part, FgPackages, QtyWrhsTotal, UnitWrhs, QtyPack, QtyOrder, UnitOrder, Remark, Fg_QC"

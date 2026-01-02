@@ -261,37 +261,9 @@ EnableEventValidation="false" %>
           $('#dlgArea').dialog('close')
           $(this).dialog('close');
       }
-      /*-------------------------------------------------------------------------------------------*/
-    /*  function diffdays(){
-        var startdate = $('#tbMulaiJobDate').datepicker('getDate'); //new Date(document.getElementById("tbStartJobDate").value); //
-        var enddate   = $('#tbEndJobDate').datepicker('getDate'); //new Date(document.getElementById("tbFinishJobDate").value); //
-        //if (startdate.getTime() && enddate.getTime()) 
-        //{
-          var diff = new Date(enddate - startdate); //enddate.getTime() - startdate.getTime(); 
-          var days = diff/1000/60/60/24; //Math.abs(diff / (1000 * 3600 * 24)); //
-        //var days   = (enddate - startdate)/1000/60/60/24;
-          alert(days);
-        //tbDurasi.value = days
-        //}
-      } */
-    
+
       function diffdays() {
-         //var dateI1 = document.getElementById("tbMulaiJobDate").value;  
-         //var dateI2 = document.getElementById("tbEndJobDate").value;  
-        //define two date object variables to store the date values  
-         //var date1 = new Date(dateI1); //new Date(dateI1.split("-").reverse());  
-         //var date2 = new Date(dateI2); //new Date(dateI2.split("-").reverse());     
-        //calculate time difference  
-         //var diff = date2.getTime() - date1.getTime();    
-         //calculate days difference by dividing total milliseconds in a day  
-         //var result = Math.abs(diff / (1000 * 60 * 60 * 24));
-          
-         //var diff = date2.getTime() - date1.getTime();  //Math.abs(date2.getTime() - date1.getTime());
-         //var result =  diff / (1000 * 60 * 60 * 24);  //Math.ceil(diff / (1000 * 3600 * 24));  
-         //alert(result);
-         //return document.getElementById("result").innerHTML = result
-        //return Math.floor((utc2 - utc1) / _MS_PER_DAY);
-      
+
        $("#tbEndJobDate").datepicker({ 
          onSelect: function(value, date) { 
           var d1 = $('#tbMulaiJobDate').datepicker('getDate');
@@ -360,123 +332,7 @@ EnableEventValidation="false" %>
           //$('#calculated').val(diff);
           
       }
-    /*  $(function() {
-         $("#dlgDate1").datepicker();
-         var date1 = $("#dlgDate1")
-      });
-      $(function() {
-         $("#dlgDate2").datepicker();
-         var date2 = $("#dlgDate2")
-      });
-
-      function func() {
-          date1 = new Date(date1.value);
-          date2 = new Date(date2.value);
-          var milli_secs = date1.getTime() - date2.getTime();
-
-          // Convert the milli seconds to Days 
-          var days = milli_secs / (1000 * 3600 * 24);
-          document.getElementById("tbDurasi").innerHTML = Math.round(Math.abs(days));
-      } */
-      /*       
-      function RowDoubleClick() {
-      var GRV = document.getElementById('<%= GVNoRecvDoc.ClientID %>');
-      for (var rowId = 0; rowId < GRV.rows.length; rowId++) 
-      {
-      var cell = GRV.rows[rowId].cells[0];
-      tbNoLandPurchase.value = cell.innerHTML;
-      }
-      }
-      $(function() {
-      $('.search_textbox').each(function(i) {
-      $(this).quicksearch("[id*=GVNoRecvDoc] tr:not(:has(th))", {
-      'testQuery': function(query, txt, row) {
-      return $(row).children(":eq(" + i + ")").text().toLowerCase().indexOf(query[0].toLowerCase()) != -1;
-      }
-      });
-      });
-      });
-      */
-      /*-------------------------------------------------------------------------------------------*/
-//      $(function() {
-//          GetSupplier(1);
-//      });
-//      $("[id*=txtSearchSupplier]").live("keyup", function() {
-//         GetSupplier(parseInt(1));
-//      });
-//      $(".Pager .page").live("click", function() {
-//         GetSupplier(parseInt($(this).attr('page')));
-//      });
-//      function SearchTerm() {
-//          return jQuery.trim($("[id*=txtSearchSupplier]").val());
-//      };
-//      function GetSupplier(pageIndex) {
-//          $.ajax({
-//              type: "POST",
-//              url: "Transaction_TrCIPLicenAdmInv_TrCIPLicenAdmInv.aspx/GetSupplier",
-//              data: '{searchTerm: "' + SearchTerm() + '", pageIndex: ' + pageIndex + '}',
-//              contentType: "application/json; charset=utf-8",
-//              dataType: "json",
-//              success: OnSuccess,
-//              failure: function(response) {
-//                  alert(response.d);
-//              },
-//              error: function(response) {
-//                  alert(response.d);
-//              }
-//          });
-//      }
-//      var row;
-//      function OnSuccess(response) {
-//          var xmlDoc = $.parseXML(response.d);
-//          var xml = $(xmlDoc);
-//          var customers = xml.find("MsSupplier");
-//          if (row == null) {
-//              row = $("[id*=GVSupplier] tr:last-child").clone(true);
-//          }
-//          $("[id*=GVSupplier] tr").not($("[id*=GVSupplier] tr:first-child")).remove();
-//          if (customers.length > 0) {
-//              $.each(customers, function() {
-//                  var customer = $(this);
-//                  $("td", row).eq(0).html($(this).find("SuppName").text());
-//                  $("td", row).eq(1).html($(this).find("SuppCode").text());
-//                  $("[id*=GVSupplier]").append(row);
-//                  row = $("[id*=GVSupplier] tr:last-child").clone(true);
-//              });
-//              var pager = xml.find("Pager");
-//              $(".Pager").ASPSnippets_Pager({
-//                  ActiveCssClass: "current",
-//                  PagerCssClass: "pager",
-//                  PageIndex: parseInt(pager.find("PageIndex").text()),
-//                  PageSize: parseInt(pager.find("PageSize").text()),
-//                  RecordCount: parseInt(pager.find("RecordCount").text())
-//              });
-
-////              $(".cssSupplier").each(function() {
-////                  var searchPattern = new RegExp('(' + SearchTerm() + ')', 'ig');
-////                  $(this).html($(this).text().replace(searchPattern, "<span class = 'highlight'>" + SearchTerm() + "</span>"));
-////              });
-//              
-//          } else {
-//              var empty_row = row.clone(true);
-//              $("td:first-child", empty_row).attr("colspan", $("td", row).length);
-//              $("td:first-child", empty_row).attr("align", "center");
-//              $("td:first-child", empty_row).html("No records found for the search criteria.");
-//              $("td", empty_row).not($("td:first-child", empty_row)).remove();
-//              $("[id*=GVSupplier]").append(empty_row);
-//          }
-//      };      
-      /*-------------------------------------------------------------------------------------------*/
-      /*
-      function GetSelectedRow() {
-      $("#dialog tr").click(function(event) {
-      var ID = $(this).find("td:nth-child(1)").html();
-      var HrgTanah = $(this).find("td:nth-child(2)").html();
-      tbNoLandPurchase.value = ID
-      tbBeaTanah.value = HrgTanah
-      });
-      }
-      */    
+   
         function ProgressCircle() {
             setTimeout(function() {
                 var modal = $('<div />');
@@ -510,16 +366,28 @@ EnableEventValidation="false" %>
                 alert(err.description);
             }
         }
+        
+         function Confirm() {
+            var confirm_value = document.createElement("INPUT");
+            confirm_value.type = "hidden";
+            confirm_value.name = "confirm_value";
+            if (confirm("Do you want to upload the dokument ? \n\nClick (OK) to Upload or Click (CANCEL) to Save Data")) {
+                confirm_value.value = "Yes";
+            } else {
+                confirm_value.value = "No";
+            }
+            document.forms[0].appendChild(confirm_value);
+        }
+        
+         function UploadInvoice(fileUploadInvoice) {
+            if (fileUploadInvoice.value != '') {
+                document.getElementById("<%=btnSaveINV.ClientID %>").click();
+            }
+        }
   
     </script>    
 
-    <%--<script type="text/javascript" src="../../JQuery/jquery-1.4.1.min.js"></script>
-    <script type="text/javascript" src="../../JQuery/ScrollableGridPlugin.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-        $('#<%=GVNoRecvDoc.ClientID %>').Scrollable(); 
-        });
-    </script>--%> <%--GridView1/GVNoRecvDoc--%>
+
         
 </head>
 <body>
@@ -556,7 +424,7 @@ EnableEventValidation="false" %>
                   <asp:Button class="bitbtn btngo" runat="server" ID="btnExpand" Text="..." />																						 											  
             </td>
             <td>
-                <%--<asp:LinkButton ID="LbAdvSearch" runat="server" Text="Advanced Search" />--%>
+                <asp:LinkButton ID="LbAdvSearch" runat="server" Text="Advanced Search" />
             </td>
         </tr>
       </table>
@@ -595,7 +463,8 @@ EnableEventValidation="false" %>
       </table>      
       </asp:Panel>
           <br />
-            <asp:Button class="bitbtn btnadd" runat="server" ID="BtnAdd" Text="Add" />	                         
+            <asp:Button class="bitbtn btnadd" runat="server" ID="BtnAdd" Text="Add" />	
+            &nbsp;                         
             <asp:DropDownList CssClass="DropDownList" ID="ddlCommand" runat="server" Visible="false"/>
             <asp:Button class="btngo" runat="server" ID="BtnGo" Text="G" Visible="false" />                         
           <br/>&nbsp;
@@ -642,27 +511,46 @@ EnableEventValidation="false" %>
                   <asp:BoundField DataField="Remark" HeaderStyle-Width="250px" SortExpression="Remark" HeaderText="Remark"></asp:BoundField>
               </Columns>
           </asp:GridView>
-          </div> <br/>&nbsp;
+          </div> <br/>
             <asp:Panel runat="server" ID ="pnlNav" Visible="false">
             <asp:Button class="bitbtn btnadd" runat="server" ID="btnAdd2" Text="Add" />	  
-            &nbsp &nbsp &nbsp
+            &nbsp;
             <asp:DropDownList ID="ddlCommand2" CssClass="DropDownList" runat="server"/>
             <asp:Button class="btngo" runat="server" ID="btnGo2" Text="G" />                 
             </asp:Panel>
     </asp:Panel>    
     <asp:Panel runat="server" ID="pnlInput" Visible="false">
+     <table>
+            <tr>
+                <td>
+                     <asp:Menu ID="Menu2" runat="server" CssClass="Menu" ItemWrap="False" 
+                Orientation="Horizontal" StaticEnableDefaultPopOutImage="False" 
+                StaticMenuItemStyle-CssClass="MenuItem" 
+                StaticSelectedStyle-CssClass="MenuSelect">
+                <StaticSelectedStyle CssClass="MenuSelect" />
+                <StaticMenuItemStyle CssClass="MenuItem" />
+                <Items>
+                    <asp:MenuItem Text="Form Input Service" Value="0"></asp:MenuItem>
+                    <asp:MenuItem Text="Upload Dokumen Service" Value="1"></asp:MenuItem>
+                </Items>
+            </asp:Menu>
+                    
+              </td>
+                <td>
+                <asp:Button class="bitbtndt btnback" Visible = "false" runat="server" ID="btnGoEdit" Text="Back" /> 
+                </td>
+            </tr>
+        </table>
+        &nbsp;
+        <asp:MultiView ID="MultiView2" runat="server" ActiveViewIndex="0">
+       <asp:View ID="TabHd0" runat="server">
       <table>
               <tr>
                   <td>Transaksi No</td>
                   <td>:</td>
-                  <td><asp:TextBox ID="tbCode" runat="server" CssClass="TextBoxR" Width="200px" Enabled="False" />
+                  <td><asp:TextBox ID="tbCode" runat="server" CssClass="TextBoxR" Width="295px" Enabled="False" />
                   </td>
-                  <td style="width: 30px"></td>  
-                  <td>Diminta Oleh</td>                  
-                  <td>:</td>                  
-                  <td>
-                    <asp:TextBox ID="tbRequestBy" runat="server" CssClass="TextBox" Width="260px" ValidationGroup="Input"  />
-                  </td>                  
+                                 
                   <%--<td><asp:LinkButton ID="lbArea" runat="server" ValidationGroup="Input" Text="Lokasi Pekerjaan"/></td>--%>
               </tr>                  
           <tr>
@@ -671,18 +559,21 @@ EnableEventValidation="false" %>
               <td>:</td>                  
               <td>
                   <BDP:BasicDatePicker ID="tbDate" runat="server" ButtonImageHeight="19px" 
-                      ButtonImageWidth="20px" DateFormat="dd MMM yyyy" DisplayType="TextBoxAndImage" 
-                      ReadOnly="true" ShowNoneButton="False" TextBoxStyle-CssClass="TextDate" 
+                      ButtonImageWidth="20px" DateFormat="dd MMM yyyy" DisplayType="textbox" 
+                      ReadOnly="true" ShowNoneButton="True" TextBoxStyle-CssClass="TextDate" 
                       ValidationGroup="Input">
-                      <TextBoxStyle CssClass="TextDate" />
+                      <TextBoxStyle CssClass="TextDate"  Width="295px"/>
                   </BDP:BasicDatePicker>
               </td>
-              <td style="width: 30px"></td>
-              <td>Contact No</td>
-              <td>:</td>
-              <td>
-                <asp:TextBox ID="tbContactNo" runat="server" CssClass="TextBox" Width="260px" ValidationGroup="Input"  />
-              </td>              
+              
+              <td style="width: 30px"></td>  
+                  <td>Diminta Oleh</td>                  
+                  <td>:</td>                  
+                  <td>
+                    <asp:TextBox ID="tbRequestBy" runat="server" CssClass="TextBox" Width="260px" ValidationGroup="Input"  />
+                  </td>   
+                  
+                            
           </tr>
         <tr>
             <td>Kawasan/Area</td>
@@ -693,12 +584,14 @@ EnableEventValidation="false" %>
                <asp:Button ID="btnArea" runat="server" Class="btngo" Text="v" ValidationGroup="Input" />              
                <%--<asp:Button ID="btnRecvDoc" runat="server" Class="btngo" Text="v" ValidationGroup="Input" />--%>                                  
             </td>
+            
             <td style="width: 30px"></td>
-            <td>Email</td>
-            <td>:</td>
-            <td>
-               <asp:TextBox ID="tbEmail" runat="server" CssClass="TextBox" Width="260px" ValidationGroup="Input"  />
-            </td>                                                                                                    
+              <td>Contact No</td>
+              <td>:</td>
+              <td>
+                <asp:TextBox ID="tbContactNo" runat="server" CssClass="TextBox" Width="260px" ValidationGroup="Input"  />
+              </td>
+                                                                                                              
         </tr>
         <tr>
             <td>Unit/Kavling</td>
@@ -708,315 +601,73 @@ EnableEventValidation="false" %>
                <asp:TextBox ID="tbKavlingName" runat="server" CssClass="TextBox" Width="200px" ValidationGroup="Input" />
                <asp:Button ID="btnKavling" runat="server" Class="btngo" Text="v" ValidationGroup="Input" />
             </td>  
+            
             <td style="width: 30px"></td>
-            <td><asp:Button ID="btnClearSvrReq" runat="server" class="bitbtndt btndelete" OnClientClick="return confirm('Sure to delete this dokumen?');"  Width="15px" Text="s" />File Foto/Dokumen</td>
-            <td>:</td>                  
+            <td>Email</td>
+            <td>:</td>
+            <td>
+               <asp:TextBox ID="tbEmail" runat="server" CssClass="TextBox" Width="260px" ValidationGroup="Input"  />
+            </td>  
+            
+            <td style="width: 30px"></td>
+            <td><asp:Button ID="btnClearSvrReq" Visible ="false" runat="server" class="bitbtndt btndelete" OnClientClick="return confirm('Sure to delete this dokumen?');"  Width="15px" Text="s" /></td>
+            <td></td>                  
             <td> 
-               <asp:FileUpload runat="server" style="color: White;" accept="application/pdf" ID="fubSvrReq"  />
-               <asp:Button ID="btnSaveDoc" CssClass="bitbtndt btnsave" runat="server" Text="Save Doc"  /><%--Style="display: none" --%>              
+               <asp:FileUpload Visible = "false" runat="server" style="color: White;" accept="application/pdf" ID="fubSvrReq"  />
+               <asp:Button ID="btnSaveDoc" CssClass="bitbtndt btnsave" Visible = "false" runat="server" Text="Save Doc"  /><%--Style="display: none" --%>              
             </td> 
             <td>        
-               <asp:LinkButton ID="lbDokSvrReq" ValidationGroup="Input" runat="server" Text="Not Yet Uploaded"/>
+               <asp:LinkButton ID="lbDokSvrReq" ValidationGroup="Input" Visible = "false" runat="server" Text="Not Yet Uploaded"/>
             </td>           
-        </tr>       
+        </tr>  
+             
         <tr>
             <td>Deskripsi Permintaan </td>
             <td>:</td>
-            <td><asp:TextBox ID="tbRemark" runat="server" ValidationGroup="Input" CssClass="TextBoxMulti" Width="300px" 
+            <td><asp:TextBox ID="tbRemark" runat="server" ValidationGroup="Input" CssClass="TextBoxMulti" Width="295px" 
                MaxLength="255" TextMode="MultiLine" />
             </td>
         </tr>
-      </table>  
-<%--
-      <br />      
-      <hr style="color:Blue" />  
-         <asp:Menu
-            ID="Menu1"
-            runat="server"
-            CssClass = "Menu"        
-            StaticMenuItemStyle-CssClass = "MenuItem"
-            StaticSelectedStyle-CssClass = "MenuSelect"        
-            Orientation="Horizontal"
-            ItemWrap = "False"
-            StaticEnableDefaultPopOutImage="False">            
-            <Items>
-                <asp:MenuItem Text="Detail Structure" Value="0"></asp:MenuItem>
-                <asp:MenuItem Text="Detail Payment" Value="1"></asp:MenuItem>
-            </Items>            
-        </asp:Menu> 
-        <br />
-        <asp:MultiView 
-        ID="MultiView1"
-        runat="server"
-        ActiveViewIndex="0">
-           <asp:View ID="Tab1" runat="server">
-              <asp:Panel runat="server" ID="PnlDt">
-                <asp:Button class="bitbtn btnadd" runat="server" ID="btnAdddt" Text="Add" ValidationGroup="Input" /><br/>&nbsp;	
-                <div style="border:0px  solid; width:100%; height:100%; overflow:auto;">
-                    <asp:GridView ID="GridDt" runat="server" AutoGenerateColumns="false" ShowFooter="False">
-                        <HeaderStyle CssClass="GridHeader" />
-                        <RowStyle CssClass="GridItem" Wrap="false" />
-                        <AlternatingRowStyle CssClass="GridAltItem" />
-                        <PagerStyle CssClass="GridPager" />
-                        <Columns>
-                            <asp:TemplateField HeaderText="Action"><ItemTemplate><asp:Button ID="btnEdit" runat="server" class="bitbtndt btnedit" Text="Edit" CommandName="Edit"/><asp:Button ID="btnDelete" runat="server" class="bitbtndt btndelete" Text="Delete" OnClientClick="return confirm('Sure to delete this data?');" CommandName="Delete"/></ItemTemplate></asp:TemplateField>
-                            <asp:BoundField DataField="ItemNo" HeaderText="Item No" />
-                            <asp:BoundField DataField="JobName" HeaderStyle-Width="200px" HeaderText="Uraian Pekerjaan" ItemStyle-HorizontalAlign="Left" />
-                            <asp:BoundField DataField="UnitCode" HeaderStyle-Width="80px" HeaderText="Satuan" ItemStyle-HorizontalAlign="Left" />
-                            <asp:BoundField DataField="Area" DataFormatString="{0:#,##0.00}" HeaderStyle-Width="80px" HeaderText="Volume" ItemStyle-HorizontalAlign="Right" />
-                            <asp:BoundField DataField="BiayaSatuan" DataFormatString="{0:#,##0.00}" HeaderStyle-Width="80px" HeaderText="HPS Satuan" ItemStyle-HorizontalAlign="Right" />
-                            <asp:BoundField DataField="PriceForex" DataFormatString="{0:#,##0.00}" HeaderStyle-Width="120px" HeaderText="Estimasi / HPS" ItemStyle-HorizontalAlign="Right" />
-                            <asp:BoundField DataField="Remark" HeaderStyle-Width="300px" HeaderText="Remark" ItemStyle-HorizontalAlign="Left" />
-                        </Columns>
-                    </asp:GridView>
-              </div> <br/>&nbsp;  
-              <asp:Button class="bitbtn btnadd" runat="server" ID="btnAddDtke2" Text="Add" ValidationGroup="Input" />	
-              </asp:Panel> 
-              <asp:Panel runat="server" ID="pnlEditDt" Visible="false">
-                <table>              
-                    <tr>
-                        <td>Item No</td>
-                        <td>:</td>
-                        <td><asp:Label ID="lbItemNo" runat="server" Text="item" /> 
-                        </td>           
-                    </tr>   
-                    <tr> 
-                        <td>Uraian Pekerjaan</td>
-                        <td>:</td>
-                        <td>
-                          <asp:TextBox runat="server" ID="tbJobName" CssClass="TextBox" Width="365px" MaxLength="255" ValidationGroup="Input" AutoPostBack="False" />                         
-                        </td>                       
-                    </tr> 
-                    
-                    <tr> 
-                        <td>Satuan</td>
-                        <td>:</td>
-                        <td>
-                           <asp:DropDownList ID="ddlSatuan" ValidationGroup="Input" Width="120px" runat="server" CssClass="DropDownList" >     
-                                          </asp:DropDownList>                      
-                        </td>                       
-                    </tr>    
-                                          
-                    <tr> 
-                        <td>Volume</td>
-                        <td>:</td>
-                        <td>                            
-                            <asp:TextBox ID="tbQty" runat="server" CssClass="TextBox" Width="225px" ValidationGroup="Input" AutoPostBack="False"/>                                    
-                        </td>                        
-                    </tr>
-                    
-                     <tr> 
-                        <td>Satuan Hps</td>
-                        <td>:</td>
-                        <td>                            
-                            <asp:TextBox ID="tbBiayaSatuan" runat="server" CssClass="TextBox" Width="225px" ValidationGroup="Input" AutoPostBack="False"/>                                    
-                        </td>                        
-                    </tr>
-                    <tr> 
-                        <td>Estimasi/HPS</td>
-                        <td>:</td>
-                        <td>                            
-                            <asp:TextBox ID="tbPriceForex" runat="server"  CssClass="TextBox" Width="225px" ValidationGroup="Input"/>                                    
-                        </td>                        
-                    </tr>                                        
-                    <tr> 
-                        <td>Tempat Pengajuan</td>
-                        <td>:</td>
-                        <td>                            
-                            <asp:TextBox ID="tbLocationCode" runat="server" CssClass="TextBox" Width="80px" ValidationGroup="Input" AutoPostBack="true"/>                                   
-                            <asp:TextBox ID="tbLocationName" runat="server" CssClass="TextBox" Width="250px" ValidationGroup="Input"/>   
-                            <asp:Button ID="btnLocation" runat="server" Class="btngo" Text="..." ValidationGroup="Input" />                                                             
-                        </td>                        
-                    </tr>                    
-                    <tr>
-                        <td>Biaya</td>
-                        <td>:</td>
-                        <td>                                
-                            <asp:TextBox ID="tbBiaya" runat="server" CssClass="TextBox" Width="100px" ValidationGroup="Input" AutoPostBack="False" />
-                            <asp:Button Class="btngo" ID="btnSubled" Text="..." runat="server" ValidationGroup="Input" />                                                            
-                        </td>
-                    </tr>                         
-                    <tr>                    
-                        <td>Structure Code</td>
-                        <td>:</td>
-                        <td>                                
-                           <asp:DropDownList ID="ddlStructureCode" runat="server" CssClass="DropDownList" ValidationGroup="Input" Width="100px" AutoPostBack ="False">
-                           </asp:DropDownList>                                                    
-                            
-                            <asp:TextBox CssClass="TextBox" ValidationGroup="Input" runat="server" ID="tbAccountDt" Width="150px" AutoPostBack="true" />                            
-                            <asp:TextBox CssClass="TextBox" runat="server" ID="tbAccountNameDt" Enabled="false" Width="225px"/>
-                            <asp:TextBox CssClass="TextBox" runat="server" ID="tbFgType" Visible="False" />
-                            <asp:Button Class="btngo" ID="btnAccount" Text="..." runat="server" ValidationGroup="Input" />                                                              
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Remark</td>
-                        <td>:</td>
-                        <td><asp:TextBox runat="server" ID="tbRemarkDt" CssClass="TextBox" Width="365px" 
-                                MaxLength="255" TextMode="MultiLine" />                        
-                        </td>
-                    </tr>                    
-                    <tr>
-                       <td>PPn</td>
-                       <td>:</td>
-                       <td colspan="2">
-                       <table>
-                        <tr style="background-color:Silver;text-align:center">
-                            <td>PPn No</td>
-                            <td>PPn Date</td>                            
-                        </tr>
-                        <tr>
-                            <td><asp:TextBox ID="tbPPnNo" runat="server" CssClass="TextBox" ValidationGroup="Input" Enabled="false" Width="150px" /></td>
-                            <td><BDP:BasicDatePicker ID="tbPPndate" runat="server" Enabled="false"
-                                    ButtonImageHeight="19px" ButtonImageWidth="20px" DateFormat="dd MMM yyyy" 
-                                    DisplayType="TextBoxAndImage" ReadOnly="true" ShowNoneButton="False" 
-                                    TextBoxStyle-CssClass="TextDate" ValidationGroup="Input">
-                                    <TextBoxStyle CssClass="TextDate" />
-                                </BDP:BasicDatePicker>
-                            </td>                            
-                        </tr>
-                       </table>
-                     </td>                
-                    </tr>   
+        
+      </table> 
+      </asp:View>
+       
+       <asp:View ID="TabHd1" runat="server">
+            <table>
+                <tr>
+                <td><asp:Button class="bitbtndt btndelete" OnClientClick="return confirm('Sure to delete this dokumen?');" runat="server" ID="btnClearInv" Width="15px" Text="s" /> Upload Dokumen Wo Service</td>
+                      <td>:</td>
+                  <td>
+                         
+                       <%-- <div class="file-input">
+                          <input type="file" id="file" class = "file" />
+                          <label for="file">
+                            Upload file
+                            </br>
+                            <p class="file-name"></p>
+                          </label>
+                        </div>      --%>                    
+                        
+                        
+                     <asp:FileUpload runat="server" style="color: White;" accept="image/png,image/jpeg,application/pdf" ID="FubInv"  />
+                     <asp:Button ID="btnsaveINV" CssClass="bitbtndt btnadd" runat="server" Text="View" Style="display: none" />               
+                  </td>
+                   
+                  <td>        
+                    <asp:LinkButton ID="lbDokInv" ValidationGroup="Input" runat="server" Text="Not Yet Uploaded"/>
+                    <%--<asp:Button ID="btnsaveKtpW" CssClass="bitbtndt btnadd" runat="server"  Style="display: none" Text="View" /> --%>
+                  </td>
+                             
+                </tr>
 
-                    <tr>
-                        <td>Subtotal</td>
-                        <td>:</td>
-                        <td>  
-                            <asp:TextBox ID="tbSubledNameDt" runat="server" CssClass="TextBox" Width="150px"/>                        
-                        </td>                              
-                    </tr>
-                    
-                </table>
-                <br />                     
-                <asp:Button ID="btnSaveDt" runat="server" class="bitbtndt btnsave" Text="Save" />									
-                <asp:Button ID="btnCancelDt" runat="server" class="bitbtndt btncancel" Text="Cancel" />									
-           </asp:Panel> 
-              
-           </asp:View>           
-            <asp:View ID="Tab2" runat="server">
-                <asp:Panel ID="pnlDt2" runat="server">  
-                <asp:Button class="bitbtn btnadd" runat="server" ID="btnAddDt2" Text="Add" ValidationGroup="Input" />	              
-                <br/>&nbsp;
-                <div style="border:0px  solid; width:100%; height:100%; overflow:auto;">
-                    <asp:GridView ID="GridDt2" runat="server" AutoGenerateColumns="False" ShowFooter="False">
-                        <HeaderStyle CssClass="GridHeader" />
-                        <RowStyle CssClass="GridItem" Wrap="false" />
-                        <AlternatingRowStyle CssClass="GridAltItem" />
-                        <PagerStyle CssClass="GridPager" />
-                        <Columns>
-                            <asp:TemplateField HeaderText="Action"><ItemTemplate><asp:Button ID="btnEdit" runat="server" class="bitbtndt btnedit" Text="Edit" CommandName="Edit"/><asp:Button ID="btnDelete" runat="server" class="bitbtndt btndelete" Text="Delete" OnClientClick="return confirm('Sure to delete this data?');" CommandName="Delete"/></ItemTemplate><EditItemTemplate><asp:Button ID="btnUpdate" runat="server" class="bitbtndt btnsave" Text="Save" CommandName="Update"/><asp:Button ID="btnCancel" runat="server" class="bitbtndt btncancel" Text="Cancel" CommandName="Cancel"/></EditItemTemplate></asp:TemplateField>                                        
-                            
-                            <asp:BoundField DataField="ItemNo" HeaderText="No" />
-                            <asp:BoundField DataField="PaymentType" HeaderStyle-Width="150px" HeaderText="Payment Type" ><HeaderStyle Width="150px" /></asp:BoundField>
-                            <asp:BoundField DataField="DocumentNo" HeaderStyle-Width="150px" HeaderText="Document No" ><HeaderStyle Width="150px" /></asp:BoundField>
-                            <asp:BoundField DataField="BankPaymentName" HeaderStyle-Width="150px" HeaderText="Bank Payment" />                                
-                            <asp:BoundField DataField="PaymentDate" HeaderStyle-Width="80px" DataFormatString="{0:dd/MMM/yyyy}" HeaderText="Payment Date" />
-                            <asp:BoundField DataField="Nominal" DataFormatString="{0:#,##0}" HeaderStyle-Width="100px" ItemStyle-HorizontalAlign="Right" HeaderText="Nominal" />                                
-                            <asp:BoundField DataField="Remark" HeaderStyle-Width="300px" ItemStyle-HorizontalAlign="Left" HeaderText="Remark" />                                                        
-                        </Columns>
-                    </asp:GridView>
-              </div> <br/>&nbsp;    
-              <asp:Button class="bitbtn btnadd" runat="server" ID="btnAddDt2Ke2" Text="Add" ValidationGroup="Input" />	              
-   
-              </asp:Panel>
-              <asp:Panel runat="server" ID="pnlEditDt2" Visible="false">
-                <table>              
-                    <tr>
-                        <td>Item No</td>
-                        <td>:</td>
-                        <td><asp:Label ID="lbItemNoDt2" runat="server" Text="item" />
-                        </td>           
-                    </tr>        
-                    <tr>
-                        <td>Payment Type</td>
-                        <td>:</td>
-                        <td><asp:DropDownList CssClass="DropDownList" ID="ddlPayTypeDt2" runat="server" Width="230px" AutoPostBack ="False"/>
-                        </td>
-                            
-                    </tr>
-                    <tr>
-                        <td>Document No</td>
-                        <td>:</td>
-                        <td><asp:TextBox ID="tbDocumentNoDt2" runat="server" CssClass="TextBox" Width="150px"/> 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Bank Payment</td>
-                        <td>:</td>
-                        <td><asp:DropDownList CssClass="DropDownList" ID="ddlBankPaymentDt2" runat="server" Width="200px"/></td>                    
-                    </tr> 
-                    <tr>
-                        <td>Payment Date</td>
-                        <td>:</td>
-                        <td>
-                             <BDP:BasicDatePicker ID="tbDueDateDt2" runat="server" DateFormat="dd MMM yyyy" 
-                             ReadOnly = "true" ButtonImageHeight="19px" ButtonImageWidth="20px" 
-                             DisplayType="TextBoxAndImage" TextBoxStyle-CssClass="TextDate"
-                             ShowNoneButton="False"><TextBoxStyle CssClass="TextDate" /></BDP:BasicDatePicker>
-                        </td>                                               
-                    </tr>  
-                    <tr> 
-                        <td>Currency</td>
-                        <td>:</td>
-                        <td colspan="4">
-                            <table>
-                                <tr style="background-color:Silver;text-align:center">
-                                    <td>Payment</td>
-                                    <td>Rate</td>
-                                    <td>Charge</td>
-                                    <td>Rate</td>                                
-                                </tr>
-                                <tr>
-                                    <td><asp:DropDownList CssClass="DropDownList" ID="ddlCurrDt2" runat="server" Enabled="false" Width="60px"/></td>
-                                    <td><asp:TextBox CssClass="TextBox" runat="server" ID="tbRateDt2" Width="65px"/></td>
-                                    <td><asp:DropDownList CssClass="DropDownList" runat="server" ID="ddlChargeCurrDt2" Width="60px" AutoPostBack="True"/></td>
-                                    <td><asp:TextBox CssClass="TextBox" runat="server" ID="tbChargeRateDt2" Width="65px"/></td>                                    
-                                </tr>
-                            </table>
-                        </td>                                                
-                    </tr>  
-                     
-                    <tr>
-                        <td>Nominal</td>
-                        <td>:</td>
-                        <td> 
-                           <asp:TextBox CssClass="TextBox" runat="server" ID="tbNominal" Width="150px"/>
-                            <table>
-                                <tr style="background-color:Silver;text-align:center">
-                                    <td><asp:Label ID="lbPayForex" CssClass="TextBox" runat="server" Text = "Payment Forex" /></td>
-                                    <td><asp:Label ID="lbPayHome" CssClass="TextBox" runat="server" Text = "Payment Home" /></td>                                    
-                                    <td><asp:Label ID="lbChargeForex" CssClass="TextBox" runat="server" Text = "Charge Forex" /></td>
-                                    <td><asp:Label ID="lbChargeHome" CssClass="TextBox" runat="server" Text = "Charge Home" /></td>                               
-                                </tr> 
-                                <tr>
-                                    <td><asp:TextBox CssClass="TextBox" runat="server" ID="tbPaymentForexDt2" Width="150px"/></td>
-                                    <td><asp:TextBox CssClass="TextBoxR" runat="server" ID="tbPaymentHomeDt2" Width="80px"/></td>                                                                        
-                                    <td><asp:TextBox CssClass="TextBox" runat="server" ID="tbChargeForexDt2" Width="80px"/></td>
-                                    <td><asp:TextBox CssClass="TextBoxR" runat="server" ID="tbChargeHomeDt2" Width="80px"/></td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>                                   
-                    <tr>
-                        <td>Remark </td>
-                        <td>:</td>
-                        <td><asp:TextBox runat="server" ID="tbRemarkDt2" CssClass="TextBox" Width="365px" MaxLength="255" TextMode="MultiLine" />                        
-                        </td>
-                    </tr>
-                </table>
-                <br />                     
-                <asp:Button ID="btnSaveDt2" runat="server" class="bitbtndt btnsave" Text="Save" />									
-                <asp:Button ID="btnCancelDt2" runat="server" class="bitbtndt btncancel" Text="Cancel" />									
+            </table>
+       </asp:View>
+       
+    </asp:MultiView> 
 
-           </asp:Panel> 
-               
-            </asp:View>            
-        </asp:MultiView>
-    --%>
        <br />          
 		<asp:Button ID="btnSaveAll" runat="server" class="bitbtndt btnsavenew" Text="Save & New" validationgroup="Input" Width = "90"/>									
-        <asp:Button ID="btnSaveTrans" runat="server" class="bitbtndt btnsave" Text="Save" validationgroup="Input"/>									
+        <asp:Button ID="btnSaveTrans" runat="server" class="bitbtndt btnsave" Text="Save" OnClientClick="Confirm()" validationgroup="Input"/>									
         <asp:Button ID="btnBack" runat="server" class="bitbtndt btncancel" Text="Cancel" validationgroup="Input"/>									
         <asp:Button ID="btnHome" runat="server" class="bitbtndt btnback" Text="Home" />									                                                           
     </asp:Panel>        
@@ -1066,7 +717,7 @@ EnableEventValidation="false" %>
     <asp:Label runat ="server" ID="lbStatus" ForeColor="Red"/>
 
     <div class="loading" align="center">
-      Loading. Please wait.<br />
+    
       <br />
        <img src="../../Image/loader.gif" alt="" />
     </div>

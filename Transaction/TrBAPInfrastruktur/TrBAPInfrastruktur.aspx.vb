@@ -15,6 +15,11 @@ Partial Class BAPInfrastruktur
     Protected GetStringHd As String = "Select * From V_PRCBAPInfHD "
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Try
             If Not IsPostBack Then
                 InitProperty()
@@ -250,6 +255,7 @@ Partial Class BAPInfrastruktur
             pnlNav.Visible = True
             'ddlCommand.Visible = True
             'BtnGo.Visible = True
+            FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try
@@ -471,7 +477,15 @@ Partial Class BAPInfrastruktur
     Private Sub SaveAll()
         Dim SQLString, UpdateSPK As String
         Dim I As Integer
+        Dim CekMenu As String
         Try
+
+            CekMenu = CheckMenuLevel("Insert", ViewState("MenuLevel").Rows(0))
+            If CekMenu <> "" Then
+                lbStatus.Text = CekMenu
+                Exit Sub
+            End If
+
             If pnlDt.Visible = False Then
                 lbStatus.Text = "Detail Data must be saved first"
                 Exit Sub
@@ -766,7 +780,16 @@ Partial Class BAPInfrastruktur
 
     Protected Sub lbCount_Click(ByVal sender As Object, ByVal e As EventArgs) Handles lbCount.Click
         Dim ResultField, ResultSame As String 'ResultSame 
+        Dim CekMenu As String
         Try
+
+            CekMenu = CheckMenuLevel("Insert", ViewState("MenuLevel").Rows(0))
+            If CekMenu <> "" Then
+                lbStatus.Text = CekMenu
+                Exit Sub
+            End If
+
+
             Session("filter") = "select * from V_GetPemenang "
             ResultField = "No_SPK,SuppCode, Supplier_Name, Paket_Pekerjaan "
             ViewState("Sender") = "btnOut"

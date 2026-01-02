@@ -5,6 +5,11 @@ Partial Class UserControl_MsgBox
 
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         btnYes.OnClientClick = String.Format("fnClickOK('{0}','{1}')", btnYes.UniqueID, "")
         btnNo.OnClientClick = String.Format("fnClickOK('{0}','{1}')", btnNo.UniqueID, "")
     End Sub

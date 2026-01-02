@@ -4,6 +4,11 @@ Imports System.Data
 Partial Class MsWarehouse_MsWarehouse
     Inherits System.Web.UI.Page
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         If Not IsPostBack Then
             InitProperty()
             ViewState("SortExpression") = Nothing
@@ -18,6 +23,10 @@ Partial Class MsWarehouse_MsWarehouse
             btnPrint.Visible = ViewState("MenuLevel").rows(0)("FgPrint") = "Y"
             Session("SelectWrhsCondition") = "SELECT WrhsCondition, FgSubled FROM MsWrhsCondition"
             'bindDataGrid()
+
+            ViewState("MenuLevel") = SetMenuLevel(Request.QueryString("ContainerId").ToString, ViewState("UserId").ToString, ViewState("DBConnection").ToString)
+            btnAdd.Visible = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
+            btnAdd2.Visible = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
         End If
 
         lstatus.Text = ""

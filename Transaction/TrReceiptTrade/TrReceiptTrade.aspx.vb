@@ -8,6 +8,11 @@ Partial Class TrReceiptTrade
     Protected GetStringHd As String = "Select distinct TransNmbr, Nmbr, TransDate, Status, FgReport, CustomerCode, CustomerName, Customer, Attn, Currency, TotalReceiptForex, TotalReceiptForexStr, TotalReceipt, TotalInvoice, TotalCharge, TotalOthers, TotalDP, TotalKurs, TotalSelisih, Remark From V_FNReceiptTradeHd "
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Try
             If Not IsPostBack Then
                 InitProperty()
@@ -857,6 +862,8 @@ Partial Class TrReceiptTrade
         End Try
     End Function
 
+
+
     Protected Sub btnSaveDt_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSaveDt.Click
         Try
             If CekDt() = False Then
@@ -1516,6 +1523,10 @@ Partial Class TrReceiptTrade
             MultiView1.ActiveViewIndex = 0
             Menu1.Items.Item(0).Selected = True
             tbCode.Focus()
+            btnAddDt2Ke2.Visible = False
+            btnBackDt2Ke2.Visible = False
+            btnBackDt2.Visible = False
+            btnAddDtke2.Visible = False
         Catch ex As Exception
             lbStatus.Text = "Btn Add Error : " + ex.ToString
         End Try
@@ -1617,6 +1628,10 @@ Partial Class TrReceiptTrade
                         lbStatus.Text = MessageDlg("Data must be Hold or Get Approval to edit")
                         Exit Sub
                     End If
+                    btnAddDt2Ke2.Visible = False
+                    btnBackDt2Ke2.Visible = False
+                    btnBackDt2.Visible = False
+                    btnAddDtke2.Visible = False
                 ElseIf DDL.SelectedValue = "Print Full" Then
                     Try
                         CekMenu = CheckMenuLevel("Print", ViewState("MenuLevel").Rows(0))

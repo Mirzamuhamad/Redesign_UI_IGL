@@ -10,7 +10,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Untitled Page</title>
-    <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />    
+    <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />
+ <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">    
     <style type="text/css">
         .style1
         {
@@ -138,5 +139,53 @@
     <asp:Label ID="lbStatus" runat="server" ForeColor="Red" />    
     
     </form>
+	
+<script type="text/javascript">
+(function () {
+    function makeTrialTextLookLikeBackground() {
+        var divs = document.getElementsByTagName("div");
+        for (var i = 0; i < divs.length; i++) {
+            var div = divs[i];
+            var content = div.innerText || div.textContent || "";
+            if (content.indexOf("This application was created using the TRIAL version of DevExpress") !== -1) {
+                // Buat tampil seperti background (tidak terlihat)
+                div.style.color = "#ffffff"; // warna putih
+                div.style.fontSize = "1px";  // sangat kecil
+                div.style.opacity = "0.01";  // hampir tidak terlihat
+                div.style.position = "absolute";
+                div.style.top = "0";
+                div.style.left = "0";
+                div.style.zIndex = "0"; // dorong ke belakang
+                div.style.pointerEvents = "none"; // tidak bisa diklik
+                var links = div.getElementsByTagName("a");
+                for (var j = 0; j < links.length; j++) {
+                    links[j].style.color = "#ffffff";
+                }
+            }
+        }
+    }
+
+    // Jalankan pertama kali
+    makeTrialTextLookLikeBackground();
+
+    // Pantau jika muncul belakangan
+    if (window.MutationObserver) {
+        var observer = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+                if (mutation.addedNodes.length > 0) {
+                    makeTrialTextLookLikeBackground();
+                }
+            });
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+})();
+</script>
+
+
     </body>
 </html>

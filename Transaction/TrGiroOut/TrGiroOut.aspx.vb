@@ -6,6 +6,11 @@ Partial Class Transaction_TrGiroOut_TrGiroOut
     Protected GetStringHd As String = "Select * From V_FNGiroOut"
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Try
             If Not IsPostBack Then
                 InitProperty()
@@ -340,7 +345,16 @@ Partial Class Transaction_TrGiroOut_TrGiroOut
         Dim j As Integer
         Dim Nmbr(100) As String
         Dim FirstTime As Boolean
+        Dim CekMenu As String
         Try
+
+            CekMenu = CheckMenuLevel("Insert", ViewState("MenuLevel").Rows(0))
+            If CekMenu <> "" Then
+                lbStatus.Text = CekMenu
+                Exit Sub
+            End If
+
+
             If sender.ID.ToString = "BtnGo" Then
                 ActionValue = ddlCommand.SelectedValue
             Else
@@ -370,7 +384,7 @@ Partial Class Transaction_TrGiroOut_TrGiroOut
                 'Exit sub
                 If HaveDataProcess = False Then Exit Sub
                 ViewState("ListSelectNmbr") = ListSelectNmbr
-                
+
                 ViewState("Nmbr") = Nmbr
                 PnlHd.Visible = False
                 PnlDt.Visible = True

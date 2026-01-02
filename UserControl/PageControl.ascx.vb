@@ -6,6 +6,11 @@ Partial Class UserControl_PageControl
     Public Event TextBoxControl_BtnClick(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Try
             tbpageNo.Attributes.Add("OnKeyDown", "return PressNumeric();")
         Catch ex As Exception

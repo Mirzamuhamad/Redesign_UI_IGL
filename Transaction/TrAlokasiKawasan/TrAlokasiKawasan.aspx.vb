@@ -15,6 +15,11 @@ Partial Class AlokasiKawasan
     Protected GetStringHd As String = "Select * From V_FINAlokasiHd "
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Try
             If Not IsPostBack Then
                 InitProperty()
@@ -182,6 +187,8 @@ Partial Class AlokasiKawasan
             pnlNav.Visible = True
             'ddlCommand.Visible = True
             'BtnGo.Visible = True
+            FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
+
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try
@@ -371,7 +378,7 @@ Partial Class AlokasiKawasan
                 ViewState("Dt").Rows.Add(dr)
             End If
             MovePanel(pnlEditDt, pnlDt)
-            EnableHd(GetCountRecord(ViewState("Dt")) = 0)
+           ' EnableHd(GetCountRecord(ViewState("Dt")) = 0)
             BindGridDt(ViewState("Dt"), GridDt)
             StatusButtonSave(True)
 
@@ -640,7 +647,7 @@ Partial Class AlokasiKawasan
             ElseIf ddlTypeALokasi.SelectedValue = "INF" Then
                 Session("filter") = "select * from V_GetVoucherPayment WHERE InvoiceType = 'CIF'"
             Else
-                Session("filter") = "select * from V_GetVoucherPayment WHERE InvoiceType = 'LPO'"
+                Session("filter") = "select * from V_GetVoucherPayment WHERE InvoiceType IN ('LPO','CAT')"
             End If
             ResultField = "PaymentNo, PaymentDate, Status, TotalPayment, PercenAlokasi"
 
@@ -815,7 +822,7 @@ Partial Class AlokasiKawasan
             ddlTypeALokasi.Text = "ADM"
             ViewState("StateDt") = "Insert"
             MovePanel(pnlDt, pnlEditDt)
-            EnableHd(False)
+            EnableHd(True)
             StatusButtonSave(False)
             lbItemNo.Text = GetNewItemNo(ViewState("Dt"))
             'btnAccount.Focus()

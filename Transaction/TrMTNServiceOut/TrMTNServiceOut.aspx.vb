@@ -19,6 +19,11 @@ Partial Class TrMTNServiceOut
     End Function
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Try
             If Not IsPostBack Then
                 InitProperty()
@@ -277,6 +282,9 @@ Partial Class TrMTNServiceOut
             pnlNav.Visible = True
             'ddlCommand.Visible = True
             'BtnGo.Visible = True
+            FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
+
+
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try
@@ -1177,4 +1185,13 @@ Partial Class TrMTNServiceOut
             lbStatus.Text = "btnDepartment_Click Error : " + ex.ToString
         End Try
     End Sub
+
+    Protected Sub lbsupplier_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lbsupplier.Click
+        Try
+            AttachScript("OpenMaster('" + Request.QueryString("KeyId") + "','MsSupplier')();", Page, Me.GetType())
+        Catch ex As Exception
+            lbStatus.Text = "lbsupplier_Click Error : " + ex.ToString
+        End Try
+    End Sub
+
 End Class

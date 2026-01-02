@@ -7,6 +7,11 @@ Partial Class Transaction_TrMTNWork_TrMTNWork
     Protected GetStringHd As String = "SELECT DISTINCT TransNmbr, Revisi, TransDate, Status, ReffNmbr, Department, Dept_Name, RequestBy, RequestDate, FgOutSource, OutSourceTo, Remark, UserPrep, DatePrep, UserAppr, DateAppr, FgActive From V_MNWorkHd "
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Try
             If Not IsPostBack Then
                 InitProperty()

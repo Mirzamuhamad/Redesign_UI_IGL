@@ -31,6 +31,11 @@ Partial Class Transaction_TrLandPurchaseAgremt_TrLandPurchaseAgremt
     'End Function
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         'Dim Rev As Integer
         'Dim Tipe As String
         Dim Payment, PaidOff, LandPrice As String
@@ -486,6 +491,8 @@ Partial Class Transaction_TrLandPurchaseAgremt_TrLandPurchaseAgremt
             GridView1.PageIndex = 0
             BindData(Session("AdvanceFilter"))
             pnlNav.Visible = True
+            FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
+
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try

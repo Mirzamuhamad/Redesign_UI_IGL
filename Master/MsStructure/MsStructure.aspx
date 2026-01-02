@@ -8,7 +8,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Structure File</title>
+    <title>Site Plan</title>
+
    <style type="text/css">
        .modalPopup
       {
@@ -76,6 +77,7 @@
     </script>
     
     <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />
+ <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="../../Styles/circularprogress.css" /> 
     <script type="text/javascript" src="../../JQuery/jquery.min.js"></script>
 
@@ -86,8 +88,8 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <div class="Content">
-     <div class="H1">Structure File</div>
-     <hr style="color:Blue" />
+     <div class="H1">Site Plan</div>
+     <hr />
      <asp:Panel runat="server" ID="pnlHd">
       <table>
         <tr>
@@ -97,7 +99,8 @@
                     <asp:ListItem Selected="true" Text="StructureCode" Value="StructureCode"></asp:ListItem>
                     <asp:ListItem Text="StructureName" Value="StructureName"></asp:ListItem> 
                     <asp:ListItem Text="ParentID" Value="ParentID"></asp:ListItem>                   
-                    <asp:ListItem Text="LevelName" Value="LevelName"></asp:ListItem>                                                         
+                    <asp:ListItem Text="LevelName" Value="LevelName"></asp:ListItem>    
+                    <asp:ListItem Text="Active Kavling" Value="FgActiveName"></asp:ListItem>                                                         
                 </asp:DropDownList>     
                 <asp:Button class="bitbtn btnsearch" runat="server" ID="btnSearch" Text="Search" />
                 <asp:Button class="btngo" runat="server" ID="btnExpand" Text="..."/>
@@ -119,7 +122,8 @@
                     <asp:ListItem Selected="true" Text="StructureCode" Value="StructureCode"></asp:ListItem>
                     <asp:ListItem Text="StructureName" Value="StructureName"></asp:ListItem>                   
                     <asp:ListItem Text="ParentID" Value="ParentID"></asp:ListItem>                   
-                    <asp:ListItem Text="LevelName" Value="LevelName"></asp:ListItem>                   
+                    <asp:ListItem Text="LevelName" Value="LevelName"></asp:ListItem>
+                    <asp:ListItem Text="Active Kavling" Value="FgActiveName"></asp:ListItem>                     
                   </asp:DropDownList>
             </td>
         </tr>
@@ -136,7 +140,7 @@
       <asp:Button ID="btnImportDB" runat="server" class="bitbtn btnadd" Width="110px" Text="Import to DB" />
       <br/>&nbsp;								
       <asp:GridView id="DataGrid" runat="server" ShowFooter="True" AllowSorting="True" 
-            AutoGenerateColumns="False" AllowPaging="True" CssClass="Grid">
+            AutoGenerateColumns="False" AllowPaging="True" CssClass="Grid" >
 						<HeaderStyle CssClass="GridHeader" Wrap="false"  ></HeaderStyle>
 						<RowStyle CssClass="GridItem" wrap="false" />
 						<AlternatingRowStyle CssClass="GridAltItem"/>
@@ -159,10 +163,17 @@
 							<asp:BoundField DataField="StructureCode" HeaderText="Structure Code" HeaderStyle-Width="20" SortExpression="StructureCode"/>
 							<asp:BoundField DataField="StructureName" HeaderText="Structure Name" HeaderStyle-Width="20" SortExpression="StructureName"/>
 							<asp:BoundField DataField="LevelName" HeaderText="Level Name" HeaderStyle-Width="20" SortExpression="LevelName"/>
-							<asp:BoundField DataField="Account" HeaderText="Account" HeaderStyle-Width="20" SortExpression="Account"/>
-							<asp:BoundField DataField="AccountName" HeaderText="Account Name" HeaderStyle-Width="20" SortExpression="AccountName"/>
-							<asp:BoundField DataField="LandArea" HeaderText="Land Area" HeaderStyle-Width="20" DataFormatString="{0:#,##0}" ItemStyle-horizontalAlign ="Right" SortExpression="LandArea"/>
-							<asp:BoundField DataField="BuildingArea" HeaderText="Building Area" HeaderStyle-Width="20" DataFormatString="{0:#,##0}" ItemStyle-horizontalAlign ="Right" SortExpression="BuildingArea"/>
+							<%-- 
+                            <asp:BoundField DataField="Account" HeaderText="Account" HeaderStyle-Width="20" SortExpression="Account"/>
+							<asp:BoundField DataField="AccountName" HeaderText="Account Name" HeaderStyle-Width="20" SortExpression="AccountName"/> 
+                            --%>
+							<asp:BoundField DataField="LandArea" HeaderText="Unsold Area" HeaderStyle-Width="20" DataFormatString="{0:#,##0.00}" ItemStyle-horizontalAlign ="Right" SortExpression="LandArea"/>
+                            <asp:BoundField DataField="OriginalArea" HeaderText="Original Area" HeaderStyle-Width="20" DataFormatString="{0:#,##0.00}" ItemStyle-horizontalAlign ="Right" SortExpression="OriginalArea"/>
+							<asp:BoundField DataField="BuildingArea" HeaderText="Building Area" HeaderStyle-Width="20" DataFormatString="{0:#,##0.00}" ItemStyle-horizontalAlign ="Right" SortExpression="BuildingArea"/>
+                            <asp:BoundField DataField="FgActiveName" HeaderText="Active Area" HeaderStyle-Width="20" SortExpression="FgActiveName" ItemStyle-horizontalAlign ="Center"/>
+                            <asp:BoundField DataField="StartDate" DataFormatString="{0:dd MMM yyyy}" HeaderText="Registration Date" HeaderStyle-Width="20" SortExpression="StartDate"/>
+                            <asp:BoundField DataField="UserId" HeaderText=" Last Update By" HeaderStyle-Width="20" SortExpression="UserId"/>
+                            <asp:BoundField DataField="UserDate" DataFormatString="{0:dd MMM yyyy}" HeaderText="Last Update" HeaderStyle-Width="20" SortExpression="Userdate"/>
 							
     					</Columns>
         </asp:GridView>
@@ -260,9 +271,15 @@
                    <asp:Label ID="Label9" runat="server" ForeColor="Red" Text="*"></asp:Label></td>
             </tr> --%>
             <tr>
-                <td>Land Area</td>
+                <td>Sisa Area</td>
                 <td>:</td>
                 <td><asp:TextBox runat="server" CssClass="TextBox" ID="tbLuasLahan" ValidationGroup="Input" Width="100px" /></td>
+            </tr>
+
+            <tr>
+                <td>Original Area</td>
+                <td>:</td>
+                <td><asp:TextBox runat="server" CssClass="TextBox" ID="tbOriginalArea" ValidationGroup="Input" Width="100px" /></td>
             </tr>
             
              <tr>

@@ -15,6 +15,11 @@ Partial Class Transaction_TrDocReceive_TrDocReceive
     Protected GetStringHd As String = "Select * From V_PRCDocReceiveHD "
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Try
             If Not IsPostBack Then
                 InitProperty()
@@ -963,6 +968,7 @@ Partial Class Transaction_TrDocReceive_TrDocReceive
         Catch ex As Exception
             lbStatus.Text = "btn save all error : " + ex.ToString
         End Try
+
     End Sub
 
     'Protected Sub btnArea_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnArea.Click
@@ -1082,8 +1088,6 @@ Partial Class Transaction_TrDocReceive_TrDocReceive
     Protected Sub cbSelectHd_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs)
         CheckAll(GridView1, sender)
     End Sub
-
-
 
     Protected Sub LbAdvSearch_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles LbAdvSearch.Click
         Dim FDateName, FDateValue, FilterName, FilterValue As String

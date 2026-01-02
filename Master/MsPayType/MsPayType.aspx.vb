@@ -4,6 +4,11 @@ Partial Class Master_MsPayType_MsPayType
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         If Not IsPostBack Then
             InitProperty()
             DataGrid.PageSize = CInt(ViewState("PageSizeGrid"))
@@ -19,6 +24,10 @@ Partial Class Master_MsPayType_MsPayType
             'ViewState("Bank") = ddlBank.SelectedValue
             'FillCombo(ViewState("Bank"), "SELECT BankCode, BankName From MsBank", True, "BankCode", "BankName")
             'bindDataGrid()
+            ViewState("MenuLevel") = SetMenuLevel(Request.QueryString("ContainerId").ToString, ViewState("UserId").ToString, ViewState("DBConnection").ToString)
+            btnAdd.Visible = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
+            btnAdd2.Visible = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
+
         End If
 
         If Not Session("Result") Is Nothing Then
@@ -115,6 +124,9 @@ Partial Class Master_MsPayType_MsPayType
             DataGrid.PageIndex = 0
             bindDataGrid()
             PnelNav.Visible = True
+            ViewState("MenuLevel") = SetMenuLevel(Request.QueryString("ContainerId").ToString, ViewState("UserId").ToString, ViewState("DBConnection").ToString)
+            btnAdd.Visible = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
+            btnAdd2.Visible = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
         Catch ex As Exception
             lstatus.Text = "Btn Search Error : " + vbCrLf + ex.ToString
         End Try
@@ -421,6 +433,9 @@ Partial Class Master_MsPayType_MsPayType
                     pnlInput.Visible = True
                     bindDataGridDt()
                 ElseIf DDL.SelectedValue = "Edit" Then
+                    If CheckMenuLevel("Edit") = False Then
+                        Exit Sub
+                    End If
                     ViewState("State") = "Edit"
                     'GVR = DataGrid.Rows(CInt(e.CommandArgument))
                     'ViewState("Nmbr") = GVR.Cells(1).Text
@@ -440,6 +455,11 @@ Partial Class Master_MsPayType_MsPayType
                     bindDataGridDt()
                 ElseIf DDL.SelectedValue = "User" Then
                     Dim paramgo As String
+
+                    If CheckMenuLevel("Edit") = False Then
+                        Exit Sub
+                    End If
+
                     'GVR = DataGrid.Rows(CInt(e.CommandArgument))
                     paramgo = GVR.Cells(1).Text + "|" + GVR.Cells(2).Text
                     If (Not ClientScript.IsStartupScriptRegistered("tes")) Then

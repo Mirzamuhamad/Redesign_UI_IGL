@@ -19,6 +19,11 @@ Partial Class BAPSerahTerimaLK
     End Function
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Try
             If Not IsPostBack Then
                 InitProperty()
@@ -131,7 +136,9 @@ Partial Class BAPSerahTerimaLK
                 GridDt.Columns(0).Visible = True
             End If
         End If
+        
         If Menu2.Items.Item(1).Selected = True Then
+
             If ViewState("StateHd") = "Insert" Or ViewState("StateHd") = "Edit" Then
                 GridDt.Columns(0).Visible = False
             End If
@@ -271,6 +278,9 @@ Partial Class BAPSerahTerimaLK
             pnlNav.Visible = True
             'ddlCommand.Visible = True
             'BtnGo.Visible = True
+
+            FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
+
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try

@@ -8,6 +8,11 @@ Partial Class Transaction_TrLeaveOut_TrLeaveOut
     Protected GetStringHd As String = "SELECT DISTINCT Nmbr, TransNmbr,TransDate, Status, LeaveCategory, Remark, Employee_No, Employee_Name, Done_Complete, UserPrep, DatePrep, UserAppr, DateAppr FROM V_PELeaveOutHd"
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Try
             If Not IsPostBack Then
                 InitProperty()

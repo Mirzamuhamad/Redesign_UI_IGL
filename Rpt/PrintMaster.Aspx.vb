@@ -15,6 +15,7 @@ Partial Class Rpt_PrintMaster
     End Sub
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
         Try
             CrystalReportViewer1.ReportSource = Session("Report")
             'CrystalReportViewer1.SeparatePages = False

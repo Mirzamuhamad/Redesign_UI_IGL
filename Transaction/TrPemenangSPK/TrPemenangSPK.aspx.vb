@@ -15,6 +15,11 @@ Partial Class PenunjukanPemenang
     Protected GetStringHd As String = "Select * From V_PRCPemenangHD "
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Try
             If Not IsPostBack Then
                 InitProperty()
@@ -78,6 +83,16 @@ Partial Class PenunjukanPemenang
                     tbEndDate.SelectedDate = Session("Result")(7).ToString
                     tbDurasi.Text = Session("Result")(8).ToString
 
+                    Dim FgPpn As String
+                    FgPpn = SQLExecuteScalar("SELECT FgPpn FROM MsSupplier WHERE SuppCode = " + QuotedStr(tbSuppCode.Text), ViewState("DBConnection"))
+                    ' lbStatus.text = FgPpn
+                    ' Exit Sub
+                    If FgPpn = "N" Then
+                    tbppn.text = 0
+                    Else
+                    tbppn.text = 11
+                    End If
+                    
                     'Insert To Detail
                     SQLString = "SELECT * FROM V_GetDetailPekerjaan WHERE TransNmbr = " + QuotedStr(tbPenawaranNo.Text)
                     DtPekerjaan = SQLExecuteQuery(SQLString, ViewState("DBConnection")).Tables(0)
@@ -99,7 +114,7 @@ Partial Class PenunjukanPemenang
                         End If
                     Next
                     BindGridDt(ViewState("Dt"), GridDt)
-                    EnableHd(GetCountRecord(ViewState("Dt")) = 0)
+                    'EnableHd(GetCountRecord(ViewState("Dt")) = 0)
                     CountTotalDt()
                 End If
 
@@ -122,6 +137,16 @@ Partial Class PenunjukanPemenang
                     tbStartDate.SelectedDate = Session("Result")(6).ToString
                     tbEndDate.SelectedDate = Session("Result")(7).ToString
                     tbDurasi.Text = Session("Result")(8).ToString
+                    Dim FgPpn As String
+                    FgPpn = SQLExecuteScalar("SELECT FgPpn FROM MsSupplier WHERE SuppCode = " + QuotedStr(tbSuppCode.Text), ViewState("DBConnection"))
+                    ' lbStatus.text = FgPpn
+                    ' Exit Sub
+                    If FgPpn = "N" Then
+                    tbppn.text = 0
+                    Else
+                    tbppn.text = 11
+                    End If
+
 
                     'Insert To Detail
                     SQLString = "SELECT * FROM V_GetDetailPekerjaan WHERE TransNmbr = " + QuotedStr(tbPenawaranNo.Text)
@@ -144,7 +169,7 @@ Partial Class PenunjukanPemenang
                         End If
                     Next
                     BindGridDt(ViewState("Dt"), GridDt)
-                    EnableHd(GetCountRecord(ViewState("Dt")) = 0)
+                    'EnableHd(GetCountRecord(ViewState("Dt")) = 0)
                     CountTotalDt()
                 End If
 
@@ -283,6 +308,8 @@ Partial Class PenunjukanPemenang
             pnlNav.Visible = True
             'ddlCommand.Visible = True
             'BtnGo.Visible = True
+            FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
+
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try
@@ -489,7 +516,15 @@ Partial Class PenunjukanPemenang
     Private Sub SaveAll()
         Dim SQLString As String
         Dim I As Integer
+        Dim CekMenu As String
         Try
+
+            CekMenu = CheckMenuLevel("Insert", ViewState("MenuLevel").Rows(0))
+            If CekMenu <> "" Then
+                lbStatus.Text = CekMenu
+                Exit Sub
+            End If
+
             If pnlDt.Visible = False Then
                 lbStatus.Text = "Detail Data must be saved first"
                 Exit Sub
@@ -795,7 +830,15 @@ Partial Class PenunjukanPemenang
 
     Protected Sub lbCount_Click(ByVal sender As Object, ByVal e As EventArgs) Handles lbCount.Click
         Dim ResultField, CriteriaField, sqlstring As String
+        Dim CekMenu As String
         Try
+
+            CekMenu = CheckMenuLevel("Insert", ViewState("MenuLevel").Rows(0))
+            If CekMenu <> "" Then
+                lbStatus.Text = CekMenu
+                Exit Sub
+            End If
+
             sqlstring = "EXEC S_GetPenerimaan 1 "
             Session("DBConnection") = ViewState("DBConnection")
             Session("filter") = sqlstring

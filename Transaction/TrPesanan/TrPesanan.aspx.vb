@@ -16,6 +16,11 @@ Partial Class TrPemesanan
     Protected GetStringHd As String = "Select * From V_MKTTSPHD"
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Try
             If Not IsPostBack Then
                 InitProperty()
@@ -748,11 +753,8 @@ Partial Class TrPemesanan
                         DateAngsuran = (Dr("PayDate").ToString)
                     End If
                 Next
-            End If
 
-            'lbStatus.Text = lbItemNo.Text
-
-            If lbItemNo.Text >= 3 Then
+                If lbItemNo.Text >= 3 Then
                 If ddlType.SelectedValue = "AG" Then
                     lblAngsuran.Text = lbItemNo.Text - 2
                     Nilai = lbItemNo.Text - 2
@@ -761,6 +763,42 @@ Partial Class TrPemesanan
                     lbItemNo.Text = 1
                 End If
             End If
+
+            Else If drow.Length = 0  Then    
+                    drow = ViewState("Dt2").Select("Type = " + QuotedStr("AG"))
+                    If drow.Length > 0 Then
+                        havedetail = False
+                        ' Ambil baris terakhir dari hasil filter
+                        Dim lastRow As DataRow = drow(drow.Length - 1)
+                        If Not lastRow.RowState = DataRowState.Deleted Then
+                            DateAngsuran = lastRow("PayDate").ToString()
+                           
+                        End If
+
+                        Else
+                        DateAngsuran = ViewState("ServerDate")
+                                
+                    End If 
+
+                    If lbItemNo.Text >= 2 Then
+                        If ddlType.SelectedValue = "AG" Then
+                            lblAngsuran.Text = lbItemNo.Text - 1
+                            Nilai = lbItemNo.Text 
+                            tbTempoDate.SelectedDate = DateAdd(DateInterval.Month, 1, DateAngsuran)
+                        Else
+                            lbItemNo.Text = 1
+                        End If
+                    End If  
+
+                End If
+
+           ' lbStatus.text = DateAngsuran
+
+           
+
+            
+
+             'lbStatus.Text = DateAdd(DateInterval.Month, Nilai, DateAngsuran)
 
         Catch ex As Exception
             Throw New Exception("Count Total Dt Error : " + ex.ToString)
@@ -991,6 +1029,8 @@ Partial Class TrPemesanan
             pnlNav.Visible = True
             'ddlCommand.Visible = True
             'BtnGo.Visible = True
+            'FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
+
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try
@@ -1836,13 +1876,14 @@ Partial Class TrPemesanan
             EnableHd(False)
             StatusButtonSave(False)
             btnSaveDt2.Focus()
-            ddlType_SelectedIndexChanged(Nothing, Nothing)
+            
             lbItemNo.Text = GetNewItemNo(ViewState("Dt2"))
             If ddlFgsewa.SelectedValue = "N" Then
                 tbPphDt2.Enabled = False
             Else
                 tbPphDt2.Enabled = True
             End If
+            ddlType_SelectedIndexChanged(Nothing, Nothing)
             'lbItemNo.Text = GetNewItemNo()
         Catch ex As Exception
             lbStatus.Text = "btn add dt error : " + ex.ToString
@@ -2062,6 +2103,11 @@ Partial Class TrPemesanan
                     End If
 
                 ElseIf DDL.SelectedValue = "Cancel" Then
+                    CekMenu = CheckMenuLevel("Edit", ViewState("MenuLevel").Rows(0))
+                    If CekMenu <> "" Then
+                        lbStatus.Text = CekMenu
+                        Exit Sub
+                    End If
 
                     If GVR.Cells(3).Text = "H" Then
                         lbStatus.Text = MessageDlg("Status Surat Pesanan Is not H or G, cannot Cancel Pesanan")

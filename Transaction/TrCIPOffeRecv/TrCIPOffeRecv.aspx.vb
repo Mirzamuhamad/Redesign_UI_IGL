@@ -21,6 +21,11 @@ Partial Class Transaction_TrCIPOffeRecv_TrCIPOffeRecv
     'End Function
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Try
             If Not IsPostBack Then
                 InitProperty()
@@ -543,6 +548,8 @@ Partial Class Transaction_TrCIPOffeRecv_TrCIPOffeRecv
             pnlNav.Visible = True
             'ddlCommand.Visible = True
             'BtnGo.Visible = True
+            FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
+
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try
@@ -1553,8 +1560,14 @@ Partial Class Transaction_TrCIPOffeRecv_TrCIPOffeRecv
         Dim FgAcc1, FgAcc2, FgAcc3, FgAcc4, FgAcc5 As String
         Dim path1, path2, path3, path4, path5, namafile1, namafile2, namafile3, namafile4, namafile5 As String
         'Dim I As Integer
+        Dim CekMenu As String
         Try
-            System.Threading.Thread.Sleep(7000)
+
+            CekMenu = CheckMenuLevel("Insert", ViewState("MenuLevel").Rows(0))
+            If CekMenu <> "" Then
+                lbStatus.Text = CekMenu
+                Exit Sub
+            End If
             'If CFloat(tbDisc.Text) <= 0 Then
             '    lbStatus.Text = MessageDlg("Payment Notaris must have value")
             '    tbPPn.Focus()
@@ -1612,7 +1625,7 @@ Partial Class Transaction_TrCIPOffeRecv_TrCIPOffeRecv
                 If Right(namafile1, 4) <> ".pdf" Then
                     namafile1 = ""
                 End If
-                
+
 
                 path2 = Server.MapPath("~/Dokumen/") + tbCode.Text.Trim.Replace("/", "") + Format(Now, "-yyMMddHHmmss-") + fupOfferFile2.FileName
                 namafile2 = tbCode.Text.Trim.Replace("/", "") + Format(Now, "-yyMMddHHmmss-") + fupOfferFile2.FileName
@@ -1701,7 +1714,7 @@ Partial Class Transaction_TrCIPOffeRecv_TrCIPOffeRecv
                 path1 = Server.MapPath("~/Dokumen/") + tbCode.Text.Trim.Replace("/", "") + Format(Now, "-yyMMddHHmmss-") + fupOfferFile1.FileName
                 namafile1 = tbCode.Text.Trim.Replace("/", "") + Format(Now, "-yyMMddHHmmss-") + fupOfferFile1.FileName
 
-            
+
                 If Right(fupOfferFile1.FileName, 4) <> ".pdf" Then
                     namafile1 = lbOfferFile1.Text
                 Else

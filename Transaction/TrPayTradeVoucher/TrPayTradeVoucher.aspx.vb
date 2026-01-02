@@ -8,6 +8,11 @@ Partial Class Transaction_TrPayTradeVoucher
     Protected GetStringHd As String = "SELECT * FROM V_FINPayTradeVoucherHD"
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Try
             If Not IsPostBack Then
                 InitProperty()
@@ -340,6 +345,8 @@ Partial Class Transaction_TrPayTradeVoucher
             pnlNav.Visible = True
             'ddlCommand.Visible = True
             'BtnGo.Visible = True
+            FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
+
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try
@@ -1875,7 +1882,15 @@ Partial Class Transaction_TrPayTradeVoucher
 
     Protected Sub lbCount_Click(ByVal sender As Object, ByVal e As EventArgs) Handles lbCount.Click
         Dim ResultField, ResultSame As String
+        Dim CekMenu As String
         Try
+
+            CekMenu = CheckMenuLevel("Insert", ViewState("MenuLevel").Rows(0))
+            If CekMenu <> "" Then
+                lbStatus.Text = CekMenu
+                Exit Sub
+            End If
+
             Session("Result") = Nothing
             Session("Filter") = "select * from V_GetVoucherPosting "
             ResultField = " Voucher_No, Voucher_Date, Supplier, SupplierName, SupplierType, TotalInvoice"

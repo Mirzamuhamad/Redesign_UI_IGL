@@ -1,0 +1,681 @@
+/*@font-face 
+
+        {
+            font-family: 'Roboto'; 
+            font-style: normal;
+   			 font-weight: normal;
+            src: url('../Roboto/Roboto-Condensed.ttf');
+        }
+*/
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap');
+
+
+FileUpload {
+    color: White;
+}
+
+/* untuk membuat kontent tetap fix pada area containernya   */
+* {
+    box-sizing: border-box;
+}
+
+/* Untuk seluruh halaman */
+html,
+body {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    /* Firefox */
+    scrollbar-color: #bcbcbc #f1f1f1;
+    /* Warna thumb dan track */
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+    width: 5px;
+    /* lebar scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    /* warna background track */
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #bcbcbc;
+    /* warna thumb */
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #999;
+    /* saat hover */
+}
+
+
+
+/* Styling pager GridView pakai Bootstrap pagination */
+.pagination-container table {
+    margin: 0 auto;
+}
+
+.pagination-container td {
+    padding: 0.3rem;
+}
+
+.pagination-container a,
+.pagination-container span {
+    display: inline-block;
+    padding: 0.4rem 0.75rem;
+    margin: 0 2px;
+    border-radius: 0.25rem;
+    border: 1px solid #dee2e6;
+    color: #0d6efd;
+    text-decoration: none;
+}
+
+.pagination-container a:hover {
+    background-color: #e9ecef;
+}
+
+.pagination-container span {
+    background-color: #0d6efd;
+    color: #fff;
+    font-weight: bold;
+}
+
+
+
+/* Header GridView putih tanpa underline */
+.table-soft-dark th a {
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
+/* Hover biar tetap elegan */
+.table-soft-dark th a:hover {
+    color: #efefef !important;
+    /* kuning saat hover */
+}
+
+.sticky-top {
+    z-index: 1030;
+    /* lebih tinggi dari tabel */
+}
+
+.grid-pager {
+    position: sticky;
+    bottom: 0;
+    z-index: 0;
+    background: #f8f9fa;
+    padding: 8px 0;
+    /* /* border-top: 1px solid #dee2e6; */
+}
+
+/* .grid-pager table {
+    margin: 0 auto;
+} */
+/* ----------------------------- pegination --------------- */
+.grid-pager td {
+    padding: 2px;
+    /* background-color: #F3F1F1; */
+}
+
+.grid-pager a,
+.grid-pager span {
+    display: inline-block;
+    padding: 1px 8px;
+    margin: 0 2px;
+    border: 1px solid #a7a7a7;
+    border-radius: 4px;
+    text-decoration: none !important;
+    color: #6b6b6b;
+    /* background-color: #d7d7d7; */
+}
+
+.grid-pager span {
+    background-color: #357ce6;
+    color: #e8e8e8;
+    font-weight: bold;
+}
+
+.grid-pager a:hover {
+    background-color: #357ce6;
+    color: #e6e6e6;
+}
+
+
+/* target khusus header GridView */
+.table thead th,
+.table-soft-dark th {
+    background-color: #777777 !important;
+    color: #ffffff !important;
+    /* teks putih */
+    font-weight: normal !important;
+    /* hilangkan bold */
+}
+
+
+/* Untuk browser berbasis WebKit (Chrome, Edge, Safari, Opera) */
+div.table-responsive[style]::-webkit-scrollbar {
+    width: 8px !important;
+    /* scrollbar vertikal */
+    height: 8px !important;
+    /* scrollbar horizontal */
+}
+
+div.table-responsive[style]::-webkit-scrollbar-track {
+    background: #ffffff !important;
+    /* track abu */
+}
+
+div.table-responsive[style]::-webkit-scrollbar-thumb {
+    background-color: #a1a1a1 !important;
+    /* hitam soft */
+    border-radius: 4px;
+}
+
+div.table-responsive[style]::-webkit-scrollbar-thumb:hover {
+    background-color: #5f5f5f !important;
+    /* lebih gelap saat hover */
+}
+
+/* Untuk Firefox */
+div.table-responsive[style] {
+    scrollbar-width: thin;
+    /* kecil */
+    scrollbar-color: #5f5f5f #e0e0e0;
+    /* thumb | track */
+    border-radius: 4px;
+}
+
+
+.table-soft-text td {
+    color: #6b6b6b !important;
+    /* hitam soft */
+}
+
+/* font */
+
+/* === FONT GLOBAL UNTUK SEMUA === */
+body,
+.table,
+.table td,
+.table th,
+.form-control,
+.form-select,
+.form-label,
+.Label,
+.btn,
+h6 {
+    font-family: 'Muli', Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    color: #5f5f5f !important;
+    /* soft black */
+    font-weight: 400 !important;
+    vertical-align: middle !important;
+    font-size: 8.3pt;
+}
+
+
+
+
+/* Header GridView */
+.table th {
+    color: #fff !important;
+    /* tetap putih */
+    font-weight: 400 !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+
+
+
+
+/* Button style */
+.btn {
+    font-family: 'Muli', sans-serif !important;
+    font-weight: 500 !important;
+    color: #fff !important;
+    /* default text putih */
+}
+
+/* Form input placeholder */
+.form-control::placeholder {
+    color: #777 !important;
+    /* abu soft */
+    font-family: 'Muli', sans-serif !important;
+}
+
+
+.form-label {
+    margin-bottom: 0.1rem !important;
+    /* lebih rapat dari default */
+    /* font-size: 0.85rem !important; */
+    /* lebih kecil */
+}
+
+
+
+/* -----untuk style menu tab --------------------------------------*/
+
+.menu-tabs-wrapper {
+    border-bottom: 0px solid #bcbcbc;
+    width: 100%;
+}
+
+/* Untuk Tab */
+/* Default tab item */
+.MenuItem {
+    display: inline-block;
+    margin-right: 2px;
+}
+
+.MenuItem a {
+    display: block;
+    padding: 5px 12px;
+    border: 1px solid #507090;
+    border-bottom: none;
+    background: #bcbcbc;
+    color: #777777;
+    text-decoration: none;
+    border-radius: 0.25rem 0.25rem 0 0;
+}
+
+/* Hover effect */
+.MenuItem a:hover {
+    background: #777777;
+    color: #dcdcdc;
+}
+
+/* Tab aktif */
+.MenuSelect a {
+    background: #777777;
+    border: 1px solid #dcdcdc;
+    border-bottom: 2px solid #0d6efd;
+    /* Border bawah biru */
+    color: #fff;
+    font-weight: 500;
+}
+
+
+/* 🔹 Responsif untuk layar kecil */
+@media (max-width: 768px) {
+    .MenuItem a {
+        padding: 4px 8px;
+        /* lebih kecil */
+        font-size: 12px;
+        /* font kecil */
+    }
+}
+
+@media (max-width: 576px) {
+    .MenuItem {
+        display: block;
+        /* tiap tab turun ke bawah */
+        margin-bottom: 2px;
+    }
+
+    .MenuItem a {
+        width: 100%;
+        /* full width */
+        text-align: center;
+        /* rata tengah */
+    }
+}
+
+/* ----------------------------------------menu  */
+
+
+
+/* modal------------------------------------------ */
+.footer-action {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1050;
+    /* lebih tinggi dari modal backdrop, dll */
+    background: #fff;
+    /* border-top: 1px solid #dee2e6; */
+    padding-top: 5px;
+    padding-bottom: 20px;
+}
+
+
+#statusModalBody .badge {
+    word-wrap: break-word;
+    /* Membungkus teks panjang */
+    white-space: normal;
+    /* Izinkan teks turun ke baris berikut */
+    overflow-wrap: break-word;
+    /* Alternatif modern untuk word-wrap */
+    display: block;
+    /* Pastikan badge meluas penuh */
+    max-width: 100%;
+    /* Biar nggak melebihi container */
+    text-align: center;
+    /* Tetap rata tengah */
+}
+
+.modal-backdrop.show {
+    background-color: white !important;
+    opacity: 0.3 !important;
+    /* opsional, bisa dihapus atau ubah nilainya */
+}
+
+/* ------------------------------------------------ */
+
+
+/* ---------------------------------------------untuk loading */
+.loading-form {
+    position: fixed;
+    z-index: 9999999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner-style {
+    width: 4rem;
+    height: 4rem;
+    position: absolute;
+    top: 40%;
+    left: 48%;
+    /* transform: translate(-50%, -50%); */
+}
+
+/* Responsif tambahan untuk layar kecil */
+@media (max-width: 576px) {
+    .spinner-style {
+        width: 3rem;
+        height: 3rem;
+        top: 50%;
+        left: 45%;
+    }
+}
+
+@media (min-width: 992px) {
+    .spinner-style {
+        width: 5rem;
+        height: 5rem;
+        /* top: 50%; */
+        /* left: 45%; */
+    }
+}
+
+/* ----------------------------------------loading */
+
+
+
+
+
+/* Base style untuk tombol dengan icon --------------------------*/
+.btn-icon {
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: left center;
+    /* ikon sejajar di kiri teks */
+    vertical-align: middle;
+    background-size: 16px 16px;
+    /* ukuran ikon */
+    padding-left: 25px;
+    /* beri ruang icon di kiri */
+    /* padding-left: 2rem;  */
+    /* color: red; */
+}
+
+
+.btnadd {
+    background-image: url(../Image/icon-add.png);
+
+}
+
+
+.btnsave {
+    background-image: url(../Image/icon-save.Png);
+
+}
+
+.btncancel {
+    background-image: url(../Image/icon-delete.png);
+
+}
+
+.btnback {
+    background-image: url(../Image/icon-back.png);
+
+}
+
+.btnhome {
+    background-image: url(../Image/icon-home.png);
+
+}
+
+.btnsavenew {
+    background-image: url(../Image/icon-save-new.png);
+}
+
+.btnedit {
+    background-image: url(../Image/icon-edit.png);
+}
+
+
+.icon-btn::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    display: inline-block;
+    margin-right: 6px;
+}
+
+.btn-icon-save::before {
+    content: "\f0c7";
+    /* save */
+}
+
+/* Icon Search */
+.btn-icon-search::before {
+    content: "\f002";
+    /* fa-search */
+}
+
+/* Icon Check Circle */
+.btn-icon-check::before {
+    content: "\f058";
+    /* fa-check-circle */
+}
+
+/* Icon Edit */
+.btn-icon-edit::before {
+    content: "\f044";
+    /* fa-edit */
+}
+
+/* Icon Delete / Trash */
+.btn-icon-delete::before {
+    content: "\f1f8";
+    /* fa-trash */
+}
+
+/* Icon Back / Arrow-left */
+.btn-icon-back::before {
+    content: "\f060";
+    /* fa-arrow-left */
+}
+
+/* Icon Cancel / Times-circle */
+.btn-icon-cancel::before {
+    content: "\f057";
+    /* fa-times-circle */
+}
+
+/* ------------------------------------Icon */
+
+
+/* --- Wrapper utama kalender ---------------------------- */
+.bdpWrapper {
+    background-color: #fff !important;
+    border: 0px solid #fff !important;
+    border-radius: 1rem !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12) !important;
+    /* padding: 12px !important; */
+    font-family: 'Muli', Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    font-size: 0.9rem !important;
+    color: #212529 !important;
+    /* transition: all 0.3s ease; */
+}
+
+/* --- Header bulan dan tahun --- */
+.bdpWrapper th {
+    font-family: 'Muli', Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    /* background-color: transparent !important; */
+    color: #212529 !important;
+    font-weight: 600 !important;
+    padding: 6px 8px !important;
+    text-align: center !important;
+    border-bottom: none !important;
+}
+
+/* --- Tombol navigasi (prev/next) --- */
+.bdpWrapper th a {
+    text-decoration: none !important;
+    color: #6c757d !important;
+    font-size: 5rem !important;
+    padding: 4px 8px !important;
+    border-radius: 0.5rem !important;
+    transition: background-color 0.2s;
+}
+
+.bdpWrapper th a:hover {
+    background-color: #f1f3f5 !important;
+}
+
+/* --- Hari-hari --- */
+.bdpWrapper td {
+    font-family: 'Muli', Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    text-align: center !important;
+    /* padding: 0px !important; */
+    cursor: pointer !important;
+    border-radius: 50% !important;
+    /* transition: all 0.2s ease-in-out; */
+}
+
+/* Hover hanya di lingkaran tanggal */
+.bdpWrapper td a {
+    font-family: 'Muli', Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    display: inline-block !important;
+    width: 25px !important;
+    height: 25px !important;
+    line-height: 25px !important;
+    border-radius: 50% !important;
+    color: #212529 !important;
+    /* text-decoration: none !important; */
+    /* transistion: all 0.2s ease-in-out; */
+}
+
+/* Hover hanya di lingkaran tanggal */
+.bdpWrapper td a:hover {
+    background-color: #e9f2ff !important;
+    color: #0d6efd !important;
+    transform: scale(1.1);
+}
+
+.bdpWrapper .bdpSelected,
+.bdpWrapper .selected {
+    background-color: #0d6efd !important;
+    color: white !important;
+    font-weight: 600 !important;
+    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25) !important;
+}
+
+/* Hari ini (border lingkaran) */
+.bdpWrapper .bdpToday {
+    font-family: 'Muli', Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    border: 1px solid #0d6efd !important;
+    border-radius: 50% !important;
+}
+
+/* --- Grid table --- */
+.bdpWrapper table {
+    border-collapse: separate !important;
+    border-spacing: 4px !important;
+    width: 100% !important;
+}
+
+/* --- Animasi muncul --- */
+#tbDate_calendar {
+    animation: fadeInScale 0.4s ease-in-out;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* --- Tombol Today --- */
+.bdpWrapper input[type="button"],
+.bdpWrapper input[type="submit"] {
+    font-family: 'Muli', Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    background-color: #0d6efd !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 2rem !important;
+    padding: 4px 10px !important;
+    margin-top: 8px !important;
+    /* font-size: 0.85rem !important; */
+    /* font-weight: 00 !important; */
+    /* transition: all 0.2s ease-in-out; */
+}
+
+.bdpWrapper input[type="button"]:hover,
+.bdpWrapper input[type="submit"]:hover {
+    background-color: #0359db !important;
+    /* transform: translateY(-1px); */
+    box-shadow: 0 4px 6px rgba(42, 42, 42, 0.25);
+}
+
+/* --------------------------------------------- calender -----------*/
+
+.card-rubik {
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    /* color: #d26767; */
+    font-size: 36px;
+}
+
+.card-body h6 {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+}
+
+.card-rubik h3 {
+    font-weight: 600;
+}
+
+/* Hilangkan semua scrollbar */
+        .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+

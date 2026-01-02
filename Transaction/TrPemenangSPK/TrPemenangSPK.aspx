@@ -154,6 +154,7 @@
     </script>
     
     <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />
+ <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>     
     <form id="form1" runat="server">    
@@ -222,15 +223,14 @@
           </td>              
         </tr>        
       </table>      
-      </asp:Panel>
-      
+      </asp:Panel>      
           <br />
             <asp:Button class="bitbtn btnadd" runat="server" ID="BtnAdd" Text="Add" />	           
-            &nbsp &nbsp &nbsp   
+            &nbsp;   
             <asp:DropDownList CssClass="DropDownList" ID="ddlCommand" runat="server" Visible="false"/>
             <asp:Button class="btngo" runat="server" ID="BtnGo" Text="G" Visible="false" />                      
             
-          <br />
+          <br/> &nbsp;
           <div style="border:0px  solid; width:100%; height:100%; overflow:auto;">
           <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="true"
             CssClass="Grid" AutoGenerateColumns="false"> 
@@ -281,10 +281,11 @@
                   </Columns>
           </asp:GridView>
           </div>
+          <br/>
             <asp:Panel runat="server" ID ="pnlNav" Visible="false">
             <asp:Button class="bitbtn btnadd" runat="server" ID="btnAdd2" Text="Add" />	
             
-            &nbsp &nbsp &nbsp
+            &nbsp
             <asp:DropDownList ID="ddlCommand2" CssClass="DropDownList" runat="server"/>
             
             <asp:Button class="btngo" runat="server" ID="btnGo2" Text="G" />                      
@@ -572,8 +573,8 @@
     <asp:Label runat ="server" ID="lbStatus" ForeColor="Red"/>
     
     <div class="loading" align="center">
-      Loading. Please wait.<br />
-      <br />
+      <!-- Loading. Please wait.<br />
+      <br /> -->
        <img src="../../Image/loader.gif" alt="" />
     </div>
    

@@ -116,6 +116,7 @@
     </script>
     
     <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />
+ <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">
     <style type="text/css">
         .style1
         {
@@ -391,9 +392,11 @@
            <asp:View ID="Tab1" runat="server">
         <asp:Panel runat="server" ID="pnlDt">
             <asp:Button class="bitbtndt btnadd" runat="server" ID="btnAddDt" Text="Add" ValidationGroup="Input" />
+            <br />
+            <br />
             <div style="border:0px  solid; width:100%; height:100%; overflow:auto;">
                 <asp:GridView ID="GridDt" runat="server" AutoGenerateColumns="False" 
-                    ShowFooter="True">
+                    ShowFooter="false">
                     <HeaderStyle CssClass="GridHeader" />
                     <RowStyle CssClass="GridItem" Wrap="false" />
                     <AlternatingRowStyle CssClass="GridAltItem" />
@@ -555,7 +558,7 @@
                     <asp:Button class="bitbtndt btnback" runat="server" ID="btnBackDt2ke1" Text="Back"/>
                     <div style="border:0px  solid; width:100%; height:100%; overflow:auto;">
                         <asp:GridView ID="GridDt2" runat="server" AutoGenerateColumns="false" 
-                            ShowFooter="True">
+                            ShowFooter="false">
                             <HeaderStyle CssClass="GridHeader" />
                             <RowStyle CssClass="GridItem" Wrap="false" />
                             <AlternatingRowStyle CssClass="GridAltItem" />
@@ -637,8 +640,8 @@
             Text="Save & New" ValidationGroup="Input" Width="103px" />
         <asp:Button class="bitbtn btnsave" runat="server" ID="btnSaveTrans" Text="Save" ValidationGroup="Input" />
         <asp:Button class="bitbtn btnback" runat="server" ID="btnBack" Text="Cancel" ValidationGroup="Input" />
-        <asp:Button class="btngo" runat="server" ID="btnHome" Text="Home" Height="20px" 
-            Width="52px"/>
+        <asp:Button class="bitbtn btnback" runat="server" ID="btnHome" Text="Home" 
+            />
     </asp:Panel>
     <asp:Panel runat="server" ID="pnlPrint" Visible="false">
     <cr:crystalreportviewer ID="CrystalReportViewer1" runat="server" AutoDataBind="True"

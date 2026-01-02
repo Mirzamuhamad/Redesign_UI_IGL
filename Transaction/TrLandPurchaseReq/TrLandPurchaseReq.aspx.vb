@@ -16,6 +16,17 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
 
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
+
         Try
             If Not IsPostBack Then
                 InitProperty()
@@ -1773,7 +1784,7 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
         End Try
     End Sub
     Private Function GetStringDt(ByVal Nmbr As String) As String
-        Return "SELECT * From V_GLLandPurchaseReqDt WHERE TransNmbr = " + QuotedStr(Nmbr)
+        Return "SELECT * From V_GLLandPurchaseReqDt WHERE TransNmbr = " + QuotedStr(Nmbr) + " ORDER BY ItemNo ASC"
     End Function
     Private Function GetStringDt2(ByVal Nmbr As String) As String
         Return "SELECT * From V_PLPlanLandDt WHERE TransNmbr = " + QuotedStr(Nmbr)
@@ -2268,6 +2279,7 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
             tbArea.Text = ""
             tbAreaName.Text = ""
             tbRemark.Text = ""
+            tbAtasNamaSppt.Text = ""
 
             cbKtp.Checked = False
             cbKk.Checked = False
@@ -2590,7 +2602,6 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
             End If
 
 
-
             If ddlHitungTotal.SelectedValue = "SPPT" Then
                 If tbTotal.Text.Replace(",", "") <> Val(tbSPPT.Text.Replace(",", "") * Val(tbNilai.Text.Replace(",", ""))) Then
                     lbStatus.Text = MessageDlg("Total must be the same from (Nilai * SPPT) Value")
@@ -2616,9 +2627,6 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
                 End If
             End If
 
-
-            
-           
 
             'If Right(FupMain.FileName, 4) <> ".pdf" Then
             '    lbStatus.Text = MessageDlg("Upload File PDF only .!!")
@@ -2859,6 +2867,7 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
 
             BindToText(tbModerator, Dt.Rows(0)("ModCode").ToString)
             BindToText(tbModeratorName, Dt.Rows(0)("ModName").ToString)
+            BindToText(tbAtasNamaSppt, Dt.Rows(0)("AtasNamaSPPT").ToString)
 
 
             If Dt.Rows(0)("LainLain").ToString = "" Then
@@ -3334,6 +3343,7 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
             EnableHd(GetCountRecord(ViewState("Dt")) = 0 And GetCountRecord(ViewState("Dt4")) = 0)
             BindGridDt(ViewState("Dt"), GridDt)
             StatusButtonSave(True)
+            btnSaveTrans.Focus()
 
         Catch ex As Exception
             lbStatus.Text = "btn save Dt Error : " + ex.ToString
@@ -3468,6 +3478,8 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
 
         Try
 
+        
+
             If Not (ViewState("StateHd") = "Insert" Or ViewState("StateHd") = "Edit") Then
                 Exit Sub
             Else
@@ -3486,7 +3498,7 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
 
                 SQLString = "INSERT INTO GLLandPurchaseReqHd (TransNmbr,	TransDate,	Status,	Block,	Kohir ,	Persil , AJBNo, SPHNo, SHMNo, SellCode, ModCode,  " + _
                 "SPPT, AjbSphShm, LuasUkur, PBBNo,HrgFix, HrgTanah, TtlHrgTanah, Address, Provinsi, Kab, Kec, Desa, PetaPercik, JenisDoc, Pembeli, NoDocHd, " + _
-                "Remark,AreaCode, LuasFrom, LandType, JnsDocSertifikat, NoDocSertifikat,TglTerbit, MasaBerlaku,NoBNIB,NoSuratUkur, NoLainLain, UserPrep, DatePrep ) " + _
+                "Remark,AreaCode, LuasFrom, LandType, JnsDocSertifikat, NoDocSertifikat,TglTerbit, MasaBerlaku,NoBNIB,NoSuratUkur, NoLainLain,AtasNamSPPT, UserPrep, DatePrep ) " + _
                 "SELECT " + QuotedStr(tbCode.Text) + ", " + QuotedStr(Format(tbDate.SelectedValue, "yyyy-MM-dd")) + ", 'H', " + _
                 QuotedStr(tbBlok.Text) + "," + QuotedStr(tbKohir.Text) + ", " + QuotedStr(tbPercil.Text) + ", " + _
                 QuotedStr(tbAJB.Text) + "," + QuotedStr(tbSPH.Text) + ", " + QuotedStr(tbSHM.Text) + ", " + _
@@ -3497,7 +3509,7 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
                 QuotedStr(tbPetaRincikNo.Text) + ", " + QuotedStr(ddlJenisDok.SelectedValue) + "," + QuotedStr(tbNamaPembeli.Text) + "," + QuotedStr(tbNoDocHD.Text) + ", " + _
                 QuotedStr(tbRemark.Text) + "," + QuotedStr(tbArea.Text) + "," + QuotedStr(ddlHitungTotal.SelectedValue) + "," + QuotedStr(ddlLandType.SelectedValue) + "," + _
                 QuotedStr(ddlJenisDokumen.SelectedValue) + "," + QuotedStr(tbNoDokumen.Text) + "," + QuotedStr(Format(tbTglTerbit.SelectedValue, "yyyy-MM-dd")) + "," + QuotedStr(Format(tbMasaBerlaku.SelectedValue, "yyyy-MM-dd")) + "," + _
-                QuotedStr(tbBNIB.Text) + "," + QuotedStr(tbNoSuratUkur.Text) + "," + QuotedStr(tbNoLainLian.Text) + "," + _
+                QuotedStr(tbBNIB.Text) + "," + QuotedStr(tbNoSuratUkur.Text) + "," + QuotedStr(tbNoLainLian.Text) + ", " + QuotedStr(tbAtasNamaSppt.Text) + "," + _
                 QuotedStr(ViewState("UserId").ToString) + ", GetDate()"
                 ViewState("TransNmbr") = tbCode.Text
 
@@ -3544,6 +3556,7 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
                 ", Pembeli = " + QuotedStr(tbNamaPembeli.Text) + _
                 ", NoDocHD = " + QuotedStr(tbNoDocHD.Text) + _
                 ", Remark = " + QuotedStr(tbRemark.Text) + _
+                ", AtasNamaSPPT = " + QuotedStr(tbAtasNamaSppt.Text) + _
                 ", LuasFrom = " + QuotedStr(ddlHitungTotal.SelectedValue) + _
                 ", DatePrep = GetDate()" + _
                 " WHERE TransNmbr = " + QuotedStr(tbCode.Text)
@@ -5914,5 +5927,4 @@ Partial Class Transaction_TrLandPurchaseReq_TrLandPurchaseReq
  
 
 End Class
-
 

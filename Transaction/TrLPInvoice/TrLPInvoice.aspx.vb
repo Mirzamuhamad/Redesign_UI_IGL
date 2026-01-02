@@ -30,6 +30,11 @@ Partial Class TrLpInvoice
 
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Try
             If Not IsPostBack Then
                 InitProperty()
@@ -160,7 +165,7 @@ Partial Class TrLpInvoice
                 Exit Sub
             End If
 
-            If FubFaktur.FileBytes.Length > 3500000 Then
+            If FubInv.FileBytes.Length > 3500000 Then
                 lbStatus.Text = MessageDlg("Ukuran File Terlalu Besar. !! Max Upload 3.5Mb")
                 Exit Sub
             End If
@@ -415,6 +420,8 @@ Partial Class TrLpInvoice
             pnlNav.Visible = True
             'ddlCommand.Visible = True
             'BtnGo.Visible = True
+            FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
+
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try

@@ -22,6 +22,11 @@ Partial Class TrMTNServiceRequest
     'End Function
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Try
             If Not IsPostBack Then
                 InitProperty()
@@ -47,57 +52,8 @@ Partial Class TrMTNServiceRequest
                     'BindToText(tbPPnValue, Session("Result")(5).ToString, ViewState("DigitCurr"))
                     'BindToText(tbRemark, Session("Result")(6).ToString)
                 End If
-                If ViewState("Sender") = "btnDocNo" Then
-                    'tbDocumentNoDt2.Text = Session("Result")(0).ToString
-                    'ddlCurrDt2.SelectedValue = Session("Result")(1).ToString
-                    'tbRateDt2.Text = Session("Result")(2).ToString
-                    'tbPaymentForexDt2.Text = (CFloat(Session("Result")(3).ToString) - CFloat(Session("Result")(4).ToString)).ToString
-                    'tbRateDt2.Enabled = False
-                    'If tbNoLandPurchase.Text.Trim = "" Then
-                    '    BindToDropList(ddlUserType, Session("Result")(5).ToString)
-                    '    BindToText(tbNoLandPurchase, Session("Result")(6).ToString)
-                    '    BindToText(tbUserName, Session("Result")(7).ToString)
-                    'End If
-                    'AttachScript("setformatdt()", Page, Me.GetType)
-                End If
-                If ViewState("Sender") = "btnRecvDoc" Then
-                    'tbPackJob.Text = Session("Result")(0).ToString
-                    'tbApplfileNo.Text = Session("Result")(2).ToString
-                    'tbStartJobDate.Text = Session("Result")(3).ToString
-                    'BindToDate(tbStartJobDate, Dt.Rows(0)("ApplfileDate").ToString)
-                    'BindToDate(tbStartJobDate, Session("Result")(3).ToString)
-                    'BindToDropList(ddlCurrDt, Session("Result")(3).ToString)
-                    'tbFgType.Text = Session("Result")(4).ToString.ToUpper
-                    'tbHGBNo.Text = Session("Result")(4).ToString
-                    'tbRemark.Text = Session("Result")(8).ToString
-                    'ddlCurrDt.Enabled = (tbFgType.Text = "PL")
-                    'tbSubledDt.Enabled = tbFgSubledDt.Text <> "N"
-                    'btnSubled.Visible = tbSubledDt.Enabled
-                    'ViewState("FgType") = tbFgType.Text
-
-                    'tbPPnNo.Enabled = (tbAccountDt.Text = ViewState("AccPPn") Or tbAccountDt.Text = ViewState("AccPPn2"))
-                    'tbPPndate.Enabled = tbPPnNo.Enabled
-
-                    'If ViewState("FgType") = "BS" Then
-                    '    ddlCurrDt.Enabled = False
-                    'Else : ddlCurrDt.Enabled = True
-                    'End If
-
-                    'ddlCostCenterDt.Enabled = tbFgCostCtr.Text <> "N"
-                    'If tbFgSubledDt.Text = "N" Then
-                    '    tbSubledDt.Text = ""
-                    '    tbSubledNameDt.Text = ""
-                    'End If
-                    'If tbFgCostCtr.Text = "N" Then
-                    '    ddlCostCenterDt.SelectedIndex = 0
-                    'End If
-                    'btnSubled.Enabled = tbSubledDt.Enabled()
-
-                    'ViewState("DigitCurrAcc") = SQLExecuteScalar("Select Digit From VMsCurrency WHERE Currency = " + QuotedStr(ddlCurrDt.SelectedValue), ViewState("DBConnection"))
-                    'ChangeCurrency(ddlCurrDt, tbDate, tbRateDt, ViewState("Currency"), ViewState("DigitCurrAcc"), ViewState("DBConnection"))
-                    'ChangeFgSubLed(tbFgSubledDt, tbSubledDt, btnSubled)
-                    'AttachScript("kali(" + Me.tbRateDt.ClientID + "," + Me.tbAmountForexDt.ClientID + "," + Me.tbAmountHomeDt.ClientID + "); setformatdt();", Page, Me.GetType())
-                End If
+               
+                
                 If ViewState("Sender") = "btnArea" Then
                     tbAreaCode.Text = Session("Result")(0).ToString
                     tbAreaName.Text = Session("Result")(1).ToString
@@ -112,6 +68,8 @@ Partial Class TrMTNServiceRequest
                 Session("filter") = Nothing
                 Session("Column") = Nothing
             End If
+
+            FubInv.Attributes("onchange") = "UploadInvoice(this)"
         Catch ex As Exception
             lbStatus.Text = "Page Load Error : " + ex.ToString
         End Try
@@ -153,25 +111,7 @@ Partial Class TrMTNServiceRequest
         'Dim strSQL As String
         Try
             FillRange(ddlRange)
-            'lbPayHome.Text = "Notaris (" + ViewState("Currency") + ")"'
-            'lbChargeHome.Text = "Charge (" + ViewState("Currency") + ")"
-            'lbDisc.Text = "Potongan" '(" + ViewState("Currency") + ")"
-            'lbPPnForex.Text = "PPn Value" '(" + ViewState("Currency") + ")"
-            'lbPPn.Text = "PPn %" '(" + ViewState("Currency") + ")"
-            'lbPPh.Text = "PPh %" '(" + ViewState("Currency") + ")"
-            'lbTotBiaya.Text = "Total Biaya" '(" + ViewState("Currency") + ")"
-            'FillCombo(ddlStructureCode, "SELECT * FROM MsStructure ORDER BY ID ASC", True, "StructureCode", "StructureCode", ViewState("DBConnection"))
-            'FillCombo(ddlCurrDt, "EXEC S_GetCurrency", False, "Currency", "Currency", ViewState("DBConnection"))
-            'FillCombo(ddlCurrDt2, "EXEC S_GetCurrency", False, "Currency", "Currency", ViewState("DBConnection"))
-            'FillCombo(ddlChargeCurrDt2, "EXEC S_GetCurrency", True, "Currency", "Currency", ViewState("DBConnection"))
-            'FillCombo(ddlUnit, "SELECT Unit_Code, Unit_Name FROM VMsUnit", True, "Unit_Code", "Unit_Name", ViewState("DBConnection"))
-            'FillCombo(ddlPayTypeDt2, "SELECT PayCode, PayName FROM MsPayType WHERE FgType='P' ", True, "PayCode", "PayName", ViewState("DBConnection"))
-            'FillCombo(ddlPayTypeDt2, "EXEC S_GetPayTypeUser(" + QuotedStr("PaymentNT" + ddlReport.SelectedValue) + ", " + QuotedStr(ViewState("UserId").ToString) + ")", True, "Payment_Code", "Payment_Name", ViewState("DBConnection"))
-            'FillCombo(ddlBankPaymentDt2, "EXEC S_GetBankPayment ('*')", True, "Bank_Code", "Bank_Name", ViewState("DBConnection"))
-            'FillCombo(ddlBankPaymentDt2, "EXEC S_GetBankPayment 'Y' ", True, "Bank_Code", "Bank_Name", ViewState("DBConnection"))
-            'ViewState("AccPPn") = SQLExecuteScalar("EXEC S_FNPayNonTradeGetSetAcc ", ViewState("DBConnection"))
-            'ViewState("AccPPn2") = SQLExecuteScalar("EXEC S_FNPayNonTradeGetSetAcc2 ", ViewState("DBConnection"))
-            'ViewState("PayType") = ""
+
             ViewState("SortExpression") = Nothing
             ViewState("DigitCurr") = 0
             ViewState("PPN") = 11
@@ -344,40 +284,7 @@ Partial Class TrMTNServiceRequest
         End Using
     End Sub
 
-    'Private Shared Function GetData(ByVal cmd As SqlCommand, ByVal pageIndex As Integer) As DataSet
-    'Private Function GetData(ByVal cmd As SqlCommand, ByVal pageIndex As Integer) As DataSet
-    '    Dim conStr As String = ViewState("DBConnection").ToString
-    '    Using con As New SqlConnection(conStr)
-    '        Using sda As New SqlDataAdapter()
-    '            cmd.Connection = con
-    '            sda.SelectCommand = cmd
-    '            Using ds As New DataSet()
-    '                sda.Fill(ds, "Customers")
-    '                Dim dt As New DataTable("Pager")
-    '                dt.Columns.Add("PageIndex")
-    '                dt.Columns.Add("PageSize")
-    '                dt.Columns.Add("RecordCount")
-    '                dt.Rows.Add()
-    '                dt.Rows(0)("PageIndex") = pageIndex
-    '                dt.Rows(0)("PageSize") = PageSize
-    '                dt.Rows(0)("RecordCount") = cmd.Parameters("@RecordCount").Value
-    '                ds.Tables.Add(dt)
-    '                Return ds
-    '            End Using
-    '        End Using
-    '    End Using
-    'End Function
 
-    'Public Shared Function GetSupplier(ByVal searchTerm As String, ByVal pageIndex As Integer) As String
-    '    Dim query As String = "[S_FindSuppCIPLicAdmInv]"
-    '    Dim cmd As New SqlCommand(query)
-    '    cmd.CommandType = CommandType.StoredProcedure
-    '    cmd.Parameters.AddWithValue("@SearchTerm", searchTerm)
-    '    cmd.Parameters.AddWithValue("@PageIndex", pageIndex)
-    '    cmd.Parameters.AddWithValue("@PageSize", PageSize)
-    '    cmd.Parameters.Add("@RecordCount", SqlDbType.Int, 4).Direction = ParameterDirection.Output
-    '    'Return GetData(cmd, pageIndex).GetXml()
-    'End Function
 
     Private Sub CountTotalAmount()
         Dim PriceForex As Double
@@ -448,6 +355,8 @@ Partial Class TrMTNServiceRequest
             pnlNav.Visible = True
             'ddlCommand.Visible = True
             'BtnGo.Visible = True
+            FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
+
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try
@@ -551,6 +460,120 @@ Partial Class TrMTNServiceRequest
         Catch ex As Exception
             Throw New Exception("Bind Data Dt Error : " + ex.ToString)
         End Try
+    End Sub
+
+
+    Protected Sub btnsaveINV_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnsaveINV.Click
+        Try
+
+            Dim dr As DataTable
+            dr = BindDataTransaction(GetStringHd, "TransNmbr = " + QuotedStr(tbCode.Text), ViewState("DBConnection").ToString)
+
+            If dr.Rows.Count = 0 Then
+                lbStatus.Text = MessageDlg("save this transaction first, to upload the dokumen")
+                Exit Sub
+            End If
+
+            If FubInv.FileBytes.Length > 3500000 Then
+                lbStatus.Text = MessageDlg("Ukuran File Terlalu Besar. !! Max Upload 3.5Mb")
+                Exit Sub
+            End If
+
+            If Right(FubInv.FileName, 4) = ".pdf" Or Right(FubInv.FileName, 4) = ".jpg" Or Right(FubInv.FileName, 4) = ".png" Then
+
+                Dim path2, namafile2, SQLString1 As String
+                Dim dt As DataTable
+                path2 = Server.MapPath("~/Image/DocumentWOPdf/") + tbCode.Text.Trim.Replace("/", "") + Format(Now, "-yyMMddHHmmss-") + FubInv.FileName
+                namafile2 = tbCode.Text.Trim.Replace("/", "") + Format(Now, "-yyMMddHHmmss-") + FubInv.FileName
+
+                SQLString1 = "UPDATE MTNServiceRequestHd SET FileSrvReq = " + QuotedStr(namafile2) + _
+                " WHERE TransNmbr = " + QuotedStr(tbCode.Text)
+                FubInv.SaveAs(path2)
+                SQLExecuteNonQuery(SQLString1, ViewState("DBConnection").ToString)
+
+                dt = BindDataTransaction(GetStringHd, "TransNmbr = " + QuotedStr(tbCode.Text), ViewState("DBConnection").ToString)
+                lbDokInv.Text = dt.Rows(0)("FileSrvReq").ToString
+                'lblmassageKTP.Visible = True
+                FubInv.Visible = False
+                btnClearInv.Visible = True
+            Else
+
+                lbStatus.Text = MessageDlg("Upload Pdf or jpg File Only !")
+                Exit Sub
+            End If
+        Catch ex As Exception
+            lbStatus.Text = "Menu Item Click Error : " + ex.ToString
+        End Try
+    End Sub
+
+    Protected Sub lbDokInv_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lbDokInv.Click
+        Try
+            Dim dr As DataTable
+            Dim filePath, URL As String
+            dr = BindDataTransaction(GetStringHd, "TransNmbr = " + QuotedStr(tbCode.Text), ViewState("DBConnection").ToString)
+
+            If dr.Rows.Count = 0 Then
+                lbStatus.Text = MessageDlg("Belum ada dokumen yang di upload")
+                Exit Sub
+            End If
+
+            If dr.Rows(0)("FileSrvReq").ToString = "" Then
+                lbStatus.Text = MessageDlg("Belum ada dokumen yang di upload")
+                Exit Sub
+            End If
+
+            filePath = dr.Rows(0)("FileSrvReq").ToString
+            URL = ResolveUrl("~/Image/DocumentWOPdf/" + filePath)
+            Dim s As String = "window.open('" & URL & "', '_blank');"
+            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alertscript", s, True)
+
+        Catch ex As Exception
+            lbStatus.Text = "lbModerator_Click Error : " + ex.ToString
+        End Try
+    End Sub
+
+    Protected Sub btnClearInv_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnClearInv.Click
+        Try
+            Dim dr As DataTable
+            Dim filePath As String
+            dr = BindDataTransaction(GetStringHd, "TransNmbr = " + QuotedStr(tbCode.Text), ViewState("DBConnection").ToString)
+            filePath = dr.Rows(0)("FileSrvReq").ToString
+
+
+            If File.Exists(Server.MapPath("~/Image/DocumentWOPdf/" + filePath)) = True Then
+                File.Delete(Server.MapPath("~/Image/DocumentWOPdf/" + filePath))
+                SQLExecuteNonQuery("UPDATE MTNServiceRequestHd SET FileSrvReq = '' WHERE TransNmbr = '" + tbCode.Text + "' ", ViewState("DBConnection").ToString)
+
+                lbDokInv.Text = "Not yet uploaded"
+                FubInv.Visible = True
+                btnClearInv.Visible = False
+            End If
+
+
+
+        Catch ex As Exception
+            lbStatus.Text = "lbBAP_Click Error : " + ex.ToString
+        End Try
+    End Sub
+
+
+    Protected Sub Menu2_MenuItemClick(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.MenuEventArgs) Handles Menu2.MenuItemClick
+        MultiView2.ActiveViewIndex = Int32.Parse(e.Item.Value)
+        If Menu2.Items.Item(0).Selected = True Then
+            If ViewState("StateHd") = "Insert" Or ViewState("StateHd") = "Edit" Then
+                'btnGoEdit.Visible = False
+                'btnGetBAP.Visible = True
+                'GridDt.Columns(0).Visible = True
+            End If
+        End If
+        If Menu2.Items.Item(1).Selected = True Then
+            If ViewState("StateHd") = "Insert" Or ViewState("StateHd") = "Edit" Then
+                'btnGoEdit.Visible = True
+                'btnGetBAP.Visible = False
+                'GridDt.Columns(0).Visible = False
+            End If
+
+        End If
     End Sub
 
     'Private Sub BindDataDt2(ByVal Nmbr As String)
@@ -1017,23 +1040,19 @@ Partial Class TrMTNServiceRequest
             BindToText(tbRequestBy, Dt.Rows(0)("RequestBy").ToString)
             BindToText(tbContactNo, Dt.Rows(0)("ContactNo").ToString)
             BindToText(tbEmail, Dt.Rows(0)("Email").ToString)
-            'BindToDate(tbTimeJobDate, Dt.Rows(0)("TimeJobDate").ToString)
-            'BindToDate(tbStartJobDate, Dt.Rows(0)("StartJobDate").ToString)
-            'BindToDate(tbFinishJobDate, Dt.Rows(0)("FinishJobDate").ToString)
-            'BindToText(tbDurasi, Dt.Rows(0)("Durasi").ToString)
-            'ViewState("DigitCurr") = SQLExecuteScalar("SELECT Digit FROM VMsCurrency WHERE Currency = " + QuotedStr(Dt.Rows(0)("Currency").ToString), ViewState("DBConnection"))
-            'If ViewState("DigitCurr") = Nothing Then
-            '    ViewState("DigitCurr") = 0
-            'End If
-            'BindToText(tbBaseForex, Dt.Rows(0)("BaseForex").ToString, ViewState("DigitHome"))
-            'BindToText(tbDisc, Dt.Rows(0)("DiscForex").ToString, ViewState("DigitHome"))
-            'BindToText(tbDPP, Dt.Rows(0)("DPPForex").ToString, ViewState("DigitHome"))
-            'BindToText(tbPPn, Dt.Rows(0)("PPn").ToString, CInt(ViewState("DigitCurr")))
-            'BindToText(tbPPnValue, Dt.Rows(0)("PPnForex").ToString, ViewState("DigitHome"))
-            'BindToText(tbPPh, Dt.Rows(0)("PPh").ToString, ViewState("DigitHome"))
-            'BindToText(tbPPhValue, Dt.Rows(0)("PPhForex").ToString, ViewState("DigitHome"))
-            'BindToText(tbTotalAmount, Dt.Rows(0)("TotalForex").ToString, ViewState("DigitHome"))
+
             BindToText(tbRemark, Dt.Rows(0)("Remark").ToString)
+
+            If Dt.Rows(0)("FileSrvReq").ToString = "" Then
+                lbDokInv.Text = "Not Yet Uploaded"
+                FubInv.Visible = True
+                btnClearInv.Visible = False
+            Else
+                lbDokInv.Text = Dt.Rows(0)("FileSrvReq").ToString
+                FubInv.Visible = False
+                btnClearInv.Visible = True
+            End If
+
             If Dt.Rows(0)("FileSrvReq").ToString = "" Then
                 lbDokSvrReq.Text = "Not Yet Uploaded"
             Else
@@ -1440,26 +1459,9 @@ Partial Class TrMTNServiceRequest
         End Try
     End Sub
 
-    Protected Sub btnSaveTrans_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSaveTrans.Click
+    Protected Sub btnGoEdit_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnGoEdit.Click
         Dim CurrFilter, Value As String
         Try
-            If CekHd() = False Then
-                Exit Sub
-            End If
-            'If CFloat(tbTotalSelisih.Text) <> 0 Then
-            '    lbStatus.Text = MessageDlg("Debet - Credit must be balance")
-            '    Exit Sub
-            'End If
-            'If GetCountRecord(ViewState("Dt")) = 0 Then
-            '    lbStatus.Text = MessageDlg("Detail Job must have at least 1 record")
-            '    Exit Sub
-            'End If
-            'If GetCountRecord(ViewState("Dt2")) = 0 Then
-            '    'If ViewState("PayType").ToString = "" Then
-            '    lbStatus.Text = MessageDlg("Detail Payment must have at least 1 record")
-            '    Exit Sub
-            'End If
-            SaveAll()
             MovePanel(pnlInput, PnlHd)
             CurrFilter = tbFilter.Text
             Value = ddlField.SelectedValue
@@ -1468,6 +1470,64 @@ Partial Class TrMTNServiceRequest
             btnSearch_Click(Nothing, Nothing)
             tbFilter.Text = CurrFilter
             ddlField.SelectedValue = Value
+            btnGoEdit.Visible = False
+            tbFilter.Text = ""
+        Catch ex As Exception
+            lbStatus.Text = "Btn Add Error : " + ex.ToString
+        End Try
+    End Sub
+
+    Protected Sub btnSaveTrans_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSaveTrans.Click
+        Dim CurrFilter, Value As String
+        Try
+            'If CekHd() = False Then
+            '    Exit Sub
+            'End If
+
+            'SaveAll()
+            'MovePanel(pnlInput, PnlHd)
+            'CurrFilter = tbFilter.Text
+            'Value = ddlField.SelectedValue
+            'tbFilter.Text = tbCode.Text
+            'ddlField.SelectedValue = "TransNmbr"
+            'btnSearch_Click(Nothing, Nothing)
+            'tbFilter.Text = CurrFilter
+            'ddlField.SelectedValue = Value
+
+            Dim confirmValue As String = Request.Form("confirm_value")
+            If confirmValue = "Yes" Then
+
+                If CekHd() = False Then
+                    Exit Sub
+                End If
+
+
+                SaveAll()
+                ModifyInput(False, pnlInput)
+                btnGoEdit.Visible = True
+                Menu2.Items.Item(1).Enabled = True
+                MultiView2.ActiveViewIndex = 1
+                Menu2.Items.Item(1).Selected = True
+
+            Else
+
+
+                If CekHd() = False Then
+                    Exit Sub
+                End If
+
+                SaveAll()
+                MovePanel(pnlInput, PnlHd)
+                CurrFilter = tbFilter.Text
+                Value = ddlField.SelectedValue
+                tbFilter.Text = tbCode.Text
+                ddlField.SelectedValue = "TransNmbr"
+                btnSearch_Click(Nothing, Nothing)
+                tbFilter.Text = CurrFilter
+                ddlField.SelectedValue = Value
+                tbFilter.Text = ""
+                'ClientScript.RegisterStartupScript(Me.[GetType](), "alert", "alert('You clicked NO!')", True)
+            End If
         Catch ex As Exception
             lbStatus.Text = "btnSaveTrans Error : " + ex.ToString
         End Try
@@ -1475,13 +1535,16 @@ Partial Class TrMTNServiceRequest
 
     Protected Sub BtnAdd_Click(ByVal sender As Object, ByVal e As EventArgs) Handles BtnAdd.Click, btnAdd2.Click
         Try
-            MovePanel(PnlHd, pnlInput)
+
             'ModifyInput2(True, pnlInput, PnlDt, GridDt)
             'ModifyInput2(True, pnlInput, pnlDt2, GridDt2)
             newTrans()
+            ModifyInput(True, pnlInput)
+            MovePanel(PnlHd, pnlInput)
             btnHome.Visible = False
-            'MultiView1.ActiveViewIndex = 0
-            'Menu1.Items.Item(0).Selected = True
+            MultiView2.ActiveViewIndex = 0
+            Menu2.Items.Item(0).Selected = True
+            Menu2.Items.Item(1).Enabled = False
             tbCode.Focus()
         Catch ex As Exception
             lbStatus.Text = "Btn Add Error : " + ex.ToString
@@ -1555,22 +1618,22 @@ Partial Class TrMTNServiceRequest
         End Try
     End Sub
 
-    'Protected Sub LbAdvSearch_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles LbAdvSearch.Click
-    '    Dim FDateName, FDateValue, FilterName, FilterValue As String
-    '    Try
-    '        FDateName = "Payment Date"
-    '        FDateValue = "TransDate"
-    '        FilterName = "Payment No, Payment Date, User Type, User Payment, Attn, DP No, Voucher No, Remark, Account, Account Name"
-    '        FilterValue = "TransNmbr, dbo.FormatDate(TransDate), UserType, UserPayment, Attn, DPNo, Voucher_No, Remark, Account, Accountname"
-    '        Session("DateFieldName") = FDateName.Split(",")
-    '        Session("DateFieldValue") = FDateValue.Split(",")
-    '        Session("FieldName") = FilterName.Split(",")
-    '        Session("FieldValue") = FilterValue.Split(",")
-    '        AttachScript("OpenFilterCriteria();", Page, Me.GetType())
-    '    Catch ex As Exception
-    '        lbStatus.Text = "Advanced Search Click Error : " + ex.ToString
-    '    End Try
-    'End Sub
+    Protected Sub LbAdvSearch_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles LbAdvSearch.Click
+        Dim FDateName, FDateValue, FilterName, FilterValue As String
+        Try
+            FDateName = "Request Date"
+            FDateValue = "TransDate"
+            FilterName = "Request No, Payment Date"
+            FilterValue = "TransNmbr, dbo.FormatDate(TransDate)"
+            Session("DateFieldName") = FDateName.Split(",")
+            Session("DateFieldValue") = FDateValue.Split(",")
+            Session("FieldName") = FilterName.Split(",")
+            Session("FieldValue") = FilterValue.Split(",")
+            AttachScript("OpenFilterCriteria();", Page, Me.GetType())
+        Catch ex As Exception
+            lbStatus.Text = "Advanced Search Click Error : " + ex.ToString
+        End Try
+    End Sub
 
     Protected Sub GridView1_PageIndexChanging(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewPageEventArgs) Handles GridView1.PageIndexChanging
         GridView1.PageIndex = e.NewPageIndex
@@ -1604,6 +1667,11 @@ Partial Class TrMTNServiceRequest
                     'Menu1.Items.Item(0).Selected = True
                     btnSaveDoc.Visible = False
                     btnHome.Visible = True
+                    If GVR.Cells(3).Text = "D" Then
+                        Menu2.Items.Item(1).Enabled = False
+                    Else
+                        Menu2.Items.Item(1).Enabled = True
+                    End If
                 ElseIf DDL.SelectedValue = "Edit" Then
                     If GVR.Cells(3).Text = "H" Or GVR.Cells(3).Text = "G" Then
                         CekMenu = CheckMenuLevel("Edit", ViewState("MenuLevel").Rows(0))
@@ -1681,304 +1749,7 @@ Partial Class TrMTNServiceRequest
         End Try
     End Sub
 
-    Dim TotalExpense As Decimal = 0
-    ' untuk tampilkan data total di grid
-    'Protected Sub GridDt_RowDataBound(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewRowEventArgs) Handles GridDt.RowDataBound
-    '    Try
-    '        'If Not IsDBNull(DataBinder.Eval(e.Row.DataItem, "ItemNo")) Then
-    '        '    If e.Row.RowType = DataControlRowType.DataRow Then
-    '        '        ' add the UnitPrice and QuantityTotal to the running total variables
-    '        '        TotalExpense += Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "AmountHome"))
-    '        '    ElseIf e.Row.RowType = DataControlRowType.Footer Then
-    '        '        tbPPh.Text = FormatNumber(TotalExpense, ViewState("DigitHome"))
-    '        '    End If
-    '        'End If
-    '        'tbTotalSelisih.Text = FormatNumber(CFloat(tbDisc.Text) + CFloat(tbPPnValue.Text) - CFloat(tbPPh.Text) - CFloat(tbBeaTanah.Text), ViewState("DigitHome"))
-    '    Catch ex As Exception
-    '        lbStatus.Text = "Grid Dt Row Data Bound Error : " + ex.ToString
-    '    End Try
-    'End Sub
-
-    'Protected Sub GridDt_RowDeleting(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewDeleteEventArgs) Handles GridDt.RowDeleting
-    '    Try
-    '        Dim dr() As DataRow
-    '        Dim GVR As GridViewRow = GridDt.Rows(e.RowIndex)
-    '        'dr = ViewState("Dt2").Select("ItemNo = " + GVR.Cells(1).Text)
-    '        'dr(0).Delete()
-    '        'BindGridDt(ViewState("Dt"), GridDt)
-    '        'EnableHd(GetCountRecord(ViewState("Dt")) = 0 And GetCountRecord(ViewState("Dt2")) = 0)
-    '        dr = ViewState("Dt").Select("ItemNo = " + QuotedStr(GVR.Cells(1).Text))
-    '        dr(0).Delete()
-    '        BindGridDt(ViewState("Dt"), GridDt)
-    '        CountTotalAmount()
-    '        EnableHd(GetCountRecord(ViewState("Dt")) = 0) 'And GetCountRecord(ViewState("Dt2")) = 0)
-    '    Catch ex As Exception
-    '        lbStatus.Text = "Grid Dt Row Deleting Error : " + ex.ToString
-    '    End Try
-    'End Sub
-
-    Dim TotalPaymentForex As Decimal = 0
-    Dim TotalPayment As Decimal = 0
-    Dim TotalCharge As Decimal = 0
-    Dim TotalOther As Decimal = 0
-
-    'Protected Sub GridDt2_RowDataBound(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewRowEventArgs) Handles GridDt2.RowDataBound
-    '    Try
-    '        If Not IsDBNull(DataBinder.Eval(e.Row.DataItem, "ItemNo")) Then
-    '            If e.Row.RowType = DataControlRowType.DataRow Then
-    '                ' add the UnitPrice and QuantityTotal to the running total variables
-    '                'If DataBinder.Eval(e.Row.DataItem, "FgMode") = "E" Then
-    '                '    TotalCharge += Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "PaymentHome"))
-    '                'ElseIf DataBinder.Eval(e.Row.DataItem, "FgMode") = "O" Then
-    '                '    TotalOther += Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "PaymentHome"))
-    '                'Else
-    '                '    TotalPayment += Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "PaymentHome"))
-    '                '    TotalPaymentForex += Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "PaymentForex"))
-    '                'End If
-    '            ElseIf e.Row.RowType = DataControlRowType.Footer Then
-    '                'If GetCountRecord(ViewState("Dt2")) > 0 Then
-    '                '    tbDisc.Text = FormatNumber(TotalPayment, ViewState("DigitHome"))
-    '                '    tbPPn.Text = FormatNumber(TotalPaymentForex, ViewState("DigitCurr"))
-    '                '    tbPPnValue.Text = FormatNumber(TotalOther, ViewState("DigitHome"))
-    '                '    tbBeaTanah.Text = FormatNumber(TotalCharge, ViewState("DigitHome"))
-    '                'Else
-    '                '    tbDisc.Text = FormatNumber(0, ViewState("DigitHome"))
-    '                '    tbPPn.Text = FormatNumber(0, ViewState("DigitCurr"))
-    '                '    tbPPnValue.Text = FormatNumber(0, ViewState("DigitHome"))
-    '                '    tbBeaTanah.Text = FormatNumber(0, ViewState("DigitHome"))
-    '                'End If
-    '            End If
-    '            'AttachScript("setformat();", Page, Me.GetType())
-    '            'tbTotalSelisih.Text = FormatNumber(CFloat(tbDisc.Text) + CFloat(tbPPnValue.Text) - CFloat(tbPPh.Text) - CFloat(tbBeaTanah.Text), ViewState("DigitHome"))
-    '        End If
-    '    Catch ex As Exception
-    '        lbStatus.Text = "Grid Dt2 Row Data Bound Error : " + ex.ToString
-    '    End Try
-    'End Sub
-
-    'Protected Sub GridDt2_RowDeleting(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewDeleteEventArgs) Handles GridDt2.RowDeleting
-    '    Try
-    '        Dim dr() As DataRow
-    '        Dim GVR As GridViewRow
-    '        GVR = GridDt2.Rows(e.RowIndex)
-    '        dr = ViewState("Dt2").Select("ItemNo = " + GVR.Cells(1).Text)
-    '        dr(0).Delete()
-    '        BindGridDt(ViewState("Dt2"), GridDt2)
-    '        EnableHd(GetCountRecord(ViewState("Dt")) = 0 And GetCountRecord(ViewState("Dt2")) = 0)
-    '    Catch ex As Exception
-    '        lbStatus.Text = "Grid Dt 2 Row Deleting Error : " + ex.ToString
-    '    End Try
-    'End Sub
-
-    'Protected Sub GridDt_RowEditing(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewEditEventArgs) Handles GridDt.RowEditing
-    '    Dim GVR As GridViewRow
-    '    Try
-    '        GVR = GridDt.Rows(e.NewEditIndex)
-    '        'row = ViewState("Dt").Rows(e.NewEditIndex)
-    '        FillTextBoxDt(GVR.Cells(1).Text)
-    '        MovePanel(PnlDt, pnlEditDt)
-    '        EnableHd(False)
-    '        ViewState("StateDt") = "Edit"
-    '        btnSaveDt.Focus()
-    '        StatusButtonSave(False)
-    '        CountTotalAmount()
-    '        'tbSubledDt.Enabled = tbFgSubledDt.Text <> "N"
-    '        'btnSubled.Enabled = tbSubledDt.Enabled
-    '        'ddlCostCenterDt.Enabled = GVR.Cells(6).Text <> "N"
-    '    Catch ex As Exception
-    '        lbStatus.Text = "Grid Dt Row Editing Error : " + ex.ToString
-    '    End Try
-    'End Sub
-
-    'Protected Sub GridDt2_RowEditing(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewEditEventArgs) Handles GridDt2.RowEditing
-    '    Dim GVR As GridViewRow
-    '    Try
-    '        GVR = GridDt2.Rows(e.NewEditIndex)
-    '        FillTextBoxDt2(GVR.Cells(1).Text)
-    '        MovePanel(pnlDt2, pnlEditDt2)
-    '        EnableHd(False)
-    '        'ChangePaymentType(ddlPayTypeDt2.SelectedValue, tbFgModeDt2, tbPaymentDateDt2, tbDueDateDt2, ddlBankPaymentDt2, ddlCurrDt2, ddlChargeCurrDt2, tbRateDt2, tbChargeRateDt2, tbChargeForexDt2, ViewState("Currency"), ViewState("DigitCurr"), ViewState("DBConnection"), "Edit")
-    '        'ChangePaymentType(ddlPayTypeDt2.SelectedValue, tbFgModeDt2, tbPaymentDateDt2, tbGiroDateDt2, ddlBankPaymentDt2, ddlCurrDt2, ddlChargeCurrDt2, tbRateDt2, tbChargeRateDt2, tbChargeForexDt2, ViewState("Currency"), ViewState("DigitCurr"), ViewState("DBConnection"), "Edit")
-    '        ViewState("StateDt2") = "Edit"
-    '        StatusButtonSave(False)
-    '        'btnDocNo.Visible = tbFgModeDt2.Text = "D"
-    '        'tbDocumentNoDt2.Enabled = Not tbFgModeDt2.Text = "D"
-    '        btnSaveDt2.Focus()
-    '    Catch ex As Exception
-    '        lbStatus.Text = "Grid dt2 Editing Error : " + ex.ToString
-    '    End Try
-    'End Sub
-
-    'Protected Sub ddlPayTypeDt2_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ddlPayTypeDt2.SelectedIndexChanged
-    '    Try
-    '        'Dim VoucherNo As String
-
-    '        'ViewState("DigitCurr") = SQLExecuteScalar("Select Digit From VMsCurrency WHERE Currency = " + QuotedStr(ddlCurrDt2.SelectedValue), ViewState("DBConnection"))
-    '        'Public Sub ChangePaymentType4(ByVal Payment As String, ByRef TxFgMode As TextBox, ByVal txdate As BasicDatePicker, ByRef txduedate As BasicDatePicker, ByRef ddlbank As DropDownList, ByRef ddlCurr As DropDownList, ByRef txRate As TextBox, ByVal HomeCurrency As String, ByVal DigitCurr As Integer, Optional ByVal DBConnection As String = "Nothing", Optional ByVal State As String = "Add")
-    '        'ChangePaymentType4(ddlPayTypeDt2.SelectedValue, tbFgModeDt2, tbDate, tbDueDateDt2, ddlBankPaymentDt2, ddlCurrDt2, tbRateDt2, ViewState("Currency"), ViewState("DigitCurr"), ViewState("DBConnection"))
-    '        'ChangePaymentType4(ddlPayTypeDt2.SelectedValue, tbFgModeDt2, tbDate, tbGiroDateDt2, ddlBankPaymentDt2, ddlCurrDt2, tbRateDt2, ViewState("Currency"), ViewState("DigitCurr"), ViewState("DBConnection"))
-    '        'FillCombo(ddlBankPaymentDt2, "EXEC S_GetBankPaymentTrade " + QuotedStr(ddlCurrDt2.SelectedValue), True, "Bank_Code", "Bank_Name", ViewState("DBConnection")) 'ddlReport.SelectedValue
-    '        'tbPaymentHomeDt2.Text = FormatFloat(CFloat(tbPaymentForexDt2.Text) * CFloat(tbRateDt2.Text), ViewState("DigitCurr"))
-    '        'tbChargeHomeDt2.Text = FormatFloat(CFloat(tbChargeRateDt2.Text) * CFloat(tbChargeForexDt2.Text), ViewState("DigitExpenseCurr"))
-    '        'AttachScript("kali(" + Me.tbRateDt2.ClientID + "," + Me.tbPaymentForexDt2.ClientID + "," + Me.tbPaymentHomeDt2.ClientID + "); kali(" + Me.tbChargeRateDt2.ClientID + "," + Me.tbChargeForexDt2.ClientID + "," + Me.tbChargeHomeDt2.ClientID + "); setformatdt2();", Page, Me.GetType())
-    '        'btnDocNo.Visible = tbFgModeDt2.Text = "D"
-    '        'tbDocumentNoDt2.Enabled = Not tbFgModeDt2.Text = "D"
-    '        'tbDocumentNoDt2.Text = ""
-    '        'VoucherNo = ""
-    '        'If tbFgModeDt2.Text = "B" Or tbFgModeDt2.Text = "K" Then
-    '        '    VoucherNo = SQLExecuteScalar("Declare @A VarChar(255) EXEC S_SAAutoVoucherNmbr " + QuotedStr(Format(tbDate.SelectedValue, "yyyy-MM-dd")) + ", 'Y', " + QuotedStr(ddlPayTypeDt2.SelectedValue) + ", 'OUT', @A OUT SELECT @A", ViewState("DBConnection").ToString) 'ddlReport.SelectedValue
-    '        'End If
-    '        'tbVoucherNo.Enabled = (tbFgModeDt2.Text = "B" Or tbFgModeDt2.Text = "K")
-    '        'tbVoucherNo.Text = VoucherNo
-    '        btnSaveDt.Focus()
-    '    Catch ex As Exception
-    '        lbStatus.Text = "ddl Pay Type Select Index Changed Error : " + ex.ToString
-    '    End Try
-    'End Sub
-
-    'Protected Sub btnAccount_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAccount.Click
-    '    Dim ResultField As String
-    '    Try
-    '        Session("filter") = "SELECT * FROM V_MsAccountDt WHERE TransType = 'PYN' "
-    '        ResultField = "Account, Description, FgSubled, Currency, FgType,FgCostCtr"
-    '        ViewState("Sender") = "btnAccount"
-    '        Session("Column") = ResultField.Split(",")
-    '        Session("DBConnection") = ViewState("DBConnection")
-    '        AttachScript("OpenSearchDlg();", Page, Me.GetType())
-    '    Catch ex As Exception
-    '        lbStatus.Text = "Btn Account Click Error : " + ex.ToString
-    '    End Try
-    'End Sub
-
-    'Protected Sub tbAccountDt_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles tbAccountDt.TextChanged
-    '    Dim Dr As DataRow
-    '    Try
-    '        Dr = FindMaster("Account", tbAccountDt.Text + "|PYN", ViewState("DBConnection").ToString)
-    '        If Not Dr Is Nothing Then
-    '            tbAccountDt.Text = Dr("Account")
-    '            'tbAccountNameDt.Text = Dr("AccountName")
-    '            'BindToDropList(ddlCurrDt, Dr("CurrCode"))
-    '            'tbFgType.Text = Dr("FgType").ToString.ToUpper
-    '            'ddlCurrDt.Enabled = tbFgType.Text = "PL"
-    '            'tbFgSubledDt.Text = Dr("FgSubled")
-
-    '            'ViewState("FgType") = tbFgType.Text
-    '            'If ViewState("FgType") = "BS" Then
-    '            '    ddlCurrDt.Enabled = False
-    '            'Else : ddlCurrDt.Enabled = True
-    '            'End If
-
-    '            tbSubledDt_TextChanged(Nothing, Nothing)
-    '            'tbFgCostCtr.Text = TrimStr(Dr("FgCostCtr").ToString)
-    '            'tbSubledDt.Enabled = tbFgSubledDt.Text <> "N"
-
-    '            'ViewState("DigitCurrAcc") = SQLExecuteScalar("Select Digit From VMsCurrency WHERE Currency = " + QuotedStr(ddlCurrDt.SelectedValue), ViewState("DBConnection"))
-    '            'ChangeCurrency(ddlCurrDt, tbDate, tbRateDt, ViewState("Currency"), ViewState("DigitCurrAcc"), ViewState("DBConnection"))
-    '            'AttachScript("kali(" + Me.tbRateDt.ClientID + "," + Me.tbAmountForexDt.ClientID + "," + Me.tbAmountHomeDt.ClientID + "); setformatdt();", Page, Me.GetType())
-    '        Else
-    '            tbAccountDt.Text = ""
-    '            'tbAccountNameDt.Text = ""
-    '            'tbFgSubledDt.Text = ""
-    '            tbSubledDt.Text = ""
-    '            tbSubledNameDt.Text = ""
-    '            tbSubledDt.Enabled = False
-    '        End If
-
-    '        'btnSubled.Visible = tbSubledDt.Enabled()
-    '        'ddlCostCenterDt.Enabled = tbFgCostCtr.Text <> "N"
-    '        'If tbFgCostCtr.Text = "N" Then
-    '        '    ddlCostCenterDt.SelectedIndex = 0
-    '        'End If
-    '        'tbPPnNo.Enabled = (tbAccountDt.Text = ViewState("AccPPn") Or tbAccountDt.Text = ViewState("AccPPn2"))
-    '        'tbPPndate.Enabled = tbPPnNo.Enabled
-    '        'ChangeFgSubLed(tbFgSubledDt, tbSubledDt, btnSubled)
-    '        'tbAccountDt.Focus()
-    '    Catch ex As Exception
-    '        Throw New Exception("tb Product change Error : " + ex.ToString)
-    '    End Try
-    'End Sub
-
-    'Protected Sub btnSubled_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSubled.Click
-    '    Dim ResultField As String
-    '    Try
-    '        'If tbFgSubledDt.Text = "N" Then
-    '        '    Exit Sub
-    '        'End If
-    '        Session("filter") = "SELECT Subled_No, Subled_Name FROM VMsSubled WHERE FgSubled = " + QuotedStr(tbFgSubledDt.Text)
-    '        ResultField = "Subled_No, Subled_Name"
-    '        ViewState("Sender") = "btnSubled"
-    '        Session("Column") = ResultField.Split(",")
-    '        Session("DBConnection") = ViewState("DBConnection")
-    '        AttachScript("OpenSearchDlg();", Page, Me.GetType())
-    '    Catch ex As Exception
-    '        lbStatus.Text = "btn Subled click Error : " + ex.ToString
-    '    End Try
-    'End Sub
-
-    'Protected Sub tbSubledDt_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles tbSubledDt.TextChanged
-    '    Dim Dr As DataRow
-    '    Try
-    '        'If tbFgSubledDt.Text = "N" Then
-    '        '    tbSubledDt.Text = ""
-    '        '    tbSubledNameDt.Text = ""
-    '        '    Exit Sub
-    '        'End If
-
-    '        'Dr = FindMaster("Subled", tbFgSubledDt.Text + "|" + tbSubledDt.Text, ViewState("DBConnection"))
-    '        If Not Dr Is Nothing Then
-    '            tbSubledDt.Text = Dr("Subled_No")
-    '            'tbSubledNameDt.Text = Dr("Subled_Name")
-    '        Else
-    '            tbSubledDt.Text = ""
-    '            'tbSubledNameDt.Text = ""
-    '        End If
-    '    Catch ex As Exception
-    '        lbStatus.Text = "tb Subled Changed Error : " + ex.ToString
-    '    End Try
-    'End Sub
-
-    'Protected Sub tbNoLandPurchase_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles tbNoLandPurchase.TextChanged
-    '    Dim Dr As DataRow
-    '    Try
-    '        Dr = FindMaster("UserType", tbNoLandPurchase.Text + "|" + ddlUserType.SelectedValue, ViewState("DBConnection"))
-    '        If Not Dr Is Nothing Then
-    '            tbNoLandPurchase.Text = Dr("User_Code")
-    '            tbUserName.Text = Dr("User_Name")
-    '            tbAttn.Text = Dr("Contact_Person")
-    '        Else
-    '            tbNoLandPurchase.Text = ""
-    '            tbUserName.Text = ""
-    '            tbAttn.Text = ""
-    '        End If
-    '    Catch ex As Exception
-    '        lbStatus.Text = "tb User Code Text Changed Error : " + ex.ToString
-    '    End Try
-    'End Sub
-
-    'Protected Sub ddlChargeCurrDt2_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ddlChargeCurrDt2.SelectedIndexChanged
-    '    Try
-    '        ChangeCurrency(ddlChargeCurrDt2, tbPaymentDateDt2, tbChargeRateDt2, ViewState("Currency"), ViewState("DigitExpenseCurr"), ViewState("DBConnection"))
-    '        If ddlChargeCurrDt2.SelectedValue = "" Then
-    '            tbChargeForexDt2.Text = "0"
-    '            tbChargeHomeDt2.Text = "0"
-    '        End If
-    '        ViewState("DigitExpenseCurr") = SQLExecuteScalar("Select Digit From VMsCurrency WHERE Currency = " + QuotedStr(ddlChargeCurrDt2.SelectedValue), ViewState("DBConnection"))
-    '        tbChargeForexDt2.Enabled = ddlChargeCurrDt2.SelectedValue <> ""
-    '        tbChargeRateDt2.Focus()
-    '    Catch ex As Exception
-    '        lbStatus.Text = "ddl curr expense selected index changed Error : " + ex.ToString
-    '    End Try
-    'End Sub
-
-    'Protected Sub ddlUserType_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ddlUserType.SelectedIndexChanged
-    '    tbNoLandPurchase.Text = ""
-    '    tbUserName.Text = ""
-    'End Sub
-
-    'Protected Sub ddlReport_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ddlReport.SelectedIndexChanged
-    '    FillCombo(ddlPayTypeDt2, "EXEC S_GetPayTypeUser " + QuotedStr("PaymentNT" + ddlReport.SelectedValue) + ", " + QuotedStr(ViewState("UserId").ToString), True, "Payment_Code", "Payment_Name", ViewState("DBConnection"))
-    '    FillCombo(ddlBankPaymentDt2, "EXEC S_GetBankPayment " + QuotedStr(ddlReport.SelectedValue), True, "Bank_Code", "Bank_Name", ViewState("DBConnection"))
-    'End Sub
+   
 
     Protected Sub btnSaveAll_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSaveAll.Click
         Dim CurrFilter, Value As String
@@ -2014,83 +1785,7 @@ Partial Class TrMTNServiceRequest
         End Try
     End Sub
 
-    'Protected Sub btnDocNo_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnDocNo.Click
-    '    Dim ResultField As String
-    '    Try
-    '        If tbNoLandPurchase.Text.Trim = "" Then
-    '            Session("filter") = "SELECT DP_No, DP_Date, User_Type, User_Code, User_Name, PO_No, PPN_Rate, Currency, Rate, Base_Forex, PPN_Forex, Total_Forex, Base_Paid, PPN_Paid, Total_Paid FROM V_FNDPSuppPending " + _
-    '            "WHERE PPn = 0 and Report =" + QuotedStr("Y") 'ddlReport.SelectedValue
-    '        Else
-    '            Session("filter") = "SELECT DP_No, DP_Date, User_Type, User_Code, User_Name, PO_No, PPN_Rate, Currency, Rate, Base_Forex, PPN_Forex, Total_Forex, Base_Paid, PPN_Paid, Total_Paid FROM V_FNDPSuppPending " + _
-    '            "WHERE PPn = 0 and User_Type = " + QuotedStr(".") + " AND User_Code =" + QuotedStr(tbNoLandPurchase.Text) + " AND Report =" + QuotedStr("Y") 'ddlReport.SelectedValue
-    '        End If
-    '        ResultField = "DP_No, Currency, Rate, Total_Forex, Total_Paid, User_Type, User_Code, User_Name"
-    '        ViewState("Sender") = "btnDocNo"
-    '        Session("Column") = ResultField.Split(",")
-    '        Session("DBConnection") = ViewState("DBConnection")
-    '        AttachScript("OpenSearchDlg();", Page, Me.GetType()) 'ddlUserType.SelectedValue
-    '    Catch ex As Exception
-    '        lbStatus.Text = "btn Doc No Error : " + ex.ToString
-    '    End Try
-    'End Sub
-
-    'Protected Sub ddlCurrDt_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ddlCurrDt.SelectedIndexChanged
-    '    Try
-    '        ViewState("DigitCurrAcc") = SQLExecuteScalar("Select Digit From VMsCurrency WHERE Currency = " + QuotedStr(ddlCurrDt.SelectedValue), ViewState("DBConnection"))
-    '        ChangeCurrency(ddlCurrDt, tbDate, tbRateDt, ViewState("Currency"), ViewState("DigitCurrAcc"), ViewState("DBConnection"))
-    '        AttachScript("kali(" + Me.tbRateDt.ClientID + "," + Me.tbAmountForexDt.ClientID + "," + Me.tbAmountHomeDt.ClientID + "); setformatdt();", Page, Me.GetType())
-    '    Catch ex As Exception
-    '        lbStatus.Text = "ddl Currency Error : " + ex.ToString
-    '    End Try
-    'End Sub
-
-    'Public Sub ChangePaymentType4(ByVal Payment As String, ByRef TxFgMode As TextBox, ByVal txdate As BasicDatePicker, ByRef txduedate As BasicDatePicker, ByRef ddlbank As DropDownList, ByRef ddlCurr As DropDownList, ByRef txRate As TextBox, ByVal HomeCurrency As String, ByVal DigitCurr As Integer, Optional ByVal DBConnection As String = "Nothing", Optional ByVal State As String = "Add")
-    '    Try
-    '        If State = "Add" Then
-    '            Dim dr As DataRow
-    '            TxFgMode.Text = "O"
-    '            If Not Payment.Trim = "" Then
-    '                dr = FindMaster("PayType", Payment, DBConnection)
-    '                If Not dr Is Nothing Then
-    '                    BindToText(TxFgMode, dr("FgMode").ToString)
-    '                    BindToDropList(ddlCurr, dr("Currency").ToString)
-    '                End If
-    '            End If
-    '            If Not TxFgMode.Text = "G" Then
-    '                txduedate.SelectedDate = Nothing
-    '                txduedate.DisplayType = DatePickerDisplayType.TextBox
-    '                ddlbank.SelectedIndex = 0
-    '            Else
-    '                txduedate.SelectedDate = txdate.SelectedDate
-    '                txduedate.DisplayType = DatePickerDisplayType.TextBoxAndImage
-    '            End If
-
-    '            ChangeCurrency(ddlCurr, txdate, txRate, ViewState("Currency"), ViewState("DigitCurr"), DBConnection)
-    '        End If
-    '        txduedate.Enabled = TxFgMode.Text = "G"
-    '        ddlbank.Enabled = TxFgMode.Text = "G"
-    '    Catch ex As Exception
-    '        Throw New Exception("Change Payment Error : " + ex.ToString)
-    '    End Try
-    'End Sub
-
-    'Protected Sub btnRecvDoc_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnRecvDoc.Click
-    'Dim ResultField, CriteriaField As String
-    'Try
-    '    Session("filter") = "SELECT TransNmbr,TransDate,ApplfileNo,ApplfileDate,HGBNo,PICName,BrokerName,RelatedOffcName,Remark FROM PRCIPRecvDocHd WHERE Status<>'D' " 'WHERE User_Type = " + QuotedStr(ddlUserType.SelectedValue)
-    '    'Session("filter") = "EXEC S_PRCFindCIPRecvDoc"
-    '    ResultField = "TransNmbr,TransDate,ApplfileNo,ApplfileDate,HGBNo,PICName,BrokerName,RelatedOffcName,Remark"
-    '    CriteriaField = "TransNmbr,TransDate,ApplfileNo,ApplfileDate,HGBNo,PICName,BrokerName,RelatedOffcName,Remark"
-    '    ViewState("CriteriaField") = CriteriaField.Split(",")
-    '    Session("Column") = ResultField.Split(",")
-    '    ViewState("Sender") = "btnRecvDoc"
-    '    Session("DBConnection") = ViewState("DBConnection")
-    '    'AttachScript("OpenSearchDlg();", Page, Me.GetType())
-    '    AttachScript("OpenPopup();", Page, Me.GetType())
-    'Catch ex As Exception
-    '    lbStatus.Text = "BtnRecvDoc Click Error : " + ex.ToString
-    'End Try
-    'End Sub
+    
 
     Protected Sub GVNoRecvDoc_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles GVNoRecvDoc.SelectedIndexChanged
         Try
@@ -2192,29 +1887,6 @@ Partial Class TrMTNServiceRequest
         End If
     End Sub
 
-    'Protected Sub tbFinishJobDate_SelectionChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles tbFinishJobDate.SelectionChanged, tbStartJobDate.SelectionChanged
-    '    'tbDurasi.Text = FormatFloat(tbFinishJobDate.SelectedValue, 0) - FormatFloat(tbStartJobDate.SelectedValue, 0)
-    '    Dim Sqlstring As String
-    '    Sqlstring = SQLExecuteScalar("EXEC S_GetSlisihHari '" + Format(tbStartJobDate.SelectedDate, "yyyy/MM/dd") + "', '" + Format(tbFinishJobDate.SelectedDate, "yyyy/MM/dd") + "' ", ViewState("DBConnection"))
-    '    tbDurasi.Text = Sqlstring
-
-    '    If tbDurasi.Text < 0 Then
-    '        lbStatus.Text = MessageDlg("Start Date cannot grether more than finish date !!!")
-    '        tbStartJobDate.SelectedDate = tbFinishJobDate.SelectedDate
-    '        Sqlstring = SQLExecuteScalar("EXEC S_GetSlisihHari '" + Format(tbStartJobDate.SelectedDate, "yyyy/MM/dd") + "', '" + Format(tbFinishJobDate.SelectedDate, "yyyy/MM/dd") + "' ", ViewState("DBConnection"))
-    '        tbDurasi.Text = Sqlstring
-    '        tbStartJobDate.Focus()
-    '        Exit Sub
-    '    End If
-    'End Sub
-
-    'Protected Sub lbArea_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lbArea.Click
-    '    Try
-    '        AttachScript("OpenMaster('" + Request.QueryString("KeyId") + "','MsArea')();", Page, Me.GetType())
-    '    Catch ex As Exception
-    '        lbStatus.Text = "lbArea_Click Error : " + ex.ToString
-    '    End Try
-    'End Sub
 
     Protected Sub btnSaveDoc_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSaveDoc.Click
         Try

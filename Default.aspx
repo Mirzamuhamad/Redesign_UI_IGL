@@ -1,372 +1,274 @@
 <%@ Page Language="VB" AutoEventWireup="false" CodeFile="Default.aspx.vb" Inherits="_Default" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <!DOCTYPE html>
+  <html xmlns="http://www.w3.org/1999/xhtml">
 
-<html xmlns="http://www.w3.org/1999/xhtml" >
-<head id="Head1" runat="server">
-   <title>Login to Irama Gemilang Lestari</title>     
-  <script language="javascript" type="text/javascript">
-  if (top.location != self.location) {
-    top.location.replace(self.location);
-  }
-  </script>  
+  <head runat="server">
+    <title>Login to Irama Gemilang Lestari</title>
+
+    <!-- Bootstrap 5 -->
+            <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+            <link href="Styles/StyleNew.css" rel="stylesheet" type="text/css" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <style>
-        /* HTML elements  *//*h1, h2, h3, h4, h5, h6*/
-        /*{
-            font-weight: normal;
-            margin: 0;
-            line-height: 1.1em; 
-            
-            color: #000;
-            font-family: Roboto;
-            font-weight: bold;
-        }*/
-        h1 {
-              text-align: center;
-              font-size: 30px;
-              font-weight: 600;
-              text-transform: uppercase;
-              display:inline-block;
-              margin: 40px 8px 10px 8px; 
-              padding-left: 65px;
-              color: #4f4f4f;
-            }
+      body {
+        height: 100vh;
+        /* font-family: 'Poppins', sans-serif; */
+        background-color: #f9f9f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-        h1.active {
-              color: #4f4f4f;
-              border-bottom: 2px solid #5fbae9;
-              bor
-            }
+      .login-wrapper {
+        display: flex;
+        max-width: 900px;
+        width: 100%;
+        background: #fff;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.15);
+        padding: 10px;
+      }
 
-            h1.active2 {
-              color: #4f4f4f;
-              border-bottom: 2px solid #5fbae9;
-              border-right: 100px;
-            }
+      /* Bagian kiri */
+      .login-left {
+        /* background-color: #1e51dc; */
+        background: linear-gradient(135deg, #1e51dc, #5a8bff); /* biru tua ke biru muda */
+        color: #fff;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 4rem;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 0 4px 18px rgba(65, 65, 65, 0.2);
+    transition: all 0.3s ease-in-out;
+      }
 
-         .TextBox
-            {
-                background-color: #f6f6f6;
-                padding-left: 5px;
-                padding-right: 5px;
-                font-family: Roboto;
-                font-size:13px;
-                height:     35px;
-                width: 300px;
-                border: 0px solid #ccc;
-                border-radius: 10px;
-                color: #333333;
-                outline: none;  
-                border: 2px solid #f6f6f6;
-                text-align: center;
-              text-decoration: none;
-              display: inline-block;
-              -webkit-transition: all 0.5s ease-in-out;
-              -moz-transition: all 0.5s ease-in-out;
-              -ms-transition: all 0.5s ease-in-out;
-              -o-transition: all 0.5s ease-in-out;
-              transition: all 0.5s ease-in-out;
-              -webkit-border-radius: 5px 5px 5px 5px;
-              border-radius: 5px 5px 5px 5px;            
-            }
+      .login-left h3 {
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
 
-            .TextBox:focus {
-                border-style: none;
-              background-color: #fff;
-              border: 2px solid #f6f6f6;
-              border-bottom: 2px solid #5fbae9;
-            }
+      .login-left p {
+        font-size: 0.9rem;
+        opacity: 0.9;
+      }
 
-            .TextBox:placeholder {
-              color: #cccccc;
-            }
+      /* Bagian kanan (form) */
+      .login-right {
+        flex: 1;
+        padding: 3rem;
+        width: 500px;
+      }
 
-       
-       
-        /* //  HTML elements *//* base */body, table, input, textarea, select, li, button
-        {
-            /*font: 1em "Lucida Sans Unicode" , "Lucida Grande" , sans-serif;*/
-            /*line-height: 1.5em;
-            */
-            color: #444;
-            font-family: Roboto;
-        }        
-        body
-        {
-            /*font-size: 13px;*/
-            /*background: #FFF; 
-                       */
-                       background-image: url(Image/backgroundlog.png);
-            /*text-align: center;*/
+      .login-right h3 {
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: #777;
+      }
+
+      .login-right p {
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .form-control:focus {
+        border-color: #1e51dc;
+        box-shadow: 0 0 0 0.2rem rgba(30, 81, 220, 0.25);
+      }
+
+      .btn-login {
+        background-color: #1e51dc;
+        color: #fff;
+        font-weight: 500;
+        font-size: 14px;
+      }
+
+      .btn-login:hover {
+        background-color: #163cb5;
+        color: #e2e2e2;
+      }
+
+      .toggle-eye {
+        cursor: pointer;
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #888;
+      }
+
+      /* Responsif HP */
+      @media (max-width: 768px) {
+
+        .login-left {
+        height: 80px; /* 🔹 kurangi tinggi di HP */
+        padding: 1rem;
+        /* border-radius: 10px 10px 0 0; */
+    }
+        .login-wrapper {
+          flex-direction: column;
+          max-width: 100%;
+        }
+        
+
+        .login-left img{
+          width: 150px;
+        }      
+
+        .login-right {
+          padding: 1.5rem 0rem;
+          width: 300px;
         }
 
-        /* // base *//* formsauth form */
-        #formsauth
-        {
-            margin: 12em auto;
-            background: #FFF;
-            /*background-image: url(Image/login.png);*/
-            /*border: 8px solid #eee;*/
-            width: 800px;
-            -moz-border-radius: 5px;
-            -webkit-border-radius: 5px;
-            border-radius: 20px;
-            -moz-box-shadow: 0 0 20px #787878;
-            -webkit-box-shadow: 0 0 10px #787878;
-            box-shadow: 0 0 20px #787878;
-
-            /* -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-            box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);*/
-            text-align: left;
-            position: relative;  
-            height: 450px;          
+        .btn-login {
+          font-size: 12px;
+          padding: 0.75rem;
         }
-      
-        /*#formsauth h1
-        {*/
-            /*background: #0092c8;*/
-            /*color: #fff;
-            text-shadow: #007dab 0 1px 0;
-            font-size: 24px;
-            padding: 18px 23px;
-            margin: 0 0 .5em 0;*/
-           
-        /*}
-        #formsauth p
-        {
-            margin: .5em 25px;
-        }*/
-        #formsauth div
-        {
-            /*margin: .5em ;*/
-            /*background: #0092c8;*/
-            margin-left: 35px;
-            margin-bottom: 20px;
+      }
 
-            /*-moz-border-radius: 3px;
-            -webkit-border-radius: 3px;
-            border-radius: 3px;
-            */
-            text-align: left;
-            position: relative;
-        }
-        #formsauth label
-        {
-            float: left;
-            line-height: 30px;
-            padding-left: 10px;
-             font-family: Roboto;
-        }
-        #formsauth .field
-        {
-            outline: none;  
-            border: 2px solid #f6f6f6;
-            font-family: Roboto;  
-            background-color: #f6f6f6;  
-            font-size: 12px;
-            height:     35px;
-            width: 315px;
-            padding-left: 5px;
-            padding-right: 10px;
-            border: 0px solid #ccc;
-            border-radius: 5px;
-            resize: vertical;
-            color: #333333;
-            /*-moz-box-shadow: inset 0 0 5px #ccc;
-            -webkit-box-shadow: inset 0 0 5px #ccc;
-            box-shadow: inset 0 0 5px #ccc;*/
-        }
-
-.login{
-     background-repeat: no-repeat;
-       background-image: url(Image/icon-save-new.png);
-       background-position:left; 
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 40px;
-  padding-right: 40px;
-  border-radius: 10px;
-  background-color: #3c8bc3;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 13px;
-  transition: all 1s;
-  cursor: pointer;
-  text-decoration: none;
+      .spinner-border {
+    width: 1rem;
+    height: 1rem;
+}
+.btn[disabled] {
+    opacity: 0.8;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
-.login span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 1s;
-}
-
-.login span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
-
-.login:hover span {
-  padding-right: 25px;
-}
-
-.login:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-
-.reset {
-    background-repeat: no-repeat;
-       background-image: url(Image/icon-delete.png);
-       background-position:left; 
-  padding-top: 10px;
-  padding-bottom: 10px;
-  text-transform: uppercase;
-  padding-left: 40px;
-  padding-right: 40px;
-  border-radius: 10px;
-  background-color: #e36e6e;
-  font-weight: bold;
-  font-family: Roboto;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 13px;
-  width: 100px;
-  transition: all 1s;
-  cursor: pointer;
-  margin: 0px;
-  text-decoration: none;
-}
-
-.reset span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 1s;
-}
-
-.reset span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
-
-.reset:hover span {
-  padding-right: 25px;
-}
-
-.reset:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-
-.label{
- font-family: Roboto; 
-font-size: 16px;
-color: #333333;       
-font-weight: bold;    
-padding-bottom: 16px;
-}
-
-.formInput{
-    margin-top: 50px;
-}
-
-
-.submit{
-    margin-top: 40px;
-}
-
-               
     </style>
-</head>
-<body>
-    <form class="formContent" defaultbutton="bSubmit" id="formsauth" method="post" runat="server">
-    <input type="hidden" id = "hdpinstance" runat="server" value="default" />    	
-    <h1 class="active">
-        <!-- <asp:Image id="imgLogin" runat="server" Height="55px" 
-                ImageUrl="~/Image/login_icon.gif" Width="55px" /> &nbsp  -->
-        <!-- <span>Log in access...</span> -->
-        SIGN IN
-    </h1> 
-   <div class="formInput">    
-    <div class="form">
-        <table>
-            <tr>
-               
-                <!-- <td class="label" width="100px" align="left">User ID</td>
-                <td width="8px"></td> -->
-                <td>        
-                <asp:TextBox placeholder="User ID" CssClass="TextBox" runat="server" ID="dbUser"></asp:TextBox>
-                </td>
-            </tr>
-        </table>
-        
-    </div>
-    <div>
-        <table>
-        <tr>
-            
-                <!-- <td class="label" width="100px" align="left">Password</td>
-        <td width="8px"></td> -->
-        <td>
-        <asp:TextBox placeholder="Password" CssClass="TextBox" runat="server" ID="dbPassword" TextMode="Password" 
-                ></asp:TextBox>
-        </td>
-        </tr>
-        </table>  
-    </div>    
-    <div>
-        <table>
-        <tr>
-            
-        <!-- <td class="label" width="100px" align="Left">Instance</td>
-        <td width="8px"></td> -->
-        <td>
-        <asp:DropDownList  ID="ddlServer" runat="server" class="field required" >
-                            <asp:ListItem Selected="True">IALWeb</asp:ListItem>                            
-                        </asp:DropDownList>
-                        
-        <%--<asp:TextBox placeholder="Company" CssClass="TextBox" runat="server" ID="ddlServer"  
-                ></asp:TextBox>--%>
-        </td>
-        </tr>
-        </table>
-        
-    </div>
-    <div class="submit">
-        <table>
-        <tr>
-        
-        </td>
-            <td >
-            <asp:LinkButton CssClass="login" ID="bSubmit" runat="server"  > <span>Login</span> </asp:LinkButton> 
-            </td>
-                <td width="70px">
-            <td >
-                <asp:LinkButton CssClass="reset" ID="bReset" runat="server"  > <span>Reset</span> </asp:LinkButton>                 
-             </td>
-        </tr>
-        </table>
-           
-    </div>
-     <p class="back">
-        <asp:Label runat="server" ID="lStatus"></asp:Label>  
-    </p>
-   </div> 
 
+    <style>
+  .position-relative .toggle-eye {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      color: #888;
+      cursor: pointer;
+  }
+  .position-relative .toggle-eye:hover {
+      color: #0d6efd;
+  }
+</style>
+
+<!-- Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      const togglePassword = document.getElementById("togglePassword");
+      const passwordField = document.getElementById("<%= dbPassword.ClientID %>");
+      const loginButton = document.getElementById("<%= bSubmit.ClientID %>");
+
+      // 👁️ Show/Hide Password
+      togglePassword.addEventListener("click", function () {
+          const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+          passwordField.setAttribute("type", type);
+          this.classList.toggle("fa-eye");
+          this.classList.toggle("fa-eye-slash");
+      });
+
+      // ⏎ Tekan Enter = Klik Login
+      passwordField.addEventListener("keypress", function (event) {
+          if (event.key === "Enter") {
+              event.preventDefault();
+              loginButton.click();
+          }
+      });
+  });
+</script>
+
+<script>
+  function showLoading(btn) {
+      // Dapatkan elemen-elemen tombol
+      var spinner = btn.querySelector('.spinner-border');
+      var text = btn.querySelector('.btn-text');
+      var icon = btn.querySelector('.icon-login');
+  
+      // Tampilkan spinner dan ubah teks
+      spinner.classList.remove('d-none');
+      icon.classList.add('d-none');
+      text.textContent = 'Loading...';
+      btn.disabled = true;
+  
+      // Jalankan postback ASP.NET dengan nama tombol yang benar
+      setTimeout(function () {
+          // Ambil UniqueID tombol (ASP.NET butuh ini agar handler bSubmit_Click jalan)
+          __doPostBack('<%= bSubmit.UniqueID %>', '');
+      }, 100);
+  
+      return false; // cegah postback default dulu
+  }
+  </script>
+  
+  
+  </head>
+
+  <body>
+    <form id="formsauth" runat="server">
+      <div class="login-wrapper">
+
+        <!-- Kiri -->
+        <div class="login-left">
+          <img src="Image/Illustration-PNG-compressed.png" width="200" class="mb-0" />
+          <!-- <h3>Be Verifiedsnced designers on this platform.</p> -->
+        </div>
+
+        <!-- Kanan -->
+        <div class="login-right">
+          <h3>Sign-in</h3>
+          <br>
+
+          <div class="mb-3">
+            <asp:TextBox ID="dbUser" runat="server" CssClass="form-control form-control-sm" placeholder="User ID">
+            </asp:TextBox>
+          </div>
+
+          <div class="mb-3 position-relative">
+            <asp:TextBox ID="dbPassword" runat="server" CssClass="form-control form-control-sm" placeholder="Password"
+              TextMode="Password"></asp:TextBox>
+            <i class="fa fa-eye toggle-eye" id="togglePassword"></i>
+          </div>
+
+          <asp:LinkButton 
+            ID="bSubmit" 
+            runat="server"
+            CssClass="btn btn-login btn-sm w-100 me-1 d-flex align-items-center justify-content-center position-relative"
+            OnClientClick="return showLoading(this);">
+            <span class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true"></span>
+            <i class="fas fa-sign-in-alt me-2 icon-login"></i>
+            <span class="btn-text">Login</span>
+        </asp:LinkButton>
+
+
+          <asp:LinkButton CssClass="btn btn-reset w-50 ms-2 d-flex align-items-center justify-content-center"
+            Visible="false" ID="bReset" runat="server">
+            <i class="fas fa-undo me-2"></i> Reset
+          </asp:LinkButton>
+
+          <div class="mb-3">
+            <asp:DropDownList ID="ddlServer" runat="server" Visible="false" CssClass="form-select">
+              <asp:ListItem Selected="True">IGL</asp:ListItem>
+            </asp:DropDownList>
+          </div>
+
+          <div class="text-center mt-3">
+            <asp:Label runat="server" ID="lStatus" CssClass="text-danger small"></asp:Label>
+          </div>
+        </div>
+      </div>
     </form>
 
-</body>
-</html>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+
+  </html>

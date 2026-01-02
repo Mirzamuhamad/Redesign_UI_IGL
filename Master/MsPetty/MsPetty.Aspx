@@ -16,6 +16,7 @@
    
 </script>    
     <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />
+ <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <form id="form1" runat="server">
@@ -80,11 +81,11 @@
 								    <asp:Label runat="server" ID="PettyCodeEdit" text='<%# DataBinder.Eval(Container.DataItem, "PettyCode") %>'/>
 								</EditItemTemplate>
 								<FooterTemplate>
-								    <asp:TextBox Width="100%" CssClass="TextBox" runat="server" MaxLength="5" ID="PettyCodeAdd" />                                    
-								    <cc1:TextBoxWatermarkExtender ID="PettyCodeAdd_TextBoxWatermarkExtender" 
+								    <asp:TextBox Width="100%" placeholder="can't blank" CssClass="TextBox" runat="server" MaxLength="5" ID="PettyCodeAdd" />                                    
+								    <%--<cc1:TextBoxWatermarkExtender ID="PettyCodeAdd_TextBoxWatermarkExtender" 
                                         runat="server" Enabled="True" TargetControlID="PettyCodeAdd" 
                                         WatermarkText="can't blank" WatermarkCssClass="Watermarked">
-                                    </cc1:TextBoxWatermarkExtender>
+                                    </cc1:TextBoxWatermarkExtender>--%>
 								</FooterTemplate>												
 
                             <HeaderStyle Width="90px"></HeaderStyle>
@@ -103,11 +104,11 @@
                                     </cc1:TextBoxWatermarkExtender>
 								</EditItemTemplate>													
 								<FooterTemplate>
-								    <asp:TextBox CssClass="TextBox" runat="server" MaxLength="60" ID="PettyNameAdd" Width="100%" />
-								    <cc1:TextBoxWatermarkExtender ID="PettyNameAdd_TextBoxWatermarkExtender" 
+								    <asp:TextBox CssClass="TextBox" Placeholder ="can't blank" runat="server" MaxLength="60" ID="PettyNameAdd" Width="100%" />
+								    <%--<cc1:TextBoxWatermarkExtender ID="PettyNameAdd_TextBoxWatermarkExtender" 
                                         runat="server" Enabled="True" TargetControlID="PettyNameAdd" 
                                         WatermarkText="can't blank" WatermarkCssClass="Watermarked">
-                                    </cc1:TextBoxWatermarkExtender>
+                                    </cc1:TextBoxWatermarkExtender>--%>
 								</FooterTemplate>
 
 <HeaderStyle Width="330px"></HeaderStyle>
@@ -127,11 +128,11 @@
 								<FooterTemplate>
 								    <asp:TextBox CssClass="TextBox" runat="server" id="AccountAdd" Width="65%" 
                                         ontextchanged="AccountAdd_TextChanged" AutoPostBack="true" />
-                                    <asp:Button class="btngo" runat="server" ID="btnAccAdd" Text="..." CommandName="SearchAdd" />                
-                                    <cc1:TextBoxWatermarkExtender ID="AccountAdd_TextBoxWatermarkExtender" 
+                                    <asp:Button class="btngo" placeholder="can't blank" runat="server" ID="btnAccAdd" Text="..." CommandName="SearchAdd" />                
+                                    <%--<cc1:TextBoxWatermarkExtender ID="AccountAdd_TextBoxWatermarkExtender" 
                                         runat="server" Enabled="True" TargetControlID="AccountAdd" 
                                         WatermarkText="can't blank" WatermarkCssClass="Watermarked">
-                                    </cc1:TextBoxWatermarkExtender>
+                                    </cc1:TextBoxWatermarkExtender>--%>
 								</FooterTemplate>
 
 <HeaderStyle Width="120px"></HeaderStyle>
@@ -158,7 +159,7 @@
 							    <ItemTemplate>
 								    <asp:Button ID="btnEdit" runat="server" class="bitbtndt btnedit" Text="Edit" CommandName="Edit"/>
 									<asp:Button ID="btndelete" runat="server" class="bitbtndt btndelete" Text="Delete" OnClientClick="return confirm('Sure to delete this data?');" CommandName="Delete"/>									
-									<asp:Button ID="btnAssign" runat="server" class="bitbtndt btndetail" Text="User" CommandName="Detail" CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>" /> 
+									<asp:Button ID="btnAssign" runat="server" class="bitbtndt btnedit" Text="User" CommandName="Detail" CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>" /> 
 								</ItemTemplate>
 								<EditItemTemplate>
 									<asp:Button ID="btnUpdate" runat="server" class="bitbtndt btnsave" Text="Save" CommandName="Update"/>									

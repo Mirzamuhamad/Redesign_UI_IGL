@@ -213,7 +213,8 @@
             __doPostBack('','');
         }
     </script>    
-    <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />    
+    <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />
+ <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">    
 </head>
 <body>
     <form id="form1" runat="server">
@@ -307,10 +308,10 @@
       </asp:Panel>
           <br />
             <asp:Button class="bitbtn btnadd" runat="server" ID="BtnAdd" Text="Add"/>	 
-            &nbsp &nbsp &nbsp   
+            &nbsp;  
             <asp:DropDownList CssClass="DropDownList" ID="ddlCommand" runat="server" Visible="false"/>
             <asp:Button class="bitbtn btngo" runat="server" ID="BtnGo" Text="G" Visible="false" />
-          <br />
+          <br />&nbsp;
           <div style="border:0px  solid; width:100%; height:100%; overflow:auto;">
           <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True"
             CssClass="Grid" AutoGenerateColumns="False"> 
@@ -424,9 +425,10 @@
               </Columns>
           </asp:GridView>
           </div>
+          <br />
             <asp:Panel runat="server" ID ="pnlNav" Visible="false">
             <asp:Button class="bitbtn btnadd" runat="server" ID="btnAdd2" Text="Add"/>	 
-            &nbsp &nbsp &nbsp
+            &nbsp;
             <asp:DropDownList ID="ddlCommand2" CssClass="DropDownList" runat="server"/>
             <asp:Button class="bitbtn btngo" runat="server" ID="btnGo2" Text="G"/>	 
             </asp:Panel>

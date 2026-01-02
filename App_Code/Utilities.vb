@@ -5,7 +5,7 @@ Imports BasicFrame.WebControls
 
 Public Module Utilities
 
-    Public Sub FillAction(ByRef btn1 As Button, ByRef btn2 As Button, ByRef dd1 As DropDownList, ByRef dd2 As DropDownList, ByVal data As DataRow)
+    Public Sub FillAction(ByVal  btn1 As WebControl, ByVal btn2 As WebControl, ByRef dd1 As DropDownList, ByRef dd2 As DropDownList, ByVal data As DataRow)
         Try
             btn1.Visible = data("FgInsert") = "Y"
             btn2.Visible = btn1.Visible
@@ -49,6 +49,8 @@ Public Module Utilities
             Throw New Exception("Fill Action Error : " + ex.ToString)
         End Try
     End Sub
+
+    
 
     Public Function CheckMenuLevel(ByVal CommandName As String, ByVal Dr As DataRow) As String
         Try
@@ -628,5 +630,42 @@ Public Module Utilities
         End If
         Return hasil
     End Function
+
+
+    Public Function SetStatus(ByVal page As Page, ByVal lbl As Label, ByVal message As String, ByVal statusType As String) As String
+        Dim icon As String = ""
+        Dim bgClass As String = ""
+
+        Select Case statusType.ToLower()
+            Case "success"
+                icon = "<i class='fa fa-check-circle me-2'></i>"
+                bgClass = "bg-success text-white"
+            Case "warning"
+                icon = "<i class='fa fa-exclamation-triangle me-2'></i>"
+                bgClass = "bg-warning text-dark"
+            Case "error"
+                icon = "<i class='fa fa-times-circle me-2'></i>"
+                bgClass = "bg-danger text-white"
+            Case Else
+                icon = "<i class='fa fa-info-circle me-2'></i>"
+                bgClass = "bg-secondary text-white"
+        End Select
+
+        ' Set isi label
+        lbl.Text = icon & message
+        lbl.CssClass = "badge d-block text-center fs-6 p-2 " & bgClass
+
+        ' Buat script modal popup
+        Dim script As String = ""
+        script &= "document.getElementById('statusModalBody').innerHTML = document.getElementById('" & lbl.ClientID & "').outerHTML;"
+        script &= "var myModal = new bootstrap.Modal(document.getElementById('statusModal'));"
+        script &= "myModal.show();"
+        script &= "setTimeout(function(){ myModal.hide(); }, 5000);" ' Tutup otomatis 4 detik
+
+        page.ClientScript.RegisterStartupScript(page.GetType(), "ShowStatusPopup", script, True)
+    End Function
+
+
+
 
 End Module

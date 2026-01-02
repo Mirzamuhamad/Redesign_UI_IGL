@@ -16,13 +16,6 @@
          window.open("../../SeaDlg.Aspx", "List", "scrollbars=yes,resizable=no,width=500,height=400");
          return false;
      }
-     function openprintdlg() {
-         var wOpens;
-         wOpens = window.open("../../Rpt/PrintForm.Aspx", "List", "scrollbars=yes,resizable=yes,width=500,height=400");
-         wOpens.moveTo(0, 0);
-         wOpens.resizeTo(screen.width, screen.height);
-     }
-
 
 
      function OpenPopup() {
@@ -371,6 +364,7 @@
     </script>
 
     <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />
+ <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -379,6 +373,15 @@
 
 
     <div class="Content">
+
+        <!-- embed hiper kompress pdf -->
+        <!-- <div id="avepdf-container-id">
+            <script type="text/javascript" src="https://avepdf.com/api/js/embedwidgets.js"></script>
+                <script type="text/javascript">
+                    loadAvePDFWidget('692b96ed-b91c-4a1d-bf53-ba8cf411e8a0', 'auto', 'hyper-compress-pdf', 'avepdf-container-id');
+                </script>
+            </div> -->
+            
         <div class="H1">Land Survey</div>
         <hr style="color: Blue" />
         <asp:Panel runat="server" ID="PnlHd">
@@ -704,14 +707,16 @@
                             <td colspan="7">
                                 <table>
                                     <tr style="background-color:Silver;text-align:center; border-radius:30px;">
-                                        <td>SPPT</td>
+                                        <td>SPPT</td>                                        
                                         <td>AJB/SPH/SHM</td>
                                         <td>Luas Ukur</td>
+                                        <td>Atas Nama SPPT</td>
                                     </tr>
                                     <tr>
-                                        <td><asp:TextBox ID="tbSPPT" runat="server" CssClass="TextBox" Width="100px" AutoPostBack="true"/></td>
+                                        <td><asp:TextBox ID="tbSPPT" runat="server" CssClass="TextBox" Width="100px" AutoPostBack="true"/></td>                                        
                                         <td><asp:TextBox ID="tbAjbSphShm" ValidationGroup="Input" runat="server" CssClass="TextBox" width="100px" AutoPostBack="true"/></td>
-                                        <td><asp:TextBox ID="tbLuasUkur" runat="server" CssClass="TextBox" Width="100px" AutoPostBack="true"/></td>                          
+                                        <td><asp:TextBox ID="tbLuasUkur" runat="server" CssClass="TextBox" Width="100px" AutoPostBack="true"/></td> 
+                                        <td><asp:TextBox ID="tbAtasNamaSppt" runat="server" CssClass="TextBox" Width="320px" AutoPostBack="False"/></td>                         
                                     </tr>
                                 </table>
                             </td>                

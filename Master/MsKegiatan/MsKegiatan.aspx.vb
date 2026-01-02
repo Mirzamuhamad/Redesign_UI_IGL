@@ -4,7 +4,12 @@ Imports System.Data
 
 Partial Class Master_Kegiatan
     Inherits System.Web.UI.Page
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         If Not IsPostBack Then
             InitProperty()
             ViewState("SortExpression") = Nothing
@@ -14,6 +19,7 @@ Partial Class Master_Kegiatan
             btnPrint.Visible = ViewState("MenuLevel").rows(0)("FgPrint") = "Y"
             'bindDataGrid()
         End If
+        dsTypeIjin.ConnectionString = ViewState("DBConnection")
         lstatus.Text = ""
     End Sub
 
@@ -93,13 +99,14 @@ Partial Class Master_Kegiatan
         Dim StrFilter, SqlString As String
         Try
             StrFilter = GenerateFilterMs(ddlField.SelectedValue, ddlField2.SelectedValue, tbFilter.Text, tbfilter2.Text, ddlNotasi.SelectedValue)
-            SqlString = "Select KegiatanCode, KegiatanName, UserID, UserDate from MsKegiatan " + StrFilter
+            SqlString = "Select KegiatanCode, KegiatanName, FgMasaBerlaku, DashboardReminder, FgInv, UserID, UserDate, TypeIjin, IjinName from VMsKegiatan " + StrFilter
             BindDataMaster(SqlString, DataGrid, ViewState("SortExpression"), ViewState("DBConnection").ToString)
         Catch ex As Exception
             lstatus.Text = lstatus.Text + "BindDataGrid Error: " & ex.ToString
         Finally
         End Try
     End Sub
+
     Protected Sub DataGrid_PageIndexChanging(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewPageEventArgs) Handles DataGrid.PageIndexChanging
         DataGrid.PageIndex = e.NewPageIndex
         bindDataGrid()
@@ -133,17 +140,31 @@ Partial Class Master_Kegiatan
     End Sub
     Protected Sub DataGrid_RowCommand(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles DataGrid.RowCommand
         Dim SQLString As String
-        Dim dbCode, dbName As TextBox
+        Dim dbCode, dbName, DashboardReminder As TextBox
+        Dim ddlmasaberlaku, ddlInv, ddlTypeIjin As DropDownList
         Try
             If e.CommandName = "Insert" Then
                 dbCode = DataGrid.FooterRow.FindControl("KegiatanCodeAdd")
                 dbName = DataGrid.FooterRow.FindControl("KegiatanNameAdd")
+                ddlmasaberlaku = DataGrid.FooterRow.FindControl("MasaBerlakuAdd")
+                DashboardReminder = DataGrid.FooterRow.FindControl("DashboardReminderAdd")
+                ddlInv = DataGrid.FooterRow.FindControl("InvAdd")
+                ddlTypeIjin = DataGrid.FooterRow.FindControl("TypeIjinadd")
 
                 If dbCode.Text.Trim.Length = 0 Then
                     lstatus.Text = "KegiatanCode Code must be filled."
                     dbCode.Focus()
                     Exit Sub
                 End If
+
+                If ddlmasaberlaku.SelectedValue = "Y" Then
+                    If DashboardReminder.Text = "" Or DashboardReminder.Text < 1 Then
+                        lstatus.Text = "DashboardReminder must be filled."
+                        dbName.Focus()
+                        Exit Sub
+                    End If
+                End If
+
                 If dbName.Text.Trim.Length = 0 Then
                     lstatus.Text = "KegiatanName Name must be filled."
                     dbName.Focus()
@@ -156,8 +177,8 @@ Partial Class Master_Kegiatan
                 End If
 
                 'insert the new entry
-                SQLString = "Insert into MsKegiatan (KegiatanCode, KegiatanName, UserId, UserDate) " + _
-                "SELECT " + QuotedStr(dbCode.Text) + ", " + QuotedStr(dbName.Text) + "," + QuotedStr(ViewState("UserId").ToString) + ", GetDate() "
+                SQLString = "Insert into MsKegiatan (KegiatanCode, KegiatanName, FgMasaBerlaku, DashboardReminder, FgInv, TypeIjin, UserId, UserDate) " + _
+                "SELECT " + QuotedStr(dbCode.Text) + ", " + QuotedStr(dbName.Text) + ", " + QuotedStr(ddlmasaberlaku.SelectedValue) + ", " + QuotedStr(DashboardReminder.Text) + ", " + QuotedStr(ddlInv.SelectedValue) + "," + QuotedStr(ddlTypeIjin.SelectedValue) + "," + QuotedStr(ViewState("UserId").ToString) + ", GetDate() "
                 SQLExecuteNonQuery(SQLString, ViewState("DBConnection").ToString)
                 bindDataGrid()
             End If
@@ -169,10 +190,18 @@ Partial Class Master_Kegiatan
         Dim SQLString As String
         Dim dbName As TextBox
         Dim lbCode As Label
+        Dim DashboardReminder As TextBox
+        Dim ddlmasaberlaku, ddlInv, ddlTypeIjin As DropDownList
 
+        Dim GVR As GridViewRow
         Try
+            GVR = DataGrid.Rows(e.RowIndex)
             lbCode = DataGrid.Rows(e.RowIndex).FindControl("KegiatanCode")
-            dbName = DataGrid.Rows(e.RowIndex).FindControl("KegiatanNameEdit")
+            dbName = GVR.FindControl("KegiatanNameEdit")
+            ddlmasaberlaku = GVR.FindControl("MasaBerlakuEdit")
+            DashboardReminder = GVR.FindControl("DashboardReminderEdit")
+            ddlInv = GVR.FindControl("InvEdit")
+            ddlTypeIjin = GVR.FindControl("TypeIjinEdit")
 
             If dbName.Text.Trim.Length = 0 Then
                 lstatus.Text = "KegiatanName Name must be filled."
@@ -181,7 +210,7 @@ Partial Class Master_Kegiatan
             End If
 
 
-            SQLString = "Update MsKegiatan set KegiatanName= " + QuotedStr(dbName.Text) + "where KegiatanCode = " & QuotedStr(lbCode.Text)
+            SQLString = "Update MsKegiatan set KegiatanName = " + QuotedStr(dbName.Text) + ", FgMasaBerlaku = " + QuotedStr(ddlmasaberlaku.SelectedValue) + ", DashboardReminder = " + QuotedStr(DashboardReminder.Text) + ", FgInv= " + QuotedStr(ddlInv.SelectedValue) + ",  TypeIjin= " + QuotedStr(ddlTypeIjin.SelectedValue) + " where KegiatanCode = " & QuotedStr(lbCode.Text)
 
             SQLExecuteNonQuery(SQLString, ViewState("DBConnection").ToString)
 

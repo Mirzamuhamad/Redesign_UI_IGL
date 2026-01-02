@@ -6,6 +6,11 @@ Partial Class Rpt_RptDlgDateSumDetail_ReportTemplate
     Inherits System.Web.UI.Page
 
     Protected Sub form1_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles form1.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Try
             If Not IsPostBack Then
                 Dim dt As DataTable

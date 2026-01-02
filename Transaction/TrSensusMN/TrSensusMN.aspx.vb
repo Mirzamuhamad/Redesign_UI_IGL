@@ -9,6 +9,11 @@ Partial Class Transaction_TrWOPLan_TrWOPLan
                 " Supplier, SupplierName, CIP, CIPName, EstStartWeek, EstEndWeek, QtyWeek, Remark FROM V_PLWoPlanHd "
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Try
             If Not IsPostBack Then
                 InitProperty()

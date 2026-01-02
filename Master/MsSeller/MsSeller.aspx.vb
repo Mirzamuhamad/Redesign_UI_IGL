@@ -2,6 +2,11 @@
 Partial Class MsSeller_MsSeller
     Inherits System.Web.UI.Page
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         If Not IsPostBack Then
             InitProperty()
             ViewState("SortExpression") = Nothing
@@ -14,6 +19,10 @@ Partial Class MsSeller_MsSeller
             'bindDataGrid()
 
             'tbKepadatan.Attributes.Add("OnKeyDown", "return PressNumeric();")
+
+            ViewState("MenuLevel") = SetMenuLevel(Request.QueryString("ContainerId").ToString, ViewState("UserId").ToString, ViewState("DBConnection").ToString)
+            btnAdd.Visible = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
+            btnAdd2.Visible = ViewState("MenuLevel").Rows(0)("FgInsert") = "Y"
 
         End If
         If Not Session("Result") Is Nothing Then

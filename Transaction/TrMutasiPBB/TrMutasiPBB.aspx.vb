@@ -24,6 +24,11 @@ Partial Class TrMutasiPBB
     End Function
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Try
             If Not IsPostBack Then
                 InitProperty()
@@ -59,6 +64,14 @@ Partial Class TrMutasiPBB
                     tbAreaName.Text = Session("Result")(1).ToString
                 End If
 
+                If ViewState("Sender") = "btnReference" Then
+                    tbReference.Text = Session("Result")(0).ToString
+                    tbNoSertifikat.Text = Session("Result")(3).ToString
+                    ddlJenisDokumen.SelectedValue = Session("Result")(4).ToString
+                    tbLuas.Text = Session("Result")(6).ToString
+                    tbRemarkDt.Text = Session("Result")(7).ToString
+                End If
+
                 If ViewState("Sender") = "btnGetDt" Then
                     Dim drResult As DataRow
                     Dim ExistRow As DataRow()
@@ -77,6 +90,87 @@ Partial Class TrMutasiPBB
                     EnableHd(GetCountRecord(ViewState("Dt3")) = 0)
                 End If
 
+
+                 If ViewState("Sender") = "btnGetreference" Then
+                    Dim drResult As DataRow
+                    Dim ExistRow As DataRow()
+                    ''Insert Detail
+                    For Each drResult In Session("Result").Rows
+                        ExistRow = ViewState("Dt").Select("Reference+'|'+ItemNo = " + QuotedStr(drResult("Reference").ToString + "|" + drResult("ItemNo").ToString))
+
+                        ' lbstatus.text = ExistRow.Count
+                        ' Exit Sub
+                        If ExistRow.Count = 0 Then
+                            'insert
+                           
+                            Dim dr As DataRow
+                            dr = ViewState("Dt").NewRow
+                             Dim dt As DataTable = CType(ViewState("Dt"), DataTable)
+                          
+                            'If dt.Rows.Count = 0 Then
+                            '    dr("ItemNo") = 1
+                            'Else
+                            '    dr("ItemNo") = dt.AsEnumerable().Max(Function(r) CInt(r("ItemNo"))) + 1
+                            'End If
+                            ' dr("BAP_No") = drResult("ItemNo").ToString
+                            dr("ItemNo") = drResult("ItemNo").ToString
+                            dr("Reference") = drResult("Reference").ToString
+                            dr("JenisMutasi") = drResult("JenisMutasi").ToString
+                            dr("JenisDokumen") = drResult("JenisDokumen").ToString
+                            dr("Info") = drResult("Info").ToString.Replace("Sumber","Hasil")
+                            dr("Luas") = drResult("Luas").ToString.Replace("&nbsp;", "")
+                            dr("UnitCode") = drResult("UnitCode").ToString.Replace("&nbsp;", "")
+                            dr("UnitName") = drResult("UnitName").ToString.Replace("&nbsp;", "")
+                            dr("Nama") = drResult("Nama").ToString.Replace("&nbsp;", "")
+                            dr("NoSertifikat") = drResult("NoDokumen").ToString.Replace("&nbsp;", "")
+                            dr("Remark") = drResult("Remark").ToString.Replace("&nbsp;", "")
+                            dr("SisaLuas") = 0
+                            ViewState("Dt").Rows.Add(dr)
+                        End If
+
+
+                        ' 'Insert Sub Detail
+                        ' lblBAPNumber.Text = drResult("BAP_No").ToString
+                        ' lblSPKNumber.Text = drResult("No_SPK").ToString
+
+                        ' 'MultiView1.ActiveViewIndex = 1
+
+                        ' Dim drDtResult As DataRow
+                        ' Dim ExistRowDT As DataRow()
+                        ' Dim MaxItem As String
+                        ' Dim DtPekerjaan As DataTable
+                        ' Dim SQLString As String
+
+                        ' Dim Item As String
+
+                        
+
+                        ' SQLString = "SELECT * FROM V_GetMutasiDokumenDetail WHERE Reference = " + QuotedStr(drResult("Reference").ToString) + " AND ItemNo = " + QuotedStr(drResult("ItemNo").ToString)
+                        ' DtPekerjaan = SQLExecuteQuery(SQLString, ViewState("DBConnection")).Tables(0)
+
+                        ' For Each drDtResult In DtPekerjaan.Rows
+                        '     ExistRowDT = ViewState("Dt2").Select("ItemDt2+'|'+NoDokDt2 = " + QuotedStr(drDtResult("ItemNo").ToString + "|" + drDtResult("NoSPpt").ToString))
+                        '     If ExistRowDT.Count = 0 Then
+                        '         Dim Dtdr As DataRow
+                        '         Dtdr = ViewState("Dt2").NewRow
+                        '         Dtdr("ItemDt2") = drDtResult("ItemNo")
+                        '         Dtdr("NoDokDt2") = drDtResult("NoSPpt")
+                        '         Dtdr("JenisDokDt2") = drDtResult("JenisDokumen")
+                        '         Dtdr("Luas") = drDtResult("Luas")
+                        '         Dtdr("Unit") = drDtResult("UnitCode")
+                        '         Dtdr("UnitName") = drDtResult("UnitName")
+                        '          Dtdr("Nama") = drDtResult("Nama")
+                        '         Dtdr("Remark") = drDtResult("Remark")
+                        '         ViewState("Dt2").Rows.Add(Dtdr)
+                        '     End If
+                        ' Next
+                    Next
+                     BindGridDt(ViewState("Dt"), GridDt)
+                    'EnableHd(GetCountRecord(ViewState("Dt")) = 0 And GetCountRecord(ViewState("Dt2")) = 0)
+                    StatusButtonSave(True)
+                    ' CountTotalDt2()
+                End If
+
                 'StatusButtonSave(True)
                 Session("Result") = Nothing
                 ViewState("Sender") = Nothing
@@ -85,6 +179,68 @@ Partial Class TrMutasiPBB
             End If
         Catch ex As Exception
             lbStatus.Text = "Page Load Error : " + ex.ToString
+        End Try
+    End Sub
+
+     Protected Sub btnGetDetail()
+
+        Dim drow() As DataRow
+
+        Try
+            Dim Dr2 As DataRow
+            Dim MaxItem As String
+
+            Dim SQLString As String = "SELECT * FROM V_GetMutasiDokumenDetail WHERE Reference = " + QuotedStr(tbReference.Text) + " AND ItemNo = " + QuotedStr(lbitemNo.text)
+            Dim DtPekerjaan As DataTable = SQLExecuteQuery(SQLString, ViewState("DBConnection")).Tables(0)
+
+
+            'Insert Angsuran
+            For Each drDtResult As DataRow In DtPekerjaan.Rows
+                Dim ExistRowDT As DataRow() = ViewState("Dt2").Select("NoDokDt2+'|'+ItemDt2 = " + QuotedStr(drDtResult("NoSppt").ToString + "|" + drDtResult("ItemNo").ToString ))
+                If ExistRowDT.Count = 0 Then
+                    Dim Dtdr As DataRow
+                    Dtdr = ViewState("Dt2").NewRow
+                    Dtdr("Itemdt2") = lbItemNo.text
+                    Dtdr("NoDokumen") = tbNoDok.text
+                    Dtdr("NoDokDt2") = drDtResult("NoSppt")
+                    Dtdr("JenisDokDt2") = drDtResult("JenisDokumen")
+                    Dtdr("Luas") = drDtResult("Luas")
+                    Dtdr("Unit") = drDtResult("UnitCode")
+                    Dtdr("UnitName") = drDtResult("UnitName")
+                    Dtdr("Remark") = drDtResult("Remark")
+
+                    Dim namaSppt As String
+                    'lbStatus.Text = SQLExecuteScalar("EXEC S_GetNamaSppt " + QuotedStr(drDtResult("NoSppt").ToString), ViewState("DBConnection").ToString)
+                    'Exit Sub
+                    namaSppt = SQLExecuteScalar("EXEC S_GetNamaSppt " + QuotedStr(drDtResult("NoSppt").ToString), ViewState("DBConnection").ToString)
+                    Dtdr("Nama") = namaSppt
+                    ViewState("Dt2").Rows.Add(Dtdr)
+                    
+                Else
+                    'Update jika sudah ada
+                    Dim Row As DataRow
+                    Row = ViewState("Dt2").Select("NoDokDt2+'|'+ItemDt2= " + QuotedStr(drDtResult("NoSppt".ToString) + "|" + drDtResult("ItemNo").ToString))(0)
+                    Row.BeginEdit()
+                    Row("Itemdt2") = lbItemNo.Text
+                    Row("NoDokumen") = tbNoDok.Text
+                    Row("NoDokDt2") = drDtResult("NoSppt")
+                    Row("JenisDokDt2") = drDtResult("JenisDokumen")
+                    Row("Luas") = drDtResult("Luas")
+                    Row("Unit") = drDtResult("UnitCode")
+                    Row("UnitName") = drDtResult("UnitName")
+                    Row("Remark") = drDtResult("Remark")
+
+                    Dim namaSppt As String
+                    namaSppt = SQLExecuteScalar("EXEC S_GetNamaSppt " + QuotedStr(drDtResult("NoSppt").ToString), ViewState("DBConnection").ToString)
+                    Row("Nama") = namaSppt
+                    Row.EndEdit()
+                End If
+                
+            Next
+                ' MovePanel(pnlEditDt2, pnlDt2)
+           
+        Catch ex As Exception
+            lbStatus.Text = "btnangsuran Error : " + ex.ToString
         End Try
     End Sub
 
@@ -225,6 +381,8 @@ Partial Class TrMutasiPBB
             pnlNav.Visible = True
             'ddlCommand.Visible = True
             'BtnGo.Visible = True
+            FillAction(BtnAdd, btnAdd2, ddlCommand, ddlCommand2, ViewState("MenuLevel").Rows(0))
+
         Catch ex As Exception
             lbStatus.Text = "Btn Search Error : " + ex.ToString
         End Try
@@ -381,6 +539,8 @@ Partial Class TrMutasiPBB
             tbRemark.Text = ""
             tbObject.Text = ""
             tbObjectName.Text = ""
+            tbReference.Text = ""
+            tbNoSertifikat.Text = ""
         Catch ex As Exception
             Throw New Exception("Clear Dt Error " + ex.ToString)
         End Try
@@ -435,6 +595,18 @@ Partial Class TrMutasiPBB
                     Return False
                 End If
 
+                If Dr("Luas").ToString = "" Then
+                    lbStatus.Text = MessageDlg("Luas Must Have Value")
+                    tbNoDok.Focus()
+                    Return False
+                End If
+
+                If Dr("SisaLuas").ToString = "" Then
+                    lbStatus.Text = MessageDlg("Sisa Luas Must Have Value")
+                    tbNoDok.Focus()
+                    Return False
+                End If
+
             Else
 
                 If tbNoDok.Text.Trim = "" Then
@@ -443,9 +615,16 @@ Partial Class TrMutasiPBB
                     Return False
                 End If
 
-                If tbLuas.Text.Trim = "" Then
-                    lbStatus.Text = MessageDlg("Luas Must Have Value")
+                If tbLuas.Text = "" Then
+                    lbStatus.Text = MessageDlg("Luas Must have value !")
                     tbLuas.Focus()
+                    Return False
+                End If
+
+
+                If tbSisaLuas.Text = "" Then
+                    lbStatus.Text = MessageDlg("Sisa Luas Must Have Value")
+                    tbSisaLuas.Focus()
                     Return False
                 End If
 
@@ -509,7 +688,7 @@ Partial Class TrMutasiPBB
     Protected Sub FillTextBoxDt(ByVal NoDokumen As String)
         Dim Dr As DataRow()
         Try
-            Dr = ViewState("Dt").select("NoDokumen = " + QuotedStr(NoDokumen))
+            Dr = ViewState("Dt").select("ItemNo = " + QuotedStr(NoDokumen))
             If Dr.Length > 0 Then
                 lbItemNo.Text = Dr(0)("ItemNo").ToString
                 BindToText(tbNoDok, Dr(0)("NoDokumen").ToString)
@@ -520,9 +699,11 @@ Partial Class TrMutasiPBB
                 BindToText(tbInfo, Dr(0)("Info").ToString)
                 BindToText(tbRemarkDt, Dr(0)("Remark").ToString)
                 BindToText(tbObject, Dr(0)("UnitCode").ToString)
-                BindToText(tbNamaAwal, Dr(0)("Nama").ToString)
+                BindToText(tbNamaAkhir, Dr(0)("Nama").ToString)
                 BindToText(tbPaymentNo, Dr(0)("NoPayment").ToString)
                 BindToText(tbObjectName, Dr(0)("UnitName").ToString)
+                BindToText(tbReference, Dr(0)("Reference").ToString)
+                BindToText(tbNoSertifikat, Dr(0)("NoSertifikat").ToString)
             End If
         Catch ex As Exception
             Throw New Exception("fill text box detail error : " + ex.ToString)
@@ -540,7 +721,7 @@ Partial Class TrMutasiPBB
                 BindToText(tbUnit, Dr(0)("Unit").ToString)
                 BindToText(tbUnitName, Dr(0)("UnitName").ToString)
                 BindToText(tbLuasDt2, Dr(0)("Luas").ToString)
-                BindToText(tbNamaAkhir, Dr(0)("Nama").ToString)
+                BindToText(tbNamaAwal, Dr(0)("Nama").ToString)
                 BindToText(tbRemarkDt2, Dr(0)("Remark").ToString)
             End If
         Catch ex As Exception
@@ -572,7 +753,7 @@ Partial Class TrMutasiPBB
 
             If ViewState("StateDt") = "Edit" Then
                 Dim Row As DataRow
-                Row = ViewState("Dt").Select("NoDokumen = " + QuotedStr(ViewState("DtValue")))(0)
+                Row = ViewState("Dt").Select("ItemNo = " + QuotedStr(ViewState("DtValue")))(0)
                 If CekDt() = False Then
                     Exit Sub
                 End If
@@ -589,6 +770,7 @@ Partial Class TrMutasiPBB
                 Row("Nama") = tbNamaAkhir.Text
                 Row("NoPayment") = tbPaymentNo.Text
                 Row("Remark") = tbRemark.Text
+                Row("NoSertifikat") = tbNoSertifikat.Text
 
                 Row.EndEdit()
             Else
@@ -607,10 +789,12 @@ Partial Class TrMutasiPBB
                 dr("Nama") = tbNamaAkhir.Text
                 dr("NoPayment") = tbPaymentNo.Text
                 dr("Remark") = tbRemark.Text
+                dr("NoSertifikat") = tbNoSertifikat.Text
                 ViewState("Dt").Rows.Add(dr)
             End If
-
+            btnGetDetail()
             MovePanel(pnlEditDt, PnlDt)
+            
             'EnableHd(GetCountRecord(ViewState("Dt")) = 0 And GetCountRecord(ViewState("Dt2")) = 0)
             BindGridDt(ViewState("Dt"), GridDt)
             StatusButtonSave(True)
@@ -912,7 +1096,7 @@ Partial Class TrMutasiPBB
             Dim ConnString As String = ViewState("DBConnection").ToString
             con = New SqlConnection(ConnString)
             con.Open()
-            Dim cmdSql As New SqlCommand("SELECT TransNmbr,ItemNo,JenisMutasi,JenisDokumen,NoDokumen,Luas,SisaLuas,Info,UnitCode,Nama, NoPayment, Remark FROM PRCMutasiPBBDt WHERE TransNmbr = " + QuotedStr(ViewState("TransNmbr")), con)
+            Dim cmdSql As New SqlCommand("SELECT TransNmbr,ItemNo,JenisMutasi,JenisDokumen,NoDokumen,Luas,SisaLuas,Info,UnitCode,Nama, NoPayment, Remark, Reference, NoSertifikat FROM PRCMutasiPBBDt WHERE TransNmbr = " + QuotedStr(ViewState("TransNmbr")), con)
             da = New SqlDataAdapter(cmdSql)
             Dim dbcommandBuilder As SqlCommandBuilder = New SqlCommandBuilder(da)
 
@@ -928,7 +1112,7 @@ Partial Class TrMutasiPBB
             ViewState("Dt") = Dt
 
             'save dt2
-            cmdSql = New SqlCommand("SELECT TransNmbr,NoDokumen,NoDokDt2,JenisDokDt2,Unit,Luas,Nama,Remark FROM PRCMutasiPBBDt2 WHERE TransNmbr = " + QuotedStr(ViewState("TransNmbr")), con)
+            cmdSql = New SqlCommand("SELECT TransNmbr,NoDokumen,NoDokDt2,JenisDokDt2,Unit,Luas,Nama,Remark,ItemDt2 FROM PRCMutasiPBBDt2 WHERE TransNmbr = " + QuotedStr(ViewState("TransNmbr")), con)
             da = New SqlDataAdapter(cmdSql)
             dbcommandBuilder = New SqlCommandBuilder(da)
             da.InsertCommand = dbcommandBuilder.GetInsertCommand
@@ -998,18 +1182,25 @@ Partial Class TrMutasiPBB
         Dim cekQty As Boolean
 
         Try
+
+            'lbStatus.Text = GetCountRecord(ViewState("Dt2"))
+            'Exit Sub
             If CekHd() = False Then
+                Exit Sub
+            End If
+
+            If CekDt() = False Then
                 Exit Sub
             End If
             If GetCountRecord(ViewState("Dt")) = 0 Then
                 lbStatus.Text = MessageDlg("Detail Account must have at least 1 record")
                 Exit Sub
             End If
+
             If GetCountRecord(ViewState("Dt2")) = 0 Then
-                lbStatus.Text = MessageDlg("Detail Payment must have at least 1 record")
+                lbStatus.Text = MessageDlg("Detail Dokumen must have at least 1 record")
                 Exit Sub
             End If
-
             'cekQty = checkQty()
             'If cekQty = False Then
             '    Exit Sub
@@ -1152,6 +1343,7 @@ Partial Class TrMutasiPBB
             EnableHd(False)
             StatusButtonSave(False)
             JenisDokumen()
+            tbDokumenDt.Enabled = True
         Catch ex As Exception
             lbStatus.Text = "btn add dt error : " + ex.ToString
         End Try
@@ -1299,6 +1491,7 @@ Partial Class TrMutasiPBB
 
     Protected Sub GridDt_RowCommand(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles GridDt.RowCommand
         Try
+
             If e.CommandName = "Insert" Then
                 btnAddDt_Click(Nothing, Nothing)
             End If
@@ -1306,18 +1499,30 @@ Partial Class TrMutasiPBB
             If e.CommandName = "View" Then
                 Dim GVR As GridViewRow
                 GVR = GridDt.Rows(Convert.ToInt32(e.CommandArgument))
+                'lbStatus.Text = GVR.Cells(6).Text
+
+                
 
                 If GVR.Cells(2).Text = "&nbsp;" Then
                     Exit Sub
                 End If
+
+                
+
                 Dim lbFA As Label
 
                 lbFA = GVR.FindControl("lbFa")
 
-                lbNoDokumen.Text = GVR.Cells(5).Text
-                lbMutasi.Text = GVR.Cells(3).Text
-                lbLuas.Text = GVR.Cells(6).Text
-                lblJenisDokumen.Text = GVR.Cells(4).Text
+                lbNoDokumen.Text = GVR.Cells(6).Text
+                lbMutasi.Text = GVR.Cells(4).Text
+                lbLuas.Text = GVR.Cells(8).Text
+                lblJenisDokumen.Text = GVR.Cells(5).Text
+                lbReference.Text = GVR.Cells(3).Text
+
+                If lbNoDokumen.Text = "" Then
+                    lbStatus.Text = MessageDlg("No Dokumen Must Have Value")
+                    Exit Sub
+                End If
 
                 MultiView1.ActiveViewIndex = 1
 
@@ -1331,7 +1536,7 @@ Partial Class TrMutasiPBB
                     BindDataDt2(ViewState("TransNmbr"))
                 End If
                 Dim drow As DataRow()
-                drow = ViewState("Dt2").Select("NoDokumen = " + QuotedStr(TrimStr(lbNoDokumen.Text)))
+                drow = ViewState("Dt2").Select("Itemdt2 = " + QuotedStr(TrimStr(GVR.Cells(2).Text)))
                 If drow.Length > 0 Then
                     BindGridDt(drow.CopyToDataTable, GridDt2)
                     GridDt2.Columns(0).Visible = Not ViewState("StateHd") = "View"
@@ -1343,7 +1548,7 @@ Partial Class TrMutasiPBB
                     GridDt2.DataBind()
                     GridDt2.Columns(0).Visible = False
                 End If
-            End If
+                End If
 
         Catch ex As Exception
             lbStatus.Text = "Grid Dt Item Command Error : " + ex.ToString
@@ -1352,21 +1557,33 @@ Partial Class TrMutasiPBB
 
     Protected Sub GridDt_RowDeleting(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewDeleteEventArgs) Handles GridDt.RowDeleting
         Try
-            Dim dr() As DataRow
+            Dim dr(), drCek() As DataRow
             Dim GVR As GridViewRow
             GVR = GridDt.Rows(e.RowIndex)
 
-            'Delete Detail 2------------------------------------
-            'dr = ViewState("Dt2").select("FALocationType+'|'+FALocationCode = " + QuotedStr(ddlFALocType.SelectedValue + "|" + tbFALocCode.Text))
-            dr = ViewState("Dt2").Select("NoDokumen = " + QuotedStr(GVR.Cells(5).Text))
-            dr(0).Delete()
+            'lbStatus.Text = GetCountRecord(ViewState("Dt2"))
+            'Exit Sub
+            drCek = ViewState("Dt2").Select("ItemDt2 = " + QuotedStr(GVR.Cells(2).Text))
+            If drCek.Length > 0 Then
+                'Delete Detail 2------------------------------------
+                'dr = ViewState("Dt2").select("FALocationType+'|'+FALocationCode = " + QuotedStr(ddlFALocType.SelectedValue + "|" + tbFALocCode.Text))
+                dr = ViewState("Dt2").Select("ItemDt2 = " + QuotedStr(GVR.Cells(2).Text))
+                dr(0).Delete()
 
-            'Delete Detail 1------------------------------------
-            dr = ViewState("Dt").Select("NoDokumen = " + QuotedStr(GVR.Cells(5).Text))
-            dr(0).Delete()
-            BindGridDt(ViewState("Dt"), GridDt)
-            EnableHd(GetCountRecord(ViewState("Dt")) = 0 And GetCountRecord(ViewState("Dt2")) = 0)
+                'Delete Detail 1------------------------------------
+                dr = ViewState("Dt").Select("ItemNo = " + QuotedStr(GVR.Cells(2).Text))
+                dr(0).Delete()
+                BindGridDt(ViewState("Dt"), GridDt)
+                EnableHd(GetCountRecord(ViewState("Dt")) = 0 And GetCountRecord(ViewState("Dt2")) = 0)
 
+            Else
+
+                'Delete Detail 1------------------------------------
+                dr = ViewState("Dt").Select("ItemNo = " + QuotedStr(GVR.Cells(2).Text))
+                dr(0).Delete()
+                BindGridDt(ViewState("Dt"), GridDt)
+                EnableHd(GetCountRecord(ViewState("Dt")) = 0 And GetCountRecord(ViewState("Dt2")) = 0)
+            End If
         Catch ex As Exception
             lbStatus.Text = "Grid Dt Row Deleting Error : " + ex.ToString
         End Try
@@ -1378,7 +1595,7 @@ Partial Class TrMutasiPBB
             Dim dr() As DataRow
             Dim GVR As GridViewRow
             GVR = GridDt2.Rows(e.RowIndex)
-            dr = ViewState("Dt2").Select("NoDokumen+'|'+NoDokDt2 = " + QuotedStr(lbNoDokumen.Text + "|" + GVR.Cells(5).Text))
+            dr = ViewState("Dt2").Select("NoDokumen+'|'+NoDokDt2 = " + QuotedStr(lbNoDokumen.Text + "|" + GVR.Cells(1).Text))
             dr(0).Delete()
 
             Dim drow As DataRow()
@@ -1404,15 +1621,15 @@ Partial Class TrMutasiPBB
         Dim GVR As GridViewRow
         Try
             GVR = GridDt.Rows(e.NewEditIndex)
-            ViewState("DtValue") = GVR.Cells(5).Text
-            FillTextBoxDt(GVR.Cells(5).Text)
+            ViewState("DtValue") = GVR.Cells(2).Text
+            FillTextBoxDt(GVR.Cells(2).Text)
 
             MovePanel(PnlDt, pnlEditDt)
             EnableHd(False)
             ViewState("StateDt") = "Edit"
             btnSaveDt.Focus()
             StatusButtonSave(False)
-
+            tbDokumenDt.Enabled = False
 
             'If ViewState("InputCurrency") = "Y" Then
             'ddlCurrDt.DataBind()
@@ -1521,7 +1738,7 @@ Partial Class TrMutasiPBB
         Try
 
             If ddlJenisMutasi.SelectedValue = "Pemecahan" Then
-                tbInfo.Text = "Sumber nomor dokumen pemecahan"
+                tbInfo.Text = "Hasil nomor dokumen pemecahan"
             ElseIf ddlJenisMutasi.SelectedValue = "Penggabungan" Then
                 tbInfo.Text = "Hasil nomor dokumen penggabungan"
             ElseIf ddlJenisMutasi.SelectedValue = "Peningkatan" Then
@@ -1541,6 +1758,50 @@ Partial Class TrMutasiPBB
             ddlJenisDokDt2.SelectedValue = lblJenisDokumen.Text
         End If
     End Sub
+
+
+     Protected Sub btnReference_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnReference.Click
+        Dim ResultField, CriteriaField As String
+        Try
+            Session("filter") = "SELECT Reference,TransDate,Reference_Dok,NoDokumen,JenisMutasi,JenisDokumen,Luas,RemarkFROM V_GetMutasiDokumen" 'WHERE User_Type = " + QuotedStr(ddlUserType.SelectedValue)
+           ' Session("filter") = "EXEC S_GetReferenceALL"
+            ResultField = "Reference,TransDate,Reference_Dok,NoDokumen,JenisMutasi,JenisDokumen,Luas,Remark"
+            CriteriaField = "Reference,TransDate,Reference_Dok,NoDokumen,JenisMutasi,JenisDokumen,Luas,Remark"
+            ViewState("CriteriaField") = CriteriaField.Split(",")
+            Session("Column") = ResultField.Split(",")
+            ViewState("Sender") = "btnReference"
+            Session("DBConnection") = ViewState("DBConnection")
+            'AttachScript("OpenSearchDlg();", Page, Me.GetType())
+            AttachScript("OpenPopupRef();", Page, Me.GetType())
+        Catch ex As Exception
+            lbStatus.Text = "BtnRecvDoc Click Error : " + ex.ToString
+        End Try
+    End Sub
+
+
+    Protected Sub btnGetreference_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnGetreference.Click
+        Dim ResultField, CriteriaField, sqlstring, ResultSame As String
+        Try
+            If CekHd() = False Then
+                Exit Sub
+            End If
+            sqlstring = "SELECT * FROM V_GetMutasiDokumen"
+            Session("DBConnection") = ViewState("DBConnection")
+            Session("filter") = sqlstring
+            ResultField = "Reference,TransDate,Reference_Dok,NoDokumen,JenisMutasi,JenisDokumen,Luas,Remark, UnitCode, UnitName,Nama, Info,ItemNo"
+            CriteriaField = "Reference,TransDate,Reference_Dok,NoDokumen,JenisMutasi,JenisDokumen,Luas,Remark, UnitCode, UnitName,Nama, Info,ItemNo"
+            Session("Column") = ResultField.Split(",")
+            Session("CriteriaField") = CriteriaField.Split(",")
+            ResultSame = "Reference"
+            Session("ResultSame") = ResultSame.Split(",")
+            ViewState("Sender") = "btnGetreference"
+            AttachScript("OpenSearchMultiDlg();", Page, Me.GetType())
+            'AttachScript("FindMultiDlg();", Page, Me.GetType())
+        Catch ex As Exception
+            lbStatus.Text = "btn Customer Click Error : " + ex.ToString
+        End Try
+    End Sub
+
 
 
 End Class

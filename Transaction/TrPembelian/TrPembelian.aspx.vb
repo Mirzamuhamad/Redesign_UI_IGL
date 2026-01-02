@@ -31,7 +31,12 @@ Partial Class TrPembelian
 
     'Protected GetStringHd As String = "Select * From V_PLSPTBSHD WHERE UserPrep = " + ViewState("UserId") + ""
 
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Session(Request.QueryString("KeyId")) Is Nothing Then
+        ' lbStatus.text = MessageDlg("Sesi anda telah habis silahkan login kembali")
+            Response.Redirect("~\Sesi.aspx")
+        End If
         Try
             If Not IsPostBack Then
                 InitProperty()
@@ -797,15 +802,33 @@ Partial Class TrPembelian
                 Return False
             End If
 
+              If CFloat(tbBiayaNotaris.Text) >= CFloat(tbHrgPerm2.text) Then
+                lbStatus.Text = MessageDlg("Biaya Notaris tidak boleh sama dengan harga tanah, mohon cek kembali !!")
+                tbBiayaNotaris.Focus()
+                tbJumlah.text = FormatNumber(Cfloat(tbBiayaNotaris.text) * Cfloat(tbLuas.text),0)
+                tbBiayaNotaris.text = FormatNumber(tbBiayaNotaris.text,0)
+                Return False
+            End If
+
             Dim TJNo, Revisi As String
             TJNo = SQLExecuteScalar("SELECT TJNo FROM V_GetLos WHERE TJNo = " + QuotedStr(tbTjNo.Text), ViewState("DBConnection").ToString)
-            Revisi = SQLExecuteScalar("SELECT Revisi FROM V_GetLos WHERE Revisi = " + QuotedStr(tbRev.Text), ViewState("DBConnection").ToString)
+            Revisi = SQLExecuteScalar("SELECT Revisi FROM V_GetLos WHERE Revisi = " + QuotedStr(tbRev.Text) + " AND TJNo = " + QuotedStr(tbTjNo.Text), ViewState("DBConnection").ToString)
 
-            If TJNo + "|" + Revisi <> tbTjNo.Text + "|" + tbRev.Text Then
+            
+
+            If (TJNo + "|" + Revisi) <> (tbTjNo.Text + "|" + tbRev.Text) Then
                 lbStatus.Text = MessageDlg("There is already TJ revision created, Please select new TJ to created land porchase order ")
                 btnTJ_Click(Nothing, Nothing)
                 Return False
             End If
+
+
+
+            ' If (TJNo + "|" + Revisi) <> "|" Then
+            '     lbStatus.Text = MessageDlg("There is already TJ revision created, Please select new TJ to created land porchase order ")
+            '     btnTJ_Click(Nothing, Nothing)
+            '     Return False
+            ' End If
 
 
             If tbTjNo.Text = "" Then
@@ -852,6 +875,9 @@ Partial Class TrPembelian
                 tbBiayaLainLian.Focus()
                 Return False
             End If
+
+
+          
 
 
             Return True

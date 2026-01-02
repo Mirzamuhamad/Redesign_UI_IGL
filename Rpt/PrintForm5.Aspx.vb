@@ -21,6 +21,8 @@ Partial Class Rpt_PrintForm5
     End Sub
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+
         Try
             If Not Me.IsPostBack Then
                 If Me.WebReport1.ReportFile = "" Then
