@@ -10,163 +10,196 @@
             <script src="../../Function/OpenDlg.js" type="text/javascript"></script>
             <script src="../../Function/Function.JS" type="text/javascript"></script>
             <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />
+            <link type="text/css" rel="stylesheet" href="../../Styles/circularprogress.css" />    
             <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">
+            <script type="text/javascript" src="../../JQuery/jquery.min.js"></script>
+            <script type="text/javascript" src="../../JQuery/jquery-ui.js"></script>
+            <script type="text/javascript" src="../../JQuery/circularProgressBar.min.js"></script>
 
-<script type="text/javascript">
-    var docs = [];
-    var index = 0;
+            <script type="text/javascript">
+                var docs = [];
+                var index = 0;
 
-    var scale = 1;
-    var translateX = 0;
-    var translateY = 0;
+                var scale = 1;
+                var translateX = 0;
+                var translateY = 0;
 
-    var isDragging = false;
-    var startX = 0;
-    var startY = 0;
+                var isDragging = false;
+                var startX = 0;
+                var startY = 0;
 
-    function openLightbox(data) {
-        docs = data || [];
-        index = 0;
+                function openLightbox(data) {
+                    docs = data || [];
+                    index = 0;
 
-        resetTransform();
+                    resetTransform();
 
-        document.getElementById("lightbox").style.display = "block";
-        showDoc();
-    }
+                    document.getElementById("lightbox").style.display = "block";
+                    showDoc();
+                }
 
-    function closeLightbox() {
-        document.getElementById("lightbox").style.display = "none";
-        document.getElementById("lb-body").innerHTML = "";
-    }
+                function closeLightbox() {
+                    document.getElementById("lightbox").style.display = "none";
+                    document.getElementById("lb-body").innerHTML = "";
+                }
 
-    function showDoc() {
-        if (!docs.length) return;
+                function showDoc() {
+                    if (!docs.length) return;
 
-        resetTransform();
+                    resetTransform();
 
-        var d = docs[index];
-        var body = document.getElementById("lb-body");
+                    var d = docs[index];
+                    var body = document.getElementById("lb-body");
 
-        if (d.type.toLowerCase().indexOf("pdf") !== -1) {
-            body.innerHTML =
-                "<iframe src='" + d.path + "' style='width:100%;height:100%;border:none;'></iframe>";
-            body.style.cursor = "default";
-        } else {
-            body.innerHTML =
-                "<div id='imgWrap' " +
+                    if (d.type.toLowerCase().indexOf("pdf") !== -1) {
+                        body.innerHTML =
+                            "<iframe src='" + d.path + "' style='width:100%;height:100%;border:none;'></iframe>";
+                        body.style.cursor = "default";
+                    } else {
+                        body.innerHTML =
+                            "<div id='imgWrap' " +
                             "style='width:100%;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;'>" +
                             "<img id='lb-img' src='" + d.path + "' " +
                             "style='max-width:90%;max-height:90%;width:auto;height:auto;" +
                             "transform:scale(1);transition:transform .15s ease;' />" +
                             "</div>"
-            body.style.cursor = "grab";
+                        body.style.cursor = "grab";
 
-            attachImageEvents();
-            applyTransform();
-        }
+                        attachImageEvents();
+                        applyTransform();
 
-        updateCounter();
-    }
+                    }
 
-    function resetTransform() {
-        scale = 1;
-        translateX = 0;
-        translateY = 0;
-    }
+                    updateCounter();
+                    updateNav();
+                }
 
-    function applyTransform() {
-        var img = document.getElementById("lb-img");
-        if (!img) return;
+                function resetTransform() {
+                    scale = 1;
+                    translateX = 0;
+                    translateY = 0;
+                }
 
-        img.style.transform =
-            "translate(" + translateX + "px," + translateY + "px) scale(" + scale + ")";
-    }
+                function applyTransform() {
+                    var img = document.getElementById("lb-img");
+                    if (!img) return;
 
-    /* ================= ZOOM SCROLL ================= */
-    document.addEventListener("wheel", function (e) {
-        var img = document.getElementById("lb-img");
-        if (!img) return;
+                    img.style.transform =
+                        "translate(" + translateX + "px," + translateY + "px) scale(" + scale + ")";
+                }
 
-        e.preventDefault();
+                /* ================= ZOOM SCROLL ================= */
+                document.addEventListener("wheel", function (e) {
+                    var img = document.getElementById("lb-img");
+                    if (!img) return;
 
-        var delta = e.deltaY > 0 ? -0.1 : 0.1;
-        scale += delta;
+                    e.preventDefault();
 
-        if (scale < 1) scale = 1;
-        if (scale > 5) scale = 5;
+                    var delta = e.deltaY > 0 ? -0.1 : 0.1;
+                    scale += delta;
 
-        applyTransform();
-    }, { passive: false });
+                    if (scale < 1) scale = 1;
+                    if (scale > 5) scale = 5;
 
-    /* ================= DRAG IMAGE ================= */
-    function attachImageEvents() {
-        var body = document.getElementById("lb-body");
+                    applyTransform();
+                }, { passive: false });
 
-        /* ==== CLICK & HOLD ==== */
-        body.onmousedown = function (e) {
-            if (scale <= 1) return;        // drag hanya saat zoom
+                /* ================= DRAG IMAGE ================= */
+                function attachImageEvents() {
+                    var body = document.getElementById("lb-body");
 
-            isDragging = true;
-            startX = e.clientX - translateX;
-            startY = e.clientY - translateY;
+                    /* ==== CLICK & HOLD ==== */
+                    body.onmousedown = function (e) {
+                        if (scale <= 1) return;        // drag hanya saat zoom
 
-            body.classList.add("dragging");
-            e.preventDefault();            // ⛔ stop select text
-        };
+                        isDragging = true;
+                        startX = e.clientX - translateX;
+                        startY = e.clientY - translateY;
 
-        /* ==== MOVE ==== */
-        document.onmousemove = function (e) {
-            if (!isDragging) return;
+                        body.classList.add("dragging");
+                        e.preventDefault();            // ⛔ stop select text
+                    };
 
-            translateX = e.clientX - startX;
-            translateY = e.clientY - startY;
-            applyTransform();
-        };
+                    /* ==== MOVE ==== */
+                    document.onmousemove = function (e) {
+                        if (!isDragging) return;
 
-        /* ==== RELEASE ==== */
-        document.onmouseup = function () {
-            if (!isDragging) return;
+                        translateX = e.clientX - startX;
+                        translateY = e.clientY - startY;
+                        applyTransform();
+                    };
 
-            isDragging = false;
-            body.classList.remove("dragging");
-        };
+                    /* ==== RELEASE ==== */
+                    document.onmouseup = function () {
+                        if (!isDragging) return;
 
-        /* ==== SAFETY (mouse keluar area) ==== */
-        body.onmouseleave = function () {
-            isDragging = false;
-            body.classList.remove("dragging");
-        };
-    }
-    /* ================= NAVIGATION ================= */
-    function nextDoc() {
-        if (index < docs.length - 1) {
-            index++;
-            showDoc();
-        }
-    }
+                        isDragging = false;
+                        body.classList.remove("dragging");
+                    };
 
-    function prevDoc() {
-        if (index > 0) {
-            index--;
-            showDoc();
-        }
-    }
+                    /* ==== SAFETY (mouse keluar area) ==== */
+                    body.onmouseleave = function () {
+                        isDragging = false;
+                        body.classList.remove("dragging");
+                    };
+                }
+                /* ================= NAVIGATION ================= */
 
-    /* ================= KEYBOARD ================= */
-    document.addEventListener("keydown", function (e) {
-        if (document.getElementById("lightbox").style.display !== "block") return;
+                function updateNav() {
+                    document.querySelector(".lb-nav.left").style.display =
+                        index > 0 ? "block" : "none";
 
-        if (e.keyCode === 37) prevDoc(); // ←
-        if (e.keyCode === 39) nextDoc(); // →
-        if (e.keyCode === 27) closeLightbox(); // ESC
-    });
+                    document.querySelector(".lb-nav.right").style.display =
+                        index < docs.length - 1 ? "block" : "none";
+                }
 
-    /* ================= COUNTER ================= */
-    function updateCounter() {
-        var el = document.getElementById("lb-counter");
-        if (el) el.innerHTML = (index + 1) + " / " + docs.length;
-    }
-</script>
+                function nextDoc() {
+                    if (index < docs.length - 1) {
+                        index++;
+                        showDoc();
+                    }
+                }
+
+                function prevDoc() {
+                    if (index > 0) {
+                        index--;
+                        showDoc();
+                    }
+                }
+
+                /* ================= KEYBOARD ================= */
+                document.addEventListener("keydown", function (e) {
+                    if (document.getElementById("lightbox").style.display !== "block") return;
+
+                    if (e.keyCode === 37) prevDoc(); // ←
+                    if (e.keyCode === 39) nextDoc(); // →
+                    if (e.keyCode === 27) closeLightbox(); // ESC
+                });
+
+                /* ================= COUNTER ================= */
+                function updateCounter() {
+                    var el = document.getElementById("lb-counter");
+                    if (el) el.innerHTML = (index + 1) + " / " + docs.length;
+                }
+
+
+                function ProgressCircle() {
+                    setTimeout(function () {
+                        var modal = $('<div />');
+                        modal.addClass("modal");
+                        $('body').append(modal);
+                        var loading = $(".loading");
+                        loading.show();
+                        var top = Math.max($(window).height() / 2 - loading[0].offsetHeight / 2, 0);
+                        var left = Math.max($(window).width() / 2 - loading[0].offsetWidth / 2, 0);
+                        loading.css({ top: top, left: left });
+                    }, 200);
+                }
+                $('form').live("submit", function () {
+                    ProgressCircle();
+                });
+
+            </script>
 
 
 
@@ -406,6 +439,8 @@
                                     <ItemTemplate>
                                         <asp:DropDownList CssClass="DropDownList" ID="ddl" runat="server">
                                             <asp:ListItem Selected="True" Text="View" />
+                                            <asp:ListItem Text="Approve User" />
+                                            <asp:ListItem Text="Reject" />
 
                                         </asp:DropDownList>
                                         <asp:Button class="btngo" runat="server" ID="btnGo" Text="G"
@@ -429,8 +464,9 @@
 
                                 <asp:TemplateField HeaderText="Dokumen" HeaderStyle-Width="90">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="lnkPreview" runat="server" Text="PRIVIEW "
-                                            CommandName="PreviewLightbox" CommandArgument='<%# Eval("RequestId") %>' />
+                                        <asp:LinkButton ID="lnkPreview" runat="server"
+                                            Text='<%# Eval("DokumenCount") %>' CommandName="PreviewLightbox"
+                                            CommandArgument='<%# Eval("RequestId") %>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
@@ -440,14 +476,15 @@
                                 <asp:BoundField DataField="KavlingDesc" HeaderText="Address"
                                     SortExpression="KavlingDesc" HeaderStyle-Width="400" />
                                 <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
-                                <asp:BoundField DataField="CreatedAt" HeaderText="Created At"
-                                    SortExpression="CreatedAt" />
+                                <asp:BoundField DataField="CreatedAt" DataFormatString="{0:dd MMM yyyy HH:mm:ss}"
+                                    HeaderText="Created At" SortExpression="CreatedAt" />
                                 <asp:BoundField DataField="ApprovedAt" HeaderText="Approved At"
-                                    SortExpression="ApprovedAt" />
+                                    SortExpression="ApprovedAt" DataFormatString="{0:dd MMM yyyy HH:mm:ss}" />
 
 
                             </Columns>
                         </asp:GridView>
+
 
                         <div id="lightbox" style="display:none;">
                             <div class="lb-overlay" onclick="closeLightbox()"></div>
@@ -465,6 +502,45 @@
                             <button type="button" class="lb-nav right" onclick="nextDoc(event)">❯</button>
 
                         </div>
+
+                        <!-- POPUP REJECT -->
+
+                        <style>
+.modal {
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background: #fff;
+    width: 400px;
+    padding: 20px;
+    margin: 15% auto;
+    border-radius: 5px;
+}
+</style>
+
+<asp:Panel ID="pnlReject" runat="server" CssClass="modal" Style="display:none;">
+    <div class="modal-content">
+        <!-- <h3>Reject Request</h3> -->
+
+        <asp:Label runat="server" Text="Alasan Reject"></asp:Label><br />
+        <asp:TextBox ID="txtRejectReason" runat="server"
+            TextMode="MultiLine" Rows="4" Width="100%" />
+
+        <br /><br />
+
+        <asp:Button ID="btnRejectOK" class="btn bitbtndt btnsave" runat="server"
+            Text="OK" />
+
+        <asp:Button ID="btnRejectCancel" class="btn bitbtndt btncancel" style="background-color: rgb(165, 35, 61);" runat="server"
+            Text="Cancel" />
+    </div>
+</asp:Panel>
+
 
 
                         <!-- <asp:Button class="bitbtn btnadd" runat="server" ID="btnAdd2" Text="Add" Visible="False" /> -->
@@ -535,6 +611,12 @@
                     </asp:Panel>
                     <asp:Label ID="lstatus" ForeColor="red" runat="server"></asp:Label>
                 </div>
+
+                <div class="loading" align="center">
+                    <br />
+                    <img src="../../Image/loader.gif" alt="" />
+                </div>
+
             </form>
         </body>
 

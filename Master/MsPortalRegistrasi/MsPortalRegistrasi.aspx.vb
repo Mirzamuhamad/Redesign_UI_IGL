@@ -2,6 +2,8 @@
 Imports System.Data
 Imports System.Data.SqlClient
 Imports System.Text
+Imports System.Net.Mail
+
 Partial Class MsPortalRegistrasi
     Inherits System.Web.UI.Page
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -34,6 +36,71 @@ Partial Class MsPortalRegistrasi
             '    tbAccExpense.Text = Session("Result")(0).ToString
             '    tbAccExpenseName.Text = Session("Result")(1).ToString
             'End If
+
+                If ViewState("Sender") = "GetdataKavlingPortal" Then              
+
+                    ' 1. Proses Approve di Database
+
+                    ' lstatus.Text = "Processing Approve for Request ID: " & ViewState("
+                    'Exit sub
+                    Dim drResult As DataRow
+                    Dim ListkavlingId As String = ""
+
+                    For Each drResult In DirectCast(Session("Result"), DataTable).Rows
+                        ' Mengambil ID
+                        Dim currentId As String = drResult("Kavlingid").ToString()
+
+                        ' Gabungkan dengan koma jika ListkavlingId sudah ada isinya
+                        If ListkavlingId = "" Then
+                            ListkavlingId = currentId
+                        Else
+                            ListkavlingId &= "," & currentId
+                        End If
+                    Next
+                    ' lstatus.Text = "Selected Kavling ID(s): " & ListkavlingId &  ViewState("SelectedRequestId")
+                    ' Exit Sub
+                    
+                    Dim SqlString, Hasil As String
+                    SqlString = "DECLARE @A VARCHAR(225); EXEC SP_ApproveRegistration  " + ViewState("SelectedRequestId").ToString() + ", " + QuotedStr(ListkavlingId) + ", " + QuotedStr(ViewState("UserId").ToString()) + ", @A OUT SELECT @A"
+                    ' SQLExecuteNonQuery(SqlString, ViewState("DBConnection").ToString)
+                    Hasil = SQLExecuteScalar(sqlstring, ViewState("DBConnection").ToString)
+                    
+                    ' Kita hapus "Sender" agar di Load berikutnya tidak masuk ke blok ini lagi
+                    ViewState("Sender") = "" 
+                    Session("Result") = Nothing
+                    If Hasil.Length > 10 Then
+                        ' lstatus.Text = MessageDlg(Hasil )
+                          ScriptManager.RegisterStartupScript(Me, Me.GetType(), "err", "alert('Gagal Approve : " & Hasil & "');", True)
+                        '   exit Sub
+                    Else
+                         ScriptManager.RegisterStartupScript(Me, Me.GetType(), "alertMessage", "alert('✅ Proses Approve Registrasi berhasil untuk Id Request: " & ViewState("SelectedRequestId") & "');", True)
+                        ' lstatus.Text = MessageDlg(Hasil )
+
+                         ' 1. Ambil Email dan Nama dari Database berdasarkan RequestId
+                    Dim targetEmail As String = ""
+                    Dim targetName As String = ""
+                    Dim idReq As String = ViewState("SelectedRequestId").ToString()
+                    
+                    Dim sqlFetch As String = "SELECT Email, FullName FROM RegistrationRequests"
+                    Dim dtReq As DataTable = BindDataTransaction(sqlFetch,"RequestId = " + QuotedStr(idReq),ViewState("DBConnection").ToString())
+                    ' lStatus.text = dtReq.Rows(0)("Email").ToString()
+                    ' exit sub
+                    If dtReq.Rows.Count > 0 Then
+                        targetEmail = dtReq.Rows(0)("Email").ToString()
+                        targetName = dtReq.Rows(0)("FullName").ToString()
+                    End If
+
+                    ' Panggil fungsi email yang membaca setting dari Web.config
+                    If targetEmail <> "" Then
+                        SendEmailApproval(targetEmail, targetName)
+                    End If
+
+                    End If
+                    hasil = ""                    
+                    bindDataGrid()
+                    
+                    
+                End If
            
             Session("Result") = Nothing
             ViewState("Sender") = Nothing
@@ -274,8 +341,55 @@ Partial Class MsPortalRegistrasi
 
                 SQLExecuteNonQuery("DELETE RegistrationRequests WHERE RequestId = '" & GVR.Cells(1).Text & "'", ViewState("DBConnection").ToString())
                 bindDataGrid()
-            End If
 
+            ElseIf DDL.SelectedValue = "Approve User" Then
+                Dim ResultField, CriteriaField As String
+                Try                
+                    Dim lnk As LinkButton = DirectCast(GVR.FindControl("lnkPreview"), LinkButton)                    
+                    ' 2. Simpan RequestId ke ViewState
+                    ViewState("SelectedRequestId") = lnk.CommandArgument
+                    ' Exit sub
+                    Session("filter") = "SELECT * FROM MsKavlingsPortal WHERE FgActive = 'Y' "
+                    ResultField = "KavlingId,kavlingCode"
+                    CriteriaField = "KavlingId,kavlingCode"
+                    ViewState("CriteriaField") = CriteriaField.Split(",")
+                    Session("Column") = ResultField.Split(",")
+                    ViewState("Sender") = "GetdataKavlingPortal"
+                    Session("DBConnection") = ViewState("DBConnection")
+                    AttachScript("OpenSearchMultiDlg();", Page, Me.GetType())
+                Catch ex As Exception
+                    lstatus.Text = "Error in Approve User: " + ex.ToString
+                End Try
+
+            ElseIf DDL.SelectedValue = "Reject" Then
+
+
+                              
+      
+    Dim lnk As LinkButton = DirectCast(GVR.FindControl("lnkPreview"), LinkButton)                    
+                    ' 2. Simpan RequestId ke ViewState
+                    ViewState("SelectedRequestId") = lnk.CommandArgument
+
+                     Dim targetEmail As String = ""
+                    Dim targetName As String = ""
+                    Dim idReq As String = ViewState("SelectedRequestId").ToString()
+                    Dim sqlFetch As String = "SELECT Email, FullName, Status FROM RegistrationRequests"
+                    Dim dtReq As DataTable = BindDataTransaction(sqlFetch,"RequestId = " + QuotedStr(idReq),ViewState("DBConnection").ToString())
+                  
+                    If dtReq.Rows(0)("Status").ToString() <> "PENDING" Then
+                        lstatus.Text = MessageDlg("Cannot Reject. The request has been " & dtReq.Rows(0)("Status").ToString())
+                        exit sub
+                        Else
+                                  ' Reset alasan
+    txtRejectReason.Text = ""
+
+    ' Tampilkan popup
+    pnlReject.Style("display") = "block"
+                    End If
+    
+    
+            
+            End If
         End If
 
 
@@ -313,6 +427,52 @@ Partial Class MsPortalRegistrasi
         Catch ex As Exception
             lstatus.Text = "DataGrid_RowCommand Error : " + ex.ToString
         End Try
+    End Sub
+
+    Protected Sub btnRejectCancel_Click(sender As Object, e As EventArgs) Handles btnRejectCancel.Click
+    pnlReject.Style("display") = "none"
+End Sub
+    
+
+    Protected Sub btnRejectOK_Click(sender As Object, e As EventArgs) Handles btnRejectOK.Click
+
+    pnlReject.Style("display") = "none"
+    Dim ResultField, SqlUpdate As String
+                Try  
+
+                    
+
+                     Dim targetEmail As String = ""
+                    Dim targetName As String = ""
+                    Dim idReq As String = ViewState("SelectedRequestId").ToString()
+                    Dim sqlFetch As String = "SELECT Email, FullName, Status FROM RegistrationRequests"
+                    Dim dtReq As DataTable = BindDataTransaction(sqlFetch,"RequestId = " + QuotedStr(idReq),ViewState("DBConnection").ToString())
+                  
+                    If dtReq.Rows(0)("Status").ToString() <> "PENDING" Then
+                        lstatus.Text = MessageDlg("Cannot Reject. The request has been " & dtReq.Rows(0)("Status").ToString())
+                        exit sub
+                    End If
+                    
+                    ' Exit sub
+                    SqlUpdate = "UPDATE RegistrationRequests SET Status = 'REJECTED', ApprovedAt = GETDATE() WHERE RequestId = " + QuotedStr(ViewState("SelectedRequestId").ToString())
+                    SQLExecuteNonQuery(SqlUpdate, ViewState("DBConnection").ToString())
+                    ' 1. Ambil Email dan Nama dari Database berdasarkan RequestId
+                     ' lStatus.text = dtReq.Rows(0)("Email").ToString()
+                    ' exit sub
+                    If dtReq.Rows.Count > 0 Then
+                        targetEmail = dtReq.Rows(0)("Email").ToString()
+                        targetName = dtReq.Rows(0)("FullName").ToString()
+                    End If
+                    ' Panggil fungsi email yang membaca setting dari Web.config
+                    If targetEmail <> "" Then
+                        SendEmailReject(targetEmail, targetName,"Dokumen tidak lengkap atau tidak sesuai. Silakan hubungi pengelola kawasan untuk informasi lebih lanjut.")
+                    End If
+                    bindDataGrid()
+
+                Catch ex As Exception
+                    lstatus.Text = MessageDlg("Error in Reject User: " + ex.ToString)
+                End Try
+
     End Sub
 
     Protected Sub BtnAdd_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnAdd.Click, btnAdd2.Click
@@ -439,5 +599,128 @@ Partial Class MsPortalRegistrasi
     End Select
 End Function
 
+
+Public Sub SendEmailApproval(ByVal toEmail As String, ByVal userName As String)
+    Try
+        Dim loginUrl As String = "http://10.10.10.152:5134/Login" ' Ganti dengan link portal Anda
+        
+        Dim message As New MailMessage()
+        message.To.Add(New MailAddress(toEmail))
+        message.Subject = "Persetujuan Registrasi Akun Portal"
+        message.IsBodyHtml = True
+
+        ' Konten HTML dengan Tombol
+        Dim htmlBody As String = ""
+        htmlBody &= "<div style='font-family: Arial, sans-serif; background:#f9fafb; padding:20px'>"
+        htmlBody &= "  <div style='max-width:600px; margin:auto; background:#ffffff; border-radius:8px; border:1px solid #e5e7eb; overflow:hidden'>"
+        
+        ' HEADER
+        htmlBody &= "    <div style='background:#16a34a; padding:16px; color:white'>"
+        htmlBody &= "      <h2 style='margin:0; font-size:18px'>Registrasi Disetujui</h2>"
+        htmlBody &= "    </div>"
+
+        ' BODY
+        htmlBody &= "    <div style='padding:20px; color:#374151'>"
+        htmlBody &= "      <p>Halo <b>" & userName & "</b>,</p>"
+        htmlBody &= "      <p>Terima kasih telah melakukan registrasi. Akun Anda saat ini telah <b>disetujui dan aktif</b>.</p>"
+
+        ' BOX STATUS
+        htmlBody &= "      <div style='background:#ecfdf5; border-left:4px solid #16a34a; padding:12px; margin:16px 0; border-radius:4px; color:#065f46'>"
+        htmlBody &= "        <b>Status Akun: Aktif</b><br>"
+        htmlBody &= "        Sekarang Anda dapat mengakses layanan portal kami sepenuhnya."
+        htmlBody &= "      </div>"
+
+        ' BUTTON LOGIN
+        htmlBody &= "      <div style='text-align: center; margin: 25px 0;'>"
+        htmlBody &= "        <a href='" & loginUrl & "' style='background-color: #16a34a; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;'>"
+        htmlBody &= "           Login ke Portal Sekarang"
+        htmlBody &= "        </a>"
+        htmlBody &= "      </div>"
+
+        ' FOOTER
+        htmlBody &= "      <p style='margin-top:24px'>Salam,<br><b>Pengelola Kawasan</b></p>"
+        htmlBody &= "      <hr style='margin:24px 0; border:none; border-top:1px solid #e5e7eb'>"
+        htmlBody &= "      <p style='font-size:12px; color:#6b7280'>Email ini dikirim secara otomatis.<br>Mohon tidak membalas email ini.</p>"
+        htmlBody &= "    </div>"
+        
+        htmlBody &= "  </div>"
+        htmlBody &= "</div>"
+
+        message.Body = htmlBody
+
+        ' Konfigurasi SMTP
+        Dim smtp As New SmtpClient() ' Membaca dari Web.Config
+        smtp.EnableSsl = True
+        smtp.Send(message)
+
+    Catch ex As Exception
+        lstatus.Text &= " (Gagal kirim email: " & ex.Message & ")"
+    End Try
+End Sub
+
+
+Public Sub SendEmailReject(ByVal toEmail As String, ByVal userName As String, ByVal rejectReason As String)
+    Try
+        Dim contactSupportUrl As String = "https://portal.kawasananda.com/contact.aspx"
+        
+        Dim message As New MailMessage()
+        message.To.Add(New MailAddress(toEmail))
+        message.Subject = "Registrasi Akun Ditolak"
+        message.IsBodyHtml = True
+
+        ' Konten HTML dengan Tema Merah
+        Dim htmlBody As String = ""
+        htmlBody &= "<div style='font-family: Arial, sans-serif; background:#f9fafb; padding:20px'>"
+        htmlBody &= "  <div style='max-width:600px; margin:auto; background:#ffffff; border-radius:8px; border:1px solid #e5e7eb; overflow:hidden'>"
+        
+        ' HEADER (Warna Merah)
+        htmlBody &= "    <div style='background:#dc2626; padding:16px; color:white'>"
+        htmlBody &= "      <h2 style='margin:0; font-size:18px'>Registrasi Ditolak</h2>"
+        htmlBody &= "    </div>"
+
+        ' BODY
+        htmlBody &= "    <div style='padding:20px; color:#374151'>"
+        htmlBody &= "      <p>Halo <b>" & userName & "</b>,</p>"
+        htmlBody &= "      <p>Terima kasih telah melakukan registrasi di portal kami. Mohon maaf, saat ini pengajuan akun Anda <b>belum dapat disetujui</b>.</p>"
+
+        ' BOX STATUS (Warna Merah Muda)
+        htmlBody &= "      <div style='background:#fef2f2; border-left:4px solid #dc2626; padding:12px; margin:16px 0; border-radius:4px; color:#991b1b'>"
+        htmlBody &= "        <b>Alasan Penolakan:</b><br>"
+        htmlBody &= "        " & rejectReason & ""
+        htmlBody &= "      </div>"
+
+        htmlBody &= "      <p>Silakan melakukan registrasi ulang dengan data yang benar atau hubungi bagian administrasi jika Anda merasa ini adalah kesalahan.</p>"
+
+        ' BUTTON SUPPORT
+        htmlBody &= "      <div style='text-align: center; margin: 25px 0;'>"
+        htmlBody &= "        <a href='" & contactSupportUrl & "' style='background-color: #374151; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;'>"
+        htmlBody &= "           Hubungi Dukungan"
+        htmlBody &= "        </a>"
+        htmlBody &= "      </div>"
+
+        ' FOOTER
+        htmlBody &= "      <p style='margin-top:24px'>Salam,<br><b>Pengelola Kawasan</b></p>"
+        htmlBody &= "      <hr style='margin:24px 0; border:none; border-top:1px solid #e5e7eb'>"
+        htmlBody &= "      <p style='font-size:12px; color:#6b7280'>Email ini dikirim secara otomatis.<br>Mohon tidak membalas email ini.</p>"
+        htmlBody &= "    </div>"
+        
+        htmlBody &= "  </div>"
+        htmlBody &= "</div>"
+
+        message.Body = htmlBody
+
+        ' Konfigurasi SMTP
+        Dim smtp As New SmtpClient()
+        smtp.EnableSsl = True ' Sesuaikan dengan hasil test sebelumnya
+        smtp.Send(message)
+
+        ' ' Example usage:
+        ' SendEmailReject(targetEmail, targetName, "Dokumen tidak lengkap atau tidak sesuai. Silakan hubungi pengelola kawasan untuk informasi lebih lanjut.")
+   
+
+    Catch ex As Exception
+        lstatus.Text &= " (Gagal kirim email reject: " & ex.Message & ")"
+    End Try
+End Sub
     
 End Class
