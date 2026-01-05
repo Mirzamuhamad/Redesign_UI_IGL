@@ -206,14 +206,14 @@
             &nbsp;
             <asp:DropDownList CssClass="DropDownList" ID="ddlCommand" runat="server" Visible="false" />
             <asp:Button class="btngo" runat="server" ID="BtnGo" Text="G" Visible="false" />
-            <br />&nbsp;
+            <br/>&nbsp;
             <div style="border: 0px  solid; width: 100%; height: 100%; overflow: auto;">
                 <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="true"
                     CssClass="Grid" AutoGenerateColumns="false">
                     <HeaderStyle CssClass="GridHeader"></HeaderStyle>
                     <RowStyle CssClass="GridItem" Wrap="false" />
                     <AlternatingRowStyle CssClass="GridAltItem" />
-                    <PagerStyle CssClass="GridPager" />
+                    <PagerStyle CssClass="GridPager" />                    
                     <Columns>
                         <asp:TemplateField>
                             <HeaderTemplate>
@@ -323,6 +323,7 @@
                                                 OnClientClick="return confirm('Sure to delete this data?');" CommandName="Delete" />
                                         </ItemTemplate>
                                     </asp:TemplateField>
+                                    
                                     <asp:TemplateField>
                                         <ItemTemplate>
                                             <asp:Button ID="btnView" runat="server" class="bitbtndt btnedit" Text="Detail Dokumen" Width="120px"
