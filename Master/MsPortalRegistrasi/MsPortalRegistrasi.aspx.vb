@@ -363,10 +363,7 @@ Partial Class MsPortalRegistrasi
 
             ElseIf DDL.SelectedValue = "Reject" Then
 
-
-                              
-      
-    Dim lnk As LinkButton = DirectCast(GVR.FindControl("lnkPreview"), LinkButton)                    
+                    Dim lnk As LinkButton = DirectCast(GVR.FindControl("lnkPreview"), LinkButton)                    
                     ' 2. Simpan RequestId ke ViewState
                     ViewState("SelectedRequestId") = lnk.CommandArgument
 
@@ -381,10 +378,9 @@ Partial Class MsPortalRegistrasi
                         exit sub
                         Else
                                   ' Reset alasan
-    txtRejectReason.Text = ""
-
-    ' Tampilkan popup
-    pnlReject.Style("display") = "block"
+                     txtRejectReason.Text = ""             
+                    ScriptManager.RegisterStartupScript(Me, Me.GetType(), "ShowDetail", "showCustomModalReject();", True)
+                    txtRejectReason.focus()
                     End If
     
     
@@ -429,18 +425,13 @@ Partial Class MsPortalRegistrasi
         End Try
     End Sub
 
-    Protected Sub btnRejectCancel_Click(sender As Object, e As EventArgs) Handles btnRejectCancel.Click
-    pnlReject.Style("display") = "none"
-End Sub
-    
+
 
     Protected Sub btnRejectOK_Click(sender As Object, e As EventArgs) Handles btnRejectOK.Click
-
-    pnlReject.Style("display") = "none"
+    ScriptManager.RegisterStartupScript(Me, Me.GetType(), "ShowDetail", "CloseCustomModalReject();", True)
+   
     Dim ResultField, SqlUpdate As String
-                Try  
-
-                    
+                Try 
 
                      Dim targetEmail As String = ""
                     Dim targetName As String = ""
@@ -465,7 +456,7 @@ End Sub
                     End If
                     ' Panggil fungsi email yang membaca setting dari Web.config
                     If targetEmail <> "" Then
-                        SendEmailReject(targetEmail, targetName,"Dokumen tidak lengkap atau tidak sesuai. Silakan hubungi pengelola kawasan untuk informasi lebih lanjut.")
+                        SendEmailReject(targetEmail, targetName, txtRejectReason.Text)
                     End If
                     bindDataGrid()
 
@@ -662,6 +653,7 @@ End Sub
 Public Sub SendEmailReject(ByVal toEmail As String, ByVal userName As String, ByVal rejectReason As String)
     Try
         Dim contactSupportUrl As String = "https://portal.kawasananda.com/contact.aspx"
+        Dim waNumber As String = "+6285159586662" ' Ganti dengan nomor WhatsApp dukungan Anda
         
         Dim message As New MailMessage()
         message.To.Add(New MailAddress(toEmail))
@@ -692,11 +684,20 @@ Public Sub SendEmailReject(ByVal toEmail As String, ByVal userName As String, By
         htmlBody &= "      <p>Silakan melakukan registrasi ulang dengan data yang benar atau hubungi bagian administrasi jika Anda merasa ini adalah kesalahan.</p>"
 
         ' BUTTON SUPPORT
-        htmlBody &= "      <div style='text-align: center; margin: 25px 0;'>"
-        htmlBody &= "        <a href='" & contactSupportUrl & "' style='background-color: #374151; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;'>"
-        htmlBody &= "           Hubungi Dukungan"
-        htmlBody &= "        </a>"
-        htmlBody &= "      </div>"
+        htmlBody &= "  <div style='text-align:center; margin:25px 0;'>"
+        htmlBody &= "    <a href='https://wa.me/" & waNumber & "' "
+        htmlBody &= "       style='background-color:#25D366; color:#ffffff; "
+        htmlBody &= "              padding:12px 20px; text-decoration:none; "
+        htmlBody &= "              border-radius:6px; font-weight:bold; "
+        htmlBody &= "              display:inline-block;'>"
+
+        htmlBody &= "      <img src='https://cdn-icons-png.flaticon.com/512/124/124034.png' "
+        htmlBody &= "           width='18' height='18' "
+        htmlBody &= "           style='vertical-align:middle; margin-right:8px; border:0;' />"
+
+        htmlBody &= "      Hubungi via WhatsApp"
+        htmlBody &= "    </a>"
+        htmlBody &= "  </div>"
 
         ' FOOTER
         htmlBody &= "      <p style='margin-top:24px'>Salam,<br><b>Pengelola Kawasan</b></p>"

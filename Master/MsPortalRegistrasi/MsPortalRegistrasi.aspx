@@ -10,7 +10,7 @@
             <script src="../../Function/OpenDlg.js" type="text/javascript"></script>
             <script src="../../Function/Function.JS" type="text/javascript"></script>
             <link href="../../Styles/Style.css" rel="stylesheet" type="text/css" />
-            <link type="text/css" rel="stylesheet" href="../../Styles/circularprogress.css" />    
+            <link type="text/css" rel="stylesheet" href="../../Styles/circularprogress.css" />
             <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap" rel="stylesheet">
             <script type="text/javascript" src="../../JQuery/jquery.min.js"></script>
             <script type="text/javascript" src="../../JQuery/jquery-ui.js"></script>
@@ -375,6 +375,7 @@
         </style>
 
 
+
         <body>
             <form id="form1" runat="server">
                 <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -503,44 +504,54 @@
 
                         </div>
 
-                        <!-- POPUP REJECT -->
 
-                        <style>
-.modal {
-    position: fixed;
-    z-index: 9999;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.4);
-}
+                         <!-- POPUP REJECT -->
 
-.modal-content {
-    background: #fff;
-    width: 400px;
-    padding: 20px;
-    margin: 15% auto;
-    border-radius: 5px;
-}
-</style>
+                <div class="UntukModalReject">
+                    <!--------------------- Start modal CIP Update ------------------------------->
+                    <!-- === Modal Custom Update === -->
+                    <div id="customModalReject" class="custom-modal" >
+                        <div class="custom-modal-content" >
+                            <div class="custom-modal-header">
+                                <h5>Masukan Alasan Rejact</h5>
+                                <span class="close-btn" onclick="closeCustomModalReject()">&times;</span>
+                            </div>
 
-<asp:Panel ID="pnlReject" runat="server" CssClass="modal" Style="display:none;">
-    <div class="modal-content">
-        <!-- <h3>Reject Request</h3> -->
+                            <div class="custom-modal-body">
+                                <asp:TextBox ID="txtRejectReason" runat="server" CssClass="TextBox"
+                                    TextMode="MultiLine" Width="490px" Height="150px"
+                                    placeholder="Masukkan keterangan di sini..." />
+                                <br>
+                            </div>
 
-        <asp:Label runat="server" Text="Alasan Reject"></asp:Label><br />
-        <asp:TextBox ID="txtRejectReason" runat="server"
-            TextMode="MultiLine" Rows="4" Width="100%" />
+                            <div class="custom-modal-footer">
+                                <asp:Button ID="btnRejectOK" class="btn bitbtndt btnsave" runat="server" Text="OK" />
 
-        <br /><br />
+                                <asp:Button ID="btnRejectCancel" class="btn bitbtndt btncancel"
+                                    OnClientClick="closeCustomModalReject()" style="background-color: rgb(165, 35, 61);"
+                                    runat="server" Text="Cancel" />
+                            </div>
+                        </div>
+                    </div>
 
-        <asp:Button ID="btnRejectOK" class="btn bitbtndt btnsave" runat="server"
-            Text="OK" />
+                    <script type="text/javascript">
+                        function showCustomModalReject() {
+                            document.getElementById('customModalReject').style.display = 'flex';
+                        }
 
-        <asp:Button ID="btnRejectCancel" class="btn bitbtndt btncancel" style="background-color: rgb(165, 35, 61);" runat="server"
-            Text="Cancel" />
-    </div>
-</asp:Panel>
+                        function closeCustomModalReject() {
+                            document.getElementById('customModalReject').style.display = 'none';
+                        }
 
+                        window.onclick = function (event) {
+                            const modal2Update = document.getElementById("customModalReject");
+                            if (event.target === modal2Update) {
+                                closeCustomModalReject();
+                            }
+                        }
+                    </script>
+                    <!--------------------- End modal CIP Update ------------------------------->
+                </div>
 
 
                         <!-- <asp:Button class="bitbtn btnadd" runat="server" ID="btnAdd2" Text="Add" Visible="False" /> -->
@@ -612,10 +623,16 @@
                     <asp:Label ID="lstatus" ForeColor="red" runat="server"></asp:Label>
                 </div>
 
+
+               
+
                 <div class="loading" align="center">
                     <br />
                     <img src="../../Image/loader.gif" alt="" />
                 </div>
+
+
+
 
             </form>
         </body>
