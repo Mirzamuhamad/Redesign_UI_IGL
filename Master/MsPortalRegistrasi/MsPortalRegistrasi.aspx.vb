@@ -427,9 +427,7 @@ Partial Class MsPortalRegistrasi
 
 
 
-    Protected Sub btnRejectOK_Click(sender As Object, e As EventArgs) Handles btnRejectOK.Click
-    ScriptManager.RegisterStartupScript(Me, Me.GetType(), "ShowDetail", "CloseCustomModalReject();", True)
-   
+    Protected Sub btnRejectOK_Click(sender As Object, e As EventArgs) Handles btnRejectOK.Click   
     Dim ResultField, SqlUpdate As String
                 Try 
 
