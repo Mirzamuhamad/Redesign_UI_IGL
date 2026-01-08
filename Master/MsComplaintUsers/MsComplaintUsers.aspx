@@ -461,10 +461,10 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Dokumen" HeaderStyle-Width="90">
+                                <asp:TemplateField HeaderText="Bukti Foto" HeaderStyle-Width="90">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="lnkPreview" runat="server"
-                                            Text='<%# Eval("PhotoCount") %>' CommandName="PreviewLightbox"
+                                            Text='<%# String.Format("Bukti Foto: {0}", Eval("PhotoCount")) %>' CommandName="PreviewLightbox"
                                             CommandArgument='<%# Eval("ComplaintId") %>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
