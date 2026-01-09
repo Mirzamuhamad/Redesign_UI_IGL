@@ -203,13 +203,14 @@ Partial Class MsComplaintUsers
         Dim SqlString As String
         Dim DT As DataTable
         Try
-            SqlString = "SELECT * FROM V_RegistrationRequests  WHERE RequestNumber = " + QuotedStr(SellCode)
+            SqlString = "SELECT * FROM V_ComplaintList  WHERE Id = " + QuotedStr(SellCode)
             DT = BindDataTransaction(SqlString, "", ViewState("DBConnection").ToString)
-            BindToText(tbCode, DT.Rows(0)("RequestNumber").ToString)
-            BindToText(tbName, DT.Rows(0)("FullName").ToString)
-            BindToDropList(ddlRoleType, DT.Rows(0)("RoleType").ToString)
-            BindToText(tbEmail, DT.Rows(0)("Email").ToString)
-            BindToText(tbKavlingDesc, DT.Rows(0)("KavlingDesc").ToString)
+            BindToText(tbCode, DT.Rows(0)("Id").ToString)
+             BindToText(tbstatus, DT.Rows(0)("Status").ToString)
+            BindToText(tbName, DT.Rows(0)("UserName").ToString)
+            BindToText(tbRoleType, DT.Rows(0)("UserType").ToString)
+            BindToText(tbTitle, DT.Rows(0)("Title").ToString)
+            BindToText(tbDescrip, DT.Rows(0)("Description").ToString)
         Catch ex As Exception
             lstatus.Text = lstatus.Text + "FillTextBox error: " & ex.ToString
         End Try
@@ -496,38 +497,38 @@ Partial Class MsComplaintUsers
         End Try
     End Function
 
-    Protected Sub BtnSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles BtnSave.Click
-        Dim SqlString As String
-        Try
-            If cekInput() = False Then
-                Exit Sub
-            End If
+    ' Protected Sub BtnSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles BtnSave.Click
+    '     Dim SqlString As String
+    '     Try
+    '         If cekInput() = False Then
+    '             Exit Sub
+    '         End If
 
-            If ViewState("State") = "Insert" Then
-                If SQLExecuteScalar("SELECT RequestId FROM V_RegistrationRequests WHERE Email = " + QuotedStr(tbEmail.Text), ViewState("DBConnection").ToString).Length > 0 Then
-                    lstatus.Text = "Email " + QuotedStr(tbEmail.Text) + " has already been exist"
-                    Exit Sub
-                End If
+    '         If ViewState("State") = "Insert" Then
+    '             If SQLExecuteScalar("SELECT RequestId FROM V_RegistrationRequests WHERE Email = " + QuotedStr(tbEmail.Text), ViewState("DBConnection").ToString).Length > 0 Then
+    '                 lstatus.Text = "Email " + QuotedStr(tbEmail.Text) + " has already been exist"
+    '                 Exit Sub
+    '             End If
 
-                SqlString = "INSERT INTO RegistrationRequests (FullName,RoleType, Email, KavlingDesc) " + _
-                "SELECT " + QuotedStr(tbName.Text) + ", " & _
-                QuotedStr(ddlRoleType.SelectedValue) + ", " + _
-                QuotedStr(tbEmail.Text) + ", " + _
-                QuotedStr(tbKavlingDesc.Text)
-            Else
-                SqlString = "UPDATE RegistrationRequests SET FullName = " + QuotedStr(tbName.Text) & _
-                            ", RoleType = " + QuotedStr(ddlRoleType.SelectedValue) & _
-                            ", KavlingDesc = " + QuotedStr(tbKavlingDesc.Text) & _
-                            " WHERE Email = " + QuotedStr(tbEmail.Text)
-            End If
-            SQLExecuteNonQuery(SqlString, ViewState("DBConnection").ToString)
-            bindDataGrid()
-            pnlInput.Visible = False
-            pnlHd.Visible = True
-        Catch ex As Exception
-            lstatus.Text = "Btn Save Error : " + ex.ToString
-        End Try
-    End Sub
+    '             SqlString = "INSERT INTO RegistrationRequests (FullName,RoleType, Email, KavlingDesc) " + _
+    '             "SELECT " + QuotedStr(tbName.Text) + ", " & _
+    '             QuotedStr(ddlRoleType.SelectedValue) + ", " + _
+    '             QuotedStr(tbEmail.Text) + ", " + _
+    '             QuotedStr(tbKavlingDesc.Text)
+    '         Else
+    '             SqlString = "UPDATE RegistrationRequests SET FullName = " + QuotedStr(tbName.Text) & _
+    '                         ", RoleType = " + QuotedStr(ddlRoleType.SelectedValue) & _
+    '                         ", KavlingDesc = " + QuotedStr(tbKavlingDesc.Text) & _
+    '                         " WHERE Email = " + QuotedStr(tbEmail.Text)
+    '         End If
+    '         SQLExecuteNonQuery(SqlString, ViewState("DBConnection").ToString)
+    '         bindDataGrid()
+    '         pnlInput.Visible = False
+    '         pnlHd.Visible = True
+    '     Catch ex As Exception
+    '         lstatus.Text = "Btn Save Error : " + ex.ToString
+    '     End Try
+    ' End Sub
 
     Protected Sub btnReset_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnReset.Click
         Try
@@ -578,9 +579,9 @@ Partial Class MsComplaintUsers
 
     Select Case UCase(status.ToString())
         Case "PENDING"
-            Return "status-badge status-rejected"
-        Case "PROSES"
             Return "status-badge status-pending"
+        Case "PROSES"
+            Return "status-badge status-prosess"
         Case "SELESAI"
             Return "status-badge status-approved"
         Case Else

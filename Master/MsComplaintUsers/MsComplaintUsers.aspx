@@ -223,6 +223,12 @@
                 border: 1px solid #ffeeba;
             }
 
+            .status-prosess {
+                background-color: #d4ebedff;
+                color: #155757ff;
+                border: 1px solid #d4ebedff;
+            }
+
             .status-approved {
                 background-color: #d4edda;
                 color: #155724;
@@ -415,10 +421,10 @@
                                         <asp:TextBox runat="server" ID="tbfilter2" CssClass="TextBox" />
                                         <asp:DropDownList runat="server" ID="ddlField2" CssClass="DropDownList">
                                             <asp:ListItem Selected="true" Text="No Tiket" Value="Id">
-                                        </asp:ListItem>
-                                        <asp:ListItem Text="Status" Value="Status"></asp:ListItem>
-                                        <asp:ListItem Text="Users Type" Value="UserType"></asp:ListItem>
-                                        <asp:ListItem Text="Nama User" Value="UserName"></asp:ListItem>
+                                            </asp:ListItem>
+                                            <asp:ListItem Text="Status" Value="Status"></asp:ListItem>
+                                            <asp:ListItem Text="Users Type" Value="UserType"></asp:ListItem>
+                                            <asp:ListItem Text="Nama User" Value="UserName"></asp:ListItem>
                                         </asp:DropDownList>
                                     </td>
                                 </tr>
@@ -451,8 +457,8 @@
 
 
 
-                                <asp:BoundField DataField="Id" HeaderText="No Tiket"
-                                    HeaderStyle-Width="140" SortExpression="RequestNumber" />
+                                <asp:BoundField DataField="Id" HeaderText="No Tiket" HeaderStyle-Width="140"
+                                    SortExpression="RequestNumber" />
                                 <asp:TemplateField HeaderText="Status" SortExpression="Status">
                                     <ItemTemplate>
                                         <span class='<%# GetStatusCss(Eval("Status")) %>'>
@@ -461,17 +467,18 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Bukti Foto" HeaderStyle-Width="90">
+                                <asp:TemplateField HeaderText="Bukti Pengaduan" HeaderStyle-Width="90">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="lnkPreview" runat="server"
-                                            Text='<%# String.Format("Bukti Foto: {0}", Eval("PhotoCount")) %>' CommandName="PreviewLightbox"
+                                            Text='<%# String.Format("Bukti Foto {0}", Eval("PhotoCount")) %>'
+                                            CommandName="PreviewLightbox"
                                             CommandArgument='<%# Eval("ComplaintId") %>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                               
+                                <asp:BoundField DataField="UserName" HeaderText="Nama" SortExpression="UserName" />
                                 <asp:BoundField DataField="UserType" HeaderText="Role Type" SortExpression="UserType" />
-                                 <asp:BoundField DataField="Title" HeaderText="Title" HeaderStyle-Width="200"
+                                <asp:BoundField DataField="Title" HeaderText="Title" HeaderStyle-Width="200"
                                     SortExpression="Title" />
                                 <asp:BoundField DataField="Description" HeaderText="Address"
                                     SortExpression="Description" HeaderStyle-Width="400" />
@@ -501,53 +508,54 @@
                         </div>
 
 
-                         <!-- POPUP REJECT -->
+                        <!-- POPUP REJECT -->
 
-                <div class="UntukModalReject">
-                    <!--------------------- Start modal CIP Update ------------------------------->
-                    <!-- === Modal Custom Update === -->
-                    <div id="customModalReject" class="custom-modal" >
-                        <div class="custom-modal-content" >
-                            <div class="custom-modal-header">
-                                <h5>Masukan Alasan Rejact</h5>
-                                <span class="close-btn" onclick="closeCustomModalReject()">&times;</span>
+                        <div class="UntukModalReject">
+                            <!--------------------- Start modal CIP Update ------------------------------->
+                            <!-- === Modal Custom Update === -->
+                            <div id="customModalReject" class="custom-modal">
+                                <div class="custom-modal-content">
+                                    <div class="custom-modal-header">
+                                        <h5>Masukan Alasan Rejact</h5>
+                                        <span class="close-btn" onclick="closeCustomModalReject()">&times;</span>
+                                    </div>
+
+                                    <div class="custom-modal-body">
+                                        <asp:TextBox ID="txtRejectReason" runat="server" CssClass="TextBox"
+                                            TextMode="MultiLine" Width="490px" Height="150px"
+                                            placeholder="Masukkan keterangan di sini..." />
+                                        <br>
+                                    </div>
+
+                                    <div class="custom-modal-footer">
+                                        <asp:Button ID="btnRejectOK" class="btn bitbtndt btnsave" runat="server"
+                                            Text="OK" />
+
+                                        <asp:Button ID="btnRejectCancel" class="btn bitbtndt btncancel"
+                                            OnClientClick="closeCustomModalReject()"
+                                            style="background-color: rgb(165, 35, 61);" runat="server" Text="Cancel" />
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="custom-modal-body">
-                                <asp:TextBox ID="txtRejectReason" runat="server" CssClass="TextBox"
-                                    TextMode="MultiLine" Width="490px" Height="150px"
-                                    placeholder="Masukkan keterangan di sini..." />
-                                <br>
-                            </div>
+                            <script type="text/javascript">
+                                function showCustomModalReject() {
+                                    document.getElementById('customModalReject').style.display = 'flex';
+                                }
 
-                            <div class="custom-modal-footer">
-                                <asp:Button ID="btnRejectOK" class="btn bitbtndt btnsave" runat="server" Text="OK" />
+                                function closeCustomModalReject() {
+                                    document.getElementById('customModalReject').style.display = 'none';
+                                }
 
-                                <asp:Button ID="btnRejectCancel" class="btn bitbtndt btncancel"
-                                    OnClientClick="closeCustomModalReject()" style="background-color: rgb(165, 35, 61);"
-                                    runat="server" Text="Cancel" />
-                            </div>
+                                window.onclick = function (event) {
+                                    const modal2Update = document.getElementById("customModalReject");
+                                    if (event.target === modal2Update) {
+                                        closeCustomModalReject();
+                                    }
+                                }
+                            </script>
+                            <!--------------------- End modal CIP Update ------------------------------->
                         </div>
-                    </div>
-
-                    <script type="text/javascript">
-                        function showCustomModalReject() {
-                            document.getElementById('customModalReject').style.display = 'flex';
-                        }
-
-                        function closeCustomModalReject() {
-                            document.getElementById('customModalReject').style.display = 'none';
-                        }
-
-                        window.onclick = function (event) {
-                            const modal2Update = document.getElementById("customModalReject");
-                            if (event.target === modal2Update) {
-                                closeCustomModalReject();
-                            }
-                        }
-                    </script>
-                    <!--------------------- End modal CIP Update ------------------------------->
-                </div>
 
 
                         <!-- <asp:Button class="bitbtn btnadd" runat="server" ID="btnAdd2" Text="Add" Visible="False" /> -->
@@ -555,11 +563,13 @@
                     <asp:Panel runat="server" ID="pnlInput" Visible="false">
                         <table>
                             <tr>
-                                <td>No Registrasi</td>
+                                <td>No Tiket</td>
                                 <td>:</td>
                                 <td>
                                     <asp:TextBox runat="server" CssClass="TextBox" enabled="False" ID="tbCode"
-                                        MaxLength="20" />
+                                        MaxLength="20" /> -
+                                    <asp:TextBox runat="server" CssClass="TextBox" enabled="False" ID="tbstatus"
+                                        MaxLength="20" />    
                                 </td>
                             </tr>
                             <tr>
@@ -568,40 +578,36 @@
                                 <td>
                                     <asp:TextBox runat="server" MaxLength="60" CssClass="TextBox" ID="tbName"
                                         ValidationGroup="Input" Width="300px" />
-                                </td>
+                                </td>                               
                             </tr>
 
                             <tr>
-                                <td>Role Type</td>
+                                 <td>Role Type</td>
                                 <td>:</td>
                                 <td>
-                                    <asp:DropDownList runat="server" CssClass="DropDownList" Width="306px"
-                                        ID="ddlRoleType" ValidationGroup="Input">
-                                        <asp:ListItem Selected="True">OWNER</asp:ListItem>
-                                        <asp:ListItem>COMPANY</asp:ListItem>
-                                        <asp:ListItem>VENDOR</asp:ListItem>
-                                    </asp:DropDownList>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Deskripsi</td>
-                                <td>:</td>
-                                <td>
-                                    <asp:TextBox runat="server" MaxLength="200" CssClass="TextBox" ID="tbKavlingDesc"
+                                    <asp:TextBox runat="server" MaxLength="60" CssClass="TextBox" ID="tbRoletype"
                                         ValidationGroup="Input" Width="300px" />
                                 </td>
                             </tr>
 
                             <tr>
-                                <td>Email</td>
+                                <td>Title</td>
                                 <td>:</td>
                                 <td>
-                                    <asp:TextBox runat="server" MaxLength="60" CssClass="TextBox" ID="tbEmail"
+                                    <asp:TextBox runat="server" MaxLength="60" CssClass="TextBox" ID="tbTitle"
                                         ValidationGroup="Input" Width="300px" />
                                 </td>
-                            </tr>
+                            </tr>                            
 
+                            <tr>
+                                <td>Deskripsi Pengaduan</td>
+                                <td>:</td>
+                                <td>
+                                    <asp:TextBox runat="server" height = "100" MaxLength="1000" CssClass="TextBox" ID="tbDescrip"
+                                        ValidationGroup="Input" Width="600px" TextMode = "MultiLine"/>
+                                </td>
+                            </tr>
+                            
                         </table>
                         <br>
                         <asp:Button ID="BtnSave" runat="server" class="bitbtndt btnsave" CommandName="Update"
@@ -620,7 +626,7 @@
                 </div>
 
 
-               
+
 
                 <div class="loading" align="center">
                     <br />
